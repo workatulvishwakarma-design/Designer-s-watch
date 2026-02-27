@@ -29,28 +29,34 @@ export default function AboutValues() {
     ];
 
     return (
-        <section className="relative py-24 md:py-32 overflow-hidden">
+        <section className="relative py-24 md:py-32 overflow-hidden bg-[#FAF8F4]">
 
-            {/* Background Image */}
-            <div className="absolute inset-0 z-0">
+            {/* Background Image with Light Luxury Overlay */}
+            <div className="absolute inset-0 z-0 opacity-40">
                 <Image
-                    src="/images/aboutImg3.png" // using one of the larger about images for the background
+                    src="/images/aboutImg3.png"
                     alt="Watchmaking Hands Background"
                     fill
-                    className="object-cover object-center"
+                    className="object-cover object-center grayscale"
                 />
-                <div className="absolute inset-0 bg-black/60" /> {/* Dark overlay to make white cards pop */}
+                <div
+                    className="absolute inset-0"
+                    style={{
+                        background: "radial-gradient(circle at center, rgba(250, 248, 244, 0.8) 0%, #FAF8F4 100%)"
+                    }}
+                />
             </div>
 
-            <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-8">
+            <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12">
 
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="text-center mb-16"
+                    className="text-center mb-20"
                 >
-                    <h2 className="text-3xl md:text-5xl font-sans text-white font-medium tracking-tight">Our Core Values</h2>
+                    <span className="text-gold font-body text-[11px] tracking-[0.4em] uppercase mb-4 inline-block">OUR PHILOSOPHY</span>
+                    <h2 className="text-4xl md:text-6xl font-heading font-light text-[#1A1918] tracking-tight">Core Values</h2>
                 </motion.div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">

@@ -5,8 +5,8 @@ import Image from "next/image";
 
 export default function AboutChairman() {
     return (
-        <section className="py-16 md:py-24 bg-background">
-            <div className="max-w-7xl mx-auto px-6 md:px-8">
+        <section className="py-16 md:py-32 bg-[#FAF8F4] overflow-hidden">
+            <div className="max-w-7xl mx-auto px-6 md:px-12 xl:px-24">
 
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-0 items-center">
 
@@ -15,29 +15,29 @@ export default function AboutChairman() {
                         initial={{ opacity: 0, x: -30 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.8 }}
-                        className="lg:col-span-5 relative h-[500px] md:h-[650px] w-full rounded-2xl overflow-hidden shadow-sm z-10"
+                        transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+                        className="lg:col-span-5 relative h-[500px] md:h-[700px] w-full rounded-[24px] overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.1)] z-10"
                     >
                         <Image
-                            src="/images/aboutImg2.png" // Assuming this might be the chairman portrait based on the file sizes
+                            src="/images/aboutImg2.png"
                             alt="Chairman Portrait"
                             fill
-                            className="object-cover object-center"
+                            className="object-cover object-center grayscale hover:grayscale-0 transition-all duration-1000"
                         />
                     </motion.div>
 
                     {/* Right Side: Message Card */}
-                    <div className="lg:col-span-7 flex flex-col relative z-20 lg:-ml-12 lg:mt-16">
+                    <div className="lg:col-span-7 flex flex-col relative z-20 lg:-ml-12 lg:mt-24">
 
-                        {/* Dark Header Strip */}
+                        {/* Premium Header Strip */}
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.6, delay: 0.2 }}
-                            className="bg-[#2D2D2D] text-white px-8 py-5 md:px-12 md:py-6 rounded-t-xl lg:rounded-tr-xl lg:rounded-tl-2xl shadow-lg w-fit"
+                            className="bg-[#B8935A] text-white px-10 py-6 md:px-16 md:py-8 rounded-t-[20px] lg:rounded-tr-[20px] lg:rounded-tl-[32px] shadow-2xl w-fit"
                         >
-                            <h3 className="font-serif text-xl md:text-2xl tracking-wide">Chairman's Message</h3>
+                            <h3 className="font-heading font-light text-2xl md:text-3xl tracking-wide">Chairman's Message</h3>
                         </motion.div>
 
                         {/* White Message Card */}

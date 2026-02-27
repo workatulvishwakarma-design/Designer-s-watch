@@ -3,87 +3,91 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 
-interface CounterProps {
-    value: number;
-    suffix?: string;
-    duration?: number;
+function useCountUp(end: number, duration: number, inView: boolean) {
+    const [count, setCount] = useState(0);
+    useEffect(() => {
+        if (!inView) return;
+        let start = 0;
+        const increment = end / (duration * 60);
+        const timer = setInterval(() => {
+            start += increment;
+            if (start >= end) {
+                setCount(end);
+                clearInterval(timer);
+            } else {
+                setCount(Math.floor(start));
+            }
+        }, 1000 / 60);
+        return () => clearInterval(timer);
+    }, [inView, end, duration]);
+    return count;
 }
 
-function Counter({ value, suffix = "", duration = 2 }: CounterProps) {
-    const [count, setCount] = useState(0);
-    const ref = useRef<HTMLSpanElement>(null);
-    const isInView = useInView(ref, { once: true, margin: "-50px" });
+interface StatItemProps {
+    value: number;
+    suffix: string;
+    label: string;
+    delay: number;
+}
 
-    useEffect(() => {
-        if (!isInView) return;
-
-        let startTime: number | null = null;
-        let animationFrameId: number;
-
-        const animate = (timestamp: number) => {
-            if (!startTime) startTime = timestamp;
-            const progress = timestamp - startTime;
-
-            // Calculate current value based on progress and duration
-            // using easeOutExpo for smooth deceleration
-            const percent = Math.min(progress / (duration * 1000), 1);
-            const easeOut = percent === 1 ? 1 : 1 - Math.pow(2, -10 * percent);
-
-            const currentVal = Math.floor(easeOut * value);
-
-            setCount(currentVal);
-
-            if (percent < 1) {
-                animationFrameId = requestAnimationFrame(animate);
-            } else {
-                setCount(value);
-            }
-        };
-
-        animationFrameId = requestAnimationFrame(animate);
-
-        return () => cancelAnimationFrame(animationFrameId);
-    }, [isInView, value, duration]);
+function StatItem({ value, suffix, label, delay }: StatItemProps) {
+    const ref = useRef<HTMLDivElement>(null);
+    const inView = useInView(ref, { once: true, margin: "-50px" });
+    const count = useCountUp(value, 2, inView);
 
     return (
-        <span ref={ref} className="text-5xl md:text-7xl font-serif">
-            {count}{suffix}
-        </span>
+        <motion.div
+            ref={ref}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.25 }}
+            transition={{ duration: 0.6, delay }}
+            className="flex flex-col items-center gap-3 relative"
+        >
+            <span
+                className="font-display text-[56px] md:text-[72px] leading-none"
+                style={{ color: "#003926" }}
+            >
+                {count}{suffix}
+            </span>
+            <span
+                className="font-body font-light text-[11px] md:text-[13px] tracking-[0.15em] uppercase text-center max-w-[160px]"
+                style={{ color: "#9C9690" }}
+            >
+                {label}
+            </span>
+        </motion.div>
     );
 }
 
 export default function StatsCounter() {
     const stats = [
-        { value: 4, label: "Generations of Expertise" },
+        { value: 4, suffix: "+", label: "Generations of Expertise" },
         { value: 20, suffix: "+", label: "International Brands" },
         { value: 500, suffix: "+", label: "Private Labels Manufactured" },
         { value: 100, suffix: "+", label: "Multi-Brand Outlets" },
     ];
 
     return (
-        <section className="py-24 bg-white text-primaryText">
-            <div className="container mx-auto px-6 md:px-12 xl:px-24">
-                <div className="grid grid-cols-2 lg:grid-cols-4 gap-12 text-center">
+        <section className="py-[100px]" style={{ backgroundColor: "#FAF8F4" }}>
+            <div className="max-w-6xl mx-auto px-6 md:px-12">
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-4">
                     {stats.map((stat, i) => (
-                        <motion.div
-                            key={i}
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: "-100px" }}
-                            transition={{ duration: 0.6, delay: i * 0.1, ease: "easeOut" }}
-                            className="flex flex-col items-center justify-center gap-4"
-                        >
-                            <div className="text-secondary/80 font-serif text-[4rem] md:text-[5.5rem] leading-none mb-2"
-                                style={{
-                                    WebkitTextStroke: "1px #0E3D2B",
-                                    WebkitTextFillColor: "transparent"
-                                }}>
-                                <Counter value={stat.value} suffix={stat.suffix} />
-                            </div>
-                            <p className="font-sans text-[10px] md:text-xs tracking-[0.2em] uppercase opacity-70 max-w-[140px] leading-relaxed mx-auto">
-                                {stat.label}
-                            </p>
-                        </motion.div>
+                        <div key={i} className="relative flex justify-center">
+                            <StatItem
+                                value={stat.value}
+                                suffix={stat.suffix}
+                                label={stat.label}
+                                delay={i * 0.15}
+                            />
+                            {/* Gold vertical divider */}
+                            {i < stats.length - 1 && (
+                                <div
+                                    className="hidden lg:block absolute right-0 top-1/2 -translate-y-1/2 w-[1px] h-[60px]"
+                                    style={{ backgroundColor: "#E0D8CE" }}
+                                />
+                            )}
+                        </div>
                     ))}
                 </div>
             </div>

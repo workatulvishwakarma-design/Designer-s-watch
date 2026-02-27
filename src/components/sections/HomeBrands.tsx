@@ -1,107 +1,219 @@
 "use client";
 
-import { motion } from "framer-motion";
+import React, { useState, useRef } from "react";
 import Image from "next/image";
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { Playfair_Display, Poppins } from "next/font/google";
 
-interface BrandCardProps {
-    title: string;
-    description: string;
-    image: string;
-    cta: string;
-    logo?: string;
-}
+const playfair = Playfair_Display({ subsets: ["latin"], weight: ["700"], variable: "--font-playfair" });
+const poppins = Poppins({ subsets: ["latin"], weight: ["300", "400", "500", "600"], variable: "--font-poppins" });
 
-function BrandCard({ title, description, image, cta, logo }: BrandCardProps) {
+const Word = ({ children, delay }: { children: string; delay: number }) => (
+    <motion.span
+        initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
+        whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, delay, ease: [0.22, 1, 0.36, 1] }}
+        className="inline-block mr-[0.3em]"
+    >
+        {children}
+    </motion.span>
+);
+
+export default function HomeBrands() {
+    const [hoveredSide, setHoveredSide] = useState<"left" | "right" | null>(null);
+    const containerRef = useRef<HTMLDivElement>(null);
+
+    const { scrollYProgress } = useScroll({
+        target: containerRef,
+        offset: ["start end", "end start"],
+    });
+
+    const headline = "Two Identities. One Foundation.";
+    const words = headline.split(" ");
+
     return (
-        <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="relative w-full rounded-xl overflow-hidden cursor-pointer group h-[280px] md:h-[340px]"
+        <section
+            ref={containerRef}
+            className={`relative h-screen min-h-[700px] w-full overflow-hidden flex flex-col md:flex-row bg-[#FAF8F4] ${playfair.variable} ${poppins.variable} font-sans`}
         >
-            {/* Background Image */}
+            {/* SECTION HEADLINE - OVERLAY TOP */}
+            <div className="absolute top-12 md:top-20 left-0 w-full z-40 flex justify-center px-6 pointer-events-none">
+                <h2 className="text-3xl md:text-5xl lg:text-6xl font-serif text-[#1A1918] text-center drop-shadow-sm">
+                    {words.map((word, i) => (
+                        <Word key={i} delay={0.2 + i * 0.1}>{word}</Word>
+                    ))}
+                </h2>
+            </div>
+
+            {/* CENTER DIVIDER LINE */}
             <motion.div
-                className="absolute inset-0"
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                initial={{ scaleY: 0 }}
+                whileInView={{ scaleY: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
+                className={`absolute left-1/2 top-0 w-[1px] h-full bg-[#1A1918]/10 z-30 hidden md:block origin-top transition-colors duration-500 ${hoveredSide ? 'bg-[#003926]/30 shadow-[0_0_15px_rgba(0,57,38,0.2)]' : ''}`}
+            />
+
+            {/* LEFT PANEL - D'SIGNER */}
+            <motion.div
+                onMouseEnter={() => setHoveredSide("left")}
+                onMouseLeave={() => setHoveredSide(null)}
+                animate={{
+                    width: hoveredSide === "left" ? "60%" : hoveredSide === "right" ? "40%" : "50%"
+                }}
+                transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                className="relative h-1/2 md:h-full overflow-hidden group border-b md:border-b-0 md:border-r border-[#1A1918]/5"
             >
-                <Image
-                    src={image}
-                    alt={title}
-                    fill
-                    className="object-cover object-right"
+                {/* Background Image with Parallax & Depth */}
+                <motion.div
+                    animate={{ scale: hoveredSide === "left" ? 1.05 : 1 }}
+                    transition={{ duration: 1.2, ease: "easeOut" }}
+                    className="absolute inset-0 z-0"
+                >
+                    <Image
+                        src="/images/img03.png"
+                        alt="D'SIGNER Luxury"
+                        fill
+                        className="object-cover brightness-[0.85] contrast-[1.1]"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent transition-opacity duration-700" />
+                </motion.div>
+
+                {/* Spotlight Glow */}
+                <div className={`absolute inset-0 z-1 pointer-events-none transition-opacity duration-1000 ${hoveredSide === "left" ? "opacity-40" : "opacity-0"}`}
+                    style={{ background: "radial-gradient(circle at center, rgba(0,57,38,0.5) 0%, transparent 70%)" }}
+                />
+
+                {/* Content */}
+                <div className="relative z-10 h-full w-full flex flex-col justify-end p-8 md:p-16 lg:p-24 space-y-4 md:space-y-6">
+                    <motion.h3
+                        animate={{
+                            opacity: hoveredSide === "right" ? 0.4 : 0.8,
+                            letterSpacing: hoveredSide === "left" ? "0.15em" : "0.05em",
+                            scale: hoveredSide === "left" ? 1.05 : 1
+                        }}
+                        className="text-5xl md:text-7xl lg:text-8xl font-bold text-white tracking-widest uppercase transition-all duration-700 pointer-events-none"
+                        style={{ textShadow: "0 10px 30px rgba(0,0,0,0.3)" }}
+                    >
+                        D&apos;SIGNER
+                    </motion.h3>
+
+                    <AnimatePresence>
+                        {hoveredSide === "left" && (
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: 10 }}
+                                transition={{ duration: 0.5, ease: "easeOut" }}
+                                className="space-y-6"
+                            >
+                                <p className="text-white/80 text-base md:text-lg font-light max-w-md leading-relaxed">
+                                    Design-led premium watches built for refined aesthetics and international standards.
+                                </p>
+                                <button className="px-10 py-4 bg-white text-black rounded-full text-[12px] font-semibold tracking-widest uppercase hover:bg-[#003926] hover:text-white transition-all duration-500 hover:shadow-2xl hover:-translate-y-1">
+                                    Explore Collection
+                                </button>
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
+                </div>
+
+                {/* Light Sweep Effect */}
+                <motion.div
+                    animate={hoveredSide === "left" ? { x: ["-100%", "200%"] } : { x: "-100%" }}
+                    transition={{ duration: 1.5, ease: "easeInOut" }}
+                    className="absolute inset-0 z-20 pointer-events-none bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12"
                 />
             </motion.div>
 
-            {/* Overlay Gradient (Left to Right to darken text area) */}
-            <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent transition-opacity group-hover:from-black/90" />
-
-            {/* Content (Vertically Centered Overlay) */}
-            <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-center text-left">
-                <motion.div className="max-w-[280px] md:max-w-[320px] flex flex-col gap-4">
-                    <div className="flex flex-col gap-3">
-                        {logo ? (
-                            <span className="font-serif text-white tracking-widest text-lg md:text-xl">{logo}</span>
-                        ) : (
-                            <h3 className="text-lg md:text-xl font-serif text-white uppercase tracking-wider">
-                                {title}
-                            </h3>
-                        )}
-                        <p className="text-[10px] md:text-xs text-white/80 leading-relaxed font-light">
-                            {description}
-                        </p>
-                    </div>
-
-                    <button className="w-fit text-[9px] md:text-[10px] tracking-widest uppercase text-white border border-white/50 px-5 py-2 rounded-md hover:bg-white hover:text-black transition-all mt-2">
-                        {cta}
-                    </button>
+            {/* RIGHT PANEL - ESCORT */}
+            <motion.div
+                onMouseEnter={() => setHoveredSide("right")}
+                onMouseLeave={() => setHoveredSide(null)}
+                animate={{
+                    width: hoveredSide === "right" ? "60%" : hoveredSide === "left" ? "40%" : "50%"
+                }}
+                transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                className="relative h-1/2 md:h-full overflow-hidden group"
+            >
+                {/* Background Image with Parallax & Depth */}
+                <motion.div
+                    animate={{ scale: hoveredSide === "right" ? 1.05 : 1 }}
+                    transition={{ duration: 1.2, ease: "easeOut" }}
+                    className="absolute inset-0 z-0"
+                >
+                    <Image
+                        src="/images/img04.png"
+                        alt="ESCORT Heritage"
+                        fill
+                        className="object-cover brightness-[0.9] contrast-[1.05]"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent transition-opacity duration-700" />
                 </motion.div>
-            </div>
-        </motion.div>
-    );
-}
 
-export default function HomeBrands() {
-    return (
-        <section className="py-16 md:py-20 bg-background text-primaryText">
-            <div className="max-w-7xl mx-auto px-6 md:px-8">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                {/* Spotlight Glow */}
+                <div className={`absolute inset-0 z-1 pointer-events-none transition-opacity duration-1000 ${hoveredSide === "right" ? "opacity-30" : "opacity-0"}`}
+                    style={{ background: "radial-gradient(circle at center, rgba(235,230,225,0.6) 0%, transparent 70%)" }}
+                />
 
-                    {/* Left: Heading + Paragraph */}
-                    <div className="w-full flex flex-col gap-6 lg:pr-12">
-                        <h2 className="text-4xl md:text-5xl lg:text-[4rem] font-sans font-medium text-[#2d3748] leading-[1.1] tracking-tight">
-                            Our Home<br />Brands
-                        </h2>
-                        <div className="flex flex-col gap-5 text-[#4a5568] max-w-sm mt-2">
-                            <p className="text-sm md:text-base leading-relaxed">
-                                Two distinct identities. One shared foundation of precision and trust.
-                            </p>
-                            <p className="text-sm md:text-base leading-relaxed">
-                                From refined designer aesthetics to dependable everyday performance, our home brands reflect the depth of our watchmaking expertise.
-                            </p>
-                        </div>
-                    </div>
+                {/* Content */}
+                <div className="relative z-10 h-full w-full flex flex-col justify-end p-8 md:p-16 lg:p-24 space-y-4 md:space-y-6">
+                    <motion.h3
+                        animate={{
+                            opacity: hoveredSide === "left" ? 0.4 : 0.8,
+                            letterSpacing: hoveredSide === "right" ? "0.15em" : "0.05em",
+                            scale: hoveredSide === "right" ? 1.05 : 1
+                        }}
+                        className="text-5xl md:text-7xl lg:text-8xl font-bold text-white tracking-widest uppercase transition-all duration-700 pointer-events-none"
+                        style={{ textShadow: "0 10px 30px rgba(0,0,0,0.3)" }}
+                    >
+                        ESCORT
+                    </motion.h3>
 
-                    {/* Right: Stacked Brand Cards */}
-                    <div className="w-full flex flex-col space-y-8">
-                        <BrandCard
-                            title="Designer"
-                            logo="D'SIGNER"
-                            description="A design-led watch brand crafted for those who appreciate refined aesthetics, bold detailing, and international standards built to feel modern, confident, and timeless."
-                            image="/images/img03.png"
-                            cta="Shop Designer"
-                        />
-                        <BrandCard
-                            title="Escort"
-                            logo="ESCORT"
-                            description="Built for everyday reliability, ESCORT delivers quality watches that combine durability, comfort, and lasting value."
-                            image="/images/img04.png"
-                            cta="Shop Escort"
-                        />
-                    </div>
-
+                    <AnimatePresence>
+                        {hoveredSide === "right" && (
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: 10 }}
+                                transition={{ duration: 0.5, ease: "easeOut" }}
+                                className="space-y-6"
+                            >
+                                <p className="text-white/80 text-base md:text-lg font-light max-w-md leading-relaxed">
+                                    Reliable, durable watches offering everyday performance and lasting value.
+                                </p>
+                                <button className="px-10 py-4 bg-black text-white rounded-full text-[12px] font-semibold tracking-widest uppercase hover:bg-[#003926] transition-all duration-500 hover:shadow-2xl hover:-translate-y-1">
+                                    Explore Collection
+                                </button>
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
                 </div>
+
+                {/* Light Sweep Effect */}
+                <motion.div
+                    animate={hoveredSide === "right" ? { x: ["-100%", "200%"] } : { x: "-100%" }}
+                    transition={{ duration: 1.5, ease: "easeInOut" }}
+                    className="absolute inset-0 z-20 pointer-events-none bg-gradient-to-r from-transparent via-white/5 to-transparent -skew-x-12"
+                />
+            </motion.div>
+
+            {/* Grain Overlay */}
+            <div className="absolute inset-0 pointer-events-none z-50 opacity-[0.03] mix-blend-multiply">
+                <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+                    <filter id="noiseFilterSubtle">
+                        <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" />
+                    </filter>
+                    <rect width="100%" height="100%" filter="url(#noiseFilterSubtle)" />
+                </svg>
             </div>
+
+            <style jsx global>{`
+        .font-serif {
+          font-family: var(--font-playfair), serif;
+        }
+      `}</style>
         </section>
     );
 }

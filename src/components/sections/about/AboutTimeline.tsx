@@ -86,10 +86,12 @@ export default function AboutTimeline() {
 
                 {/* Heading */}
                 <div className="flex flex-col items-center text-center gap-6 mb-24 max-w-3xl mx-auto">
-                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-[#2d3748] leading-[1.1] tracking-tight whitespace-pre-line">
-                        Built Across Generations.<br />Strengthened by Time.
+                    <span className="text-gold font-body text-[11px] tracking-[0.4em] uppercase">OUR JOURNEY</span>
+                    <h2 className="text-4xl md:text-5xl lg:text-7xl font-heading font-light text-[#1A1918] leading-[1.05] tracking-tight whitespace-pre-line">
+                        Built Across Generations.<br />
+                        <span className="font-semibold text-[#003926]">Strengthened by Time.</span>
                     </h2>
-                    <p className="font-sans text-[13px] md:text-[15px] text-[#4a5568] leading-relaxed max-w-2xl px-4">
+                    <p className="font-body font-light text-[15px] md:text-lg text-secondaryText leading-relaxed max-w-2xl px-4">
                         From a modest horology setup in the 1940s to a multi-brand watch ecosystem today, every generation has expanded our expertise, deepened our credibility, and elevated our standards.
                     </p>
                 </div>
@@ -117,12 +119,12 @@ export default function AboutTimeline() {
                                     {/* Left Content Area */}
                                     <div className="w-[45%] flex flex-col items-end text-right pr-8 md:pr-16">
                                         {!isRight && (
-                                            <div className="flex flex-col gap-2 max-w-[340px]">
+                                            <div className="flex flex-col gap-2 max-w-[340px] group">
                                                 <div className="flex flex-col">
-                                                    <span className="font-sans text-[#2d3748] text-sm md:text-base">{item.year}</span>
-                                                    <h3 className="font-sans text-[#2d3748] font-medium text-[15px] md:text-lg">{item.title}</h3>
+                                                    <span className="font-heading text-gold text-lg md:text-xl font-light italic">{item.year}</span>
+                                                    <h3 className="font-heading text-[#1A1918] font-semibold text-[16px] md:text-[20px] tracking-tight">{item.title}</h3>
                                                 </div>
-                                                <p className="font-sans text-[#4a5568] text-[11px] md:text-[12px] leading-relaxed mt-1">
+                                                <p className="font-body text-secondaryText text-[12px] md:text-[14px] leading-relaxed mt-1 opacity-80 group-hover:opacity-100 transition-opacity">
                                                     {item.desc}
                                                 </p>
                                             </div>
@@ -130,17 +132,19 @@ export default function AboutTimeline() {
                                     </div>
 
                                     {/* Center Dot */}
-                                    <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full bg-[#1A1A1A] z-10 shadow-[0_0_0_8px_rgba(255,255,255,1)]" />
+                                    <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full bg-[#1A1918] z-10 shadow-[0_0_0_8px_rgba(255,255,255,1)] flex items-center justify-center">
+                                        <div className="w-1.5 h-1.5 rounded-full bg-gold" />
+                                    </div>
 
                                     {/* Right Content Area */}
                                     <div className="w-[45%] flex flex-col items-start text-left pl-8 md:pl-16">
                                         {isRight && (
-                                            <div className="flex flex-col gap-2 max-w-[340px]">
+                                            <div className="flex flex-col gap-2 max-w-[340px] group">
                                                 <div className="flex flex-col">
-                                                    <span className="font-sans text-[#2d3748] text-sm md:text-base">{item.year}</span>
-                                                    <h3 className="font-sans text-[#2d3748] font-medium text-[15px] md:text-lg">{item.title}</h3>
+                                                    <span className="font-heading text-gold text-lg md:text-xl font-light italic">{item.year}</span>
+                                                    <h3 className="font-heading text-[#1A1918] font-semibold text-[16px] md:text-[20px] tracking-tight">{item.title}</h3>
                                                 </div>
-                                                <p className="font-sans text-[#4a5568] text-[11px] md:text-[12px] leading-relaxed mt-1">
+                                                <p className="font-body text-secondaryText text-[12px] md:text-[14px] leading-relaxed mt-1 opacity-80 group-hover:opacity-100 transition-opacity">
                                                     {item.desc}
                                                 </p>
                                             </div>

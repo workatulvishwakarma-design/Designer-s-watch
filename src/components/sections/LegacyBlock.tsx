@@ -58,7 +58,7 @@ export default function LegacyBlock() {
                         />
                         {/* Real placeholder image since user didn't provide specific legacy image */}
                         <Image
-                            src="/images/Rectangle 89.png"
+                            src="/images/legacy-craftsmanship.png"
                             alt="Legacy craftsmanship"
                             fill
                             className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"

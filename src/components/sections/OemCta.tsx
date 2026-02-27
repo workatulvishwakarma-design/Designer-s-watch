@@ -1,56 +1,87 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 
 export default function OemCta() {
     return (
-        <section className="relative py-24 md:py-32 bg-[#2D2D2D] text-white overflow-hidden">
-            <div className="container mx-auto px-6 md:px-12 xl:px-24">
-                <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
+        <section
+            className="relative py-[140px] overflow-hidden"
+            style={{ backgroundColor: "#1A1A1A" }}
+        >
+            {/* Radial gold glow */}
+            <div
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                    background:
+                        "radial-gradient(ellipse at center, rgba(0,57,38,0.12) 0%, transparent 60%)",
+                }}
+            />
 
-                    {/* Left Side: Content */}
-                    <div className="w-full lg:w-1/2 flex flex-col gap-10">
-                        <div className="flex flex-col gap-8">
-                            <h2 className="text-3xl md:text-5xl lg:text-7xl font-serif leading-[1.05] tracking-tight whitespace-pre-line">
-                                Your Vision.<br />Our Watchmaking.
-                            </h2>
-                            <p className="font-sans text-base md:text-lg text-white/70 max-w-lg leading-relaxed font-light">
-                                We offer end-to-end OEM and private label watch manufacturing backed by decades of expertise, global sourcing, and rigorous quality control helping brands bring their vision to life with confidence.
-                            </p>
-                        </div>
+            <div className="relative z-10 max-w-3xl mx-auto px-6 md:px-12 text-center">
+                {/* Eyebrow */}
+                <motion.p
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.3 }}
+                    transition={{ duration: 0.6 }}
+                    className="font-body text-[11px] tracking-[0.3em] uppercase mb-6"
+                    style={{ color: "#003926" }}
+                >
+                    For Businesses
+                </motion.p>
 
-                        <div>
-                            <motion.button
-                                whileHover={{ scale: 1.02, backgroundColor: "rgba(255,255,255,0.1)" }}
-                                whileTap={{ scale: 0.98 }}
-                                className="px-10 py-3 border border-white/30 rounded-md font-sans text-xs tracking-[0.2em] uppercase transition-all duration-300"
-                            >
-                                Enquire Now
-                            </motion.button>
-                        </div>
-                    </div>
+                {/* Title with letter-spacing animation */}
+                <motion.h2
+                    initial={{ opacity: 0, letterSpacing: "0.3em" }}
+                    whileInView={{ opacity: 1, letterSpacing: "0.05em" }}
+                    viewport={{ once: true, amount: 0.3 }}
+                    transition={{ duration: 1, ease: "easeOut" }}
+                    className="font-heading text-[40px] md:text-[56px] lg:text-[64px] leading-[1.1] text-white mb-8"
+                >
+                    <span className="block font-light italic">Your Vision.</span>
+                    <span className="block font-semibold">Our Watchmaking.</span>
+                </motion.h2>
 
-                    {/* Right Side: Blueprint Image */}
-                    <motion.div
-                        className="w-full lg:w-1/2 relative aspect-[4/3] flex items-center justify-center"
-                        initial={{ opacity: 0, x: 50 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                {/* Gold underline */}
+                <motion.div
+                    initial={{ scaleX: 0 }}
+                    whileInView={{ scaleX: 1 }}
+                    viewport={{ once: true, amount: 0.3 }}
+                    transition={{ duration: 0.6, delay: 0.3 }}
+                    className="w-[60px] h-[1px] mx-auto mb-8 origin-center"
+                    style={{ backgroundColor: "#003926" }}
+                />
+
+                {/* Subtext */}
+                <motion.p
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.3 }}
+                    transition={{ duration: 0.8, delay: 0.3 }}
+                    className="font-body font-light text-[16px] md:text-[18px] leading-[1.9] max-w-[560px] mx-auto mb-12"
+                    style={{ color: "rgba(255,255,255,0.6)" }}
+                >
+                    End-to-end OEM &amp; private label watch manufacturing backed by decades
+                    of expertise, global sourcing, and rigorous quality control.
+                </motion.p>
+
+                {/* CTA Button with pulse glow on hover */}
+                <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true, amount: 0.3 }}
+                    transition={{ duration: 0.6, delay: 0.5 }}
+                >
+                    <button
+                        className="px-10 py-4 font-body text-[12px] tracking-[0.15em] uppercase transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,57,38,0.4)] hover:brightness-110"
+                        style={{
+                            backgroundColor: "#003926",
+                            color: "#FFFFFF",
+                        }}
                     >
-                        <div className="relative w-full h-full lg:scale-125">
-                            <Image
-                                src="/images/img02.png"
-                                alt="Watch Manufacturing Blueprints"
-                                fill
-                                className="object-contain invert brightness-[0.6] contrast-[4] grayscale mix-blend-screen"
-                                priority
-                            />
-                        </div>
-                    </motion.div>
-
-                </div>
+                        Enquire Now
+                    </button>
+                </motion.div>
             </div>
         </section>
     );

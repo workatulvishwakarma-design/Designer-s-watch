@@ -1,124 +1,263 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
+import { useRef, Component, type ReactNode } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
-import Header from "../Header";
+import HeroScene from "../canvas/HeroScene";
 
-const slides = [
-    {
-        title: "Your Vision.\nOur Watchmaking.",
-        description: "Premium timepieces crafted with international standards and four generations of horological expertise.",
-        cta: "Shop Now",
-        image: "/images/img3.png",
-        hasTicker: true
-    },
-    {
-        title: "Everyday \nReliability. Elevated.",
-        description: "Quality watches built for comfort, durability, and value made to move with real life.",
-        cta: "Shop Now",
-        image: "/images/img2.png"
-    },
-    {
-        title: "Built Behind \n500+ Private Labels.",
-        description: "End-to-end OEM solutions trusted across India and international markets.",
-        cta: "Explore More",
-        image: "/images/img1.png"
+/* Error Boundary for WebGL Canvas */
+class CanvasErrorBoundary extends Component<
+    { children: ReactNode; fallback: ReactNode },
+    { hasError: boolean }
+> {
+    constructor(props: { children: ReactNode; fallback: ReactNode }) {
+        super(props);
+        this.state = { hasError: false };
     }
+    static getDerivedStateFromError() {
+        return { hasError: true };
+    }
+    render() {
+        if (this.state.hasError) return this.props.fallback;
+        return this.props.children;
+    }
+}
+
+const marqueeItems = [
+    "Stainless Steel Construction",
+    "5–10 ATM Water Resistance",
+    "Sapphire Coated Glass",
+    "OEM & ODM Watch Solutions",
+    "Trusted by Global Brands",
+    "Durability Meets Design",
+    "Since 1940s",
+    "4 Generations of Excellence",
 ];
 
-const tickerItems = [
-    "STAINLESS STEEL CONSTRUCTION",
-    "5-10 ATM WATER RESISTANCE",
-    "SAPPHIRE COATED GLASS",
-    "OEM & ODM WATCH SOLUTIONS",
-    "TRUSTED BY GLOBAL BRANDS",
-    "DURABILITY MEETS DESIGN"
-];
+const wordVariants = {
+    hidden: { opacity: 0, y: 60, rotateX: -15 },
+    visible: (i: number) => ({
+        opacity: 1,
+        y: 0,
+        rotateX: 0,
+        transition: {
+            duration: 0.9,
+            ease: [0.22, 1, 0.36, 1],
+            delay: i * 0.12,
+        } as any,
+    }),
+};
 
 export default function HeroSection() {
-    const [currentSlide, setCurrentSlide] = useState(0);
-    const [isAutoPlaying, setIsAutoPlaying] = useState(true);
-
-    useEffect(() => {
-        if (!isAutoPlaying) return;
-        const timer = setInterval(() => {
-            setCurrentSlide((prev) => (prev + 1) % slides.length);
-        }, 7000);
-        return () => clearInterval(timer);
-    }, [isAutoPlaying]);
+    const sectionRef = useRef<HTMLDivElement>(null);
+    const { scrollYProgress } = useScroll();
+    const heroProgress = useTransform(scrollYProgress, [0, 0.4], [0, 1]);
 
     return (
-        <section className="relative w-full h-screen overflow-hidden bg-[#1a1a1a] flex flex-col justify-center">
-            <Header />
+        <>
+            <section
+                ref={sectionRef}
+                className="relative w-full min-h-screen overflow-hidden"
+                style={{ backgroundColor: "#FAF8F4" }}
+            >
+                <div className="max-w-7xl mx-auto px-6 md:px-12 flex flex-col lg:flex-row items-center min-h-screen relative z-10">
+                    {/* LEFT SIDE — Text Content (45%) */}
+                    <div className="w-full lg:w-[45%] flex flex-col justify-center py-32 lg:py-0 relative z-20">
+                        {/* Top Label */}
+                        <motion.p
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6, delay: 0.1 }}
+                            className="font-body text-[11px] tracking-[0.25em] uppercase mb-8"
+                            style={{ color: "#003926" }}
+                        >
+                            Designer World × Nagpal Group
+                        </motion.p>
 
-            {/* Background Images */}
-            <AnimatePresence mode="wait">
-                <motion.div
-                    key={`bg-${currentSlide}`}
-                    initial={{ opacity: 0, scale: 1.1 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-                    className="absolute inset-0 z-0"
-                >
-                    <Image
-                        src={slides[currentSlide].image}
-                        alt={slides[currentSlide].title}
-                        fill
-                        className="object-cover"
-                        priority
-                    />
-                    <div className="absolute inset-0 bg-black/10 transition-opacity" />
-                </motion.div>
-            </AnimatePresence>
-
-            {/* Content Overlay */}
-            <div className="container mx-auto px-6 md:px-12 xl:px-24 z-10 relative h-full flex flex-col justify-center pt-24">
-                <AnimatePresence mode="wait">
-                    <motion.div
-                        key={`content-${currentSlide}`}
-                        initial={{ opacity: 0, x: -50 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: 30 }}
-                        transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                        className="max-w-5xl flex flex-col gap-8 md:gap-10"
-                    >
-                        <h1 className="text-3xl md:text-5xl font-serif text-white leading-[1.2] whitespace-pre-line drop-shadow-lg">
-                            {slides[currentSlide].title}
-                        </h1>
-                        <p className="text-lg md:text-xl text-white/80 max-w-md font-sans font-light leading-relaxed">
-                            {slides[currentSlide].description}
-                        </p>
-
-                        <div className="flex items-center gap-6 mt-4">
-                            <motion.button
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                                className="px-10 py-3 border border-white/30 rounded-full text-white font-sans text-xs tracking-widest uppercase hover:bg-white hover:text-black transition-all duration-300"
+                        {/* Main Headline */}
+                        <div className="mb-7">
+                            <motion.h1
+                                className="font-heading text-[48px] md:text-[64px] lg:text-[72px] leading-[1.05]"
+                                initial="hidden"
+                                animate="visible"
                             >
-                                {slides[currentSlide].cta}
-                            </motion.button>
+                                <motion.span
+                                    custom={0}
+                                    variants={wordVariants}
+                                    className="block font-light italic"
+                                    style={{ color: "#1A1918" }}
+                                >
+                                    Your Vision.
+                                </motion.span>
+                                <motion.span
+                                    custom={1}
+                                    variants={wordVariants}
+                                    className="block font-light italic"
+                                    style={{ color: "#1A1918" }}
+                                >
+                                    Our
+                                </motion.span>
+                                <motion.span
+                                    custom={2}
+                                    variants={wordVariants}
+                                    className="block font-semibold"
+                                    style={{ color: "#003926" }}
+                                >
+                                    Watchmaking.
+                                </motion.span>
+                            </motion.h1>
                         </div>
-                    </motion.div>
-                </AnimatePresence>
 
-                {/* Progress Indicators */}
-                <div className="absolute bottom-12 right-6 md:right-12 xl:right-24 flex items-center gap-4">
-                    {slides.map((_, i) => (
-                        <button
-                            key={i}
-                            onClick={() => {
-                                setCurrentSlide(i);
-                                setIsAutoPlaying(false);
-                            }}
-                            className={`h-[2px] w-8 md:w-12 transition-all duration-500 ${currentSlide === i ? "bg-white" : "bg-white/20"
-                                }`}
+                        {/* Gold Divider */}
+                        <motion.div
+                            initial={{ scaleX: 0 }}
+                            animate={{ scaleX: 1 }}
+                            transition={{ duration: 0.6, delay: 0.5 }}
+                            className="w-[50px] h-[1px] origin-left mb-7"
+                            style={{ backgroundColor: "#003926" }}
                         />
+
+                        {/* Subtext */}
+                        <motion.p
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8, delay: 0.7 }}
+                            className="font-body font-light text-[16px] leading-[1.8] max-w-[380px] mb-7"
+                            style={{ color: "#5C5750" }}
+                        >
+                            Premium timepieces crafted with international standards and
+                            four generations of horological expertise.
+                        </motion.p>
+
+                        {/* Since Badge */}
+                        <motion.span
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 0.5, delay: 0.9 }}
+                            className="inline-block w-fit font-body text-[10px] tracking-[0.2em] uppercase px-4 py-1.5 mb-8 border"
+                            style={{ color: "#003926", borderColor: "#003926" }}
+                        >
+                            Since 1940s
+                        </motion.span>
+
+                        {/* CTA Buttons */}
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.6, delay: 1 }}
+                            className="flex flex-wrap items-center gap-4"
+                        >
+                            <button
+                                className="px-8 py-3.5 font-body text-[12px] tracking-[0.1em] uppercase text-white transition-all duration-300 hover:bg-gold hover:border-gold border"
+                                style={{
+                                    backgroundColor: "#1A1918",
+                                    borderColor: "#1A1918",
+                                }}
+                            >
+                                Explore Collection
+                            </button>
+                            <button
+                                className="px-8 py-3.5 font-body text-[12px] tracking-[0.1em] uppercase bg-transparent transition-all duration-300 border hover:bg-gold-muted"
+                                style={{
+                                    color: "#1A1918",
+                                    borderColor: "#003926",
+                                }}
+                            >
+                                Our Legacy
+                            </button>
+                        </motion.div>
+
+                        {/* Scroll Indicator */}
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ delay: 1.4 }}
+                            className="hidden lg:flex flex-col items-center gap-3 mt-16"
+                            style={{ alignSelf: "flex-start" }}
+                        >
+                            <div
+                                className="w-[1px] h-[40px] animate-pulse"
+                                style={{ backgroundColor: "#E8D9C0" }}
+                            />
+                            <span
+                                className="font-body text-[9px] tracking-[0.3em] uppercase"
+                                style={{
+                                    color: "#9C9690",
+                                    writingMode: "vertical-rl",
+                                }}
+                            >
+                                Scroll
+                            </span>
+                        </motion.div>
+                    </div>
+
+                    {/* RIGHT SIDE — Watch Product Image (55%) */}
+                    <div className="hidden sm:flex w-full lg:w-[55%] h-[60vh] lg:h-screen relative items-center justify-center">
+                        <motion.div
+                            animate={{ y: [-8, 8, -8] }}
+                            transition={{ duration: 3, ease: "easeInOut", repeat: Infinity }}
+                            className="relative w-[320px] h-[450px] lg:w-[420px] lg:h-[580px]"
+                        >
+                            <Image
+                                src="/images/img01.png"
+                                alt="Designer World Watch"
+                                fill
+                                className="object-contain"
+                                priority
+                                style={{ filter: "drop-shadow(0 30px 60px rgba(0,57,38,0.3))" }}
+                            />
+                        </motion.div>
+                        {/* Radial gradient fade */}
+                        <div
+                            className="absolute inset-0 pointer-events-none z-10"
+                            style={{
+                                background:
+                                    "radial-gradient(ellipse at center, transparent 50%, #FAF8F4 100%)",
+                            }}
+                        />
+                    </div>
+
+                    {/* Mobile watch image */}
+                    <div className="sm:hidden w-full flex justify-center py-8">
+                        <motion.div
+                            animate={{ y: [-6, 6, -6] }}
+                            transition={{ duration: 3, ease: "easeInOut", repeat: Infinity }}
+                            className="relative w-[260px] h-[360px]"
+                        >
+                            <Image
+                                src="/images/img01.png"
+                                alt="Designer World Watch"
+                                fill
+                                className="object-contain"
+                                priority
+                                style={{ filter: "drop-shadow(0 20px 40px rgba(0,57,38,0.25))" }}
+                            />
+                        </motion.div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Badge Strip */}
+            <div
+                className="w-full overflow-hidden py-3.5"
+                style={{ backgroundColor: "#1A1918" }}
+            >
+                <div className="animate-marquee flex whitespace-nowrap">
+                    {[...marqueeItems, ...marqueeItems].map((item, i) => (
+                        <span
+                            key={i}
+                            className="flex items-center gap-6 mx-3 font-display text-[14px] tracking-[0.15em] uppercase"
+                            style={{ color: "#003926" }}
+                        >
+                            {item}
+                            <span
+                                className="w-1.5 h-1.5 rounded-full"
+                                style={{ backgroundColor: "#003926" }}
+                            />
+                        </span>
                     ))}
                 </div>
             </div>
-
-        </section>
+        </>
     );
 }

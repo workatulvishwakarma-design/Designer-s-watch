@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import SmoothScrolling from "@/components/SmoothScrolling";
+import CustomCursor from "@/components/ui/CustomCursor";
+import { CartProvider } from "@/context/CartContext";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -28,9 +30,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
       <body className="antialiased bg-background text-primaryText">
-        <SmoothScrolling>
-          {children}
-        </SmoothScrolling>
+        <CartProvider>
+          <CustomCursor />
+          <SmoothScrolling>
+            {children}
+          </SmoothScrolling>
+        </CartProvider>
       </body>
     </html>
   );

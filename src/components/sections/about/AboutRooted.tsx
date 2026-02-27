@@ -4,25 +4,33 @@ import { motion } from "framer-motion";
 
 export default function AboutRooted() {
     return (
-        <section className="py-16 md:py-24 bg-background">
-            <div className="max-w-6xl mx-auto px-6 md:px-8">
+        <section className="py-16 md:py-32 bg-[#FAF8F4] overflow-hidden relative">
+            <div className="max-w-7xl mx-auto px-6 md:px-12 xl:px-24">
 
                 <motion.div
                     initial={{ opacity: 0, y: 40 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 0.8, ease: "easeOut" }}
-                    className="bg-white rounded-2xl shadow-sm p-10 md:p-16 w-full"
+                    transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+                    className="bg-white rounded-[24px] shadow-[0_20px_60px_rgba(0,0,0,0.03)] border border-[#E8E0D5] p-10 md:p-20 w-full relative overflow-hidden"
                 >
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+                    {/* Decorative Dot Flourish */}
+                    <div className="absolute top-8 left-8 flex gap-1">
+                        <div className="w-1.5 h-1.5 rounded-full bg-gold" />
+                        <div className="w-1.5 h-1.5 rounded-full bg-gold/30" />
+                        <div className="w-1.5 h-1.5 rounded-full bg-gold/10" />
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-16 lg:gap-24 items-start relative z-10">
 
                         {/* Left Column: Heading & Intro */}
-                        <div className="flex flex-col gap-6 md:justify-between">
-                            <h2 className="text-4xl md:text-5xl font-sans font-medium text-[#2d3748] leading-[1.1] tracking-tight">
-                                Rooted in the 1940s.<br />Designed for Today.
+                        <div className="flex flex-col gap-8">
+                            <h2 className="text-4xl md:text-5xl lg:text-5.5xl font-heading font-light text-[#1A1918] leading-[1.05] tracking-tight">
+                                Rooted in the 1940s.<br />
+                                <span className="font-semibold text-[#003926]">Designed for Today.</span>
                             </h2>
-                            <p className="font-sans text-[11px] md:text-[13px] text-[#4a5568] leading-relaxed max-w-sm mt-auto">
-                                Just before INDIA GOT ITS FREEDOM, in 1940's a Gentleman by the name of Shree Virbhan Nagpal seeded a small set up in Amritsar which today fruits to a national setup of trading, manufacturing & brand business. This became the beginning of a business era for the Nagpal family in the Horological Industry.
+                            <p className="font-body text-sm md:text-base text-secondaryText leading-relaxed italic border-l-2 border-gold pl-6">
+                                "Just before INDIA GOT ITS FREEDOM, in 1940's a Gentleman by the name of Shree Virbhan Nagpal seeded a small set up in Amritsar which today fruits to a national setup."
                             </p>
                         </div>
 
