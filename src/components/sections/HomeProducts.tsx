@@ -113,7 +113,7 @@ export default function HomeProducts() {
             <div ref={escortTrack} onScroll={handleScroll(escortTrack, setEscortProgress)} className="flex gap-5 px-6 pb-4 overflow-x-auto" style={{ scrollSnapType: 'x mandatory' }}>
               {escortProducts.slice(0, 6).map((prod: any) => (
                 <div key={prod.id} className="flex-shrink-0 w-[220px] sm:w-[260px] lg:w-[280px]" style={{ scrollSnapAlign: 'start' }}>
-                  <ProductCard product={prod} variant="default" />
+                  <ProductCard product={prod} variant="everyday" />
                 </div>
               ))}
             </div>
