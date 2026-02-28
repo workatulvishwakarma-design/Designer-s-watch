@@ -5,7 +5,8 @@ import CustomCursor from '@/components/ui/CustomCursor';
 import Header from '@/components/sections/Header';
 import HeroBanner from '@/components/sections/HeroBanner';
 import LegacySection from '@/components/sections/LegacySection';
-import WatchScrollPin from '@/components/sections/WatchScrollPin';
+import HomeProducts from '@/components/sections/HomeProducts';
+import FeatureScroller from '@/components/sections/FeatureScroller';
 import HomeBrands from '@/components/sections/HomeBrands';
 import StatsCounter from '@/components/sections/StatsCounter';
 import OemCta from '@/components/sections/OemCta';
@@ -44,9 +45,10 @@ export default function Home() {
         <Header />
         <main>
           <HeroBanner />
+          <HomeProducts />
           <LegacySection />
           <CraftSection />
-          <WatchScrollPin />
+          <FeatureScroller />
           <HomeBrands />
           <StatsCounter />
           <OemCta />

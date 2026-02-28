@@ -8,12 +8,25 @@ export default function CustomCursor() {
     const [isHovering, setIsHovering] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
     const [windowFocused, setWindowFocused] = useState(true);
+    const [isTouch, setIsTouch] = useState(false);
     const mouse = useRef({ x: 0, y: 0 });
     const ring = useRef({ x: 0, y: 0 });
 
     useEffect(() => {
-        // Hide on touch devices
-        if ("ontouchstart" in window) return;
+        // Detect touch device
+        const touchDevice = () => {
+            return (
+                typeof window !== "undefined" && 
+                (window.matchMedia("(pointer: coarse)").matches ||
+                 "ontouchstart" in window ||
+                 navigator.maxTouchPoints > 0)
+            );
+        };
+        
+        if (touchDevice()) {
+            setIsTouch(true);
+            return;
+        }
 
         const handleFocus = () => setWindowFocused(true);
         const handleBlur = () => setWindowFocused(false);
@@ -74,8 +87,8 @@ export default function CustomCursor() {
         };
     }, [isVisible, isHovering]);
 
-    // Hide cursor on touch devices via SSR-safe check
-    if (typeof window !== "undefined" && "ontouchstart" in window) return null;
+    // Hide cursor on touch devices
+    if (isTouch) return null;
 
     const show = windowFocused && isVisible;
 

@@ -35,7 +35,7 @@ export default function HeroBanner() {
     return (
         <section
             ref={containerRef}
-            className={`relative min-h-screen w-full flex flex-col lg:flex-row items-center overflow-hidden px-8 lg:px-24 py-20 lg:py-0 ${poppins.variable} font-sans`}
+            className={`relative w-full flex flex-col lg:flex-row items-center justify-between overflow-hidden px-4 md:px-8 lg:px-24 py-12 md:py-16 lg:py-0 lg:min-h-screen ${poppins.variable} font-sans`}
             style={{ backgroundColor: "#F8F6F2" }}
         >
             {/* Dynamic Background Tone Shift */}
@@ -73,7 +73,7 @@ export default function HeroBanner() {
             </div>
 
             {/* LEFT CONTENT: Text Block */}
-            <div className="relative z-20 w-full lg:w-1/2 flex flex-col items-center lg:items-start text-center lg:text-left space-y-8 order-1 lg:order-1 mt-12 lg:mt-0">
+            <div className="relative z-20 w-full lg:w-1/2 flex flex-col items-center lg:items-start text-center lg:text-left space-y-6 md:space-y-8 order-1 lg:order-1">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -92,7 +92,7 @@ export default function HeroBanner() {
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-                    className="text-5xl md:text-7xl xl:text-8xl font-bold tracking-tight text-[#1A1918] leading-[1.05]"
+                    className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight text-[#1A1918] leading-[1.05]"
                 >
                     Your Vision. <br />
                     <span className="text-[#003926]">Our Watchmaking.</span>
@@ -102,7 +102,7 @@ export default function HeroBanner() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                    className="text-lg md:text-xl text-gray-500 max-w-xl leading-relaxed font-light"
+                    className="text-sm md:text-lg lg:text-xl text-gray-500 max-w-xl leading-relaxed font-light"
                 >
                     Premium timepieces crafted with international standards and four generations of horological expertise.
                 </motion.p>
@@ -111,16 +111,16 @@ export default function HeroBanner() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                    className="flex flex-row items-center gap-8 pt-4"
+                    className="flex flex-col sm:flex-row items-center gap-4 md:gap-8 pt-2 md:pt-4"
                 >
                     {/* Primary CTA: Heritage Green */}
-                    <button className="group relative px-10 py-5 bg-[#003926] text-white rounded-full text-[13px] font-medium tracking-widest uppercase overflow-hidden transition-all duration-500 hover:shadow-[0_20px_40px_rgba(0,57,38,0.25)] hover:-translate-y-1 active:scale-95">
+                    <button className="group relative px-6 md:px-10 py-3 md:py-5 bg-[#003926] text-white rounded-full text-[12px] md:text-[13px] font-medium tracking-widest uppercase overflow-hidden transition-all duration-500 hover:shadow-[0_20px_40px_rgba(0,57,38,0.25)] hover:-translate-y-1 active:scale-95 w-full sm:w-auto">
                         <span className="relative z-10">Explore Collection</span>
                         <div className="absolute inset-0 bg-[#00281b] translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
                     </button>
 
                     {/* Secondary CTA: link style */}
-                    <button className="group relative py-2 text-[#003926] text-[13px] font-semibold tracking-widest uppercase">
+                    <button className="group relative py-2 text-[#003926] text-[12px] md:text-[13px] font-semibold tracking-widest uppercase">
                         Our Legacy
                         <span className="absolute bottom-0 left-0 w-full h-[1px] bg-[#003926] scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-right group-hover:origin-left" />
                     </button>
@@ -128,7 +128,7 @@ export default function HeroBanner() {
             </div>
 
             {/* RIGHT CONTENT: Centerpiece Watch */}
-            <div className="relative z-20 w-full lg:w-1/2 h-[50vh] lg:h-screen flex items-center justify-center order-2 lg:order-2">
+            <div className="relative z-20 w-full lg:w-1/2 h-[45vh] md:h-[55vh] lg:h-screen flex items-center justify-center order-2 lg:order-2 mt-8 lg:mt-0">
                 <motion.div
                     initial={{ opacity: 0, scale: 0.9, y: 40 }}
                     animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -149,7 +149,7 @@ export default function HeroBanner() {
                     <motion.div
                         animate={{ y: [0, -15, 0] }}
                         transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                        className="relative w-[300px] h-[300px] md:w-[480px] md:h-[480px] lg:w-[560px] lg:h-[560px]"
+                        className="relative w-[200px] h-[200px] sm:w-[280px] sm:h-[280px] md:w-[380px] md:h-[380px] lg:w-[480px] lg:h-[480px] xl:w-[560px] xl:h-[560px]"
                     >
                         <Image
                             src="/images/img01.png"

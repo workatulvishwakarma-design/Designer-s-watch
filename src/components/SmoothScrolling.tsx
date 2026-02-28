@@ -8,13 +8,14 @@ export default function SmoothScrolling({ children }: { children: React.ReactNod
 
     useEffect(() => {
         const lenis = new Lenis({
-            duration: 1.4,
+            duration: 1.2,
             easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
             orientation: "vertical",
             gestureOrientation: "vertical",
             smoothWheel: true,
             wheelMultiplier: 1,
             touchMultiplier: 2,
+            lerp: 0.08,
         });
         lenisRef.current = lenis;
 
@@ -31,5 +32,5 @@ export default function SmoothScrolling({ children }: { children: React.ReactNod
         };
     }, []);
 
-    return <>{children}</>;
+    return <div className="w-full">{children}</div>;
 }
