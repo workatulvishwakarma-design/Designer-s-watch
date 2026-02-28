@@ -7,7 +7,6 @@ import GrainOverlay from "@/components/ui/GrainOverlay";
 export default function AboutHero() {
     const { scrollYProgress } = useScroll();
     const y1 = useTransform(scrollYProgress, [0, 1], [0, -100]);
-    const y2 = useTransform(scrollYProgress, [0, 1], [0, 100]);
     const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
     return (

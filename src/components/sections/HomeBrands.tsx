@@ -2,7 +2,7 @@
 
 import React, { useState, useRef } from "react";
 import Image from "next/image";
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Playfair_Display, Poppins } from "next/font/google";
 
 const playfair = Playfair_Display({ subsets: ["latin"], weight: ["700"], variable: "--font-playfair" });
@@ -23,11 +23,6 @@ const Word = ({ children, delay }: { children: string; delay: number }) => (
 export default function HomeBrands() {
     const [hoveredSide, setHoveredSide] = useState<"left" | "right" | null>(null);
     const containerRef = useRef<HTMLDivElement>(null);
-
-    const { scrollYProgress } = useScroll({
-        target: containerRef,
-        offset: ["start end", "end start"],
-    });
 
     const headline = "Two Identities. One Foundation.";
     const words = headline.split(" ");

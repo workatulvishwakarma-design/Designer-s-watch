@@ -2,7 +2,7 @@
 
 import React, { useRef } from "react";
 import Image from "next/image";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Playfair_Display, Poppins } from "next/font/google";
 
 const playfair = Playfair_Display({ subsets: ["latin"], weight: ["700"], variable: "--font-playfair" });
@@ -36,7 +36,7 @@ const features = [
     },
 ];
 
-const FeatureItem = ({ feature, index }: { feature: typeof features[0], index: number }) => {
+const FeatureItem = ({ feature }: { feature: typeof features[0]; index: number }) => {
     return (
         <motion.div
             initial={{ opacity: 0, y: 40 }}

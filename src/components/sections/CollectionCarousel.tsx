@@ -223,9 +223,8 @@ export default function CollectionCarousel({
                                 transform: "translateY(100%)",
                                 transition: "transform 0.4s cubic-bezier(0.22,1,0.36,1), opacity 0.4s cubic-bezier(0.22,1,0.36,1)",
                             }}
-                            ref={(el) => {
-                                // Use parent group hover via MutationObserver alternative:
-                                // We control via CSS by attaching to group
+                            ref={() => {
+                                // CTA visibility controlled via parent group
                             }}
                         >
                             <span className="font-body text-[13px] tracking-[0.1em] uppercase text-white">

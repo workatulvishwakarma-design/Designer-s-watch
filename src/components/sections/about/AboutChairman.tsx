@@ -37,7 +37,7 @@ export default function AboutChairman() {
                             transition={{ duration: 0.6, delay: 0.2 }}
                             className="bg-[#B8935A] text-white px-10 py-6 md:px-16 md:py-8 rounded-t-[20px] lg:rounded-tr-[20px] lg:rounded-tl-[32px] shadow-2xl w-fit"
                         >
-                            <h3 className="font-heading font-light text-2xl md:text-3xl tracking-wide">Chairman's Message</h3>
+                            <h3 className="font-heading font-light text-2xl md:text-3xl tracking-wide">Chairman&apos;s Message</h3>
                         </motion.div>
 
                         {/* White Message Card */}
@@ -58,7 +58,7 @@ export default function AboutChairman() {
                             <p className="font-sans text-[#4a5568] leading-relaxed text-[12px] md:text-[14px]">
                                 In 1995, we introduced ESCORT a brand that delivers high-quality watches at affordable prices, making stylish timekeeping accessible to all.<br />
                                 Today, both DSIGNER and ESCORT enjoy a strong presence across the country through our Multi brand stores, with millions of happy customers who continue to place their trust in us.<br />
-                                I sincerely thank each one of you for being a part of our journey. Here's wishing you happiness, success, and timeless moments ahead.
+                                I sincerely thank each one of you for being a part of our journey. Here&apos;s wishing you happiness, success, and timeless moments ahead.
                             </p>
                             <div className="font-sans text-[#4a5568] leading-snug text-[12px] md:text-[14px] mt-2">
                                 <p>Warm regards,</p>

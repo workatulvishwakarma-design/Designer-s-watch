@@ -34,7 +34,7 @@ export default function EscortPage() {
                         viewport={{ once: true }}
                         className="font-heading text-4xl md:text-5xl text-[#003926] mb-6"
                     >
-                        D'SIGNER vs ESCORT
+                        D&apos;SIGNER vs ESCORT
                     </motion.h2>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
@@ -49,7 +49,7 @@ export default function EscortPage() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16 max-w-4xl mx-auto">
                         {/* D'SIGNER side */}
                         <div className="bg-white border border-[#003926]/20 rounded-2xl p-10 flex flex-col items-center shadow-sm">
-                            <span className="text-gold font-body text-[10px] tracking-[0.3em] uppercase mb-4">D'SIGNER</span>
+                            <span className="text-gold font-body text-[10px] tracking-[0.3em] uppercase mb-4">D&apos;SIGNER</span>
                             <ul className="text-[#1A1918] font-body text-sm space-y-4 mb-10 text-center">
                                 <li className="opacity-80">Premium Materials</li>
                                 <li className="opacity-80">₹1,299 – ₹4,999</li>
@@ -59,7 +59,7 @@ export default function EscortPage() {
                                 href="/collections/dsigner"
                                 className="px-8 py-3 bg-gold text-white font-body text-[11px] tracking-widest uppercase rounded-xl hover:bg-bg-dark transition-all duration-300"
                             >
-                                Shop D'Signer
+                                Shop D&apos;Signer
                             </Link>
                         </div>
 

@@ -1,27 +1,8 @@
 "use client";
 
-import { useRef, Component, type ReactNode } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
+import { motion } from "framer-motion";
 import Image from "next/image";
-import HeroScene from "../canvas/HeroScene";
-
-/* Error Boundary for WebGL Canvas */
-class CanvasErrorBoundary extends Component<
-    { children: ReactNode; fallback: ReactNode },
-    { hasError: boolean }
-> {
-    constructor(props: { children: ReactNode; fallback: ReactNode }) {
-        super(props);
-        this.state = { hasError: false };
-    }
-    static getDerivedStateFromError() {
-        return { hasError: true };
-    }
-    render() {
-        if (this.state.hasError) return this.props.fallback;
-        return this.props.children;
-    }
-}
 
 const marqueeItems = [
     "Stainless Steel Construction",
@@ -42,16 +23,14 @@ const wordVariants = {
         rotateX: 0,
         transition: {
             duration: 0.9,
-            ease: [0.22, 1, 0.36, 1],
+            ease: [0.22, 1, 0.36, 1] as const,
             delay: i * 0.12,
-        } as any,
+        },
     }),
 };
 
 export default function HeroSection() {
     const sectionRef = useRef<HTMLDivElement>(null);
-    const { scrollYProgress } = useScroll();
-    const heroProgress = useTransform(scrollYProgress, [0, 0.4], [0, 1]);
 
     return (
         <>

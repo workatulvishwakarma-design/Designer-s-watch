@@ -1,8 +1,7 @@
 "use client";
 
 import React, { useRef } from "react";
-import Image from "next/image";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { motion } from "framer-motion";
 import { Truck, Lock, Shield, Wrench, MessageCircle } from "lucide-react";
 import { Playfair_Display, Poppins } from "next/font/google";
 

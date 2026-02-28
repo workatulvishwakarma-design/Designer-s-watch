@@ -7,7 +7,6 @@ import DsignerFeatures from "@/components/sections/dsigner/DsignerFeatures";
 import Footer from "@/components/sections/Footer";
 import NewsletterStrip from "@/components/ui/NewsletterStrip";
 import SectionDivider from "@/components/ui/SectionDivider";
-import GrainOverlay from "@/components/ui/GrainOverlay";
 import CartDrawer from "@/components/ui/CartDrawer";
 
 export default function DsignerPage() {

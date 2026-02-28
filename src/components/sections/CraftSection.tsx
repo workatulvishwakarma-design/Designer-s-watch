@@ -79,7 +79,7 @@ export default function CraftSection() {
                         transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
                         className="text-4xl md:text-5xl font-bold tracking-tight text-[#1A1918] leading-[1.2]"
                     >
-                        Designer's Best Seller. <br />
+                        Designer&apos;s Best Seller. <br />
                         <span className="text-[#003926]">It Is Engineered.</span>
                     </motion.h2>
                     <p className="text-gray-500 font-light text-lg">

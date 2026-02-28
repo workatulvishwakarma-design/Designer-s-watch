@@ -11,9 +11,16 @@ export interface CartItem {
     brand: string;
 }
 
+interface AddToCartProduct {
+    id: number;
+    name: string;
+    price: number;
+    image: string;
+}
+
 interface CartContextType {
     cart: CartItem[];
-    addToCart: (product: any, brand: string) => void;
+    addToCart: (product: AddToCartProduct, brand: string) => void;
     removeFromCart: (id: number) => void;
     updateQuantity: (id: number, delta: number) => void;
     cartCount: number;
@@ -27,12 +34,13 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     const [cart, setCart] = useState<CartItem[]>([]);
     const [isCartOpen, setIsCartOpen] = useState(false);
 
-    // Load from localStorage
+    // Load from localStorage (defer setState to avoid synchronous setState in effect)
     useEffect(() => {
         const savedCart = localStorage.getItem("designer-world-cart");
         if (savedCart) {
             try {
-                setCart(JSON.parse(savedCart));
+                const parsed = JSON.parse(savedCart) as CartItem[];
+                queueMicrotask(() => setCart(parsed));
             } catch (e) {
                 console.error("Failed to parse cart", e);
             }
@@ -44,7 +52,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         localStorage.setItem("designer-world-cart", JSON.stringify(cart));
     }, [cart]);
 
-    const addToCart = (product: any, brand: string) => {
+    const addToCart = (product: AddToCartProduct, brand: string) => {
         setCart((prev) => {
             const existing = prev.find((item) => item.id === product.id);
             if (existing) {

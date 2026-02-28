@@ -30,6 +30,7 @@ export default function Header() {
                 { label: "Escort — Everyday", href: "/collections/escort", desc: "Reliable & Approachable" },
             ]
         },
+        { label: "NAGPAL GROUP", href: "/nagpal-group" },
         { label: "About", href: "/about" },
         { label: "Contact", href: "/contact" },
     ];
@@ -37,6 +38,7 @@ export default function Header() {
     const isActive = (href: string) => {
         if (href === "/") return pathname === "/";
         if (href === "#") return pathname.includes("/collections");
+        if (href === "/nagpal-group") return pathname === "/nagpal-group";
         return pathname.startsWith(href);
     };
 

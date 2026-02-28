@@ -2,14 +2,13 @@
 
 import { useRef, useMemo, useState, useEffect, Component, type ReactNode } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { Environment, ContactShadows, Preload } from "@react-three/drei";
-import { Suspense } from "react";
+import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import Image from "next/image";
 import type { MotionValue } from "framer-motion";
 
-/* Error Boundary for WebGL Canvas */
+/* Error Boundary for WebGL Canvas - kept for future 3D use */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 class CanvasErrorBoundary extends Component<
     { children: ReactNode; fallback: ReactNode },
     { hasError: boolean }
@@ -35,6 +34,7 @@ const panels = [
         body: "Stainless steel construction machined to micron-level precision. Each case polished by hand to achieve mirror-grade finish.",
         badge: "✦ Stainless Steel 316L",
         side: "left" as const,
+        image: "/images/img01.png"
     },
     {
         eyebrow: "WATER RESISTANCE",
@@ -42,6 +42,7 @@ const panels = [
         body: "5 to 10 ATM water resistance. Whether boardroom or beach, Designer World watches perform without compromise.",
         badge: "✦ 5–10 ATM Certified",
         side: "right" as const,
+        image: "/images/img02.png"
     },
     {
         eyebrow: "MOVEMENT",
@@ -49,6 +50,7 @@ const panels = [
         body: "Japanese Quartz movement delivering ±15 seconds per month accuracy. Reliable. Consistent. Uncompromising.",
         badge: "✦ Quartz Precision Movement",
         side: "left" as const,
+        image: "/images/img03.png"
     },
     {
         eyebrow: "SAPPHIRE GLASS",
@@ -56,6 +58,7 @@ const panels = [
         body: "Sapphire-coated mineral glass. Scratch-resistant. Anti-reflective. Engineered to show time in perfect clarity.",
         badge: "✦ Sapphire Coated Glass",
         side: "right" as const,
+        image: "/images/img04.png"
     },
 ];
 
@@ -66,7 +69,8 @@ const watchColors = [
     { case: "#003926", strap: "#1A1208" }, // Gold Classic
 ];
 
-/* ---------- 3D PINNED WATCH ---------- */
+/* ---------- 3D PINNED WATCH - kept for future 3D use */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function PinnedWatch({ scrollYProgress }: { scrollYProgress: MotionValue<number> }) {
     const groupRef = useRef<THREE.Group>(null);
     const caseMat = useRef<THREE.MeshStandardMaterial>(null);
@@ -179,7 +183,15 @@ function TextPanel({
     const end = (index + 1) * 0.25;
     const mid = start + 0.125;
 
-    const opacity = useTransform(scrollYProgress, [start, start + 0.05, mid, end - 0.05, end], [0, 1, 1, 1, 0]);
+    // Adjust opacity: first panel is visible immediately (start at 0 instead of start + 0.05)
+    // Last panel fades at exactly 1.0
+    const opacity = useTransform(
+        scrollYProgress, 
+        [index === 0 ? 0 : start, start + 0.05, mid, end - 0.05, end], 
+        [index === 0 ? 1 : 0, 1, 1, 1, 0]
+    );
+    
+    // Smooth translation
     const x = useTransform(
         scrollYProgress,
         [start, start + 0.05, end - 0.05, end],
@@ -203,19 +215,19 @@ function TextPanel({
                         {panel.eyebrow}
                     </p>
                     <h3
-                        className="font-heading text-[36px] md:text-[48px] leading-[1.1] font-light mb-6 whitespace-pre-line"
+                        className="font-heading text-[32px] md:text-[42px] leading-[1.1] font-light mb-6 whitespace-pre-line"
                         style={{ color: "#1A1918" }}
                     >
                         {panel.title}
                     </h3>
                     <p
-                        className="font-body font-light text-[15px] leading-[1.8] mb-6"
+                        className="font-body font-light text-[14px] md:text-[15px] leading-[1.8] mb-6"
                         style={{ color: "#5C5750" }}
                     >
                         {panel.body}
                     </p>
                     <span
-                        className="inline-block font-body text-[11px] tracking-[0.15em] px-4 py-2 border"
+                        className="inline-block font-body text-[10px] md:text-[11px] tracking-[0.15em] px-4 py-2 border"
                         style={{ color: "#003926", borderColor: "#003926" }}
                     >
                         {panel.badge}
@@ -233,10 +245,17 @@ export default function WatchScrollPin() {
         target: sectionRef,
         offset: ["start start", "end end"],
     });
-    const [isMobile, setIsMobile] = useState(false);
+
+    // Fade effect for image transition
+    const imageOpacity = useTransform(
+        scrollYProgress,
+        [0, 0.22, 0.25, 0.28, 0.47, 0.5, 0.53, 0.72, 0.75, 0.78, 1],
+        [1, 1, 0.4, 1, 1, 0.4, 1, 1, 0.4, 1, 1]
+    );
+
 
     useEffect(() => {
-        const check = () => setIsMobile(window.innerWidth < 640);
+        const check = () => {}; // setIsMobile removed as we now support all screens
         check();
         window.addEventListener("resize", check);
         return () => window.removeEventListener("resize", check);
@@ -248,24 +267,53 @@ export default function WatchScrollPin() {
                 className="sticky top-0 h-screen overflow-hidden"
                 style={{ backgroundColor: "#FAF8F4" }}
             >
-                {/* Watch Product Image Center */}
-                {!isMobile && (
-                    <div className="absolute inset-0 z-0 flex items-center justify-center">
+                {/* Watch Product Image Center - Now Enabled for Mobile with Dynamic Image */}
+                <div className="absolute inset-0 z-0 flex items-center justify-center">
+                    <motion.div
+                        style={{ 
+                            opacity: imageOpacity,
+                        }}
+                        className="relative w-full h-full flex items-center justify-center"
+                    >
                         <motion.div
                             animate={{ y: [-6, 6, -6] }}
                             transition={{ duration: 4, ease: "easeInOut", repeat: Infinity }}
-                            className="relative w-[300px] h-[420px]"
+                            className="relative w-[280px] h-[380px] md:w-[320px] md:h-[450px]"
                         >
+                            {/* We use a simple image switcher based on index for smoother transitions if needed, 
+                                but useTransform with discrete values also works in Framer Motion */}
                             <Image
-                                src="/images/img01.png"
+                                src={panels[0].image} // Default / SSR
                                 alt="Designer World Watch"
                                 fill
                                 className="object-contain"
                                 style={{ filter: "drop-shadow(0 25px 50px rgba(0,57,38,0.25))" }}
+                                priority
                             />
+                            {/* Overlay for dynamic switching if using MotionValue */}
+                            <motion.div className="absolute inset-0">
+                                {panels.map((p, i) => {
+                                    const pStart = i * 0.25;
+                                    const pEnd = (i + 1) * 0.25;
+                                    // eslint-disable-next-line react-hooks/rules-of-hooks
+                                    const pOpacity = useTransform(scrollYProgress, [pStart - 0.05, pStart, pEnd, pEnd + 0.05], [0, 1, 1, 0]);
+                                    
+                                    return (
+                                        <motion.div key={i} style={{ opacity: pOpacity }} className="absolute inset-0">
+                                             <Image
+                                                src={p.image}
+                                                alt={p.title}
+                                                fill
+                                                className="object-contain"
+                                                style={{ filter: "drop-shadow(0 25px 50px rgba(0,57,38,0.25))" }}
+                                            />
+                                        </motion.div>
+                                    )
+                                })}
+                            </motion.div>
                         </motion.div>
-                    </div>
-                )}
+                    </motion.div>
+                </div>
 
                 {/* Text Panels */}
                 {panels.map((panel, i) => (

@@ -7,12 +7,18 @@ export default function CustomCursor() {
     const ringRef = useRef<HTMLDivElement>(null);
     const [isHovering, setIsHovering] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
+    const [windowFocused, setWindowFocused] = useState(true);
     const mouse = useRef({ x: 0, y: 0 });
     const ring = useRef({ x: 0, y: 0 });
 
     useEffect(() => {
         // Hide on touch devices
         if ("ontouchstart" in window) return;
+
+        const handleFocus = () => setWindowFocused(true);
+        const handleBlur = () => setWindowFocused(false);
+        window.addEventListener("focus", handleFocus);
+        window.addEventListener("blur", handleBlur);
 
         const handleMouseMove = (e: MouseEvent) => {
             mouse.current = { x: e.clientX, y: e.clientY };
@@ -58,6 +64,8 @@ export default function CustomCursor() {
         rafId = requestAnimationFrame(animate);
 
         return () => {
+            window.removeEventListener("focus", handleFocus);
+            window.removeEventListener("blur", handleBlur);
             document.removeEventListener("mousemove", handleMouseMove);
             document.removeEventListener("mouseenter", handleMouseEnter);
             document.removeEventListener("mouseleave", handleMouseLeave);
@@ -68,6 +76,8 @@ export default function CustomCursor() {
 
     // Hide cursor on touch devices via SSR-safe check
     if (typeof window !== "undefined" && "ontouchstart" in window) return null;
+
+    const show = windowFocused && isVisible;
 
     return (
         <>
@@ -80,7 +90,7 @@ export default function CustomCursor() {
                     height: 10,
                     borderRadius: "50%",
                     backgroundColor: "#003926",
-                    opacity: isVisible && !isHovering ? 1 : 0,
+                    opacity: show && !isHovering ? 1 : 0,
                     transition: "opacity 0.2s ease",
                 }}
             />
@@ -93,7 +103,7 @@ export default function CustomCursor() {
                     height: 36,
                     borderRadius: "50%",
                     border: "1.5px solid #003926",
-                    opacity: isVisible ? 0.7 : 0,
+                    opacity: show ? 0.7 : 0,
                     transition: "width 0.3s ease, height 0.3s ease, opacity 0.2s ease",
                 }}
             />

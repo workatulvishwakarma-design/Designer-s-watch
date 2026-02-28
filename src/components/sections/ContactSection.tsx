@@ -43,7 +43,7 @@ export default function ContactSection() {
                         transition={{ delay: 0.1 }}
                         className="font-heading text-5xl md:text-6xl text-primaryText mb-6"
                     >
-                        We'd Love to Hear <span className="italic">From You.</span>
+                        We&apos;d Love to Hear <span className="italic">From You.</span>
                     </motion.h1>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
@@ -51,7 +51,7 @@ export default function ContactSection() {
                         transition={{ delay: 0.2 }}
                         className="font-body text-secondaryText text-lg max-w-2xl mx-auto leading-relaxed"
                     >
-                        Whether it's a query, OEM enquiry, or partnership — our team responds within 24 hours.
+                        Whether it&apos;s a query, OEM enquiry, or partnership — our team responds within 24 hours.
                     </motion.p>
                 </div>
             </div>
@@ -102,7 +102,7 @@ export default function ContactSection() {
                                         <Check size={40} className="text-gold" />
                                     </div>
                                     <h2 className="font-heading text-4xl text-primaryText mb-4">Message Sent!</h2>
-                                    <p className="font-body text-secondaryText mb-10">We'll get back to you within 24 hours.</p>
+                                    <p className="font-body text-secondaryText mb-10">We&apos;ll get back to you within 24 hours.</p>
                                     <button
                                         onClick={() => setFormStatus("idle")}
                                         className="text-gold font-body text-sm tracking-widest uppercase border-b border-gold"
@@ -147,7 +147,7 @@ export default function ContactSection() {
                                                 <input type="checkbox" className="absolute inset-0 opacity-0 cursor-pointer peer" />
                                                 <Check size={14} className="text-gold opacity-0 peer-checked:opacity-100 transition-opacity" />
                                             </div>
-                                            <span className="text-[13px] font-body text-secondaryText">I'm interested in OEM manufacturing partnership</span>
+                                            <span className="text-[13px] font-body text-secondaryText">I&apos;m interested in OEM manufacturing partnership</span>
                                         </label>
 
                                         <button
@@ -231,7 +231,13 @@ export default function ContactSection() {
     );
 }
 
-function ContactCard({ icon: Icon, title, content, subContent, delay }: any) {
+function ContactCard({ icon: Icon, title, content, subContent, delay }: {
+    icon: React.ComponentType<{ size?: number; className?: string }>;
+    title: string;
+    content: string;
+    subContent?: string;
+    delay: number;
+}) {
     return (
         <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -252,7 +258,7 @@ function ContactCard({ icon: Icon, title, content, subContent, delay }: any) {
     );
 }
 
-function InputField({ label, placeholder, ...props }: any) {
+function InputField({ label, placeholder, ...props }: { label: string; placeholder?: string } & React.InputHTMLAttributes<HTMLInputElement>) {
     return (
         <div>
             <label className="block text-[11px] font-body tracking-widest uppercase text-lightText mb-3">{label}</label>

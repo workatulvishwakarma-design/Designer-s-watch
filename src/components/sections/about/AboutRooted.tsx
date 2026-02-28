@@ -30,17 +30,17 @@ export default function AboutRooted() {
                                 <span className="font-semibold text-[#003926]">Designed for Today.</span>
                             </h2>
                             <p className="font-body text-sm md:text-base text-secondaryText leading-relaxed italic border-l-2 border-gold pl-6">
-                                "Just before INDIA GOT ITS FREEDOM, in 1940's a Gentleman by the name of Shree Virbhan Nagpal seeded a small set up in Amritsar which today fruits to a national setup."
+                                &quot;Just before INDIA GOT ITS FREEDOM, in 1940&apos;s a Gentleman by the name of Shree Virbhan Nagpal seeded a small set up in Amritsar which today fruits to a national setup.&quot;
                             </p>
                         </div>
 
                         {/* Right Column: Long Paragraphs */}
                         <div className="flex flex-col gap-5 text-[#4a5568] leading-relaxed text-[13px] md:text-[14px]">
                             <p className="font-sans">
-                                Soon Second generation lead by Mr. Tarlok Nagpal continued the legacy in Amritsar to build a strong good will, acquiring a larger geographic reach in the Indian Watch Industry. Continuing the journey for many years, in 1976 brought in the 3rd generation with Bigger Vision and ideas, Mr. Narinder Nagpal & Mr. Jatinder Nagpal, moved out of their home town of Amritsar and opened their next set up in the Financial Hub of India, Mumbai, by the name of Nagpal's Bombay.
+                                Soon Second generation lead by Mr. Tarlok Nagpal continued the legacy in Amritsar to build a strong good will, acquiring a larger geographic reach in the Indian Watch Industry. Continuing the journey for many years, in 1976 brought in the 3rd generation with Bigger Vision and ideas, Mr. Narinder Nagpal & Mr. Jatinder Nagpal, moved out of their home town of Amritsar and opened their next set up in the Financial Hub of India, Mumbai, by the name of Nagpal&apos;s Bombay.
                             </p>
                             <p className="font-sans">
-                                This opened access to the International markets and they acquired multiple distributions of International brands in Spare parts. Today, it's ranked as one of India's largest sources for wrist watch spare parts.
+                                This opened access to the International markets and they acquired multiple distributions of International brands in Spare parts. Today, it&apos;s ranked as one of India&apos;s largest sources for wrist watch spare parts.
                             </p>
                         </div>
 
