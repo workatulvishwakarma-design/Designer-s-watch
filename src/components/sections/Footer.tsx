@@ -2,8 +2,11 @@
 
 import { Instagram, Linkedin, Facebook } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 export default function Footer() {
+    const pathname = usePathname();
     return (
         <footer className="bg-bg-dark text-white/40 font-body font-light pt-24 pb-12 border-t border-white/5">
             <div className="max-w-7xl mx-auto px-6 md:px-12">
@@ -11,14 +14,23 @@ export default function Footer() {
 
                     {/* Column 1: Brand */}
                     <div className="flex flex-col gap-6">
-                        <div>
-                            <h5 className="font-heading italic text-white text-[24px] tracking-[0.02em] leading-tight mb-1">
-                                Designer World
-                            </h5>
-                            <p className="font-body text-gold text-[10px] tracking-[0.2em] uppercase">
-                                by Nagpal Group
-                            </p>
-                        </div>
+                        <Link href="/" className="relative h-[65px] w-[260px] block transition-opacity hover:opacity-80">
+                            {pathname.includes("/collections/escort") ? (
+                                <Image
+                                    src="/images/escort_w.png"
+                                    alt="Escort Logo"
+                                    fill
+                                    className="object-contain"
+                                />
+                            ) : (
+                                <Image
+                                    src="/images/designer_w.png"
+                                    alt="Designer World Logo"
+                                    fill
+                                    className="object-contain"
+                                />
+                            )}
+                        </Link>
                         <p className="text-[14px] leading-relaxed max-w-[240px]">
                             Four generations of integrated watchmaking excellence. From bespoke OEM solutions to premium timepieces.
                         </p>

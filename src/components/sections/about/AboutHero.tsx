@@ -71,7 +71,7 @@ export default function AboutHero() {
 
                         <div className="relative w-full h-[400px] md:h-[600px] lg:h-[700px]">
                             <Image
-                                src="/images/aboutBanner.png"
+                                src="/images/watches/Designer/901/901/901GM_Green.png"
                                 alt="35 Years of Legacy"
                                 fill
                                 className="object-contain drop-shadow-[0_40px_80px_rgba(0,0,0,0.15)]"

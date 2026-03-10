@@ -8,18 +8,18 @@ import GrainOverlay from "@/components/ui/GrainOverlay";
 const categories = ["All", "Chronograph", "Classic", "Sport", "Gold", "Silver"];
 
 export const dsignerProducts = [
-    { id: 1, name: "D'Signer Chronos", price: 4999, category: "Chronograph", brand: "D'SIGNER", badge: "Bestseller", image: "/images/img01.png", tags: ["best-selling", "premium", "classic"] },
-    { id: 2, name: "D'Signer Heritage", price: 3499, category: "Classic", brand: "D'SIGNER", badge: "New", image: "/images/img02.png", tags: ["new-arrivals", "classic"] },
-    { id: 3, name: "D'Signer Prestige", price: 2999, category: "Classic", brand: "D'SIGNER", badge: null, image: "/images/img04.png", tags: ["classic"] },
-    { id: 4, name: "D'Signer Apex", price: 4499, category: "Sport", brand: "D'SIGNER", badge: "Limited", image: "/images/img05.png", tags: ["limited", "premium", "sport"] },
-    { id: 5, name: "D'Signer Lumière", price: 3999, category: "Gold", brand: "D'SIGNER", badge: null, image: "/images/img1.png", tags: ["premium", "classic"] },
-    { id: 6, name: "D'Signer Noir", price: 1299, category: "Classic", brand: "D'SIGNER", badge: "New", image: "/images/img2.png", tags: ["new-arrivals"] },
-    { id: 7, name: "D'Signer Silver Edge", price: 2799, category: "Silver", brand: "D'SIGNER", badge: null, image: "/images/img3.png", tags: ["classic"] },
-    { id: 8, name: "D'Signer Sport Pro", price: 3899, category: "Sport", brand: "D'SIGNER", badge: "Bestseller", image: "/images/img01.png", tags: ["best-selling", "sport"] },
-    { id: 9, name: "D'Signer Executive", price: 4299, category: "Classic", brand: "D'SIGNER", badge: "Limited", image: "/images/img02.png", tags: ["limited", "premium", "classic"] },
-    { id: 10, name: "D'Signer Gold Edition", price: 4999, category: "Gold", brand: "D'SIGNER", badge: "New", image: "/images/img04.png", tags: ["new-arrivals", "premium"] },
-    { id: 11, name: "D'Signer Vitesse", price: 1599, category: "Sport", brand: "D'SIGNER", badge: null, image: "/images/img05.png", tags: ["sport"] },
-    { id: 12, name: "D'Signer Minimal", price: 2199, category: "Classic", brand: "D'SIGNER", badge: null, image: "/images/img1.png", tags: ["classic"] },
+    { id: 1, name: "901", price: 4999, category: "Chronograph", brand: "D'SIGNER", badge: "Bestseller", image: "/images/watches/Designer/901/901/901GM.png", tags: ["best-selling", "premium", "classic"] },
+    { id: 2, name: "915", price: 3499, category: "Classic", brand: "D'SIGNER", badge: "New", image: "/images/watches/Designer/915 with video/915/915GFS.3G.png", tags: ["new-arrivals", "classic"] },
+    { id: 3, name: "955", price: 2999, category: "Classic", brand: "D'SIGNER", badge: null, image: "/images/watches/Designer/955/955GFS.16L/955GFS (1).jpg", tags: ["classic"] },
+    { id: 4, name: "960", price: 4499, category: "Sport", brand: "D'SIGNER", badge: "Limited", image: "/images/watches/Designer/960/960GFS.16G/960GFS (1).jpg", tags: ["limited", "premium", "sport"] },
+    { id: 5, name: "925", price: 3999, category: "Gold", brand: "D'SIGNER", badge: null, image: "/images/watches/Designer/to focus on/925/925/925GM.16L.png", tags: ["premium", "classic"] },
+    { id: 6, name: "950", price: 1299, category: "Classic", brand: "D'SIGNER", badge: "New", image: "/images/watches/Designer/to focus on/950/950GNFS.16G.png", tags: ["new-arrivals"] },
+    { id: 7, name: "863", price: 2799, category: "Silver", brand: "D'SIGNER", badge: null, image: "/images/watches/Designer/to post after holi/863 pair/863GM.16G & 863GM.16L.png", tags: ["classic"] },
+    { id: 8, name: "942", price: 3899, category: "Sport", brand: "D'SIGNER", badge: "Bestseller", image: "/images/watches/Designer/to post after holi/942 & 943 pair/942GM.16G & 943GM.16L.png", tags: ["best-selling", "sport"] },
+    { id: 9, name: "901GM", price: 4299, category: "Classic", brand: "D'SIGNER", badge: "Limited", image: "/images/watches/Designer/901/901/901GM_Green.png", tags: ["limited", "premium", "classic"] },
+    { id: 10, name: "915 GNFS", price: 4999, category: "Gold", brand: "D'SIGNER", badge: "New", image: "/images/watches/Designer/915 with video/915/915GNFS.3G.png", tags: ["new-arrivals", "premium"] },
+    { id: 11, name: "955 RGFS", price: 1599, category: "Sport", brand: "D'SIGNER", badge: null, image: "/images/watches/Designer/955/955RGFS.16L/955RGFS (1).jpg", tags: ["sport"] },
+    { id: 12, name: "960 SFS", price: 2199, category: "Classic", brand: "D'SIGNER", badge: null, image: "/images/watches/Designer/960/960SFS.16G/960SFS (1).jpg", tags: ["classic"] },
 ];
 
 export default function DsignerGrid() {

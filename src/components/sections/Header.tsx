@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { Search, ShoppingBag, Menu, X, ChevronDown } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useCart } from "@/context/CartContext";
@@ -57,19 +58,24 @@ export default function Header() {
             >
                 <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between h-[72px]">
                     {/* Logo */}
-                    <Link href="/" className="flex flex-col">
-                        <span
-                            className="text-[20px] md:text-[22px] font-heading italic tracking-[0.02em] leading-tight transition-colors duration-300"
-                            style={{ color: "#1A1918" }}
-                        >
-                            Designer World
-                        </span>
-                        <span
-                            className="text-[9px] font-body tracking-[0.2em] transition-colors duration-300"
-                            style={{ color: "#003926" }}
-                        >
-                            by Nagpal Group
-                        </span>
+                    <Link href="/" className="relative h-[54px] w-[260px] transition-opacity hover:opacity-80">
+                        {pathname.includes("/collections/escort") ? (
+                            <Image
+                                src="/images/escort_b.png"
+                                alt="Escort Logo"
+                                fill
+                                className="object-contain"
+                                priority
+                            />
+                        ) : (
+                            <Image
+                                src="/images/designer world logo_B.png"
+                                alt="Designer World Logo"
+                                fill
+                                className="object-contain"
+                                priority
+                            />
+                        )}
                     </Link>
 
                     {/* Desktop Navigation */}
@@ -145,7 +151,7 @@ export default function Header() {
                             )}
                         </button>
                         <Link
-                            href="#collections"
+                            href="/collections/dsigner"
                             className="hidden md:flex items-center px-5 py-2 bg-gold text-white font-body text-[11px] tracking-[0.1em] uppercase rounded-full hover:bg-gold-light transition-colors duration-300"
                         >
                             Shop Now
@@ -170,17 +176,47 @@ export default function Header() {
                     exit={{ opacity: 0, y: -20 }}
                     className="fixed top-[72px] left-0 w-full z-[99] bg-background/95 backdrop-blur-xl border-b border-border"
                 >
-                    <nav className="flex flex-col px-6 py-6 gap-5">
-                        {navLinks.map((item) => (
+                    <nav className="flex flex-col px-6 py-4 divide-y divide-border">
+                        {navLinks.map((item) =>
+                            item.dropdown ? (
+                                <div key={item.label} className="py-1">
+                                    <span className="flex items-center min-h-[48px] font-body text-[12px] tracking-[0.12em] uppercase text-[#9C9690]">
+                                        {item.label}
+                                    </span>
+                                    <div className="flex flex-col pl-4 gap-1 pb-2">
+                                        {item.dropdown.map((sub) => (
+                                            <Link
+                                                key={sub.label}
+                                                href={sub.href}
+                                                onClick={() => setMobileOpen(false)}
+                                                className="flex flex-col min-h-[48px] justify-center font-body text-[13px] tracking-[0.08em] uppercase text-primaryText hover:text-gold transition-colors"
+                                            >
+                                                <span>{sub.label}</span>
+                                                <span className="text-[10px] text-lightText normal-case tracking-normal mt-0.5">{sub.desc}</span>
+                                            </Link>
+                                        ))}
+                                    </div>
+                                </div>
+                            ) : (
+                                <Link
+                                    key={item.label}
+                                    href={item.href}
+                                    onClick={() => setMobileOpen(false)}
+                                    className="flex items-center min-h-[48px] font-body text-[13px] tracking-[0.1em] uppercase text-primaryText hover:text-gold transition-colors"
+                                >
+                                    {item.label}
+                                </Link>
+                            )
+                        )}
+                        <div className="pt-4 pb-2">
                             <Link
-                                key={item.label}
-                                href={item.href}
+                                href="/collections/dsigner"
                                 onClick={() => setMobileOpen(false)}
-                                className="font-body text-[13px] tracking-[0.1em] uppercase text-primaryText hover:text-gold transition-colors"
+                                className="flex items-center justify-center w-full min-h-[48px] px-6 bg-gold text-white font-body text-[12px] tracking-[0.12em] uppercase rounded-full hover:bg-[#1A1918] transition-colors duration-300"
                             >
-                                {item.label}
+                                Shop Now
                             </Link>
-                        ))}
+                        </div>
                     </nav>
                 </motion.div>
             )}

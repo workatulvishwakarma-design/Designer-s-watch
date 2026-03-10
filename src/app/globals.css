@@ -21,13 +21,36 @@
 @layer base {
   html {
     scroll-behavior: auto !important;
-    overflow-x: hidden;
   }
 
   body {
     @apply bg-background text-primaryText;
     font-family: var(--font-body);
-    overflow-x: hidden;
+    overflow-x: clip;
+
+    /* Global Scrollbar Styling */
+    scrollbar-width: thin;
+    scrollbar-color: #003926 #FAF8F4;
+  }
+
+  /* WebKit Browsers */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #FAF8F4;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #003926;
+    border-radius: 100px;
+    border: 2px solid #FAF8F4;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #00281b;
   }
 
   h1,
@@ -183,46 +206,44 @@
 
 /* Premium scrollbar styling for carousel tracks */
 .carousel-track {
-  padding-bottom: 16px; /* space for scrollbar */
+  padding-bottom: 16px;
+  /* space for scrollbar */
 }
 
 .carousel-track::-webkit-scrollbar {
   height: 3px;
 }
+
 .carousel-track::-webkit-scrollbar-track {
   background: #EDE8DF;
   border-radius: 100px;
 }
+
 .carousel-track::-webkit-scrollbar-thumb {
-  background: linear-gradient(
-    90deg, #B8935A, #D4AA72, #B8935A
-  );
+  background: linear-gradient(90deg, #B8935A, #D4AA72, #B8935A);
   border-radius: 100px;
 }
+
 .carousel-track::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(
-    90deg, #9A7A48, #B8935A, #9A7A48
-  );
+  background: linear-gradient(90deg, #9A7A48, #B8935A, #9A7A48);
 }
 
 /* Dark carousel (D'Signer) — brighter gold */
 .carousel-track-dark::-webkit-scrollbar-track {
-  background: rgba(255,255,255,0.06);
+  background: rgba(255, 255, 255, 0.06);
 }
+
 .carousel-track-dark::-webkit-scrollbar-thumb {
-  background: linear-gradient(
-    90deg, #B8935A, #E8C97A, #B8935A
-  );
+  background: linear-gradient(90deg, #B8935A, #E8C97A, #B8935A);
 }
 
 /* Escort carousel — green tinted */
 .carousel-track-escort::-webkit-scrollbar-track {
   background: #E5DDD0;
 }
+
 .carousel-track-escort::-webkit-scrollbar-thumb {
-  background: linear-gradient(
-    90deg, #003926, #B8935A, #003926
-  );
+  background: linear-gradient(90deg, #003926, #B8935A, #003926);
 }
 
 /* Firefox fallback */
@@ -230,10 +251,12 @@
   scrollbar-width: thin;
   scrollbar-color: #B8935A #EDE8DF;
 }
+
 .carousel-track-dark {
   scrollbar-width: thin;
-  scrollbar-color: #D4AA72 rgba(255,255,255,0.06);
+  scrollbar-color: #D4AA72 rgba(255, 255, 255, 0.06);
 }
+
 .carousel-track-escort {
   scrollbar-width: thin;
   scrollbar-color: #003926 #E5DDD0;
@@ -241,18 +264,21 @@
 
 /* shimmer animation for scrollbar thumb */
 @keyframes shimmer-scroll {
-  0% { background-position: -200px 0; }
-  100% { background-position: 200px 0; }
+  0% {
+    background-position: -200px 0;
+  }
+
+  100% {
+    background-position: 200px 0;
+  }
 }
 
 .carousel-track::-webkit-scrollbar-thumb {
-  background: linear-gradient(
-    90deg,
-    #B8935A 0%,
-    #E8C97A 40%,
-    #D4AA72 60%,
-    #B8935A 100%
-  );
+  background: linear-gradient(90deg,
+      #B8935A 0%,
+      #E8C97A 40%,
+      #D4AA72 60%,
+      #B8935A 100%);
   background-size: 200px 100%;
   animation: shimmer-scroll 2s linear infinite;
 }

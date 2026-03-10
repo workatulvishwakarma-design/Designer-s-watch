@@ -45,11 +45,11 @@ export default function Home() {
         <Header />
         <main>
           <HeroBanner />
+          <HomeBrands />
           <HomeProducts />
           <LegacySection />
           <CraftSection />
           <FeatureScroller />
-          <HomeBrands />
           <StatsCounter />
           <OemCta />
           <ProductSection />

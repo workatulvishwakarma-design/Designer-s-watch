@@ -3,6 +3,7 @@
 import Header from "@/components/sections/Header";
 import Footer from "@/components/sections/Footer";
 import NagpalHero from "@/components/sections/nagpal/NagpalHero";
+import NagpalWorkingProcess from "@/components/sections/nagpal/NagpalWorkingProcess";
 import NagpalStats from "@/components/sections/nagpal/NagpalStats";
 import NagpalStrengths from "@/components/sections/nagpal/NagpalStrengths";
 import NagpalValueChain from "@/components/sections/nagpal/NagpalValueChain";
@@ -49,6 +50,8 @@ export default function NagpalGroupPage() {
       <Header />
       <main>
         <NagpalHero />
+        <SectionDivider />
+        <NagpalWorkingProcess />
         <SectionDivider />
         <NagpalStats />
         <SectionDivider />

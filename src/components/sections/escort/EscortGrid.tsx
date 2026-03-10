@@ -8,14 +8,14 @@ import GrainOverlay from "@/components/ui/GrainOverlay";
 const categories = ["All", "Sport", "Classic", "Minimal"];
 
 export const escortProducts = [
-    { id: 1, name: "Escort Diver Pro", price: 800, category: "Sport", brand: "ESCORT", badge: "Value Pick", image: "/images/img01.png", tags: ["best-value", "sport"] },
-    { id: 2, name: "Escort Minimalist", price: 1200, category: "Minimal", brand: "ESCORT", badge: null, image: "/images/img02.png", tags: ["everyday"] },
-    { id: 3, name: "Escort Pilot X", price: 2200, category: "Sport", brand: "ESCORT", badge: "Bestseller", image: "/images/img04.png", tags: ["best-selling", "sport"] },
-    { id: 4, name: "Escort Heritage", price: 999, category: "Classic", brand: "ESCORT", badge: null, image: "/images/img05.png", tags: ["everyday"] },
-    { id: 5, name: "Escort Active", price: 1499, category: "Sport", brand: "ESCORT", badge: "New", image: "/images/img1.png", tags: ["new-arrivals", "sport"] },
-    { id: 6, name: "Escort Urban", price: 1100, category: "Minimal", brand: "ESCORT", badge: null, image: "/images/img2.png", tags: ["everyday", "best-value"] },
-    { id: 7, name: "Escort Classic Silver", price: 1599, category: "Classic", brand: "ESCORT", badge: "New", image: "/images/img3.png", tags: ["new-arrivals", "everyday"] },
-    { id: 8, name: "Escort Field Watch", price: 1800, category: "Sport", brand: "ESCORT", badge: null, image: "/images/img01.png", tags: ["sport"] },
+    { id: 1, name: "7779", price: 800, category: "Sport", brand: "ESCORT", badge: "Value Pick", image: "/images/watches/Escort/7779/E-2250-7779.GM.2L.png", tags: ["best-value", "sport"] },
+    { id: 2, name: "7806", price: 1200, category: "Minimal", brand: "ESCORT", badge: null, image: "/images/watches/Escort/7806/E-2200-7806.GM.5L.jpg", tags: ["everyday"] },
+    { id: 3, name: "A-1589", price: 2200, category: "Sport", brand: "ESCORT", badge: "Bestseller", image: "/images/watches/Escort/A-1589/A-1589.SM_Black.png", tags: ["best-selling", "sport"] },
+    { id: 4, name: "E-7751", price: 999, category: "Classic", brand: "ESCORT", badge: null, image: "/images/watches/Escort/E-7751/E-7751.BM_Black.png", tags: ["everyday"] },
+    { id: 5, name: "E-7908", price: 1499, category: "Sport", brand: "ESCORT", badge: "New", image: "/images/watches/Escort/E-7908/E-2200-7908.GM_White.png", tags: ["new-arrivals", "sport"] },
+    { id: 6, name: "E-7914", price: 1100, category: "Minimal", brand: "ESCORT", badge: null, image: "/images/watches/Escort/E-7914/E-7914.BM_Blue.png", tags: ["everyday", "best-value"] },
+    { id: 7, name: "7779 (RGM)", price: 1599, category: "Classic", brand: "ESCORT", badge: "New", image: "/images/watches/Escort/7779/E-2300-7779.RGM.16L.png", tags: ["new-arrivals", "everyday"] },
+    { id: 8, name: "7806 (RTM)", price: 1800, category: "Sport", brand: "ESCORT", badge: null, image: "/images/watches/Escort/7806/E-2200-7806.RTM.16L.jpg", tags: ["sport"] },
 ];
 
 export default function EscortGrid() {
