@@ -1,116 +1,242 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { Poppins } from "next/font/google";
+import { motion, Variants } from "framer-motion";
+import { Shield, Droplets, Clock, Sparkles, Globe, LucideIcon } from "lucide-react";
 
-const poppins = Poppins({
-    subsets: ["latin"],
-    weight: ["300", "400", "500", "600", "700"],
-    variable: "--font-poppins",
-});
-
-const materialPoints = [
-    { title: "Sapphire Crystal", desc: "Anti-reflective, scratch-resistant clarity." },
-    { title: "316L Stainless Steel", desc: "Surgical grade durability and polish." },
-    { title: "Multi-layer Dial Finishing", desc: "Heritage precision in every detail." },
+const features: {
+  num: string;
+  Icon: LucideIcon;
+  title: string;
+  body: string;
+}[] = [
+  {
+    num: "01",
+    Icon: Shield,
+    title: "316L Surgical Steel",
+    body: "Surgical grade stainless steel for lasting premium mirror finish.",
+  },
+  {
+    num: "02",
+    Icon: Droplets,
+    title: "5–10 ATM Resistance",
+    body: "Certified water resistance for boardroom to beach performance.",
+  },
+  {
+    num: "03",
+    Icon: Clock,
+    title: "Quartz Precision",
+    body: "±15 seconds monthly accuracy with Japanese movement.",
+  },
+  {
+    num: "04",
+    Icon: Sparkles,
+    title: "Sapphire Glass",
+    body: "Scratch-resistant coated glass for crystal clarity always.",
+  },
+  {
+    num: "05",
+    Icon: Globe,
+    title: "International Standards",
+    body: "Manufactured to global quality benchmarks with 4 decades expertise.",
+  },
 ];
 
+const cardStagger: Variants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1, delayChildren: 0.2 },
+  },
+};
+
+const cardItem: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+};
+
+/* ── Single Feature Card ── */
+function FeatureCard({
+  f,
+  area,
+}: {
+  f: (typeof features)[0];
+  area: string;
+}) {
+  const [hovered, setHovered] = useState(false);
+  const IconComp = f.Icon;
+
+  return (
+    <motion.div
+      variants={cardItem}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      className="relative overflow-hidden rounded-2xl cursor-default"
+      style={{
+        gridArea: area,
+        background: "white",
+        border: `1px solid ${hovered ? "rgba(184,147,90,0.3)" : "#EDE8DF"}`,
+        padding: 24,
+        transition: "all 0.35s ease",
+        transform: hovered ? "translateY(-4px)" : "translateY(0)",
+        boxShadow: hovered
+          ? "0 16px 40px rgba(0,0,0,0.08)"
+          : "0 1px 4px rgba(0,0,0,0.03)",
+      }}
+    >
+      {/* Number */}
+      <p
+        className="font-bebas"
+        style={{
+          fontSize: 13,
+          color: "#B8935A",
+          letterSpacing: "0.2em",
+          marginBottom: 12,
+        }}
+      >
+        {f.num}
+      </p>
+
+      {/* Icon */}
+      <IconComp
+        size={24}
+        color="#003926"
+        strokeWidth={1.5}
+        style={{ marginBottom: 12 }}
+      />
+
+      {/* Title */}
+      <p
+        className="font-dm font-semibold"
+        style={{
+          fontSize: 15,
+          color: "#1A1918",
+          marginBottom: 8,
+        }}
+      >
+        {f.title}
+      </p>
+
+      {/* Body */}
+      <p
+        className="font-dm font-light"
+        style={{
+          fontSize: 12,
+          color: "#6B6560",
+          lineHeight: 1.7,
+        }}
+      >
+        {f.body}
+      </p>
+
+      {/* Bottom accent line */}
+      <div
+        className="absolute bottom-0 left-0 h-[3px] bg-[#B8935A]"
+        style={{
+          width: hovered ? "100%" : "0%",
+          transition: "width 0.5s ease",
+        }}
+      />
+    </motion.div>
+  );
+}
+
 export default function CraftSection() {
-    const containerRef = useRef<HTMLDivElement>(null);
+  return (
+    <section className="bg-[#FAF8F4]" style={{ padding: "80px 0" }}>
+      <div className="max-w-7xl mx-auto px-6">
+        {/* ── SECTION HEADER ── */}
+        <div className="mb-10">
+          <p
+            className="font-dm uppercase"
+            style={{
+              fontSize: "10px",
+              letterSpacing: "0.3em",
+              color: "#B8935A",
+            }}
+          >
+            BUILT DIFFERENT
+          </p>
+          <h2
+            className="font-cormorant text-[#1A1918] mt-2"
+            style={{ fontSize: "clamp(40px, 4vw, 64px)" }}
+          >
+            Quality You Can Feel.
+          </h2>
+          <div
+            className="bg-[#B8935A] mt-4"
+            style={{ width: 48, height: 2 }}
+          />
+        </div>
 
-    const { scrollYProgress } = useScroll({
-        target: containerRef,
-        offset: ["start end", "end start"],
-    });
-
-    // Parallax and Scale effects
-    const imageScale = useTransform(scrollYProgress, [0, 0.5], [1.15, 1]);
-    const imageY = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
-    const textY = useTransform(scrollYProgress, [0, 1], ["10%", "-10%"]);
-
-    return (
-        <section
-            ref={containerRef}
-            className={`relative min-h-screen w-full flex flex-col lg:flex-row items-center overflow-hidden bg-white px-8 lg:px-24 py-24 ${poppins.variable} font-sans`}
-        >
-            {/* Background tone shift: slight warmer tone */}
-            <div className="absolute inset-0 bg-[#F2EDE6] opacity-30 z-0" />
-
-            {/* LEFT CONTENT: Macro Image Container */}
-            <div className="relative w-full lg:w-1/2 h-[50vh] lg:h-[80vh] overflow-hidden rounded-2xl lg:rounded-3xl z-10">
-                <motion.div
-                    style={{ scale: imageScale, y: imageY }}
-                    className="relative w-full h-full"
-                >
-                    <Image
-                        src="/images/ezgif-4d3e6b6df613bc7d-jpg/ezgif-frame-200.jpg"
-                        alt="Macro Watch Detail"
-                        fill
-                        className="object-cover"
-                        priority
-                    />
-                    {/* Light Sweep Animation Overlay */}
-                    <motion.div
-                        initial={{ x: "-100%", opacity: 0 }}
-                        animate={{ x: "100%", opacity: [0, 0.2, 0] }}
-                        transition={{ duration: 3, repeat: Infinity, repeatDelay: 2, ease: "linear" }}
-                        className="absolute inset-0 z-10 pointer-events-none"
-                        style={{
-                            background: "linear-gradient(105deg, transparent 30%, rgba(255,255,255,0.4) 50%, transparent 70%)"
-                        }}
-                    />
-                </motion.div>
-                {/* Soft Shadow Edges */}
-                <div className="absolute inset-0 shadow-[inset_0_0_100px_rgba(0,0,0,0.05)] pointer-events-none" />
-            </div>
-
-            {/* RIGHT CONTENT: Material Story */}
-            <motion.div
-                style={{ y: textY }}
-                className="relative z-20 w-full lg:w-1/2 flex flex-col items-center lg:items-start text-center lg:text-left space-y-12 lg:pl-24 mt-16 lg:mt-0"
+        {/* ── SPLIT ROW ── */}
+        <div className="flex flex-col md:flex-row gap-10 items-stretch">
+          {/* LEFT — Hero Image (45%) */}
+          <motion.div
+            initial={{ opacity: 0, x: -60 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+            className="w-full md:w-[45%] relative rounded-[20px] overflow-hidden group"
+            style={{ minHeight: 520 }}
+          >
+            {/* Gold Corner Accent */}
+            <svg
+              width="32"
+              height="32"
+              stroke="#B8935A"
+              fill="none"
+              className="absolute top-5 left-5 z-10 opacity-50 pointer-events-none"
             >
-                <div className="space-y-4">
-                    <motion.h2
-                        initial={{ opacity: 0, x: 20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-                        className="text-4xl md:text-5xl font-bold tracking-tight text-[#1A1918] leading-[1.2]"
-                    >
-                        Designer&apos;s Best Seller. <br />
-                        <span className="text-[#003926]">It Is Engineered.</span>
-                    </motion.h2>
-                    <p className="text-gray-500 font-light text-lg">
-                        Where luxury becomes tactile and material worship is our standard.
-                    </p>
-                </div>
+              <path
+                d="M0 32 L0 0 L32 0"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+              />
+            </svg>
 
-                {/* Material Points */}
-                <div className="flex flex-col space-y-10 w-full">
-                    {materialPoints.map((point, index) => (
-                        <motion.div
-                            key={point.title}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.8, delay: 0.2 + index * 0.2, ease: [0.22, 1, 0.36, 1] }}
-                            className="flex items-start justify-center lg:justify-start gap-4"
-                        >
-                            <div className="w-1.5 h-1.5 rounded-full bg-[#003926] mt-2.5 flex-shrink-0" />
-                            <div className="space-y-1">
-                                <h3 className="text-[15px] font-semibold text-[#1A1918] uppercase tracking-wider italic">
-                                    {point.title}
-                                </h3>
-                                <p className="text-[14px] text-gray-400 font-light tracking-wide">
-                                    {point.desc}
-                                </p>
-                            </div>
-                        </motion.div>
-                    ))}
-                </div>
-            </motion.div>
-        </section>
-    );
+            <Image
+              src="/images/main-img5.png"
+              alt="Premium watch craftsmanship"
+              fill
+              className="object-cover object-center transition-transform duration-[800ms] ease-out group-hover:scale-[1.03]"
+              priority
+            />
+
+            {/* Bottom gradient */}
+            <div
+              className="absolute bottom-0 left-0 right-0 pointer-events-none"
+              style={{
+                height: "50%",
+                background:
+                  "linear-gradient(transparent 0%, rgba(17,17,16,0.4) 100%)",
+              }}
+            />
+          </motion.div>
+
+          {/* RIGHT — Feature Cards Grid (55%) */}
+          <motion.div
+            variants={cardStagger}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.2 }}
+            className="w-full md:w-[55%] grid gap-4"
+            style={{
+              gridTemplateColumns: "1fr 1fr",
+              gridTemplateAreas: `
+                "card1 card2"
+                "card3 card4"
+                "card5 card5"
+              `,
+            }}
+          >
+            {features.map((f, i) => (
+              <FeatureCard key={f.num} f={f} area={`card${i + 1}`} />
+            ))}
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { Truck, Lock, Shield, Wrench, MessageCircle } from "lucide-react";
 import { Playfair_Display, Poppins } from "next/font/google";
 
@@ -10,69 +10,58 @@ const poppins = Poppins({ subsets: ["latin"], weight: ["300", "400", "500", "600
 
 const trustItems = [
     {
+        id: "shipping",
         icon: Truck,
         title: "Fast & Reliable Shipping",
         desc: "Pan-India delivery within 5–7 business days",
-        delay: 0.1,
-        rotation: -1,
-        yOffset: 20
     },
     {
+        id: "checkout",
         icon: Lock,
         title: "Secure Checkout",
         desc: "256-bit SSL encrypted payments",
-        delay: 0.2,
-        rotation: 2,
-        yOffset: 0
     },
     {
+        id: "support",
         icon: MessageCircle,
         title: "Expert Support",
         desc: "Dedicated care team ready to help",
-        delay: 0.3,
-        rotation: 0,
-        yOffset: -20
     },
     {
+        id: "warranty",
         icon: Shield,
         title: "Warranty Protection",
         desc: "12-month manufacturer warranty included",
-        delay: 0.4,
-        rotation: 1,
-        yOffset: 40
     },
     {
+        id: "service",
         icon: Wrench,
         title: "Service Assistance",
         desc: "Authorised service centres nationwide",
-        delay: 0.5,
-        rotation: -2,
-        yOffset: 10
     },
 ];
 
-const containerVariants = {
+const containerVariants: Variants = {
     hidden: { opacity: 0 },
     show: {
         opacity: 1,
         transition: {
-            staggerChildren: 0.15,
-            delayChildren: 0.3,
+            staggerChildren: 0.18,
+            delayChildren: 0.15,
         }
     }
 };
 
-const cardVariants = {
-    hidden: { opacity: 0, y: 40, scale: 0.95 },
+const itemVariants: Variants = {
+    hidden: { opacity: 0, y: 25 },
     show: {
         opacity: 1,
         y: 0,
-        scale: 1,
-        transition: { type: "spring", stiffness: 100, damping: 20 }
+        transition: { type: "spring", stiffness: 70, damping: 18 }
     }
 };
 
-const FeatureCard = ({
+const FeatureItem = ({
     item,
     index,
 }: {
@@ -83,91 +72,56 @@ const FeatureCard = ({
 
     return (
         <motion.div
-            variants={cardVariants as any}
-            className="w-full flex justify-center"
+            variants={itemVariants}
+            className="w-full md:w-[calc(50%-3rem)] lg:w-[calc(33.333%-3rem)] flex flex-col items-center text-center group"
         >
+            {/* Floating Icon Circle */}
             <motion.div
-                animate={{
-                    y: [item.yOffset, item.yOffset - 10, item.yOffset],
-                    rotate: [item.rotation, item.rotation + 0.5, item.rotation]
-                }}
+                animate={{ y: [0, -3, 0] }}
                 transition={{
-                    duration: 5 + index,
+                    duration: 3.5 + index * 0.4,
                     repeat: Infinity,
                     ease: "easeInOut",
-                    repeatType: "reverse"
                 }}
                 whileHover={{
-                    y: item.yOffset - 15,
-                    scale: 1.03,
-                    rotate: 0,
-                    transition: { type: "spring", stiffness: 400, damping: 25, duration: 0.3 }
+                    y: -8,
+                    scale: 1.08,
+                    transition: { type: "spring", stiffness: 300, damping: 20 }
                 }}
-                className="group relative w-full h-full max-w-[360px] flex flex-col p-8 md:p-10 bg-white/70 backdrop-blur-xl rounded-[2rem] border border-white/60 shadow-[0_10px_40px_rgba(0,0,0,0.03)] hover:shadow-[0_30px_60px_rgba(0,57,38,0.08)] hover:border-white transition-all overflow-hidden"
+                className="relative flex items-center justify-center w-[72px] h-[72px] rounded-full bg-[#003926] shadow-lg mb-6 cursor-pointer"
             >
-                {/* Subtle Hover Gradient Background */}
-                <div className="absolute inset-0 bg-gradient-to-br from-white via-white/80 to-[#FAF8F4] opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0" />
-
-                <div className="relative z-10 flex flex-col items-start h-full">
-                    {/* Icon Container with elegant glow */}
-                    <div className="relative mb-8">
-                        <div className="absolute inset-0 bg-[#003926] blur-xl opacity-0 group-hover:opacity-15 transition-opacity duration-500 rounded-full scale-150" />
-                        <div className="relative p-4 rounded-2xl bg-gradient-to-br from-[#FAF8F4] to-white border border-[#1A1918]/5 group-hover:bg-gradient-to-br group-hover:from-[#003926] group-hover:to-[#002619] group-hover:shadow-lg shadow-[#003926]/20 transition-all duration-500">
-                            <Icon size={28} className="text-[#003926] group-hover:text-[#B8935A] transition-colors duration-500" strokeWidth={1.5} />
-                        </div>
-                    </div>
-
-                    <h4 className="font-cormorant font-semibold text-2xl md:text-[28px] text-[#1A1918] mb-3 group-hover:text-[#003926] transition-colors duration-300 leading-tight">
-                        {item.title}
-                    </h4>
-
-                    <p className="font-dm font-light text-[15px] leading-[1.7] text-[#6B6560] mt-auto">
-                        {item.desc}
-                    </p>
-                </div>
+                {/* Subtle glow on hover */}
+                <div className="absolute inset-0 rounded-full bg-[#003926] opacity-0 group-hover:opacity-30 blur-xl transition-opacity duration-500 scale-150" />
+                <Icon size={28} className="relative z-10 text-white" strokeWidth={1.5} />
             </motion.div>
+
+            {/* Title */}
+            <h4 className="font-cormorant font-semibold text-xl md:text-2xl text-[#1A1918] leading-tight mb-2 group-hover:text-[#003926] transition-colors duration-300">
+                {item.title}
+            </h4>
+
+            {/* Description */}
+            <p className="font-dm font-light text-[14px] leading-relaxed text-[#1A1918]/60 max-w-[260px]">
+                {item.desc}
+            </p>
         </motion.div>
     );
 };
 
 export default function TrustGrid() {
     return (
-        <section className={`relative w-full py-24 md:py-40 overflow-hidden bg-[#FAF8F4] ${playfair.variable} ${poppins.variable} font-sans`}>
+        <section className={`relative w-full py-28 md:py-36 overflow-hidden bg-[#EAE2D5] ${playfair.variable} ${poppins.variable} font-sans`}>
 
-            {/* LUXURY BACKGROUND DESIGN */}
-            <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-                {/* Center Glow */}
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[60vw] h-[600px] bg-gradient-to-b from-[#003926]/5 to-transparent blur-3xl opacity-70" />
-
-                {/* Corner Accents */}
-                <div className="absolute top-20 -left-20 w-96 h-96 bg-[#D4AA72]/10 blur-[100px] rounded-full mix-blend-multiply" />
-                <div className="absolute bottom-20 -right-20 w-[500px] h-[500px] bg-[#003926]/5 blur-[120px] rounded-full mix-blend-multiply" />
-
-                {/* Noise Texture Overlay */}
-                <div className="absolute inset-0 opacity-[0.015] mix-blend-multiply" style={{ backgroundImage: "url('/images/noise.png')", backgroundSize: "100px 100px" }} />
-            </div>
-
-            <div className="relative z-10 max-w-screen-xl mx-auto px-6 md:px-12">
+            <div className="relative z-10 w-full max-w-[1200px] mx-auto px-6 md:px-12 flex flex-col items-center">
 
                 {/* HEADINGS */}
-                <div className="flex flex-col items-center text-center mb-24 md:mb-32 relative">
-                    {/* Decorative accent behind text */}
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[100px] bg-[#B8935A]/5 blur-2xl rounded-[100%]" />
-
-                    <motion.div
-                        initial={{ opacity: 0, scaleX: 0 }}
-                        whileInView={{ opacity: 1, scaleX: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1, ease: "easeOut" }}
-                        className="w-16 h-[1.5px] bg-gradient-to-r from-transparent via-[#B8935A] to-transparent mb-8"
-                    />
-
+                <div className="flex flex-col items-center text-center mb-20 md:mb-24">
                     <motion.p
-                        initial={{ opacity: 0, y: 15 }}
+                        initial={{ opacity: 0, y: 12 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
-                        className="text-[11px] tracking-[0.4em] uppercase text-[#B8935A] font-dm font-semibold mb-6"
+                        viewport={{ once: true, margin: "-50px" }}
+                        transition={{ duration: 0.6, ease: "easeOut" }}
+                        className="text-[11px] tracking-[0.35em] uppercase text-[#1A1918]/50 font-dm font-medium mb-5"
                     >
                         FOUNDATION OF EXCELLENCE
                     </motion.p>
@@ -175,41 +129,27 @@ export default function TrustGrid() {
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
-                        className="text-5xl md:text-7xl lg:text-[88px] font-cormorant text-[#1A1918] tracking-tight leading-[0.9] relative"
+                        viewport={{ once: true, margin: "-50px" }}
+                        transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
+                        className="text-4xl md:text-5xl lg:text-6xl font-cormorant text-[#1A1918] tracking-tight"
                     >
                         Built on Trust.
                     </motion.h2>
                 </div>
 
-                {/* ANIMATED GRID LAYOUT */}
+                {/* TRUST FEATURES — 3-2 LAYOUT */}
                 <motion.div
                     variants={containerVariants}
                     initial="hidden"
                     whileInView="show"
-                    viewport={{ once: true, margin: "-100px" }}
-                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 lg:gap-16 items-center justify-center 2xl:px-12"
+                    viewport={{ once: true, margin: "-80px" }}
+                    className="flex flex-wrap justify-center gap-y-16 gap-x-12 xl:gap-x-16 w-full"
                 >
-
-                    {/* Left Column (2 Cards) */}
-                    <div className="flex flex-col gap-8 md:gap-16 lg:mt-20">
-                        <FeatureCard item={trustItems[0]} index={0} />
-                        <FeatureCard item={trustItems[1]} index={1} />
-                    </div>
-
-                    {/* Center Column (1 Card - Highlights the main focus) */}
-                    <div className="flex flex-col justify-center items-center lg:-mt-24">
-                        <FeatureCard item={trustItems[2]} index={2} />
-                    </div>
-
-                    {/* Right Column (2 Cards) */}
-                    <div className="flex flex-col gap-8 md:gap-16 lg:mt-40">
-                        <FeatureCard item={trustItems[3]} index={3} />
-                        <FeatureCard item={trustItems[4]} index={4} />
-                    </div>
-
+                    {trustItems.map((item, index) => (
+                        <FeatureItem key={item.id} item={item} index={index} />
+                    ))}
                 </motion.div>
+
             </div>
 
             <style jsx global>{`

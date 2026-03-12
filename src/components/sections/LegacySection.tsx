@@ -57,7 +57,7 @@ export default function LegacySection() {
                             transition={{ duration: 1, ease: [0.76, 0, 0.24, 1] }}
                         />
                         <Image
-                            src="/images/legacy-craftsmanship.png"
+                            src="/images/main-img3.png"
                             alt="Legacy craftsmanship"
                             fill
                             className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"

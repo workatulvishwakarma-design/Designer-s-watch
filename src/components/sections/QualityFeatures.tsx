@@ -92,7 +92,7 @@ export default function QualityFeatures() {
                             className="absolute inset-0 w-full h-full transform-gpu"
                         >
                             <Image
-                                src="/images/img03.png"
+                                src="/images/main-img5.png"
                                 alt="Material Quality Detail"
                                 fill
                                 sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 40vw"

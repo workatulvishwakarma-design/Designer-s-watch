@@ -3,13 +3,13 @@
 import Header from "@/components/sections/Header";
 import Footer from "@/components/sections/Footer";
 import NagpalHero from "@/components/sections/nagpal/NagpalHero";
-import NagpalWorkingProcess from "@/components/sections/nagpal/NagpalWorkingProcess";
 import NagpalStats from "@/components/sections/nagpal/NagpalStats";
 import NagpalStrengths from "@/components/sections/nagpal/NagpalStrengths";
 import NagpalValueChain from "@/components/sections/nagpal/NagpalValueChain";
 import NagpalBrandStrip from "@/components/sections/nagpal/NagpalBrandStrip";
 import NagpalDivisions from "@/components/sections/nagpal/NagpalDivisions";
 import NagpalPartner from "@/components/sections/nagpal/NagpalPartner";
+import NagpalTimeline from "@/components/sections/nagpal/NagpalTimeline";
 import { useEffect, useState } from "react";
 
 function SectionDivider() {
@@ -51,7 +51,7 @@ export default function NagpalGroupPage() {
       <main>
         <NagpalHero />
         <SectionDivider />
-        <NagpalWorkingProcess />
+        <NagpalTimeline />
         <SectionDivider />
         <NagpalStats />
         <SectionDivider />

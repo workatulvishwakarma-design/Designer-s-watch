@@ -10,20 +10,27 @@ export default function AboutChairman() {
 
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-0 items-center">
 
-                    {/* Left Side: Portrait Image */}
+                    {/* Left Side: Portrait Image with Editorial Blend */}
                     <motion.div
                         initial={{ opacity: 0, x: -30 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-                        className="lg:col-span-5 relative h-[500px] md:h-[700px] w-full rounded-[24px] overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.1)] z-10"
+                        transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+                        className="lg:col-span-5 relative h-[500px] md:h-[700px] w-full z-10 overflow-hidden lg:overflow-visible"
+                        style={{
+                            WebkitMaskImage: 'linear-gradient(to right, black 80%, transparent 100%)',
+                            maskImage: 'linear-gradient(to right, black 80%, transparent 100%)'
+                        }}
                     >
-                        <Image
-                            src="/images/aboutImg2.png"
-                            alt="Chairman Portrait"
-                            fill
-                            className="object-cover object-center grayscale hover:grayscale-0 transition-all duration-1000"
-                        />
+                        <div className="relative w-full h-full rounded-[24px] lg:rounded-l-[24px] lg:rounded-r-none overflow-hidden shadow-[0_10px_40px_rgba(0,0,0,0.05)]">
+                            <Image
+                                src="/images/aboutImg3.png"
+                                alt="Chairman Portrait"
+                                fill
+                                className="object-cover object-center grayscale hover:grayscale-0 transition-all duration-1000 scale-[1.02] hover:scale-100"
+                                priority
+                            />
+                        </div>
                     </motion.div>
 
                     {/* Right Side: Message Card */}
