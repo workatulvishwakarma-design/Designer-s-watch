@@ -13,70 +13,70 @@ export default function AboutTimeline() {
             title: "The Beginning (Amritsar)",
             desc: "Shree Virbhan Nagpal starts a small horology setup in Amritsar, laying the foundation for what eventually becomes a national trading, manufacturing, and brand business in the watch industry.",
             align: "right",
-            image: "/images/hover-1.png"
+            image: "/images/gen 1.png"
         },
         {
             year: "2nd Generation —",
             title: "Strengthening Trust",
             desc: "Shree Virbhan Nagpal starts a small horology setup in Amritsar, laying the foundation for what eventually becomes a national trading, manufacturing, and brand business in the watch industry.",
             align: "left",
-            image: "/images/hover-2.png"
+            image: "/images/2gen.png"
         },
         {
             year: "1976 —",
             title: "Expansion to Mumbai",
             desc: "The 3rd generation—Mr. Narinder Nagpal & Mr. Jatinder Nagpal—moves to Mumbai and establishes Nagpal's Bombay, gaining international access and scaling spare parts distribution. Today it's ranked among India's largest sources for wristwatch spare parts.",
             align: "right",
-            image: "/images/hover-3.png"
+            image: "/images/mumbai.png"
         },
         {
             year: "1981 — Pan-India",
             title: "Watch Battery Distribution",
             desc: "Nagpal's Bombay secures pan-India distribution for watch batteries from global brands like Renata, Maxell, Sony & Seizaiken (Seiko Group)—a major credibility milestone.",
             align: "left",
-            image: "/images/hover-1.png"
+            image: "/images/distr_.png"
         },
         {
             year: "1991 —",
             title: "Launch of D'SIGNER",
             desc: "The group launches its first watch brand D'SIGNER under Designer Watches Pvt. Ltd., targeting the premium segment and becoming one of the early Indian brands to design and manufacture to international standards. D'SIGNER expands to 100+ MBOs + online marketplaces.",
             align: "right",
-            image: "/images/hover-2.png"
+            image: "/images/deigner.png"
         },
         {
             year: "1995 —",
             title: "Launch of ESCORT",
             desc: "After establishing D'SIGNER, the group enters the mass market with ESCORT, focused on quality watches at affordable pricing.",
             align: "left",
-            image: "/images/hover-3.png"
+            image: "/images/escort.png"
         },
         {
             year: "2013 —",
             title: "Daniel Klein (Sole Distributor in India)",
             desc: "Turkish brand Daniel Klein appoints Nagpal Group as sole distributors for India, helping it become a top-performing brand on e-commerce platforms with 1000+ models per year.",
             align: "right",
-            image: "/images/hover-1.png"
+            image: "/images/sons.png"
         },
         {
             year: "2013-2020 —",
             title: "Digital Boom & New-Age Growth",
             desc: "With e-commerce reshaping the watch market, the Nagpal Group scaled strongly into digital distribution. In 2013, they became the sole India distributors for Daniel Klein, building major momentum across online platforms. This era also expanded into B2T smart wearables and Ghadiwaalaa.com (2020), a curated watches & wearables marketplace.",
             align: "left",
-            image: "/images/hover-2.png"
+            image: "/images/sons.png"
         },
         {
             year: "2022 —",
             title: "New Exclusive International Brands",
             desc: "Nagpal Group adds CIGA Design (award-winning skeleton watches) and Santa Barbara Polo & Racquet Club exclusively for India.",
             align: "right",
-            image: "/images/hover-3.png"
+            image: "/images/today1.png"
         },
         {
             year: "Today —",
             title: "Scale & Credibility",
             desc: "Now standing on 4 generations of expertise, the group has 20+ international brands, unmatched after-sales service, and 500+ private labels manufactured.",
             align: "left",
-            image: "/images/hover-1.png"
+            image: "/images/today02.png"
         }
     ];
 

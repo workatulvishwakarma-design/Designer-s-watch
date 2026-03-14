@@ -172,7 +172,7 @@ export default function FeatureScroller() {
                       src={WATCH_IMAGES[feat.imageIndex] || WATCH_IMAGES[0]}
                       alt=""
                       style={{ scale }}
-                      className="w-80 h-80 lg:w-96 lg:h-96 object-cover rounded-full shadow-2xl"
+                      className="w-80 h-80 lg:w-96 lg:h-96 object-contain drop-shadow-[0_20px_30px_rgba(0,0,0,0.15)]"
                     />
                   </motion.div>
                 );
@@ -259,12 +259,10 @@ export default function FeatureScroller() {
                   style={{ direction: 'ltr' }}
                 >
                   <div className="relative">
-                    <div className="absolute -inset-2 rounded-full border border-[#B8935A]/20" />
-                    <div className="absolute -inset-4 rounded-full border border-[#B8935A]/8" />
                     <img
                       src={watchImg}
                       alt={`${feat.titleLight} ${feat.titleBold}`}
-                      className="w-[100px] h-[100px] sm:w-[140px] sm:h-[140px] object-cover rounded-full shadow-[0_12px_40px_rgba(0,0,0,0.15)] ring-2 ring-white/40"
+                      className="w-[100px] h-[100px] sm:w-[140px] sm:h-[140px] object-contain drop-shadow-[0_15px_25px_rgba(0,0,0,0.12)]"
                     />
                   </div>
                 </motion.div>

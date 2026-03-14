@@ -1,8 +1,12 @@
 "use client";
 
+import { motion, useScroll, useSpring } from "framer-motion";
+import SmoothScrolling from "@/components/SmoothScrolling";
+import CustomCursor from "@/components/ui/CustomCursor";
 import Header from "@/components/sections/Header";
 import Footer from "@/components/sections/Footer";
-import NagpalHero from "@/components/sections/nagpal/NagpalHero";
+import NagpalBanner from "@/components/sections/nagpal/NagpalBanner";
+import NagpalShowcase from "@/components/sections/nagpal/NagpalShowcase";
 import NagpalStats from "@/components/sections/nagpal/NagpalStats";
 import NagpalStrengths from "@/components/sections/nagpal/NagpalStrengths";
 import NagpalValueChain from "@/components/sections/nagpal/NagpalValueChain";
@@ -10,7 +14,6 @@ import NagpalBrandStrip from "@/components/sections/nagpal/NagpalBrandStrip";
 import NagpalDivisions from "@/components/sections/nagpal/NagpalDivisions";
 import NagpalPartner from "@/components/sections/nagpal/NagpalPartner";
 import NagpalTimeline from "@/components/sections/nagpal/NagpalTimeline";
-import { useEffect, useState } from "react";
 
 function SectionDivider() {
   return (
@@ -23,48 +26,46 @@ function SectionDivider() {
 }
 
 export default function NagpalGroupPage() {
-  const [scrollProgress, setScrollProgress] = useState(0);
-
-  useEffect(() => {
-    const onScroll = () => {
-      const winScroll = document.documentElement.scrollTop;
-      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      setScrollProgress(height > 0 ? (winScroll / height) * 100 : 0);
-    };
-    window.addEventListener("scroll", onScroll);
-    onScroll();
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  const { scrollYProgress } = useScroll();
+  const scaleY = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
 
   return (
     <>
-      {/* Scroll progress indicator */}
-      <div
-        className="fixed left-0 top-0 w-[3px] z-50 pointer-events-none transition-all duration-150"
-        style={{
-          height: `${scrollProgress}%`,
-          backgroundColor: "#B8935A",
-        }}
-      />
+      <CustomCursor />
+      <SmoothScrolling>
+        {/* Hardware-accelerated scroll progress indicator */}
+        <motion.div
+          className="fixed left-0 top-0 bottom-0 w-[3px] z-50 pointer-events-none origin-top"
+          style={{
+            scaleY,
+            backgroundColor: "#B8935A",
+          }}
+        />
 
-      <Header />
-      <main>
-        <NagpalHero />
-        <SectionDivider />
-        <NagpalTimeline />
-        <SectionDivider />
-        <NagpalStats />
-        <SectionDivider />
-        <NagpalStrengths />
-        <SectionDivider />
-        <NagpalValueChain />
-        <SectionDivider />
-        <NagpalBrandStrip />
-        <NagpalDivisions />
-        <SectionDivider />
-        <NagpalPartner />
-      </main>
-      <Footer />
+        <Header />
+        <main>
+          <NagpalBanner />
+          <NagpalShowcase />
+          <SectionDivider />
+          <NagpalTimeline />
+          <SectionDivider />
+          <NagpalStats />
+          <SectionDivider />
+          <NagpalStrengths />
+          <SectionDivider />
+          <NagpalValueChain />
+          <SectionDivider />
+          <NagpalBrandStrip />
+          <NagpalDivisions />
+          <SectionDivider />
+          <NagpalPartner />
+        </main>
+        <Footer />
+      </SmoothScrolling>
     </>
   );
 }

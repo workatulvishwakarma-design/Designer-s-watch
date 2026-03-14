@@ -1,505 +1,379 @@
 "use client";
 
-import { useState, useId } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import { Loader2, ChevronDown, Check } from "lucide-react";
+import { Check, Plus, Minus, ArrowRight } from "lucide-react";
 
-const enquiryOptions = [
-  "Brand Owner",
-  "Retailer",
-  "Distributor",
-  "Corporate Buyer",
-  "Export Enquiry",
-  "Other",
+/* ───────────────────────── FAQ DATA FOR NAGPAL ───────────────────────── */
+const faqs = [
+  {
+    question: "What does Nagpal Group specialize in?",
+    answer: "With decades of legacy, Nagpal Group specializes in comprehensive watch manufacturing, private label development, and nationwide distribution. We act as a vertically integrated partner handling everything from design to retail delivery."
+  },
+  {
+    question: "Does Nagpal Group support OEM / private label manufacturing?",
+    answer: "Yes, our OEM division provides end-to-end solutions for brands looking to launch or scale their watch collections. We manage sourcing, assembly, quality control, and testing to international standards."
+  },
+  {
+    question: "Which brands and distribution categories does Nagpal Group handle?",
+    answer: "We manage a diverse portfolio of in-house and partnered brands across premium, lifestyle, and everyday categories. Our flagship brand D'SIGNER leads our luxury segment, while Escort caters to the lifestyle market."
+  },
+  {
+    question: "Does Nagpal Group work with retailers and business partners?",
+    answer: "Absolutely. We maintain a vast pan-India distribution network and actively collaborate with regional distributors, large-format retail chains, and independent watch boutiques."
+  },
+  {
+    question: "Can businesses contact Nagpal Group for collaboration or sourcing?",
+    answer: "Yes, our B2B team is perfectly positioned to assist with corporate gifting, bulk sourcing, wholesale distribution, and specialized brand collaborations."
+  },
+  {
+    question: "What is the legacy and market presence of Nagpal Group?",
+    answer: "Established with over four decades of expertise, Nagpal Group has evolved from a respected watchmaker into a leading horological powerhouse with a pan-India presence and global sourcing capabilities."
+  }
 ];
 
-const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-// ── Animated input field ──────────────────────────────────────────────────────
-function FormField({
-  label,
-  id,
-  error,
-  children,
-}: {
-  label: string;
-  id: string;
-  error?: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <div className="flex flex-col gap-1.5">
-      <label
-        htmlFor={id}
-        className="font-body text-[11px] tracking-[0.12em] uppercase transition-colors duration-300"
-        style={{ color: error ? "#D4455A" : "#6B6560" }}
-      >
-        {label} *
-      </label>
-      {children}
-      <AnimatePresence>
-        {error && (
-          <motion.p
-            key="error"
-            initial={{ opacity: 0, y: -4 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -4 }}
-            className="font-body text-[11px]"
-            style={{ color: "#D4455A" }}
-          >
-            {error}
-          </motion.p>
-        )}
-      </AnimatePresence>
-    </div>
-  );
-}
-
-// ── Shared input base styles ──────────────────────────────────────────────────
-function StyledInput({
-  id,
-  type = "text",
-  value,
-  onChange,
-  placeholder,
-  hasError,
-}: {
-  id: string;
-  type?: string;
-  value: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  placeholder: string;
-  hasError?: boolean;
-}) {
-  const [focused, setFocused] = useState(false);
-  const [hovered, setHovered] = useState(false);
-
-  const borderColor = hasError
-    ? "#D4455A"
-    : focused
-      ? "#003926"
-      : hovered
-        ? "#B8935A"
-        : "#E0D8CE";
-
-  return (
-    <div className="relative">
-      <input
-        id={id}
-        name={id}
-        type={type}
-        value={value}
-        onChange={onChange}
-        placeholder={placeholder}
-        aria-invalid={hasError ? "true" : "false"}
-        onFocus={() => setFocused(true)}
-        onBlur={() => setFocused(false)}
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}
-        className="w-full border-0 border-b-[1.5px] rounded-none py-4 font-body text-[14px] bg-transparent focus:outline-none focus:ring-0 transition-all duration-300 placeholder:text-[#B0A99F]"
-        style={{
-          borderBottomColor: borderColor,
-          color: "#1A1918",
-          backgroundColor: focused ? "rgba(250,248,244,0.55)" : "transparent",
-          boxShadow: hovered && !focused ? "0 2px 8px rgba(184,147,90,0.07)" : "none",
-        }}
-      />
-      {/* animated underline */}
-      <motion.span
-        className="absolute bottom-0 left-0 h-[2px] rounded-full"
-        style={{ backgroundColor: "#003926" }}
-        animate={{ width: focused ? "100%" : "0%" }}
-        transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-      />
-    </div>
-  );
-}
-
-function StyledTextarea({
-  id,
-  value,
-  onChange,
-  placeholder,
-  hasError,
-}: {
-  id: string;
-  value: string;
-  onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
-  placeholder: string;
-  hasError?: boolean;
-}) {
-  const [focused, setFocused] = useState(false);
-  const [hovered, setHovered] = useState(false);
-
-  const borderColor = hasError
-    ? "#D4455A"
-    : focused
-      ? "#003926"
-      : hovered
-        ? "#B8935A"
-        : "#E0D8CE";
-
-  return (
-    <div className="relative">
-      <textarea
-        id={id}
-        name={id}
-        rows={4}
-        value={value}
-        onChange={onChange}
-        placeholder={placeholder}
-        aria-invalid={hasError ? "true" : "false"}
-        onFocus={() => setFocused(true)}
-        onBlur={() => setFocused(false)}
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}
-        className="w-full border-0 border-b-[1.5px] rounded-none py-4 font-body text-[14px] bg-transparent focus:outline-none focus:ring-0 transition-all duration-300 resize-none placeholder:text-[#B0A99F]"
-        style={{
-          borderBottomColor: borderColor,
-          color: "#1A1918",
-          backgroundColor: focused ? "rgba(250,248,244,0.55)" : "transparent",
-          boxShadow: hovered && !focused ? "0 2px 8px rgba(184,147,90,0.07)" : "none",
-        }}
-      />
-      <motion.span
-        className="absolute bottom-0 left-0 h-[2px] rounded-full"
-        style={{ backgroundColor: "#003926" }}
-        animate={{ width: focused ? "100%" : "0%" }}
-        transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-      />
-    </div>
-  );
-}
-
-// ── Main component ────────────────────────────────────────────────────────────
 export default function NagpalPartner() {
-  const uid = useId();
-  const [form, setForm] = useState({
-    fullName: "",
-    subject: "",
-    email: "",
-    message: "",
-    enquiryAs: "",
-  });
-  const [errors, setErrors] = useState<Record<string, string>>({});
-  const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(false);
-  const [selectOpen, setSelectOpen] = useState(false);
   const [imgError, setImgError] = useState(false);
-  const [selectHovered, setSelectHovered] = useState(false);
-  const [selectFocused, setSelectFocused] = useState(false);
-
-  const validate = () => {
-    const next: Record<string, string> = {};
-    if (!form.fullName.trim()) next.fullName = "Required";
-    if (!form.subject.trim()) next.subject = "Required";
-    if (!form.email.trim()) next.email = "Required";
-    else if (!emailRegex.test(form.email)) next.email = "Invalid email";
-    if (!form.message.trim()) next.message = "Required";
-    if (!form.enquiryAs) next.enquiryAs = "Required";
-    setErrors(next);
-    return Object.keys(next).length === 0;
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!validate()) return;
-    setLoading(true);
-    await new Promise((r) => setTimeout(r, 1500));
-    setLoading(false);
-    setSuccess(true);
-  };
-
-  const selectBorderColor = errors.enquiryAs
-    ? "#D4455A"
-    : selectFocused
-      ? "#003926"
-      : selectHovered
-        ? "#B8935A"
-        : "#E0D8CE";
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section
-      id="partner"
-      className="relative overflow-hidden"
-      style={{ backgroundColor: "#F2EDE6" }}
-    >
-      {/* ── Hero visual block ── */}
-      <div
-        className="relative min-h-[50vh] overflow-hidden"
-        style={{
-          background: "linear-gradient(135deg, #EDE8E0 0%, #F5F2EC 100%)",
-        }}
+    <>
+      <section
+        id="partner"
+        className="relative overflow-hidden"
+        style={{ backgroundColor: "#F2EDE6" }}
       >
-        <svg className="absolute inset-0 w-full h-full opacity-[0.03] pointer-events-none z-0" aria-hidden>
-          <filter id="nagpal-partner-grain">
-            <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" />
-            <feColorMatrix type="saturate" values="0" />
-          </filter>
-          <rect width="100%" height="100%" filter="url(#nagpal-partner-grain)" />
-        </svg>
+        {/* ── Premium Split-Layout Hero ── */}
+        <div className="relative w-full min-h-[85vh] flex items-center pt-32 pb-20 justify-center px-6 lg:px-12 xl:px-20 z-10">
+          
+          {/* Subtle background noise texture */}
+          <div
+            className="absolute inset-0 pointer-events-none opacity-[0.03] mix-blend-multiply"
+            style={{
+              backgroundImage: "url('/images/noise.png')",
+              backgroundSize: "120px 120px",
+            }}
+          />
 
-        {/* Center content */}
-        <div className="relative z-10 flex flex-col items-center justify-center py-20 px-6">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="font-heading text-[48px] md:text-[72px] font-light leading-[1.1] mb-0 text-center"
-            style={{ color: "#1A1918" }}
-          >
-            Partner
-          </motion.h2>
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className="font-heading text-[48px] md:text-[72px] font-bold leading-[1.1] mb-0 text-center"
-            style={{ color: "#003926" }}
-          >
-            With Us
-          </motion.h2>
+          {/* Ambient radial glow for depth */}
+          <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[radial-gradient(circle,rgba(0,57,38,0.03)_0%,transparent_70%)] pointer-events-none rounded-full transform translate-x-1/4 -translate-y-1/4" />
 
-          <motion.div
-            animate={{ y: [0, -8, 0] }}
-            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-            className="w-full max-w-[260px] sm:max-w-[360px] md:max-w-[460px] h-auto my-6 mx-auto"
-          >
-            {!imgError ? (
-              <Image
-                src="/images/nagpal2.png"
-                alt="Watch — Partner With Us"
-                width={538}
-                height={538}
-                className="object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.12)] w-full h-auto"
-                onError={() => setImgError(true)}
-              />
-            ) : (
-              <div
-                className="w-full h-24 rounded-lg flex items-center justify-center"
-                style={{ background: "rgba(184,147,90,0.1)" }}
-              />
-            )}
-          </motion.div>
-
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.15 }}
-            className="font-body font-light text-[14px] md:text-[15px] text-center max-w-[480px] mx-auto"
-            style={{ color: "#6B6560", lineHeight: 1.8 }}
-          >
-            If you are a brand, retailer, or business looking to collaborate across manufacturing,
-            distribution, components, or exports, our team is ready to assist.
-          </motion.p>
-        </div>
-
-        {/* Bottom line */}
-        <div
-          className="absolute bottom-0 left-0 w-full h-[1.5px] pointer-events-none z-0"
-          style={{ backgroundColor: "rgba(0,57,38,0.15)" }}
-        />
-      </div>
-
-      {/* ── Form block ── */}
-      <div className="relative z-10 max-w-[820px] mx-auto px-4 sm:px-6 mt-12 pb-20">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="rounded-2xl md:rounded-[28px] p-6 sm:p-10 lg:p-14 border shadow-[0_24px_80px_rgba(0,0,0,0.08)]"
-          style={{ backgroundColor: "#FFFFFF", borderColor: "#E0D8CE" }}
-        >
-          <AnimatePresence mode="wait">
-            {success ? (
+          <div className="relative w-full max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-center">
+            
+            {/* ── LEFT SIDE: Text, Highlights & CTA ── */}
+            <div className="flex flex-col items-start text-left">
               <motion.div
-                key="success"
-                initial={{ scale: 0.85, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ type: "spring", damping: 20, stiffness: 300 }}
-                className="text-center py-12"
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="flex items-center gap-3 mb-6"
               >
-                <div
-                  className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6"
-                  style={{ backgroundColor: "#003926" }}
-                >
-                  <Check className="w-8 h-8 text-white" strokeWidth={2.5} />
-                </div>
-                <h3 className="font-heading text-[32px] md:text-[38px] mb-4" style={{ color: "#003926" }}>
-                  Enquiry Received!
-                </h3>
-                <p className="font-body text-[15px]" style={{ color: "#6B6560" }}>
-                  Our team will reach out within 24 business hours.
+                <div className="w-10 h-[1px] bg-[#B8935A]/50" />
+                <p className="text-[10px] md:text-[11px] tracking-[0.3em] uppercase text-[#B8935A] font-medium font-dm">
+                  BUSINESS PARTNERSHIPS
                 </p>
               </motion.div>
-            ) : (
-              <motion.form
-                key="form"
-                initial={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                onSubmit={handleSubmit}
-                noValidate
+
+              <motion.h2
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.1 }}
+                className="font-cormorant text-4xl md:text-5xl lg:text-[52px] font-semibold leading-[1.1] mb-6 tracking-tight text-[#1A1918]"
               >
-                <h3 className="font-heading text-[30px] md:text-[38px] text-center mb-3" style={{ color: "#1A1918" }}>
-                  Start a Conversation
-                </h3>
-                <div className="w-10 h-0.5 mx-auto mb-10" style={{ backgroundColor: "#B8935A" }} />
+                Collaborate With a <br className="hidden sm:block" />
+                <span className="text-[#003926]">Legacy Brand</span>
+              </motion.h2>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-10">
-                  {/* Full Name */}
-                  <FormField label="Full Name" id={`${uid}-fullName`} error={errors.fullName}>
-                    <StyledInput
-                      id={`${uid}-fullName`}
-                      value={form.fullName}
-                      onChange={(e) => setForm((f) => ({ ...f, fullName: e.target.value }))}
-                      placeholder="Your name"
-                      hasError={!!errors.fullName}
-                    />
-                  </FormField>
+              <motion.p
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, delay: 0.2 }}
+                className="font-dm text-[15px] md:text-[16px] leading-relaxed text-[#1A1918]/70 font-light max-w-[540px] mb-10"
+              >
+                Whether you are a brand, retailer, distributor, or manufacturing partner, Nagpal Group offers decades of market expertise, trusted networks, and scalable collaboration opportunities across watches, accessories, distribution, and private labeling.
+              </motion.p>
 
-                  {/* Subject */}
-                  <FormField label="Subject" id={`${uid}-subject`} error={errors.subject}>
-                    <StyledInput
-                      id={`${uid}-subject`}
-                      value={form.subject}
-                      onChange={(e) => setForm((f) => ({ ...f, subject: e.target.value }))}
-                      placeholder="Enquiry subject"
-                      hasError={!!errors.subject}
-                    />
-                  </FormField>
-
-                  {/* Email */}
-                  <FormField label="Email Address" id={`${uid}-email`} error={errors.email}>
-                    <StyledInput
-                      id={`${uid}-email`}
-                      type="email"
-                      value={form.email}
-                      onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
-                      placeholder="you@example.com"
-                      hasError={!!errors.email}
-                    />
-                  </FormField>
-
-                  {/* Message */}
-                  <FormField label="Message" id={`${uid}-message`} error={errors.message}>
-                    <StyledTextarea
-                      id={`${uid}-message`}
-                      value={form.message}
-                      onChange={(e) => setForm((f) => ({ ...f, message: e.target.value }))}
-                      placeholder="Your message"
-                      hasError={!!errors.message}
-                    />
-                  </FormField>
-
-                  {/* Enquiry As — full width */}
-                  <div className="sm:col-span-2">
-                    <FormField label="I Am Enquiring As" id={`${uid}-enquiryAs`} error={errors.enquiryAs}>
-                      <div className="relative">
-                        <button
-                          type="button"
-                          id={`${uid}-enquiryAs`}
-                          aria-haspopup="listbox"
-                          aria-expanded={selectOpen}
-                          onClick={() => setSelectOpen(!selectOpen)}
-                          onFocus={() => setSelectFocused(true)}
-                          onBlur={() => setSelectFocused(false)}
-                          onMouseEnter={() => setSelectHovered(true)}
-                          onMouseLeave={() => setSelectHovered(false)}
-                          className="w-full flex items-center justify-between border-0 border-b-[1.5px] rounded-none py-4 font-body text-[14px] bg-transparent focus:outline-none focus:ring-0 transition-all duration-300 text-left"
-                          style={{
-                            borderBottomColor: selectBorderColor,
-                            color: form.enquiryAs ? "#1A1918" : "#B0A99F",
-                          }}
-                        >
-                          {form.enquiryAs || "Select option"}
-                          <ChevronDown
-                            className={`w-5 h-5 flex-shrink-0 transition-transform duration-300 ${selectOpen ? "rotate-180" : ""}`}
-                            style={{ color: "#B8935A" }}
-                          />
-                        </button>
-                        {/* animated underline for select */}
-                        <motion.span
-                          className="absolute bottom-0 left-0 h-[2px] rounded-full"
-                          style={{ backgroundColor: "#003926" }}
-                          animate={{ width: selectFocused || selectOpen ? "100%" : "0%" }}
-                          transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                        />
-                        <AnimatePresence>
-                          {selectOpen && (
-                            <>
-                              <div
-                                className="fixed inset-0 z-10"
-                                onClick={() => setSelectOpen(false)}
-                                aria-hidden
-                              />
-                              <motion.ul
-                                role="listbox"
-                                aria-label="Enquiry type"
-                                initial={{ opacity: 0, y: 6 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0, y: 6 }}
-                                transition={{ duration: 0.2 }}
-                                className="absolute top-full left-0 right-0 mt-2 bg-white border border-[#E0D8CE] rounded-xl shadow-[0_12px_40px_rgba(0,0,0,0.1)] py-2 z-20 max-h-52 overflow-auto"
-                                style={{ color: "#1A1918" }}
-                              >
-                                {enquiryOptions.map((opt) => (
-                                  <li key={opt} role="option" aria-selected={form.enquiryAs === opt}>
-                                    <button
-                                      type="button"
-                                      onClick={() => {
-                                        setForm((f) => ({ ...f, enquiryAs: opt }));
-                                        setSelectOpen(false);
-                                      }}
-                                      className="w-full text-left font-body text-[14px] px-5 py-3 hover:bg-[#FAF8F4] hover:text-[#003926] transition-colors duration-150"
-                                    >
-                                      {opt}
-                                    </button>
-                                  </li>
-                                ))}
-                              </motion.ul>
-                            </>
-                          )}
-                        </AnimatePresence>
-                      </div>
-                    </FormField>
+              {/* Trust Highlights Grid */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4 mb-12"
+              >
+                {[
+                  "Private Label & OEM Support",
+                  "Nationwide Distribution",
+                  "Global Brand Partnerships",
+                  "Retail & Export Operations",
+                ].map((highlight, i) => (
+                  <div key={i} className="flex items-center gap-3">
+                    <div className="w-5 h-5 rounded-full bg-[#FAF8F4] border border-[#B8935A]/30 flex items-center justify-center shrink-0">
+                      <Check className="w-3 h-3 text-[#B8935A]" strokeWidth={2.5} />
+                    </div>
+                    <span className="font-dm text-[13px] text-[#1A1918]/80 font-medium tracking-wide">
+                      {highlight}
+                    </span>
                   </div>
-                </div>
+                ))}
+              </motion.div>
 
-                {/* Submit button */}
-                <motion.button
-                  type="submit"
-                  disabled={loading}
-                  whileHover={!loading ? { y: -2, boxShadow: "0 12px 36px rgba(184,147,90,0.35)" } : {}}
-                  whileTap={!loading ? { scale: 0.98 } : {}}
-                  transition={{ duration: 0.25, ease: "easeOut" }}
-                  className="w-full mt-12 h-[54px] rounded-full font-body font-medium text-[13px] tracking-[0.18em] uppercase text-white flex items-center justify-center gap-2.5 disabled:opacity-60 cursor-pointer disabled:cursor-not-allowed"
-                  style={{ backgroundColor: loading ? "#6B6560" : "#1A1918" }}
-                  onMouseEnter={(e) => {
-                    if (!loading) e.currentTarget.style.backgroundColor = "#003926";
+              {/* CTA Buttons */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto"
+              >
+                <button
+                  onClick={() => {
+                    document.getElementById("partner-faq-section")?.scrollIntoView({ behavior: "smooth" });
                   }}
-                  onMouseLeave={(e) => {
-                    if (!loading) e.currentTarget.style.backgroundColor = "#1A1918";
-                  }}
+                  className="group relative px-8 py-4 bg-[#003926] text-white rounded-full overflow-hidden transition-all duration-500 hover:shadow-[0_12px_30px_rgba(0,57,38,0.25)] hover:-translate-y-1"
                 >
-                  {loading ? (
-                    <>
-                      <Loader2 className="w-4 h-4 animate-spin" />
-                      Sending…
-                    </>
-                  ) : (
-                    "Submit Enquiry"
-                  )}
-                </motion.button>
-              </motion.form>
-            )}
-          </AnimatePresence>
-        </motion.div>
-      </div>
-    </section>
+                  <span className="relative z-10 font-dm text-[12px] font-medium tracking-[0.15em] uppercase">
+                    Start a Partnership
+                  </span>
+                  <div className="absolute inset-0 h-full w-full scale-0 rounded-full transition-all duration-300 group-hover:scale-100 group-hover:bg-[#1A1918]/20" />
+                </button>
+                
+                <button
+                  onClick={() => {
+                    window.location.href = "mailto:info@nagpalgroup.com";
+                  }}
+                  className="group relative px-8 py-4 bg-transparent border border-[#1A1918]/15 text-[#1A1918] rounded-full overflow-hidden transition-all duration-500 hover:border-[#1A1918]/30 hover:bg-[#FAF8F4]"
+                >
+                  <span className="relative z-10 font-dm text-[12px] font-medium tracking-[0.15em] uppercase transition-colors group-hover:text-[#003926]">
+                    Contact Our Team
+                  </span>
+                </button>
+              </motion.div>
+            </div>
+
+            {/* ── RIGHT SIDE: Luxury Framed Visual ── */}
+            <div className="relative w-full h-[550px] md:h-[650px] lg:h-[750px] flex items-center justify-center lg:justify-end perspective-[1200px]">
+              <motion.div
+                initial={{ opacity: 0, x: 40, rotateY: 8 }}
+                whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 1.2, type: "spring", bounce: 0.25 }}
+                className="relative w-full h-full max-h-[750px] max-w-[480px] lg:max-w-[520px] bg-[#FAF8F4]/80 backdrop-blur-xl rounded-[2.5rem] border border-white/60 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.08)] p-6 sm:p-10 flex flex-col items-center justify-center group overflow-hidden"
+              >
+                {/* Inner frame line for luxury art-gallery feel */}
+                <div className="absolute inset-4 border border-[#1A1918]/[0.04] rounded-[2rem] pointer-events-none z-20 transition-colors duration-700 group-hover:border-[#B8935A]/20" />
+                
+                {/* Deep immersive radial glow */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-[radial-gradient(circle,rgba(184,147,90,0.12)_0%,transparent_70%)] rounded-full pointer-events-none transition-transform duration-1000 group-hover:scale-110 z-0" />
+
+                {!imgError ? (
+                  <motion.div
+                    animate={{ y: [-10, 10, -10] }}
+                    transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+                    className="relative w-[90%] h-[90%] z-10 flex items-center justify-center"
+                  >
+                    <Image
+                      src="/images/threeimg3-nobg.png"
+                      alt="Nagpal Group Partnership"
+                      fill
+                      className="object-contain mix-blend-multiply opacity-95 transition-transform duration-1000 group-hover:scale-[1.05]"
+                      style={{
+                        filter: "drop-shadow(0px 25px 35px rgba(0,0,0,0.12)) drop-shadow(0px 10px 15px rgba(184,147,90,0.12))"
+                      }}
+                      onError={() => setImgError(true)}
+                      priority
+                    />
+                  </motion.div>
+                ) : (
+                  <div className="w-full h-40 rounded-lg flex items-center justify-center bg-[#B8935A]/5 z-10" />
+                )}
+
+                {/* Minimal floating accent badge */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, delay: 0.6 }}
+                  className="absolute bottom-10 left-10 z-30 bg-white/90 backdrop-blur-md px-5 py-2.5 rounded-full shadow-[0_10px_30px_rgba(184,147,90,0.15)] border border-white"
+                >
+                  <p className="font-dm text-[9px] uppercase tracking-[0.2em] font-semibold text-[#1A1918]">
+                    Global Reach
+                  </p>
+                </motion.div>
+              </motion.div>
+              
+              {/* Subtle decorative floating elements */}
+              <motion.div
+                animate={{ y: [0, -20, 0], opacity: [0.2, 0.5, 0.2] }}
+                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute top-[15%] right-[5%] w-4 h-4 rounded-full bg-gradient-to-tr from-[#B8935A] to-[#D4AA72] blur-[2px]"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Partner FAQ Section ── */}
+      <section id="partner-faq-section" className="relative w-full bg-white py-20 lg:py-32 overflow-hidden">
+        
+        {/* Subtle ambient background glow */}
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[radial-gradient(circle,rgba(0,57,38,0.02)_0%,transparent_70%)] pointer-events-none rounded-full translate-x-1/3 -translate-y-1/3 z-0" />
+
+        <div className="relative z-10 w-full max-w-[1400px] mx-auto px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+          
+          {/* ── LEFT SIDE: Intro & Support Card ── */}
+          <div className="flex flex-col lg:sticky lg:top-32">
+            
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="flex items-center gap-3 mb-8"
+            >
+              <span className="inline-flex items-center justify-center px-4 py-1.5 rounded-full border border-[#003926]/20 bg-[#F0F7F4] text-[10px] md:text-[11px] font-dm tracking-[0.2em] font-medium text-[#003926] uppercase">
+                FAQ / Support
+              </span>
+            </motion.div>
+
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.1 }}
+              className="font-cormorant text-[40px] md:text-[52px] lg:text-[64px] font-medium leading-[1.1] text-[#1A1918] mb-6 tracking-tight"
+            >
+              Frequently Asked <br className="hidden sm:block" />
+              <span className="italic text-[#003926] font-semibold pr-2">Questions</span>
+            </motion.h2>
+
+            <motion.p
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="font-dm text-[#1A1918]/70 text-[15px] lg:text-[17px] font-light leading-relaxed max-w-[460px] mb-12"
+            >
+              Learn more about Nagpal Group&apos;s manufacturing capabilities, robust distribution networks, and strategic partnership opportunities.
+            </motion.p>
+
+            {/* Support CTA Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="w-full max-w-[460px] bg-[#FAF8F4] border border-[#1A1918]/[0.06] rounded-[24px] p-8 md:p-10 shadow-[0_10px_40px_rgba(0,0,0,0.02)] transition-all duration-300 hover:shadow-[0_20px_60px_rgba(0,57,38,0.05)] hover:border-[#003926]/10 group"
+            >
+              <h3 className="font-cormorant text-[26px] md:text-[30px] font-medium text-[#1A1918] mb-3 transition-colors duration-300 group-hover:text-[#003926]">
+                Still Have Questions?
+              </h3>
+              <p className="font-dm text-[14px] text-[#1A1918]/60 font-light leading-relaxed mb-8">
+                If you need additional information about business partnerships, bulk orders, or OEM opportunities, our dedicated business team is here to guide you.
+              </p>
+              
+              <button
+                onClick={() => window.location.href = "mailto:info@nagpalgroup.com"}
+                className="relative w-full overflow-hidden flex items-center justify-between px-8 py-4 bg-[#1A1918] text-white rounded-full group/btn transition-all duration-500 hover:shadow-[0_12px_30px_rgba(0,57,38,0.25)] hover:-translate-y-1"
+              >
+                <div className="absolute inset-0 w-full h-full bg-[#003926] scale-x-0 origin-left transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/btn:scale-x-100" />
+                <span className="relative z-10 font-dm text-[12px] font-medium tracking-[0.15em] uppercase">
+                  Contact Our Team
+                </span>
+                <div className="relative z-10 w-8 h-8 rounded-full bg-white/10 flex items-center justify-center transition-transform duration-500 group-hover/btn:translate-x-1">
+                  <ArrowRight className="w-4 h-4 text-white" />
+                </div>
+              </button>
+            </motion.div>
+          </div>
+
+          {/* ── RIGHT SIDE: Accordion Stack ── */}
+          <div className="flex flex-col gap-4">
+            {faqs.map((faq, index) => {
+              const isOpen = openIndex === index;
+
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className={`relative bg-white border rounded-[20px] overflow-hidden transition-all duration-300 group ${
+                    isOpen 
+                      ? "border-[#003926]/30 shadow-[0_20px_50px_rgba(0,57,38,0.08)]" 
+                      : "border-[#1A1918]/[0.08] shadow-[0_4px_20px_rgba(0,0,0,0.02)] hover:border-[#003926]/20 hover:shadow-[0_10px_30px_rgba(0,57,38,0.05)] hover:-translate-y-[2px]"
+                  }`}
+                >
+                  {/* Subtle active state background tint */}
+                  <div 
+                    className={`absolute inset-0 bg-[#F0F7F4]/30 pointer-events-none transition-opacity duration-300 ${
+                      isOpen ? "opacity-100" : "opacity-0 group-hover:opacity-50"
+                    }`} 
+                  />
+
+                  <button
+                    onClick={() => setOpenIndex(isOpen ? null : index)}
+                    className="relative z-10 w-full flex items-center justify-between p-6 md:p-8 text-left outline-none"
+                  >
+                    <span 
+                      className={`font-dm text-[16px] md:text-[18px] font-medium tracking-tight pr-8 transition-colors duration-300 ${
+                        isOpen ? "text-[#003926]" : "text-[#1A1918] group-hover:text-[#003926]"
+                      }`}
+                    >
+                      {faq.question}
+                    </span>
+                    
+                    <div 
+                      className={`shrink-0 w-10 h-10 rounded-full border flex items-center justify-center transition-all duration-300 ${
+                        isOpen 
+                          ? "bg-[#003926] border-[#003926]" 
+                          : "bg-transparent border-[#1A1918]/20 group-hover:border-[#003926] group-hover:bg-[#F0F7F4]"
+                      }`}
+                    >
+                      <motion.div
+                        animate={{ rotate: isOpen ? 180 : 0 }}
+                        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                      >
+                        {isOpen ? (
+                          <Minus className="w-5 h-5 text-white" strokeWidth={2} />
+                        ) : (
+                          <Plus className={`w-5 h-5 transition-colors duration-300 ${
+                            isOpen ? "text-white" : "text-[#1A1918]/60 group-hover:text-[#003926]"
+                          }`} strokeWidth={2} />
+                        )}
+                      </motion.div>
+                    </div>
+                  </button>
+
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                        className="relative z-10"
+                      >
+                        <div className="px-6 pb-8 md:px-8 md:pb-10 pt-0">
+                          <div className="w-full h-[1px] bg-[#1A1918]/[0.06] mb-6" />
+                          <p className="font-dm text-[15px] font-light leading-relaxed text-[#1A1918]/70 m-0">
+                            {faq.answer}
+                          </p>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+    </>
   );
 }

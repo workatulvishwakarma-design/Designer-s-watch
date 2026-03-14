@@ -39,7 +39,7 @@ export default function HomeBrands() {
       {/* ── CARDS ROW ── */}
       <div
         className="flex-1 min-h-0 grid grid-cols-1 md:grid-cols-2 gap-4 overflow-hidden mx-auto w-full"
-        style={{ maxWidth: 1100, padding: "0 60px 24px" }}
+        style={{ maxWidth: 1430, padding: "0 60px 24px" }}
       >
         {/* D'SIGNER Card */}
         <motion.div

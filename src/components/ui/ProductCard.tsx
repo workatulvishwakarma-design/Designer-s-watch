@@ -3,8 +3,10 @@
 import { motion } from "framer-motion";
 import { Heart, ShoppingBag, Eye } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 import { useCart } from "@/context/CartContext";
+import { generateSlug } from "@/data/productData";
 
 interface ProductProps {
     id: number;
@@ -49,8 +51,10 @@ export default function ProductCard({ product, variant = "premium", index = 0 }:
     const [hoveredOverlay, setHoveredOverlay] = useState(false);
 
     const discountPercent = product.discount || (product.mrp ? Math.round(((product.mrp - product.price) / product.mrp) * 100) : 0);
+    const productSlug = generateSlug(product.brand, product.name);
 
     return (
+        <Link href={`/product/${productSlug}`} className="block">
         <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -61,7 +65,7 @@ export default function ProductCard({ product, variant = "premium", index = 0 }:
             className="group bg-white border border-[#EDE8DF] rounded-2xl overflow-hidden cursor-pointer relative transition-all duration-500 hover:-translate-y-2.5 hover:border-[#B8935A]/45 hover:shadow-[0_30px_80px_rgba(0,0,0,0.12)]"
         >
             {/* Image Area */}
-            <div className="relative h-[300px] bg-[#F7F4EF] flex items-center justify-center p-7 overflow-hidden">
+            <div className="relative aspect-[4/5] bg-[#F7F4EF] flex items-center justify-center p-7 overflow-hidden">
                 {/* Badge */}
                 {product.badge && (
                     <div className={`absolute top-3 left-3 px-3 py-1.5 rounded-full text-[9px] font-dm tracking-[0.15em] uppercase z-10 ${getBadgeStyle(product.badge)}`}>
@@ -114,7 +118,7 @@ export default function ProductCard({ product, variant = "premium", index = 0 }:
                         initial={{ y: 16, opacity: 0 }}
                         animate={hoveredOverlay ? { y: 0, opacity: 1 } : { y: 16, opacity: 0 }}
                         transition={{ duration: 0.35, delay: 0.05, ease: "easeOut" }}
-                        onClick={() => addToCart(product, product.brand)}
+                        onClick={(e) => { e.preventDefault(); addToCart(product, product.brand); }}
                         className="flex items-center gap-2 px-6 py-3 bg-[#1A1918] text-white rounded-full font-dm text-[12px] font-medium letter-spacing tracking-widest uppercase hover:bg-[#B8935A] transition-all duration-300"
                     >
                         <ShoppingBag size={14} />
@@ -135,7 +139,7 @@ export default function ProductCard({ product, variant = "premium", index = 0 }:
             </div>
 
             {/* Content Area */}
-            <div className="p-6 relative z-10">
+            <div className="p-7 relative z-10">
                 {/* Brand */}
                 <p className="text-[#B8935A] text-[9px] font-dm tracking-[0.25em] uppercase mb-1">
                     {product.brand}
@@ -172,5 +176,6 @@ export default function ProductCard({ product, variant = "premium", index = 0 }:
                 </div>
             </div>
         </motion.div>
+        </Link>
     );
 }

@@ -39,3 +39,15 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# large archives (not needed for deployment)
+*.zip
+
+# dist / cache
+/dist
+/.cache
+
+# system junk
+Thumbs.db
+ehthumbs.db
+Desktop.ini

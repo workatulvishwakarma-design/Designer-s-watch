@@ -54,7 +54,7 @@ export default function HomeProducts() {
           <div className="overflow-hidden">
             <div ref={bestTrack} onScroll={handleScroll(bestTrack, setBestProgress)} className="flex gap-5 px-6 pb-4 overflow-x-auto" style={{ scrollSnapType: 'x mandatory' }}>
               {bestSellers.map((prod, i) => (
-                <div key={prod.id} className="flex-shrink-0 w-[220px] sm:w-[260px] lg:w-[280px]" style={{ scrollSnapAlign: 'start' }}>
+                <div key={prod.id} className="flex-shrink-0 w-[275px] sm:w-[325px] lg:w-[350px]" style={{ scrollSnapAlign: 'start' }}>
                   <ProductCard product={prod as any} variant="premium" index={i} />
                 </div>
               ))}
@@ -83,7 +83,7 @@ export default function HomeProducts() {
           <div className="overflow-hidden">
             <div ref={dsignerTrack} onScroll={handleScroll(dsignerTrack, setDsignerProgress)} className="flex gap-5 px-6 pb-4 overflow-x-auto" style={{ scrollSnapType: 'x mandatory' }}>
               {dsignerProducts.slice(0, 6).map((prod: any) => (
-                <div key={prod.id} className="flex-shrink-0 w-[220px] sm:w-[260px] lg:w-[280px]" style={{ scrollSnapAlign: 'start' }}>
+                <div key={prod.id} className="flex-shrink-0 w-[275px] sm:w-[325px] lg:w-[350px]" style={{ scrollSnapAlign: 'start' }}>
                   <ProductCard product={prod} variant="premium" />
                 </div>
               ))}
@@ -112,7 +112,7 @@ export default function HomeProducts() {
           <div className="overflow-hidden">
             <div ref={escortTrack} onScroll={handleScroll(escortTrack, setEscortProgress)} className="flex gap-5 px-6 pb-4 overflow-x-auto" style={{ scrollSnapType: 'x mandatory' }}>
               {escortProducts.slice(0, 6).map((prod: any) => (
-                <div key={prod.id} className="flex-shrink-0 w-[220px] sm:w-[260px] lg:w-[280px]" style={{ scrollSnapAlign: 'start' }}>
+                <div key={prod.id} className="flex-shrink-0 w-[275px] sm:w-[325px] lg:w-[350px]" style={{ scrollSnapAlign: 'start' }}>
                   <ProductCard product={prod} variant="everyday" />
                 </div>
               ))}

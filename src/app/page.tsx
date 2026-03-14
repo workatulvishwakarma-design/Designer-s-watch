@@ -8,15 +8,17 @@ import HeroBanner from '@/components/sections/HeroBanner';
 import LegacySection from '@/components/sections/LegacySection';
 import FeatureScroller from '@/components/sections/FeatureScroller';
 import HomeBrands from '@/components/sections/HomeBrands';
+import WatchDetails from '@/components/sections/WatchDetails';
 import StatsCounter from '@/components/sections/StatsCounter';
 import OemCta from '@/components/sections/OemCta';
-import QualityFeatures from '@/components/sections/QualityFeatures';
 import TrustGrid from '@/components/sections/TrustGrid';
 import FeatureStrip from '@/components/sections/FeatureStrip';
 import CraftSection from '@/components/sections/CraftSection';
+import FAQSection from '@/components/sections/FAQSection';
 import Footer from '@/components/sections/Footer';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import Link from 'next/link';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 /* ─────────── Product Card Types ─────────── */
@@ -27,6 +29,7 @@ interface SimpleProduct {
   image: string;
   brand?: string;
   badge?: string;
+  slug: string;
 }
 
 /* ─────────── Reusable Arrow Button ─────────── */
@@ -103,10 +106,10 @@ function InlineProductCard({
   }
 
   return (
+    <Link href={`/product/${product.slug}`} className="block">
     <div
-      className="flex-shrink-0 rounded-2xl overflow-hidden cursor-pointer relative"
+      className="w-[280px] sm:w-[320px] md:w-[375px] flex-shrink-0 rounded-2xl overflow-hidden cursor-pointer relative"
       style={{
-        width: 300,
         background: cardBg,
         border: `1px solid ${cardBorder}`,
         transition: "all 0.4s cubic-bezier(0.22,1,0.36,1)",
@@ -119,10 +122,10 @@ function InlineProductCard({
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      {/* IMAGE CONTAINER — 4:3 ratio */}
+      {/* IMAGE CONTAINER — 4:5 ratio for taller cards */}
       <div
         className="relative w-full overflow-hidden"
-        style={{ aspectRatio: "4/3", background: imageBg }}
+        style={{ aspectRatio: "4/5", background: imageBg }}
       >
         <img
           src={product.image}
@@ -162,6 +165,7 @@ function InlineProductCard({
           }}
         >
           <button
+            onClick={(e) => e.preventDefault()}
             className="rounded-full font-dm"
             style={{
               background: addBg,
@@ -192,7 +196,7 @@ function InlineProductCard({
       </div>
 
       {/* CONTENT */}
-      <div className="p-4">
+      <div className="p-5 md:p-6 flex flex-col h-full">
         <p
           className="font-dm uppercase"
           style={{
@@ -217,6 +221,7 @@ function InlineProductCard({
         </p>
       </div>
     </div>
+    </Link>
   );
 }
 
@@ -247,7 +252,8 @@ const scrollbarCSS = `
 function scrollTrack(ref: React.RefObject<HTMLDivElement | null>, dir: "left" | "right") {
   const el = ref.current;
   if (!el) return;
-  const amount = 316; // card width + gap
+  const firstChild = el.firstElementChild as HTMLElement;
+  const amount = firstChild ? firstChild.offsetWidth + 16 : 391; // dynamic width + gap
   el.scrollBy({ left: dir === "left" ? -amount : amount, behavior: "smooth" });
 }
 
@@ -260,20 +266,20 @@ export default function Home() {
   const escortRef = useRef<HTMLDivElement>(null);
 
   const designerProducts: SimpleProduct[] = [
-    { id: "d1", name: "Classic Chrono", price: "₹2,499", image: "/images/29474d931b23fdfefff0d1ba9a3b6dfc.jpg", brand: "D'SIGNER" },
-    { id: "d2", name: "Midnight Onyx", price: "₹3,200", image: "/images/47e37e63651dbce120cea792a46ca0d4.jpg", brand: "D'SIGNER" },
-    { id: "d3", name: "Gold Standard", price: "₹4,999", image: "/images/67350e2417b468f72ecfcdaae5511a03.jpg", brand: "D'SIGNER" },
-    { id: "d4", name: "Silver Elegance", price: "₹2,999", image: "/images/d2c54c36fcfb42a430df6da5c8cd5e01.jpg", brand: "D'SIGNER" },
-    { id: "d5", name: "Rose Gold Limit", price: "₹4,499", image: "/images/d2307c58d34384ccea6aa02743ec9210.jpg", brand: "D'SIGNER" },
-    { id: "d6", name: "Platinum Series", price: "₹3,800", image: "/images/f37bee070a190b1975d9e0916f6bc1f4.jpg", brand: "D'SIGNER" },
+    { id: "d1", name: "Classic Chrono", price: "₹2,499", image: "/images/29474d931b23fdfefff0d1ba9a3b6dfc.jpg", brand: "D'SIGNER", slug: "dsigner-901" },
+    { id: "d2", name: "Midnight Onyx", price: "₹3,200", image: "/images/47e37e63651dbce120cea792a46ca0d4.jpg", brand: "D'SIGNER", slug: "dsigner-915" },
+    { id: "d3", name: "Gold Standard", price: "₹4,999", image: "/images/67350e2417b468f72ecfcdaae5511a03.jpg", brand: "D'SIGNER", slug: "dsigner-925" },
+    { id: "d4", name: "Silver Elegance", price: "₹2,999", image: "/images/d2c54c36fcfb42a430df6da5c8cd5e01.jpg", brand: "D'SIGNER", slug: "dsigner-955" },
+    { id: "d5", name: "Rose Gold Limit", price: "₹4,499", image: "/images/d2307c58d34384ccea6aa02743ec9210.jpg", brand: "D'SIGNER", slug: "dsigner-960" },
+    { id: "d6", name: "Platinum Series", price: "₹3,800", image: "/images/f37bee070a190b1975d9e0916f6bc1f4.jpg", brand: "D'SIGNER", slug: "dsigner-942" },
   ];
 
   const escortProducts: SimpleProduct[] = [
-    { id: "e1", name: "Escort Diver", price: "₹1,800", image: "/images/img1.png", brand: "ESCORT" },
-    { id: "e2", name: "Escort Minimal", price: "₹1,200", image: "/images/img2.png", brand: "ESCORT" },
-    { id: "e3", name: "Escort Pilot", price: "₹2,200", image: "/images/img3.png", brand: "ESCORT" },
-    { id: "e4", name: "Escort Classic", price: "₹999", image: "/images/img01.png", brand: "ESCORT" },
-    { id: "e5", name: "Escort Sport", price: "₹1,499", image: "/images/img03.png", brand: "ESCORT" },
+    { id: "e1", name: "Escort Diver", price: "₹1,800", image: "/images/img1.png", brand: "ESCORT", slug: "escort-7806rtm" },
+    { id: "e2", name: "Escort Minimal", price: "₹1,200", image: "/images/img2.png", brand: "ESCORT", slug: "escort-7806" },
+    { id: "e3", name: "Escort Pilot", price: "₹2,200", image: "/images/img3.png", brand: "ESCORT", slug: "escort-a1589" },
+    { id: "e4", name: "Escort Classic", price: "₹999", image: "/images/img01.png", brand: "ESCORT", slug: "escort-e7751" },
+    { id: "e5", name: "Escort Sport", price: "₹1,499", image: "/images/img03.png", brand: "ESCORT", slug: "escort-e7908" },
   ];
 
   /* Best sellers = top 3 designer + top 3 escort */
@@ -291,6 +297,7 @@ export default function Home() {
         <main>
           <HeroBanner />
           <HomeBrands />
+          <WatchDetails />
 
           {/* ===== PRODUCTS SECTION ===== */}
           <section className="bg-[#FAF8F4] py-16">
@@ -432,31 +439,9 @@ export default function Home() {
           <FeatureScroller />
           <StatsCounter />
           <OemCta />
-          {/* SHARED WATERMARK SECTION - QUALITY & TRUST */}
-          <div className="relative overflow-hidden bg-[#F5F2ED]">
-            {/* Centered Blueprint Watermark */}
-            <motion.div
-              animate={{ y: [0, -20, 0] }}
-              transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[70%] h-[90vh] pointer-events-none opacity-[0.13] mix-blend-multiply z-0"
-            >
-              <Image
-                src="/images/aboutImg2.png"
-                alt="Architectural Blueprint Watermark"
-                fill
-                className="object-contain"
-                priority
-              />
-            </motion.div>
-
-            <div className="relative z-10 bg-transparent">
-              <QualityFeatures />
-            </div>
-            <div className="relative z-10 bg-transparent">
-              <TrustGrid />
-            </div>
-          </div>
+          <TrustGrid />
           <FeatureStrip />
+          <FAQSection />
 
         </main>
         <Footer />
