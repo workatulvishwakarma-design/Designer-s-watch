@@ -6,10 +6,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Heart, ShoppingBag, ChevronRight, Shield, Droplets, Diamond, Watch, Star, ArrowLeft } from "lucide-react";
-import Header from "@/components/sections/Header";
-import Footer from "@/components/sections/Footer";
 import SmoothScrolling from "@/components/SmoothScrolling";
-import { useCart } from "@/context/CartContext";
+import { AddToCartButton } from "@/components/ui/AddToCartButton";
+import { WishlistToggleButton } from "@/components/ui/WishlistToggleButton";
+import { ProductReviewForm } from "@/components/ui/ProductReviewForm";
 import { getProductBySlug, getRelatedProducts, type Product } from "@/data/productData";
 
 /* ─── Spec icon helper ─── */
@@ -49,7 +49,6 @@ export default function ProductPage() {
   if (!product) {
     return (
       <>
-        <Header />
         <SmoothScrolling>
           <main className="min-h-screen bg-[#FAF8F4] flex items-center justify-center">
             <div className="text-center px-6">
@@ -63,7 +62,6 @@ export default function ProductPage() {
               </Link>
             </div>
           </main>
-          <Footer />
         </SmoothScrolling>
       </>
     );
@@ -71,15 +69,14 @@ export default function ProductPage() {
 
   return (
     <>
-      <Header />
       <SmoothScrolling>
         <main className="bg-[#FAF8F4] min-h-screen">
           <ProductHero product={product} />
           <SpecsSection product={product} />
           <FeaturesSection />
+          <ReviewsSection product={product} />
           <RelatedSection product={product} />
         </main>
-        <Footer />
       </SmoothScrolling>
     </>
   );
@@ -89,23 +86,11 @@ export default function ProductPage() {
    HERO SECTION
    ═══════════════════════════════════════ */
 function ProductHero({ product }: { product: Product }) {
-  const { addToCart } = useCart();
   const [selectedColor, setSelectedColor] = useState(0);
   const [selectedImage, setSelectedImage] = useState(0);
   const [selectedSize, setSelectedSize] = useState(1);
-  const [wishlisted, setWishlisted] = useState(false);
-  const [addedToCart, setAddedToCart] = useState(false);
 
   const mainImage = product.colors[selectedColor]?.image || product.images[selectedImage] || product.images[0];
-
-  const handleAddToCart = () => {
-    addToCart(
-      { id: product.id, name: product.name, price: product.price, image: product.images[0] },
-      product.brand
-    );
-    setAddedToCart(true);
-    setTimeout(() => setAddedToCart(false), 2000);
-  };
 
   const discount = product.mrp
     ? Math.round(((product.mrp - product.price) / product.mrp) * 100)
@@ -203,29 +188,21 @@ function ProductHero({ product }: { product: Product }) {
 
               {/* Buttons */}
               <div className="flex flex-col sm:flex-row gap-3">
-                <button
-                  onClick={handleAddToCart}
-                  className="flex-1 flex items-center justify-center gap-2.5 py-4 rounded-full font-dm text-[13px] tracking-[0.1em] uppercase transition-all duration-400"
-                  style={{
-                    background: addedToCart ? "#003926" : "#1A1918",
-                    color: "white",
-                  }}
-                >
-                  <ShoppingBag size={16} />
-                  {addedToCart ? "Added ✓" : "Add to Cart"}
-                </button>
-                <button
-                  onClick={() => setWishlisted(!wishlisted)}
-                  className="flex items-center justify-center gap-2.5 py-4 px-6 rounded-full font-dm text-[13px] tracking-[0.1em] uppercase border transition-all duration-300"
-                  style={{
-                    borderColor: wishlisted ? "#D4455A" : "#EDE8DF",
-                    color: wishlisted ? "#D4455A" : "#1A1918",
-                    background: wishlisted ? "#FFF0F0" : "white",
-                  }}
-                >
-                  <Heart size={16} className={wishlisted ? "fill-[#D4455A]" : ""} />
-                  Wishlist
-                </button>
+                 <AddToCartButton 
+                    product={{ id: String(product.id), name: product.name, price: Number(product.price), image: product.images[0], slug: String(product.slug || product.id) }}
+                    selectedVariant={{
+                      color: product.colors[selectedColor]?.name,
+                      size: product.sizes[selectedSize]
+                    }}
+                    variant="primary"
+                    className="flex-1 py-4 rounded-full font-dm text-[13px] tracking-[0.1em] transition-all duration-400"
+                 />
+                 <div className="flex justify-center items-center w-[60px] h-[55px] border border-[#EDE8DF] rounded-full">
+                    <WishlistToggleButton 
+                       product={{ id: String(product.id), name: product.name, price: Number(product.price), image: product.images[0], slug: String(product.slug || product.id) }}
+                       className="w-full h-full flex items-center justify-center p-0 hover:bg-transparent"
+                    />
+                 </div>
               </div>
             </motion.div>
           </div>
@@ -495,6 +472,26 @@ function RelatedSection({ product }: { product: Product }) {
             </Link>
           ))}
         </div>
+      </div>
+    </section>
+  );
+}
+
+/* ═══════════════════════════════════════
+   REVIEWS SECTION
+   ═══════════════════════════════════════ */
+function ReviewsSection({ product }: { product: Product }) {
+  return (
+    <section className="py-16 lg:py-24 bg-[#FAF8F4] border-t border-[#EDE8DF]">
+      <div className="max-w-[800px] mx-auto px-6">
+        <div className="text-center mb-12">
+          <p className="font-dm text-[10px] tracking-[0.3em] uppercase text-[#B8935A] mb-2">CUSTOMER REVIEWS</p>
+          <h2 className="font-cormorant text-3xl md:text-4xl text-[#1A1918] font-light">
+            Share Your Experience
+          </h2>
+          <div className="w-10 h-[0.5px] bg-[#B8935A] mx-auto mt-4" />
+        </div>
+        <ProductReviewForm productId={String(product.id)} />
       </div>
     </section>
   );

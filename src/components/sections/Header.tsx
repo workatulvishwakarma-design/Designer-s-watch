@@ -6,14 +6,20 @@ import Link from "next/link";
 import Image from "next/image";
 import { Search, ShoppingBag, Menu, X, ChevronDown } from "lucide-react";
 import { usePathname } from "next/navigation";
-import { useCart } from "@/context/CartContext";
+import { useCartStore } from "@/lib/store/cart";
 
-export default function Header() {
+export default function Header({ hasAnnouncement = false }: { hasAnnouncement?: boolean }) {
     const [scrolled, setScrolled] = useState(false);
     const [mobileOpen, setMobileOpen] = useState(false);
     const [showDropdown, setShowDropdown] = useState(false);
     const pathname = usePathname();
-    const { cartCount, setIsCartOpen } = useCart();
+    const { items, setIsOpen } = useCartStore();
+    
+    // Derived state for hydration consistency
+    const [mounted, setMounted] = useState(false);
+    useEffect(() => { setMounted(true) }, []);
+    
+    const cartCount = mounted ? items.reduce((acc, item) => acc + item.quantity, 0) : 0;
 
     useEffect(() => {
         const handleScroll = () => setScrolled(window.scrollY > 80);
@@ -25,7 +31,7 @@ export default function Header() {
         { label: "Home", href: "/" },
         {
             label: "Collections",
-            href: "#",
+            href: "/collections/dsigner", // Default to dsigner if clicked
             dropdown: [
                 { label: "D'Signer — Premium", href: "/collections/dsigner", desc: "Luxury & Refinement" },
                 { label: "Escort — Everyday", href: "/collections/escort", desc: "Reliable & Approachable" },
@@ -35,12 +41,10 @@ export default function Header() {
         { label: "About", href: "/about" },
         { label: "Contact", href: "/contact" },
     ];
-
+ 
     const isActive = (href: string) => {
         if (href === "/") return pathname === "/";
-        if (href === "#") return pathname.includes("/collections");
-        if (href === "/nagpal-group") return pathname === "/nagpal-group";
-        return pathname.startsWith(href);
+        return pathname === href;
     };
 
     return (
@@ -132,20 +136,15 @@ export default function Header() {
 
                     {/* Right side */}
                     <div className="flex items-center gap-5">
+                        {/* Removed dead search button */}
                         <button
-                            className="transition-colors duration-300"
-                            style={{ color: "#1A1918" }}
-                        >
-                            <Search size={18} strokeWidth={1.5} />
-                        </button>
-                        <button
-                            onClick={() => setIsCartOpen(true)}
+                            onClick={() => setIsOpen(true)}
                             className="relative transition-colors duration-300"
                             style={{ color: "#1A1918" }}
                         >
                             <ShoppingBag size={18} strokeWidth={1.5} />
-                            {cartCount > 0 && (
-                                <span className="absolute -top-1.5 -right-1.5 w-4 h-4 bg-gold rounded-full text-[8px] flex items-center justify-center text-white font-body font-medium">
+                            {mounted && cartCount > 0 && (
+                                <span className="absolute -top-1.5 -right-1.5 w-4 h-4 bg-[#B8935A] rounded-full text-[8px] flex items-center justify-center text-white font-body font-medium">
                                     {cartCount}
                                 </span>
                             )}

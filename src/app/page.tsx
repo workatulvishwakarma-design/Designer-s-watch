@@ -3,7 +3,6 @@
 import { useRef, useState } from "react";
 import SmoothScrolling from '@/components/SmoothScrolling';
 import CustomCursor from '@/components/ui/CustomCursor';
-import Header from '@/components/sections/Header';
 import HeroBanner from '@/components/sections/HeroBanner';
 import LegacySection from '@/components/sections/LegacySection';
 import FeatureScroller from '@/components/sections/FeatureScroller';
@@ -15,7 +14,6 @@ import TrustGrid from '@/components/sections/TrustGrid';
 import FeatureStrip from '@/components/sections/FeatureStrip';
 import CraftSection from '@/components/sections/CraftSection';
 import FAQSection from '@/components/sections/FAQSection';
-import Footer from '@/components/sections/Footer';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -293,7 +291,6 @@ export default function Home() {
       <style dangerouslySetInnerHTML={{ __html: scrollbarCSS }} />
       <CustomCursor />
       <SmoothScrolling>
-        <Header />
         <main>
           <HeroBanner />
           <HomeBrands />
@@ -444,7 +441,6 @@ export default function Home() {
           <FAQSection />
 
         </main>
-        <Footer />
       </SmoothScrolling>
     </>
   );

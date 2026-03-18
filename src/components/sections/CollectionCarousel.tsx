@@ -2,12 +2,15 @@
 
 import { useRef, useEffect, useCallback } from "react";
 import Image from "next/image";
+import { AddToCartButton } from "@/components/ui/AddToCartButton";
+import { WishlistToggleButton } from "@/components/ui/WishlistToggleButton";
 
 interface Product {
     id: string;
     name: string;
-    price: string;
+    price: string | number;
     image: string;
+    slug: string;
 }
 
 interface CollectionCarouselProps {
@@ -215,21 +218,22 @@ export default function CollectionCarousel({
 
                         {/* Slide-up CTA — appears on card hover */}
                         <div
-                            className="absolute bottom-0 left-0 w-full flex items-center justify-center opacity-0 group-hover:opacity-100"
+                            className="absolute bottom-0 left-0 w-full flex items-center justify-between px-4 opacity-0 group-hover:opacity-100 bg-white/90 backdrop-blur-md border-t border-gray-100"
                             style={{
-                                height: "44px",
-                                backgroundColor: "#1A1918",
-                                borderRadius: "0 0 20px 20px",
+                                height: "60px",
                                 transform: "translateY(100%)",
                                 transition: "transform 0.4s cubic-bezier(0.22,1,0.36,1), opacity 0.4s cubic-bezier(0.22,1,0.36,1)",
                             }}
-                            ref={() => {
-                                // CTA visibility controlled via parent group
-                            }}
+                            data-cta
                         >
-                            <span className="font-body text-[13px] tracking-[0.1em] uppercase text-white">
-                                View Details
-                            </span>
+                            <WishlistToggleButton 
+                                product={{ id: product.id, name: product.name, price: Number(product.price.toString().replace(/[^0-9.-]+/g, "")), image: product.image, slug: product.slug }} 
+                            />
+                            <AddToCartButton 
+                                product={{ id: product.id, name: product.name, price: Number(product.price.toString().replace(/[^0-9.-]+/g, "")), image: product.image, slug: product.slug }} 
+                                variant="primary" 
+                                className="px-4 py-2 text-xs h-9 rounded" 
+                            />
                         </div>
                     </div>
                 ))}

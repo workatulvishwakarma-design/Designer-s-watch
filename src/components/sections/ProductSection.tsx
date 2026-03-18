@@ -4,6 +4,7 @@ import React, { useRef } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { Poppins } from "next/font/google";
+import { AddToCartButton } from "@/components/ui/AddToCartButton";
 
 const poppins = Poppins({
     subsets: ["latin"],
@@ -106,7 +107,7 @@ export default function ProductSection() {
                 </motion.div>
 
                 {/* Refined Feature Highlights inline */}
-                <div className="flex flex-wrap justify-center gap-8 md:gap-16 pt-8">
+                <div className="flex flex-wrap justify-center gap-8 md:gap-16 pt-8 pb-4">
                     {productFeatures.map((feature, index) => (
                         <motion.div
                             key={feature}
@@ -123,6 +124,20 @@ export default function ProductSection() {
                         </motion.div>
                     ))}
                 </div>
+
+                {/* Add to Cart CTA */}
+                <motion.div
+                    initial={{ opacity: 0, y: 15 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, delay: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                >
+                    <AddToCartButton 
+                        product={{ id: "heritage-01", name: "The Heritage Series", price: 2499, image: "/images/img05.png", slug: "heritage-series" }}
+                        variant="primary"
+                        className="px-8 py-3 rounded-full text-sm tracking-wider uppercase"
+                    />
+                </motion.div>
             </div>
         </section>
     );

@@ -35,9 +35,9 @@ export default function Footer() {
                             Four generations of integrated watchmaking excellence. From bespoke OEM solutions to premium timepieces.
                         </p>
                         <div className="flex gap-4 mt-2">
-                            <a href="#" className="hover:text-gold transition-colors duration-300"><Instagram size={18} /></a>
-                            <a href="#" className="hover:text-gold transition-colors duration-300"><Linkedin size={18} /></a>
-                            <a href="#" className="hover:text-gold transition-colors duration-300"><Facebook size={18} /></a>
+                            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#B8935A] transition-colors duration-300"><Instagram size={18} /></a>
+                            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#B8935A] transition-colors duration-300"><Linkedin size={18} /></a>
+                            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#B8935A] transition-colors duration-300"><Facebook size={18} /></a>
                         </div>
                     </div>
 
@@ -46,20 +46,20 @@ export default function Footer() {
                         <h6 className="text-white text-[12px] tracking-[0.1em] uppercase">Quick Links</h6>
                         <nav className="flex flex-col gap-3 text-[14px]">
                             <Link href="/" className="hover:text-gold transition-colors duration-300 w-fit">Home</Link>
-                            <Link href="#collections" className="hover:text-gold transition-colors duration-300 w-fit">Collections</Link>
+                            <Link href="/#collections" className="hover:text-gold transition-colors duration-300 w-fit">Collections</Link>
                             <Link href="/about" className="hover:text-gold transition-colors duration-300 w-fit">About</Link>
-                            <Link href="#oem" className="hover:text-gold transition-colors duration-300 w-fit">OEM</Link>
-                            <Link href="#contact" className="hover:text-gold transition-colors duration-300 w-fit">Contact</Link>
+                            <Link href="/#oem" className="hover:text-gold transition-colors duration-300 w-fit">OEM & Industrial</Link>
+                            <Link href="/contact" className="hover:text-gold transition-colors duration-300 w-fit">Contact</Link>
                         </nav>
                     </div>
-
+ 
                     {/* Column 3: Brands */}
                     <div className="flex flex-col gap-6">
                         <h6 className="text-white text-[12px] tracking-[0.1em] uppercase">Our Brands</h6>
                         <nav className="flex flex-col gap-3 text-[14px]">
-                            <a href="#" className="hover:text-gold transition-colors duration-300 w-fit">D&apos;Signer</a>
-                            <a href="#" className="hover:text-gold transition-colors duration-300 w-fit">Escort</a>
-                            <a href="#" className="hover:text-gold transition-colors duration-300 w-fit">International Brands</a>
+                            <Link href="/collections/dsigner" className="hover:text-gold transition-colors duration-300 w-fit">D&apos;Signer</Link>
+                            <Link href="/collections/escort" className="hover:text-gold transition-colors duration-300 w-fit">Escort</Link>
+                            <Link href="/collections/dsigner" className="hover:text-gold transition-colors duration-300 w-fit">Special Editions</Link>
                         </nav>
                     </div>
 
@@ -79,9 +79,9 @@ export default function Footer() {
                         &copy; {new Date().getFullYear()} Designer World. Nagpal Group. All rights reserved.
                     </p>
                     <div className="flex gap-8 text-[12px] tracking-[0.02em]">
-                        <a href="#" className="hover:text-gold transition-colors">Privacy Policy</a>
-                        <a href="#" className="hover:text-gold transition-colors">Terms</a>
-                        <a href="#" className="hover:text-gold transition-colors">Sitemap</a>
+                        <Link href="/privacy" className="hover:text-[#B8935A] transition-colors">Privacy Policy</Link>
+                        <Link href="/terms" className="hover:text-[#B8935A] transition-colors">Terms</Link>
+                        <Link href="/contact" className="hover:text-[#B8935A] transition-colors">Support</Link>
                     </div>
                 </div>
             </div>

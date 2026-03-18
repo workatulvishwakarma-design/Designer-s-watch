@@ -1,5 +1,11 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## 🚀 Welcome to Designer World (Demo & Setup)
+
+If you are a client or developer setting up this luxury e-commerce platform for the first time, please refer to the following critical documents:
+
+1. **[SETUP.md](./SETUP.md)**: Master guide on initializing your database, configuring `.env` variables, generating mock products/users via the Prisma Seeder, and understanding future payment architectures.
+2. **[CLIENT_DEMO_CREDENTIALS.md](./CLIENT_DEMO_CREDENTIALS.md)**: Contains the exact emails, passwords, and routes needed to test the Admin Panel and User Portal on your localhost environment.
 ## Getting Started
 
 First, run the development server:

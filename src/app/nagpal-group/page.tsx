@@ -4,9 +4,7 @@ import { motion, useScroll, useSpring } from "framer-motion";
 import SmoothScrolling from "@/components/SmoothScrolling";
 import CustomCursor from "@/components/ui/CustomCursor";
 import Header from "@/components/sections/Header";
-import Footer from "@/components/sections/Footer";
 import NagpalBanner from "@/components/sections/nagpal/NagpalBanner";
-import NagpalShowcase from "@/components/sections/nagpal/NagpalShowcase";
 import NagpalStats from "@/components/sections/nagpal/NagpalStats";
 import NagpalStrengths from "@/components/sections/nagpal/NagpalStrengths";
 import NagpalValueChain from "@/components/sections/nagpal/NagpalValueChain";
@@ -49,7 +47,6 @@ export default function NagpalGroupPage() {
         <Header />
         <main>
           <NagpalBanner />
-          <NagpalShowcase />
           <SectionDivider />
           <NagpalTimeline />
           <SectionDivider />
@@ -64,7 +61,6 @@ export default function NagpalGroupPage() {
           <SectionDivider />
           <NagpalPartner />
         </main>
-        <Footer />
       </SmoothScrolling>
     </>
   );

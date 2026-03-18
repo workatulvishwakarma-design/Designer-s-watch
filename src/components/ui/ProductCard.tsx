@@ -5,8 +5,9 @@ import { Heart, ShoppingBag, Eye } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { useCart } from "@/context/CartContext";
+import { useCartStore } from "@/lib/store/cart";
 import { generateSlug } from "@/data/productData";
+import { toast } from "sonner";
 
 interface ProductProps {
     id: number;
@@ -46,7 +47,7 @@ const getBadgeStyle = (badge?: string | null) => {
 };
 
 export default function ProductCard({ product, variant = "premium", index = 0 }: ProductCardProps) {
-    const { addToCart } = useCart();
+    const { addItem } = useCartStore();
     const [isWishlisted, setIsWishlisted] = useState(false);
     const [hoveredOverlay, setHoveredOverlay] = useState(false);
 
@@ -118,7 +119,18 @@ export default function ProductCard({ product, variant = "premium", index = 0 }:
                         initial={{ y: 16, opacity: 0 }}
                         animate={hoveredOverlay ? { y: 0, opacity: 1 } : { y: 16, opacity: 0 }}
                         transition={{ duration: 0.35, delay: 0.05, ease: "easeOut" }}
-                        onClick={(e) => { e.preventDefault(); addToCart(product, product.brand); }}
+                        onClick={(e) => { 
+                            e.preventDefault(); 
+                            addItem({
+                                productId: String(product.id),
+                                name: product.name,
+                                price: product.price,
+                                quantity: 1,
+                                image: product.image,
+                                slug: productSlug
+                            });
+                            toast.success(`${product.name} added to cart`);
+                        }}
                         className="flex items-center gap-2 px-6 py-3 bg-[#1A1918] text-white rounded-full font-dm text-[12px] font-medium letter-spacing tracking-widest uppercase hover:bg-[#B8935A] transition-all duration-300"
                     >
                         <ShoppingBag size={14} />

@@ -1,22 +1,16 @@
 "use client";
 
-import Header from "@/components/sections/Header";
 import EscortHero from "@/components/sections/escort/EscortHero";
 import EscortGrid from "@/components/sections/escort/EscortGrid";
-import Footer from "@/components/sections/Footer";
 import NewsletterStrip from "@/components/ui/NewsletterStrip";
 import SectionDivider from "@/components/ui/SectionDivider";
 import GrainOverlay from "@/components/ui/GrainOverlay";
-import CartDrawer from "@/components/ui/CartDrawer";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
 export default function EscortPage() {
     return (
         <main className="min-h-screen bg-[#FAF8F4] relative">
-            <Header />
-            <CartDrawer />
-
             <EscortHero />
 
             <SectionDivider />
@@ -83,7 +77,6 @@ export default function EscortPage() {
             </section>
 
             <NewsletterStrip />
-            <Footer />
         </main>
     );
 }
