@@ -1,9 +1,13 @@
 "use client"
 
 import { useState } from "react"
-import { OrderStatus } from "@prisma/client"
+import type { OrderStatus } from "@prisma/client"
 import { appendTrackingEvent, updateOrderStatus } from "@/actions/admin.order.actions"
 import { toast } from "sonner"
+
+const ORDER_STATUSES: OrderStatus[] = [
+  "PENDING", "PAID", "PROCESSING", "SHIPPED", "DELIVERED", "CANCELLED", "REFUNDED"
+]
 
 export function OrderTimelineManager({ orderId, currentStatus }: { orderId: string, currentStatus: OrderStatus }) {
   const [isPending, setIsPending] = useState(false)
@@ -43,7 +47,7 @@ export function OrderTimelineManager({ orderId, currentStatus }: { orderId: stri
           onChange={handleStatusChange}
           className="block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-white dark:bg-zinc-800 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-zinc-700 focus:ring-2 focus:ring-black sm:text-sm"
         >
-          {Object.values(OrderStatus).map((status) => (
+          {ORDER_STATUSES.map((status) => (
             <option key={status} value={status}>{status}</option>
           ))}
         </select>
@@ -61,7 +65,7 @@ export function OrderTimelineManager({ orderId, currentStatus }: { orderId: stri
             defaultValue={currentStatus}
             className="mt-1 block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-white dark:bg-zinc-800 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-zinc-700 sm:text-sm"
           >
-             {Object.values(OrderStatus).map((status) => (
+             {ORDER_STATUSES.map((status) => (
                 <option key={status} value={status}>{status}</option>
               ))}
           </select>
