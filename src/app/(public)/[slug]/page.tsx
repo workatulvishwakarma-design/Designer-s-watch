@@ -1,12 +1,13 @@
 import { prisma } from "@/lib/db"
 import { notFound } from "next/navigation"
 
-export default async function DynamicPage({ params }: { params: { slug: string } }) {
-  if (!params.slug) return notFound()
+export default async function DynamicPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  if (!slug) return notFound()
 
   try {
     const page = await prisma.page.findUnique({
-      where: { slug: params.slug }
+      where: { slug }
     })
 
     if (!page || !page.isActive) {
@@ -36,9 +37,10 @@ export default async function DynamicPage({ params }: { params: { slug: string }
   }
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }) {
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
   const page = await prisma.page.findUnique({
-    where: { slug: params.slug }
+    where: { slug }
   })
 
   if (!page) return {}

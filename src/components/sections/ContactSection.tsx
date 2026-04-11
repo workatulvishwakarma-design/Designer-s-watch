@@ -5,16 +5,25 @@ import { motion } from "framer-motion";
 import { MapPin, Phone, Mail, Check, Send, Loader2 } from "lucide-react";
 import GrainOverlay from "@/components/ui/GrainOverlay";
 import Link from "next/link";
+import { submitContactQuery } from "@/actions/contact.actions";
+import { toast } from "sonner";
 
 export default function ContactSection() {
     const [formStatus, setFormStatus] = useState<"idle" | "loading" | "success">("idle");
 
-    const handleSubmit = async (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setFormStatus("loading");
-        // Simulate API call
-        await new Promise(resolve => setTimeout(resolve, 1500));
-        setFormStatus("success");
+        const formData = new FormData(e.currentTarget);
+        const res = await submitContactQuery(formData);
+        
+        if (res.error) {
+            toast.error(res.error);
+            setFormStatus("idle");
+        } else {
+            setFormStatus("success");
+            e.currentTarget.reset();
+        }
     };
 
     return (
@@ -115,16 +124,16 @@ export default function ContactSection() {
                                     <h2 className="font-heading text-3xl text-primaryText mb-10">Send Us a Message</h2>
                                     <form onSubmit={handleSubmit} className="space-y-6">
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                            <InputField label="Full Name" placeholder="Atul Vishwakarma" required />
-                                            <InputField label="Email Address" type="email" placeholder="atul@example.com" required />
+                                            <InputField name="name" label="Full Name" placeholder="Atul Vishwakarma" required />
+                                            <InputField name="email" label="Email Address" type="email" placeholder="atul@example.com" required />
                                         </div>
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                            <InputField label="Phone Number" placeholder="+91 00000 00000" />
-                                            <InputField label="Subject" placeholder="How can we help?" />
+                                            <InputField name="phone" label="Phone Number" placeholder="+91 00000 00000" />
+                                            <InputField name="subject" label="Subject" placeholder="How can we help?" />
                                         </div>
                                         <div>
                                             <label className="block text-[11px] font-body tracking-widest uppercase text-lightText mb-3">Enquiry Type</label>
-                                            <select className="w-full bg-[#FAF8F4] border border-border rounded-xl px-5 py-4 font-body text-sm focus:border-gold focus:ring-1 focus:ring-gold/10 outline-none transition-all appearance-none cursor-pointer">
+                                            <select name="enquiryType" className="w-full bg-[#FAF8F4] border border-border rounded-xl px-5 py-4 font-body text-sm focus:border-gold focus:ring-1 focus:ring-gold/10 outline-none transition-all appearance-none cursor-pointer">
                                                 <option>General Enquiry</option>
                                                 <option>OEM / Private Label</option>
                                                 <option>Retail Partnership</option>
@@ -135,6 +144,7 @@ export default function ContactSection() {
                                         <div>
                                             <label className="block text-[11px] font-body tracking-widest uppercase text-lightText mb-3">Your Message</label>
                                             <textarea
+                                                name="message"
                                                 className="w-full bg-[#FAF8F4] border border-border rounded-xl px-5 py-4 font-body text-sm focus:border-gold focus:ring-1 focus:ring-gold/10 outline-none transition-all resize-none"
                                                 rows={5}
                                                 placeholder="Tell us about your project or query..."
@@ -258,11 +268,12 @@ function ContactCard({ icon: Icon, title, content, subContent, delay }: {
     );
 }
 
-function InputField({ label, placeholder, ...props }: { label: string; placeholder?: string } & React.InputHTMLAttributes<HTMLInputElement>) {
+function InputField({ label, placeholder, name, ...props }: { label: string; placeholder?: string; name?: string } & React.InputHTMLAttributes<HTMLInputElement>) {
     return (
         <div>
             <label className="block text-[11px] font-body tracking-widest uppercase text-lightText mb-3">{label}</label>
             <input
+                name={name}
                 className="w-full bg-[#FAF8F4] border border-border rounded-xl px-5 py-4 font-body text-sm focus:border-gold focus:ring-1 focus:ring-gold/10 outline-none transition-all"
                 placeholder={placeholder}
                 {...props}

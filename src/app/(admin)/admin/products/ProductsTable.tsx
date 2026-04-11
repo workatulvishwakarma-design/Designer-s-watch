@@ -27,18 +27,8 @@ const columns: Column<ProductRow>[] = [
     )
   },
   { header: "Stock", accessor: "inventory" },
-  {
-    header: "Actions",
-    accessor: (row) => (
-      <div className="flex gap-2">
-        <Link href={`/admin/products/${row.id}/edit`} className="text-black dark:text-white hover:underline">
-          Edit
-        </Link>
-      </div>
-    )
-  }
 ]
 
 export function ProductsTable({ data }: { data: ProductRow[] }) {
-  return <DataTable data={data} columns={columns} keyField="id" />
+  return <DataTable data={data} columns={columns} keyField="id" getRowHref={(row) => `/admin/products/${row.id}/edit`} />
 }

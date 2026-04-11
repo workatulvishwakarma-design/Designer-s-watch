@@ -9,7 +9,7 @@ const ADMIN_PATHS = ["/admin"]
 const USER_PATHS = ["/account", "/checkout"]
 const AUTH_PATHS = ["/login", "/signup", "/forgot-password"]
 
-export async function middleware(req: any) {
+export async function proxy(req: any) {
   const { nextUrl } = req
   
   const isApiAuthRoute = nextUrl.pathname.startsWith("/api/auth")

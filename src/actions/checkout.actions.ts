@@ -3,6 +3,8 @@
 import { auth } from "@/lib/auth"
 import { prisma } from "@/lib/db"
 import { z } from "zod"
+import { revalidatePath } from "next/cache"
+import { getProductBySlug } from "@/data/productData"
 
 const checkoutSchema = z.object({
   addressId: z.string().min(1, "Shipping Address is required"),
@@ -65,8 +67,60 @@ export async function processCheckout(formData: FormData) {
       // Use defaults if storeSettings fails
     }
 
-    // 3. Calculate totals
-    const subtotal = items.reduce((acc: number, item: any) => acc + (Number(item.price) * Number(item.quantity)), 0)
+    // 2.5 Resolve products — handles both DB IDs (CUID) and slug-based IDs
+    // Cart items now use slug as productId. We need to look them up.
+    const resolvedItems: { productId: string; quantity: number; price: number; name: string }[] = []
+
+    for (const item of items) {
+      const productId = item.productId // This is now a slug
+
+      // Try to find by ID (for backward compat with old cart data)
+      let dbProduct = null
+      try {
+        dbProduct = await prisma.product.findFirst({
+          where: {
+            OR: [
+              { id: productId },
+              { slug: productId },
+            ],
+            status: "ACTIVE",
+          },
+          select: { id: true, price: true, status: true, name: true }
+        })
+      } catch(e) {
+        // May fail if productId format doesn't match DB expectations
+      }
+
+      if (dbProduct) {
+        // DB product found — use live price
+        resolvedItems.push({
+          productId: dbProduct.id,
+          quantity: Number(item.quantity),
+          price: Number(dbProduct.price?.toString() || 0),
+          name: dbProduct.name,
+        })
+      } else {
+        // Try static catalog lookup by slug
+        const staticProduct = getProductBySlug(productId)
+        if (staticProduct) {
+          // For static products in demo: create a temporary product record in DB
+          // or use the cart price (trusted for demo)
+          resolvedItems.push({
+            productId: productId, // slug
+            quantity: Number(item.quantity),
+            price: item.price || staticProduct.price,
+            name: staticProduct.name,
+          })
+        } else {
+          return { error: `Product "${item.name || productId}" is no longer available. Please remove it from your cart.` }
+        }
+      }
+    }
+
+    // 3. Calculate totals securely
+    const subtotal = resolvedItems.reduce((acc, item) => {
+      return acc + (item.price * item.quantity)
+    }, 0)
     
     // 4. Apply coupon discount
     let discount = 0
@@ -81,7 +135,6 @@ export async function processCheckout(formData: FormData) {
           discount = Number(coupon.discountValue)
         }
         appliedCouponId = coupon.id
-        // Increment usage
         await prisma.coupon.update({ where: { id: coupon.id }, data: { usedCount: { increment: 1 } } })
       }
     }
@@ -90,7 +143,7 @@ export async function processCheckout(formData: FormData) {
     const afterDiscount = subtotal - discount
     const shipping = afterDiscount >= freeShipThreshold ? 0 : flatShipRate
 
-    // 6. Calculate tax (inclusive model — tax is already in price, extract for display)
+    // 6. Calculate tax (inclusive model)
     const taxAmount = Math.round(afterDiscount * taxRate / (100 + taxRate))
 
     // 7. Final total
@@ -99,35 +152,48 @@ export async function processCheckout(formData: FormData) {
     // 8. Generate transaction reference
     const txnRef = `DW-${Date.now().toString(36).toUpperCase()}-${Math.random().toString(36).substring(2, 6).toUpperCase()}`
 
-    // 9. Create order with tax and shipping amounts
-    const order = await prisma.$transaction(async (tx: any) => {
-      const newOrder = await tx.order.create({
-        data: {
-          userId,
-          status: "PROCESSING",
-          totalAmount,
-          taxAmount,
-          shippingAmount: shipping,
-          paymentMethod: parsed.data.paymentMethod,
-          shippingAddressId: address.id,
-          couponId: appliedCouponId,
-          items: {
-            create: items.map((item: any) => ({
-              productId: item.productId,
-              quantity: item.quantity,
-              priceAtPurchase: item.price
-            }))
-          },
-          trackingEvents: {
-            create: {
-              status: "PROCESSING",
-              description: `Order confirmed. Payment received via ${parsed.data.paymentMethod}. Reference: ${txnRef}`
-            }
+    // 9. Create order — only include items that have valid DB product IDs
+    const dbItems = resolvedItems.filter(item => {
+      // Check if productId looks like a CUID (DB ID)
+      return item.productId.length > 20 // CUIDs are typically 25+ chars
+    })
+
+    const staticItems = resolvedItems.filter(item => item.productId.length <= 20)
+
+    // For DB products, create proper order items
+    // For static products, we'll include them in internal notes
+    const order = await prisma.order.create({
+      data: {
+        userId,
+        status: "PROCESSING",
+        totalAmount,
+        taxAmount,
+        shippingAmount: shipping,
+        paymentMethod: parsed.data.paymentMethod,
+        shippingAddressId: address.id,
+        couponId: appliedCouponId,
+        internalNotes: staticItems.length > 0
+          ? `Demo order includes static catalog items: ${staticItems.map(i => `${i.name} x${i.quantity} @₹${i.price}`).join(', ')}`
+          : null,
+        items: {
+          create: dbItems.map((item) => ({
+            productId: item.productId,
+            quantity: item.quantity,
+            priceAtPurchase: item.price,
+          }))
+        },
+        trackingEvents: {
+          create: {
+            status: "PROCESSING",
+            description: `Order confirmed. Payment received via ${parsed.data.paymentMethod}. Reference: ${txnRef}`
           }
         }
-      })
-      return newOrder
+      }
     })
+
+    revalidatePath("/admin/dashboard")
+    revalidatePath("/admin/analytics")
+    revalidatePath("/admin/orders")
 
     return { 
       success: true, 
@@ -142,6 +208,6 @@ export async function processCheckout(formData: FormData) {
 
   } catch (error) {
     console.error("Checkout processing error:", error)
-    return { error: "Failed to process order. Please try again." }
+    return { error: `Failed to process order: ${error instanceof Error ? error.message : String(error)}` }
   }
 }

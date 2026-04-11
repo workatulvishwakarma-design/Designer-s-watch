@@ -24,7 +24,7 @@ export async function upsertAddress(formData: FormData) {
   if (!session || !session.user?.id) return { error: "Unauthorized" }
 
   const parsed = addressSchema.safeParse({
-    id: formData.get("id"),
+    id: formData.get("id") ? formData.get("id")?.toString() : undefined,
     firstName: formData.get("firstName"),
     lastName: formData.get("lastName"),
     addressLine1: formData.get("addressLine1"),

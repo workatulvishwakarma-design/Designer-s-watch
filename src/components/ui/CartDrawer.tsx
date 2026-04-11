@@ -67,11 +67,11 @@ export default function CartDrawer() {
                                 items.map((item) => (
                                     <div key={item.productId} className="flex gap-4">
                                         <div className="relative w-24 h-24 bg-[#F5F2ED] rounded-xl overflow-hidden flex-shrink-0">
-                                            <Image
+                                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                                            <img
                                                 src={item.image || "https://picsum.photos/200"}
                                                 alt={item.name}
-                                                fill
-                                                className="object-contain p-2 mix-blend-multiply"
+                                                className="object-contain w-full h-full p-2 mix-blend-multiply"
                                             />
                                         </div>
                                         <div className="flex-1 min-w-0">

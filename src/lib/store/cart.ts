@@ -1,5 +1,6 @@
 import { create } from "zustand"
 import { persist } from "zustand/middleware"
+import { trackCartEvent } from "@/lib/cart-tracking"
 
 export interface CartItem {
   id: string // cart item ID if synced, or local random id
@@ -52,16 +53,20 @@ export const useCartStore = create<CartState>()(
           const updatedItems = [...items]
           updatedItems[existingItemIndex].quantity += newItem.quantity
           set({ items: updatedItems, isOpen: true })
+          trackCartEvent(newItem.slug || newItem.productId, newItem.name, "ADD", newItem.quantity)
         } else {
           // Add new item variant
           set({ 
             items: [...items, { ...newItem, id: Math.random().toString(36).substring(2, 11) }],
             isOpen: true
           })
+          trackCartEvent(newItem.slug || newItem.productId, newItem.name, "ADD", newItem.quantity)
         }
       },
 
       removeItem: (id: string) => {
+        const item = get().items.find((i: CartItem) => i.id === id)
+        if (item) trackCartEvent(item.slug || item.productId, item.name, "REMOVE", item.quantity)
         set((state: CartState) => ({
           items: state.items.filter((item: CartItem) => item.id !== id)
         }))

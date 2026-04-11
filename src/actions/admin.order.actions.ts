@@ -5,6 +5,7 @@ import { prisma } from "@/lib/db"
 import { z } from "zod"
 import { revalidatePath } from "next/cache"
 import { OrderStatus } from "@prisma/client"
+import { notifyOrderShipped, notifyOrderDelivered } from "@/lib/notifications"
 
 export async function updateOrderStatus(orderId: string, newStatus: OrderStatus, internalNotes?: string) {
   const session = await auth()
@@ -30,6 +31,16 @@ export async function updateOrderStatus(orderId: string, newStatus: OrderStatus,
 
     revalidatePath("/admin/orders")
     revalidatePath(`/admin/orders/${orderId}`)
+    revalidatePath("/admin/dashboard")
+    revalidatePath("/admin/analytics")
+
+    // Trigger SMS notifications for key status changes
+    if (newStatus === "SHIPPED") {
+      notifyOrderShipped(orderId).catch(e => console.error("[SMS] Ship notify error:", e))
+    } else if (newStatus === "DELIVERED") {
+      notifyOrderDelivered(orderId).catch(e => console.error("[SMS] Deliver notify error:", e))
+    }
+
     return { success: "Order status updated successfully." }
   } catch (error) {
     return { error: "Failed to update order status." }

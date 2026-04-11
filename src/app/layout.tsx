@@ -4,10 +4,11 @@ import "./globals.css";
 import Header from "@/components/sections/Header";
 import Footer from "@/components/sections/Footer";
 import CustomCursor from "@/components/ui/CustomCursor";
-import SmoothScrolling from "@/components/SmoothScrolling";
 import { AnnouncementBar } from "@/components/AnnouncementBar";
 import CartDrawer from "@/components/ui/CartDrawer";
+import { PublicShell } from "@/components/PublicShell";
 import { prisma } from "@/lib/db";
+import { Toaster } from "sonner";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -46,16 +47,16 @@ export default async function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
        <body suppressHydrationWarning className="antialiased bg-background text-primaryText overflow-x-hidden">
-          <CustomCursor />
-          {showAnnouncement && (
-            <AnnouncementBar text={settings!.announcementText!} />
-          )}
-          <Header hasAnnouncement={showAnnouncement} />
-          <CartDrawer />
-          <SmoothScrolling>
+          <PublicShell
+            customCursor={<CustomCursor />}
+            announcement={showAnnouncement ? <AnnouncementBar text={settings!.announcementText!} /> : null}
+            header={<Header hasAnnouncement={showAnnouncement} />}
+            cartDrawer={<CartDrawer />}
+            footer={<Footer />}
+          >
             {children}
-          </SmoothScrolling>
-          <Footer />
+          </PublicShell>
+          <Toaster richColors position="top-center" />
       </body>
     </html>
   );

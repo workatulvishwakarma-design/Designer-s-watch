@@ -87,6 +87,37 @@
   .font-bebas {
     font-family: var(--font-display);
   }
+
+  /* Premium Form Controls */
+  .luxury-input-field {
+    border: 1px solid var(--color-border);
+    background-color: rgba(250, 248, 244, 0.5); /* #FAF8F4 */
+    border-radius: 0.75rem; /* xl */
+    padding: 0.875rem 1rem;
+    color: var(--color-primaryText);
+    outline: none;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .luxury-input-field::placeholder {
+    color: #C2BCB4;
+    transition: opacity 0.3s ease;
+  }
+
+  .luxury-input-field:focus::placeholder {
+    opacity: 0.5; /* fade placeholder on focus */
+  }
+
+  .luxury-input-field:hover:not(:focus) {
+    border-color: var(--color-gold-light);
+    background-color: #fff;
+  }
+
+  .luxury-input-field:focus {
+    border-color: var(--color-gold);
+    background-color: #fff;
+    box-shadow: 0 0 0 4px rgba(184, 147, 90, 0.1), 0 4px 20px rgba(184, 147, 90, 0.05); /* glowing focus ring */
+  }
 }
 
 /* Gold underline utility */

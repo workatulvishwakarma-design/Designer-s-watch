@@ -2,12 +2,12 @@
 
 import { useState, useEffect } from "react"
 import { useCartStore } from "@/lib/store/cart"
-import { processCheckout } from "@/actions/checkout.actions"
 import { validateCoupon } from "@/actions/coupon.actions"
 import { toast } from "sonner"
 import { useRouter } from "next/navigation"
-import { CheckCircle2, ShieldCheck, MapPin, Loader2, CreditCard, Tag, X, Truck, Gift, Lock, Plus, Smartphone, Building2, Banknote } from "lucide-react"
+import { CheckCircle2, ShieldCheck, MapPin, Loader2, CreditCard, Tag, X, Truck, Gift, Lock, Plus, Smartphone, Building2, Banknote, AlertCircle } from "lucide-react"
 import { upsertAddress } from "@/actions/user.address.actions"
+import { getCartId } from "@/lib/cart-tracking"
 
 interface CouponResult {
   couponId: string
@@ -17,6 +17,22 @@ interface CouponResult {
 }
 
 type PaymentMethod = "CARD" | "UPI" | "NET_BANKING" | "COD"
+
+function AnimatedInput({ texts, className, ...props }: any) {
+  const [index, setIndex] = useState(0);
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+    const int = setInterval(() => setIndex(i => (i + 1) % texts.length), 3000);
+    return () => clearInterval(int);
+  }, [texts.length]);
+  
+  return <input 
+    {...props} 
+    className={`${className} transition-all duration-700 ease-in-out`}
+    placeholder={mounted ? texts[index] : texts[0]} 
+  />;
+}
 
 export function CheckoutForm({ addresses }: { addresses: any[] }) {
   const router = useRouter()
@@ -37,11 +53,27 @@ export function CheckoutForm({ addresses }: { addresses: any[] }) {
   // Hydration safety
   const [mounted, setMounted] = useState(false)
   useEffect(() => { setMounted(true) }, [])
-  if (!mounted) return null
 
+  // Auto-select address when addresses update
+  useEffect(() => {
+    if (!selectedAddress && addresses.length > 0) {
+      setSelectedAddress(addresses.find(a => a.isDefault)?.id || addresses[0]?.id || "")
+    }
+  }, [addresses, selectedAddress])
+
+  useEffect(() => {
+    if (mounted && items.length === 0 && paymentStep !== "success" && paymentStep !== "processing") {
+      router.replace("/cart")
+    }
+  }, [mounted, items.length, paymentStep, router])
+
+  if (!mounted) return null
   if (items.length === 0 && paymentStep !== "success") {
-    router.push("/cart")
-    return null
+    return (
+      <div className="min-h-[50vh] flex items-center justify-center">
+        <Loader2 className="w-8 h-8 animate-spin text-[#B8935A]" />
+      </div>
+    )
   }
 
   const subtotal = getSubtotal()
@@ -84,30 +116,71 @@ export function CheckoutForm({ addresses }: { addresses: any[] }) {
       toast.error("Please select a shipping address")
       return
     }
+    if (isPending) return // Prevent duplicate submissions
 
     setIsPending(true)
     setPaymentStep("processing")
 
-    // Simulate payment gateway processing visually for the demo
-    await new Promise(resolve => setTimeout(resolve, 3000))
+    try {
+      // Generate idempotency key to prevent duplicate orders
+      const idempotencyKey = `DW-${Date.now().toString(36)}-${Math.random().toString(36).substring(2, 6)}`.toUpperCase()
 
-    const formData = new FormData()
-    formData.append("addressId", selectedAddress)
-    formData.append("cartItems", JSON.stringify(items))
-    formData.append("paymentMethod", selectedPayment)
-    if (appliedCoupon) {
-      formData.append("couponId", appliedCoupon.couponId)
-    }
+      // Call payment create-order API
+      const res = await fetch("/api/payment/create-order", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          addressId: selectedAddress,
+          cartItems: items.map(item => ({
+            productId: item.productId,
+            slug: item.slug,
+            name: item.name,
+            price: item.price,
+            quantity: item.quantity,
+          })),
+          paymentMethod: selectedPayment === "COD" ? "COD" : "PREPAID",
+          couponId: appliedCoupon?.couponId || null,
+          customerPhone: "", // From address
+          customerEmail: "", // From session
+          idempotencyKey,
+        }),
+      })
 
-    const res = await processCheckout(formData)
-    
-    if (res.error) {
-      toast.error(res.error)
+      const data = await res.json()
+
+      if (!res.ok || data.error) {
+        toast.error(data.error || "Failed to create order")
+        setIsPending(false)
+        setPaymentStep("checkout")
+        return
+      }
+
+      // If Cashfree is configured and returned payment_session_id, open Cashfree Checkout
+      if (data.paymentSessionId && data.cashfreeMode !== "not_configured") {
+        try {
+          const { load } = await import("@cashfreepayments/cashfree-js")
+          const cashfree = await load({ mode: data.cashfreeMode as "sandbox" | "production" })
+          cashfree.checkout({
+            paymentSessionId: data.paymentSessionId,
+            redirectTarget: "_self",
+          })
+          // User will be redirected to Cashfree → then back to /checkout/status
+          return
+        } catch (sdkErr) {
+          console.error("[Checkout] Cashfree SDK error:", sdkErr)
+          // Fall through to test mode
+        }
+      }
+
+      // Test mode / Cashfree not configured → go directly to status page
+      setPaymentStep("success")
+      router.push(`/checkout/status?order_id=${data.orderId}&txn=${data.transactionRef}`)
+
+    } catch (err) {
+      console.error("[Checkout] Error:", err)
+      toast.error("Something went wrong. Please try again.")
       setIsPending(false)
       setPaymentStep("checkout")
-    } else if (res.success && res.orderId) {
-      clearCart()
-      router.replace(`/checkout/success/${res.orderId}`)
     }
   }
 
@@ -187,48 +260,48 @@ export function CheckoutForm({ addresses }: { addresses: any[] }) {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                     <div>
                       <label className="block text-xs font-body uppercase tracking-wider text-[#9C9690] mb-1.5 ml-1">First Name *</label>
-                      <input name="firstName" placeholder="John" required className="luxury-input-field w-full" />
+                      <AnimatedInput name="firstName" texts={["John", "Amit", "Priya"]} required className="luxury-input-field w-full" />
                     </div>
                     <div>
                       <label className="block text-xs font-body uppercase tracking-wider text-[#9C9690] mb-1.5 ml-1">Last Name *</label>
-                      <input name="lastName" placeholder="Doe" required className="luxury-input-field w-full" />
+                      <AnimatedInput name="lastName" texts={["Doe", "Sharma", "Patel"]} required className="luxury-input-field w-full" />
                     </div>
                   </div>
 
                   <div>
                     <label className="block text-xs font-body uppercase tracking-wider text-[#9C9690] mb-1.5 ml-1">Phone Number *</label>
-                    <input name="phone" placeholder="+91 98765 43210" required className="luxury-input-field w-full" />
+                    <AnimatedInput name="phone" texts={["+91 98765 43210", "+91 88888 77777"]} required className="luxury-input-field w-full" />
                   </div>
 
                   <div className="w-full h-px bg-[#F5F2ED] my-6" />
 
                   <div>
                     <label className="block text-xs font-body uppercase tracking-wider text-[#9C9690] mb-1.5 ml-1">Address Line 1 *</label>
-                    <input name="addressLine1" placeholder="House/Flat No., Building Name" required className="luxury-input-field w-full" />
+                    <AnimatedInput name="addressLine1" texts={["House/Flat No., Building Name", "e.g. 204, Sea View Apts", "e.g. Plot 45, Sector 17"]} required className="luxury-input-field w-full" />
                   </div>
                   <div>
                     <label className="block text-xs font-body uppercase tracking-wider text-[#9C9690] mb-1.5 ml-1">Address Line 2 & Landmark</label>
-                    <input name="addressLine2" placeholder="Street Name, Area, Landmark (Optional)" className="luxury-input-field w-full" />
+                    <AnimatedInput name="addressLine2" texts={["Street Name, Area, Landmark", "e.g. Near Metro Station", "e.g. Bandra West, Mumbai"]} className="luxury-input-field w-full" />
                   </div>
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                     <div>
                       <label className="block text-xs font-body uppercase tracking-wider text-[#9C9690] mb-1.5 ml-1">Pincode *</label>
-                      <input name="postalCode" placeholder="Enter 6-digit Pincode" required className="luxury-input-field w-full" />
+                      <AnimatedInput name="postalCode" texts={["Enter 6-digit Pincode", "e.g. 400050", "e.g. 110001"]} required className="luxury-input-field w-full" />
                     </div>
                     <div>
                       <label className="block text-xs font-body uppercase tracking-wider text-[#9C9690] mb-1.5 ml-1">City *</label>
-                      <input name="city" placeholder="e.g. Mumbai" required className="luxury-input-field w-full" />
+                      <AnimatedInput name="city" texts={["e.g. Mumbai", "e.g. Delhi", "e.g. Bangalore"]} required className="luxury-input-field w-full" />
                     </div>
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                     <div>
                       <label className="block text-xs font-body uppercase tracking-wider text-[#9C9690] mb-1.5 ml-1">State *</label>
-                      <input name="state" placeholder="e.g. Maharashtra" required className="luxury-input-field w-full" />
+                      <AnimatedInput name="state" texts={["e.g. Maharashtra", "e.g. NCR", "e.g. Karnataka"]} required className="luxury-input-field w-full" />
                     </div>
                     <div>
                       <label className="block text-xs font-body uppercase tracking-wider text-[#9C9690] mb-1.5 ml-1">Country *</label>
-                      <input name="country" placeholder="Country" required defaultValue="India" disabled className="luxury-input-field w-full bg-gray-50 text-gray-400 cursor-not-allowed border-[#E8E0D5]" />
+                      <input name="country" placeholder="Country" required defaultValue="India" readOnly className="luxury-input-field w-full bg-gray-50 text-gray-400 cursor-not-allowed border-[#E8E0D5]" />
                     </div>
                   </div>
                   
@@ -411,10 +484,26 @@ export function CheckoutForm({ addresses }: { addresses: any[] }) {
                 </div>
               </label>
               {selectedPayment === "COD" && (
-                <div className="px-6 pb-6 pt-2 bg-[#FAF8F4] animate-in slide-in-from-top-2 duration-300">
-                  <div className="bg-white border border-[#E8E0D5] p-4 rounded-xl flex gap-3 text-sm">
-                    <Banknote className="w-5 h-5 text-[#B8935A] flex-shrink-0" />
-                    <p className="text-[#5C5752]">You can pay securely in cash or via UPI to the delivery executive when your package arrives safely at your location.</p>
+                <div className="px-6 pb-6 pt-2 bg-[#FAF8F4] animate-in slide-in-from-top-2 duration-300 space-y-3">
+                  <div className="bg-[#FFF8E1] border border-[#F5E6B8] p-4 rounded-xl flex gap-3">
+                    <AlertCircle className="w-5 h-5 text-[#B8935A] flex-shrink-0 mt-0.5" />
+                    <div>
+                      <p className="text-sm font-medium text-[#1A1918] font-body">₹299 COD Advance Required</p>
+                      <p className="text-xs text-[#5C5752] mt-1 font-body leading-relaxed">
+                        To confirm your COD order, a small advance of <strong>₹299</strong> is collected online.
+                        The remaining <strong>₹{Math.max(0, total - 299).toLocaleString()}</strong> is payable in cash to the delivery executive.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="bg-white border border-[#E8E0D5] p-4 rounded-xl">
+                    <div className="flex justify-between text-sm font-body mb-2">
+                      <span className="text-[#5C5752]">Advance (Online)</span>
+                      <span className="text-[#1A1918] font-semibold">₹299</span>
+                    </div>
+                    <div className="flex justify-between text-sm font-body">
+                      <span className="text-[#5C5752]">Balance (On Delivery)</span>
+                      <span className="text-[#1A1918] font-semibold">₹{Math.max(0, total - 299).toLocaleString()}</span>
+                    </div>
                   </div>
                 </div>
               )}
@@ -468,7 +557,7 @@ export function CheckoutForm({ addresses }: { addresses: any[] }) {
                       <p className="text-[11px] text-green-600 font-body font-medium mt-0.5">₹{appliedCoupon.discount.toLocaleString()} savings applied!</p>
                     </div>
                   </div>
-                  <button onClick={handleRemoveCoupon} className="p-1.5 hover:bg-green-200 rounded-full transition-colors group">
+                  <button type="button" onClick={handleRemoveCoupon} className="p-1.5 hover:bg-green-200 rounded-full transition-colors group">
                     <X className="w-4 h-4 text-green-600 group-hover:text-green-800" />
                   </button>
                 </div>
@@ -482,6 +571,7 @@ export function CheckoutForm({ addresses }: { addresses: any[] }) {
                     className="flex-1 rounded-xl border border-[#E8E0D5] bg-[#FAF8F4]/50 px-4 py-3 text-sm font-body font-medium tracking-wide focus:ring-1 focus:ring-[#B8935A] focus:border-[#B8935A] outline-none placeholder:font-normal placeholder:text-[#9C9690]"
                   />
                   <button
+                    type="button"
                     onClick={handleApplyCoupon}
                     disabled={couponLoading || !couponCode.trim()}
                     className="bg-black text-white px-5 py-3 rounded-xl text-xs font-body tracking-[0.1em] uppercase hover:bg-[#B8935A] transition-colors disabled:opacity-30 disabled:hover:bg-black font-medium"
@@ -528,7 +618,7 @@ export function CheckoutForm({ addresses }: { addresses: any[] }) {
             >
               <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-[#B8935A] to-[#D4AA72] opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-out" />
               <span className="relative flex items-center justify-center gap-3">
-                {isPending ? <>Processing <Loader2 size={16} className="animate-spin" /></> : <>{selectedPayment === 'COD' ? 'Confirm Cash Delivery' : 'Complete Payment'} <Lock size={14}/></>}
+                {isPending ? <><Loader2 size={16} className="animate-spin" /> Processing...</> : selectedPayment === 'COD' ? <>Pay ₹299 Advance to Confirm COD <Lock size={14}/></> : <>Complete Payment — ₹{total.toLocaleString()} <Lock size={14}/></>}
               </span>
             </button>
             <p className="text-center text-[10px] text-[#9C9690] mt-5 uppercase tracking-widest font-body flex items-center justify-center gap-1.5 bg-[#FAF8F4] py-2 rounded-lg border border-[#E8E0D5]/50">

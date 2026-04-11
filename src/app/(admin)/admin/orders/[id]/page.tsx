@@ -4,19 +4,44 @@ import Link from "next/link"
 import { ChevronLeft, MapPin, Package, User } from "lucide-react"
 import { Badge } from "@/components/admin/Badge"
 import { OrderTimelineManager } from "@/components/admin/OrderTimelineManager"
+import { AdminOrderInvoiceButton } from "@/components/admin/AdminOrderInvoiceButton"
 
-export default async function AdminOrderDetailPage({ params }: { params: { id: string } }) {
+export default async function AdminOrderDetailPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params
   const order = await prisma.order.findUnique({
-    where: { id: params.id },
+    where: { id },
     include: {
       user: true,
       shippingAddress: true,
+      coupon: true,
       items: { include: { product: true } },
       trackingEvents: { orderBy: { createdAt: "desc" } }
     }
   })
 
   if (!order) notFound()
+
+  const invoiceData = {
+    orderId: order.id,
+    date: order.createdAt.toLocaleDateString("en-IN", { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' }),
+    customerName: order.user?.name || "Guest Customer",
+    customerEmail: order.user?.email || undefined,
+    customerPhone: (order as any).customerPhone || order.shippingAddress.phone || undefined,
+    shippingAddress: `${order.shippingAddress.firstName} ${order.shippingAddress.lastName}, ${order.shippingAddress.addressLine1}${order.shippingAddress.addressLine2 ? ', ' + order.shippingAddress.addressLine2 : ''}, ${order.shippingAddress.city}, ${order.shippingAddress.state} ${order.shippingAddress.postalCode}, ${order.shippingAddress.country}`,
+    items: order.items.map(item => ({
+      name: item.product.name,
+      quantity: item.quantity,
+      price: Number(item.priceAtPurchase)
+    })),
+    subtotal: Number(order.totalAmount) - Number(order.shippingAmount) + (order.coupon ? Number(order.coupon.discountValue) : 0),
+    taxAmount: Number(order.taxAmount || 0),
+    shippingAmount: Number(order.shippingAmount || 0),
+    discount: order.coupon ? Number(order.coupon.discountValue) : 0,
+    total: Number(order.totalAmount),
+    isCOD: !!(order as any).isCOD,
+    advancePaid: Number((order as any).advancePaid || 0),
+    balanceDue: Number((order as any).balanceDue || 0)
+  }
 
   return (
     <div className="space-y-8 max-w-6xl">
@@ -64,11 +89,36 @@ export default async function AdminOrderDetailPage({ params }: { params: { id: s
                 </li>
               ))}
             </ul>
-            <div className="bg-gray-50 dark:bg-zinc-950 px-4 py-4 sm:px-6 border-t border-gray-100 dark:border-zinc-800 flex justify-end">
-              <div className="text-right">
-                <p className="text-sm text-gray-500">Total Amount</p>
-                <p className="text-xl font-bold text-gray-900 dark:text-white">₹{order.totalAmount.toString()}</p>
-              </div>
+            <div className="bg-gray-50 dark:bg-zinc-950 px-4 py-4 sm:px-6 border-t border-gray-100 dark:border-zinc-800">
+              <dl className="space-y-2 text-sm text-gray-500 flex flex-col items-end">
+                <div className="flex justify-between w-48">
+                  <dt>Subtotal</dt>
+                  <dd className="font-medium text-gray-900 dark:text-white">
+                    ₹{(Number(order.totalAmount) - Number(order.shippingAmount) + (order.coupon ? Number(order.coupon.discountValue) : 0)).toLocaleString()} 
+                    {/* Note: This is an approximation. A robust system stores exact discount snapshot per order, but for our static display this works. */}
+                  </dd>
+                </div>
+                {order.coupon && (
+                  <div className="flex justify-between w-48 text-green-600">
+                    <dt>Discount ({order.coupon.code})</dt>
+                    <dd>-₹{order.coupon.discountValue.toString()}</dd>
+                  </div>
+                )}
+                <div className="flex justify-between w-48">
+                  <dt>Shipping</dt>
+                  <dd className="font-medium text-gray-900 dark:text-white">
+                    {Number(order.shippingAmount) === 0 ? "Free" : `₹${order.shippingAmount.toString()}`}
+                  </dd>
+                </div>
+                <div className="flex justify-between w-48 text-xs pb-3 border-b border-gray-200 dark:border-zinc-800">
+                  <dt>Tax (Included)</dt>
+                  <dd>₹{order.taxAmount.toString()}</dd>
+                </div>
+                <div className="flex justify-between w-48 text-base py-1">
+                  <dt className="font-medium text-gray-900 dark:text-white">Total</dt>
+                  <dd className="font-bold text-gray-900 dark:text-white">₹{order.totalAmount.toString()}</dd>
+                </div>
+              </dl>
             </div>
           </div>
 
@@ -115,6 +165,15 @@ export default async function AdminOrderDetailPage({ params }: { params: { id: s
         <div className="space-y-8">
           {/* Admin Controls */}
           <OrderTimelineManager orderId={order.id} currentStatus={order.status} />
+
+          {/* Customer Invoice Download */}
+          <div className="bg-white dark:bg-zinc-900 shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl p-6">
+            <h3 className="text-sm font-medium leading-6 text-gray-900 dark:text-white mb-2">
+              Customer Invoice
+            </h3>
+            <p className="text-xs text-gray-500 mb-4">Print or download the official auto-generated PDF invoice for this exact order to share with the customer.</p>
+            <AdminOrderInvoiceButton data={invoiceData} />
+          </div>
 
           {/* Customer */}
           <div className="bg-white dark:bg-zinc-900 shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl p-6">

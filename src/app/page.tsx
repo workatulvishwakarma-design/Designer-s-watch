@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect, useMemo } from "react";
 import SmoothScrolling from '@/components/SmoothScrolling';
 import CustomCursor from '@/components/ui/CustomCursor';
 import HeroBanner from '@/components/sections/HeroBanner';
@@ -14,21 +14,13 @@ import TrustGrid from '@/components/sections/TrustGrid';
 import FeatureStrip from '@/components/sections/FeatureStrip';
 import CraftSection from '@/components/sections/CraftSection';
 import FAQSection from '@/components/sections/FAQSection';
-import { motion } from 'framer-motion';
-import Image from 'next/image';
+import BrandPillars from '@/components/sections/BrandPillars';
 import Link from 'next/link';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
-
-/* ─────────── Product Card Types ─────────── */
-interface SimpleProduct {
-  id: string;
-  name: string;
-  price: string;
-  image: string;
-  brand?: string;
-  badge?: string;
-  slug: string;
-}
+import { ChevronLeft, ChevronRight, Loader2, ShoppingBag, Eye, Flame, Package, Shield, Truck } from 'lucide-react';
+import { useCartStore } from '@/lib/store/cart';
+import { toast } from 'sonner';
+import { allProducts } from '@/data/productData';
+import { staticToUnified, filterByBrand, getBestSellers, type UnifiedProduct } from '@/lib/products';
 
 /* ─────────── Reusable Arrow Button ─────────── */
 function CarouselArrow({
@@ -73,10 +65,11 @@ function InlineProductCard({
   product,
   variant = "light",
 }: {
-  product: SimpleProduct;
+  product: UnifiedProduct;
   variant?: "light" | "dark" | "escort";
 }) {
   const [hovered, setHovered] = useState(false);
+  const { addItem } = useCartStore();
 
   const cardBg = variant === "dark" ? "#1A1918" : "white";
   const cardBorder =
@@ -92,6 +85,7 @@ function InlineProductCard({
       ? "#003926"
       : "#1A1918";
   const addText = variant === "dark" ? "#111110" : "white";
+  const subtextColor = variant === "dark" ? "rgba(255,255,255,0.5)" : "#9C9690";
 
   /* Badge colour */
   let badgeBg = "#1A1918";
@@ -101,10 +95,27 @@ function InlineProductCard({
   } else if (product.badge === "LIMITED") {
     badgeBg = "#B8935A";
     badgeText = "#1A1918";
+  } else if (product.badge === "BEST SELLER") {
+    badgeBg = "#1A1918";
+  } else if (product.badge === "VALUE PICK") {
+    badgeBg = "#F0F7F4";
+    badgeText = "#003926";
   }
 
+  /* Sale calculation */
+  const hasDiscount = product.comparePrice && product.comparePrice > product.price;
+  const discountPercent = hasDiscount
+    ? Math.round(((product.comparePrice! - product.price) / product.comparePrice!) * 100)
+    : 0;
+
+  /* Stock status */
+  const isLowStock = product.stock > 0 && product.stock <= (product.lowStockThreshold || 5);
+
+  /* Formatted price */
+  const formattedPrice = "₹" + product.price.toLocaleString("en-IN");
+
   return (
-    <Link href={`/product/${product.slug}`} className="block">
+    <Link href={`/product/${product.slug}`} className="block relative group">
     <div
       className="w-[280px] sm:w-[320px] md:w-[375px] flex-shrink-0 rounded-2xl overflow-hidden cursor-pointer relative"
       style={{
@@ -125,14 +136,16 @@ function InlineProductCard({
         className="relative w-full overflow-hidden"
         style={{ aspectRatio: "4/5", background: imageBg }}
       >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={product.image}
+          src={product.image || product.images?.[0] || "/images/main-img1.png"}
           alt={product.name}
-          className="absolute inset-0 w-full h-full object-cover object-center"
+          className="absolute inset-0 w-full h-full object-contain p-6"
           style={{
             transition: "transform 0.6s cubic-bezier(0.22,1,0.36,1)",
             transform: hovered ? "scale(1.08)" : "scale(1)",
           }}
+          onError={(e) => { (e.target as HTMLImageElement).src = "/images/main-img1.png"; }}
         />
 
         {/* Badge */}
@@ -144,9 +157,25 @@ function InlineProductCard({
               letterSpacing: "0.1em",
               background: badgeBg,
               color: badgeText,
+              border: product.badge === "VALUE PICK" ? "1px solid rgba(0,57,38,0.3)" : "none",
             }}
           >
             {product.badge}
+          </span>
+        )}
+
+        {/* Sale badge */}
+        {hasDiscount && (
+          <span
+            className="absolute top-3 right-3 rounded-full font-dm px-2.5 py-1 z-10"
+            style={{
+              fontSize: "9px",
+              letterSpacing: "0.05em",
+              background: "#D4455A",
+              color: "white",
+            }}
+          >
+            {discountPercent}% OFF
           </span>
         )}
 
@@ -154,7 +183,7 @@ function InlineProductCard({
         <div
           className="absolute inset-0 flex flex-col items-center justify-center gap-2 z-10"
           style={{
-            background: "rgba(250,248,244,0.70)",
+            background: variant === "dark" ? "rgba(26,25,24,0.75)" : "rgba(250,248,244,0.70)",
             backdropFilter: "blur(12px)",
             WebkitBackdropFilter: "blur(12px)",
             opacity: hovered ? 1 : 0,
@@ -163,8 +192,20 @@ function InlineProductCard({
           }}
         >
           <button
-            onClick={(e) => e.preventDefault()}
-            className="rounded-full font-dm"
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              addItem({
+                productId: product.slug,
+                name: product.name,
+                price: product.price,
+                quantity: 1,
+                image: product.image || product.images?.[0] || "/images/main-img1.png",
+                slug: product.slug,
+              });
+              toast.success(`${product.name} added to cart`);
+            }}
+            className="rounded-full font-dm flex items-center gap-2"
             style={{
               background: addBg,
               color: addText,
@@ -174,27 +215,29 @@ function InlineProductCard({
               transform: hovered ? "translateY(0)" : "translateY(16px)",
             }}
           >
+            <ShoppingBag size={14} />
             Add to Cart
           </button>
           <button
-            className="rounded-full font-dm"
+            className="rounded-full font-dm flex items-center gap-2"
             style={{
               background: "transparent",
-              border: "1px solid #E0D8CE",
-              color: "#1A1918",
+              border: `1px solid ${variant === "dark" ? "rgba(255,255,255,0.2)" : "#E0D8CE"}`,
+              color: variant === "dark" ? "white" : "#1A1918",
               fontSize: "12px",
               padding: "10px 20px",
               transition: "all 0.3s ease, transform 0.4s ease 0.07s",
               transform: hovered ? "translateY(0)" : "translateY(16px)",
             }}
           >
+            <Eye size={14} />
             View Details
           </button>
         </div>
       </div>
 
       {/* CONTENT */}
-      <div className="p-5 md:p-6 flex flex-col h-full">
+      <div className="p-5 md:p-6 flex flex-col">
         <p
           className="font-dm uppercase"
           style={{
@@ -203,7 +246,7 @@ function InlineProductCard({
             letterSpacing: "0.2em",
           }}
         >
-          {product.brand || "D'SIGNER"}
+          {product.brand}
         </p>
         <p
           className="font-dm font-medium mt-1"
@@ -211,48 +254,90 @@ function InlineProductCard({
         >
           {product.name}
         </p>
-        <p
-          className="font-cormorant italic mt-2"
-          style={{ fontSize: "20px", color: priceColor }}
-        >
-          {product.price}
-        </p>
+
+        {/* Price row */}
+        <div className="flex items-baseline gap-2 mt-2">
+          <p
+            className="font-cormorant italic"
+            style={{ fontSize: "20px", color: priceColor }}
+          >
+            {formattedPrice}
+          </p>
+          {hasDiscount && (
+            <p
+              className="font-dm line-through"
+              style={{ fontSize: "13px", color: subtextColor }}
+            >
+              ₹{product.comparePrice!.toLocaleString("en-IN")}
+            </p>
+          )}
+        </div>
+
+        {/* Stock status */}
+        {isLowStock && (
+          <div className="flex items-center gap-1.5 mt-2">
+            <Flame size={12} className="text-[#D4455A]" />
+            <span className="font-dm text-[11px] text-[#D4455A]">
+              Only {product.stock} left
+            </span>
+          </div>
+        )}
       </div>
     </div>
     </Link>
   );
 }
 
-/* ─────────── Scrollbar Styles ─────────── */
-const scrollbarCSS = `
-  .carousel-track::-webkit-scrollbar { height: 3px; }
-  .carousel-track::-webkit-scrollbar-track {
-    background: #EDE8DF; border-radius: 100px;
-  }
-  .carousel-track::-webkit-scrollbar-thumb {
-    background: linear-gradient(90deg,#B8935A,#D4AA72);
-    border-radius: 100px;
-  }
-  .carousel-track { scrollbar-width: thin; scrollbar-color: #B8935A #EDE8DF; }
-
-  .carousel-track-dark::-webkit-scrollbar { height: 3px; }
-  .carousel-track-dark::-webkit-scrollbar-track {
-    background: rgba(184,147,90,0.15); border-radius: 100px;
-  }
-  .carousel-track-dark::-webkit-scrollbar-thumb {
-    background: linear-gradient(90deg,#B8935A,#D4AA72);
-    border-radius: 100px;
-  }
-  .carousel-track-dark { scrollbar-width: thin; scrollbar-color: #B8935A rgba(184,147,90,0.15); }
-`;
+/* ─────────── Skeleton Loader for Cards ─────────── */
+function CardSkeleton({ variant = "light" }: { variant?: "light" | "dark" }) {
+  const bg = variant === "dark" ? "#222220" : "#F5F2ED";
+  const cardBg = variant === "dark" ? "#1A1918" : "white";
+  const shimmer = variant === "dark" ? "rgba(255,255,255,0.03)" : "rgba(0,0,0,0.03)";
+  
+  return (
+    <div
+      className="w-[280px] sm:w-[320px] md:w-[375px] flex-shrink-0 rounded-2xl overflow-hidden animate-pulse"
+      style={{ background: cardBg, border: `1px solid ${variant === "dark" ? "rgba(184,147,90,0.12)" : "#EDE8DF"}` }}
+    >
+      <div style={{ aspectRatio: "4/5", background: bg }} />
+      <div className="p-5 md:p-6 space-y-3">
+        <div className="h-2 w-16 rounded-full" style={{ background: shimmer }} />
+        <div className="h-4 w-32 rounded-full" style={{ background: shimmer }} />
+        <div className="h-5 w-20 rounded-full" style={{ background: shimmer }} />
+      </div>
+    </div>
+  );
+}
 
 /* ─────────── Scroll helper ─────────── */
 function scrollTrack(ref: React.RefObject<HTMLDivElement | null>, dir: "left" | "right") {
   const el = ref.current;
   if (!el) return;
   const firstChild = el.firstElementChild as HTMLElement;
-  const amount = firstChild ? firstChild.offsetWidth + 16 : 391; // dynamic width + gap
+  const amount = firstChild ? firstChild.offsetWidth + 16 : 391;
   el.scrollBy({ left: dir === "left" ? -amount : amount, behavior: "smooth" });
+}
+
+/* ─────────── Trust Strip ─────────── */
+function TrustStrip() {
+  const items = [
+    { icon: <Truck size={18} />, text: "Free Shipping Above ₹5,000" },
+    { icon: <Shield size={18} />, text: "100% Genuine Products" },
+    { icon: <Package size={18} />, text: "Easy 7-Day Returns" },
+  ];
+
+  return (
+    <div className="max-w-7xl mx-auto px-6 mt-8 mb-4">
+      <div className="flex flex-wrap justify-center gap-6 md:gap-12">
+        {items.map((item) => (
+          <div key={item.text} className="flex items-center gap-2 text-[#9C9690]">
+            <span className="text-[#B8935A]">{item.icon}</span>
+            <span className="font-dm text-[11px] tracking-wider uppercase">{item.text}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 }
 
 /* ═══════════════════════════════════════════
@@ -263,32 +348,17 @@ export default function Home() {
   const dsignerRef = useRef<HTMLDivElement>(null);
   const escortRef = useRef<HTMLDivElement>(null);
 
-  const designerProducts: SimpleProduct[] = [
-    { id: "d1", name: "Classic Chrono", price: "₹2,499", image: "/images/29474d931b23fdfefff0d1ba9a3b6dfc.jpg", brand: "D'SIGNER", slug: "dsigner-901" },
-    { id: "d2", name: "Midnight Onyx", price: "₹3,200", image: "/images/47e37e63651dbce120cea792a46ca0d4.jpg", brand: "D'SIGNER", slug: "dsigner-915" },
-    { id: "d3", name: "Gold Standard", price: "₹4,999", image: "/images/67350e2417b468f72ecfcdaae5511a03.jpg", brand: "D'SIGNER", slug: "dsigner-925" },
-    { id: "d4", name: "Silver Elegance", price: "₹2,999", image: "/images/d2c54c36fcfb42a430df6da5c8cd5e01.jpg", brand: "D'SIGNER", slug: "dsigner-955" },
-    { id: "d5", name: "Rose Gold Limit", price: "₹4,499", image: "/images/d2307c58d34384ccea6aa02743ec9210.jpg", brand: "D'SIGNER", slug: "dsigner-960" },
-    { id: "d6", name: "Platinum Series", price: "₹3,800", image: "/images/f37bee070a190b1975d9e0916f6bc1f4.jpg", brand: "D'SIGNER", slug: "dsigner-942" },
-  ];
+  // Load products directly from static catalog — guaranteed to work
+  const allUnified = useMemo(() => allProducts.map(staticToUnified), []);
+  const bestSellers = useMemo(() => getBestSellers(allUnified), [allUnified]);
+  const designerProducts = useMemo(() => filterByBrand(allUnified, "D'SIGNER"), [allUnified]);
+  const escortProducts = useMemo(() => filterByBrand(allUnified, "ESCORT"), [allUnified]);
+  const isLoading = false;
 
-  const escortProducts: SimpleProduct[] = [
-    { id: "e1", name: "Escort Diver", price: "₹1,800", image: "/images/img1.png", brand: "ESCORT", slug: "escort-7806rtm" },
-    { id: "e2", name: "Escort Minimal", price: "₹1,200", image: "/images/img2.png", brand: "ESCORT", slug: "escort-7806" },
-    { id: "e3", name: "Escort Pilot", price: "₹2,200", image: "/images/img3.png", brand: "ESCORT", slug: "escort-a1589" },
-    { id: "e4", name: "Escort Classic", price: "₹999", image: "/images/img01.png", brand: "ESCORT", slug: "escort-e7751" },
-    { id: "e5", name: "Escort Sport", price: "₹1,499", image: "/images/img03.png", brand: "ESCORT", slug: "escort-e7908" },
-  ];
-
-  /* Best sellers = top 3 designer + top 3 escort */
-  const bestSellers: SimpleProduct[] = [
-    ...designerProducts.slice(0, 3).map((p) => ({ ...p, badge: "BEST SELLER" })),
-    ...escortProducts.slice(0, 3).map((p) => ({ ...p, badge: "BEST SELLER" })),
-  ];
+  const hasProducts = bestSellers.length > 0 || designerProducts.length > 0 || escortProducts.length > 0;
 
   return (
     <>
-      <style dangerouslySetInnerHTML={{ __html: scrollbarCSS }} />
       <CustomCursor />
       <SmoothScrolling>
         <main>
@@ -315,7 +385,44 @@ export default function Home() {
               <div className="w-12 h-0.5 bg-[#B8935A] mx-auto mt-4" />
             </div>
 
+            {/* Trust strip */}
+            <TrustStrip />
+
+            {/* Loading state */}
+            {isLoading && (
+              <div className="max-w-7xl mx-auto px-6 flex flex-col items-center gap-8">
+                <div className="flex items-center gap-3 text-[#B8935A]">
+                  <Loader2 size={20} className="animate-spin" />
+                  <span className="font-dm text-sm tracking-widest uppercase">Loading Collection...</span>
+                </div>
+                <div className="flex gap-4 overflow-hidden">
+                  <CardSkeleton />
+                  <CardSkeleton />
+                  <CardSkeleton />
+                </div>
+              </div>
+            )}
+
+            {/* Empty state — no products in database yet */}
+            {!isLoading && !hasProducts && (
+              <div className="max-w-lg mx-auto text-center px-6 py-16">
+                <div className="bg-white rounded-3xl border border-[#EDE8DF] p-12 shadow-sm">
+                  <p className="font-cormorant text-2xl text-[#1A1918] mb-3">Collection Coming Soon</p>
+                  <p className="font-dm text-sm text-[#9C9690] mb-6">
+                    Our curated timepieces are being prepared. Add products via the Admin Dashboard to see them here.
+                  </p>
+                  <Link
+                    href="/admin/products"
+                    className="inline-block bg-[#1A1918] text-white px-6 py-3 rounded-full font-dm text-xs tracking-widest uppercase hover:bg-[#B8935A] transition-colors"
+                  >
+                    Go to Dashboard
+                  </Link>
+                </div>
+              </div>
+            )}
+
             {/* ── COLLECTION 1: BEST SELLERS ── */}
+            {bestSellers.length > 0 && (
             <div className="mb-12">
               <div className="max-w-7xl mx-auto px-6 mb-6 flex flex-col md:flex-row justify-between items-start md:items-center">
                 <div>
@@ -327,14 +434,13 @@ export default function Home() {
                   </h3>
                   <div className="w-10 h-0.5 bg-[#B8935A] mt-1" />
                 </div>
-                <a
-                  href="#"
+                <Link
+                  href="/collections/dsigner"
                   className="font-dm text-[12px] text-[#B8935A] tracking-widest hover:underline underline-offset-2 mt-3 md:mt-0"
                 >
                   View All →
-                </a>
+                </Link>
               </div>
-              {/* Carousel container — relative for arrows */}
               <div className="relative max-w-7xl mx-auto px-6">
                 <CarouselArrow direction="left" onClick={() => scrollTrack(bestRef, "left")} />
                 <CarouselArrow direction="right" onClick={() => scrollTrack(bestRef, "right")} />
@@ -345,7 +451,7 @@ export default function Home() {
                     style={{ scrollSnapType: "x mandatory" }}
                   >
                     {bestSellers.map((p) => (
-                      <div key={p.id} style={{ scrollSnapAlign: "start" }}>
+                      <div key={p.slug} style={{ scrollSnapAlign: "start" }}>
                         <InlineProductCard product={p} variant="light" />
                       </div>
                     ))}
@@ -353,8 +459,10 @@ export default function Home() {
                 </div>
               </div>
             </div>
+            )}
 
             {/* ── COLLECTION 2: D'SIGNER (dark) ── */}
+            {designerProducts.length > 0 && (
             <div className="bg-[#111110] py-12 mb-12">
               <div className="max-w-7xl mx-auto px-6 mb-6 flex flex-col md:flex-row justify-between items-start md:items-center">
                 <div>
@@ -366,12 +474,12 @@ export default function Home() {
                   </h3>
                   <div className="w-10 h-0.5 bg-[#B8935A] mt-1" />
                 </div>
-                <a
-                  href="#"
+                <Link
+                  href="/collections/dsigner"
                   className="font-dm text-[12px] text-[#B8935A] tracking-widest hover:underline underline-offset-2 mt-3 md:mt-0"
                 >
                   View All →
-                </a>
+                </Link>
               </div>
               <div className="relative max-w-7xl mx-auto px-6">
                 <CarouselArrow direction="left" onClick={() => scrollTrack(dsignerRef, "left")} />
@@ -383,7 +491,7 @@ export default function Home() {
                     style={{ scrollSnapType: "x mandatory" }}
                   >
                     {designerProducts.map((p) => (
-                      <div key={p.id} style={{ scrollSnapAlign: "start" }}>
+                      <div key={p.slug} style={{ scrollSnapAlign: "start" }}>
                         <InlineProductCard product={p} variant="dark" />
                       </div>
                     ))}
@@ -391,8 +499,10 @@ export default function Home() {
                 </div>
               </div>
             </div>
+            )}
 
             {/* ── COLLECTION 3: ESCORT ── */}
+            {escortProducts.length > 0 && (
             <div className="bg-[#F2EDE6] py-12">
               <div className="max-w-7xl mx-auto px-6 mb-6 flex flex-col md:flex-row justify-between items-start md:items-center">
                 <div>
@@ -404,12 +514,12 @@ export default function Home() {
                   </h3>
                   <div className="w-10 h-0.5 bg-[#B8935A] mt-1" />
                 </div>
-                <a
-                  href="#"
+                <Link
+                  href="/collections/escort"
                   className="font-dm text-[12px] text-[#B8935A] tracking-widest hover:underline underline-offset-2 mt-3 md:mt-0"
                 >
                   View All →
-                </a>
+                </Link>
               </div>
               <div className="relative max-w-7xl mx-auto px-6">
                 <CarouselArrow direction="left" onClick={() => scrollTrack(escortRef, "left")} />
@@ -421,7 +531,7 @@ export default function Home() {
                     style={{ scrollSnapType: "x mandatory" }}
                   >
                     {escortProducts.map((p) => (
-                      <div key={p.id} style={{ scrollSnapAlign: "start" }}>
+                      <div key={p.slug} style={{ scrollSnapAlign: "start" }}>
                         <InlineProductCard product={p} variant="escort" />
                       </div>
                     ))}
@@ -429,11 +539,13 @@ export default function Home() {
                 </div>
               </div>
             </div>
+            )}
           </section>
 
           <LegacySection />
           <CraftSection />
           <FeatureScroller />
+          <BrandPillars />
           <StatsCounter />
           <OemCta />
           <TrustGrid />

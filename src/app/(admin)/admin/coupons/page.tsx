@@ -1,7 +1,7 @@
 import { prisma } from "@/lib/db"
 import { CouponsTable } from "./CouponsTable"
 import Link from "next/link"
-import { Plus } from "lucide-react"
+import { Plus, Ticket, TrendingUp, CheckCircle, XCircle } from "lucide-react"
 
 export default async function AdminCouponsPage() {
   const coupons = await prisma.coupon.findMany({
@@ -17,6 +17,10 @@ export default async function AdminCouponsPage() {
     status: c.isActive,
     expires: c.expiresAt ? c.expiresAt.toLocaleDateString() : "Never",
   }))
+
+  const totalUses = coupons.reduce((s, c) => s + c.usedCount, 0)
+  const activeCoupons = coupons.filter(c => c.isActive).length
+  const expiredCoupons = coupons.filter(c => c.expiresAt && c.expiresAt < new Date()).length
 
   return (
     <div className="space-y-6">
@@ -35,6 +39,46 @@ export default async function AdminCouponsPage() {
             <Plus className="-ml-0.5 mr-1.5 h-4 w-4" />
             Create Coupon
           </Link>
+        </div>
+      </div>
+
+      {/* Performance Summary */}
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+        <div className="bg-white dark:bg-zinc-900 border border-gray-100 dark:border-zinc-800 rounded-xl p-5 shadow-sm flex items-center gap-4">
+          <div className="p-3 bg-blue-50 dark:bg-blue-900/10 rounded-xl">
+            <Ticket className="w-5 h-5 text-blue-600" />
+          </div>
+          <div>
+            <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400">Total Coupons</p>
+            <p className="text-xl font-semibold text-gray-900 dark:text-white">{coupons.length}</p>
+          </div>
+        </div>
+        <div className="bg-white dark:bg-zinc-900 border border-gray-100 dark:border-zinc-800 rounded-xl p-5 shadow-sm flex items-center gap-4">
+          <div className="p-3 bg-green-50 dark:bg-green-900/10 rounded-xl">
+            <CheckCircle className="w-5 h-5 text-green-600" />
+          </div>
+          <div>
+            <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400">Active</p>
+            <p className="text-xl font-semibold text-green-600">{activeCoupons}</p>
+          </div>
+        </div>
+        <div className="bg-white dark:bg-zinc-900 border border-gray-100 dark:border-zinc-800 rounded-xl p-5 shadow-sm flex items-center gap-4">
+          <div className="p-3 bg-purple-50 dark:bg-purple-900/10 rounded-xl">
+            <TrendingUp className="w-5 h-5 text-purple-600" />
+          </div>
+          <div>
+            <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400">Total Uses</p>
+            <p className="text-xl font-semibold text-gray-900 dark:text-white">{totalUses}</p>
+          </div>
+        </div>
+        <div className="bg-white dark:bg-zinc-900 border border-gray-100 dark:border-zinc-800 rounded-xl p-5 shadow-sm flex items-center gap-4">
+          <div className="p-3 bg-red-50 dark:bg-red-900/10 rounded-xl">
+            <XCircle className="w-5 h-5 text-red-600" />
+          </div>
+          <div>
+            <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400">Expired</p>
+            <p className="text-xl font-semibold text-gray-900 dark:text-white">{expiredCoupons}</p>
+          </div>
         </div>
       </div>
       

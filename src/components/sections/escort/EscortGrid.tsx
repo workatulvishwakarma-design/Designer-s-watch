@@ -1,44 +1,75 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useEffect, useMemo } from "react";
 import FilterBar from "@/components/ui/FilterBar";
 import ProductCard from "@/components/ui/ProductCard";
 import GrainOverlay from "@/components/ui/GrainOverlay";
+import { getCollectionProducts } from "@/actions/public.actions";
+import type { UnifiedProduct } from "@/lib/products";
+import { sortProducts, type SortOption } from "@/lib/products";
+import { Loader2 } from "lucide-react";
 
 const categories = ["All", "Sport", "Classic", "Minimal"];
 
-export const escortProducts = [
-    { id: 1, name: "7779", price: 800, category: "Sport", brand: "ESCORT", badge: "Value Pick", image: "/images/watches/Escort/7779/E-2250-7779.GM.2L.png", tags: ["best-value", "sport"] },
-    { id: 2, name: "7806", price: 1200, category: "Minimal", brand: "ESCORT", badge: null, image: "/images/watches/Escort/7806/E-2200-7806.GM.5L.jpg", tags: ["everyday"] },
-    { id: 3, name: "A-1589", price: 2200, category: "Sport", brand: "ESCORT", badge: "Bestseller", image: "/images/watches/Escort/A-1589/A-1589.SM_Black.png", tags: ["best-selling", "sport"] },
-    { id: 4, name: "E-7751", price: 999, category: "Classic", brand: "ESCORT", badge: null, image: "/images/watches/Escort/E-7751/E-7751.BM_Black.png", tags: ["everyday"] },
-    { id: 5, name: "E-7908", price: 1499, category: "Sport", brand: "ESCORT", badge: "New", image: "/images/watches/Escort/E-7908/E-2200-7908.GM_White.png", tags: ["new-arrivals", "sport"] },
-    { id: 6, name: "E-7914", price: 1100, category: "Minimal", brand: "ESCORT", badge: null, image: "/images/watches/Escort/E-7914/E-7914.BM_Blue.png", tags: ["everyday", "best-value"] },
-    { id: 7, name: "7779 (RGM)", price: 1599, category: "Classic", brand: "ESCORT", badge: "New", image: "/images/watches/Escort/7779/E-2300-7779.RGM.16L.png", tags: ["new-arrivals", "everyday"] },
-    { id: 8, name: "7806 (RTM)", price: 1800, category: "Sport", brand: "ESCORT", badge: null, image: "/images/watches/Escort/7806/E-2200-7806.RTM.16L.jpg", tags: ["sport"] },
-];
-
 export default function EscortGrid() {
+    const [products, setProducts] = useState<UnifiedProduct[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
     const [activeCategory, setActiveCategory] = useState("All");
-    const [activeSort, setActiveSort] = useState("Featured");
+    const [activeSort, setActiveSort] = useState<SortOption>("Featured");
+    const [searchQuery, setSearchQuery] = useState("");
+
+    useEffect(() => {
+        async function load() {
+            try {
+                const data = await getCollectionProducts("ESCORT");
+                setProducts(data);
+            } catch (err) {
+                console.error("Failed to load ESCORT products:", err);
+            } finally {
+                setIsLoading(false);
+            }
+        }
+        load();
+    }, []);
 
     const filteredProducts = useMemo(() => {
-        let products = [...escortProducts];
+        let result = [...products];
 
+        // Search filter
+        if (searchQuery.trim()) {
+            const q = searchQuery.toLowerCase();
+            result = result.filter(p =>
+                p.name.toLowerCase().includes(q) ||
+                p.category.toLowerCase().includes(q) ||
+                p.brand.toLowerCase().includes(q)
+            );
+        }
+
+        // Category filter
         if (activeCategory !== "All") {
-            products = products.filter(p => p.category === activeCategory);
+            result = result.filter(p => p.category === activeCategory);
         }
 
-        if (activeSort === "Price: Low to High") {
-            products.sort((a, b) => a.price - b.price);
-        } else if (activeSort === "Price: High to Low") {
-            products.sort((a, b) => b.price - a.price);
-        } else if (activeSort === "Newest Arrivals") {
-            products.sort((a, b) => b.id - a.id);
-        }
+        // Sort
+        result = sortProducts(result, activeSort);
 
-        return products;
-    }, [activeCategory, activeSort]);
+        return result;
+    }, [products, activeCategory, activeSort, searchQuery]);
+
+    const handleSortChange = (sort: string) => {
+        setActiveSort(sort as SortOption);
+    };
+
+    if (isLoading) {
+        return (
+            <section className="bg-[#FAF8F4] py-24 relative overflow-hidden">
+                <div className="flex flex-col items-center justify-center gap-4">
+                    <Loader2 size={24} className="animate-spin text-[#B8935A]" />
+                    <span className="font-dm text-sm tracking-widest uppercase text-[#9C9690]">Loading Collection...</span>
+                </div>
+            </section>
+        );
+    }
 
     return (
         <section
@@ -59,19 +90,48 @@ export default function EscortGrid() {
                 categories={categories}
                 activeCategory={activeCategory}
                 onCategoryChange={setActiveCategory}
-                onSortChange={setActiveSort}
+                onSortChange={handleSortChange}
+                searchQuery={searchQuery}
+                onSearchChange={setSearchQuery}
             />
 
             <div className="max-w-7xl mx-auto px-6 mt-12">
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    {filteredProducts.map((product) => (
-                        <ProductCard
-                            key={product.id}
-                            product={product}
-                            variant="everyday"
-                        />
-                    ))}
-                </div>
+                {filteredProducts.length === 0 ? (
+                    <div className="text-center py-16">
+                        <p className="font-cormorant text-2xl text-[#1A1918] mb-3">No products found</p>
+                        <p className="font-dm text-sm text-[#9C9690]">Try adjusting your filters or search query.</p>
+                        <button
+                            onClick={() => { setActiveCategory("All"); setSearchQuery(""); }}
+                            className="mt-4 px-6 py-2 bg-[#1A1918] text-white rounded-full font-dm text-xs tracking-widest uppercase hover:bg-[#B8935A] transition-colors"
+                        >
+                            Clear Filters
+                        </button>
+                    </div>
+                ) : (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        {filteredProducts.map((product, i) => (
+                            <ProductCard
+                                key={product.slug}
+                                product={{
+                                    id: product.slug as any,
+                                    name: product.name,
+                                    price: product.price,
+                                    category: product.category,
+                                    badge: product.badge,
+                                    image: product.image,
+                                    brand: product.brand,
+                                    slug: product.slug,
+                                    mrp: product.comparePrice || undefined,
+                                    tags: product.tags,
+                                    stock: product.stock,
+                                    lowStockThreshold: product.lowStockThreshold,
+                                }}
+                                variant="everyday"
+                                index={i}
+                            />
+                        ))}
+                    </div>
+                )}
             </div>
         </section>
     );

@@ -1,26 +1,27 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Heart, ShoppingBag, Eye } from "lucide-react";
-import Image from "next/image";
+import { Heart, ShoppingBag, Eye, Flame } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import { useCartStore } from "@/lib/store/cart";
-import { generateSlug } from "@/data/productData";
 import { toast } from "sonner";
 
 interface ProductProps {
-    id: number;
+    id: number | string;
     name: string;
     price: number;
     category: string;
     badge?: string | null;
     image: string;
     brand: string;
+    slug?: string;
     rating?: number;
     mrp?: number;
     discount?: number;
     tags?: string[];
+    stock?: number;
+    lowStockThreshold?: number;
 }
 
 interface ProductCardProps {
@@ -30,8 +31,9 @@ interface ProductCardProps {
 }
 
 const getBadgeStyle = (badge?: string | null) => {
-    switch (badge) {
+    switch (badge?.toUpperCase()) {
         case "BEST SELLER":
+        case "BESTSELLER":
             return "bg-[#1A1918] text-white";
         case "NEW":
             return "bg-[#003926] text-white";
@@ -52,7 +54,15 @@ export default function ProductCard({ product, variant = "premium", index = 0 }:
     const [hoveredOverlay, setHoveredOverlay] = useState(false);
 
     const discountPercent = product.discount || (product.mrp ? Math.round(((product.mrp - product.price) / product.mrp) * 100) : 0);
-    const productSlug = generateSlug(product.brand, product.name);
+    
+    // Use product.slug directly if available, otherwise generate from brand+name
+    const productSlug = product.slug || `${product.brand}-${product.name}`
+        .toLowerCase()
+        .replace(/[']/g, "")
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/(^-|-$)/g, "");
+
+    const isLowStock = product.stock !== undefined && product.stock > 0 && product.stock <= (product.lowStockThreshold || 5);
 
     return (
         <Link href={`/product/${productSlug}`} className="block">
@@ -74,9 +84,16 @@ export default function ProductCard({ product, variant = "premium", index = 0 }:
                     </div>
                 )}
 
+                {/* Sale badge */}
+                {discountPercent > 0 && (
+                    <div className="absolute top-3 right-12 px-2 py-1 rounded-full text-[9px] font-dm bg-[#D4455A] text-white z-10">
+                        {discountPercent}% OFF
+                    </div>
+                )}
+
                 {/* Wishlist Button */}
                 <button
-                    onClick={() => setIsWishlisted(!isWishlisted)}
+                    onClick={(e) => { e.preventDefault(); setIsWishlisted(!isWishlisted); }}
                     className="absolute top-3 right-3 w-9 h-9 rounded-full bg-white/70 backdrop-blur-sm flex items-center justify-center transition-all duration-300 hover:bg-white z-10"
                 >
                     <Heart size={16} className={isWishlisted ? "fill-[#D4455A] text-[#D4455A]" : "text-[#1A1918]"} />
@@ -88,12 +105,12 @@ export default function ProductCard({ product, variant = "premium", index = 0 }:
                     whileHover={{ scale: 1.08 }}
                     transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                 >
-                    <Image
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
                         src={product.image}
                         alt={product.name}
-                        fill
-                        className="object-contain"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                        className="absolute inset-0 w-full h-full object-contain"
+                        onError={(e) => { (e.target as HTMLImageElement).src = '/images/main-img1.png'; }}
                     />
 
                     {/* Shimmer sweep */}
@@ -122,7 +139,7 @@ export default function ProductCard({ product, variant = "premium", index = 0 }:
                         onClick={(e) => { 
                             e.preventDefault(); 
                             addItem({
-                                productId: String(product.id),
+                                productId: productSlug,
                                 name: product.name,
                                 price: product.price,
                                 quantity: 1,
@@ -186,6 +203,14 @@ export default function ProductCard({ product, variant = "premium", index = 0 }:
                         </span>
                     )}
                 </div>
+
+                {/* Stock status */}
+                {isLowStock && (
+                    <div className="flex items-center gap-1.5 mt-2">
+                        <Flame size={12} className="text-[#D4455A]" />
+                        <span className="font-dm text-[11px] text-[#D4455A]">Only {product.stock} left</span>
+                    </div>
+                )}
             </div>
         </motion.div>
         </Link>
