@@ -48,8 +48,8 @@ export default function NagpalGroupPage() {
         <main>
           <NagpalBanner />
           <SectionDivider />
-          <NagpalTimeline />
-          <SectionDivider />
+          {/* <NagpalTimeline />
+          <SectionDivider /> */}
           <NagpalStats />
           <SectionDivider />
           <NagpalStrengths />

@@ -6,11 +6,12 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   ChevronRight, Shield, Droplets, Diamond, Watch, Star, ArrowLeft,
   MapPin, Truck, Package, ShieldCheck, CreditCard, Eye, Flame, Check,
-  Clock, RefreshCw, Award, Heart
+  Clock, RefreshCw, Award, Heart, ChevronDown, ChevronUp, Info, CheckCircle2, Settings2, Loader2
 } from "lucide-react";
 import SmoothScrolling from "@/components/SmoothScrolling";
 import { useCartStore } from "@/lib/store/cart";
 import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 /* ─── Spec icon helper ─── */
 const specIcons: Record<string, React.ReactNode> = {
@@ -83,7 +84,12 @@ function ProductHero({ product }: { product: any }) {
   const [selectedImage, setSelectedImage] = useState(0);
   const [selectedSize, setSelectedSize] = useState(0);
   const [quantity, setQuantity] = useState(1);
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
+  const [openAccordion, setOpenAccordion] = useState<string | null>("desc");
+  const [pincode, setPincode] = useState("");
+  const [pinStatus, setPinStatus] = useState<"idle" | "checking" | "success" | "error">("idle");
   const { addItem } = useCartStore();
+  const router = useRouter();
 
   const colors = product.colors || [];
   const images = product.images || ["/images/main-img1.png"];
@@ -97,9 +103,33 @@ function ProductHero({ product }: { product: any }) {
 
   // Simulated social proof
   const viewerCount = useMemo(() => Math.floor(Math.random() * 30) + 12, []);
+  const boughtRecentlyTimer = useMemo(() => Math.floor(Math.random() * 5) + 1, []);
+
+  // JSON-LD structured data for SEO
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": product.name,
+    "image": product.images || [],
+    "description": (product.description || "").replace(/<[^>]*>/g, ""),
+    "brand": {
+      "@type": "Brand",
+      "name": product.brand || "D'SIGNER"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": product.price,
+      "priceCurrency": "INR",
+      "availability": product.stock > 0 ? "https://schema.org/InStock" : "https://schema.org/OutOfStock"
+    }
+  };
 
   return (
     <section className="relative pt-36 lg:pt-40 pb-16 lg:pb-24">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[radial-gradient(circle,rgba(184,147,90,0.06)_0%,transparent_70%)] rounded-full pointer-events-none -translate-y-1/3 translate-x-1/4" />
 
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
@@ -142,18 +172,21 @@ function ProductHero({ product }: { product: any }) {
               )}
 
               {/* Social proof */}
-              <div className="flex items-center gap-2 mb-4">
-                <Eye size={14} className="text-[#B8935A]" />
-                <span className="font-dm text-[12px] text-[#9C9690]">
-                  {viewerCount} people viewing this right now
-                </span>
+              <div className="flex flex-col gap-2 mb-4">
+                  <div className="flex items-center gap-2">
+                    <Eye size={14} className="text-[#B8935A]" />
+                    <span className="font-dm text-[12px] text-[#9C9690]">
+                      {viewerCount} people viewing this right now
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Check size={14} className="text-[#B8935A]" />
+                    <span className="font-dm text-[12px] text-[#9C9690]">
+                      Bought {boughtRecentlyTimer} hours ago
+                    </span>
+                  </div>
               </div>
 
-              {/* Description */}
-              <div
-                className="font-dm text-[14px] md:text-[15px] text-[#6B6560] leading-relaxed mb-6 max-w-[400px]"
-                dangerouslySetInnerHTML={{ __html: product.description }}
-              />
 
               {/* Price */}
               <div className="flex items-baseline gap-3 mb-4">
@@ -237,33 +270,62 @@ function ProductHero({ product }: { product: any }) {
                   </button>
                 </div>
 
-                {/* Add to cart */}
-                <button
-                  disabled={!isInStock}
-                  onClick={() => {
-                    addItem({
-                      productId: product.slug,
-                      name: product.name,
-                      price: Number(product.price),
-                      quantity,
-                      image: images[0],
-                      slug: product.slug,
-                      variant: {
-                        color: colors[selectedColor]?.name,
-                        size: sizes[selectedSize],
-                      },
-                    });
-                    toast.success(`${product.name} added to cart`);
-                  }}
-                  className="flex-1 py-4 rounded-full font-dm text-[13px] tracking-[0.1em] transition-all duration-400 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
-                  style={{
-                    background: isInStock ? "#1A1918" : "#9C9690",
-                    color: "white",
-                  }}
-                >
-                  <Package size={16} />
-                  {isInStock ? "ADD TO CART" : "OUT OF STOCK"}
-                </button>
+                {/* Action Buttons */}
+                <div className="flex-1 flex gap-2">
+                  <button
+                    disabled={!isInStock}
+                    onClick={() => {
+                      addItem({
+                        productId: product.slug,
+                        name: product.name,
+                        price: Number(product.price),
+                        quantity,
+                        image: images[0],
+                        slug: product.slug,
+                        variant: {
+                          color: colors[selectedColor]?.name,
+                          size: sizes[selectedSize],
+                        },
+                      });
+                      toast.success(`${product.name} added to cart`);
+                    }}
+                    className="flex-1 py-4 rounded-full font-dm text-[13px] tracking-[0.1em] transition-all duration-400 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed border border-[#1A1918]"
+                    style={{
+                      background: "transparent",
+                      color: "#1A1918",
+                    }}
+                  >
+                    <Package size={16} />
+                    {isInStock ? "ADD TO CART" : "OUT OF STOCK"}
+                  </button>
+
+                  {isInStock && (
+                    <button
+                      onClick={() => {
+                        addItem({
+                          productId: product.slug,
+                          name: product.name,
+                          price: Number(product.price),
+                          quantity,
+                          image: images[0],
+                          slug: product.slug,
+                          variant: {
+                            color: colors[selectedColor]?.name,
+                            size: sizes[selectedSize],
+                          },
+                        });
+                        router.push("/checkout");
+                      }}
+                      className="flex-1 py-4 rounded-full font-dm text-[13px] tracking-[0.1em] transition-all duration-400 flex items-center justify-center gap-2 cursor-pointer"
+                      style={{
+                        background: "#1A1918",
+                        color: "white",
+                      }}
+                    >
+                      BUY NOW
+                    </button>
+                  )}
+                </div>
 
                 {/* Wishlist button */}
                 <button
@@ -273,19 +335,124 @@ function ProductHero({ product }: { product: any }) {
                 </button>
               </div>
 
-              {/* Quick trust badges */}
-              <div className="grid grid-cols-2 gap-2">
-                {[
-                  { icon: <Truck size={14} />, text: "Free Delivery" },
-                  { icon: <RefreshCw size={14} />, text: "7-Day Returns" },
-                  { icon: <ShieldCheck size={14} />, text: "100% Genuine" },
-                  { icon: <CreditCard size={14} />, text: "COD Available" },
-                ].map((item) => (
-                  <div key={item.text} className="flex items-center gap-2 bg-[#F7F4EF] rounded-lg px-3 py-2">
-                    <span className="text-[#B8935A]">{item.icon}</span>
-                    <span className="font-dm text-[10px] text-[#6B6560] tracking-wide">{item.text}</span>
-                  </div>
-                ))}
+              {/* Accordions */}
+              <div className="mt-8 pt-6 border-t border-[#EDE8DF] space-y-4">
+                {/* Description Accordion */}
+                <div className="border border-[#EDE8DF] rounded-xl overflow-hidden bg-white">
+                  <button 
+                    onClick={() => setOpenAccordion(openAccordion === 'desc' ? null : 'desc')}
+                    className="w-full flex items-center justify-between p-4 bg-[#FAF8F4] hover:bg-[#F0EBE2] transition-colors"
+                  >
+                    <span className="font-dm font-medium text-[13px] tracking-wide uppercase text-[#1A1918] flex items-center gap-2">
+                       <Info size={16}/> STORY
+                    </span>
+                    {openAccordion === 'desc' ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+                  </button>
+                  {openAccordion === 'desc' && (
+                    <div className="p-4 bg-white font-dm text-[14px] text-[#6B6560] leading-relaxed">
+                      <div dangerouslySetInnerHTML={{ __html: product.description }} />
+                    </div>
+                  )}
+                </div>
+
+                {/* Tech Specs Accordion */}
+                <div className="border border-[#EDE8DF] rounded-xl overflow-hidden bg-white">
+                  <button 
+                    onClick={() => setOpenAccordion(openAccordion === 'specs' ? null : 'specs')}
+                    className="w-full flex items-center justify-between p-4 bg-[#FAF8F4] hover:bg-[#F0EBE2] transition-colors"
+                  >
+                    <span className="font-dm font-medium text-[13px] tracking-wide uppercase text-[#1A1918] flex items-center gap-2">
+                       <Settings2 size={16}/> SPECIFICATIONS
+                    </span>
+                    {openAccordion === 'specs' ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+                  </button>
+                  {openAccordion === 'specs' && (
+                    <div className="p-4 bg-white grid grid-cols-2 gap-y-4 text-[13px] font-dm">
+                       <div>
+                         <span className="block text-[#9C9690] mb-1">Model</span>
+                         <span className="text-[#1A1918]">{product.modelNumber || "D'SIGNER"}</span>
+                       </div>
+                       <div>
+                         <span className="block text-[#9C9690] mb-1">Case Size</span>
+                         <span className="text-[#1A1918]">{product.specs?.dialSize || '42mm'}</span>
+                       </div>
+                       <div>
+                         <span className="block text-[#9C9690] mb-1">Movement</span>
+                         <span className="text-[#1A1918]">{product.specs?.movement || 'Quartz / Analog'}</span>
+                       </div>
+                       <div>
+                         <span className="block text-[#9C9690] mb-1">Glass</span>
+                         <span className="text-[#1A1918]">{product.specs?.glass || 'Sapphire Crystal'}</span>
+                       </div>
+                       <div>
+                         <span className="block text-[#9C9690] mb-1">Water Res.</span>
+                         <span className="text-[#1A1918]">{product.specs?.waterResistance || '5 ATM (50m)'}</span>
+                       </div>
+                       <div>
+                         <span className="block text-[#9C9690] mb-1">Warranty</span>
+                         <span className="text-[#1A1918]">1 Year International</span>
+                       </div>
+                    </div>
+                  )}
+                </div>
+
+                {/* Delivery Accordion */}
+                <div className="border border-[#EDE8DF] rounded-xl overflow-hidden bg-white">
+                  <button 
+                    onClick={() => setOpenAccordion(openAccordion === 'delivery' ? null : 'delivery')}
+                    className="w-full flex items-center justify-between p-4 bg-[#FAF8F4] hover:bg-[#F0EBE2] transition-colors"
+                  >
+                    <span className="font-dm font-medium text-[13px] tracking-wide uppercase text-[#1A1918] flex items-center gap-2">
+                       <Truck size={16}/> DELIVERY & RETURNS
+                    </span>
+                    {openAccordion === 'delivery' ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+                  </button>
+                  {openAccordion === 'delivery' && (
+                    <div className="p-4 bg-white space-y-4">
+                      
+                      <div className="flex bg-[#FAF8F4] rounded-lg overflow-hidden border border-[#EDE8DF] p-1">
+                         <input 
+                           type="text" 
+                           placeholder="Enter Pincode"
+                           value={pincode}
+                           onChange={(e) => {
+                             setPincode(e.target.value);
+                             setPinStatus("idle");
+                           }}
+                           className="flex-1 bg-transparent px-3 text-[13px] font-dm outline-none"
+                         />
+                         <button 
+                           onClick={() => {
+                             if(pincode.length < 5) return;
+                             setPinStatus("checking");
+                             setTimeout(() => setPinStatus("success"), 800);
+                           }}
+                           className="bg-[#1A1918] text-white px-4 py-2 rounded-md text-[11px] font-dm tracking-widest uppercase hover:bg-[#B8935A] transition-colors"
+                         >
+                           {pinStatus === "checking" ? <Loader2 size={14} className="animate-spin" /> : "Check"}
+                         </button>
+                      </div>
+                      
+                      {pinStatus === "success" && (
+                         <div className="flex gap-2 items-start text-[#003926] bg-[#003926]/5 p-3 rounded-lg border border-[#003926]/10">
+                            <CheckCircle2 size={16} className="shrink-0 mt-0.5" />
+                            <p className="text-[12px] font-dm leading-relaxed">
+                              Free delivery by <b>{new Date(Date.now() + 86400000 * 3).toLocaleDateString('en-US', {weekday: 'short', month: 'short', day: 'numeric'})}</b>. Cash on Delivery is available.
+                            </p>
+                         </div>
+                      )}
+
+                      <ul className="space-y-2 mt-4">
+                        <li className="flex gap-2 text-[13px] font-dm text-[#6B6560]">
+                           <Shield size={14} className="text-[#B8935A] mt-0.5 shrink-0" /> Fast dispatch within 24 hours.
+                        </li>
+                        <li className="flex gap-2 text-[13px] font-dm text-[#6B6560]">
+                           <RefreshCw size={14} className="text-[#B8935A] mt-0.5 shrink-0" /> 7-day hassle-free returns.
+                        </li>
+                      </ul>
+                    </div>
+                  )}
+                </div>
               </div>
             </motion.div>
           </div>
@@ -307,7 +474,8 @@ function ProductHero({ product }: { product: any }) {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 1.02 }}
                   transition={{ duration: 0.4, ease: "easeOut" }}
-                  className="absolute inset-0 flex items-center justify-center p-10 md:p-12"
+                  onClick={() => setIsLightboxOpen(true)}
+                  className="absolute inset-0 flex items-center justify-center p-10 md:p-12 cursor-zoom-in"
                 >
                   <div className="relative w-full h-full">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -319,6 +487,28 @@ function ProductHero({ product }: { product: any }) {
                     />
                   </div>
                 </motion.div>
+              </AnimatePresence>
+
+              {/* Lightbox Modal */}
+              <AnimatePresence>
+                {isLightboxOpen && (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    onClick={() => setIsLightboxOpen(false)}
+                    className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4 cursor-zoom-out"
+                  >
+                    <div className="relative w-full max-w-4xl max-h-[90vh] aspect-square lg:aspect-auto h-[80vh]">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={mainImage}
+                        alt={product.name}
+                        className="w-full h-full object-contain drop-shadow-[0_40px_80px_rgba(0,0,0,0.5)]"
+                      />
+                    </div>
+                  </motion.div>
+                )}
               </AnimatePresence>
 
               <div

@@ -94,8 +94,8 @@ export default function HeroBanner() {
                     transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
                     className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight text-[#1A1918] leading-[1.05]"
                 >
-                    Your Vision. <br />
-                    <span className="text-[#003926]">Our Watchmaking.</span>
+                    Built on Legacy. <br />
+                    <span className="text-[#003926]">Designed for Now.</span>
                 </motion.h1>
 
                 <motion.p
@@ -104,7 +104,7 @@ export default function HeroBanner() {
                     transition={{ duration: 1, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
                     className="text-sm md:text-lg lg:text-xl text-gray-500 max-w-xl leading-relaxed font-light"
                 >
-                    Premium timepieces crafted with international standards and four generations of horological expertise.
+                    Crafted with four generations of horological expertise. Designed for those who don't follow time — they set it.
                 </motion.p>
 
                 <motion.div
@@ -152,8 +152,8 @@ export default function HeroBanner() {
                         className="relative w-[200px] h-[200px] sm:w-[280px] sm:h-[280px] md:w-[380px] md:h-[380px] lg:w-[480px] lg:h-[480px] xl:w-[560px] xl:h-[560px]"
                     >
                         <Image
-                            src="/images/img01.png"
-                            alt="D'SIGNER Limited Edition"
+                            src="/images/new-img/model-1/748/748/748/748GM.16G.png"
+                            alt="D'SIGNER Signature"
                             fill
                             className="object-contain transition-transform duration-700 ease-out group-hover:scale-[1.05]"
                             priority

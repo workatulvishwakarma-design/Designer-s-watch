@@ -1,217 +1,705 @@
 "use client";
 
-import { motion } from "framer-motion";
-import Image from "next/image";
-import Link from "next/link";
-import { Globe, Settings, Building2, Wrench, Plane } from "lucide-react";
+import { useState, useRef, useEffect, useCallback } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { X } from "lucide-react";
 
-const divisions = [
+/* ─────────────────────────────────────────────────────
+   NAGPAL DIVISIONS — DATA
+   ───────────────────────────────────────────────────── */
+type Division = {
+  index: string;
+  eyebrow: string;
+  title: string;
+  headline: string;
+  body: string;
+  highlights: string[];
+  modalContent: string[];
+  image: string;
+  bg: string;
+  textColor: string;
+  accentColor: string;
+  imageContain?: boolean;
+};
+
+const NAGPAL_DIVISIONS: Division[] = [
   {
-    id: "01",
-    title: "International Brands",
-    titleGold: null,
-    titleRest: null,
-    desc: "Distribution and retail of international watch brands across India, combining global partnerships with local market expertise for both retail and digital channels.",
-    icon: Globe,
-    tags: ["Global Distribution", "Retail & Digital", "20+ Brands"],
-    image: "/images/nagpal1.png",
+    index: "01",
+    eyebrow: "COMPONENTS",
+    title: "Nagpals Bombay",
+    headline: "The beginning of our journey — Mumbai, 1976.",
+    body: "In an era defined by mechanical watchmaking, Nagpals Bombay established itself as India's definitive destination for watch components.",
+    highlights: ["Components & Parts", "Sole Distribution", "1976–2026"],
+    modalContent: [
+      "The beginning of our journey in Mumbai with the distribution of selected watch components. It was an era of mechanical watches, and parts related to them formed the focus of the business.",
+      "Since then, Nagpals Bombay has remained a one-stop solution for watch parts and components — from hands by leading makers like Pioneer Group (sole distribution across India), to crowns, straps, metal bands, and tools required by watch shops across the country.",
+      "Deeply connected with the smallest watch repair shops to the biggest brands and watch stores in India that need parts for service.",
+      "A name and goodwill running strong for 50 years now. 1976–2026."
+    ],
+    image: "/images/new-img/model-1/680/680png/680GL.9G.png",
+    bg: "#0D0D0C",
+    textColor: "#FAFAF8",
+    accentColor: "#B8935A",
+    imageContain: true,
   },
   {
-    id: "02",
-    title: "OEM / ODM Manufacturing",
-    titleGold: "OEM / ODM",
-    titleRest: "Manufacturing",
-    desc: "End-to-end private label manufacturing for brands and retailers, from design and prototyping to production and quality assurance, with over 500 labels delivered.",
-    icon: Settings,
-    tags: ["Private Label", "End-to-End", "500+ Labels"],
-    image: "/images/nagpal2.png",
-  },
-  {
-    id: "03",
-    title: "B2B / Institutional Supply",
-    titleGold: null,
-    titleRest: null,
-    desc: "Corporate and institutional supply of watches and related products, with reliable inventory and bulk order capabilities for businesses and organisations.",
-    icon: Building2,
-    tags: ["Corporate", "Bulk Orders", "Reliable Inventory"],
-    image: "/images/nagpal3.png",
-  },
-  {
-    id: "04",
-    title: "Parts – Nagpal Bombay",
-    titleGold: null,
-    titleRest: null,
-    desc: "Spare parts distribution and technical support for watches, serving authorised service centers and repair networks across the country with genuine components.",
-    icon: Wrench,
-    tags: ["Spare Parts", "Service Centers", "Technical Support"],
-    image: "/images/nagpal1.png",
-  },
-  {
-    id: "05",
+    index: "02",
+    eyebrow: "GLOBAL TRADE",
     title: "Exports",
-    titleGold: null,
-    titleRest: null,
-    desc: "Global supply capabilities delivering watches and components to international markets with dependable quality standards.",
-    icon: Plane,
-    tags: ["Global Markets", "Quality Assured", "International Delivery"],
-    image: "/images/nagpal2.png",
+    headline: "Geared up to explore brand distribution and OEM solutions worldwide.",
+    body: "With a wide range of models built over time in both ESCORT & D'SIGNER, we are fully poised to re-enter international points of sale.",
+    highlights: ["International Markets", "D'SIGNER & ESCORT", "OEM Solutions"],
+    modalContent: [
+      "After years of dedicated presence at international watch shows in Hong Kong and global markets, with collections placed across the UAE, UK, and Sri Lanka, we are ready for the next phase of global expansion.",
+      "With an extensive range of models developed under both D'SIGNER and ESCORT, we are fully poised to re-enter international points of sale.",
+      "As an Indian-origin brand offering distinctive designs at competitive price points, we stand ready to expand brand distribution and OEM watch solutions for retail and wholesale partners worldwide."
+    ],
+    image: "/images/new-img/model-1/748/748/748/748RGM.16G.png",
+    bg: "#FAF8F4",
+    textColor: "#1A1918",
+    accentColor: "#003926",
+    imageContain: true,
+  },
+  {
+    index: "03",
+    eyebrow: "DISTRIBUTION",
+    title: "Batteries",
+    headline: "The most trusted name in the watch industry by buyers across all levels.",
+    body: "Sole distributors across India since the 1980s for the world's most reputed watch button cell brands — Renata, Maxell, Seizaiken, and Sony.",
+    highlights: ["Sole Distribution", "Renata · Maxell · Sony", "Since 1980s"],
+    modalContent: [
+      "With sole distribution across India since the 1980s for some of the world's most reputed watch button cell brands — Renata (Switzerland), Maxell (Japan), Seizaiken (Japan), and Sony (Japan) — we remain deeply connected with the Indian market at every level.",
+      "In an industry crowded with imitation products and unreliable sellers, Nagpal Group has earned enduring trust as one of the most dependable names in the watch business.",
+      "We supply genuine button cells to independent retailers, authorised service centres, and major watch networks, ensuring the reliable performance of timepieces nationwide."
+    ],
+    image: "/images/new-img/model-2/840/840/840BFS.3G.png",
+    bg: "#111110",
+    textColor: "#FAFAF8",
+    accentColor: "#B8935A",
+    imageContain: true,
+  },
+  {
+    index: "04",
+    eyebrow: "RETAIL BOUTIQUE",
+    title: "Time Corridor",
+    headline: "Not just the product we create, but the aura we pass on.",
+    body: "A signature retail boutique conceived to showcase our home brands, D'SIGNER and ESCORT, in an immersive experience store.",
+    highlights: ["Retail Boutique", "D'SIGNER & ESCORT", "Experience Store"],
+    modalContent: [
+      "The latest chapter in the Designer World story. At Designer World, it is not only about the product we create — it is about the aura we pass on through every timepiece we design.",
+      "Time Corridor is our signature retail boutique, initiated to promote our home brands, D'SIGNER and ESCORT, through an immersive experience.",
+      "The store showcases our prime models, new launches, top sellers, and special editions in an atmosphere crafted to inspire with an appealing display and aura.",
+      "This boutique is a gesture to connect with watch enthusiasts and add enduring value to our happy watch buyers. First location: Agra."
+    ],
+    image: "/images/new-img/model-1/794/794/794SM.2L.png",
+    bg: "#F2EDE6",
+    textColor: "#1A1918",
+    accentColor: "#003926",
+    imageContain: true,
+  },
+  {
+    index: "05",
+    eyebrow: "GLOBAL SUPPLY",
+    title: "Exports (Components)",
+    headline: "Global supply capabilities delivering watches and components.",
+    body: "Delivering watches and components to international markets with dependable quality standards.",
+    highlights: ["Global Markets", "Quality Assured", "International Delivery"],
+    modalContent: [
+      "Global supply capabilities delivering watches and components to international markets with dependable quality standards.",
+      "We maintain compliance with international trade regulations, customs documentation protocols, and destination-market quality certifications.",
+      "Each export shipment undergoes enhanced quality inspection to ensure that products arriving at international destinations reflect the full standard of our manufacturing capability."
+    ],
+    image: "/images/new-img/model-1/810/810/810GM.2L.png",
+    bg: "#0D0D0C",
+    textColor: "#FAFAF8",
+    accentColor: "#B8935A",
+    imageContain: true,
   },
 ];
 
-export default function NagpalDivisions() {
+/* ─────────────────────────────────────────────────────
+   CUSTOM HOOK: INTERSECTION OBSERVER
+   ───────────────────────────────────────────────────── */
+function useScrollReveal(threshold = 0.15) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(el);
+        }
+      },
+      { threshold, rootMargin: "0px 0px -60px 0px" }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [threshold]);
+
+  return { ref, isVisible };
+}
+
+/* ─────────────────────────────────────────────────────
+   CSS KEYFRAMES (injected once)
+   ───────────────────────────────────────────────────── */
+const PILLAR_CSS = `
+@keyframes pillarFadeUp {
+  from { opacity: 0; transform: translateY(50px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes pillarImgReveal {
+  from { opacity: 0; transform: scale(1.08) translateY(20px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+@keyframes pillarLineGrow {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+@keyframes pillarHighlightPop {
+  from { opacity: 0; transform: translateY(12px) scale(0.95); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes modalTextReveal {
+  from { opacity: 0; transform: translateY(20px); filter: blur(4px); }
+  to   { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+@keyframes modalHeadingReveal {
+  0%   { opacity: 0; transform: translateY(30px); letter-spacing: 0.15em; }
+  60%  { opacity: 1; letter-spacing: 0.05em; }
+  100% { opacity: 1; transform: translateY(0); letter-spacing: 0em; }
+}
+@keyframes shimmerLine {
+  from { background-position: -200% 0; }
+  to   { background-position: 200% 0; }
+}
+
+.pillar-reveal { opacity: 0; }
+.pillar-reveal.visible { animation: pillarFadeUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+
+.pillar-img-wrap { opacity: 0; }
+.pillar-img-wrap.visible { animation: pillarImgReveal 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+
+.pillar-img-inner {
+  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+.pillar-img-wrap:hover .pillar-img-inner {
+  transform: scale(1.04) translateY(-4px);
+}
+
+.pillar-line { transform: scaleX(0); transform-origin: left; }
+.pillar-line.visible { animation: pillarLineGrow 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+
+.pillar-highlight { opacity: 0; }
+.pillar-highlight.visible { animation: pillarHighlightPop 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+
+.modal-heading { animation: modalHeadingReveal 1s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+.modal-text-reveal { opacity: 0; animation: modalTextReveal 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+
+.shimmer-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #B8935A, transparent);
+  background-size: 200% 100%;
+  animation: shimmerLine 3s ease infinite;
+}
+`;
+
+/* ─────────────────────────────────────────────────────
+   DIVISION BLOCK COMPONENT
+   ───────────────────────────────────────────────────── */
+function DivisionBlock({
+  division,
+  reversed,
+  onOpenModal,
+}: {
+  division: Division;
+  reversed: boolean;
+  onOpenModal: () => void;
+}) {
+  const { ref, isVisible } = useScrollReveal(0.12);
+  const isDark = division.bg === "#0D0D0C" || division.bg === "#111110";
+  const vis = isVisible ? "visible" : "";
+
   return (
-    <section
-      id="divisions"
-      className="relative py-14 md:py-20 lg:py-28 overflow-hidden"
-      style={{ backgroundColor: "#FAF8F4" }}
+    <div
+      ref={ref}
+      className="w-full relative overflow-hidden"
+      style={{ background: division.bg }}
     >
-      {/* Grain */}
-      <svg className="absolute inset-0 w-full h-full opacity-[0.03] pointer-events-none z-0" aria-hidden>
-        <filter id="nagpal-div-grain">
-          <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" />
-          <feColorMatrix type="saturate" values="0" />
-        </filter>
-        <rect width="100%" height="100%" filter="url(#nagpal-div-grain)" />
-      </svg>
-
-      {/* Decorative top curve / line */}
-      <div
-        className="absolute top-0 left-0 right-0 h-px pointer-events-none z-0"
-        style={{ background: "linear-gradient(90deg, transparent, rgba(184,147,90,0.2) 20%, rgba(184,147,90,0.2) 80%, transparent)" }}
-      />
-
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12">
-        <motion.header
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-14 md:mb-20"
+      <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-2 min-h-[80vh] lg:min-h-[85vh] relative z-[2]">
+        {/* IMAGE */}
+        <div
+          className={`flex items-center justify-center p-6 sm:p-8 lg:p-12 ${
+            reversed ? "lg:order-2" : "lg:order-1"
+          } order-1`}
         >
+          <div
+            className={`pillar-img-wrap ${vis} relative w-full overflow-hidden`}
+            style={{
+              borderRadius: "20%",
+              animationDelay: "0.1s",
+              boxShadow: isDark
+                ? "0 20px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(184,147,90,0.08)"
+                : "0 20px 60px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.04)",
+            }}
+          >
+            <div 
+              className="pillar-img-inner relative w-full" 
+              style={{ 
+                aspectRatio: "4/5", 
+                borderRadius: "20%",
+                background: division.imageContain 
+                  ? (isDark ? "linear-gradient(180deg, #1A1A18 0%, #0A0A09 100%)" : "linear-gradient(180deg, #FFFFFF 0%, #F5F2ED 100%)") 
+                  : "transparent"
+              }}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={division.image}
+                alt={division.title}
+                className={`absolute inset-0 w-full h-full ${division.imageContain ? "object-contain p-8 sm:p-12 lg:p-16" : "object-cover"}`}
+                style={{ objectPosition: division.imageContain ? "center" : "center 30%", borderRadius: "20%" }}
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = "/images/main-img1.png";
+                }}
+              />
+
+              {/* Subtle gradient overlay */}
+              <div
+                className="absolute inset-0"
+                style={{
+                  borderRadius: "20%",
+                  background: isDark
+                    ? "linear-gradient(180deg, transparent 40%, rgba(13,13,12,0.5) 100%)"
+                    : "linear-gradient(180deg, transparent 60%, rgba(0,0,0,0.06) 100%)",
+                }}
+              />
+
+              {/* Pillar index */}
+              <div className="absolute bottom-6 left-6 lg:bottom-10 lg:left-10 z-10">
+                <span
+                  className="font-cormorant italic text-[56px] lg:text-[80px] leading-none select-none"
+                  style={{
+                    color: "rgba(255,255,255,0.12)",
+                    textShadow: "0 2px 20px rgba(0,0,0,0.25)",
+                  }}
+                >
+                  {division.index}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* TEXT */}
+        <div
+          className={`flex flex-col justify-center px-8 py-14 sm:px-12 lg:px-20 lg:py-20 ${
+            reversed ? "lg:order-1" : "lg:order-2"
+          } order-2`}
+        >
+          {/* Eyebrow */}
+          <div
+            className={`pillar-reveal ${vis} flex items-center gap-3 mb-5`}
+            style={{ animationDelay: "0.15s" }}
+          >
+            <div
+              className={`pillar-line ${vis} h-px`}
+              style={{
+                background: division.accentColor,
+                width: 36,
+                animationDelay: "0.1s",
+              }}
+            />
+            <span
+              className="font-dm text-[10px] tracking-[0.3em] uppercase"
+              style={{ color: division.accentColor }}
+            >
+              {division.eyebrow}
+            </span>
+          </div>
+
+          {/* Title */}
+          <div
+            className={`pillar-reveal ${vis} mb-2`}
+            style={{ animationDelay: "0.25s" }}
+          >
+            <span
+              className="font-cormorant italic text-[13px] lg:text-[15px] block mb-1"
+              style={{ color: division.accentColor }}
+            >
+              Division {division.index}
+            </span>
+            <h3
+              className="font-cormorant text-[42px] sm:text-[50px] lg:text-[64px] leading-[0.95] font-light"
+              style={{
+                color: division.textColor,
+                textShadow: isDark ? "0 2px 16px rgba(0,0,0,0.4)" : "none",
+              }}
+            >
+              {division.title}
+              <span style={{ color: division.accentColor }}>.</span>
+            </h3>
+          </div>
+
+          {/* Divider */}
+          <div
+            className={`pillar-line ${vis} h-px my-7 lg:my-9`}
+            style={{
+              background: division.accentColor,
+              width: 44,
+              opacity: 0.45,
+              animationDelay: "0.4s",
+            }}
+          />
+
+          {/* Headline */}
           <p
-            className="font-body text-[11px] tracking-[0.3em] mb-4"
-            style={{ color: "#B8935A" }}
+            className={`pillar-reveal ${vis} font-cormorant italic text-[19px] sm:text-[21px] lg:text-[24px] leading-[1.4] mb-5 max-w-[480px]`}
+            style={{
+              color: division.textColor,
+              opacity: 0.8,
+              animationDelay: "0.45s",
+              textShadow: isDark ? "0 1px 8px rgba(0,0,0,0.3)" : "none",
+            }}
+          >
+            &ldquo;{division.headline}&rdquo;
+          </p>
+
+          {/* Body */}
+          <p
+            className={`pillar-reveal ${vis} font-dm text-[14px] sm:text-[15px] leading-[1.85] max-w-[460px] mb-8`}
+            style={{
+              color: division.textColor,
+              opacity: 0.6,
+              animationDelay: "0.55s",
+            }}
+          >
+            {division.body}
+          </p>
+
+          {/* Highlights */}
+          <div className="flex flex-wrap gap-2.5 mb-10">
+            {division.highlights.map((h, i) => (
+              <span
+                key={h}
+                className={`pillar-highlight ${vis} inline-flex items-center gap-1.5 px-4 py-2 rounded-full font-dm text-[11px] tracking-[0.05em]`}
+                style={{
+                  background: isDark ? "rgba(184,147,90,0.1)" : "rgba(0,57,38,0.06)",
+                  color: division.accentColor,
+                  border: `1px solid ${isDark ? "rgba(184,147,90,0.15)" : "rgba(0,57,38,0.12)"}`,
+                  animationDelay: `${0.6 + i * 0.1}s`,
+                }}
+              >
+                <span
+                  className="w-1 h-1 rounded-full"
+                  style={{ background: division.accentColor }}
+                />
+                {h}
+              </span>
+            ))}
+          </div>
+
+          {/* CTA */}
+          <div
+            className={`pillar-reveal ${vis}`}
+            style={{ animationDelay: "0.75s" }}
+          >
+            <button
+              onClick={onOpenModal}
+              className="group relative inline-flex items-center gap-3 font-dm text-[11px] tracking-[0.2em] uppercase cursor-pointer"
+              style={{ color: division.accentColor }}
+            >
+              <span className="relative">
+                Learn More
+                <span
+                  className="absolute -bottom-1 left-0 h-px w-0 group-hover:w-full transition-all duration-500 ease-out"
+                  style={{ background: division.accentColor }}
+                />
+              </span>
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 20 20"
+                fill="none"
+                className="group-hover:translate-x-1 transition-transform duration-500"
+              >
+                <path
+                  d="M4 10h12M12 6l4 4-4 4"
+                  stroke={division.accentColor}
+                  strokeWidth="1.2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────────────────
+   DETAIL MODAL — TEXT-ONLY, CINEMATIC REVEAL
+   ───────────────────────────────────────────────────── */
+function DivisionModal({
+  division,
+  onClose,
+}: {
+  division: Division | null;
+  onClose: () => void;
+}) {
+  useEffect(() => {
+    if (division) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [division]);
+
+  // Close on Escape key
+  const handleKeyDown = useCallback(
+    (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    },
+    [onClose]
+  );
+
+  useEffect(() => {
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [handleKeyDown]);
+
+  return (
+    <AnimatePresence>
+      {division && (
+        <>
+          {/* Backdrop */}
+          <motion.div
+            className="fixed inset-0 z-[200]"
+            style={{ background: "rgba(10,10,9,0.7)", backdropFilter: "blur(8px)", WebkitBackdropFilter: "blur(8px)" }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4 }}
+            onClick={onClose}
+          />
+
+          {/* Modal */}
+          <motion.div
+            className="fixed inset-0 z-[210] flex items-center justify-center p-4 sm:p-8"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <motion.div
+              className="relative w-full max-w-2xl max-h-[88vh] rounded-2xl overflow-hidden"
+              style={{
+                background: "#FAFAF8",
+                boxShadow: "0 40px 100px rgba(0,0,0,0.35), 0 0 0 1px rgba(184,147,90,0.08)",
+              }}
+              initial={{ scale: 0.93, y: 30 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.93, y: 30 }}
+              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Modal Header — text only, no image */}
+              <div
+                className="relative px-8 sm:px-10 pt-10 pb-8"
+                style={{
+                  background: "linear-gradient(180deg, #F2EDE6 0%, #FAFAF8 100%)",
+                }}
+              >
+                {/* Close button */}
+                <button
+                  onClick={onClose}
+                  className="absolute top-5 right-5 w-9 h-9 rounded-full flex items-center justify-center hover:bg-black/5 transition-colors cursor-pointer z-10"
+                  style={{ border: "1px solid rgba(0,0,0,0.08)" }}
+                >
+                  <X size={16} className="text-[#1A1918]" />
+                </button>
+
+                {/* Eyebrow */}
+                <div
+                  className="modal-text-reveal flex items-center gap-3 mb-5"
+                  style={{ animationDelay: "0.2s" }}
+                >
+                  <div className="w-8 h-px bg-[#B8935A]" />
+                  <span className="font-dm text-[9px] tracking-[0.35em] uppercase text-[#B8935A]">
+                    {division.eyebrow} — DIVISION {division.index}
+                  </span>
+                </div>
+
+                {/* Title with text shadow depth */}
+                <h3
+                  className="modal-heading font-cormorant text-[36px] sm:text-[48px] text-[#1A1918] font-light leading-[1.0] mb-4"
+                  style={{
+                    textShadow: "0 2px 12px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.04)",
+                  }}
+                >
+                  {division.title}
+                  <span className="text-[#B8935A]">.</span>
+                </h3>
+
+                {/* Shimmer divider */}
+                <div className="shimmer-divider w-16 mt-2" />
+              </div>
+
+              {/* Modal Body */}
+              <div className="overflow-y-auto max-h-[calc(88vh-220px)] px-8 sm:px-10 pb-10">
+                {/* Headline quote */}
+                <p
+                  className="modal-text-reveal font-cormorant italic text-[19px] sm:text-[22px] text-[#1A1918] leading-[1.5] mb-8 border-l-2 border-[#B8935A] pl-6"
+                  style={{
+                    animationDelay: "0.4s",
+                    textShadow: "0 1px 6px rgba(0,0,0,0.04)",
+                  }}
+                >
+                  &ldquo;{division.headline}&rdquo;
+                </p>
+
+                {/* Body paragraphs with staggered reveal */}
+                <div className="space-y-5">
+                  {division.modalContent.map((paragraph, i) => (
+                    <p
+                      key={i}
+                      className="modal-text-reveal font-dm text-[14px] sm:text-[15px] text-[#5C5752] leading-[2.0]"
+                      style={{ animationDelay: `${0.5 + i * 0.15}s` }}
+                    >
+                      {paragraph}
+                    </p>
+                  ))}
+                </div>
+
+                {/* Highlights chips */}
+                <div
+                  className="modal-text-reveal flex flex-wrap gap-2 mt-8 mb-6"
+                  style={{ animationDelay: `${0.5 + division.modalContent.length * 0.15}s` }}
+                >
+                  {division.highlights.map((h) => (
+                    <span
+                      key={h}
+                      className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full font-dm text-[11px] tracking-[0.04em] text-[#003926] bg-[rgba(0,57,38,0.05)] border border-[rgba(0,57,38,0.1)]"
+                    >
+                      <span className="w-1 h-1 rounded-full bg-[#003926]" />
+                      {h}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Footer */}
+                <div
+                  className="modal-text-reveal mt-8 pt-6 border-t border-[#EDE8DF] flex items-center justify-between"
+                  style={{ animationDelay: `${0.7 + division.modalContent.length * 0.15}s` }}
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="w-6 h-px bg-[#B8935A]" />
+                    <span className="font-dm text-[9px] tracking-[0.2em] uppercase text-[#9C9690]">
+                      Designer World — Nagpal Group Since 1940s
+                    </span>
+                  </div>
+                  <button
+                    onClick={onClose}
+                    className="font-dm text-[10px] tracking-[0.15em] uppercase text-[#B8935A] hover:text-[#1A1918] transition-colors cursor-pointer"
+                  >
+                    Close
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        </>
+      )}
+    </AnimatePresence>
+  );
+}
+
+/* ─────────────────────────────────────────────────────
+   MAIN SECTION EXPORT
+   ───────────────────────────────────────────────────── */
+export default function NagpalDivisions() {
+  const [activeDivision, setActiveDivision] = useState<Division | null>(null);
+  const { ref: introRef, isVisible: introVisible } = useScrollReveal(0.25);
+
+  return (
+    <>
+      <style dangerouslySetInnerHTML={{ __html: PILLAR_CSS }} />
+
+      <section id="divisions" className="w-full relative z-10">
+        {/* ── SECTION INTRO ── */}
+        <div
+          ref={introRef}
+          className="bg-[#FAF8F4] py-20 lg:py-28 text-center px-6 relative overflow-hidden"
+        >
+          {/* Decorative background */}
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
+            <span
+              className="font-cormorant italic text-[180px] lg:text-[260px] leading-none"
+              style={{ color: "rgba(184,147,90,0.035)" }}
+            >
+              V
+            </span>
+          </div>
+
+          <p
+            className={`pillar-reveal ${introVisible ? "visible" : ""} font-dm text-[10px] tracking-[0.4em] uppercase text-[#B8935A] mb-4 relative z-10`}
+            style={{ animationDelay: "0s" }}
           >
             VERTICALS
           </p>
+
           <h2
-            className="font-heading text-[42px] md:text-[56px] lg:text-[64px] font-light"
-            style={{ color: "#1A1918" }}
+            className={`pillar-reveal ${introVisible ? "visible" : ""} font-cormorant text-[38px] sm:text-[48px] lg:text-[60px] text-[#1A1918] leading-[1.08] max-w-3xl mx-auto relative z-10`}
+            style={{
+              animationDelay: "0.15s",
+              textShadow: "0 2px 12px rgba(0,0,0,0.04)",
+            }}
           >
-            Our Core Divisions
+            Our Core{" "}
+            <span className="italic font-light">Divisions</span>
+            <span className="text-[#B8935A]">.</span>
           </h2>
+
           <div
-            className="w-14 h-0.5 mx-auto mt-4 rounded-full"
-            style={{ backgroundColor: "#B8935A" }}
+            className={`pillar-line ${introVisible ? "visible" : ""} w-14 h-px bg-[#B8935A] mx-auto mt-7`}
+            style={{ animationDelay: "0.35s" }}
           />
+
           <p
-            className="font-body font-light text-[15px] md:text-[17px] max-w-[560px] mx-auto mt-5 leading-relaxed"
-            style={{ color: "#6B6560" }}
+            className={`pillar-reveal ${introVisible ? "visible" : ""} font-dm text-[14px] sm:text-[15px] text-[#9C9690] mt-5 max-w-lg mx-auto leading-[1.8] relative z-10`}
+            style={{ animationDelay: "0.45s" }}
           >
             Specialised business verticals that operate across manufacturing, distribution,
             components, and global supply.
           </p>
-        </motion.header>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {divisions.map((div, index) => (
-            <motion.article
-              key={div.id}
-              initial={{ opacity: 0, y: 36 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.15 }}
-              transition={{ duration: 0.6, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
-              whileHover={{ y: -8, transition: { duration: 0.3 } }}
-              className="group flex flex-col h-full rounded-3xl overflow-hidden bg-white border shadow-sm hover:shadow-xl transition-all duration-400"
-              style={{
-                borderColor: "rgba(224, 216, 206, 0.8)",
-                boxShadow: "0 4px 24px rgba(0,0,0,0.06)",
-              }}
-            >
-              {/* Image block - full width, prominent */}
-              <div className="relative w-full aspect-[4/3] overflow-hidden bg-[#F2EDE6]">
-                <div
-                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-10"
-                  style={{
-                    background: "linear-gradient(180deg, transparent 40%, rgba(13,51,41,0.08) 100%)",
-                  }}
-                />
-                {div.image ? (
-                  <Image
-                    src={div.image}
-                    alt={div.title}
-                    fill
-                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  />
-                ) : null}
-                {/* Number badge on image */}
-                <div
-                  className="absolute top-4 left-4 w-10 h-10 rounded-xl flex items-center justify-center font-display text-[14px] tracking-wider backdrop-blur-sm"
-                  style={{ backgroundColor: "rgba(255,255,255,0.9)", color: "#B8935A" }}
-                >
-                  {div.id}
-                </div>
-                {/* Gold accent line on hover */}
-                <div
-                  className="absolute bottom-0 left-0 right-0 h-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  style={{ background: "linear-gradient(90deg, transparent, #B8935A, transparent)" }}
-                />
-              </div>
-
-              {/* Content block */}
-              <div className="flex flex-col flex-1 p-6 md:p-8">
-                <h3 className="font-heading text-[26px] md:text-[30px] mb-3 leading-tight" style={{ color: "#1A1918" }}>
-                  {div.titleGold ? (
-                    <>
-                      <span style={{ color: "#B8935A" }}>{div.titleGold}</span>{" "}
-                      <span style={{ color: "#1A1918" }}>{div.titleRest}</span>
-                    </>
-                  ) : (
-                    div.title
-                  )}
-                </h3>
-                <div
-                  className="w-8 h-0.5 rounded-full mb-5"
-                  style={{ backgroundColor: "#B8935A" }}
-                />
-                <p
-                  className="font-body font-light text-[14px] md:text-[15px] leading-[1.85] flex-1"
-                  style={{ color: "#6B6560" }}
-                >
-                  {div.desc}
-                </p>
-                <div className="flex flex-wrap gap-2 mt-5">
-                  {div.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="inline-block font-body text-[11px] md:text-[12px] px-3 py-1.5 rounded-full border bg-[#FAF8F4] transition-colors duration-300 group-hover:border-[#B8935A]/50"
-                      style={{ borderColor: "#E0D8CE", color: "#6B6560" }}
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-                <Link
-                  href="#partner"
-                  className="inline-flex items-center gap-2 font-body text-[13px] tracking-[0.1em] mt-6 text-[#B8935A] hover:text-[#0D3329] transition-colors duration-300 w-fit"
-                >
-                  Learn More
-                  <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
-                </Link>
-              </div>
-            </motion.article>
-          ))}
         </div>
 
-        {/* Bottom decorative line */}
-        <motion.div
-          initial={{ scaleX: 0 }}
-          whileInView={{ scaleX: 1 }}
-          viewport={{ once: true }}
-          className="h-px mt-16 md:mt-20 origin-center"
-          style={{ background: "linear-gradient(90deg, transparent, rgba(184,147,90,0.25), transparent)" }}
-        />
-      </div>
-    </section>
+        {/* ── 5 DIVISION BLOCKS ── */}
+        {NAGPAL_DIVISIONS.map((div, idx) => (
+          <DivisionBlock
+            key={div.index}
+            division={div}
+            reversed={idx % 2 !== 0}
+            onOpenModal={() => setActiveDivision(div)}
+          />
+        ))}
+      </section>
+
+      {/* ── MODAL ── */}
+      <DivisionModal
+        division={activeDivision}
+        onClose={() => setActiveDivision(null)}
+      />
+    </>
   );
 }

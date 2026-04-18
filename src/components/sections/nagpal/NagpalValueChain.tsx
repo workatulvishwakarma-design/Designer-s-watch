@@ -95,10 +95,10 @@ export default function NagpalValueChain() {
               className="relative w-[90%] h-[90%] z-10 lg:w-[100%] lg:-ml-4 drop-shadow-[0_20px_25px_rgba(0,0,0,0.15)] mix-blend-multiply"
             >
               <Image
-                src="/images/threeimg3-nobg.png" // Used the processed transparent version
+                src="/images/new-img/model-2/850/850/850/850RGFS.12L.png"
                 alt="Nagpal Group Eco-System Watch"
                 fill
-                className="object-contain" // Replaced standard nagpal2.png image with the premium cutout requested
+                className="object-contain drop-shadow-2xl p-4 lg:p-6"
                 sizes="(max-width: 768px) 100vw, 400px"
               />
             </motion.div>

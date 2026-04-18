@@ -99,7 +99,7 @@ export default function AboutHero() {
                                     transition={{ duration: 1, delay: 0.2 }}
                                     className="text-7xl md:text-9xl font-heading font-light italic text-[#1A1918]"
                                 >
-                                    35 Years
+                                    Earning Trust
                                 </motion.span>
                                 <motion.span
                                     initial={{ opacity: 0, x: 30 }}
@@ -107,7 +107,7 @@ export default function AboutHero() {
                                     transition={{ duration: 1, delay: 0.4 }}
                                     className="text-4xl md:text-6xl font-heading font-semibold text-[#003926] tracking-tight"
                                 >
-                                    of Unrivaled Legacy.
+                                    One Watch at a Time.
                                 </motion.span>
                             </h1>
 
@@ -124,7 +124,7 @@ export default function AboutHero() {
                                 transition={{ duration: 1, delay: 0.8 }}
                                 className="text-3xl md:text-5xl lg:text-6xl font-heading font-light leading-[1.1] text-[#1A1918]/70"
                             >
-                                Still Defining <span className="italic">Every Second.</span>
+                                Built on Legacy. <span className="italic">Designed for Now.</span>
                             </motion.h2>
 
                             <motion.p
@@ -133,7 +133,7 @@ export default function AboutHero() {
                                 transition={{ duration: 1, delay: 1 }}
                                 className="text-lg text-secondaryText font-body font-light max-w-lg leading-relaxed pt-4"
                             >
-                                Experience the four generations of horological expertise that bridge traditional craftsmanship with modern luxury.
+                                Experience four generations of horological expertise. We bridge traditional craftsmanship with modern luxury for the modern Indian collector.
                             </motion.p>
                         </motion.div>
                     </div>

@@ -27,10 +27,24 @@ export async function generateMetadata(): Promise<Metadata> {
     where: { id: "singleton" }
   }).catch(() => null);
 
-  return {
-    title: settings?.defaultSeoTitle || "Designer World | Four Generations of Horological Expertise",
-    description: settings?.defaultSeoDescription || "A four-generation integrated watch enterprise offering OEM manufacturing and premium D2C timepieces.",
-  }
+    return {
+        title: settings?.defaultSeoTitle || "Designer World | Four Generations of Horological Expertise",
+        description: settings?.defaultSeoDescription || "A four-generation integrated watch enterprise offering OEM manufacturing and premium D2C timepieces.",
+        openGraph: {
+            title: settings?.defaultSeoTitle || "Designer World | Horological Excellence",
+            description: settings?.defaultSeoDescription || "Premier watch manufacturing and retail legacy.",
+            type: "website",
+            locale: "en_IN",
+            siteName: "Designer World",
+        },
+        twitter: {
+            card: "summary_large_image",
+            title: settings?.defaultSeoTitle || "Designer World",
+            description: settings?.defaultSeoDescription || "Four Generations of Watchmaking.",
+        },
+        viewport: "width=device-width, initial-scale=1",
+        robots: "index, follow",
+    }
 }
 
 export default async function RootLayout({

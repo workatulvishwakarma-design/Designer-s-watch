@@ -4,17 +4,17 @@ import { useRef, useState, useEffect, useMemo } from "react";
 import SmoothScrolling from '@/components/SmoothScrolling';
 import CustomCursor from '@/components/ui/CustomCursor';
 import HeroBanner from '@/components/sections/HeroBanner';
-import LegacySection from '@/components/sections/LegacySection';
-import FeatureScroller from '@/components/sections/FeatureScroller';
+
+
 import HomeBrands from '@/components/sections/HomeBrands';
-import WatchDetails from '@/components/sections/WatchDetails';
+import CraftSection from '@/components/sections/CraftSection';
 import StatsCounter from '@/components/sections/StatsCounter';
 import OemCta from '@/components/sections/OemCta';
 import TrustGrid from '@/components/sections/TrustGrid';
 import FeatureStrip from '@/components/sections/FeatureStrip';
-import CraftSection from '@/components/sections/CraftSection';
 import FAQSection from '@/components/sections/FAQSection';
 import BrandPillars from '@/components/sections/BrandPillars';
+import WatchDetails from '@/components/sections/WatchDetails';
 import Link from 'next/link';
 import { ChevronLeft, ChevronRight, Loader2, ShoppingBag, Eye, Flame, Package, Shield, Truck } from 'lucide-react';
 import { useCartStore } from '@/lib/store/cart';
@@ -365,6 +365,7 @@ export default function Home() {
           <HeroBanner />
           <HomeBrands />
           <WatchDetails />
+          <CraftSection />
 
           {/* ===== PRODUCTS SECTION ===== */}
           <section className="bg-[#FAF8F4] py-16">
@@ -542,9 +543,8 @@ export default function Home() {
             )}
           </section>
 
-          <LegacySection />
-          <CraftSection />
-          <FeatureScroller />
+
+
           <BrandPillars />
           <StatsCounter />
           <OemCta />

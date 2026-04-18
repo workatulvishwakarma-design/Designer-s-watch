@@ -1,7 +1,6 @@
 "use client";
 
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "framer-motion";
-import Image from "next/image";
 import { useRef, useState } from "react";
 
 const stages = [
@@ -108,17 +107,19 @@ export default function WatchDetails() {
               </AnimatePresence>
             </div>
 
-            {/* Center Column - Main Image */}
+            {/* Center Column - Main Video */}
             <div className="w-full lg:w-1/3 flex justify-center items-center order-1 lg:order-2 relative shrink-0 z-10 flex-[0.8] lg:flex-1 py-2 lg:py-0 min-h-0">
               <div 
-                className="relative w-full max-w-[240px] sm:max-w-[280px] lg:max-w-[420px] aspect-[4/5] mix-blend-multiply"
+                className="relative w-full max-w-[240px] sm:max-w-[280px] lg:max-w-[420px] aspect-[4/5]"
               >
-                <Image
-                  src="/images/image-strap.png"
-                  alt="Watch Exploded View"
-                  fill
-                  className="object-contain"
-                  priority
+                <video
+                  src="/images/new-img/vid-1.mp4"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  poster="/images/image-strap.png"
+                  className="absolute inset-0 w-full h-full object-contain mix-blend-multiply"
                 />
               </div>
             </div>

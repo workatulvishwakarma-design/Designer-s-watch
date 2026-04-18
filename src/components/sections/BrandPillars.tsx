@@ -19,80 +19,83 @@ type Division = {
   bg: string;
   textColor: string;
   accentColor: string;
+  imageContain?: boolean;
 };
 
 const DIVISIONS: Division[] = [
   {
     index: "01",
-    eyebrow: "GLOBAL REACH",
-    title: "International Brands",
-    headline: "Bridging the world's finest watchmakers with India's discerning collectors.",
-    body: "Distribution and retail of international watch brands across India, combining global partnerships with local market expertise for both retail and digital channels.",
-    highlights: ["Global Distribution", "Retail & Digital", "20+ Brands"],
+    eyebrow: "COMPONENTS",
+    title: "Nagpals Bombay",
+    headline: "The beginning of our journey — Mumbai, 1976.",
+    body: "In an era defined by mechanical watchmaking, Nagpals Bombay established itself as India's definitive destination for watch components.",
+    highlights: ["Components & Parts", "Sole Distribution", "1976–2026"],
     modalContent: [
-      "Designer World's International Brands division serves as the critical bridge between the world's most respected watchmakers and India's rapidly evolving luxury market. With strategic partnerships spanning over twenty global brands, we bring world-class horological craftsmanship to Indian wrists through an omnichannel approach.",
-      "Our retail footprint extends across major metropolitan centres, supported by a robust digital commerce platform that ensures accessibility beyond geographical boundaries. Each partnership is built on mutual respect — we don't merely distribute; we curate, contextualise, and champion each brand's identity within the Indian market.",
-      "From Swiss precision to Japanese innovation, from heritage houses to contemporary disruptors, our portfolio reflects the full spectrum of international watchmaking. Every brand in our stable has been vetted not just for quality, but for its ability to resonate with the values and aspirations of the Indian consumer.",
-      "The result is a distribution network that thinks globally but operates locally — understanding regional preferences, seasonal demand patterns, and the cultural significance that timepieces hold in different parts of the country."
+      "The beginning of our journey in Mumbai with the distribution of selected watch components. It was an era of mechanical watches, and parts related to them formed the focus of the business.",
+      "Since then, Nagpals Bombay has remained a one-stop solution for watch parts and components — from hands by leading makers like Pioneer Group (sole distribution across India), to crowns, straps, metal bands, and tools required by watch shops across the country.",
+      "Deeply connected with the smallest watch repair shops to the biggest brands and watch stores in India that need parts for service.",
+      "A name and goodwill running strong for 50 years now. 1976–2026."
     ],
-    image: "/images/nagpal1.png",
+    image: "/images/new-img/model-1/680/680png/680GL.9G.png",
     bg: "#0D0D0C",
     textColor: "#FAFAF8",
     accentColor: "#B8935A",
+    imageContain: true,
   },
   {
     index: "02",
-    eyebrow: "MANUFACTURING",
-    title: "OEM / ODM Manufacturing",
-    headline: "From concept to wrist — engineering private label excellence at scale.",
-    body: "End-to-end private label manufacturing for brands and retailers, from design and prototyping to production and quality assurance, with over 500 labels delivered.",
-    highlights: ["Private Label", "End-to-End", "500+ Labels"],
+    eyebrow: "GLOBAL TRADE",
+    title: "Exports",
+    headline: "Geared up to explore brand distribution and OEM solutions worldwide.",
+    body: "With a wide range of models built over time in both ESCORT & D'SIGNER, we are fully poised to re-enter international points of sale.",
+    highlights: ["International Markets", "D'SIGNER & ESCORT", "OEM Solutions"],
     modalContent: [
-      "Our OEM/ODM manufacturing division represents the industrial backbone of the Nagpal Group's horological ecosystem. With decades of accumulated expertise, we transform a client's vision into a tangible, market-ready timepiece — handling every stage from initial concept sketches through to final quality certification.",
-      "The journey begins in our design studio, where clients collaborate directly with our technical team to define specifications, materials, and aesthetic direction. Advanced CAD modelling and rapid prototyping allow iterative refinement before any production commitment, ensuring the final product precisely matches the client's vision.",
-      "Our production facilities maintain rigorous quality control protocols at every station. Each component — case, dial, movement, strap, clasp — undergoes individual inspection before assembly. Post-assembly, every watch completes a comprehensive testing cycle including water resistance, timekeeping accuracy, and wearability assessment.",
-      "With over five hundred private labels successfully delivered to Indian and international brands, our manufacturing division has earned a reputation for reliability, flexibility, and the ability to execute at scale without compromising the attention to detail that smaller runs demand."
+      "After years of dedicated presence at international watch shows in Hong Kong and global markets, with collections placed across the UAE, UK, and Sri Lanka, we are ready for the next phase of global expansion.",
+      "With an extensive range of models developed under both D'SIGNER and ESCORT, we are fully poised to re-enter international points of sale.",
+      "As an Indian-origin brand offering distinctive designs at competitive price points, we stand ready to expand brand distribution and OEM watch solutions for retail and wholesale partners worldwide."
     ],
-    image: "/images/hover-1.png",
+    image: "/images/new-img/model-1/748/748/748/748RGM.16G.png",
     bg: "#FAF8F4",
     textColor: "#1A1918",
     accentColor: "#003926",
+    imageContain: true,
   },
   {
     index: "03",
-    eyebrow: "ENTERPRISE",
-    title: "B2B / Institutional Supply",
-    headline: "Dependable partnerships powering corporate and institutional timekeeping.",
-    body: "Corporate and institutional supply of watches and related products, with reliable inventory and bulk order capabilities for businesses and organisations.",
-    highlights: ["Corporate", "Bulk Orders", "Reliable Inventory"],
+    eyebrow: "DISTRIBUTION",
+    title: "Batteries",
+    headline: "The most trusted name in the watch industry by buyers across all levels.",
+    body: "Sole distributors across India since the 1980s for the world's most reputed watch button cell brands — Renata, Maxell, Seizaiken, and Sony.",
+    highlights: ["Sole Distribution", "Renata · Maxell · Sony", "Since 1980s"],
     modalContent: [
-      "The institutional supply division caters to a distinct but significant segment of the watch market — organisations that require reliable, high-quality timepieces at volume. From corporate gifting programmes to employee milestone awards, from government tenders to hospitality chains, this division delivers consistency at scale.",
-      "Our institutional clients benefit from dedicated account management, customised branding options including dial printing and caseback engraving, and flexible inventory management that accommodates both planned procurement cycles and urgent requirements.",
-      "We maintain strategic stock reserves across popular models and price points, enabling rapid fulfilment even for large orders. Our logistics infrastructure supports nationwide delivery with full tracking and documentation, essential for institutional procurement compliance.",
-      "Beyond simple supply, we offer consultation on product selection — helping organisations choose timepieces that align with their brand positioning, budget parameters, and the intended recipient profile. This advisory approach has made us the preferred watch procurement partner for over a hundred corporations and institutions across India."
+      "With sole distribution across India since the 1980s for some of the world's most reputed watch button cell brands — Renata (Switzerland), Maxell (Japan), Seizaiken (Japan), and Sony (Japan) — we remain deeply connected with the Indian market at every level.",
+      "In an industry crowded with imitation products and unreliable sellers, Nagpal Group has earned enduring trust as one of the most dependable names in the watch business.",
+      "We supply genuine button cells to independent retailers, authorised service centres, and major watch networks, ensuring the reliable performance of timepieces nationwide."
     ],
-    image: "/images/nagpal2.png",
+    image: "/images/new-img/model-2/840/840/840BFS.3G.png",
     bg: "#111110",
     textColor: "#FAFAF8",
     accentColor: "#B8935A",
+    imageContain: true,
   },
   {
     index: "04",
-    eyebrow: "COMPONENTS",
-    title: "Parts — Nagpal Bombay",
-    headline: "The unseen infrastructure that keeps millions of watches alive.",
-    body: "Spare parts distribution and technical support for watches, serving authorised service centers and repair networks across the country with genuine components.",
-    highlights: ["Spare Parts", "Service Centers", "Technical Support"],
+    eyebrow: "RETAIL BOUTIQUE",
+    title: "Time Corridor",
+    headline: "Not just the product we create, but the aura we pass on.",
+    body: "A signature retail boutique conceived to showcase our home brands, D'SIGNER and ESCORT, in an immersive experience store.",
+    highlights: ["Retail Boutique", "D'SIGNER & ESCORT", "Experience Store"],
     modalContent: [
-      "Nagpal Bombay's parts division is the quiet engine that sustains India's watch repair and service ecosystem. Operating from our dedicated facility, this division maintains one of the country's most comprehensive inventories of genuine watch components — from movements and crystals to crowns, stems, and gaskets.",
-      "Our catalogue spans thousands of SKUs covering major international and domestic watch brands, ensuring that authorised service centres and qualified watchmakers have access to the exact component they need, when they need it. This reduces repair turnaround times and eliminates the quality risks associated with aftermarket substitutes.",
-      "Beyond parts supply, we provide technical documentation, service bulletins, and training support to our network of certified repair partners. This knowledge-sharing infrastructure elevates the overall standard of watch servicing across the country.",
-      "The parts division also serves as a critical feedback loop for our manufacturing operations — field data on component longevity and failure patterns directly informs our material selection and quality control processes, creating a virtuous cycle of continuous improvement."
+      "The latest chapter in the Designer World story. At Designer World, it is not only about the product we create — it is about the aura we pass on through every timepiece we design.",
+      "Time Corridor is our signature retail boutique, initiated to promote our home brands, D'SIGNER and ESCORT, through an immersive experience.",
+      "The store showcases our prime models, new launches, top sellers, and special editions in an atmosphere crafted to inspire with an appealing display and aura.",
+      "This boutique is a gesture to connect with watch enthusiasts and add enduring value to our happy watch buyers. First location: Agra."
     ],
-    image: "/images/nagpal3.png",
+    image: "/images/new-img/model-1/794/794/794SM.2L.png",
     bg: "#F2EDE6",
     textColor: "#1A1918",
     accentColor: "#003926",
+    imageContain: true,
   },
   {
     index: "05",
@@ -264,13 +267,22 @@ function DivisionBlock({
                 : "0 20px 60px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.04)",
             }}
           >
-            <div className="pillar-img-inner relative w-full" style={{ aspectRatio: "4/5" }}>
+            <div 
+              className="pillar-img-inner relative w-full" 
+              style={{ 
+                aspectRatio: "4/5", 
+                borderRadius: "20%",
+                background: division.imageContain 
+                  ? (isDark ? "linear-gradient(180deg, #1A1A18 0%, #0A0A09 100%)" : "linear-gradient(180deg, #FFFFFF 0%, #F5F2ED 100%)") 
+                  : "transparent"
+              }}
+            >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={division.image}
                 alt={division.title}
-                className="absolute inset-0 w-full h-full object-cover"
-                style={{ objectPosition: "center 30%", borderRadius: "20%" }}
+                className={`absolute inset-0 w-full h-full ${division.imageContain ? "object-contain p-8 sm:p-12 lg:p-16" : "object-cover"}`}
+                style={{ objectPosition: division.imageContain ? "center" : "center 30%", borderRadius: "20%" }}
                 onError={(e) => {
                   (e.target as HTMLImageElement).src = "/images/main-img1.png";
                 }}

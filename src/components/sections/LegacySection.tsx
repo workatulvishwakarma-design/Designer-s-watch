@@ -28,10 +28,10 @@ export default function LegacySection() {
                         className="flex flex-col gap-6"
                     >
                         <h2 className="text-3xl md:text-5xl lg:text-6xl font-serif max-w-lg leading-tight">
-                            Rooted in the 1940s.<br /> Designed for Today.
+                            Built on Legacy.<br /> Designed for Now.
                         </h2>
                         <p className="text-base md:text-lg font-sans font-light opacity-80 max-w-md leading-relaxed">
-                            Founded in the 1940s, Designer World represents four generations of continuous horological growth. We bridge the gap between traditional craftsmanship and rigorous modern manufacturing standards to deliver unparalleled quality.
+                            Four generations of continuous horological growth. We bridge the gap between traditional craftsmanship and rigorous modern manufacturing standards to deliver premium timepieces.
                         </p>
 
                         <div className="pt-4">
@@ -57,7 +57,7 @@ export default function LegacySection() {
                             transition={{ duration: 1, ease: [0.76, 0, 0.24, 1] }}
                         />
                         <Image
-                            src="/images/main-img3.png"
+                            src="/images/new-img/model-2/905/905/905GM.16L.png"
                             alt="Legacy craftsmanship"
                             fill
                             className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"

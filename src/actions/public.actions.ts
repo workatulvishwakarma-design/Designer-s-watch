@@ -6,6 +6,7 @@ import {
   mergeProducts,
   getStaticProducts,
   filterByBrand,
+  filterByGender,
   getBestSellers,
   type UnifiedProduct,
 } from "@/lib/products"
@@ -194,6 +195,32 @@ export async function getCollectionProducts(brand: string): Promise<UnifiedProdu
 
   const all = mergeProducts(dbUnified)
   return filterByBrand(all, brand)
+}
+
+/* ═══════════════════════════════════════════
+   COLLECTION PRODUCTS BY GENDER — Full list for grid pages
+   ═══════════════════════════════════════════ */
+export async function getCollectionProductsByGender(gender: "Men" | "Women"): Promise<UnifiedProduct[]> {
+  let dbUnified: UnifiedProduct[] = []
+
+  try {
+    const dbProducts = await prisma.product.findMany({
+      where: { status: "ACTIVE" },
+      include: {
+        images: { orderBy: { sortOrder: "asc" } },
+        category: { select: { name: true, slug: true } },
+        inventory: { select: { stock: true, lowStockThreshold: true } },
+      },
+      orderBy: { createdAt: "desc" },
+      take: 100, // higher limit since it's an entire gender
+    })
+    dbUnified = dbProducts.map(dbToUnified)
+  } catch (e) {
+    console.error("DB fetch failed for collection:", e)
+  }
+
+  const all = mergeProducts(dbUnified)
+  return filterByGender(all, gender)
 }
 
 /* ═══════════════════════════════════════════

@@ -33,6 +33,8 @@ export default function Header({ hasAnnouncement = false }: { hasAnnouncement?: 
             label: "Collections",
             href: "/collections/dsigner", // Default to dsigner if clicked
             dropdown: [
+                { label: "Men's Collection", href: "/collections/men", desc: "Crafted for Him" },
+                { label: "Women's Collection", href: "/collections/women", desc: "Elegance for Her" },
                 { label: "D'Signer — Premium", href: "/collections/dsigner", desc: "Luxury & Refinement" },
                 { label: "Escort — Everyday", href: "/collections/escort", desc: "Reliable & Approachable" },
             ]

@@ -66,9 +66,9 @@ export default function HomeBrands() {
           {/* IMAGE (78%) */}
           <div className="relative w-full overflow-hidden" style={{ height: "78%" }}>
             <motion.img
-              src="/images/main-img2.png"
+              src="/images/new-img/model-1/748/748/748/748GM.16G.png"
               alt="D'SIGNER"
-              className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+              className="absolute inset-0 w-[50%] h-[120%] m-auto object-contain object-center transition-transform duration-700 ease-out group-hover:scale-[1.04]"
               style={{ y }}
             />
             {/* Gradient */}
@@ -143,9 +143,9 @@ export default function HomeBrands() {
           {/* IMAGE (78%) */}
           <div className="relative w-full overflow-hidden" style={{ height: "78%" }}>
             <motion.img
-              src="/images/main-img1.png"
+              src="/images/watches/Escort/E-7908/E-2200-7908.GM_White.png"
               alt="ESCORT"
-              className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+              className="absolute inset-0 w-[50%] h-[120%] m-auto object-contain object-center transition-transform duration-700 ease-out group-hover:scale-[1.04]"
               style={{ y }}
             />
             {/* Gradient */}

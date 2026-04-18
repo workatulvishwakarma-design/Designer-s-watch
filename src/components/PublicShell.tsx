@@ -2,6 +2,7 @@
 
 import { usePathname } from "next/navigation"
 import SmoothScrolling from "./SmoothScrolling"
+import ChatbotWidget from "./ui/ChatbotWidget"
 
 export function PublicShell({ 
   children,
@@ -33,6 +34,7 @@ export function PublicShell({
       {announcement}
       {header}
       {cartDrawer}
+      <ChatbotWidget />
       <SmoothScrolling>
         {children}
       </SmoothScrolling>

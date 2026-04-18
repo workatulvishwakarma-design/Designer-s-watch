@@ -11,7 +11,7 @@ export default function EscortHero() {
             titleFirst="Built for"
             titleSecond="Every Moment."
             titleSecondColor="#003926"
-            subtext="Durable, reliable timepieces crafted for everyday performance without compromising on style or value."
+            subtext="Durable, reliable timepieces crafted for everyday performance, thoughtfully designed and made in India, combining precision engineering with timeless style and everyday value."
             stats={[
                 { label: "Price", value: "₹799+" },
                 { label: "Warranty", value: "1 Year" },

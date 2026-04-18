@@ -35,9 +35,9 @@ export default function EscortPage() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.1 }}
-                        className="font-body text-[#1A1918]/70 text-lg mb-16"
+                        className="font-body text-[#1A1918]/70 text-lg mb-16 max-w-2xl mx-auto"
                     >
-                        Find the perfect watch for your lifestyle.
+                        Two distinct philosophies, one unyielding standard of excellence. Find the collection that speaks to your rhythm.
                     </motion.p>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16 max-w-4xl mx-auto">
@@ -45,9 +45,9 @@ export default function EscortPage() {
                         <div className="bg-white border border-[#003926]/20 rounded-2xl p-10 flex flex-col items-center shadow-sm">
                             <span className="text-gold font-body text-[10px] tracking-[0.3em] uppercase mb-4">D&apos;SIGNER</span>
                             <ul className="text-[#1A1918] font-body text-sm space-y-4 mb-10 text-center">
-                                <li className="opacity-80">Premium Materials</li>
-                                <li className="opacity-80">₹1,299 – ₹4,999</li>
-                                <li className="opacity-80">Dress & Special Occasion</li>
+                                <li className="opacity-80">Surgical-Grade Stainless Steel & Sapphire Glass</li>
+                                <li className="opacity-80">Accessible Luxury • ₹1,299 – ₹4,999</li>
+                                <li className="opacity-80">Crafted for Impact and Refinement</li>
                             </ul>
                             <Link
                                 href="/collections/dsigner"
@@ -61,9 +61,9 @@ export default function EscortPage() {
                         <div className="bg-white border border-[#003926]/20 rounded-2xl p-10 flex flex-col items-center shadow-sm">
                             <span className="text-[#003926] font-body text-[10px] tracking-[0.3em] uppercase mb-4">ESCORT</span>
                             <ul className="text-[#1A1918] font-body text-sm space-y-4 mb-10 text-center">
-                                <li className="opacity-80">Everyday Durability</li>
-                                <li className="opacity-80">₹799 – ₹2,499</li>
-                                <li className="opacity-80">Daily Wear & Performance</li>
+                                <li className="opacity-80">Engineered Alloy & Hardened Mineral Glass</li>
+                                <li className="opacity-80">Everyday Value • ₹799 – ₹2,499</li>
+                                <li className="opacity-80">Built for Endurance and Daily Wear</li>
                             </ul>
                             <Link
                                 href="/collections/escort"

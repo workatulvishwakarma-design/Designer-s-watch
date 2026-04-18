@@ -159,7 +159,7 @@ export default function CraftSection() {
               className="relative w-[280px] sm:w-[360px] md:w-[480px] lg:w-[600px] aspect-[4/5] drop-shadow-2xl"
             >
               <Image
-                src="/images/doublewatch-nobg.png"
+                src="/images/new-img/model-2/950/950/950GTFS.3G.png"
                 alt="Luxury Timepiece Collection"
                 fill
                 className="object-contain drop-shadow-2xl"

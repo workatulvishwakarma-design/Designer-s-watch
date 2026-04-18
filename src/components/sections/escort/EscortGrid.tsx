@@ -11,6 +11,13 @@ import { Loader2 } from "lucide-react";
 
 const categories = ["All", "Sport", "Classic", "Minimal"];
 
+const categoryTaglines: Record<string, string> = {
+    "All": "Everyday value across every style.",
+    "Classic": "For moments that never go out of style.",
+    "Minimal": "Less noise. More you.",
+    "Sport": "Built for movement. Designed for presence.",
+};
+
 export default function EscortGrid() {
     const [products, setProducts] = useState<UnifiedProduct[]>([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -96,6 +103,13 @@ export default function EscortGrid() {
             />
 
             <div className="max-w-7xl mx-auto px-6 mt-12">
+                {/* Category Personality Tagline */}
+                <div className="text-center mb-10">
+                    <p className="font-cormorant italic text-2xl md:text-3xl text-[#003926]">
+                        &quot;{categoryTaglines[activeCategory] || categoryTaglines["All"]}&quot;
+                    </p>
+                </div>
+
                 {filteredProducts.length === 0 ? (
                     <div className="text-center py-16">
                         <p className="font-cormorant text-2xl text-[#1A1918] mb-3">No products found</p>

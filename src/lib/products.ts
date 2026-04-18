@@ -41,6 +41,7 @@ export interface UnifiedProduct {
   caseSize?: string;
   strapDetails?: string;
   warrantyInfo?: string;
+  gender: "Men" | "Women" | "Unisex";
 }
 
 /* ═══════ Convert static product → UnifiedProduct ═══════ */
@@ -75,6 +76,7 @@ export function staticToUnified(p: StaticProduct): UnifiedProduct {
     newArrival: p.tags?.includes("new-arrivals") || false,
     limitedEdition: p.tags?.includes("limited") || false,
     source: "static",
+    gender: p.gender || "Unisex",
   };
 }
 
@@ -133,6 +135,7 @@ export function dbToUnified(p: any): UnifiedProduct {
     caseSize: p.caseSize || undefined,
     strapDetails: p.strapDetails || undefined,
     warrantyInfo: p.warrantyInfo || undefined,
+    gender: p.gender || "Unisex",
   };
 }
 
@@ -165,6 +168,10 @@ export function mergeProducts(
 /* ═══════ Filter helpers ═══════ */
 export function filterByBrand(products: UnifiedProduct[], brand: string): UnifiedProduct[] {
   return products.filter(p => p.brand.toUpperCase() === brand.toUpperCase());
+}
+
+export function filterByGender(products: UnifiedProduct[], gender: "Men" | "Women" | "Unisex"): UnifiedProduct[] {
+  return products.filter(p => p.gender === gender || p.gender === "Unisex");
 }
 
 export function getBestSellers(products: UnifiedProduct[]): UnifiedProduct[] {
