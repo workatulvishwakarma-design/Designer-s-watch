@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
+import Link from "next/link";
 
 /* ─────────────────────────────────────────────────────
    6 CORE DIVISIONS — DATA
@@ -25,114 +26,18 @@ type Division = {
 const DIVISIONS: Division[] = [
   {
     index: "01",
-    eyebrow: "COMPONENTS",
-    title: "Nagpals Bombay",
-    headline: "The beginning of our journey — Mumbai, 1976.",
-    body: "In an era defined by mechanical watchmaking, Nagpals Bombay established itself as India's definitive destination for watch components.",
-    highlights: ["Components & Parts", "Sole Distribution", "1976–2026"],
-    modalContent: [
-      "The beginning of our journey in Mumbai with the distribution of selected watch components. It was an era of mechanical watches, and parts related to them formed the focus of the business.",
-      "Since then, Nagpals Bombay has remained a one-stop solution for watch parts and components — from hands by leading makers like Pioneer Group (sole distribution across India), to crowns, straps, metal bands, and tools required by watch shops across the country.",
-      "Deeply connected with the smallest watch repair shops to the biggest brands and watch stores in India that need parts for service.",
-      "A name and goodwill running strong for 50 years now. 1976–2026."
-    ],
-    image: "/images/new-img/model-1/680/680png/680GL.9G.png",
-    bg: "#0D0D0C",
-    textColor: "#FAFAF8",
-    accentColor: "#B8935A",
-    imageContain: true,
-  },
-  {
-    index: "02",
-    eyebrow: "GLOBAL TRADE",
-    title: "Exports",
-    headline: "Geared up to explore brand distribution and OEM solutions worldwide.",
-    body: "With a wide range of models built over time in both ESCORT & D'SIGNER, we are fully poised to re-enter international points of sale.",
-    highlights: ["International Markets", "D'SIGNER & ESCORT", "OEM Solutions"],
-    modalContent: [
-      "After years of dedicated presence at international watch shows in Hong Kong and global markets, with collections placed across the UAE, UK, and Sri Lanka, we are ready for the next phase of global expansion.",
-      "With an extensive range of models developed under both D'SIGNER and ESCORT, we are fully poised to re-enter international points of sale.",
-      "As an Indian-origin brand offering distinctive designs at competitive price points, we stand ready to expand brand distribution and OEM watch solutions for retail and wholesale partners worldwide."
-    ],
-    image: "/images/new-img/model-1/748/748/748/748RGM.16G.png",
-    bg: "#FAF8F4",
-    textColor: "#1A1918",
-    accentColor: "#003926",
-    imageContain: true,
-  },
-  {
-    index: "03",
-    eyebrow: "DISTRIBUTION",
-    title: "Batteries",
-    headline: "The most trusted name in the watch industry by buyers across all levels.",
-    body: "Sole distributors across India since the 1980s for the world's most reputed watch button cell brands — Renata, Maxell, Seizaiken, and Sony.",
-    highlights: ["Sole Distribution", "Renata · Maxell · Sony", "Since 1980s"],
-    modalContent: [
-      "With sole distribution across India since the 1980s for some of the world's most reputed watch button cell brands — Renata (Switzerland), Maxell (Japan), Seizaiken (Japan), and Sony (Japan) — we remain deeply connected with the Indian market at every level.",
-      "In an industry crowded with imitation products and unreliable sellers, Nagpal Group has earned enduring trust as one of the most dependable names in the watch business.",
-      "We supply genuine button cells to independent retailers, authorised service centres, and major watch networks, ensuring the reliable performance of timepieces nationwide."
-    ],
-    image: "/images/new-img/model-2/840/840/840BFS.3G.png",
+    eyebrow: "INFRASTRUCTURE",
+    title: "Our Ecosystem",
+    headline: "Four generations of horological expertise and massive scale execution.",
+    body: "Our specialized business verticals operate seamlessly across manufacturing, distribution, components, and global supply—delivering uncompromised quality at scale.",
+    highlights: ["Manufacturing", "Distribution", "Global Supply"],
+    modalContent: [],
+    image: "/images/legacy-craftsmanship.png",
     bg: "#111110",
     textColor: "#FAFAF8",
     accentColor: "#B8935A",
-    imageContain: true,
-  },
-  {
-    index: "04",
-    eyebrow: "RETAIL BOUTIQUE",
-    title: "Time Corridor",
-    headline: "Not just the product we create, but the aura we pass on.",
-    body: "A signature retail boutique conceived to showcase our home brands, D'SIGNER and ESCORT, in an immersive experience store.",
-    highlights: ["Retail Boutique", "D'SIGNER & ESCORT", "Experience Store"],
-    modalContent: [
-      "The latest chapter in the Designer World story. At Designer World, it is not only about the product we create — it is about the aura we pass on through every timepiece we design.",
-      "Time Corridor is our signature retail boutique, initiated to promote our home brands, D'SIGNER and ESCORT, through an immersive experience.",
-      "The store showcases our prime models, new launches, top sellers, and special editions in an atmosphere crafted to inspire with an appealing display and aura.",
-      "This boutique is a gesture to connect with watch enthusiasts and add enduring value to our happy watch buyers. First location: Agra."
-    ],
-    image: "/images/new-img/model-1/794/794/794SM.2L.png",
-    bg: "#F2EDE6",
-    textColor: "#1A1918",
-    accentColor: "#003926",
-    imageContain: true,
-  },
-  {
-    index: "05",
-    eyebrow: "GLOBAL TRADE",
-    title: "Exports",
-    headline: "Carrying Indian horological excellence to international shores.",
-    body: "Global supply capabilities delivering watches and components to international markets with dependable quality standards.",
-    highlights: ["Global Markets", "Quality Assured", "International Delivery"],
-    modalContent: [
-      "The Exports division extends the Nagpal Group's reach beyond India's borders, serving international markets with both finished timepieces and precision components. Our export operations are built on the same quality standards that have earned domestic trust, applied with the additional rigour that global trade demands.",
-      "We maintain compliance with international trade regulations, customs documentation protocols, and destination-market quality certifications. Each export shipment undergoes enhanced quality inspection to ensure that products arriving at international destinations reflect the full standard of our manufacturing capability.",
-      "Our export relationships span established markets in the Middle East, Southeast Asia, and Africa, with growing presence in European and North American distribution networks. These relationships are built through trade exhibitions, direct partnerships, and the organic reputation that consistent quality generates over time.",
-      "The export division also serves as a window into global trends and competitive benchmarks, bringing back insights that inform product development, pricing strategy, and quality positioning across all other divisions of the group."
-    ],
-    image: "/images/mumbai.png",
-    bg: "#0D0D0C",
-    textColor: "#FAFAF8",
-    accentColor: "#B8935A",
-  },
-  {
-    index: "06",
-    eyebrow: "BRAND PORTFOLIO",
-    title: "D'signer & Escort — House Brands",
-    headline: "Proprietary watchmaking that embodies eight decades of Nagpal heritage.",
-    body: "In-house designed and manufactured watch brands offering premium timepieces that combine decades of horological expertise with contemporary design for the modern Indian consumer.",
-    highlights: ["In-House Design", "Heritage Backed", "Premium Segment"],
-    modalContent: [
-      "D'signer and Escort represent the Nagpal Group's most personal expression of watchmaking philosophy — proprietary brands conceived, designed, engineered, and brought to market entirely within our ecosystem. These are not licensed names or marketing exercises; they are the culmination of eighty years of accumulated craft.",
-      "D'signer positions itself in the premium segment, offering bold design language, superior materials, and the kind of finishing that challenges imports at significantly higher price points. Every D'signer timepiece is a statement of Indian manufacturing capability — proof that world-class watchmaking is not confined to any single geography.",
-      "Escort serves the value-conscious consumer who refuses to compromise on reliability. With robust movements, durable construction, and timeless design, Escort watches are engineered for everyday excellence — the kind of dependable companionship that builds brand loyalty across generations.",
-      "Together, these house brands represent the full spectrum of the Nagpal Group's capability — from design studio creativity to manufacturing floor precision to after-sales commitment. They are, in every sense, watches made by people who have spent a lifetime understanding what a good watch truly means."
-    ],
-    image: "/images/legacy-craftsmanship.png",
-    bg: "#FAF8F4",
-    textColor: "#1A1918",
-    accentColor: "#003926",
-  },
+    imageContain: false,
+  }
 ];
 
 /* ─────────────────────────────────────────────────────
@@ -234,11 +139,9 @@ const PILLAR_CSS = `
 function DivisionBlock({
   division,
   reversed,
-  onOpenModal,
 }: {
   division: Division;
   reversed: boolean;
-  onOpenModal: () => void;
 }) {
   const { ref, isVisible } = useScrollReveal(0.12);
   const isDark = division.bg === "#0D0D0C" || division.bg === "#111110";
@@ -428,13 +331,13 @@ function DivisionBlock({
             className={`pillar-reveal ${vis}`}
             style={{ animationDelay: "0.75s" }}
           >
-            <button
-              onClick={onOpenModal}
+            <Link
+              href="/nagpal-group"
               className="group relative inline-flex items-center gap-3 font-dm text-[11px] tracking-[0.2em] uppercase cursor-pointer"
               style={{ color: division.accentColor }}
             >
               <span className="relative">
-                Learn More
+                Discover Our Pillars
                 <span
                   className="absolute -bottom-1 left-0 h-px w-0 group-hover:w-full transition-all duration-500 ease-out"
                   style={{ background: division.accentColor }}
@@ -455,7 +358,7 @@ function DivisionBlock({
                   strokeLinejoin="round"
                 />
               </svg>
-            </button>
+            </Link>
           </div>
         </div>
       </div>
@@ -646,7 +549,6 @@ function DivisionModal({
    MAIN SECTION EXPORT
    ───────────────────────────────────────────────────── */
 export default function BrandPillars() {
-  const [activeDivision, setActiveDivision] = useState<Division | null>(null);
   const { ref: introRef, isVisible: introVisible } = useScrollReveal(0.25);
 
   return (
@@ -702,22 +604,15 @@ export default function BrandPillars() {
           </p>
         </div>
 
-        {/* ── 6 DIVISION BLOCKS ── */}
+        {/* ── DIVISION BLOCK ── */}
         {DIVISIONS.map((div, idx) => (
           <DivisionBlock
             key={div.index}
             division={div}
             reversed={idx % 2 !== 0}
-            onOpenModal={() => setActiveDivision(div)}
           />
         ))}
       </section>
-
-      {/* ── MODAL ── */}
-      <DivisionModal
-        division={activeDivision}
-        onClose={() => setActiveDivision(null)}
-      />
     </>
   );
 }

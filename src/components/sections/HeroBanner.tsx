@@ -1,8 +1,7 @@
 "use client";
 
 import React, { useRef } from "react";
-import Image from "next/image";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Poppins } from "next/font/google";
 
 const poppins = Poppins({
@@ -19,71 +18,49 @@ export default function HeroBanner() {
         offset: ["start start", "end start"],
     });
 
-    // Smooth scroll-based transformations
-    const watchRotate = useTransform(scrollYProgress, [0, 1], [0, 8]);
-    const watchY = useTransform(scrollYProgress, [0, 1], [0, -40]);
-    const bgWarmth = useTransform(
-        scrollYProgress,
-        [0, 1],
-        ["#F8F6F2", "#EFEDE8"]
-    );
-
-    const springConfig = { stiffness: 100, damping: 30, restDelta: 0.001 };
-    const smoothRotate = useSpring(watchRotate, springConfig);
-    const smoothY = useSpring(watchY, springConfig);
+    const y = useTransform(scrollYProgress, [0, 1], ["0%", "40%"]);
+    const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
 
     return (
         <section
             ref={containerRef}
-            className={`relative w-full flex flex-col lg:flex-row items-center justify-between overflow-hidden px-4 md:px-8 lg:px-24 py-12 md:py-16 lg:py-0 lg:min-h-screen ${poppins.variable} font-sans`}
-            style={{ backgroundColor: "#F8F6F2" }}
+            className={`relative w-full h-[100svh] flex flex-col items-center justify-center overflow-hidden ${poppins.variable} font-sans bg-[#1A1918]`}
         >
-            {/* Dynamic Background Tone Shift */}
-            <motion.div
-                className="absolute inset-0 z-0"
-                style={{ backgroundColor: bgWarmth }}
-            />
+            {/* FULL WIDTH VIDEO BACKGROUND */}
+            <motion.div 
+                className="absolute inset-0 z-0 w-full h-full"
+                style={{ y, opacity }}
+            >
+                <video
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    className="absolute inset-0 w-full h-full object-cover"
+                    src="/images/new-img/video/D_signer%20Video_HD.mp4"
+                />
+                
+                {/* Elegant Overlay for Text Readability */}
+                <div 
+                    className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60 pointer-events-none" 
+                />
+                
+                {/* Subtle Vignette */}
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.5)_100%)] pointer-events-none" />
+            </motion.div>
 
-            {/* Luxury Gradient Overlay */}
-            <div
-                className="absolute inset-0 pointer-events-none z-0"
-                style={{
-                    background: "linear-gradient(135deg, #F8F6F2 0%, #FFFFFF 50%, #EFEDE8 100%)",
-                    opacity: 0.8
-                }}
-            />
-
-            {/* Sunlight Radial Glow (Top-Left) */}
-            <div
-                className="absolute -top-[20%] -left-[10%] w-[60%] h-[60%] pointer-events-none z-1"
-                style={{
-                    background: "radial-gradient(circle, rgba(255,253,245,0.8) 0%, transparent 70%)",
-                    filter: "blur(80px)"
-                }}
-            />
-
-            {/* Subtle Grain Texture Overlay */}
-            <div className="absolute inset-0 opacity-[0.03] pointer-events-none z-10 mix-blend-multiply">
-                <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-                    <filter id="noiseFilter">
-                        <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" />
-                    </filter>
-                    <rect width="100%" height="100%" filter="url(#noiseFilter)" />
-                </svg>
-            </div>
-
-            {/* LEFT CONTENT: Text Block */}
-            <div className="relative z-20 w-full lg:w-1/2 flex flex-col items-center lg:items-start text-center lg:text-left space-y-6 md:space-y-8 order-1 lg:order-1">
+            {/* CONTENT OVERLAY */}
+            <div className="relative z-20 w-full px-4 md:px-8 lg:px-24 flex flex-col items-center text-center space-y-6 md:space-y-8 mt-16 lg:mt-0">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                    className="space-y-1"
+                    className="space-y-2"
                 >
-                    <span className="block text-[11px] font-semibold tracking-[0.4em] text-gray-400 uppercase">
+                    <span className="block text-[11px] md:text-[13px] font-semibold tracking-[0.4em] text-white/90 uppercase drop-shadow-md">
                         DESIGNER WORLD
                     </span>
-                    <span className="block text-[10px] tracking-[0.2em] text-gray-400 uppercase">
+                    <span className="block text-[9px] md:text-[11px] tracking-[0.2em] text-white/70 uppercase drop-shadow-md">
                         Nagpal Group Since 1940
                     </span>
                 </motion.div>
@@ -92,17 +69,17 @@ export default function HeroBanner() {
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-                    className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight text-[#1A1918] leading-[1.05]"
+                    className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-tight text-white leading-[1.05] drop-shadow-lg"
                 >
                     Built on Legacy. <br />
-                    <span className="text-[#003926]">Designed for Now.</span>
+                    <span className="text-white/90 italic font-light tracking-normal">Designed for Now.</span>
                 </motion.h1>
 
                 <motion.p
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                    className="text-sm md:text-lg lg:text-xl text-gray-500 max-w-xl leading-relaxed font-light"
+                    className="text-sm md:text-lg lg:text-xl text-white/80 max-w-2xl leading-relaxed font-light drop-shadow-md"
                 >
                     Crafted with four generations of horological expertise. Designed for those who don't follow time — they set it.
                 </motion.p>
@@ -111,75 +88,35 @@ export default function HeroBanner() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                    className="flex flex-col sm:flex-row items-center gap-4 md:gap-8 pt-2 md:pt-4"
+                    className="flex flex-col sm:flex-row items-center justify-center gap-6 md:gap-10 pt-4 md:pt-8 w-full"
                 >
-                    {/* Primary CTA: Heritage Green */}
-                    <button className="group relative px-6 md:px-10 py-3 md:py-5 bg-[#003926] text-white rounded-full text-[12px] md:text-[13px] font-medium tracking-widest uppercase overflow-hidden transition-all duration-500 hover:shadow-[0_20px_40px_rgba(0,57,38,0.25)] hover:-translate-y-1 active:scale-95 w-full sm:w-auto">
+                    {/* Primary CTA */}
+                    <button className="group relative px-8 md:px-12 py-4 md:py-5 bg-white/10 backdrop-blur-md border border-white/30 text-white rounded-full text-[12px] md:text-[13px] font-medium tracking-[0.2em] uppercase overflow-hidden transition-all duration-500 hover:bg-white hover:text-black hover:border-transparent hover:-translate-y-1 active:scale-95 w-full sm:w-auto shadow-lg">
                         <span className="relative z-10">Explore Collection</span>
-                        <div className="absolute inset-0 bg-[#00281b] translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
                     </button>
 
-                    {/* Secondary CTA: link style */}
-                    <button className="group relative py-2 text-[#003926] text-[12px] md:text-[13px] font-semibold tracking-widest uppercase">
+                    {/* Secondary CTA */}
+                    <button className="group relative py-2 text-white/90 hover:text-white text-[12px] md:text-[13px] font-semibold tracking-[0.2em] uppercase drop-shadow-md transition-colors duration-300">
                         Our Legacy
-                        <span className="absolute bottom-0 left-0 w-full h-[1px] bg-[#003926] scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-right group-hover:origin-left" />
+                        <span className="absolute bottom-0 left-0 w-full h-[1px] bg-white scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-right group-hover:origin-left" />
                     </button>
                 </motion.div>
             </div>
 
-            {/* RIGHT CONTENT: Centerpiece Watch */}
-            <div className="relative z-20 w-full lg:w-1/2 h-[45vh] md:h-[55vh] lg:h-screen flex items-center justify-center order-2 lg:order-2 mt-8 lg:mt-0">
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.9, y: 40 }}
-                    animate={{ opacity: 1, scale: 1, y: 0 }}
-                    transition={{ duration: 1.2, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                    className="relative w-full h-full flex items-center justify-center group"
-                    style={{ rotateZ: smoothRotate, y: smoothY }}
-                >
-                    {/* Mirror Reflection below watch */}
-                    <div
-                        className="absolute bottom-[10%] w-[50%] h-[40px] opacity-20 blur-[20px]"
-                        style={{
-                            background: "radial-gradient(ellipse at center, #000 0%, transparent 70%)",
-                            borderRadius: '50%'
-                        }}
-                    />
-
-                    {/* Floating Watch Module */}
-                    <motion.div
-                        animate={{ y: [0, -15, 0] }}
-                        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                        className="relative w-[200px] h-[200px] sm:w-[280px] sm:h-[280px] md:w-[380px] md:h-[380px] lg:w-[480px] lg:h-[480px] xl:w-[560px] xl:h-[560px]"
-                    >
-                        <Image
-                            src="/images/new-img/model-1/748/748/748/748GM.16G.png"
-                            alt="D'SIGNER Signature"
-                            fill
-                            className="object-contain transition-transform duration-700 ease-out group-hover:scale-[1.05]"
-                            priority
-                            style={{
-                                filter: "drop-shadow(0 40px 80px rgba(0,0,0,0.12))"
-                            }}
-                        />
-
-                        {/* Light Sweep Effect Overlay (Animated Sweep) */}
-                        <motion.div
-                            initial={{ x: "-150%", opacity: 0 }}
-                            animate={{ x: "150%", opacity: [0, 0.4, 0] }}
-                            transition={{
-                                duration: 4,
-                                repeat: Infinity,
-                                repeatDelay: 3,
-                                ease: "linear"
-                            }}
-                            className="absolute inset-0 z-10 pointer-events-none mix-blend-soft-light"
-                            style={{
-                                background: "linear-gradient(105deg, transparent 30%, rgba(255,255,255,0.6) 50%, transparent 70%)"
-                            }}
-                        />
-                    </motion.div>
-                </motion.div>
-            </div>
+            {/* Scroll Indicator */}
+            <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1, delay: 1.2 }}
+                className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-20 pointer-events-none"
+            >
+                <span className="text-[10px] text-white/60 tracking-[0.3em] uppercase font-light drop-shadow-md">Scroll</span>
+                <motion.div 
+                    animate={{ y: [0, 10, 0] }}
+                    transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                    className="w-[1px] h-12 bg-gradient-to-b from-white/60 to-transparent"
+                />
+            </motion.div>
 
             <style jsx global>{`
         :root {

@@ -1,6 +1,6 @@
 "use client";
 
-import { Search, User, Heart, ShoppingBag } from "lucide-react";
+import { Search, User, Heart, ShoppingBag, Instagram } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
@@ -37,6 +37,9 @@ export default function Header() {
 
                 {/* Icons */}
                 <div className="flex items-center gap-6 text-white/90">
+                    <a href="#" className="hover:text-white transition-colors" aria-label="Instagram">
+                        <Instagram size={20} strokeWidth={1.5} />
+                    </a>
                     <button className="hover:text-white transition-colors">
                         <User size={20} strokeWidth={1.5} />
                     </button>

@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import { Building2, Factory, ShieldCheck, TrendingUp, CheckCircle, Award } from "lucide-react";
 
 export default function OurExpertise() {
@@ -71,6 +72,32 @@ export default function OurExpertise() {
                                 <span className="font-dm text-sm text-[#4E4944]"><strong>Amway, Top Pharma Brands:</strong> Consistent supply of 100K–200K high-quality units.</span>
                             </li>
                         </ul>
+                        <div className="mt-8">
+                            <Link
+                                href="/nagpal-group"
+                                className="group relative inline-flex items-center gap-3 font-dm text-[12px] tracking-[0.2em] uppercase text-[#B8935A]"
+                            >
+                                <span className="relative">
+                                    Learn More
+                                    <span className="absolute -bottom-1 left-0 h-px w-0 group-hover:w-full transition-all duration-500 ease-out bg-[#B8935A]" />
+                                </span>
+                                <svg
+                                    width="20"
+                                    height="20"
+                                    viewBox="0 0 20 20"
+                                    fill="none"
+                                    className="group-hover:translate-x-1 transition-transform duration-500"
+                                >
+                                    <path
+                                        d="M4 10h12M12 6l4 4-4 4"
+                                        stroke="currentColor"
+                                        strokeWidth="1.2"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                    />
+                                </svg>
+                            </Link>
+                        </div>
                     </motion.div>
 
                     {/* Image */}
@@ -141,6 +168,32 @@ export default function OurExpertise() {
                                 <h4 className="font-dm font-medium text-sm text-[#1A1918] mb-1">Unmatched After-Sales</h4>
                                 <p className="font-dm text-xs text-[#6B6560]">Our roots in spare parts distribution ensure lifelong serviceability, minimizing return rates and protecting brand reputation.</p>
                             </div>
+                        </div>
+                        <div className="mt-8">
+                            <Link
+                                href="/nagpal-group"
+                                className="group relative inline-flex items-center gap-3 font-dm text-[12px] tracking-[0.2em] uppercase text-[#B8935A]"
+                            >
+                                <span className="relative">
+                                    Learn More
+                                    <span className="absolute -bottom-1 left-0 h-px w-0 group-hover:w-full transition-all duration-500 ease-out bg-[#B8935A]" />
+                                </span>
+                                <svg
+                                    width="20"
+                                    height="20"
+                                    viewBox="0 0 20 20"
+                                    fill="none"
+                                    className="group-hover:translate-x-1 transition-transform duration-500"
+                                >
+                                    <path
+                                        d="M4 10h12M12 6l4 4-4 4"
+                                        stroke="currentColor"
+                                        strokeWidth="1.2"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                    />
+                                </svg>
+                            </Link>
                         </div>
                     </motion.div>
                 </div>

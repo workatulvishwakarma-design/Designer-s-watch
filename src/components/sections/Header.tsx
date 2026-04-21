@@ -57,9 +57,11 @@ export default function Header({ hasAnnouncement = false }: { hasAnnouncement?: 
                 transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                 className="fixed top-0 left-0 w-full z-[100] transition-all duration-500"
                 style={{
-                    backgroundColor: scrolled ? "rgba(250,248,244,0.85)" : "transparent",
-                    backdropFilter: scrolled ? "blur(16px)" : "none",
-                    borderBottom: scrolled ? "1px solid rgba(184,147,90,0.15)" : "1px solid transparent",
+                    backgroundColor: scrolled ? "rgba(255, 255, 255, 0.95)" : "rgba(255, 255, 255, 0.5)",
+                    backdropFilter: "blur(24px) saturate(180%)",
+                    WebkitBackdropFilter: "blur(24px) saturate(180%)",
+                    borderBottom: "1px solid rgba(255, 255, 255, 0.4)",
+                    boxShadow: scrolled ? "0 4px 30px rgba(0, 0, 0, 0.08)" : "0 4px 30px rgba(0, 0, 0, 0.02)"
                 }}
             >
                 <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between h-[72px]">
