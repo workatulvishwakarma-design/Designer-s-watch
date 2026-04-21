@@ -6,16 +6,18 @@ export const authConfig = {
     signIn: "/login",
   },
   callbacks: {
-    async jwt({ token, user }) {
+    async jwt({ token, user, trigger, session }) {
       if (user) {
-        token.role = (user as any).role
+        console.log("JWT callback - User detected:", { id: user.id, role: (user as any).role });
+        token.role = (user as any).role || "USER"
         if (user.id) token.id = user.id
       }
       return token
     },
     async session({ session, token }) {
       if (token && session.user) {
-        (session.user as any).role = token.role
+        console.log("Session callback - Token found:", { id: token.id, role: token.role });
+        (session.user as any).role = token.role || "USER"
         if (token.sub) {
           (session.user as any).id = token.sub
         } else if (token.id) {
@@ -25,5 +27,6 @@ export const authConfig = {
       return session
     },
   },
-  secret: process.env.AUTH_SECRET || "fallback_secret_for_local_dev_only",
+  secret: process.env.AUTH_SECRET || process.env.NEXTAUTH_SECRET,
+  trustHost: true,
 } satisfies NextAuthConfig

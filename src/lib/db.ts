@@ -2,12 +2,21 @@ import { PrismaClient } from "@prisma/client"
 import { PrismaPg } from "@prisma/adapter-pg"
 import { Pool } from "pg"
 
-const connectionString = `${process.env.DATABASE_URL}`
+const connectionString = process.env.DATABASE_URL
+if (!connectionString) {
+    console.error("DATABASE_URL is missing! Database features will fail.");
+}
+
 const pool = new Pool({ 
-    connectionString, 
-    ssl: connectionString.includes("localhost") || connectionString.includes("127.0.0.1") ? false : { rejectUnauthorized: false },
-    connectionTimeoutMillis: 5000, // 5 second timeout to prevent infinite buffering
+    connectionString: connectionString || "", 
+    ssl: connectionString?.includes("localhost") || connectionString?.includes("127.0.0.1") ? false : { rejectUnauthorized: false },
+    connectionTimeoutMillis: 5000, 
 })
+
+pool.on('error', (err) => {
+    console.error('Unexpected error on idle client', err)
+})
+
 const adapter = new PrismaPg(pool as any)
 
 const globalForPrisma = globalThis as unknown as { __prisma_instance_v3: PrismaClient }
