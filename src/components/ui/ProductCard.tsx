@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { useCartStore } from "@/lib/store/cart";
 import { toast } from "sonner";
+import LuxuryPlaceholder from "@/components/ui/LuxuryPlaceholder";
 
 interface ProductProps {
     id: number | string;
@@ -14,6 +15,7 @@ interface ProductProps {
     category: string;
     badge?: string | null;
     image: string;
+    hoverImage?: string;
     brand: string;
     slug?: string;
     rating?: number;
@@ -52,6 +54,7 @@ export default function ProductCard({ product, variant = "premium", index = 0 }:
     const { addItem } = useCartStore();
     const [isWishlisted, setIsWishlisted] = useState(false);
     const [hoveredOverlay, setHoveredOverlay] = useState(false);
+    const [isHovered, setIsHovered] = useState(false);
 
     const discountPercent = product.discount || (product.mrp ? Math.round(((product.mrp - product.price) / product.mrp) * 100) : 0);
     
@@ -71,9 +74,9 @@ export default function ProductCard({ product, variant = "premium", index = 0 }:
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: index * 0.065, ease: [0.22, 1, 0.36, 1] }}
             viewport={{ once: true, margin: "-100px" }}
-            onHoverStart={() => setHoveredOverlay(true)}
-            onHoverEnd={() => setHoveredOverlay(false)}
-            className="group bg-white border border-[#EDE8DF] rounded-2xl overflow-hidden cursor-pointer relative transition-all duration-500 hover:-translate-y-2.5 hover:border-[#B8935A]/45 hover:shadow-[0_30px_80px_rgba(0,0,0,0.12)]"
+            onHoverStart={() => { setHoveredOverlay(true); setIsHovered(true); }}
+            onHoverEnd={() => { setHoveredOverlay(false); setIsHovered(false); }}
+            className="group bg-white border border-[#EDE8DF] rounded-2xl overflow-hidden cursor-pointer relative transition-all duration-500 hover:-translate-y-2.5 hover:border-[rgba(0,57,38,0.25)] hover:shadow-[0_20px_60px_rgba(0,57,38,0.08)]"
         >
             {/* Image Area */}
             <div className="relative aspect-[4/5] bg-[#F7F4EF] flex items-center justify-center p-7 overflow-hidden">
@@ -102,16 +105,39 @@ export default function ProductCard({ product, variant = "premium", index = 0 }:
                 {/* Image */}
                 <motion.div
                     className="relative w-full h-full flex items-center justify-center"
-                    whileHover={{ scale: 1.08 }}
-                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                    whileHover={{ scale: 1.03 }}
+                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], scale: { type: 'spring', stiffness: 200, damping: 20 } }}
                 >
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                        src={product.image}
-                        alt={product.name}
-                        className="absolute inset-0 w-full h-full object-contain"
-                        onError={(e) => { (e.target as HTMLImageElement).src = '/images/main-img1.png'; }}
-                    />
+                    {product.image ? (
+                      <>
+                        {/* Primary image */}
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                            src={product.image}
+                            alt={product.name}
+                            className="absolute inset-0 w-full h-full object-contain transition-opacity duration-500"
+                            style={{ opacity: isHovered && product.hoverImage ? 0 : 1 }}
+                            onError={(e) => { (e.target as HTMLImageElement).src = '/images/main-img1.png'; }}
+                            loading="lazy"
+                        />
+                        {/* Hover image (crossfade) */}
+                        {product.hoverImage && (
+                          /* eslint-disable-next-line @next/next/no-img-element */
+                          <img
+                              src={product.hoverImage}
+                              alt={`${product.name} - alternate view`}
+                              className="absolute inset-0 w-full h-full object-contain transition-opacity duration-500"
+                              style={{ opacity: isHovered ? 1 : 0 }}
+                              onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+                              loading="lazy"
+                          />
+                        )}
+                      </>
+                    ) : (
+                      <div className="absolute inset-0">
+                        <LuxuryPlaceholder />
+                      </div>
+                    )}
 
                     {/* Shimmer sweep */}
                     <motion.div
@@ -148,7 +174,8 @@ export default function ProductCard({ product, variant = "premium", index = 0 }:
                             });
                             toast.success(`${product.name} added to cart`);
                         }}
-                        className="flex items-center gap-2 px-6 py-3 bg-[#1A1918] text-white rounded-full font-dm text-[12px] font-medium letter-spacing tracking-widest uppercase hover:bg-[#B8935A] transition-all duration-300"
+                        className="flex items-center gap-2 px-6 py-3 rounded-full font-dm text-[12px] font-medium tracking-widest uppercase transition-all duration-300 relative overflow-hidden group/btn"
+                        style={{ background: 'linear-gradient(135deg, #0B3D2E 0%, #003926 50%, #024D35 100%)', color: '#F5F2ED', boxShadow: '0 4px 16px rgba(0,57,38,0.2)' }}
                     >
                         <ShoppingBag size={14} />
                         Add to Cart
@@ -175,7 +202,7 @@ export default function ProductCard({ product, variant = "premium", index = 0 }:
                 </p>
 
                 {/* Product Name */}
-                <h3 className="font-dm font-medium text-[16px] text-[#1A1918] mb-2 line-clamp-2 hover:text-[#B8935A] transition-colors duration-300">
+                <h3 className="font-dm font-medium text-[16px] text-[#1A1918] mb-2 line-clamp-2 group-hover:text-[#003926] transition-colors duration-300">
                     {product.name}
                 </h3>
 
@@ -198,7 +225,7 @@ export default function ProductCard({ product, variant = "premium", index = 0 }:
                         <span className="font-dm text-[13px] line-through text-[#9C9690]">₹{product.mrp.toLocaleString()}</span>
                     )}
                     {discountPercent > 0 && (
-                        <span className="ml-auto bg-[#FFF3E8] text-[#B8935A] text-[11px] font-dm px-2 py-0.5 rounded">
+                        <span className="ml-auto bg-[#003926]/8 text-[#003926] text-[10px] font-dm font-medium px-2 py-0.5 rounded-full">
                             {discountPercent}% OFF
                         </span>
                     )}

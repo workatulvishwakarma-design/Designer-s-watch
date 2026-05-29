@@ -1,4 +1,5 @@
 import Link from "next/link"
+export const dynamic = "force-dynamic"
 import { 
   LayoutDashboard, ShoppingBag, Users, Settings, LogOut, Tags, 
   MessageSquare, Star, Ticket, Percent, Truck, Image as ImageIcon, 

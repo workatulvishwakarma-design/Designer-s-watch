@@ -12,164 +12,152 @@ type Milestone = {
   desc: string;
   type: "text-only" | "text-image";
   image?: string;
+  imageType?: "photo" | "logo"; // logos use object-contain, photos use object-cover
 };
 
 const MILESTONES: Milestone[] = [
   {
     year: "1940s",
-    title: "The Nagpal Watch Company — Amritsar",
-    desc: "Our great-grandfather established a modest watch parts trading business across Punjab, founding The Nagpal Watch Company in Amritsar. With all blessings, this original shop remains active to this day — a living testament to where it all began.",
-    type: "text-only",
+    title: "The Beginning",
+    desc: "A small watch parts shop in Amritsar marked the start of a journey rooted in craftsmanship and trust.",
+    type: "text-image",
+    image: "/images/about us journey/1940s — The Beginning/about-img1_1.webp",
+    imageType: "photo",
   },
   {
     year: "1960s",
-    title: "Second Generation — Expanding the Network",
-    desc: "His sons joined the family enterprise, deepening the watch parts distribution network within Punjab and across neighbouring states. Integrity became the family's finest mechanism — transforming customers into lifelong patrons and building a reputation that would define generations.",
+    title: "The 2nd Generation of Nagpal Watch Co.",
+    desc: "This was when the 2nd generation of Nagpal's family entering the business.",
     type: "text-image",
-    image: "/images/2gen.png",
+    image: "/images/about us journey/1960- The 2nd Generation/WhatsApp Image 2026-04-27 at 10.50.37 AM.jpeg",
+    imageType: "photo",
   },
   {
     year: "1976",
-    title: "Nagpals Bombay — The Mumbai Chapter",
-    desc: "Mr. Narinder Nagpal and Mr. Jatinder Nagpal fulfilled the family's dream of establishing a presence in India's commercial capital. Nagpals Bombay was born — and with relentless effort, the network expanded nationwide. International markets were explored for the first time, enabling direct import and distribution of parts and components across India.",
-    type: "text-only",
-  },
-  {
-    year: "1980s",
-    title: "Pan-India Battery Distribution",
-    desc: "Major button cell brands partnered with Nagpals Bombay for all-India distribution — Maxell and Seizaiken from Japan, Renata from Switzerland, and Sony Japan. Battery distribution became a cornerstone of the company's growth, cementing the group's reputation as India's most trusted name in watch components.",
+    title: "Nagpal's Bombay Was Formed",
+    desc: "In 1976 the family established their new company here under the name 'NAGPALS BOMBAY'. With extensive efforts, support & dedication the network expanded all around India. This was the time when they travelled to international markets to import parts & components for direct distribution. During 1980s various BUTTON CELL brands tied up with NAGPALS BOMBAY for battery distribution all over India. Brands from Japan like MAXELL & Swiss like RENATA became a major area of company's focus for growth.",
     type: "text-image",
-    image: "/images/distr_.png",
+    image: "/images/about us journey/1976 - Nagpal Bombay/IMG_0216.jpeg",
+    imageType: "photo",
   },
   {
     year: "1991",
-    title: "Birth of D'SIGNER",
-    desc: "As the era shifted from mechanical to quartz — driven by HMT and Titan — our father recognised the moment was right to launch a company-owned brand. Designer Watches Pvt. Ltd. introduced D'SIGNER, conceived with a singular vision: exceptional materials, unique designs, and price points that the market had not yet seen. The brand earned strong national acceptance at reputed watch retailers across the country.",
-    type: "text-only",
+    title: "A Brand is Born",
+    desc: "D'SIGNER was introduced, a step into creating watches defined by design, quality, and individuality.",
+    type: "text-image",
+    image: "/images/about us journey/1991 — A Brand is Born/Backup_of_dq designer old logo-13.png",
+    imageType: "logo",
+  },
+  {
+    year: "1992",
+    title: "Voltage Batteries",
+    desc: "An attempt to produce watch button cells, with a small manufacturing unit in Nashik.",
+    type: "text-image",
+    image: "/images/about us journey/1992 - Voltage Batteries/IMG_0205.jpeg",
+    imageType: "photo",
   },
   {
     year: "1995",
-    title: "ESCORT — Crafted for the Masses",
-    desc: "Building on D'SIGNER's success, the group launched ESCORT watches — a sub-brand focused on classic, brass-developed models at accessible pricing. The intent was clear: bring horological integrity and good quality to the larger Indian audience without compromise.",
+    title: "Style for All",
+    desc: "ESCORT was launched to make timeless design more accessible, bringing style to a wider audience.",
     type: "text-image",
-    image: "/images/escort.png",
+    image: "/images/about us journey/1995 — Style for All/Escort Logo 1995.png",
+    imageType: "logo",
   },
   {
-    year: "1997",
-    title: "Corporate & Institutional Business",
-    desc: "The company forged partnerships with leading industrial groups for bulk customised watch projects, marking a strategic diversification into institutional B2B business. Simultaneously, the group entered watch distribution, bringing international brands like Christian Bernard and Givenchy to the Indian market.",
-    type: "text-only",
-  },
-  {
-    year: "2000s",
-    title: "TISSOT India Launch & Brand Distribution",
-    desc: "When India's market opened to international brands, Nagpal Group was among the first movers — launching TISSOT watches as national distributors. Though the influx of foreign brands posed challenges for Indian labels, D'SIGNER continued to build sales through its niche network of exclusive retail partners.",
-    type: "text-image",
-    image: "/images/nagpal3.png",
-  },
-  {
-    year: "2002",
-    title: "HOURGLASS — First Retail Outlet",
-    desc: "HOURGLASS became Designer Watches' first self-owned retail store — a small but significant step towards building brand awareness through direct consumer engagement alongside traditional distribution channels.",
+    year: "1998",
+    title: "Introduction of Tissot in India",
+    desc: "We were the ones to launch TISSOT watches in India as national distributors. We initiated the distribution for Tissot, Givenchy Paris, Christian Bernard Paris, Rotary in India.",
     type: "text-only",
   },
   {
     year: "2004",
-    title: "D'SIGNER EFFECTS — Corporate Gifts Division",
-    desc: "A dedicated division was launched under D'SIGNER EFFECTS, focused exclusively on corporate gifts and promotional business. The mission: connect with organisations of every scale and offer a comprehensive range of promotional products for their marketing and incentive programmes.",
-    type: "text-image",
-    image: "/images/today02.png",
-  },
-  {
-    year: "2005",
-    title: "First Swiss-Made D'SIGNER Watch",
-    desc: "A landmark achievement in the brand's evolution — D'SIGNER launched its first 100% Swiss-made wristwatch, competing directly with established global heritage names and elevating the brand's positioning in the luxury segment.",
+    title: "D'signer Effects",
+    desc: "We started a division purely in the corporate gifts & promotion business under the name D'SIGNER EFFECTS. Here the idea was to connect with all small and large organizations, offering all sorts of promotional gifts for schemes and marketing plans.",
     type: "text-only",
   },
   {
     year: "2007",
-    title: "B2B & Corporate — A Strategic Focus",
-    desc: "Wristwatches became a powerful category for corporate marketing and brand promotion. The company expanded into clocks and bags under D'SIGNER to serve growing B2B requirements, establishing the corporate channel as a key revenue pillar.",
+    title: "Daniel Klein in India",
+    desc: "Got Exclusive Distribution of a Turkish Brand watches and accessories in India.",
     type: "text-image",
-    image: "/images/today1.png",
+    image: "/images/about us journey/2007 - Daniel Klein/daniel klein exclusive-13.png",
+    imageType: "logo",
   },
   {
     year: "2010",
-    title: "Scaling Production — Landmark Volume Orders",
-    desc: "Designer Watches scaled its production capabilities to fulfil institutional orders running into lakhs of units. Milestone projects for esteemed groups including TATA Indicom, Reebok, Nikon, and leading pharmaceutical companies validated the company's manufacturing excellence at scale.",
+    title: "B2B & Corporate Gifting",
+    desc: "B2B & Corporate Gifting became a very important focus for the company as wrist watch became a strong category for business promotion and marketing plans for major corporates. Launched clocks & bags category under D'SIGNER for B2B requirements. DESIGNER WATCHES scaled production skills and managed largest volume B2B orders of watches in lakhs. Projects for esteemed groups like TATA INDICOM, REEBOK, NIKON, PHARMA COMPANIES.",
     type: "text-only",
   },
   {
     year: "2015",
-    title: "OEM & White Label Expansion",
-    desc: "With deep expertise in product development, the group intensified its focus on designing and developing watches for prominent domestic and international brands — including U.S. Polo, Giordano, and Daniel Klein. The OEM division became a trusted partner for seamless design-to-delivery pipelines.",
+    title: "Beyond Our Own Brand",
+    desc: "Expanding into OEM manufacturing, we began designing and producing watches for global and national brands.",
     type: "text-image",
-    image: "/images/legacy-craftsmanship.png",
+    image: "/images/about us journey/2015 — Beyond Our Own Brand/WhatsApp Image 2026-04-04 at 4.14.22 PM (1).jpeg",
+    imageType: "photo",
   },
   {
     year: "2017",
-    title: "SEDEX Audited Facility",
-    desc: "The company achieved full SEDEX compliance — a rigorous international audit affirming ethical supply chain practices and world-class manufacturing standards. A mark of integrity in every timepiece produced.",
+    title: "Adding More Brands",
+    desc: "The house introduced few more international fashion brands in its distribution channel: MATHEY TISSOT, D1 MILANO. Same year Designer World stepped into international exports, in London, Singapore, and in middle eastern countries like Bahrain and Oman.",
     type: "text-only",
-  },
-  {
-    year: "2018",
-    title: "Myntra, Flipkart & Amazon Partnerships",
-    desc: "Major e-commerce platforms including Myntra, Flipkart, and Amazon partnered with the group for designing and manufacturing their private label and licensed watch brands — establishing Designer Watches as a manufacturing backbone for India's digital retail revolution.",
-    type: "text-image",
-    image: "/images/mumbai.png",
   },
   {
     year: "2020",
-    title: "Digital Acceleration",
-    desc: "The pandemic shifted the company's entire focus towards aggressive product development for online brands, alongside expanded partnerships with national and international fashion labels. What began as adaptation became a catalyst for exponential digital growth.",
+    title: "The Digital Shift",
+    desc: "With the rise of e-commerce, we adapted quickly — designing for online-first brands and expanding our reach.",
     type: "text-only",
   },
   {
-    year: "2021–22",
-    title: "Designer World Brands — New Division",
-    desc: "The group introduced new international fashion brands into its distribution channel — Mathey-Tissot, D1 Milano, Ingersoll, Invicta, and Santa Barbara Polo & Racquet Club. A dedicated division, Designer World Brands, was established solely to manage and scale foreign brand distribution across India.",
+    year: "2022",
+    title: "Designer World Brands",
+    desc: "Started a new division solely managing foreign brand distribution under the name DESIGNER WORLD BRANDS & added more labels like INGERSOL, INVICTA, SANTA BARBARA POLO CLUB.",
     type: "text-image",
-    image: "/images/sons.png",
-  },
-  {
-    year: "2023",
-    title: "D'SIGNER — Back with a Bang",
-    desc: "Fuelled by India's premiumisation wave and a renewed focus on uniquely designed models with special features, D'SIGNER earned strong acceptance in offline retail formats — confidently retailing models up to ₹23,000. Today, we proudly stand as India's Affordable Luxury Watch Brand.",
-    type: "text-only",
+    image: "/images/about us journey/2022 - Designer world Brands/DW-BRANDS-LOGO-B.png",
+    imageType: "logo",
   },
   {
     year: "2024",
-    title: "Lab-Grown Diamond Integration",
-    desc: "Pushing the boundaries of accessible luxury, D'SIGNER launched lab-grown diamond-studded timepieces — a bold new step to reach the discerning luxury audience, with collections ranging up to ₹1,50,000.",
+    title: "D'signer Diamond Watches",
+    desc: "Launched Lab Grown Diamond Studded Watches as a new step to reach a more luxury audience where we have models ranging up to Rs. 1,50,000/-.",
     type: "text-image",
-    image: "/images/aboutImg2.png",
+    image: "/images/about us journey/2024 - Designer Lab Grown Diamond studded watches/DIAMOND SHOOT 16-09-2025/746GM.2L.jpg",
+    imageType: "photo",
   },
   {
     year: "2025",
-    title: "The Next Chapter",
-    desc: "The mission ahead: launch company-owned retail outlets showcasing our proprietary and distribution brands together, and expand our reach through a robust e-commerce ecosystem. The next era of Designer World begins now.",
+    title: "Time Corridor",
+    desc: "A latest feather in Designer World's story. At Designer World it's not about just the product we make but the aura we pass to our users with the time we design. This retail Time Boutique is initiated to promote our home brands, D'SIGNER & ESCORT Watches — a unique experience store showcasing our prime models, new launches, top sellers & special editions with an appealing display and aura. This Time Corridor Boutique is a gesture to connect & add some value to our happy watch buyers.",
+    type: "text-image",
+    image: "/images/about us journey/2025 - Time Corridor/1A1A8511.JPG",
+    imageType: "photo",
+  },
+  {
+    year: "Today",
+    title: "Affordable Luxury",
+    desc: "Blending decades of legacy with modern design, Designer World continues to create watches that balance style, quality, and accessibility.",
     type: "text-only",
   },
 ];
 
-/* Sidebar floating images at different vertical positions */
+/* Sidebar floating images — all unique photos from journey folders */
 const SIDEBAR_ITEMS: { src: string; top: string; style?: React.CSSProperties }[] = [
-  { src: "/images/gen 1.png", top: "2%", style: { width: "85%", borderRadius: "10%", opacity: 0.9 } },
-  { src: "/images/mumbai.png", top: "22%", style: { width: "70%", marginLeft: "15%", borderRadius: "10%" } },
-  { src: "/images/nagpal1.png", top: "46%", style: { width: "80%", borderRadius: "10%" } },
-  { src: "/images/hover-2.png", top: "68%", style: { width: "65%", marginLeft: "20%", borderRadius: "10%" } },
-  { src: "/images/nagpal3.png", top: "88%", style: { width: "75%", borderRadius: "10%" } },
+  { src: "/images/about us journey/1940s — The Beginning/about-img1_1.webp", top: "2%", style: { width: "75%", borderRadius: "10%", opacity: 0.45 } },
+  { src: "/images/about us journey/1976 - Nagpal Bombay/IMG_0216.jpeg", top: "24%", style: { width: "60%", marginLeft: "10%", borderRadius: "10%", opacity: 0.4 } },
+  { src: "/images/about us journey/1991 — A Brand is Born/1 (7).jpg", top: "48%", style: { width: "65%", borderRadius: "10%", opacity: 0.4 } },
+  { src: "/images/about us journey/2015 — Beyond Our Own Brand/WhatsApp Image 2026-04-04 at 4.14.22 PM (1).jpeg", top: "70%", style: { width: "55%", marginLeft: "10%", borderRadius: "10%", opacity: 0.35 } },
+  { src: "/images/about us journey/2025 - Time Corridor/1A1A8511.JPG", top: "90%", style: { width: "60%", borderRadius: "10%", opacity: 0.4 } },
 ];
 
-/* Large floating "shape" images positioned absolutely across the section */
+/* Large floating "shape" images — all unique, no repeats */
 const FLOATING_SHAPES: { src: string; style: React.CSSProperties }[] = [
-  { src: "/images/legacy-craftsmanship.png", style: { position: "absolute", right: 0, top: "5%", width: "28%", maxWidth: "400px", borderRadius: "10%", zIndex: 3, opacity: 0.9 } },
-  { src: "/images/hover-1.png", style: { position: "absolute", right: "5%", top: "18%", width: "22%", maxWidth: "300px", borderRadius: "10%", zIndex: 4 } },
-  { src: "/images/deigner.png", style: { position: "absolute", right: 0, top: "35%", width: "26%", maxWidth: "380px", borderRadius: "10%", zIndex: 3, opacity: 0.85 } },
-  { src: "/images/sons.png", style: { position: "absolute", right: "3%", top: "52%", width: "20%", maxWidth: "280px", borderRadius: "10%", zIndex: 4 } },
-  { src: "/images/hover-3.png", style: { position: "absolute", right: 0, top: "66%", width: "25%", maxWidth: "350px", borderRadius: "10%", zIndex: 3, opacity: 0.9 } },
-  { src: "/images/nagpal2.png", style: { position: "absolute", right: "4%", top: "82%", width: "22%", maxWidth: "300px", borderRadius: "10%", zIndex: 4 } },
+  { src: "/images/about us journey/1960- The 2nd Generation/WhatsApp Image 2026-04-13 at 8.14.16 AM (1).jpeg", style: { position: "absolute", right: "-2%", top: "5%", width: "16%", maxWidth: "220px", borderRadius: "10%", zIndex: 1, opacity: 0.25 } },
+  { src: "/images/about us journey/1991 — A Brand is Born/2 (6).jpg", style: { position: "absolute", right: "1%", top: "25%", width: "13%", maxWidth: "180px", borderRadius: "10%", zIndex: 1, opacity: 0.2 } },
+  { src: "/images/about us journey/1995 — Style for All/IMG_7789.jpeg", style: { position: "absolute", right: "-1%", top: "45%", width: "15%", maxWidth: "210px", borderRadius: "10%", zIndex: 1, opacity: 0.22 } },
+  { src: "/images/about us journey/2024 - Designer Lab Grown Diamond studded watches/DIAMOND SHOOT 16-09-2025/748RGM.2G.jpg", style: { position: "absolute", right: "2%", top: "65%", width: "12%", maxWidth: "170px", borderRadius: "10%", zIndex: 1, opacity: 0.2 } },
+  { src: "/images/about us journey/1992 - Voltage Batteries/IMG_0205.jpeg", style: { position: "absolute", right: "-1%", top: "82%", width: "14%", maxWidth: "200px", borderRadius: "10%", zIndex: 1, opacity: 0.25 } },
 ];
 
 /* Watermark text blocks for sidebar */
@@ -628,7 +616,7 @@ function TimelineEvent({
             <div
               className="flex-shrink-0"
               style={{
-                width: "clamp(160px, 30%, 260px)",
+                width: m.imageType === "logo" ? "clamp(120px, 25%, 200px)" : "clamp(160px, 35%, 280px)",
                 opacity: vis ? 1 : 0,
                 transform: vis ? "translateY(0) scale(1)" : "translateY(40px) scale(1.03)",
                 transition: "all 1.1s cubic-bezier(0.22, 1, 0.36, 1) 0.25s",
@@ -638,13 +626,15 @@ function TimelineEvent({
               <img
                 src={m.image}
                 alt={m.title}
-                className="j-hov w-full object-cover"
+                className={`j-hov w-full ${m.imageType === "logo" ? "object-contain" : "object-cover"}`}
                 style={{
-                  borderRadius: "10%",
-                  aspectRatio: "3/4",
+                  borderRadius: m.imageType === "logo" ? "8px" : "10px",
+                  aspectRatio: m.imageType === "logo" ? "3/2" : "3/4",
+                  background: m.imageType === "logo" ? "rgba(245,242,237,0.6)" : "transparent",
+                  padding: m.imageType === "logo" ? "12px" : "0",
                   boxShadow: isActive
                     ? "0 16px 48px rgba(184,147,90,0.15), 0 0 0 1px rgba(184,147,90,0.1)"
-                    : "0 16px 48px rgba(0,0,0,0.1)",
+                    : "0 8px 32px rgba(0,0,0,0.08)",
                   transition: "box-shadow 0.6s ease",
                 }}
                 onError={(e) => { (e.target as HTMLImageElement).src = "/images/main-img1.png"; }}
@@ -769,8 +759,8 @@ export default function DesignerJourney() {
         <div className="relative max-w-[1400px] mx-auto px-4 sm:px-6">
           <div className="flex relative">
 
-            {/* ── LEFT SIDEBAR (25%) — floating images + watermark text ── */}
-            <div className="hidden lg:block relative" style={{ width: "25%", flexShrink: 0 }}>
+            {/* ── LEFT SIDEBAR (20%) — floating images + watermark text ── */}
+            <div className="hidden lg:block relative" style={{ width: "20%", flexShrink: 0, overflow: "hidden" }}>
               <div className="relative w-full h-full">
                 {/* Sidebar floating images */}
                 {SIDEBAR_ITEMS.map((item, i) => (
@@ -838,18 +828,18 @@ export default function DesignerJourney() {
             </div>
           </div>
 
-          {/* ── FLOATING SHAPE IMAGES (scattered across section) ── */}
-          <div className="hidden lg:block">
+          {/* ── FLOATING SHAPE IMAGES (scattered across section) — subtle background decoration ── */}
+          <div className="hidden lg:block pointer-events-none" style={{ filter: "blur(0.5px)" }}>
             {FLOATING_SHAPES.map((shape, i) => (
               <div key={i} className="ji v" style={shape.style as React.CSSProperties}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={shape.src}
                   alt=""
-                  className="j-hov w-full object-cover"
+                  className="w-full object-cover"
                   style={{
                     borderRadius: "10%",
-                    boxShadow: "0 16px 48px rgba(0,0,0,0.1)",
+                    boxShadow: "0 8px 24px rgba(0,0,0,0.04)",
                   }}
                   onError={(e) => { (e.target as HTMLImageElement).src = "/images/main-img1.png"; }}
                 />

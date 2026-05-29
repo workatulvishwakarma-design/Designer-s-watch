@@ -4,13 +4,14 @@ import { redirect, notFound } from "next/navigation"
 import Link from "next/link"
 import { ChevronLeft, MapPin, Package, CheckCircle2, Clock, Truck } from "lucide-react"
 
-export default async function UserOrderDetailPage({ params }: { params: { id: string } }) {
+export default async function UserOrderDetailPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
   const session = await auth()
   if (!session || !session.user?.id) return redirect("/login")
 
   const order = await prisma.order.findUnique({
     where: { 
-       id: params.id,
+       id: id,
        userId: session.user.id // Security constraint: user can only see their own order
     },
     include: {

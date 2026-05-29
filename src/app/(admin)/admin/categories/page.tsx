@@ -7,19 +7,19 @@ import { CategoryClientActions } from "./ClientActions"
 
 export default async function AdminCategoriesPage() {
   // Fetch real data from DB
-  const categories = await prisma.category.findMany({
-    include: { _count: { select: { products: true } } },
-    orderBy: { sortPriority: "asc" },
+  const collections = await prisma.collection.findMany({
+    include: { _count: { select: { families: true } } },
+    orderBy: { createdAt: "asc" },
   })
 
   // We convert dates and counts to string/number format matching the table mapping easily
-  const mappedData = categories.map((c) => ({
+  const mappedData = collections.map((c) => ({
     id: c.id,
     name: c.name,
     slug: c.slug,
-    products: c._count.products,
-    visibility: c.visibility,
-    sortPriority: c.sortPriority,
+    products: c._count.families, // Map to families
+    visibility: "ACTIVE", // Fallback for table if no visibility flag
+    sortPriority: 0,
   }))
 
   return (

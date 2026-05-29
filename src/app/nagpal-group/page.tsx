@@ -12,6 +12,8 @@ import NagpalBrandStrip from "@/components/sections/nagpal/NagpalBrandStrip";
 import NagpalDivisions from "@/components/sections/nagpal/NagpalDivisions";
 import NagpalPartner from "@/components/sections/nagpal/NagpalPartner";
 import NagpalTimeline from "@/components/sections/nagpal/NagpalTimeline";
+import NagpalCorporate from "@/components/sections/nagpal/NagpalCorporate";
+import NagpalOEM from "@/components/sections/nagpal/NagpalOEM";
 
 function SectionDivider() {
   return (
@@ -44,12 +46,9 @@ export default function NagpalGroupPage() {
           }}
         />
 
-        <Header />
         <main>
           <NagpalBanner />
           <SectionDivider />
-          {/* <NagpalTimeline />
-          <SectionDivider /> */}
           <NagpalStats />
           <SectionDivider />
           <NagpalStrengths />
@@ -58,6 +57,10 @@ export default function NagpalGroupPage() {
           <SectionDivider />
           <NagpalBrandStrip />
           <NagpalDivisions />
+          <SectionDivider />
+          <NagpalCorporate />
+          <SectionDivider />
+          <NagpalOEM />
           <SectionDivider />
           <NagpalPartner />
         </main>

@@ -109,9 +109,10 @@ export default function SegmentedCollections({
                     <div className="h-[300px] bg-[#F7F4EF] flex items-center justify-center p-6 overflow-hidden relative">
                       <div className="relative w-full h-full">
                         <img
-                          src={product.image}
+                          src={product.image || "/images/main-img1.png"}
                           alt={product.name}
                           className="w-full h-full object-contain group-hover:scale-108 transition-transform duration-600"
+                          loading="lazy"
                         />
 
                         {/* Blur Glass Overlay on Hover */}

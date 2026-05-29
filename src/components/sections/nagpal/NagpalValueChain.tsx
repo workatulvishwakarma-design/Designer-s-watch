@@ -26,8 +26,9 @@ export default function NagpalValueChain() {
         </filter>
         <rect width="100%" height="100%" filter="url(#nagpal-value-grain)" />
       </svg>
-      {/* Background ambient glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[radial-gradient(circle,rgba(184,147,90,0.06)_0%,transparent_60%)] pointer-events-none rounded-full z-0" />
+      {/* Background ambient glow — green + gold blend */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[radial-gradient(circle,rgba(0,57,38,0.05)_0%,transparent_60%)] pointer-events-none rounded-full z-0" />
+      <div className="absolute top-1/3 right-1/4 w-[400px] h-[400px] pointer-events-none opacity-[0.04] blur-[100px] rounded-full z-0" style={{ background: "radial-gradient(circle, rgba(0,57,38,0.4), transparent)" }} />
 
       <div className="relative z-10 w-full max-w-[1400px] mx-auto px-6 lg:px-12">
         
@@ -127,7 +128,7 @@ export default function NagpalValueChain() {
                   transition={{ delay: 0.3 + i * 0.1 }}
                   className="flex items-center gap-4 group"
                 >
-                  <div className="w-2 h-2 rounded-full bg-[#B8935A]/40 group-hover:bg-[#B8935A] transition-colors" />
+                  <div className="w-2 h-2 rounded-full bg-[#003926]/30 group-hover:bg-[#003926] transition-colors" style={{ boxShadow: "0 0 0 3px rgba(0,57,38,0.06)" }} />
                   <span className="font-dm text-[14px] text-[#1A1918]/90 tracking-wide font-medium">
                     {label}
                   </span>

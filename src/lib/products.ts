@@ -1,19 +1,29 @@
 /**
  * ─────────────────────────────────────────────────────────
  *  Unified Product Data Layer
- *  Merges static catalog (productData.ts) with DB products.
- *  Slug is the universal product identifier.
- *  DB products take priority when slugs match (deduplication).
+ *  Re-exports ModelFamilyGroup from productData.ts
+ *  Provides UnifiedProduct interface for grid components
+ *  that still expect flat product arrays (WomenGrid, MenGrid, etc.)
  * ─────────────────────────────────────────────────────────
  */
 
-import { allProducts, type Product as StaticProduct } from "@/data/productData";
+import {
+  type ModelFamilyGroup,
+  type Variant,
+} from "@/types/product";
+import { allModelFamilies, getFamiliesByCollection, getFamiliesByGender } from "@/data/productData";
 
-/* ═══════ Unified Product Interface ═══════ */
+/* ═══════ Re-exports ═══════ */
+export type { ModelFamilyGroup, Variant };
+
+/* ═══════ Unified Product Interface (for grid components) ═══════ */
 export interface UnifiedProduct {
-  id: string;           // slug used as universal ID for cart
+  id: string;
   slug: string;
   name: string;
+  modelNumber?: string;
+  modelFamily?: string;
+  collection?: string;
   price: number;
   comparePrice: number | null;
   brand: string;
@@ -21,8 +31,10 @@ export interface UnifiedProduct {
   badge: string | null;
   tags: string[];
   description: string;
-  image: string;        // primary image
+  image: string;
+  hoverImage?: string;
   images: string[];
+  galleryImages?: string[];
   colors: { name: string; hex: string; image: string }[];
   specs: Record<string, string>;
   sizes: string[];
@@ -33,7 +45,6 @@ export interface UnifiedProduct {
   newArrival: boolean;
   limitedEdition: boolean;
   source: "static" | "db";
-  // Luxury fields
   heritageText?: string;
   storyText?: string;
   materialDetails?: string;
@@ -42,42 +53,51 @@ export interface UnifiedProduct {
   strapDetails?: string;
   warrantyInfo?: string;
   gender: "Men" | "Women" | "Unisex";
+  ean?: string | null;
+  dbId?: string | null;
 }
 
-/* ═══════ Convert static product → UnifiedProduct ═══════ */
-export function staticToUnified(p: StaticProduct): UnifiedProduct {
-  const badgeMap: Record<string, string> = {
-    "Bestseller": "BEST SELLER",
-    "New": "NEW",
-    "Limited": "LIMITED",
-    "Value Pick": "VALUE PICK",
-  };
-
-  return {
-    id: p.slug,
-    slug: p.slug,
-    name: p.name,
-    price: p.price,
-    comparePrice: p.mrp || null,
-    brand: p.brand,
-    category: p.category,
-    badge: p.badge ? (badgeMap[p.badge] || p.badge.toUpperCase()) : null,
-    tags: p.tags || [],
-    description: p.description,
-    image: p.images[0] || "/images/main-img1.png",
-    images: p.images,
-    colors: p.colors || [],
-    specs: p.specs ? { ...p.specs } : {},
-    sizes: p.sizes || [],
-    stock: 25, // Static products always "in stock" for demo
+/* ═══════ Convert ModelFamilyGroup → UnifiedProduct[] (one per variant) ═══════ */
+export function familyToUnified(family: ModelFamilyGroup): UnifiedProduct[] {
+  return family.variants.map((v, idx) => ({
+    id: `${family.slug}-${idx}`,
+    slug: family.slug,
+    name: `${family.name} - ${v.dialColor.name}`,
+    modelNumber: v.sku,
+    modelFamily: family.familyId,
+    collection: family.collectionSlug || undefined,
+    price: v.price,
+    comparePrice: v.mrp > v.price ? v.mrp : null,
+    brand: family.brand,
+    category: family.category,
+    badge: null,
+    tags: [],
+    description: v.description,
+    image: v.gallery.primary || "",
+    hoverImage: v.gallery.hover || undefined,
+    images: [v.gallery.primary, v.gallery.hover, ...v.gallery.detail].filter(Boolean),
+    galleryImages: v.gallery.detail,
+    colors: [
+      { name: v.dialColor.name, hex: v.dialColor.hex, image: v.gallery.primary },
+      { name: v.strapColor.name, hex: v.strapColor.hex, image: "" },
+    ],
+    specs: { ...v.specs } as Record<string, string>,
+    sizes: v.specs.caseSize ? [v.specs.caseSize] : [],
+    stock: 25,
     lowStockThreshold: 5,
-    featured: p.tags?.includes("premium") || false,
-    bestSeller: p.tags?.includes("best-selling") || false,
-    newArrival: p.tags?.includes("new-arrivals") || false,
-    limitedEdition: p.tags?.includes("limited") || false,
-    source: "static",
-    gender: p.gender || "Unisex",
-  };
+    featured: false,
+    bestSeller: false,
+    newArrival: false,
+    limitedEdition: false,
+    source: "static" as const,
+    gender: v.gender,
+    ean: v.ean,
+  }));
+}
+
+/* ═══════ Get ALL variants as flat UnifiedProduct[] (for grid pages) ═══════ */
+export function getAllUnifiedProducts(): UnifiedProduct[] {
+  return allModelFamilies.flatMap(familyToUnified);
 }
 
 /* ═══════ Convert DB product row → UnifiedProduct ═══════ */
@@ -95,7 +115,6 @@ export function dbToUnified(p: any): UnifiedProduct {
   else if (p.newArrival) badge = "NEW";
   else if (p.limitedEdition) badge = "LIMITED";
 
-  // Aggregate stock from inventory records
   const totalStock = p.inventory?.reduce((sum: number, inv: any) => sum + (inv.stock || 0), 0) ?? 10;
   const lowThreshold = p.inventory?.[0]?.lowStockThreshold ?? 5;
 
@@ -111,6 +130,7 @@ export function dbToUnified(p: any): UnifiedProduct {
     tags: [],
     description: p.description || "",
     image: p.images?.[0]?.url || "/images/main-img1.png",
+    hoverImage: p.images?.[1]?.url || undefined,
     images: p.images?.length > 0 ? p.images.map((img: any) => img.url) : ["/images/main-img1.png"],
     colors: [],
     specs: {
@@ -139,32 +159,6 @@ export function dbToUnified(p: any): UnifiedProduct {
   };
 }
 
-/* ═══════ Get all static products as unified ═══════ */
-export function getStaticProducts(): UnifiedProduct[] {
-  return allProducts.map(staticToUnified);
-}
-
-/* ═══════ Merge static + DB products (DB wins on slug duplicate) ═══════ */
-export function mergeProducts(
-  dbProducts: UnifiedProduct[],
-  staticProducts?: UnifiedProduct[]
-): UnifiedProduct[] {
-  const statics = staticProducts || getStaticProducts();
-  const slugMap = new Map<string, UnifiedProduct>();
-
-  // Add static first
-  for (const p of statics) {
-    slugMap.set(p.slug, p);
-  }
-
-  // DB overwrites on same slug
-  for (const p of dbProducts) {
-    slugMap.set(p.slug, p);
-  }
-
-  return Array.from(slugMap.values());
-}
-
 /* ═══════ Filter helpers ═══════ */
 export function filterByBrand(products: UnifiedProduct[], brand: string): UnifiedProduct[] {
   return products.filter(p => p.brand.toUpperCase() === brand.toUpperCase());
@@ -174,12 +168,30 @@ export function filterByGender(products: UnifiedProduct[], gender: "Men" | "Wome
   return products.filter(p => p.gender === gender || p.gender === "Unisex");
 }
 
+export function filterByCollection(products: UnifiedProduct[], collectionSlug: string): UnifiedProduct[] {
+  return products.filter(p => p.collection === collectionSlug);
+}
+
+export function getCollectionProducts(collectionSlug: string): UnifiedProduct[] {
+  const families = getFamiliesByCollection(collectionSlug);
+  return families.flatMap(familyToUnified);
+}
+
+export function getFeaturedByCollection(collectionSlug: string, count = 4): UnifiedProduct[] {
+  const collectionProducts = getCollectionProducts(collectionSlug);
+  return collectionProducts.slice(0, count);
+}
+
 export function getBestSellers(products: UnifiedProduct[]): UnifiedProduct[] {
   const explicit = products.filter(p => p.bestSeller || p.badge === "BEST SELLER");
   if (explicit.length >= 4) return explicit;
-  // Fill with featured or first products
   const featured = products.filter(p => p.featured && !explicit.includes(p));
   return [...explicit, ...featured].slice(0, Math.max(8, explicit.length));
+}
+
+/* ═══════ Collection family grouping ═══════ */
+export function getCollectionFamilies(collectionSlug: string): ModelFamilyGroup[] {
+  return getFamiliesByCollection(collectionSlug);
 }
 
 /* ═══════ Sort helpers ═══════ */

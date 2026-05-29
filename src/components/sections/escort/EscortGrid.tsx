@@ -60,6 +60,11 @@ export default function EscortGrid() {
         // Sort
         result = sortProducts(result, activeSort);
 
+        // Always prioritize products with real images first
+        const withImage = result.filter(p => p.image && p.image.length > 0);
+        const withoutImage = result.filter(p => !p.image || p.image.length === 0);
+        result = [...withImage, ...withoutImage];
+
         return result;
     }, [products, activeCategory, activeSort, searchQuery]);
 
@@ -133,6 +138,7 @@ export default function EscortGrid() {
                                     category: product.category,
                                     badge: product.badge,
                                     image: product.image,
+                                    hoverImage: product.hoverImage,
                                     brand: product.brand,
                                     slug: product.slug,
                                     mrp: product.comparePrice || undefined,

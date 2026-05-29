@@ -313,3 +313,310 @@
   background-size: 200px 100%;
   animation: shimmer-scroll 2s linear infinite;
 }
+
+/* ═══════════════════════════════════════════
+   LUXURY GREEN AMBIENT EFFECTS
+   ═══════════════════════════════════════════ */
+
+@keyframes greenGlow {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.08); }
+}
+
+@keyframes ambientFloat {
+  0%, 100% { transform: translateY(0) translateX(0); }
+  25% { transform: translateY(-20px) translateX(10px); }
+  50% { transform: translateY(-10px) translateX(-5px); }
+  75% { transform: translateY(-25px) translateX(15px); }
+}
+
+@keyframes particleDrift {
+  0% { transform: translateY(0) translateX(0) scale(1); opacity: 0; }
+  10% { opacity: 0.6; }
+  90% { opacity: 0.4; }
+  100% { transform: translateY(-120px) translateX(40px) scale(0.5); opacity: 0; }
+}
+
+@keyframes softPulseGreen {
+  0%, 100% { box-shadow: 0 0 30px rgba(0,57,38,0.08); }
+  50% { box-shadow: 0 0 60px rgba(0,57,38,0.15); }
+}
+
+@keyframes timelineFlow {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 0% 200%; }
+}
+
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 8px rgba(0,57,38,0.4), 0 0 20px rgba(0,57,38,0.2); }
+  50% { box-shadow: 0 0 16px rgba(0,57,38,0.6), 0 0 40px rgba(0,57,38,0.3); }
+}
+
+@keyframes reelMarquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes cinematicZoom {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.05); }
+}
+
+@keyframes heroContentReveal {
+  0% { opacity: 0; transform: translateY(40px); filter: blur(8px); }
+  100% { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+
+.luxury-green-glow {
+  animation: greenGlow 6s ease-in-out infinite;
+}
+
+.ambient-float {
+  animation: ambientFloat 12s ease-in-out infinite;
+}
+
+.particle-drift {
+  animation: particleDrift 8s ease-in-out infinite;
+}
+
+.cinematic-zoom {
+  animation: cinematicZoom 20s ease-in-out infinite alternate;
+}
+
+.timeline-flow-line {
+  background: linear-gradient(180deg, transparent, #003926, #B8935A, #003926, transparent);
+  background-size: 100% 200%;
+  animation: timelineFlow 4s ease-in-out infinite;
+}
+
+.glow-node {
+  animation: glowPulse 2s ease-in-out infinite;
+}
+
+.reel-marquee {
+  animation: reelMarquee 35s linear infinite;
+}
+
+.reel-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Green ambient section divider */
+.green-ambient-divider {
+  position: relative;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0,57,38,0.2), rgba(0,57,38,0.4), rgba(0,57,38,0.2), transparent);
+}
+
+.green-ambient-divider::after {
+  content: '';
+  position: absolute;
+  top: -20px;
+  left: 0;
+  right: 0;
+  height: 40px;
+  background: radial-gradient(ellipse at center, rgba(0,57,38,0.06), transparent 70%);
+  pointer-events: none;
+}
+
+/* Header glassmorphism transition */
+.header-glass {
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.header-glass-scrolled {
+  background: rgba(255, 255, 255, 0.92) !important;
+  box-shadow: 0 4px 30px rgba(0,0,0,0.06), 0 1px 0 rgba(0,57,38,0.08);
+}
+
+/* Product card luxury hover */
+.luxury-card-hover {
+  transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.luxury-card-hover:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 24px 60px rgba(0,57,38,0.08), 0 0 0 1px rgba(0,57,38,0.08), 0 0 30px rgba(0,57,38,0.04);
+}
+
+/* ═══════ Emerald Luxury System ═══════ */
+
+/* Emerald glow hover — reusable on any element */
+.emerald-glow-hover {
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.emerald-glow-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(0,80,50,0.18);
+}
+
+/* Stock pulse dot animation */
+@keyframes stock-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.3); }
+}
+
+.stock-pulse-dot {
+  animation: stock-pulse 2s ease-in-out infinite;
+}
+
+/* Gold shimmer sweep for buttons */
+@keyframes shimmer-sweep {
+  0% { transform: translateX(-200%); }
+  100% { transform: translateX(200%); }
+}
+
+.gold-shimmer-hover:hover::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 40%, rgba(184,147,90,0.12) 50%, transparent 60%);
+  animation: shimmer-sweep 0.7s ease-out;
+  pointer-events: none;
+}
+
+/* Emerald border glow for interactive elements */
+.emerald-border-glow {
+  transition: all 0.3s ease;
+}
+
+.emerald-border-glow:hover {
+  border-color: rgba(0,57,38,0.4) !important;
+  box-shadow: 0 0 12px rgba(0,57,38,0.10);
+}
+
+/* Luxury button base transitions */
+.luxury-transition {
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ═══════════════════════════════════════════════════ */
+/*  CINEMATIC HERO VIDEO ANIMATIONS                   */
+/* ═══════════════════════════════════════════════════ */
+
+/* Slow Ken Burns zoom for video background */
+.cinematic-zoom {
+  animation: cinematicKenBurns 25s ease-in-out infinite alternate;
+}
+
+@keyframes cinematicKenBurns {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.06); }
+}
+
+/* Glass panel reveal for mega menu */
+@keyframes heroGlassReveal {
+  0% { opacity: 0; backdrop-filter: blur(0px); transform: translateY(-12px); }
+  100% { opacity: 1; backdrop-filter: blur(60px) saturate(200%); transform: translateY(0); }
+}
+
+.hero-glass-reveal {
+  animation: heroGlassReveal 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Cinematic fade-in with blur */
+@keyframes cinematicFadeIn {
+  0% { opacity: 0; filter: blur(12px); transform: translateY(20px); }
+  100% { opacity: 1; filter: blur(0px); transform: translateY(0); }
+}
+
+.cinematic-fade-in {
+  animation: cinematicFadeIn 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Hide scrollbar utility for mega menu */
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Emerald ambient glow pulse */
+@keyframes emeraldGlowPulse {
+  0%, 100% { opacity: 0.05; }
+  50% { opacity: 0.1; }
+}
+
+.emerald-glow-pulse {
+  animation: emeraldGlowPulse 4s ease-in-out infinite;
+}
+
+/* Font shorthand helpers */
+.font-cormorant { font-family: var(--font-heading); }
+.font-dm { font-family: var(--font-body); }
+.font-bebas { font-family: var(--font-display); }
+.font-display { font-family: var(--font-display); }
+.font-body { font-family: var(--font-body); }
+
+/* Luxury Legal Content Styles */
+.legal-content h2 {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 500;
+  color: #001F14;
+  margin-top: 3.5rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(0, 57, 38, 0.08);
+  letter-spacing: 0.03em;
+}
+
+.legal-content h3 {
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  font-weight: 500;
+  color: #001F14;
+  margin-top: 2.25rem;
+  margin-bottom: 1rem;
+}
+
+.legal-content p {
+  font-family: var(--font-body);
+  font-size: 0.925rem;
+  line-height: 1.85;
+  color: rgba(0, 31, 20, 0.75);
+  margin-bottom: 1.5rem;
+}
+
+.legal-content ul, .legal-content ol {
+  margin-top: 1rem;
+  margin-bottom: 1.75rem;
+  padding-left: 1.5rem;
+}
+
+.legal-content ul {
+  list-style-type: disc;
+}
+
+.legal-content ol {
+  list-style-type: decimal;
+}
+
+.legal-content li {
+  font-family: var(--font-body);
+  font-size: 0.925rem;
+  line-height: 1.75;
+  color: rgba(0, 31, 20, 0.75);
+  margin-bottom: 0.75rem;
+}
+
+.legal-content strong {
+  color: #001F14;
+  font-weight: 600;
+}
+
+.legal-content a {
+  color: #003926;
+  text-decoration: underline;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.legal-content a:hover {
+  color: #B8935A;
+}

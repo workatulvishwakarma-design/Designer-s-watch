@@ -1,199 +1,249 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useState, useRef } from "react";
+import { motion, useScroll, useTransform, useInView } from "framer-motion";
+import Link from "next/link";
+
+interface BrandCardProps {
+  title: string;
+  subtitle: string;
+  priceRange: string;
+  image: string;
+  href: string;
+  ctaLabel: string;
+  variant: "dark" | "light";
+  delay?: number;
+}
+
+function BrandCard({ title, subtitle, priceRange, image, href, ctaLabel, variant, delay = 0 }: BrandCardProps) {
+  const [hovered, setHovered] = useState(false);
+  const cardRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(cardRef, { once: true, margin: "-60px" });
+  const isDark = variant === "dark";
+
+  return (
+    <motion.div
+      ref={cardRef}
+      initial={{ opacity: 0, y: 40 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.9, delay, ease: [0.22, 1, 0.36, 1] }}
+      className="relative overflow-hidden cursor-pointer group"
+      style={{ borderRadius: "20px" }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      <Link href={href} className="block relative" style={{ aspectRatio: "3/4" }}>
+        {/* Background Image */}
+        <div className="absolute inset-0 overflow-hidden" style={{ borderRadius: "20px" }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={image}
+            alt={title}
+            className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.2s] ease-out"
+            style={{ transform: hovered ? "scale(1.06)" : "scale(1)" }}
+          />
+        </div>
+
+        {/* Gradient overlay */}
+        <div
+          className="absolute inset-0 pointer-events-none transition-opacity duration-700"
+          style={{
+            borderRadius: "20px",
+            background: isDark
+              ? "linear-gradient(180deg, rgba(0,10,6,0.3) 0%, rgba(0,0,0,0.15) 30%, rgba(0,10,6,0.5) 65%, rgba(0,10,6,0.90) 100%)"
+              : "linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.05) 30%, rgba(0,0,0,0.3) 65%, rgba(0,0,0,0.75) 100%)",
+          }}
+        />
+
+        {/* Glass hover overlay */}
+        <div
+          className="absolute inset-0 pointer-events-none transition-all duration-700"
+          style={{
+            borderRadius: "20px",
+            background: isDark
+              ? "linear-gradient(180deg, rgba(0,57,38,0.15) 0%, rgba(0,57,38,0.25) 100%)"
+              : "linear-gradient(180deg, rgba(184,147,90,0.08) 0%, rgba(184,147,90,0.15) 100%)",
+            opacity: hovered ? 1 : 0,
+          }}
+        />
+
+        {/* Emerald hover glow */}
+        <div
+          className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80%] h-[200px] blur-[80px] pointer-events-none transition-opacity duration-700"
+          style={{
+            background: "radial-gradient(ellipse, rgba(0,57,38,0.4), transparent)",
+            opacity: hovered ? 1 : 0,
+          }}
+        />
+
+        {/* Gold top edge shimmer */}
+        <div
+          className="absolute top-0 left-0 right-0 h-px pointer-events-none transition-opacity duration-500"
+          style={{
+            borderRadius: "20px 20px 0 0",
+            background: "linear-gradient(90deg, transparent, rgba(184,147,90,0.5), transparent)",
+            opacity: hovered ? 1 : 0,
+          }}
+        />
+
+        {/* Content */}
+        <div className="absolute inset-0 flex flex-col justify-end p-8 sm:p-10 lg:p-12 z-10" style={{ borderRadius: "20px" }}>
+          {/* Brand Badge */}
+          <div
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-5 self-start transition-all duration-500"
+            style={{
+              background: hovered ? "rgba(184,147,90,0.2)" : "rgba(255,255,255,0.08)",
+              backdropFilter: "blur(12px)",
+              border: `1px solid ${hovered ? "rgba(184,147,90,0.3)" : "rgba(255,255,255,0.1)"}`,
+            }}
+          >
+            <span className="w-1.5 h-1.5 rounded-full bg-[#B8935A]" />
+            <span className="font-dm text-[10px] tracking-[0.2em] uppercase text-white/80">{subtitle}</span>
+          </div>
+
+          {/* Title */}
+          <h3
+            className="font-bebas text-[36px] sm:text-[44px] lg:text-[56px] text-white leading-[0.95] mb-3 transition-all duration-500"
+            style={{
+              textShadow: "0 4px 20px rgba(0,0,0,0.4)",
+              letterSpacing: hovered ? "0.04em" : "0.01em",
+            }}
+          >
+            {title}
+          </h3>
+
+          {/* Price Range */}
+          <p
+            className="font-cormorant italic text-[16px] sm:text-[18px] mb-6 transition-colors duration-500"
+            style={{ color: hovered ? "#B8935A" : "rgba(255,255,255,0.55)" }}
+          >
+            {priceRange}
+          </p>
+
+          {/* Divider */}
+          <div
+            className="w-full h-px mb-6 transition-all duration-500"
+            style={{
+              background: hovered
+                ? "linear-gradient(90deg, transparent, rgba(184,147,90,0.5), transparent)"
+                : "linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent)",
+            }}
+          />
+
+          {/* CTA */}
+          <div className="flex items-center justify-between">
+            <span
+              className="font-dm text-[11px] tracking-[0.2em] uppercase transition-all duration-500"
+              style={{ color: hovered ? "#B8935A" : "rgba(255,255,255,0.5)" }}
+            >
+              {ctaLabel}
+            </span>
+            <div
+              className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-500"
+              style={{
+                background: hovered ? "rgba(184,147,90,0.2)" : "rgba(255,255,255,0.06)",
+                border: `1px solid ${hovered ? "rgba(184,147,90,0.4)" : "rgba(255,255,255,0.1)"}`,
+                transform: hovered ? "translateX(4px)" : "translateX(0)",
+              }}
+            >
+              <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
+                <path d="M4 10h12M12 6l4 4-4 4" stroke={hovered ? "#B8935A" : "rgba(255,255,255,0.4)"} strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" style={{ transition: "stroke 0.4s ease" }} />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        {/* Corner accent */}
+        <svg
+          width="28"
+          height="28"
+          stroke="#B8935A"
+          fill="none"
+          className="absolute top-6 left-6 z-10 pointer-events-none transition-opacity duration-500"
+          style={{ opacity: hovered ? 0.6 : 0.25 }}
+        >
+          <path d="M0 28 L0 0 L28 0" strokeWidth="1.5" strokeLinecap="round" />
+        </svg>
+      </Link>
+    </motion.div>
+  );
+}
 
 export default function HomeBrands() {
   const sectionRef = useRef<HTMLDivElement>(null);
-
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"],
-  });
-
-  const y = useTransform(scrollYProgress, [0, 1], ["-5%", "5%"]);
+  const isInView = useInView(sectionRef, { once: true, margin: "-80px" });
 
   return (
-    <section
-      ref={sectionRef}
-      className="bg-[#FAF8F4] flex flex-col md:h-screen md:max-h-screen"
-      style={{ padding: 0 }}
-    >
-      {/* ── HEADER (compact ~100px) ── */}
-      <div className="text-center py-5 md:py-5 shrink-0">
-        <p
-          className="font-dm uppercase"
-          style={{ fontSize: "10px", letterSpacing: "0.3em", color: "#B8935A" }}
+    <section ref={sectionRef} className="bg-[#FAF8F4] py-16 lg:py-24 relative overflow-hidden">
+      {/* Ambient emerald glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] pointer-events-none opacity-[0.04] blur-[100px]"
+        style={{ background: "radial-gradient(circle, rgba(0,57,38,0.5), transparent)" }} />
+
+      {/* Section Header */}
+      <div className="text-center mb-12 lg:mb-16 px-6 relative z-10">
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="font-dm uppercase text-[10px] tracking-[0.4em] text-[#B8935A] mb-3"
         >
           OUR BRANDS
-        </p>
-        <h2
-          className="font-cormorant text-[#1A1918] mt-1"
-          style={{ fontSize: "clamp(26px, 3vw, 40px)" }}
+        </motion.p>
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.1 }}
+          className="font-cormorant text-[32px] sm:text-[40px] lg:text-[52px] text-[#1A1918] leading-[1.1]"
         >
-          Two Identities. One Foundation.
-        </h2>
-        <div className="w-10 h-[0.5px] bg-[#B8935A] mx-auto mt-2" />
+          Two Identities<span className="text-[#003926]">.</span>{" "}
+          <span className="italic font-light text-[#1A1918]/70">One Foundation</span>
+          <span className="text-[#B8935A]">.</span>
+        </motion.h2>
+        <motion.div
+          initial={{ scaleX: 0 }}
+          animate={isInView ? { scaleX: 1 } : {}}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="w-12 h-px mx-auto mt-5 origin-center"
+          style={{ background: "linear-gradient(90deg, transparent, #B8935A, transparent)" }}
+        />
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="font-dm text-[14px] text-[#9C9690] mt-4 max-w-lg mx-auto leading-relaxed"
+        >
+          Four generations of horological mastery, expressed through two iconic brands — each with its own character, united by a legacy of excellence.
+        </motion.p>
       </div>
 
-      {/* ── CARDS ROW ── */}
+      {/* Editorial Split Layout */}
       <div
-        className="flex-1 min-h-0 grid grid-cols-1 md:grid-cols-2 gap-4 overflow-hidden mx-auto w-full"
-        style={{ maxWidth: 1430, padding: "0 60px 24px" }}
+        className="grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-7 mx-auto w-full relative z-10"
+        style={{ maxWidth: 1300, padding: "0 24px" }}
       >
         {/* D'SIGNER Card */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-40px" }}
-          transition={{ duration: 0.7 }}
-          className="relative h-[55vh] md:h-full min-h-0 rounded-[14px] overflow-hidden cursor-pointer group"
-          style={{
-            transition: "box-shadow 0.5s ease",
-          }}
-        >
-          {/* Gold Corner SVG */}
-          <svg
-            width="26"
-            height="26"
-            stroke="#B8935A"
-            fill="none"
-            className="absolute top-4 left-4 z-10 opacity-50 pointer-events-none"
-          >
-            <path d="M0 26 L0 0 L26 0" strokeWidth="1.5" strokeLinecap="round" />
-          </svg>
-
-          {/* IMAGE (78%) */}
-          <div className="relative w-full overflow-hidden" style={{ height: "78%" }}>
-            <motion.img
-              src="/images/new-img/model-1/748/748/748/748GM.16G.png"
-              alt="D'SIGNER"
-              className="absolute inset-0 w-[50%] h-[120%] m-auto object-contain object-center transition-transform duration-700 ease-out group-hover:scale-[1.04]"
-              style={{ y }}
-            />
-            {/* Gradient */}
-            <div
-              className="absolute bottom-0 left-0 right-0 pointer-events-none"
-              style={{
-                height: "60%",
-                background: "linear-gradient(transparent, #111110)",
-              }}
-            />
-          </div>
-
-          {/* TEXT BLOCK (22%) — compact: name + price + CTA */}
-          <div
-            className="flex flex-col justify-center px-5 py-3"
-            style={{ height: "22%", background: "#111110" }}
-          >
-            <h3
-              className="font-bebas text-white leading-none"
-              style={{ fontSize: "clamp(26px, 2.5vw, 40px)" }}
-            >
-              D&apos;SIGNER
-            </h3>
-            <div className="flex items-center justify-between mt-2">
-              <p
-                className="font-cormorant italic"
-                style={{ fontSize: "15px", color: "#B8935A" }}
-              >
-                ₹1,299 — ₹4,999
-              </p>
-              <button
-                className="font-dm rounded-full transition-opacity hover:opacity-80"
-                style={{
-                  fontSize: "11px",
-                  letterSpacing: "0.08em",
-                  padding: "6px 16px",
-                  background: "#B8935A",
-                  color: "#111110",
-                }}
-              >
-                Shop Now →
-              </button>
-            </div>
-          </div>
-
-          {/* Hover shadow overlay */}
-          <div className="absolute inset-0 rounded-[14px] pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ boxShadow: "inset 0 0 0 0 transparent, 0 20px 50px rgba(0,0,0,0.15)" }} />
-        </motion.div>
+        <BrandCard
+          title="D'SIGNER"
+          subtitle="Premium Luxury"
+          priceRange="₹5,000 — ₹50,000"
+          image="/images/new-content/new-1/d_signer mens/april_post05.png"
+          href="/collections/dsigner"
+          ctaLabel="Explore D'Signer"
+          variant="dark"
+          delay={0}
+        />
 
         {/* ESCORT Card */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-40px" }}
-          transition={{ duration: 0.7, delay: 0.1 }}
-          className="relative h-[55vh] md:h-full min-h-0 rounded-[14px] overflow-hidden cursor-pointer group"
-          style={{
-            transition: "box-shadow 0.5s ease",
-          }}
-        >
-          {/* Gold Corner SVG */}
-          <svg
-            width="26"
-            height="26"
-            stroke="#B8935A"
-            fill="none"
-            className="absolute top-4 left-4 z-10 opacity-50 pointer-events-none"
-          >
-            <path d="M0 26 L0 0 L26 0" strokeWidth="1.5" strokeLinecap="round" />
-          </svg>
-
-          {/* IMAGE (78%) */}
-          <div className="relative w-full overflow-hidden" style={{ height: "78%" }}>
-            <motion.img
-              src="/images/watches/Escort/E-7908/E-2200-7908.GM_White.png"
-              alt="ESCORT"
-              className="absolute inset-0 w-[50%] h-[120%] m-auto object-contain object-center transition-transform duration-700 ease-out group-hover:scale-[1.04]"
-              style={{ y }}
-            />
-            {/* Gradient */}
-            <div
-              className="absolute bottom-0 left-0 right-0 pointer-events-none"
-              style={{
-                height: "60%",
-                background: "linear-gradient(transparent, #F0EBE2)",
-              }}
-            />
-          </div>
-
-          {/* TEXT BLOCK (22%) — compact: name + price + CTA */}
-          <div
-            className="flex flex-col justify-center px-5 py-3"
-            style={{ height: "22%", background: "#F0EBE2" }}
-          >
-            <h3
-              className="font-bebas text-[#1A1918] leading-none"
-              style={{ fontSize: "clamp(26px, 2.5vw, 40px)" }}
-            >
-              ESCORT
-            </h3>
-            <div className="flex items-center justify-between mt-2">
-              <p
-                className="font-cormorant italic"
-                style={{ fontSize: "15px", color: "#B8935A" }}
-              >
-                ₹799 — ₹2,499
-              </p>
-              <button
-                className="font-dm rounded-full transition-opacity hover:opacity-80"
-                style={{
-                  fontSize: "11px",
-                  letterSpacing: "0.08em",
-                  padding: "6px 16px",
-                  background: "#1A1918",
-                  color: "white",
-                }}
-              >
-                Shop Now →
-              </button>
-            </div>
-          </div>
-
-          {/* Hover shadow overlay */}
-          <div className="absolute inset-0 rounded-[14px] pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ boxShadow: "inset 0 0 0 0 transparent, 0 20px 50px rgba(0,0,0,0.15)" }} />
-        </motion.div>
+        <BrandCard
+          title="ESCORT"
+          subtitle="Everyday Elegance"
+          priceRange="₹1,500 — ₹6,000"
+          image="/images/new-content/new-1/escort womens/3.jpg"
+          href="/collections/escort"
+          ctaLabel="Explore Escort"
+          variant="light"
+          delay={0.15}
+        />
       </div>
     </section>
   );

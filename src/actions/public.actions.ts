@@ -3,14 +3,13 @@
 import { prisma } from "@/lib/db"
 import {
   dbToUnified,
-  mergeProducts,
-  getStaticProducts,
+  getAllUnifiedProducts,
   filterByBrand,
   filterByGender,
   getBestSellers,
   type UnifiedProduct,
 } from "@/lib/products"
-import { allProducts as staticCatalog, getProductBySlug as getStaticBySlug } from "@/data/productData"
+import { getFamilyBySku } from "@/data/productData"
 
 /* Note: Client components should import UnifiedProduct from @/lib/products directly */
 
@@ -80,7 +79,11 @@ export async function getHomepageProducts(): Promise<HomepageProducts> {
   }
 
   // Merge: static catalog + DB overlay (DB wins on slug duplicate)
-  const all = mergeProducts(dbUnified)
+  const statics = getAllUnifiedProducts()
+  const slugMap = new Map<string, UnifiedProduct>()
+  for (const p of statics) slugMap.set(p.slug, p)
+  for (const p of dbUnified) slugMap.set(p.slug, p)
+  const all = Array.from(slugMap.values())
 
   const bestSellers = getBestSellers(all).map(toFeatured)
   const designer = filterByBrand(all, "D'SIGNER").map(toFeatured)
@@ -129,15 +132,19 @@ export async function getProductBySlugHybrid(slug: string) {
     console.error("DB lookup failed for slug:", slug, error)
   }
 
-  // 2. Fallback to static catalog
-  const staticProduct = getStaticBySlug(slug)
-  if (staticProduct) {
-    const { staticToUnified } = await import("@/lib/products")
-    return {
-      ...staticToUnified(staticProduct),
-      reviews: [],
-      fromDB: false,
-      dbId: null,
+  // 2. Fallback to static catalog (family-based)
+  const family = getFamilyBySku(slug)
+  if (family) {
+    const { familyToUnified } = await import("@/lib/products")
+    const variants = familyToUnified(family)
+    const matched = variants.find(v => v.modelNumber === slug) || variants[0]
+    if (matched) {
+      return {
+        ...matched,
+        reviews: [],
+        fromDB: false,
+        dbId: null,
+      }
     }
   }
 
@@ -164,7 +171,11 @@ export async function getRelatedProductsHybrid(currentSlug: string, brand: strin
     // ignore
   }
 
-  const all = mergeProducts(dbUnified)
+  const statics = getAllUnifiedProducts()
+  const slugMap = new Map<string, UnifiedProduct>()
+  for (const p of statics) slugMap.set(p.slug, p)
+  for (const p of dbUnified) slugMap.set(p.slug, p)
+  const all = Array.from(slugMap.values())
   // Same brand first, then others
   const sameBrand = all.filter(p => p.brand === brand && p.slug !== currentSlug)
   const others = all.filter(p => p.brand !== brand && p.slug !== currentSlug)
@@ -193,7 +204,11 @@ export async function getCollectionProducts(brand: string): Promise<UnifiedProdu
     console.error("DB fetch failed for collection:", e)
   }
 
-  const all = mergeProducts(dbUnified)
+  const statics = getAllUnifiedProducts()
+  const slugMap = new Map<string, UnifiedProduct>()
+  for (const p of statics) slugMap.set(p.slug, p)
+  for (const p of dbUnified) slugMap.set(p.slug, p)
+  const all = Array.from(slugMap.values())
   return filterByBrand(all, brand)
 }
 
@@ -219,7 +234,11 @@ export async function getCollectionProductsByGender(gender: "Men" | "Women"): Pr
     console.error("DB fetch failed for collection:", e)
   }
 
-  const all = mergeProducts(dbUnified)
+  const statics = getAllUnifiedProducts()
+  const slugMap = new Map<string, UnifiedProduct>()
+  for (const p of statics) slugMap.set(p.slug, p)
+  for (const p of dbUnified) slugMap.set(p.slug, p)
+  const all = Array.from(slugMap.values())
   return filterByGender(all, gender)
 }
 

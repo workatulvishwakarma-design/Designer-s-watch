@@ -6,36 +6,27 @@ import { z } from "zod"
 import { revalidatePath } from "next/cache"
 import { createAuditLog } from "@/lib/audit"
 
-const productSchema = z.object({
+// ----------------------------------------------------------------------
+// PRODUCT FAMILY ACTIONS
+// ----------------------------------------------------------------------
+
+const familySchema = z.object({
   id: z.string().optional(),
   name: z.string().min(1, "Name is required"),
   slug: z.string().min(1, "Slug is required"),
   description: z.string().min(1, "Description is required"),
-  price: z.coerce.number().positive("Price must be positive"),
-  comparePrice: z.coerce.number().optional().nullable(),
   status: z.enum(["DRAFT", "ACTIVE", "ARCHIVED"]),
-  categoryId: z.string().optional().nullable(),
+  collectionId: z.string().optional().nullable(),
+  brand: z.string().default("D'SIGNER"),
+  gender: z.string().optional().nullable(),
+  
   featured: z.coerce.boolean().default(false),
   newArrival: z.coerce.boolean().default(false),
   bestSeller: z.coerce.boolean().default(false),
   limitedEdition: z.coerce.boolean().default(false),
   
-  // Luxury & Specs
   heritageText: z.string().optional().nullable(),
   storyText: z.string().optional().nullable(),
-  materialDetails: z.string().optional().nullable(),
-  movementType: z.string().optional().nullable(),
-  caseSize: z.string().optional().nullable(),
-  strapDetails: z.string().optional().nullable(),
-  warrantyInfo: z.string().optional().nullable(),
-  
-  // SEO
-  seoTitle: z.string().optional().nullable(),
-  seoDescription: z.string().optional().nullable(),
-  seoKeywords: z.string().optional().nullable(),
-  
-  sku: z.string().min(1, "SKU is required"),
-  stock: z.coerce.number().min(0, "Stock cannot be negative").default(0),
 })
 
 type ActionResponse = {
@@ -43,21 +34,22 @@ type ActionResponse = {
   error?: string
 }
 
-export async function upsertProduct(formData: FormData): Promise<ActionResponse> {
+export async function upsertProductFamily(formData: FormData): Promise<ActionResponse> {
   const session = await auth()
   if (!session || (session.user as any)?.role !== "ADMIN") {
     return { error: "Unauthorized" }
   }
 
-  // Parse raw form data
   const rawData = {
     id: formData.get("id")?.toString(),
     name: formData.get("name")?.toString() || "",
     slug: formData.get("slug")?.toString() || "",
     description: formData.get("description")?.toString() || "",
-    price: formData.get("price"),
     status: formData.get("status")?.toString() || "DRAFT",
-    categoryId: formData.get("categoryId")?.toString() || null,
+    collectionId: formData.get("collectionId")?.toString() || null,
+    brand: formData.get("brand")?.toString() || "D'SIGNER",
+    gender: formData.get("gender")?.toString() || null,
+    
     featured: formData.get("featured") === "on",
     newArrival: formData.get("newArrival") === "on",
     bestSeller: formData.get("bestSeller") === "on",
@@ -65,21 +57,9 @@ export async function upsertProduct(formData: FormData): Promise<ActionResponse>
     
     heritageText: formData.get("heritageText")?.toString(),
     storyText: formData.get("storyText")?.toString(),
-    materialDetails: formData.get("materialDetails")?.toString(),
-    movementType: formData.get("movementType")?.toString(),
-    caseSize: formData.get("caseSize")?.toString(),
-    strapDetails: formData.get("strapDetails")?.toString(),
-    warrantyInfo: formData.get("warrantyInfo")?.toString(),
-    
-    seoTitle: formData.get("seoTitle")?.toString(),
-    seoDescription: formData.get("seoDescription")?.toString(),
-    seoKeywords: formData.get("seoKeywords")?.toString(),
-    
-    sku: formData.get("sku")?.toString() || "",
-    stock: formData.get("stock"),
   }
 
-  const parsed = productSchema.safeParse(rawData)
+  const parsed = familySchema.safeParse(rawData)
 
   if (!parsed.success) {
     return { error: parsed.error.issues[0].message }
@@ -89,109 +69,184 @@ export async function upsertProduct(formData: FormData): Promise<ActionResponse>
 
   try {
     if (data.id) {
-      // Update logic
-      await prisma.product.update({
+      await prisma.productFamily.update({
         where: { id: data.id },
         data: {
           name: data.name,
           slug: data.slug,
           description: data.description,
-          price: data.price,
           status: data.status,
-          categoryId: data.categoryId,
+          collectionId: data.collectionId,
+          brand: data.brand,
+          gender: data.gender,
           featured: data.featured,
           newArrival: data.newArrival,
           bestSeller: data.bestSeller,
           limitedEdition: data.limitedEdition,
           heritageText: data.heritageText,
           storyText: data.storyText,
-          materialDetails: data.materialDetails,
-          movementType: data.movementType,
-          caseSize: data.caseSize,
-          strapDetails: data.strapDetails,
-          warrantyInfo: data.warrantyInfo,
-          seoTitle: data.seoTitle,
-          seoDescription: data.seoDescription,
-          seoKeywords: data.seoKeywords,
-        },
+        }
       })
-
-      // Upsert base inventory
-      await prisma.inventory.upsert({
-        where: { sku: data.sku },
-        update: { stock: data.stock },
-        create: {
-          productId: data.id,
-          sku: data.sku,
-          stock: data.stock,
-        },
-      })
-      
-      await createAuditLog("PRODUCT_UPDATE", "Product", data.id, `Updated product: ${data.name}`)
-      revalidatePath("/admin/products")
-      return { success: "Product updated successfully!" }
-
+      await createAuditLog("PRODUCT_UPDATE", `Updated family: ${data.name}`, session.user.id)
     } else {
-      // Create logic
-      const existingSlug = await prisma.product.findUnique({ where: { slug: data.slug } })
-      if (existingSlug) return { error: "Slug is already in use." }
-
-      const existingSku = await prisma.inventory.findUnique({ where: { sku: data.sku } })
-      if (existingSku) return { error: "SKU is already in use." }
-
-      await prisma.product.create({
+      await prisma.productFamily.create({
         data: {
           name: data.name,
           slug: data.slug,
           description: data.description,
-          price: data.price,
           status: data.status,
-          categoryId: data.categoryId,
+          collectionId: data.collectionId,
+          brand: data.brand,
+          gender: data.gender,
           featured: data.featured,
           newArrival: data.newArrival,
           bestSeller: data.bestSeller,
           limitedEdition: data.limitedEdition,
           heritageText: data.heritageText,
           storyText: data.storyText,
-          materialDetails: data.materialDetails,
-          movementType: data.movementType,
-          caseSize: data.caseSize,
-          strapDetails: data.strapDetails,
-          warrantyInfo: data.warrantyInfo,
-          seoTitle: data.seoTitle,
-          seoDescription: data.seoDescription,
-          seoKeywords: data.seoKeywords,
-          inventory: {
-            create: {
-              sku: data.sku,
-              stock: data.stock,
-            }
-          }
-        },
+        }
       })
-
-      const newProduct = await prisma.product.findUnique({ where: { slug: data.slug } })
-      await createAuditLog("PRODUCT_CREATE", "Product", newProduct?.id || "unknown", `Created product: ${data.name}`)
-
-      revalidatePath("/admin/products")
-      return { success: "Product created successfully!" }
+      await createAuditLog("PRODUCT_CREATE", `Created family: ${data.name}`, session.user.id)
     }
+
+    revalidatePath("/admin/products")
+    revalidatePath("/collections/[collection]", "page")
+    
+    return { success: data.id ? "Family updated successfully" : "Family created successfully" }
   } catch (error: any) {
-    console.error("Product Action Error:", error)
-    return { error: "Failed to save product to database." }
+    if (error.code === 'P2002') {
+      return { error: "A family with this slug already exists" }
+    }
+    console.error("Family Upsert Error:", error)
+    return { error: "Database error occurred" }
   }
 }
 
-export async function deleteProduct(id: string): Promise<ActionResponse> {
+// ----------------------------------------------------------------------
+// PRODUCT VARIANT ACTIONS
+// ----------------------------------------------------------------------
+
+const variantSchema = z.object({
+  id: z.string().optional(),
+  familyId: z.string().min(1, "Family ID is required"),
+  sku: z.string().min(1, "SKU is required"),
+  price: z.coerce.number().positive("Price must be positive"),
+  mrp: z.coerce.number().optional().nullable(),
+  
+  color: z.string().optional().nullable(),
+  dialColor: z.string().optional().nullable(),
+  strapColor: z.string().optional().nullable(),
+  
+  movement: z.string().optional().nullable(),
+  glass: z.string().optional().nullable(),
+  caseSize: z.string().optional().nullable(),
+  caseThickness: z.string().optional().nullable(),
+  strapMaterial: z.string().optional().nullable(),
+  waterResistance: z.string().optional().nullable(),
+  
+  stock: z.coerce.number().min(0, "Stock cannot be negative").default(0),
+})
+
+export async function upsertProductVariant(formData: FormData): Promise<ActionResponse> {
   const session = await auth()
-  if (!session || (session.user as any)?.role !== "ADMIN") return { error: "Unauthorized" }
+  if (!session || (session.user as any)?.role !== "ADMIN") {
+    return { error: "Unauthorized" }
+  }
+
+  const rawData = {
+    id: formData.get("id")?.toString(),
+    familyId: formData.get("familyId")?.toString() || "",
+    sku: formData.get("sku")?.toString() || "",
+    price: formData.get("price"),
+    mrp: formData.get("mrp") || null,
+    
+    color: formData.get("color")?.toString(),
+    dialColor: formData.get("dialColor")?.toString(),
+    strapColor: formData.get("strapColor")?.toString(),
+    
+    movement: formData.get("movement")?.toString(),
+    glass: formData.get("glass")?.toString(),
+    caseSize: formData.get("caseSize")?.toString(),
+    caseThickness: formData.get("caseThickness")?.toString(),
+    strapMaterial: formData.get("strapMaterial")?.toString(),
+    waterResistance: formData.get("waterResistance")?.toString(),
+    
+    stock: formData.get("stock"),
+  }
+
+  const parsed = variantSchema.safeParse(rawData)
+
+  if (!parsed.success) {
+    return { error: parsed.error.issues[0].message }
+  }
+
+  const data = parsed.data
 
   try {
-    await prisma.product.delete({ where: { id } })
-    await createAuditLog("PRODUCT_DELETE", "Product", id, `Deleted product ID: ${id}`)
-    revalidatePath("/admin/products")
-    return { success: "Product deleted successfully." }
-  } catch (e) {
-    return { error: "Failed to delete product." }
+    if (data.id) {
+      await prisma.$transaction(async (tx) => {
+        await tx.productVariant.update({
+          where: { id: data.id },
+          data: {
+            sku: data.sku,
+            price: data.price,
+            mrp: data.mrp,
+            color: data.color,
+            dialColor: data.dialColor,
+            strapColor: data.strapColor,
+            movement: data.movement,
+            glass: data.glass,
+            caseSize: data.caseSize,
+            caseThickness: data.caseThickness,
+            strapMaterial: data.strapMaterial,
+            waterResistance: data.waterResistance,
+          }
+        })
+        
+        // Update Inventory
+        await tx.inventory.upsert({
+          where: { variantId: data.id },
+          create: { variantId: data.id, stock: data.stock },
+          update: { stock: data.stock }
+        })
+      })
+      await createAuditLog("VARIANT_UPDATE", `Updated variant: ${data.sku}`, session.user.id)
+    } else {
+      await prisma.$transaction(async (tx) => {
+        const variant = await tx.productVariant.create({
+          data: {
+            familyId: data.familyId,
+            sku: data.sku,
+            price: data.price,
+            mrp: data.mrp,
+            color: data.color,
+            dialColor: data.dialColor,
+            strapColor: data.strapColor,
+            movement: data.movement,
+            glass: data.glass,
+            caseSize: data.caseSize,
+            caseThickness: data.caseThickness,
+            strapMaterial: data.strapMaterial,
+            waterResistance: data.waterResistance,
+          }
+        })
+        
+        await tx.inventory.create({
+          data: { variantId: variant.id, stock: data.stock }
+        })
+      })
+      await createAuditLog("VARIANT_CREATE", `Created variant: ${data.sku}`, session.user.id)
+    }
+
+    revalidatePath(`/admin/products/${data.familyId}`)
+    revalidatePath("/collections/[collection]", "page")
+    
+    return { success: data.id ? "Variant updated successfully" : "Variant created successfully" }
+  } catch (error: any) {
+    if (error.code === 'P2002') {
+      return { error: "A variant with this SKU already exists" }
+    }
+    console.error("Variant Upsert Error:", error)
+    return { error: "Database error occurred" }
   }
 }

@@ -3,10 +3,6 @@
 import React from "react";
 import { motion, Variants } from "framer-motion";
 import { Truck, Lock, Shield, Wrench, MessageCircle } from "lucide-react";
-import { Playfair_Display, Poppins } from "next/font/google";
-
-const playfair = Playfair_Display({ subsets: ["latin"], weight: ["700"], variable: "--font-playfair" });
-const poppins = Poppins({ subsets: ["latin"], weight: ["300", "400", "500", "600"], variable: "--font-poppins" });
 
 const trustItems = [
     {
@@ -88,20 +84,20 @@ const FeatureItem = ({
                     scale: 1.08,
                     transition: { type: "spring", stiffness: 300, damping: 20 }
                 }}
-                className="relative flex items-center justify-center w-[72px] h-[72px] rounded-full bg-[#003926] shadow-lg mb-6 cursor-pointer"
+                className="relative flex items-center justify-center w-[72px] h-[72px] rounded-full bg-[#B8935A]/15 border border-[#B8935A]/30 shadow-lg mb-6 cursor-pointer backdrop-blur-sm"
             >
                 {/* Subtle glow on hover */}
-                <div className="absolute inset-0 rounded-full bg-[#003926] opacity-0 group-hover:opacity-30 blur-xl transition-opacity duration-500 scale-150" />
-                <Icon size={28} className="relative z-10 text-white" strokeWidth={1.5} />
+                <div className="absolute inset-0 rounded-full bg-[#B8935A] opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500 scale-150" />
+                <Icon size={28} className="relative z-10 text-[#B8935A]" strokeWidth={1.5} />
             </motion.div>
 
             {/* Title */}
-            <h4 className="font-cormorant font-semibold text-xl md:text-2xl text-[#1A1918] leading-tight mb-2 group-hover:text-[#003926] transition-colors duration-300">
+            <h4 className="font-cormorant font-semibold text-xl md:text-2xl text-white leading-tight mb-2 group-hover:text-[#B8935A] transition-colors duration-300">
                 {item.title}
             </h4>
 
             {/* Description */}
-            <p className="font-dm font-light text-[14px] leading-relaxed text-[#1A1918]/60 max-w-[260px]">
+            <p className="font-dm font-light text-[14px] leading-relaxed text-white/50 max-w-[260px]">
                 {item.desc}
             </p>
         </motion.div>
@@ -110,7 +106,23 @@ const FeatureItem = ({
 
 export default function TrustGrid() {
     return (
-        <section className={`relative w-full py-28 md:py-36 overflow-hidden bg-[#EAE2D5] ${playfair.variable} ${poppins.variable} font-sans`}>
+        <section className="relative w-full py-28 md:py-36 overflow-hidden bg-[#003926]">
+
+            {/* Subtle grain texture */}
+            <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }}></div>
+
+            {/* Radial gold glow */}
+            <div
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                    background:
+                        "radial-gradient(ellipse at center, rgba(184,147,90,0.06) 0%, transparent 55%)",
+                }}
+            />
+
+            {/* Top/bottom edge highlights */}
+            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#B8935A]/25 to-transparent" />
+            <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#B8935A]/25 to-transparent" />
 
             <div className="relative z-10 w-full max-w-[1200px] mx-auto px-6 md:px-12 flex flex-col items-center">
 
@@ -121,7 +133,7 @@ export default function TrustGrid() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, margin: "-50px" }}
                         transition={{ duration: 0.6, ease: "easeOut" }}
-                        className="text-[11px] tracking-[0.35em] uppercase text-[#1A1918]/50 font-dm font-medium mb-5"
+                        className="text-[11px] tracking-[0.35em] uppercase text-[#B8935A] font-dm font-medium mb-5"
                     >
                         FOUNDATION OF EXCELLENCE
                     </motion.p>
@@ -131,7 +143,7 @@ export default function TrustGrid() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, margin: "-50px" }}
                         transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
-                        className="text-4xl md:text-5xl lg:text-6xl font-cormorant text-[#1A1918] tracking-tight"
+                        className="text-4xl md:text-5xl lg:text-6xl font-cormorant text-white tracking-tight"
                     >
                         Built on Trust.
                     </motion.h2>
@@ -151,12 +163,6 @@ export default function TrustGrid() {
                 </motion.div>
 
             </div>
-
-            <style jsx global>{`
-                .font-serif {
-                    font-family: var(--font-playfair), serif;
-                }
-            `}</style>
         </section>
     );
 }

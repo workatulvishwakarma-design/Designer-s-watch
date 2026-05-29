@@ -4,7 +4,7 @@ import { useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { toast } from "sonner"
-import { upsertProduct } from "@/actions/admin.product.actions"
+import { upsertProductFamily } from "@/actions/admin.product.actions"
 import { ImageUploader } from "@/components/admin/ImageUploader"
 
 export function ProductForm({ categories, initialData }: { categories: any[], initialData?: any }) {
@@ -24,7 +24,7 @@ export function ProductForm({ categories, initialData }: { categories: any[], in
     }
 
     try {
-      const res = await upsertProduct(formData)
+      const res = await upsertProductFamily(formData)
       if (res.error) {
         toast.error(res.error)
       } else {

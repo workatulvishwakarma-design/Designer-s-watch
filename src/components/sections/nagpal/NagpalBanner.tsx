@@ -44,7 +44,7 @@ export default function NagpalBanner() {
             className="w-full lg:w-[45%] flex flex-col items-center lg:items-start text-center lg:text-left order-2 lg:order-1"
           >
             <p className="font-dm uppercase text-[10px] sm:text-[11px] tracking-[0.3em] text-[#B8935A] mb-4">
-              DESIGNER WORLD / NAGPAL GROUP
+              DESIGNER WORLD / PILLARS
             </p>
             
             <h1 className="font-cormorant text-[#1A1918] text-[clamp(40px,5vw,72px)] leading-[1.05] tracking-tight mb-6">

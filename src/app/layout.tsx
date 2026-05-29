@@ -1,4 +1,6 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
+import { Suspense } from "react";
+import { Loader2 } from "lucide-react";
 import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/sections/Header";
@@ -9,6 +11,7 @@ import CartDrawer from "@/components/ui/CartDrawer";
 import { PublicShell } from "@/components/PublicShell";
 import { prisma } from "@/lib/db";
 import { Toaster } from "sonner";
+import CookieConsent from "@/components/ui/CookieConsent";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -22,10 +25,20 @@ const playfair = Playfair_Display({
   display: "swap",
 });
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
+
 export async function generateMetadata(): Promise<Metadata> {
-  const settings = await prisma.storeSettings.findUnique({
-    where: { id: "singleton" }
-  }).catch(() => null);
+  let settings: any = null;
+  try {
+    settings = await prisma.storeSettings.findUnique({
+      where: { id: "singleton" }
+    }).catch(() => null);
+  } catch {
+    settings = null;
+  }
 
     return {
         title: settings?.defaultSeoTitle || "Designer World | Four Generations of Horological Expertise",
@@ -42,7 +55,6 @@ export async function generateMetadata(): Promise<Metadata> {
             title: settings?.defaultSeoTitle || "Designer World",
             description: settings?.defaultSeoDescription || "Four Generations of Watchmaking.",
         },
-        viewport: "width=device-width, initial-scale=1",
         robots: "index, follow",
     }
 }
@@ -52,9 +64,14 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const settings = await prisma.storeSettings.findUnique({
-    where: { id: "singleton" }
-  }).catch(() => null);
+  let settings: any = null;
+  try {
+    settings = await prisma.storeSettings.findUnique({
+      where: { id: "singleton" }
+    }).catch(() => null);
+  } catch {
+    settings = null;
+  }
 
   const showAnnouncement = !!(settings?.announcementActive && settings.announcementText);
 
@@ -68,9 +85,12 @@ export default async function RootLayout({
             cartDrawer={<CartDrawer />}
             footer={<Footer />}
           >
-            {children}
+            <Suspense fallback={<div className="h-screen w-full flex items-center justify-center bg-[#FAF8F4]"><Loader2 className="w-8 h-8 text-[#003926] animate-spin" /></div>}>
+              {children}
+            </Suspense>
           </PublicShell>
           <Toaster richColors position="top-center" />
+          <CookieConsent />
       </body>
     </html>
   );

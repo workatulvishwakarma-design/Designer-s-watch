@@ -4,7 +4,6 @@ import { auth } from "@/lib/auth"
 import { prisma } from "@/lib/db"
 import { z } from "zod"
 import { revalidatePath } from "next/cache"
-import { getProductBySlug } from "@/data/productData"
 
 const checkoutSchema = z.object({
   addressId: z.string().min(1, "Shipping Address is required"),
@@ -67,53 +66,39 @@ export async function processCheckout(formData: FormData) {
       // Use defaults if storeSettings fails
     }
 
-    // 2.5 Resolve products — handles both DB IDs (CUID) and slug-based IDs
-    // Cart items now use slug as productId. We need to look them up.
-    const resolvedItems: { productId: string; quantity: number; price: number; name: string }[] = []
+    // 2.5 Resolve products using variant DB
+    const resolvedItems: { variantId: string; quantity: number; price: number; name: string }[] = []
 
     for (const item of items) {
-      const productId = item.productId // This is now a slug
+      const skuOrId = item.productId // Cart item uses sku or id
+      const quantity = Number(item.quantity)
 
-      // Try to find by ID (for backward compat with old cart data)
-      let dbProduct = null
-      try {
-        dbProduct = await prisma.product.findFirst({
-          where: {
-            OR: [
-              { id: productId },
-              { slug: productId },
-            ],
-            status: "ACTIVE",
-          },
-          select: { id: true, price: true, status: true, name: true }
-        })
-      } catch(e) {
-        // May fail if productId format doesn't match DB expectations
-      }
+      const dbVariant = await prisma.productVariant.findFirst({
+        where: {
+          OR: [
+            { id: skuOrId },
+            { sku: skuOrId },
+          ]
+        },
+        include: {
+          family: true,
+          inventory: true
+        }
+      })
 
-      if (dbProduct) {
-        // DB product found — use live price
+      if (dbVariant) {
+        if (dbVariant.inventory && dbVariant.inventory.stock < quantity) {
+          return { error: `Not enough stock for "${dbVariant.family.name} - ${dbVariant.sku}".` }
+        }
+
         resolvedItems.push({
-          productId: dbProduct.id,
-          quantity: Number(item.quantity),
-          price: Number(dbProduct.price?.toString() || 0),
-          name: dbProduct.name,
+          variantId: dbVariant.id,
+          quantity: quantity,
+          price: Number(dbVariant.price.toString() || 0),
+          name: `${dbVariant.family.name} - ${dbVariant.sku}`,
         })
       } else {
-        // Try static catalog lookup by slug
-        const staticProduct = getProductBySlug(productId)
-        if (staticProduct) {
-          // For static products in demo: create a temporary product record in DB
-          // or use the cart price (trusted for demo)
-          resolvedItems.push({
-            productId: productId, // slug
-            quantity: Number(item.quantity),
-            price: item.price || staticProduct.price,
-            name: staticProduct.name,
-          })
-        } else {
-          return { error: `Product "${item.name || productId}" is no longer available. Please remove it from your cart.` }
-        }
+        return { error: `Product "${item.name || skuOrId}" is no longer available. Please remove it from your cart.` }
       }
     }
 
@@ -152,40 +137,28 @@ export async function processCheckout(formData: FormData) {
     // 8. Generate transaction reference
     const txnRef = `DW-${Date.now().toString(36).toUpperCase()}-${Math.random().toString(36).substring(2, 6).toUpperCase()}`
 
-    // 9. Create order — only include items that have valid DB product IDs
-    const dbItems = resolvedItems.filter(item => {
-      // Check if productId looks like a CUID (DB ID)
-      return item.productId.length > 20 // CUIDs are typically 25+ chars
-    })
-
-    const staticItems = resolvedItems.filter(item => item.productId.length <= 20)
-
-    // For DB products, create proper order items
-    // For static products, we'll include them in internal notes
     const order = await prisma.order.create({
       data: {
         userId,
-        status: "PROCESSING",
+        status: "PENDING",
         totalAmount,
         taxAmount,
         shippingAmount: shipping,
         paymentMethod: parsed.data.paymentMethod,
         shippingAddressId: address.id,
         couponId: appliedCouponId,
-        internalNotes: staticItems.length > 0
-          ? `Demo order includes static catalog items: ${staticItems.map(i => `${i.name} x${i.quantity} @₹${i.price}`).join(', ')}`
-          : null,
+        internalNotes: null,
         items: {
-          create: dbItems.map((item) => ({
-            productId: item.productId,
+          create: resolvedItems.map((item) => ({
+            variantId: item.variantId,
             quantity: item.quantity,
             priceAtPurchase: item.price,
           }))
         },
         trackingEvents: {
           create: {
-            status: "PROCESSING",
-            description: `Order confirmed. Payment received via ${parsed.data.paymentMethod}. Reference: ${txnRef}`
+            status: "PENDING",
+            description: `Order initiated. Awaiting payment via ${parsed.data.paymentMethod}. Reference: ${txnRef}`
           }
         }
       }

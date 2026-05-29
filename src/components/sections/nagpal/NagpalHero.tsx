@@ -86,7 +86,7 @@ export default function NagpalHero() {
             className="font-body text-[10px] tracking-[0.25em] mb-6"
             style={{ color: "rgba(212,170,114,0.95)" }}
           >
-            DESIGNER WORLD / NAGPAL GROUP
+            DESIGNER WORLD / PILLARS
           </p>
 
           <motion.div

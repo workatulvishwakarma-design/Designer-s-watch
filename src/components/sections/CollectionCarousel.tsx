@@ -174,7 +174,7 @@ export default function CollectionCarousel({
                         >
                             <div className="relative w-full h-full">
                                 <Image
-                                    src={product.image}
+                                    src={product.image || "/images/main-img1.png"}
                                     alt={product.name}
                                     fill
                                     className="object-contain transition-transform"

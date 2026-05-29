@@ -99,6 +99,7 @@ export default function FAQSection() {
             <button
               onClick={() => window.location.href = "mailto:support@nagpalgroup.com"}
               className="relative w-full overflow-hidden flex items-center justify-between px-8 py-4 bg-[#1A1918] text-white rounded-full group/btn transition-all duration-500 hover:shadow-[0_12px_30px_rgba(0,57,38,0.25)] hover:-translate-y-1"
+              suppressHydrationWarning
             >
               <div className="absolute inset-0 w-full h-full bg-[#003926] scale-x-0 origin-left transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/btn:scale-x-100" />
               <span className="relative z-10 font-dm text-[12px] font-medium tracking-[0.15em] uppercase">
@@ -139,6 +140,7 @@ export default function FAQSection() {
                 <button
                   onClick={() => setOpenIndex(isOpen ? null : index)}
                   className="relative z-10 w-full flex items-center justify-between p-6 md:p-8 text-left outline-none"
+                  suppressHydrationWarning
                 >
                   <span 
                     className={`font-dm text-[16px] md:text-[18px] font-medium tracking-tight pr-8 transition-colors duration-300 ${

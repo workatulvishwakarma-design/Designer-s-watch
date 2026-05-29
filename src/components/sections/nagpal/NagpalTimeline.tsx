@@ -345,7 +345,7 @@ export default function NagpalTimeline() {
             transition={{ duration: 0.8, delay: 0.1 }}
             className="text-4xl md:text-5xl lg:text-[64px] font-cormorant font-semibold text-[#1A1918] tracking-tight mb-6 leading-tight"
           >
-            Nagpal Group Journey
+            Pillars Journey
           </motion.h2>
 
           <motion.p

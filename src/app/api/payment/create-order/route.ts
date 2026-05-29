@@ -15,7 +15,6 @@ import {
   getCashfreeMode,
   COD_ADVANCE_AMOUNT,
 } from "@/lib/cashfree";
-import { getProductBySlug } from "@/data/productData";
 
 export async function POST(req: NextRequest) {
   try {
@@ -65,51 +64,42 @@ export async function POST(req: NextRequest) {
 
     // ── 4. Resolve products and validate prices on server ──
     let subtotal = 0;
-    const resolvedItems: { productId: string; name: string; price: number; quantity: number; isStatic: boolean }[] = [];
+    const resolvedItems: { productId: string; name: string; price: number; quantity: number }[] = [];
 
     for (const item of cartItems) {
       const slug = item.productId || item.slug;
       const quantity = Number(item.quantity) || 1;
 
-      // Try DB first
-      let dbProduct = null;
-      try {
-        dbProduct = await prisma.product.findFirst({
-          where: {
-            OR: [{ id: slug }, { slug: slug }],
-            status: "ACTIVE",
-          },
-          select: { id: true, price: true, name: true },
-        });
-      } catch { /* ignore parse errors for slug-format IDs */ }
-
-      if (dbProduct) {
-        const serverPrice = Number(dbProduct.price.toString());
-        resolvedItems.push({
-          productId: dbProduct.id,
-          name: dbProduct.name,
-          price: serverPrice,
-          quantity,
-          isStatic: false,
-        });
-        subtotal += serverPrice * quantity;
-      } else {
-        // Static catalog fallback
-        const staticProduct = getProductBySlug(slug);
-        if (!staticProduct) {
-          return NextResponse.json({
-            error: `Product "${item.name || slug}" is no longer available`,
-          }, { status: 400 });
+      // Try DB
+      const dbVariant = await prisma.productVariant.findUnique({
+        where: { sku: slug },
+        include: {
+          family: true,
+          inventory: true
         }
-        resolvedItems.push({
-          productId: slug,
-          name: staticProduct.name,
-          price: staticProduct.price,
-          quantity,
-          isStatic: true,
-        });
-        subtotal += staticProduct.price * quantity;
+      });
+
+      if (!dbVariant || !dbVariant.family) {
+        return NextResponse.json({
+          error: `Product "${item.name || slug}" is no longer available`,
+        }, { status: 400 });
       }
+
+      // Check stock
+      if (dbVariant.inventory && dbVariant.inventory.stock < quantity) {
+        return NextResponse.json({
+          error: `Not enough stock for "${dbVariant.family.name} - ${dbVariant.sku}"`,
+        }, { status: 400 });
+      }
+
+      const serverPrice = Number(dbVariant.price.toString());
+      resolvedItems.push({
+        productId: dbVariant.id,
+        name: `${dbVariant.family.name} - ${dbVariant.sku}`,
+        price: serverPrice,
+        quantity,
+      });
+      subtotal += serverPrice * quantity;
     }
 
     // ── 5. Apply coupon ──

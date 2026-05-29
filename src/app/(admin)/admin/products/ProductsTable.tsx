@@ -9,10 +9,12 @@ type ProductRow = {
   price: string
   status: string
   inventory: number
+  collection?: string
 }
 
 const columns: Column<ProductRow>[] = [
   { header: "Name", accessor: "name" },
+  { header: "Collection", accessor: "collection" },
   { header: "Price", accessor: "price" },
   { 
     header: "Status", 
@@ -30,5 +32,5 @@ const columns: Column<ProductRow>[] = [
 ]
 
 export function ProductsTable({ data }: { data: ProductRow[] }) {
-  return <DataTable data={data} columns={columns} keyField="id" getRowHref={(row) => `/admin/products/${row.id}/edit`} />
+  return <DataTable data={data} columns={columns} keyField="id" getRowHref={(row) => `/admin/products/${row.id}`} />
 }

@@ -36,7 +36,7 @@ const NAGPAL_DIVISIONS: Division[] = [
       "Deeply connected with the smallest watch repair shops to the biggest brands and watch stores in India that need parts for service.",
       "A name and goodwill running strong for 50 years now. 1976–2026."
     ],
-    image: "/images/new-img/pillars/1.jpeg",
+    image: "/images/new-content/pillars/Nagpal_s Bombay/ng-bombay.jpg",
     bg: "#0D0D0C",
     textColor: "#FAFAF8",
     accentColor: "#B8935A",
@@ -55,7 +55,7 @@ const NAGPAL_DIVISIONS: Division[] = [
       "In the textile and fashion sectors, our legacy of precision is relied upon by giants such as Donear and Siyaram, alongside numerous leading pharmaceutical brands and institutional bodies.",
       "From bespoke dial customization to specialized packaging and nationwide delivery logistics, our corporate division operates with the exacting standards and reliability demanded by India's most respected conglomerates."
     ],
-    image: "/images/new-img/pillars/2.jpg",
+    image: "/images/new-content/pillars/Corporate B2B/2a.jpg",
     bg: "#FAF8F4",
     textColor: "#1A1918",
     accentColor: "#003926",
@@ -74,7 +74,7 @@ const NAGPAL_DIVISIONS: Division[] = [
       "We partner with fashion labels, lifestyle brands, and specialized retailers, translating their brand DNA into compelling timepieces. Our partners benefit from our vast component network, deep technical expertise, and economies of scale.",
       "By maintaining strict confidentiality and uncompromising production standards, we serve as the silent engine behind many successful watch brands operating in the market today."
     ],
-    image: "/images/new-img/pillars/3.JPG",
+    image: "/images/new-content/pillars/OEM- ODM/WhatsApp Image 2026-04-04 at 4.14.22 PM (1).jpeg",
     bg: "#111110",
     textColor: "#FAFAF8",
     accentColor: "#B8935A",
@@ -93,7 +93,7 @@ const NAGPAL_DIVISIONS: Division[] = [
       "ESCORT serves the value-conscious consumer who refuses to compromise on reliability. With robust movements, durable construction, and timeless design, ESCORT watches are engineered for everyday excellence.",
       "Together, these house brands represent the full spectrum of our capability—from design studio creativity to manufacturing floor precision and lifelong after-sales commitment."
     ],
-    image: "/images/new-img/pillars/4.jpg",
+    image: "/images/new-img/pillars/8.jpg",
     bg: "#F2EDE6",
     textColor: "#1A1918",
     accentColor: "#003926",
@@ -112,7 +112,7 @@ const NAGPAL_DIVISIONS: Division[] = [
       "Our export relationships span established markets in the Middle East, Southeast Asia, and Africa, with a growing presence in European and North American distribution networks.",
       "This division also serves as a window into global trends and competitive benchmarks, bringing back insights that inform product development across the group."
     ],
-    image: "/images/new-img/pillars/6.JPG",
+    image: "/images/new-content/pillars/Exports/WhatsApp Image 2026-04-15 at 11.30.22 AM.jpeg",
     bg: "#0D0D0C",
     textColor: "#FAFAF8",
     accentColor: "#B8935A",
@@ -131,7 +131,7 @@ const NAGPAL_DIVISIONS: Division[] = [
       "The store showcases our prime models, new launches, top sellers, and special editions in an atmosphere crafted to inspire with an appealing display and aura.",
       "This boutique is a gesture to connect with watch enthusiasts and add enduring value to our happy watch buyers. First location: Agra."
     ],
-    image: "/images/new-img/pillars/GW-Ads-BArtboard%202.jpg",
+    image: "/images/new-content/pillars/Time Corridor/time corriddor/1A1A8499.JPG",
     bg: "#FAF8F4",
     textColor: "#1A1918",
     accentColor: "#003926",
@@ -149,7 +149,7 @@ const NAGPAL_DIVISIONS: Division[] = [
       "In an industry crowded with imitation products and unreliable sellers, Nagpal Group has earned enduring trust as one of the most dependable names in the watch business.",
       "We supply genuine button cells to independent retailers, authorised service centres, and major watch networks, ensuring the reliable performance of timepieces nationwide."
     ],
-    image: "/images/new-img/pillars/WhatsApp%20Image%202026-04-04%20at%204.14.22%20PM.jpeg",
+    image: "/images/new-content/pillars/Batteries/batteries-banner.webp",
     bg: "#111110",
     textColor: "#FAFAF8",
     accentColor: "#B8935A",
@@ -272,6 +272,12 @@ function DivisionBlock({
       className="w-full relative overflow-hidden"
       style={{ background: division.bg }}
     >
+      {/* Green ambient glow for dark sections */}
+      {isDark && (
+        <div className="absolute top-1/2 right-0 w-[350px] h-[350px] pointer-events-none opacity-[0.08] blur-[120px] -translate-y-1/2"
+          style={{ background: "radial-gradient(circle, rgba(0,57,38,0.6), transparent)" }}
+        />
+      )}
       <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-2 min-h-[80vh] lg:min-h-[85vh] relative z-[2]">
         {/* IMAGE */}
         <div
@@ -681,6 +687,10 @@ export default function NagpalDivisions() {
           ref={introRef}
           className="bg-[#FAF8F4] py-20 lg:py-28 text-center px-6 relative overflow-hidden"
         >
+          {/* Green ambient glow */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] pointer-events-none opacity-[0.06] blur-[100px]"
+            style={{ background: "radial-gradient(circle, rgba(0,57,38,0.3), transparent)" }}
+          />
           {/* Decorative background */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
             <span
