@@ -25,7 +25,7 @@ export default async function AdminDashboardPage() {
     couponUsageTotal,
     abandonedCheckouts,
   ] = await Promise.all([
-    prisma.product.count({ where: { status: "ACTIVE" } }),
+    prisma.productFamily.count({ where: { status: "ACTIVE" } }),
     prisma.order.count(),
     prisma.user.count({ where: { role: "CUSTOMER" } }),
     prisma.order.findMany({ take: 7, orderBy: { createdAt: "desc" }, include: { user: true } }),
@@ -39,14 +39,28 @@ export default async function AdminDashboardPage() {
       select: { createdAt: true, totalAmount: true, isCOD: true }
     }),
     prisma.orderItem.groupBy({
-      by: ['productId'],
+      by: ['variantId'],
       _sum: { quantity: true },
       orderBy: { _sum: { quantity: 'desc' } },
       take: 5
     }),
     prisma.inventory.findMany({
       where: { stock: { lt: 10 } },
-      include: { product: { select: { id: true, name: true, price: true } } },
+      include: {
+        variant: {
+          select: {
+            id: true,
+            price: true,
+            sku: true,
+            family: {
+              select: {
+                id: true,
+                name: true,
+              }
+            }
+          }
+        }
+      },
       take: 5,
       orderBy: { stock: "asc" }
     }),
@@ -60,16 +74,30 @@ export default async function AdminDashboardPage() {
   ])
 
   // Get product details for top sellers
-  const topProductIds = topSellersAgg.map((item: any) => item.productId) || [];
-  const topProducts = await prisma.product.findMany({
-    where: { id: { in: topProductIds } },
-    select: { id: true, name: true, price: true, status: true }
+  const topVariantIds = topSellersAgg.map((item: any) => item.variantId) || [];
+  const topVariants = await prisma.productVariant.findMany({
+    where: { id: { in: topVariantIds } },
+    select: {
+      id: true,
+      sku: true,
+      price: true,
+      family: {
+        select: {
+          id: true,
+          name: true,
+          status: true,
+        }
+      }
+    }
   });
 
   // Map quantity back
-  const topSellingList = topProducts.map(p => ({
-    ...p,
-    sales: topSellersAgg.find((ts: any) => ts.productId === p.id)?._sum?.quantity || 0
+  const topSellingList = topVariants.map(v => ({
+    id: v.family.id, // Direct to family edit
+    name: `${v.family.name} (${v.sku})`,
+    price: v.price,
+    status: v.family.status,
+    sales: topSellersAgg.find((ts: any) => ts.variantId === v.id)?._sum?.quantity || 0
   })).sort((a,b) => b.sales - a.sales);
 
   const totalRevenue = revenueAgg._sum.totalAmount || 0
@@ -154,10 +182,10 @@ export default async function AdminDashboardPage() {
           <ul className="divide-y divide-gray-100 dark:divide-zinc-800">
             {lowStockProducts.map((inv) => (
               <li key={inv.id}>
-                <Link href={`/admin/products/${inv.product.id}/edit`} className="flex items-center justify-between px-4 py-4 sm:px-6 hover:bg-gray-50 dark:hover:bg-zinc-800/50 transition-colors">
+                <Link href={`/admin/products`} className="flex items-center justify-between px-4 py-4 sm:px-6 hover:bg-gray-50 dark:hover:bg-zinc-800/50 transition-colors">
                   <div className="flex flex-col">
-                    <span className="text-sm font-medium text-gray-900 dark:text-white">{inv.product.name}</span>
-                    <span className="text-xs text-gray-500">₹{Number(inv.product.price).toLocaleString()}</span>
+                    <span className="text-sm font-medium text-gray-900 dark:text-white">{inv.variant.family.name} ({inv.variant.sku})</span>
+                    <span className="text-xs text-gray-500">₹{Number(inv.variant.price).toLocaleString()}</span>
                   </div>
                   <Badge variant={inv.stock === 0 ? "error" : "warning"}>
                     {inv.stock === 0 ? "Out of Stock" : `${inv.stock} left`}
