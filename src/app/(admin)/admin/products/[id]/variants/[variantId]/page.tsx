@@ -24,6 +24,19 @@ export default async function EditVariantPage({ params }: { params: Promise<{ id
     notFound()
   }
 
+  const serializedVariant = {
+    ...variant,
+    price: Number(variant.price),
+    mrp: variant.mrp ? Number(variant.mrp) : null,
+    createdAt: variant.createdAt.toISOString(),
+    updatedAt: variant.updatedAt.toISOString(),
+    inventory: variant.inventory ? {
+      ...variant.inventory,
+      createdAt: variant.inventory.createdAt.toISOString(),
+      updatedAt: variant.inventory.updatedAt.toISOString(),
+    } : null
+  }
+
   return (
     <div className="space-y-6 max-w-5xl">
       <div className="mb-6">
@@ -32,7 +45,7 @@ export default async function EditVariantPage({ params }: { params: Promise<{ id
         </h1>
         <p className="text-sm text-gray-500">Family: {family.name}</p>
       </div>
-      <ProductVariantForm familyId={family.id} initialData={variant} />
+      <ProductVariantForm familyId={family.id} initialData={serializedVariant} />
     </div>
   )
 }
