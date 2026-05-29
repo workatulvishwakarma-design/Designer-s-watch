@@ -79,8 +79,9 @@ export default function LegalPageShell({
 
   // Monitor scroll for header background & active section scroll-spy
   useEffect(() => {
+    let isMounted = true;
     const handleScroll = () => {
-      setScrolled(window.scrollY > 120);
+      if (isMounted) setScrolled(window.scrollY > 120);
     };
     window.addEventListener("scroll", handleScroll);
 
@@ -88,7 +89,7 @@ export default function LegalPageShell({
     observerRef.current = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
+          if (entry.isIntersecting && isMounted) {
             setActiveSection(entry.target.id);
           }
         });
@@ -102,6 +103,7 @@ export default function LegalPageShell({
     });
 
     return () => {
+      isMounted = false;
       window.removeEventListener("scroll", handleScroll);
       observerRef.current?.disconnect();
     };

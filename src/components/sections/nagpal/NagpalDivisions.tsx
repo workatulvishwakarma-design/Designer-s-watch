@@ -167,10 +167,11 @@ function useScrollReveal(threshold = 0.15) {
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+    let isMounted = true;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
+        if (entry.isIntersecting && isMounted) {
           setIsVisible(true);
           observer.unobserve(el);
         }
@@ -179,7 +180,10 @@ function useScrollReveal(threshold = 0.15) {
     );
 
     observer.observe(el);
-    return () => observer.disconnect();
+    return () => {
+      isMounted = false;
+      observer.disconnect();
+    };
   }, [threshold]);
 
   return { ref, isVisible };

@@ -174,12 +174,21 @@ function useReveal(threshold = 0.1) {
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+    let isMounted = true;
     const obs = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) { setVis(true); obs.unobserve(el); } },
-      { threshold, rootMargin: "0px 0px -40px 0px" }
+      ([e]) => {
+        if (e.isIntersecting && isMounted) {
+          setVis(true);
+          obs.unobserve(el);
+        }
+      },
+      { threshold, rootMargin: "0px 0px -40% 0px" }
     );
     obs.observe(el);
-    return () => obs.disconnect();
+    return () => {
+      isMounted = false;
+      obs.disconnect();
+    };
   }, [threshold]);
   return { ref, vis };
 }
@@ -533,9 +542,10 @@ function TimelineEvent({
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+    let isMounted = true;
     const obs = new IntersectionObserver(
       ([e]) => {
-        if (e.isIntersecting) {
+        if (e.isIntersecting && isMounted) {
           setVis(true);
           onVisible(index);
           obs.unobserve(el);
@@ -544,7 +554,10 @@ function TimelineEvent({
       { threshold: 0.08, rootMargin: "0px 0px -60px 0px" }
     );
     obs.observe(el);
-    return () => obs.disconnect();
+    return () => {
+      isMounted = false;
+      obs.disconnect();
+    };
   }, [index, onVisible]);
 
   const isWhitePanel = m.type === "text-only";
@@ -672,7 +685,9 @@ export default function DesignerJourney() {
     const container = timelineContainerRef.current;
     if (!container) return;
 
+    let isMounted = true;
     const handleScroll = () => {
+      if (!isMounted) return;
       const rect = container.getBoundingClientRect();
       const windowH = window.innerHeight;
 
@@ -687,7 +702,10 @@ export default function DesignerJourney() {
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll(); // initial
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      isMounted = false;
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   /* Track which milestone is currently in view for active state */
@@ -695,10 +713,11 @@ export default function DesignerJourney() {
     const nodes = document.querySelectorAll<HTMLDivElement>(".j-event");
     if (!nodes.length) return;
 
+    let isMounted = true;
     const obs = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
+          if (entry.isIntersecting && isMounted) {
             const idx = Number(entry.target.getAttribute("data-idx"));
             if (!isNaN(idx)) setActiveMilestone(idx);
           }
@@ -712,7 +731,10 @@ export default function DesignerJourney() {
       obs.observe(n);
     });
 
-    return () => obs.disconnect();
+    return () => {
+      isMounted = false;
+      obs.disconnect();
+    };
   }, []);
 
   return (

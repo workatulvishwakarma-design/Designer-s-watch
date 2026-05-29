@@ -57,9 +57,18 @@ export default function NagpalHero() {
   useEffect(() => {
     const el = statsRef.current;
     if (!el) return;
-    const obs = new IntersectionObserver(([e]) => setStatsInView(e.isIntersecting), { threshold: 0.2 });
+    let isMounted = true;
+    const obs = new IntersectionObserver(
+      ([e]) => {
+        if (isMounted) setStatsInView(e.isIntersecting);
+      },
+      { threshold: 0.2 }
+    );
     obs.observe(el);
-    return () => obs.disconnect();
+    return () => {
+      isMounted = false;
+      obs.disconnect();
+    };
   }, []);
   const count1 = useCountUp(20, 2, statsInView);
   const count2 = useCountUp(500, 2, statsInView);
