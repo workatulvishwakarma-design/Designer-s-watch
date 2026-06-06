@@ -1,12 +1,14 @@
 "use server"
 
 import { prisma } from "@/lib/db"
+import { mapPrismaFamilyToGroup } from "@/lib/prismaMappers"
 import {
   dbToUnified,
   getAllUnifiedProducts,
   filterByBrand,
   filterByGender,
   getBestSellers,
+  familyToUnified,
   type UnifiedProduct,
 } from "@/lib/products"
 import { getFamilyBySku } from "@/data/productData"
@@ -63,17 +65,19 @@ export async function getHomepageProducts(): Promise<HomepageProducts> {
   let dbUnified: UnifiedProduct[] = []
 
   try {
-    const dbProducts = await prisma.product.findMany({
+    const rawFamilies = await prisma.productFamily.findMany({
       where: { status: "ACTIVE" },
       include: {
-        images: { orderBy: { sortOrder: "asc" } },
-        category: { select: { name: true, slug: true } },
-        inventory: { select: { stock: true, lowStockThreshold: true } },
+        collection: true,
+        variants: {
+          include: { images: true, inventory: true }
+        },
+        images: true
       },
       orderBy: { createdAt: "desc" },
       take: 50,
     })
-    dbUnified = dbProducts.map(dbToUnified)
+    dbUnified = rawFamilies.map(f => mapPrismaFamilyToGroup(f as any)).flatMap(familyToUnified)
   } catch (error) {
     console.error("DB fetch failed, using static catalog only:", error)
   }
@@ -104,12 +108,12 @@ export async function getHomepageProducts(): Promise<HomepageProducts> {
 export async function getProductBySlugHybrid(slug: string) {
   // 1. Try DB first
   try {
-    const dbProduct = await prisma.product.findUnique({
+    const familyRaw = await prisma.productFamily.findUnique({
       where: { slug, status: "ACTIVE" },
       include: {
-        images: { orderBy: { sortOrder: "asc" } },
-        category: { select: { name: true, slug: true } },
-        inventory: { select: { stock: true, lowStockThreshold: true, sku: true } },
+        collection: true,
+        variants: { include: { images: true, inventory: true } },
+        images: true,
         reviews: {
           where: { isApproved: true },
           select: { rating: true, comment: true, user: { select: { name: true } }, createdAt: true },
@@ -119,13 +123,14 @@ export async function getProductBySlugHybrid(slug: string) {
       },
     })
 
-    if (dbProduct) {
-      const unified = dbToUnified(dbProduct)
+    if (familyRaw) {
+      const group = mapPrismaFamilyToGroup(familyRaw as any)
+      const unified = familyToUnified(group)[0] // get the first variant as a baseline
       return {
         ...unified,
-        reviews: dbProduct.reviews || [],
+        reviews: familyRaw.reviews || [],
         fromDB: true,
-        dbId: dbProduct.id, // Keep real DB ID for checkout
+        dbId: familyRaw.id, // Keep real DB ID for checkout
       }
     }
   } catch (error) {
@@ -158,15 +163,16 @@ export async function getRelatedProductsHybrid(currentSlug: string, brand: strin
   let dbUnified: UnifiedProduct[] = []
 
   try {
-    const dbProducts = await prisma.product.findMany({
+    const rawFamilies = await prisma.productFamily.findMany({
       where: { status: "ACTIVE", slug: { not: currentSlug } },
       include: {
-        images: { orderBy: { sortOrder: "asc" } },
-        category: { select: { name: true, slug: true } },
+        collection: true,
+        variants: { include: { images: true, inventory: true } },
+        images: true,
       },
       take: 20,
     })
-    dbUnified = dbProducts.map(dbToUnified)
+    dbUnified = rawFamilies.map(f => mapPrismaFamilyToGroup(f as any)).flatMap(familyToUnified)
   } catch (e) {
     // ignore
   }
@@ -189,17 +195,17 @@ export async function getCollectionProducts(brand: string): Promise<UnifiedProdu
   let dbUnified: UnifiedProduct[] = []
 
   try {
-    const dbProducts = await prisma.product.findMany({
+    const rawFamilies = await prisma.productFamily.findMany({
       where: { status: "ACTIVE" },
       include: {
-        images: { orderBy: { sortOrder: "asc" } },
-        category: { select: { name: true, slug: true } },
-        inventory: { select: { stock: true, lowStockThreshold: true } },
+        collection: true,
+        variants: { include: { images: true, inventory: true } },
+        images: true,
       },
       orderBy: { createdAt: "desc" },
       take: 50,
     })
-    dbUnified = dbProducts.map(dbToUnified)
+    dbUnified = rawFamilies.map(f => mapPrismaFamilyToGroup(f as any)).flatMap(familyToUnified)
   } catch (e) {
     console.error("DB fetch failed for collection:", e)
   }
@@ -219,17 +225,17 @@ export async function getCollectionProductsByGender(gender: "Men" | "Women"): Pr
   let dbUnified: UnifiedProduct[] = []
 
   try {
-    const dbProducts = await prisma.product.findMany({
-      where: { status: "ACTIVE" },
+    const rawFamilies = await prisma.productFamily.findMany({
+      where: { status: "ACTIVE", gender },
       include: {
-        images: { orderBy: { sortOrder: "asc" } },
-        category: { select: { name: true, slug: true } },
-        inventory: { select: { stock: true, lowStockThreshold: true } },
+        collection: true,
+        variants: { include: { images: true, inventory: true } },
+        images: true,
       },
       orderBy: { createdAt: "desc" },
       take: 100, // higher limit since it's an entire gender
     })
-    dbUnified = dbProducts.map(dbToUnified)
+    dbUnified = rawFamilies.map(f => mapPrismaFamilyToGroup(f as any)).flatMap(familyToUnified)
   } catch (e) {
     console.error("DB fetch failed for collection:", e)
   }

@@ -25,7 +25,7 @@ export default async function AdminAnalyticsPage() {
     prisma.user.count({ where: { role: "CUSTOMER" } }),
     prisma.order.findMany({ select: { totalAmount: true, status: true, createdAt: true } }),
     prisma.orderItem.groupBy({
-      by: ['productId'],
+      by: ['variantId'],
       _sum: { quantity: true },
       orderBy: { _sum: { quantity: 'desc' } },
       take: 5,
@@ -38,7 +38,21 @@ export default async function AdminAnalyticsPage() {
     }),
     prisma.inventory.findMany({
       where: { stock: { lt: 10 } },
-      include: { product: { select: { id: true, name: true, slug: true } } },
+      include: {
+        variant: {
+          select: {
+            id: true,
+            sku: true,
+            family: {
+              select: {
+                id: true,
+                name: true,
+                slug: true
+              }
+            }
+          }
+        }
+      },
       take: 5,
       orderBy: { stock: "asc" }
     }),
@@ -58,13 +72,14 @@ export default async function AdminAnalyticsPage() {
   const shippedOrders = allOrders.filter(o => o.status === "SHIPPED").length
   const couponUsageTotal = coupons.reduce((acc, c) => acc + c.usedCount, 0)
 
-  // Fetch product names for top products
-  const topProductIds = topProducts.map(tp => tp.productId)
-  const productNames = await prisma.product.findMany({
-    where: { id: { in: topProductIds } },
-    select: { id: true, name: true }
+  // Fetch variant and family names for top variants
+  const topVariantIds = topProducts.map(tp => tp.variantId)
+  const topVariants = await prisma.productVariant.findMany({
+    where: { id: { in: topVariantIds } },
+    include: { family: true }
   })
-  const productNameMap = Object.fromEntries(productNames.map(p => [p.id, p.name]))
+  const productNameMap = Object.fromEntries(topVariants.map(v => [v.id, `${v.family.name} (${v.sku})`]))
+  const variantToFamilyIdMap = Object.fromEntries(topVariants.map(v => [v.id, v.family.id]))
 
   // Order status distribution
   const statusDistribution = [
@@ -156,22 +171,25 @@ export default async function AdminAnalyticsPage() {
             <p className="text-sm text-gray-500 py-8 text-center">No sales data available yet.</p>
           ) : (
             <div className="space-y-4">
-              {topProducts.map((tp, idx) => (
-                <Link key={tp.productId} href={`/admin/products/${tp.productId}/edit`} className="flex items-center gap-4 group hover:bg-gray-50 dark:hover:bg-zinc-800/30 -mx-2 px-2 py-1 rounded-lg transition-colors">
-                  <div className="w-8 h-8 bg-gray-100 dark:bg-zinc-800 rounded-lg flex items-center justify-center text-xs font-bold text-gray-500">
-                    {idx + 1}
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-gray-900 dark:text-white truncate">
-                      {productNameMap[tp.productId] || tp.productId.slice(0, 8)}
-                    </p>
-                  </div>
-                  <Badge variant="neutral">
-                    {tp._sum.quantity || 0} sold
-                  </Badge>
-                  <ArrowUpRight className="w-3 h-3 text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity" />
-                </Link>
-              ))}
+              {topProducts.map((tp, idx) => {
+                const familyId = variantToFamilyIdMap[tp.variantId] || ""
+                return (
+                  <Link key={tp.variantId} href={`/admin/products/${familyId}`} className="flex items-center gap-4 group hover:bg-gray-50 dark:hover:bg-zinc-800/30 -mx-2 px-2 py-1 rounded-lg transition-colors">
+                    <div className="w-8 h-8 bg-gray-100 dark:bg-zinc-800 rounded-lg flex items-center justify-center text-xs font-bold text-gray-500">
+                      {idx + 1}
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-medium text-gray-900 dark:text-white truncate">
+                        {productNameMap[tp.variantId] || tp.variantId.slice(0, 8)}
+                      </p>
+                    </div>
+                    <Badge variant="neutral">
+                      {tp._sum.quantity || 0} sold
+                    </Badge>
+                    <ArrowUpRight className="w-3 h-3 text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  </Link>
+                )
+              })}
             </div>
           )}
         </div>
@@ -228,17 +246,21 @@ export default async function AdminAnalyticsPage() {
               <p className="text-sm text-gray-500 text-center py-4">All products are well stocked.</p>
             ) : (
               <div className="space-y-3">
-                {lowStockProducts.map(inv => (
-                  <Link key={inv.id} href={`/admin/products/${inv.product.id}/edit`} className="flex items-center justify-between hover:bg-gray-50 dark:hover:bg-zinc-800/30 -mx-2 px-2 py-1 rounded-lg transition-colors group">
-                    <p className="text-sm text-gray-900 dark:text-white truncate">{inv.product.name}</p>
-                    <div className="flex items-center gap-2">
-                      <Badge variant={inv.stock === 0 ? "error" : "warning"}>
-                        {inv.stock === 0 ? "Out of Stock" : `${inv.stock} left`}
-                      </Badge>
-                      <ArrowUpRight className="w-3 h-3 text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity" />
-                    </div>
-                  </Link>
-                ))}
+                {lowStockProducts.map(inv => {
+                  const familyId = inv.variant?.family?.id || ""
+                  const familyName = inv.variant?.family?.name || "Unknown Product"
+                  return (
+                    <Link key={inv.id} href={`/admin/products/${familyId}`} className="flex items-center justify-between hover:bg-gray-50 dark:hover:bg-zinc-800/30 -mx-2 px-2 py-1 rounded-lg transition-colors group">
+                      <p className="text-sm text-gray-900 dark:text-white truncate">{familyName} ({inv.variant?.sku || inv.sku})</p>
+                      <div className="flex items-center gap-2">
+                        <Badge variant={inv.stock === 0 ? "error" : "warning"}>
+                          {inv.stock === 0 ? "Out of Stock" : `${inv.stock} left`}
+                        </Badge>
+                        <ArrowUpRight className="w-3 h-3 text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity" />
+                      </div>
+                    </Link>
+                  )
+                })}
               </div>
             )}
           </div>

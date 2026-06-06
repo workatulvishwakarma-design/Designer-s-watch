@@ -231,7 +231,7 @@ export default async function AdminDashboardPage() {
            <ul className="divide-y divide-gray-100 dark:divide-zinc-800">
              {topSellingList.map((product, idx) => (
                <li key={product.id}>
-                 <Link href={`/admin/products/${product.id}/edit`} className="flex items-center justify-between px-4 py-4 sm:px-6 hover:bg-gray-50 dark:hover:bg-zinc-800/50 transition-colors">
+                 <Link href={`/admin/products/${product.id}`} className="flex items-center justify-between px-4 py-4 sm:px-6 hover:bg-gray-50 dark:hover:bg-zinc-800/50 transition-colors">
                    <div className="flex items-center gap-3">
                      <span className="w-7 h-7 bg-gray-100 dark:bg-zinc-800 rounded-lg flex items-center justify-center text-xs font-bold text-gray-500">{idx + 1}</span>
                      <div className="flex flex-col">
