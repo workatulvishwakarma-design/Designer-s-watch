@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 
-const nextConfig: any = {
+const nextConfig: NextConfig = {
+  output: 'standalone',
   images: {
     formats: ['image/avif', 'image/webp'],
     remotePatterns: [
@@ -16,9 +17,6 @@ const nextConfig: any = {
   },
   typescript: {
     ignoreBuildErrors: true,
-  },
-  turbopack: {
-    root: '.',
   },
 };
 
