@@ -64,7 +64,7 @@ export async function POST(req: NextRequest) {
 
     // ── 4. Resolve products and validate prices on server ──
     let subtotal = 0;
-    const resolvedItems: { productId: string; name: string; price: number; quantity: number }[] = [];
+    const resolvedItems: { productId: string; name: string; price: number; quantity: number; isStatic?: boolean }[] = [];
 
     for (const item of cartItems) {
       const slug = item.productId || item.slug;
@@ -98,6 +98,7 @@ export async function POST(req: NextRequest) {
         name: `${dbVariant.family.name} - ${dbVariant.sku}`,
         price: serverPrice,
         quantity,
+        isStatic: false,
       });
       subtotal += serverPrice * quantity;
     }
@@ -168,7 +169,7 @@ export async function POST(req: NextRequest) {
           : null,
         items: {
           create: dbItems.map(item => ({
-            productId: item.productId,
+            variantId: item.productId,
             quantity: item.quantity,
             priceAtPurchase: item.price,
           })),

@@ -16,8 +16,12 @@ export default async function OrderSuccessPage({ params }: { params: Promise<{ i
     include: {
       items: {
         include: {
-          product: {
-            select: { name: true, images: { take: 1 } }
+          variant: {
+            include: {
+              family: {
+                select: { name: true, images: { take: 1 } }
+              }
+            }
           }
         }
       },
@@ -58,13 +62,13 @@ export default async function OrderSuccessPage({ params }: { params: Promise<{ i
                   <li key={item.id} className="flex gap-4">
                     <div className="w-20 h-20 bg-[#F5F2ED] rounded-xl flex items-center justify-center p-2 flex-shrink-0">
                       <img 
-                        src={item.product.images[0]?.url || "https://picsum.photos/200"} 
-                        alt={item.product.name}
+                        src={item.variant?.family?.images[0]?.url || "https://picsum.photos/200"} 
+                        alt={item.variant?.family?.name}
                         className="w-full h-full object-contain mix-blend-multiply"
                       />
                     </div>
                     <div className="flex-1 flex flex-col justify-center">
-                      <h3 className="font-body font-medium text-[#1A1918] text-sm line-clamp-2">{item.product.name}</h3>
+                      <h3 className="font-body font-medium text-[#1A1918] text-sm line-clamp-2">{item.variant?.family?.name}</h3>
                       <p className="text-[10px] text-[#9C9690] uppercase tracking-widest mt-1">Qty: {item.quantity}</p>
                     </div>
                     <div className="text-[#1A1918] font-medium font-body text-sm flex items-center">

@@ -1,8 +1,15 @@
 "use client";
 
-export default function GrainOverlay() {
+interface GrainOverlayProps {
+    opacity?: number;
+}
+
+export default function GrainOverlay({ opacity = 0.035 }: GrainOverlayProps) {
     return (
-        <svg className="absolute inset-0 w-full h-full opacity-[0.035] pointer-events-none z-0">
+        <svg 
+            className="absolute inset-0 w-full h-full pointer-events-none z-0" 
+            style={{ opacity }}
+        >
             <filter id="grain">
                 <feTurbulence
                     type="fractalNoise"

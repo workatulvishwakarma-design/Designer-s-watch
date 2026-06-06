@@ -39,7 +39,7 @@ export const {
           const parsedCredentials = credentialsSchema.safeParse(credentials)
 
           if (!parsedCredentials.success) {
-            console.log("Zod validation failed:", parsedCredentials.error.errors);
+            console.log("Zod validation failed:", parsedCredentials.error.issues);
             return null;
           }
 

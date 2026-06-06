@@ -1,6 +1,6 @@
 "use client";
 import CollectionHero from "@/components/sections/CollectionHero";
-import MenGrid from "@/components/sections/men/MenGrid";
+import EscortGrid from "@/components/sections/escort/EscortGrid";
 import SectionDivider from "@/components/ui/SectionDivider";
 import NewsletterStrip from "@/components/ui/NewsletterStrip";
 
@@ -13,7 +13,7 @@ export default function MensEscortPage() {
         description="Designed for standard luxury and daily performance. Precision movements housed in durable, classic cases that suit any lifestyle, seamlessly translating from daytime work to evening events."
         brand="escort"
         gender="men"
-        heroImage="/images/new-img/model-2/830/830/830GNFS.8G.png"
+        heroImage="/images/watches/Escort/E-7751/E-7751.SM_Blue.png"
         breadcrumbs={[
           { label: "Home", href: "/" },
           { label: "Collections", href: "/collections/escort" },
@@ -21,7 +21,7 @@ export default function MensEscortPage() {
         ]}
       />
       <SectionDivider />
-      <MenGrid />
+      <EscortGrid gender="Men" />
       <NewsletterStrip />
     </main>
   );

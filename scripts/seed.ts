@@ -1,8 +1,6 @@
-import { PrismaClient } from '@prisma/client';
+import { prisma } from '../src/lib/db';
 import fs from 'fs';
 import path from 'path';
-
-const prisma = new PrismaClient();
 
 // Map your original JSON columns to a readable format if needed
 // or just parse the 'designer_world_products_grouped.json' structure directly.

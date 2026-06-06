@@ -45,7 +45,7 @@ export default function EscortPage() {
                         <div className="bg-white border border-[#003926]/20 rounded-2xl p-10 flex flex-col items-center shadow-sm">
                             <span className="text-gold font-body text-[10px] tracking-[0.3em] uppercase mb-4">D&apos;SIGNER</span>
                             <ul className="text-[#1A1918] font-body text-sm space-y-4 mb-10 text-center">
-                                <li className="opacity-80">Surgical-Grade Stainless Steel & Sapphire Glass</li>
+                                <li className="opacity-80">Surgical-Grade Stainless Steel &amp; Sapphire Glass</li>
                                 <li className="opacity-80">Accessible Luxury • ₹1,299 – ₹4,999</li>
                                 <li className="opacity-80">Crafted for Impact and Refinement</li>
                             </ul>
@@ -61,7 +61,7 @@ export default function EscortPage() {
                         <div className="bg-white border border-[#003926]/20 rounded-2xl p-10 flex flex-col items-center shadow-sm">
                             <span className="text-[#003926] font-body text-[10px] tracking-[0.3em] uppercase mb-4">ESCORT</span>
                             <ul className="text-[#1A1918] font-body text-sm space-y-4 mb-10 text-center">
-                                <li className="opacity-80">Engineered Alloy & Hardened Mineral Glass</li>
+                                <li className="opacity-80">Engineered Alloy &amp; Hardened Mineral Glass</li>
                                 <li className="opacity-80">Everyday Value • ₹799 – ₹2,499</li>
                                 <li className="opacity-80">Built for Endurance and Daily Wear</li>
                             </ul>

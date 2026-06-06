@@ -1,5 +1,6 @@
 import rawData from "@/designer_world_products_grouped.json";
 import { COLLECTION_MAP } from "./collectionMap";
+import { collections } from "./collections";
 import { resolveProductImages, familyHasImages, type ImageGallery } from "@/lib/imageResolver";
 
 // ─── Interfaces ───
@@ -78,11 +79,27 @@ function getHex(colour: string | null): string {
 // ─── EXTRACT MODEL FAMILY ───
 const KNOWN_FAMILIES = Object.keys(COLLECTION_MAP).sort((a, b) => b.length - a.length);
 
+// Escort SKU prefix patterns: E-2200-7806, E-2250-7779, E-2300-7779
+const ESCORT_PREFIX_RE = /^E-\d{4}-(.+)/i;
+
 function extractFamily(modelNo: string): string | null {
   if (!modelNo) return null;
   const upper = modelNo.toUpperCase();
   
-  // Match exact known families first (handles 901L, 820G, etc.)
+  // Handle Escort compound SKUs: E-2200-7806.GM.16L → family 7806
+  const escortMatch = upper.match(ESCORT_PREFIX_RE);
+  if (escortMatch) {
+    const remainder = escortMatch[1]; // e.g., "7806.GM.16L" or "7908.GM_WHITE"
+    // Extract the model number before the first dot or underscore
+    const famMatch = remainder.match(/^([A-Z0-9-]+?)(?:[._]|$)/i);
+    let extracted = famMatch ? famMatch[1] : remainder;
+    if (KNOWN_FAMILIES.includes("E-" + extracted)) {
+      extracted = "E-" + extracted;
+    }
+    return extracted;
+  }
+  
+  // Match exact known families first (handles E-7914, A-1589, 901L, 820G, etc.)
   for (const fam of KNOWN_FAMILIES) {
     if (upper.startsWith(fam.toUpperCase())) return fam;
   }
@@ -92,7 +109,7 @@ function extractFamily(modelNo: string): string | null {
   if (numMatch) return numMatch[1];
   
   // Last resort: extract leading alphanumeric block
-  const match = modelNo.match(/^([A-Z0-9]+)/i);
+  const match = modelNo.match(/^([A-Z0-9-]+)/i);
   return match ? match[1].toUpperCase() : null;
 }
 
@@ -109,6 +126,17 @@ function normalizeGender(g: string | null): "Men" | "Women" | "Unisex" {
 // resolveProductImages(familyId, sku) is imported at the top
 
 
+// ─── COLLECTION NAME LOOKUP ───
+const _collectionNames: Record<string, string> = {};
+for (const c of collections) {
+  _collectionNames[c.slug] = c.name;
+}
+
+function getCollectionName(slug: string | null): string | null {
+  if (!slug) return null;
+  return _collectionNames[slug] || null;
+}
+
 // ─── PARSE RAW JSON INTO FAMILIES ───
 function parseFamilies(): ModelFamilyGroup[] {
   const data = rawData as Record<string, unknown>;
@@ -124,8 +152,6 @@ function parseFamilies(): ModelFamilyGroup[] {
       items.push(item);
     }
   }
-  
-  console.log(`[productData] Parsed ${items.length} raw product items from JSON`);
   
   const familyGroups: Record<string, Variant[]> = {};
   const familyMeta: Record<string, { gender: "Men" | "Women" | "Unisex"; category: string }> = {};
@@ -163,7 +189,7 @@ function parseFamilies(): ModelFamilyGroup[] {
         waterResistance,
         caseMaterial,
         glass: glassMaterial,
-        warranty: "2 Years",
+        warranty: COLLECTION_MAP[family] === "escort" ? "1 Year" : "2 Years",
       };
       if (functionality) specs.functionality = functionality;
       if (v.column_7) specs.dialSize = String(v.column_7).replace(/\s/g, "");
@@ -214,12 +240,20 @@ function parseFamilies(): ModelFamilyGroup[] {
     const slug = `${collectionSlug}-${familyId.toLowerCase()}`;
     const prices = variants.map((v) => v.price);
     
+    // Detect brand from collection slug
+    const isEscort = collectionSlug === "escort";
+    const brandName = isEscort ? "ESCORT" : "D'SIGNER";
+    
+    // Build a premium display name using collection + family ID
+    const colName = getCollectionName(collectionSlug);
+    const displayName = colName ? `${colName} ${familyId}` : `Series ${familyId}`;
+
     result.push({
       slug,
       familyId,
       collectionSlug,
-      name: `Model ${familyId}`,
-      brand: "D'SIGNER",
+      name: displayName,
+      brand: brandName,
       category: variants[0].specs.functionality ? "Chronograph" : "Classic",
       gender: variants[0].gender,
       priceRange: { min: Math.min(...prices), max: Math.max(...prices) },
@@ -228,15 +262,10 @@ function parseFamilies(): ModelFamilyGroup[] {
     });
   }
   
-  console.log(`[productData] Built ${result.length} model families`);
-  
-  // Log collection distribution for debugging
-  const colDist: Record<string, number> = {};
-  for (const f of result) {
-    const cs = f.collectionSlug || "unmapped";
-    colDist[cs] = (colDist[cs] || 0) + 1;
+  // Production: suppress verbose logging
+  if (process.env.NODE_ENV === "development") {
+    console.log(`[productData] Built ${result.length} model families`);
   }
-  console.log(`[productData] Collection distribution:`, JSON.stringify(colDist));
   
   // Sort: families with verified images first, then by variant count (descending), then alphabetically
   return result.sort((a, b) => {
@@ -257,7 +286,6 @@ function parseFamilies(): ModelFamilyGroup[] {
 let _parsed: ModelFamilyGroup[] = [];
 try {
   _parsed = parseFamilies();
-  console.log(`[productData] ✅ Successfully loaded ${_parsed.length} model families`);
 } catch (e) {
   console.error("[productData] CRITICAL: Failed to parse product families:", e);
   _parsed = [];
@@ -277,41 +305,23 @@ export function getFamiliesByCollection(collectionSlug: string): ModelFamilyGrou
   let families: ModelFamilyGroup[] = [];
   
   if (target === "dsigner" || target === "designer") {
+    // All D'Signer products
     families = allModelFamilies.filter(f => f.brand.toUpperCase() === "D'SIGNER");
   } else if (target === "mens-designer") {
     families = allModelFamilies.filter(f => f.brand.toUpperCase() === "D'SIGNER" && (f.gender === "Men" || f.gender === "Unisex"));
   } else if (target === "womens-designer") {
     families = allModelFamilies.filter(f => f.brand.toUpperCase() === "D'SIGNER" && (f.gender === "Women" || f.gender === "Unisex"));
-  } else if (target === "mens-escort") {
-    // Escort Men's: map elegant men's families with lower price points as Escort
-    families = allModelFamilies
-      .filter(f => (f.gender === "Men" || f.gender === "Unisex") && f.priceRange.min < 8000)
-      .slice(0, 16);
-    // Re-brand them as Escort for display
-    families = families.map(f => ({ ...f, brand: "ESCORT" }));
-  } else if (target === "womens-escort") {
-    // Escort Women's: map elegant women's families with lower price points as Escort
-    families = allModelFamilies
-      .filter(f => (f.gender === "Women" || f.gender === "Unisex") && f.priceRange.min < 8000)
-      .slice(0, 16);
-    families = families.map(f => ({ ...f, brand: "ESCORT" }));
   } else if (target === "escort") {
-    // All Escort: affordable families from both genders
-    families = allModelFamilies
-      .filter(f => f.priceRange.min < 8000)
-      .slice(0, 24);
-    families = families.map(f => ({ ...f, brand: "ESCORT" }));
+    // All Escort products
+    families = allModelFamilies.filter(f => f.brand.toUpperCase() === "ESCORT");
+  } else if (target === "mens-escort") {
+    families = allModelFamilies.filter(f => f.brand.toUpperCase() === "ESCORT" && (f.gender === "Men" || f.gender === "Unisex"));
+  } else if (target === "womens-escort") {
+    families = allModelFamilies.filter(f => f.brand.toUpperCase() === "ESCORT" && (f.gender === "Women" || f.gender === "Unisex"));
   } else {
-    // Named collection (grandeur, eternal, etc.)
+    // Named collection (grandeur, eternal, tactix, etc.)
     families = allModelFamilies.filter((f) => f.collectionSlug?.toLowerCase() === target);
-    
-    // If collection is empty, try to populate from nearby families
-    if (families.length === 0) {
-      // Fallback: show curated selection from the full catalog
-      families = allModelFamilies
-        .filter(f => familyHasImages(f.familyId))
-        .slice(0, 8);
-    }
+    // If empty, return honestly empty — do not inject random products
   }
 
   // Sort: families with images first, then by variant count

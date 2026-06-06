@@ -130,7 +130,7 @@ function FamilyCard({
     >
       <div
         className="relative w-full overflow-hidden"
-        style={{ aspectRatio: "4/5", background: imageBg }}
+        style={{ aspectRatio: "4/5", background: isDark ? "radial-gradient(ellipse at center, #2A2927, #222220)" : "radial-gradient(ellipse at center, #F0EDE8, #F5F2ED)" }}
       >
         {showImages ? (
           <>
@@ -138,7 +138,7 @@ function FamilyCard({
             <img
               src={primaryImage}
               alt={family.name}
-              className="absolute inset-0 w-full h-full object-contain p-6"
+              className="absolute inset-0 w-full h-full object-contain p-8"
               style={{
                 transition: "all 0.7s cubic-bezier(0.22,1,0.36,1)",
                 transform: hovered ? "scale(1.06)" : "scale(1)",
@@ -152,7 +152,7 @@ function FamilyCard({
               <img
                 src={hoverImage}
                 alt={`${family.name} variant`}
-                className="absolute inset-0 w-full h-full object-contain p-6"
+                className="absolute inset-0 w-full h-full object-contain p-8"
                 style={{
                   transition: "all 0.7s cubic-bezier(0.22,1,0.36,1)",
                   transform: hovered ? "scale(1.06)" : "scale(1.02)",
@@ -165,6 +165,9 @@ function FamilyCard({
         ) : (
           <LuxuryPlaceholder />
         )}
+
+        {/* Inner shadow for depth */}
+        <div className="absolute inset-0 pointer-events-none rounded-t-2xl" style={{ boxShadow: "inset 0 0 40px rgba(0,0,0,0.03)" }} />
 
         <span
           className="absolute top-3 left-3 rounded-full font-dm px-3 py-1.5 z-10"

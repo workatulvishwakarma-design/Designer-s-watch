@@ -2,10 +2,16 @@
  * ═══════════════════════════════════════════════════════════
  *  CENTRALIZED IMAGE RESOLVER — Designer World
  *  Production-grade image resolution with multi-level fallback
+ *  
+ *  v2: Fixed SKU→image matching to use structured keys
+ *  (FAMILY:xxx, DETAIL:xxx, exact SKU) instead of broken
+ *  substring matching that caused cross-contamination
  * ═══════════════════════════════════════════════════════════
  */
 
-// Local type to avoid circular dependency with productData.ts
+import rawPhysicalImageMap from "@/data/physicalImageMap.json";
+import { collections } from "@/data/collections";
+
 export interface ImageGallery {
   primary: string;
   hover: string;
@@ -13,150 +19,201 @@ export interface ImageGallery {
   lifestyle: string[];
 }
 
-// ─── MODEL DIRECTORY MAP ───
-const MODEL_1_FAMILIES = new Set([
-  "200","234","314","450","521","578","670","680","724","748","753","777","778","788","792","794","795",
-  "800","802","804","806","807","808","809","810","811","812","814","819",
-  "820","820G","821","823","824","825","826","827","828","829",
-]);
+const physicalImageMap = rawPhysicalImageMap as Record<string, string[]>;
 
-const MODEL_2_FAMILIES = new Set([
-  "181","830","834","835","836","837","840","841","843","845","850","850L","851","852",
-  "853","854","855","856","857","860","862","865","867","869","876","901","901L","905","912",
-  "915","916","950","960","962","J905",
-]);
+// Build a fast lookup set of all physical paths on disk
+const physicalPathsSet = new Set<string>();
+for (const paths of Object.values(physicalImageMap)) {
+  for (const p of paths) {
+    physicalPathsSet.add(p);
+  }
+}
 
 /**
- * Families whose PNG images are stored in a special "xxxpng" subdirectory
- * e.g. /model-1/680/680png/680BL.16G.png
+ * Checks if a path physically exists on disk (via the indexed map).
  */
-const PNG_SUBDIR_FAMILIES = new Set(["680"]);
+export function pathExistsOnDisk(pathString: string): boolean {
+  if (!pathString || pathString === "/" || pathString.startsWith("http")) {
+    return false;
+  }
+  return physicalPathsSet.has(pathString);
+}
 
 /**
- * Families that have root-level .jpg files (not PNG) directly in the family dir
- * e.g. /model-1/670/670RGBLM.5.L.jpg
+ * Helper: Filter image paths to prefer PNG product shots over JPG detail shots.
+ * PNG images in the map are typically clean product cutouts.
  */
-const ROOT_JPG_FAMILIES = new Set(["670"]);
+function preferPngProductShots(paths: string[]): string[] {
+  const pngs = paths.filter(p => p.toLowerCase().endsWith('.png'));
+  if (pngs.length > 0) return pngs;
+  return paths;
+}
+
+/**
+ * Helper: Filter paths to only those belonging to a specific family directory.
+ */
+function filterPathsByFamily(paths: string[], familyId: string): string[] {
+  const famUpper = familyId.toUpperCase().trim();
+  return paths.filter(p => {
+    const parts = p.split('/');
+    return parts.some(part => part === famUpper || part === familyId);
+  });
+}
+
+/**
+ * Find physical images matching a SKU and/or family ID from the map.
+ * Uses structured keys: exact SKU → family-level fallback.
+ * NO more dangerous substring matching against single-digit keys.
+ */
+export function findPhysicalImagesForSku(sku: string, familyId: string): string[] {
+  const skuUpper = sku.toUpperCase().trim();
+  const famUpper = familyId.toUpperCase().trim();
+  
+  // 1. Direct exact SKU match (e.g., "950GNFS.16G")
+  if (physicalImageMap[skuUpper]) {
+    return preferPngProductShots(physicalImageMap[skuUpper]);
+  }
+  
+  // 2. Try without strap suffix (e.g., "950GNFS" from "950GNFS.16G")
+  const dotIndex = skuUpper.indexOf('.');
+  if (dotIndex > 0) {
+    const skuBase = skuUpper.substring(0, dotIndex);
+    if (physicalImageMap[skuBase]) {
+      return preferPngProductShots(physicalImageMap[skuBase]);
+    }
+  }
+  
+  // 3. Search for compound keys containing this exact SKU (e.g., "521GM.16G & 521GM.16L")
+  for (const [key, paths] of Object.entries(physicalImageMap)) {
+    if (key.startsWith('FAMILY:') || key.startsWith('DETAIL:')) continue;
+    // Only match if the key contains the full SKU as a word boundary
+    if (key.length >= skuUpper.length && key.includes(skuUpper)) {
+      return preferPngProductShots(paths);
+    }
+  }
+  
+  // 4. Search for keys that start with the same base SKU and have matching color codes
+  if (dotIndex > 0) {
+    const skuBase = skuUpper.substring(0, dotIndex);
+    for (const [key, paths] of Object.entries(physicalImageMap)) {
+      if (key.startsWith('FAMILY:') || key.startsWith('DETAIL:')) continue;
+      if (key.startsWith(skuBase) && !key.includes('(')) {
+        return preferPngProductShots(paths);
+      }
+    }
+  }
+
+  // 5. Family-level fallback: use FAMILY:<id> key to find any image for this model
+  const familyKey = `FAMILY:${famUpper}`;
+  if (physicalImageMap[familyKey]) {
+    // Filter to prefer PNG product shots within the family
+    const familyPaths = physicalImageMap[familyKey];
+    const productPngs = familyPaths.filter(p => {
+      const fn = p.split('/').pop()?.toUpperCase() || '';
+      return fn.endsWith('.PNG') && /^\d{3,4}[A-Z]/.test(fn);
+    });
+    if (productPngs.length > 0) return productPngs;
+    
+    // Fall back to any JPG product shots (not numbered files)
+    const productJpgs = familyPaths.filter(p => {
+      const fn = p.split('/').pop()?.toUpperCase() || '';
+      return /^\d{3,4}[A-Z]/.test(fn.replace(/\.\w+$/, ''));
+    });
+    if (productJpgs.length > 0) return productJpgs;
+    
+    // Last resort: return first few family images
+    return familyPaths.slice(0, 4);
+  }
+  
+  return [];
+}
+
+/**
+ * Helper to find detail images dynamically from the map.
+ */
+export function findDetailImagesForSku(sku: string, familyId: string): string[] {
+  const skuUpper = sku.toUpperCase().trim();
+  const skuParts = skuUpper.split(".");
+  const skuBase = skuParts[0]; // e.g., "450RGBFS" from "450RGBFS.16G"
+  
+  const detailPaths: string[] = [];
+  
+  // 1. Check DETAIL: keys matching this SKU base
+  const detailKey = `DETAIL:${skuBase}`;
+  if (physicalImageMap[detailKey]) {
+    detailPaths.push(...physicalImageMap[detailKey]);
+  }
+  
+  // 2. Check for keys that match the pattern "SKUBASE (1)", "SKUBASE (2)" etc.
+  for (const [key, paths] of Object.entries(physicalImageMap)) {
+    if (key.startsWith('FAMILY:') || key.startsWith('DETAIL:')) continue;
+    if (key.startsWith(skuBase) && /\(\d+\)/.test(key)) {
+      // This is a detail image - but filter to only those in the right SKU's folder
+      const skuFolder = skuUpper.includes('.') ? skuUpper : null;
+      if (skuFolder) {
+        const matching = paths.filter(p => p.toUpperCase().includes(skuFolder));
+        if (matching.length > 0) {
+          detailPaths.push(...matching);
+          continue;
+        }
+      }
+      detailPaths.push(...paths);
+    }
+  }
+  
+  const unique = Array.from(new Set(detailPaths));
+  return unique.sort();
+}
 
 /**
  * Resolves image gallery paths for a given SKU and family.
- * 
- * Actual directory structures observed:
- * 
- * PATTERN A (model-1/795): Root-level PNGs
- *   /model-1/795/795SM.2G.png
- *   /model-1/795/795SM.2G/795SM (1).jpg  ← detail images
- * 
- * PATTERN B (model-2/950): Nested familyId/familyId/ PNGs 
- *   /model-2/950/950/950GNFS.16G.png
- *   /model-2/950/950GNFS.165G/  ← detail JPGs inside
- * 
- * PATTERN C (model-1/748): Triple-nested familyId/familyId/familyId/ PNGs
- *   /model-1/748/748/748/748BM.3G.png
- *   /model-1/748/748BLTM.5.G/748BLTM.5 (1).jpg  ← detail
- * 
- * PATTERN D (model-1/680): Special "xxxpng" subdir
- *   /model-1/680/680png/680BL.16G.png
- *   /model-1/680/680BL.16G/680BL (1).jpg  ← detail
- * 
- * PATTERN E (model-1/670): Root-level JPGs (not PNG)
- *   /model-1/670/670RGBLM.5.L.jpg
- *   /model-1/670/670GM.16.L/  ← detail JPGs inside
- * 
- * PATTERN F (model-2/830): Nested familyId/ PNGs
- *   /model-2/830/830/830GNFS.8G.png
  */
 export function resolveProductImages(familyId: string, sku: string): ImageGallery {
-  const dir = getModelDir(familyId);
-  if (!dir) return emptyGallery();
-
-  const base = `/images/new-img/${dir}/${familyId}`;
-
-  // Build primary image candidates in priority order based on known structures
-  const primaryCandidates: string[] = [];
+  const physicalImages = findPhysicalImagesForSku(sku, familyId);
   
-  // Pattern A: Root-level PNG  (e.g., /model-1/795/795SM.2G.png)
-  primaryCandidates.push(`${base}/${sku}.png`);
-  
-  // Pattern B/F: Nested familyId/ PNG  (e.g., /model-2/950/950/950GNFS.16G.png)
-  primaryCandidates.push(`${base}/${familyId}/${sku}.png`);
-  
-  // Pattern C: Triple-nested familyId/familyId/ PNG  (e.g., /model-1/748/748/748/748BM.3G.png)
-  primaryCandidates.push(`${base}/${familyId}/${familyId}/${sku}.png`);
-
-  // Pattern D: xxxpng subdir  (e.g., /model-1/680/680png/680BL.16G.png)
-  if (PNG_SUBDIR_FAMILIES.has(familyId)) {
-    primaryCandidates.unshift(`${base}/${familyId}png/${sku}.png`);
+  if (physicalImages.length > 0) {
+    const primary = physicalImages[0];
+    const hover = physicalImages.length > 1 ? physicalImages[1] : primary;
+    const detail = findDetailImagesForSku(sku, familyId);
+    
+    return {
+      primary,
+      hover,
+      detail: detail.length > 0 ? detail : [primary],
+      lifestyle: []
+    };
   }
   
-  // Pattern E: Root-level JPG  (e.g., /model-1/670/670RGBLM.5.L.jpg)
-  if (ROOT_JPG_FAMILIES.has(familyId)) {
-    primaryCandidates.push(`${base}/${sku}.jpg`);
-  }
-
-  // Strip the dot-suffix from SKU for detail image naming
-  // e.g., "748BLTM.5.G" → "748BLTM" (base name for detail JPGs)
-  // Detail images follow pattern: 748BLTM.5.G/748BLTM.5 (1).jpg
-  const skuParts = sku.split(".");
-  const skuBase = skuParts[0]; // e.g., "748BLTM" from "748BLTM.5.G"
-  const skuMid = skuParts.length >= 2 ? `${skuParts[0]}.${skuParts[1]}` : skuBase;
-  
-  // Detail images: variant subdirectory with numbered JPGs
-  const detail = [1, 2, 3, 4].map(n => `${base}/${sku}/${skuMid} (${n}).jpg`);
-
   return {
-    primary: primaryCandidates[0],
-    hover: primaryCandidates.length > 1 ? primaryCandidates[1] : primaryCandidates[0],
-    detail,
-    lifestyle: [],
+    primary: "",
+    hover: "",
+    detail: [],
+    lifestyle: []
   };
 }
 
 /**
  * Returns ALL possible primary image paths for a given family and SKU.
- * Used for checking which path actually resolves.
  */
 export function getAllPrimaryImageCandidates(familyId: string, sku: string): string[] {
-  const dir = getModelDir(familyId);
-  if (!dir) return [];
-
-  const base = `/images/new-img/${dir}/${familyId}`;
-  const candidates: string[] = [];
-  
-  if (PNG_SUBDIR_FAMILIES.has(familyId)) {
-    candidates.push(`${base}/${familyId}png/${sku}.png`);
-  }
-  
-  candidates.push(`${base}/${sku}.png`);
-  candidates.push(`${base}/${familyId}/${sku}.png`);
-  candidates.push(`${base}/${familyId}/${familyId}/${sku}.png`);
-  
-  if (ROOT_JPG_FAMILIES.has(familyId)) {
-    candidates.push(`${base}/${sku}.jpg`);
-  }
-
-  return candidates;
+  return findPhysicalImagesForSku(sku, familyId);
 }
 
 /**
  * Resolves a single "hero" image for a family (uses first variant's primary).
- * For use in collection grids and cards.
  */
 export function resolveFamilyHeroImage(familyId: string, firstSku?: string): string {
-  const dir = getModelDir(familyId);
-  if (!dir) return "";
-
-  const base = `/images/new-img/${dir}/${familyId}`;
-
   if (firstSku) {
-    // Try pattern D first for known families
-    if (PNG_SUBDIR_FAMILIES.has(familyId)) {
-      return `${base}/${familyId}png/${firstSku}.png`;
+    const physical = findPhysicalImagesForSku(firstSku, familyId);
+    if (physical.length > 0) {
+      return physical[0];
     }
-    // Pattern A: root level
-    return `${base}/${firstSku}.png`;
   }
-  return `${base}/${familyId}.png`;
+  const physicalFamily = findPhysicalImagesForSku(familyId, familyId);
+  if (physicalFamily.length > 0) {
+    return physicalFamily[0];
+  }
+  return "";
 }
 
 /**
@@ -168,49 +225,36 @@ export function isValidImagePath(path: string | undefined | null): boolean {
 
 /**
  * Returns the best available image from a list of candidates.
- * Since we can't check filesystem at build time, returns the first candidate.
- * The frontend uses onError fallback for runtime handling.
  */
 export function getBestImage(candidates: string[]): string {
   for (const c of candidates) {
-    if (isValidImagePath(c)) return c;
+    if (isValidImagePath(c) && pathExistsOnDisk(c)) return c;
   }
-  return "";
+  return candidates[0] || "";
 }
 
 // ─── FAMILIES WITH VERIFIED IMAGES (for sorting priority) ───
-// These families have multiple confirmed image files on disk
-export const FAMILIES_WITH_IMAGES = new Set([
-  // model-1 families (verified from disk listing)
-  "450","521","670","680","748","753","777","778","788","792","794","795",
-  "800","802","804","806","807","808","809","810","811","812","814","819",
-  "820","821","823","824","826","827","829",
-  // model-2 families (verified from disk listing)
-  "830","834","835","836","837","840","841","843","845","849","850","851","852",
-  "853","854","855","856","857","860","862","867","869","876","901","905","912",
-  "915","916","950","960","962",
-]);
+export const FAMILIES_WITH_IMAGES = new Set<string>();
+for (const key of Object.keys(physicalImageMap)) {
+  if (key.startsWith('FAMILY:')) {
+    FAMILIES_WITH_IMAGES.add(key.replace('FAMILY:', ''));
+    continue;
+  }
+  if (key.startsWith('DETAIL:')) continue;
+  const match = key.match(/^([A-Z0-9]+)/);
+  if (match) {
+    const fam = match[1].match(/^(\d+)/)?.[1];
+    if (fam && fam.length >= 3) {
+      FAMILIES_WITH_IMAGES.add(fam);
+    }
+  }
+}
 
 /**
  * Check if a family has images available on disk.
  */
 export function familyHasImages(familyId: string): boolean {
-  return FAMILIES_WITH_IMAGES.has(familyId);
-}
-
-// ─── INTERNALS ───
-
-function getModelDir(familyId: string): string | null {
-  // Strip trailing letter suffixes for lookup (e.g., "901L" → check both "901L" and "901")
-  if (MODEL_1_FAMILIES.has(familyId)) return "model-1";
-  if (MODEL_2_FAMILIES.has(familyId)) return "model-2";
-
-  // Fallback: strip trailing letters and try base number
-  const baseId = familyId.replace(/[A-Za-z]+$/, "");
-  if (MODEL_1_FAMILIES.has(baseId)) return "model-1";
-  if (MODEL_2_FAMILIES.has(baseId)) return "model-2";
-
-  return null;
+  return FAMILIES_WITH_IMAGES.has(familyId.toUpperCase().trim());
 }
 
 function emptyGallery(): ImageGallery {

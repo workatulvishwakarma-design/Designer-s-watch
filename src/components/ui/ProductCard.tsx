@@ -55,6 +55,7 @@ export default function ProductCard({ product, variant = "premium", index = 0 }:
     const [isWishlisted, setIsWishlisted] = useState(false);
     const [hoveredOverlay, setHoveredOverlay] = useState(false);
     const [isHovered, setIsHovered] = useState(false);
+    const [imageError, setImageError] = useState(false);
 
     const discountPercent = product.discount || (product.mrp ? Math.round(((product.mrp - product.price) / product.mrp) * 100) : 0);
     
@@ -108,7 +109,7 @@ export default function ProductCard({ product, variant = "premium", index = 0 }:
                     whileHover={{ scale: 1.03 }}
                     transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], scale: { type: 'spring', stiffness: 200, damping: 20 } }}
                 >
-                    {product.image ? (
+                    {product.image && !imageError ? (
                       <>
                         {/* Primary image */}
                         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -117,7 +118,7 @@ export default function ProductCard({ product, variant = "premium", index = 0 }:
                             alt={product.name}
                             className="absolute inset-0 w-full h-full object-contain transition-opacity duration-500"
                             style={{ opacity: isHovered && product.hoverImage ? 0 : 1 }}
-                            onError={(e) => { (e.target as HTMLImageElement).src = '/images/main-img1.png'; }}
+                            onError={() => setImageError(true)}
                             loading="lazy"
                         />
                         {/* Hover image (crossfade) */}

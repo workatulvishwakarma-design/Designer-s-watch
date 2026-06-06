@@ -15,9 +15,16 @@ export interface Collection {
   gender: "Men" | "Women" | "Unisex";
   featured?: boolean;
   heroImage?: string;
+  
+  // Mapped fields to support frontend views and image auditing
+  title: string;
+  tagline: string;
+  category: string;
+  featuredImage: string;
+  ctaLabel: string;
 }
 
-export const collections: Collection[] = [
+const rawCollections: Omit<Collection, "title" | "tagline" | "category" | "featuredImage" | "ctaLabel">[] = [
   {
     slug: "grandeur",
     name: "Grandeur",
@@ -37,7 +44,7 @@ export const collections: Collection[] = [
     description: "Transcending trends and seasons, the Eternal collection celebrates designs that endure. Clean architecture and enduring materials create watches that grow more beautiful with age.",
     identity: "Timeless · Enduring · Classic",
     luxuryIdentity: "Refined timeless luxury with classic sophistication",
-    modelFamilies: ["901L"],
+    modelFamilies: ["901L", "901"],
     gender: "Unisex",
     featured: true,
     heroImage: "/images/new-img/model-2/901/901/901GM_Green.png",
@@ -52,6 +59,7 @@ export const collections: Collection[] = [
     modelFamilies: ["812", "855", "670"],
     gender: "Women",
     featured: true,
+    heroImage: "/images/new-img/model-1/812/812/812/812GM.2L.png",
   },
   {
     slug: "tactix",
@@ -62,6 +70,7 @@ export const collections: Collection[] = [
     luxuryIdentity: "Strong masculine technical watches with bold functionality",
     modelFamilies: ["200", "795", "804", "865"],
     gender: "Men",
+    heroImage: "/images/new-img/model-1/795/795RTM.5G_1.png",
   },
   {
     slug: "bolt",
@@ -84,6 +93,7 @@ export const collections: Collection[] = [
     luxuryIdentity: "Urban contemporary movement-focused collection",
     modelFamilies: ["811", "823", "869", "778", "792"],
     gender: "Unisex",
+    heroImage: "/images/new-img/model-1/811/811/811/811GM.16G.png",
   },
   {
     slug: "vortex",
@@ -94,6 +104,7 @@ export const collections: Collection[] = [
     luxuryIdentity: "Layered chronograph aesthetics and dynamic detailing",
     modelFamilies: ["837", "845", "960", "450", "851"],
     gender: "Men",
+    heroImage: "/images/new-img/model-2/837/837BLM.5.G.png",
   },
   {
     slug: "glimmer",
@@ -105,6 +116,7 @@ export const collections: Collection[] = [
     modelFamilies: ["828", "819", "852", "860"],
     gender: "Women",
     featured: true,
+    heroImage: "/images/new-img/model-2/860/860GM.12.L/860GM.png",
   },
   {
     slug: "ignite",
@@ -115,6 +127,7 @@ export const collections: Collection[] = [
     luxuryIdentity: "Sport-luxury statement watches",
     modelFamilies: ["841", "854"],
     gender: "Men",
+    heroImage: "/images/new-img/model-2/841/841BM.3G.png",
   },
   {
     slug: "tidemark",
@@ -125,6 +138,7 @@ export const collections: Collection[] = [
     luxuryIdentity: "Marine-inspired premium designs",
     modelFamilies: ["808", "876"],
     gender: "Men",
+    heroImage: "/images/new-img/model-1/808/PNG/753RGM.16.G.png",
   },
   {
     slug: "hallmark",
@@ -135,6 +149,7 @@ export const collections: Collection[] = [
     luxuryIdentity: "Classic heritage luxury",
     modelFamilies: ["862", "912", "777"],
     gender: "Unisex",
+    heroImage: "/images/new-img/model-2/862/862/862GM.16L.png",
   },
   {
     slug: "echo",
@@ -145,6 +160,7 @@ export const collections: Collection[] = [
     luxuryIdentity: "Elegant modern classics",
     modelFamilies: ["905", "807", "853"],
     gender: "Unisex",
+    heroImage: "/images/new-img/model-2/905/905/905BLM.12L.png",
   },
   {
     slug: "quest",
@@ -155,6 +171,7 @@ export const collections: Collection[] = [
     luxuryIdentity: "Adventure-inspired premium styling",
     modelFamilies: ["802", "806", "827", "836"],
     gender: "Men",
+    heroImage: "/images/new-img/model-1/806/806/806BFS.3G.png",
   },
   {
     slug: "duetto",
@@ -165,6 +182,7 @@ export const collections: Collection[] = [
     luxuryIdentity: "Balanced modern elegance",
     modelFamilies: ["856", "521"],
     gender: "Unisex",
+    heroImage: "/images/new-img/model-2/856/856/856BM.3G and 856BM.2L.png",
   },
   {
     slug: "astral",
@@ -175,6 +193,7 @@ export const collections: Collection[] = [
     luxuryIdentity: "Night-sky inspired premium watch aesthetics",
     modelFamilies: ["810", "726"],
     gender: "Unisex",
+    heroImage: "/images/new-img/model-1/810/810/810GM.2L.png",
   },
   {
     slug: "daymark",
@@ -185,6 +204,7 @@ export const collections: Collection[] = [
     luxuryIdentity: "Structured modern utility-luxury",
     modelFamilies: ["809", "826", "843", "867", "821"],
     gender: "Men",
+    heroImage: "/images/new-img/model-1/809/809 new colors/809/809GM.4G.png",
   },
   {
     slug: "axion",
@@ -195,6 +215,7 @@ export const collections: Collection[] = [
     luxuryIdentity: "Modern futuristic minimalism",
     modelFamilies: ["814"],
     gender: "Men",
+    heroImage: "/images/new-img/model-1/814/814BM.8G/814BM (2).png",
   },
   {
     slug: "matrix",
@@ -205,6 +226,7 @@ export const collections: Collection[] = [
     luxuryIdentity: "Architectural luxury watch styling",
     modelFamilies: ["916"],
     gender: "Men",
+    heroImage: "/images/new-img/model-2/916/916/916BLTM.5G.png",
   },
   {
     slug: "spectre",
@@ -225,6 +247,7 @@ export const collections: Collection[] = [
     luxuryIdentity: "Soft sophisticated minimal luxury",
     modelFamilies: ["800"],
     gender: "Women",
+    heroImage: "/images/new-img/model-1/800/800RGM.16L/800RGM.16L.png",
   },
   {
     slug: "breeze",
@@ -235,6 +258,7 @@ export const collections: Collection[] = [
     luxuryIdentity: "Lightweight refined everyday luxury",
     modelFamilies: ["788", "794"],
     gender: "Women",
+    heroImage: "/images/new-img/model-1/794/794/794RTM.16L.png",
   },
   {
     slug: "mist",
@@ -245,6 +269,7 @@ export const collections: Collection[] = [
     luxuryIdentity: "Soft-tone premium sophistication",
     modelFamilies: ["834", "835"],
     gender: "Women",
+    heroImage: "/images/new-img/model-2/834/834BLM.5.L/834BLM.png",
   },
   {
     slug: "bondline",
@@ -255,6 +280,7 @@ export const collections: Collection[] = [
     luxuryIdentity: "Couple-inspired coordinated luxury watches",
     modelFamilies: ["820G", "850L"],
     gender: "Unisex",
+    heroImage: "/images/new-img/model-1/820/820SFS.5G.png",
   },
   {
     slug: "pinnacle",
@@ -266,8 +292,68 @@ export const collections: Collection[] = [
     modelFamilies: ["234", "181", "314", "724", "578"],
     gender: "Men",
     featured: true,
+    heroImage: "/images/new-img/model-2/181.jpg",
+  },
+
+  // ═══════════════════════════════════════════════════
+  //  ESCORT BRAND — Everyday Excellence
+  // ═══════════════════════════════════════════════════
+  {
+    slug: "escort",
+    name: "Escort",
+    meaning: "Timeless style, accessible elegance for every day",
+    description: "Built for endurance and daily wear, the Escort collection brings refined design to everyday life. Combining robust construction, daily dependability, and clean aesthetics — proving that quality craftsmanship need not compromise accessibility.",
+    identity: "Accessible · Reliable · Everyday Luxury",
+    luxuryIdentity: "Affordable everyday excellence with refined styling",
+    modelFamilies: ["E-7914", "E-7751", "A-1589", "E-7908", "E-7931", "7779", "7806"],
+    gender: "Unisex",
+    featured: true,
+    heroImage: "/images/watches/Escort/E-7914/E-7914.GM_Blue.png",
   },
 ];
+
+const COLLECTION_CATEGORIES: Record<string, string> = {
+  grandeur: "Signature Collections",
+  eternal: "Signature Collections",
+  hallmark: "Signature Collections",
+  pinnacle: "Signature Collections",
+  daymark: "Signature Collections",
+  
+  tactix: "Performance Collections",
+  bolt: "Performance Collections",
+  pulse: "Performance Collections",
+  vortex: "Performance Collections",
+  ignite: "Performance Collections",
+  tidemark: "Performance Collections",
+  matrix: "Performance Collections",
+  spectre: "Performance Collections",
+  
+  serene: "Minimal Collections",
+  echo: "Minimal Collections",
+  quest: "Minimal Collections",
+  axion: "Minimal Collections",
+  oasis: "Women's Collections",
+  glimmer: "Women's Collections",
+  breeze: "Women's Collections",
+  mist: "Women's Collections",
+  
+  duetto: "Couple Collections",
+  bondline: "Couple Collections",
+
+  escort: "Escort Collections",
+};
+
+export const collections: Collection[] = rawCollections.map(c => {
+  const category = COLLECTION_CATEGORIES[c.slug] || "Signature Collections";
+  return {
+    ...c,
+    title: c.name,
+    tagline: c.meaning,
+    category,
+    featuredImage: c.heroImage || "/images/img01.png",
+    ctaLabel: "Explore Collection",
+  } as Collection;
+});
 
 // ─── FAMILY → COLLECTION REVERSE MAP ───
 const _familyToCollection: Record<string, string> = {};

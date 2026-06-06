@@ -54,7 +54,8 @@ export function mapPrismaFamilyToGroup(family: PrismaFamilyPayload): ModelFamily
     const gallery: ImageGallery = {
       primary: skuImages[0] || "",
       hover: hoverImage || skuImages[1] || skuImages[0] || "",
-      detail: skuImages.slice(1)
+      detail: skuImages.slice(1),
+      lifestyle: []
     };
 
     const specs: ProductSpecs = {

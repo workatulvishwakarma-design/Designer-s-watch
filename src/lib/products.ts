@@ -129,9 +129,9 @@ export function dbToUnified(p: any): UnifiedProduct {
     badge,
     tags: [],
     description: p.description || "",
-    image: p.images?.[0]?.url || "/images/main-img1.png",
+    image: p.images?.[0]?.url || "",
     hoverImage: p.images?.[1]?.url || undefined,
-    images: p.images?.length > 0 ? p.images.map((img: any) => img.url) : ["/images/main-img1.png"],
+    images: p.images?.length > 0 ? p.images.map((img: any) => img.url) : [],
     colors: [],
     specs: {
       ...(p.movementType ? { movement: p.movementType } : {}),

@@ -2,8 +2,8 @@
 
 import { useRef, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { dsignerProducts } from "@/components/sections/dsigner/DsignerGrid";
-import { escortProducts } from "@/components/sections/escort/EscortGrid";
+import { getFamiliesByCollection } from "@/data/productData";
+import { familyToUnified } from "@/lib/products";
 import ProductCard from "@/components/ui/ProductCard";
 
 export default function HomeProducts() {
@@ -15,9 +15,12 @@ export default function HomeProducts() {
   const [dsignerProgress, setDsignerProgress] = useState(0);
   const [escortProgress, setEscortProgress] = useState(0);
 
+  const dsignerProducts = getFamiliesByCollection("dsigner").flatMap(familyToUnified);
+  const escortProducts = getFamiliesByCollection("escort").flatMap(familyToUnified);
+
   const bestSellers = [
-    ...dsignerProducts.filter(p => p.tags?.includes("best-selling")).slice(0, 3),
-    ...escortProducts.filter(p => p.tags?.includes("best-selling")).slice(0, 3),
+    ...dsignerProducts.slice(0, 3),
+    ...escortProducts.slice(0, 3),
   ].map(p => ({ ...p, badge: "BEST SELLER" }));
 
   const handleScroll = (track: React.RefObject<HTMLDivElement | null>, setter: React.Dispatch<React.SetStateAction<number>>) => () => {

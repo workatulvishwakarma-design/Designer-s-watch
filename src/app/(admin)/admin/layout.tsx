@@ -51,6 +51,7 @@ export default async function AdminLayout({
               <NavLink href="/admin/products" icon={Tags} label="Products" />
               <NavLink href="/admin/categories" icon={ShoppingBag} label="Collections" />
               <NavLink href="/admin/media" icon={ImageIcon} label="Media Library" />
+              <NavLink href="/admin/image-audit" icon={ImageIcon} label="Image Audit" />
             </div>
           </div>
 

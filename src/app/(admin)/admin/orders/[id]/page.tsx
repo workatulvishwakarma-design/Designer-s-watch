@@ -14,7 +14,15 @@ export default async function AdminOrderDetailPage({ params }: { params: Promise
       user: true,
       shippingAddress: true,
       coupon: true,
-      items: { include: { product: true } },
+      items: {
+        include: {
+          variant: {
+            include: {
+              family: true
+            }
+          }
+        }
+      },
       trackingEvents: { orderBy: { createdAt: "desc" } }
     }
   })
@@ -29,7 +37,7 @@ export default async function AdminOrderDetailPage({ params }: { params: Promise
     customerPhone: (order as any).customerPhone || order.shippingAddress.phone || undefined,
     shippingAddress: `${order.shippingAddress.firstName} ${order.shippingAddress.lastName}, ${order.shippingAddress.addressLine1}${order.shippingAddress.addressLine2 ? ', ' + order.shippingAddress.addressLine2 : ''}, ${order.shippingAddress.city}, ${order.shippingAddress.state} ${order.shippingAddress.postalCode}, ${order.shippingAddress.country}`,
     items: order.items.map(item => ({
-      name: item.product.name,
+      name: item.variant?.family?.name || "Watch",
       quantity: item.quantity,
       price: Number(item.priceAtPurchase)
     })),
@@ -79,7 +87,7 @@ export default async function AdminOrderDetailPage({ params }: { params: Promise
                 <li key={item.id} className="flex px-4 py-4 sm:px-6">
                   <div className="min-w-0 flex-1 sm:flex sm:items-center sm:justify-between">
                     <div>
-                      <p className="font-medium text-gray-900 dark:text-white">{item.product.name}</p>
+                      <p className="font-medium text-gray-900 dark:text-white">{item.variant?.family?.name || "Watch"}</p>
                       <p className="mt-1 text-sm text-gray-500">Qty: {item.quantity}</p>
                     </div>
                     <div className="mt-4 sm:mt-0 sm:ml-4 flex-shrink-0">

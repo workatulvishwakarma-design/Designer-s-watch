@@ -157,7 +157,7 @@ export async function POST(req: NextRequest) {
         });
         for (const item of orderItems) {
           await prisma.inventory.updateMany({
-            where: { productId: item.productId },
+            where: { variantId: item.variantId },
             data: { stock: { decrement: item.quantity } },
           });
         }

@@ -1,6 +1,6 @@
 "use client";
 import CollectionHero from "@/components/sections/CollectionHero";
-import WomenGrid from "@/components/sections/women/WomenGrid";
+import EscortGrid from "@/components/sections/escort/EscortGrid";
 import SectionDivider from "@/components/ui/SectionDivider";
 import NewsletterStrip from "@/components/ui/NewsletterStrip";
 
@@ -13,7 +13,7 @@ export default function WomensEscortPage() {
         description="Delicate silhouettes and clean styling make the Women's Escort series the perfect daily luxury. Created for the woman who values balanced, understated design and reliable mechanical timekeeping."
         brand="escort"
         gender="women"
-        heroImage="/images/new-img/model-2/852/852SM.2G.png"
+        heroImage="/images/watches/Escort/E-7914/E-7914.RGM_Rose Gold.png"
         breadcrumbs={[
           { label: "Home", href: "/" },
           { label: "Collections", href: "/collections/escort" },
@@ -21,7 +21,7 @@ export default function WomensEscortPage() {
         ]}
       />
       <SectionDivider />
-      <WomenGrid />
+      <EscortGrid gender="Women" />
       <NewsletterStrip />
     </main>
   );

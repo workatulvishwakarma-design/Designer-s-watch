@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import LuxuryPlaceholder from "@/components/ui/LuxuryPlaceholder";
 
 interface Product {
   id: string | number;
@@ -108,12 +109,16 @@ export default function SegmentedCollections({
                     {/* Image Area */}
                     <div className="h-[300px] bg-[#F7F4EF] flex items-center justify-center p-6 overflow-hidden relative">
                       <div className="relative w-full h-full">
-                        <img
-                          src={product.image || "/images/main-img1.png"}
-                          alt={product.name}
-                          className="w-full h-full object-contain group-hover:scale-108 transition-transform duration-600"
-                          loading="lazy"
-                        />
+                        {product.image ? (
+                          <img
+                            src={product.image}
+                            alt={product.name}
+                            className="w-full h-full object-contain group-hover:scale-108 transition-transform duration-600"
+                            loading="lazy"
+                          />
+                        ) : (
+                          <LuxuryPlaceholder />
+                        )}
 
                         {/* Blur Glass Overlay on Hover */}
                         <div className="absolute inset-0 bg-[rgba(250,248,244,0.6)] backdrop-blur-[14px] opacity-0 group-hover:opacity-100 transition-opacity duration-400 flex flex-col items-center justify-center gap-3 pointer-events-none">

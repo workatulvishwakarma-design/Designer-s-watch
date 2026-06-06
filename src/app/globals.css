@@ -619,4 +619,251 @@
 
 .legal-content a:hover {
   color: #B8935A;
+}
+
+/* ═══════════════════════════════════════════
+   COLLECTIONS REBUILD — NEW UTILITIES
+   ═══════════════════════════════════════════ */
+
+/* Skeleton shimmer loader */
+@keyframes skeletonShimmer {
+  0% { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+
+.skeleton-shimmer {
+  background: linear-gradient(90deg, #F0EDE8 25%, #E8E3DC 37%, #F0EDE8 63%);
+  background-size: 800px 100%;
+  animation: skeletonShimmer 1.8s ease-in-out infinite;
+}
+
+.skeleton-shimmer-dark {
+  background: linear-gradient(90deg, #1A1918 25%, #252422 37%, #1A1918 63%);
+  background-size: 800px 100%;
+  animation: skeletonShimmer 1.8s ease-in-out infinite;
+}
+
+/* Accordion expand/collapse */
+@keyframes accordionOpen {
+  from { max-height: 0; opacity: 0; }
+  to { max-height: 600px; opacity: 1; }
+}
+
+@keyframes accordionClose {
+  from { max-height: 600px; opacity: 1; }
+  to { max-height: 0; opacity: 0; }
+}
+
+.accordion-content {
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease;
+}
+
+/* Luxury CTA Buttons */
+.luxury-cta-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.875rem 2rem;
+  border-radius: 9999px;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  background: #1A1918;
+  color: white;
+  border: 1px solid #1A1918;
+  transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.luxury-cta-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 40px rgba(0,57,38,0.15);
+  background: #003926;
+  border-color: #003926;
+}
+
+.luxury-cta-primary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 40%, rgba(184,147,90,0.12) 50%, transparent 60%);
+  transform: translateX(-200%);
+  transition: transform 0.6s ease;
+  pointer-events: none;
+}
+
+.luxury-cta-primary:hover::after {
+  transform: translateX(200%);
+}
+
+.luxury-cta-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.875rem 2rem;
+  border-radius: 9999px;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  background: transparent;
+  color: #1A1918;
+  border: 1px solid #E0D8CE;
+  transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.luxury-cta-outline:hover {
+  transform: translateY(-2px);
+  border-color: #B8935A;
+  color: #B8935A;
+  box-shadow: 0 8px 24px rgba(184,147,90,0.08);
+}
+
+.luxury-cta-outline-dark {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.875rem 2rem;
+  border-radius: 9999px;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  background: transparent;
+  color: #B8935A;
+  border: 1px solid rgba(184,147,90,0.3);
+  transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.luxury-cta-outline-dark:hover {
+  transform: translateY(-2px);
+  background: rgba(184,147,90,0.1);
+  border-color: rgba(184,147,90,0.5);
+  box-shadow: 0 8px 24px rgba(184,147,90,0.1);
+}
+
+/* Editorial Card Hover */
+.editorial-card {
+  transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.editorial-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.25), 0 0 0 1px rgba(184,147,90,0.15);
+}
+
+.editorial-card:hover .editorial-card-image {
+  transform: scale(1.05);
+}
+
+.editorial-card:hover .editorial-card-cta {
+  color: #B8935A;
+  transform: translateX(4px);
+}
+
+.editorial-card .editorial-card-image {
+  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.editorial-card .editorial-card-cta {
+  transition: all 0.4s ease;
+}
+
+/* Trust icon card hover */
+.trust-icon-card {
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.trust-icon-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(0,57,38,0.08);
+  border-color: rgba(0,57,38,0.15);
+}
+
+/* FAQ accordion */
+.faq-item {
+  transition: all 0.3s ease;
+}
+
+.faq-item:hover {
+  border-color: rgba(0,57,38,0.15);
+}
+
+.faq-chevron {
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.faq-chevron.open {
+  transform: rotate(180deg);
+}
+
+/* Mega menu refinements */
+.mega-menu-panel {
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mega-menu-link {
+  transition: all 0.25s ease;
+}
+
+.mega-menu-link:hover {
+  background: rgba(0,57,38,0.04);
+}
+
+.mega-menu-link.active {
+  background: rgba(0,57,38,0.06);
+}
+
+/* Mobile accordion group */
+.mobile-accordion-trigger {
+  transition: all 0.3s ease;
+}
+
+.mobile-accordion-trigger:hover {
+  background: rgba(0,57,38,0.03);
+}
+
+.mobile-accordion-chevron {
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.mobile-accordion-chevron.expanded {
+  transform: rotate(90deg);
+}
+
+/* Reduced motion — cover ALL new animations */
+@media (prefers-reduced-motion: reduce) {
+  .skeleton-shimmer,
+  .skeleton-shimmer-dark {
+    animation: none;
+  }
+
+  .editorial-card,
+  .editorial-card .editorial-card-image,
+  .editorial-card .editorial-card-cta,
+  .trust-icon-card,
+  .luxury-cta-primary,
+  .luxury-cta-outline,
+  .luxury-cta-outline-dark,
+  .faq-chevron,
+  .mega-menu-panel,
+  .mega-menu-link,
+  .mobile-accordion-trigger,
+  .mobile-accordion-chevron {
+    transition-duration: 0.01ms !important;
+  }
+
+  .luxury-cta-primary:hover,
+  .luxury-cta-outline:hover,
+  .luxury-cta-outline-dark:hover,
+  .editorial-card:hover,
+  .trust-icon-card:hover {
+    transform: none !important;
+  }
 }

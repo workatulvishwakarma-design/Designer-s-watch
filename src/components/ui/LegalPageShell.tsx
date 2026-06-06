@@ -21,9 +21,12 @@ export interface LegalSection {
 
 const ICON_MAP = {
   shield: Shield,
+  terms: FileText,
+  returns: RefreshCw,
+  shipping: Truck,
+  cookie: Cookie,
   database: Database,
   fileText: FileText,
-  cookie: Cookie,
   lock: Lock,
   key: Key,
   userCheck: UserCheck,
@@ -149,7 +152,7 @@ export default function LegalPageShell({
           <motion.div
             initial={{ opacity: 0, scale: 0.85 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, cubicBezier: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as any }}
             className="inline-flex items-center justify-center p-4 rounded-full bg-[#003926]/40 border border-[#003926]/30 text-[#B8935A] mb-5 shadow-2xl backdrop-blur-md"
           >
             <MainIcon size={28} strokeWidth={1.2} />
@@ -158,7 +161,7 @@ export default function LegalPageShell({
           <motion.span
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.1, cubicBezier: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] as any }}
             className="text-[10px] tracking-[0.35em] uppercase text-[#B8935A] font-bold mb-3"
           >
             Maison Legal Operations
@@ -167,7 +170,7 @@ export default function LegalPageShell({
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2, cubicBezier: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] as any }}
             className="font-cormorant text-[44px] sm:text-[56px] lg:text-[68px] leading-[1.05] text-white font-medium max-w-4xl"
           >
             {title}
@@ -184,7 +187,7 @@ export default function LegalPageShell({
           <motion.p
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4, cubicBezier: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] as any }}
             className="font-cormorant italic text-[16px] sm:text-[19px] text-white/50 max-w-2xl leading-relaxed"
           >
             {subtitle}
@@ -279,7 +282,7 @@ export default function LegalPageShell({
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-10%" }}
-                  transition={{ duration: 0.7, cubicBezier: [0.16, 1, 0.3, 1] }}
+                  transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] as any }}
                   className="rounded-[2.5rem] border bg-white/75 backdrop-blur-xl border-[#003926]/5 shadow-[0_20px_50px_rgba(0,31,20,0.02)] p-8 sm:p-12 transition-all duration-500 hover:shadow-[0_30px_70px_rgba(0,31,20,0.04)] hover:border-[#003926]/8 relative overflow-hidden"
                 >
                   {/* Left decorative gold accent bar */}

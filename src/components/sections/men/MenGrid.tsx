@@ -132,7 +132,7 @@ export default function MenGrid() {
                                     stock: product.stock,
                                     lowStockThreshold: product.lowStockThreshold,
                                 }}
-                                variant={product.brand === "ESCORT" ? "minimal" : "premium"}
+                                variant={product.brand === "ESCORT" ? "everyday" : "premium"}
                                 index={i}
                             />
                         ))}

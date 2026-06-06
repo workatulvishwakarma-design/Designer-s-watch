@@ -4,8 +4,8 @@ import CollectionClient from "@/components/CollectionClient";
 import { getFamiliesByCollection } from "@/data/productData";
 import { getCollectionBySlug } from "@/data/collections";
 
-export default async function CollectionPage({ params }: { params: { collection: string } }) {
-  const slug = params.collection;
+export default async function CollectionPage({ params }: { params: Promise<{ collection: string }> }) {
+  const { collection: slug } = await params;
 
   let dbCollection = null;
   let rawFamilies: any[] = [];
@@ -23,14 +23,31 @@ export default async function CollectionPage({ params }: { params: { collection:
 
   const hardcodedCollection = getCollectionBySlug(slug);
   
-  const collectionData = dbCollection || hardcodedCollection || {
-    name: slug,
-    slug: slug,
-    description: "Discover our exclusive timepieces.",
-    gender: "Unisex",
-    identity: "CLASSIC",
-    meaning: "Elegance and Precision"
-  };
+  // Merge DB collection and registry collection to guarantee all 8 registry fields are defined
+  const collectionData = hardcodedCollection
+    ? {
+        ...hardcodedCollection,
+        ...(dbCollection || {}),
+        title: hardcodedCollection.title,
+        tagline: hardcodedCollection.tagline,
+        category: hardcodedCollection.category,
+        featuredImage: hardcodedCollection.featuredImage,
+        ctaLabel: hardcodedCollection.ctaLabel,
+      }
+    : (dbCollection || {
+        slug: slug,
+        title: slug.charAt(0).toUpperCase() + slug.slice(1),
+        name: slug.charAt(0).toUpperCase() + slug.slice(1),
+        tagline: "Elegance and Precision",
+        meaning: "Elegance and Precision",
+        description: "Discover our exclusive timepieces.",
+        heroImage: "/images/img01.png",
+        category: "Signature Collections",
+        featuredImage: "/images/img01.png",
+        ctaLabel: "Explore Collection",
+        gender: "Unisex",
+        modelFamilies: [],
+      });
 
   // 2. Try DB for families
   try {

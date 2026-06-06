@@ -28,7 +28,15 @@ export async function GET(req: NextRequest) {
       where: { id: orderId },
       include: {
         items: {
-          include: { product: { select: { name: true, images: { take: 1 } } } },
+          include: {
+            variant: {
+              include: {
+                family: {
+                  select: { name: true, images: { take: 1 } }
+                }
+              }
+            }
+          },
         },
         shippingAddress: true,
       },
@@ -66,10 +74,10 @@ export async function GET(req: NextRequest) {
       shippingAddress: order.shippingAddress,
       customerEmail: order.customerEmail,
       items: order.items.map(item => ({
-        name: item.product?.name || "Product",
+        name: item.variant?.family?.name || "Product",
         quantity: item.quantity,
         price: Number(item.priceAtPurchase),
-        image: item.product?.images?.[0]?.url || null,
+        image: item.variant?.family?.images?.[0]?.url || null,
       })),
       ...extraProps,
     });

@@ -16,7 +16,17 @@ export default async function UserOrderDetailPage({ params }: { params: Promise<
     },
     include: {
       shippingAddress: true,
-      items: { include: { product: { include: { images: true } } } },
+      items: {
+        include: {
+          variant: {
+            include: {
+              family: {
+                include: { images: true }
+              }
+            }
+          }
+        }
+      },
       trackingEvents: { orderBy: { createdAt: "desc" } } // Newest first
     }
   })
@@ -107,14 +117,14 @@ export default async function UserOrderDetailPage({ params }: { params: Promise<
                     <li key={item.id} className="flex py-6">
                       <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200 dark:border-zinc-800 bg-gray-50 dark:bg-zinc-950">
                         {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src={(item.product as any).images?.[0]?.url || "https://picsum.photos/150"} alt={item.product.name} className="h-full w-full object-cover" />
+                        <img src={item.variant?.family?.images?.[0]?.url || "https://picsum.photos/150"} alt={item.variant?.family?.name} className="h-full w-full object-cover" />
                       </div>
                       <div className="ml-4 flex flex-1 flex-col">
                         <div className="flex justify-between text-base font-medium text-gray-900 dark:text-white">
-                           <h4>{item.product.name}</h4>
+                           <h4>{item.variant?.family?.name}</h4>
                            <p className="ml-4">₹{item.priceAtPurchase.toString()}</p>
                         </div>
-                        <p className="mt-1 text-sm text-gray-500 line-clamp-2">{item.product.description}</p>
+                        <p className="mt-1 text-sm text-gray-500 line-clamp-2">{item.variant?.family?.description}</p>
                         <div className="flex flex-1 items-end justify-between text-sm">
                            <p className="text-gray-500">Qty {item.quantity}</p>
                         </div>

@@ -18,7 +18,11 @@ const categoryTaglines: Record<string, string> = {
     "Sport": "Built for movement. Designed for presence.",
 };
 
-export default function EscortGrid() {
+interface EscortGridProps {
+    gender?: "Men" | "Women" | "All";
+}
+
+export default function EscortGrid({ gender = "All" }: EscortGridProps) {
     const [products, setProducts] = useState<UnifiedProduct[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [activeCategory, setActiveCategory] = useState("All");
@@ -41,6 +45,11 @@ export default function EscortGrid() {
 
     const filteredProducts = useMemo(() => {
         let result = [...products];
+
+        // Gender filter
+        if (gender !== "All") {
+            result = result.filter(p => p.gender === gender || p.gender === "Unisex");
+        }
 
         // Search filter
         if (searchQuery.trim()) {

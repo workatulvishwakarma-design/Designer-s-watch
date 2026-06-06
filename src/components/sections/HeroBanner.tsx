@@ -2,7 +2,6 @@
 
 import React, { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import Link from "next/link";
 
 export default function HeroBanner() {
     const containerRef = useRef<HTMLDivElement>(null);
@@ -88,8 +87,6 @@ export default function HeroBanner() {
                     }}
                 />
             </motion.div>
-
-
 
             {/* Scroll Indicator */}
             <motion.div 

@@ -4,6 +4,7 @@ import { useRef, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { AddToCartButton } from "@/components/ui/AddToCartButton";
 import { WishlistToggleButton } from "@/components/ui/WishlistToggleButton";
+import LuxuryPlaceholder from "@/components/ui/LuxuryPlaceholder";
 
 interface Product {
     id: string;
@@ -173,24 +174,28 @@ export default function CollectionCarousel({
                             }}
                         >
                             <div className="relative w-full h-full">
-                                <Image
-                                    src={product.image || "/images/main-img1.png"}
-                                    alt={product.name}
-                                    fill
-                                    className="object-contain transition-transform"
-                                    style={{
-                                        objectPosition: "center",
-                                        transitionDuration: "0.4s",
-                                        transitionTimingFunction: "cubic-bezier(0.22,1,0.36,1)",
-                                    }}
-                                    sizes="300px"
-                                    onMouseEnter={(e) => {
-                                        e.currentTarget.style.transform = "scale(1.06)";
-                                    }}
-                                    onMouseLeave={(e) => {
-                                        e.currentTarget.style.transform = "scale(1)";
-                                    }}
-                                />
+                                {product.image ? (
+                                    <Image
+                                        src={product.image}
+                                        alt={product.name}
+                                        fill
+                                        className="object-contain transition-transform"
+                                        style={{
+                                            objectPosition: "center",
+                                            transitionDuration: "0.4s",
+                                            transitionTimingFunction: "cubic-bezier(0.22,1,0.36,1)",
+                                        }}
+                                        sizes="300px"
+                                        onMouseEnter={(e) => {
+                                            e.currentTarget.style.transform = "scale(1.06)";
+                                        }}
+                                        onMouseLeave={(e) => {
+                                            e.currentTarget.style.transform = "scale(1)";
+                                        }}
+                                    />
+                                ) : (
+                                    <LuxuryPlaceholder />
+                                )}
                             </div>
                         </div>
 

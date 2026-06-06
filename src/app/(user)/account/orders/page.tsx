@@ -14,7 +14,15 @@ export default async function OrdersPage() {
     where: { userId: session.user.id },
     include: {
       items: {
-        include: { product: { select: { name: true, images: true } } }
+        include: {
+          variant: {
+            include: {
+              family: {
+                select: { name: true, images: true }
+              }
+            }
+          }
+        }
       }
     },
     orderBy: { createdAt: "desc" }
@@ -94,15 +102,15 @@ export default async function OrdersPage() {
                        <div className="h-16 w-16 flex-shrink-0 overflow-hidden rounded-md border border-gray-200 dark:border-zinc-800 bg-gray-50 dark:bg-zinc-950">
                           {/* eslint-disable-next-line @next/next/no-img-element */}
                           <img
-                            src={item.product.images?.[0]?.url || "https://picsum.photos/100"}
-                            alt={item.product.name}
+                            src={item.variant?.family?.images?.[0]?.url || "https://picsum.photos/100"}
+                            alt={item.variant?.family?.name}
                             className="h-full w-full object-cover object-center"
                           />
                        </div>
                        <div className="ml-4 flex flex-1 flex-col">
                          <div>
                             <div className="flex justify-between text-sm font-medium text-gray-900 dark:text-white">
-                              <h4>{item.product.name}</h4>
+                              <h4>{item.variant?.family?.name}</h4>
                             </div>
                             <p className="mt-1 text-sm text-gray-500 line-clamp-2">Qty: {item.quantity}</p>
                          </div>

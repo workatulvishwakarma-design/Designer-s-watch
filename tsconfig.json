@@ -30,5 +30,12 @@
     ".next/dev/types/**/*.ts",
     "**/*.mts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules",
+    "test-db.ts",
+    "test-order.ts",
+    "scratch/**/*",
+    "src/components/canvas/HeroScene.tsx",
+    "src/components/sections/FeatureSlide.tsx"
+  ]
 }
