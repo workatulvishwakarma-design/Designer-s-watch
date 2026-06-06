@@ -13,4 +13,4 @@ cmds = [
 ]
 
 [start]
-cmd = "npx prisma db push --accept-data-loss && (node .next/standalone/server.js || node .next/standalone/app/server.js || node .next/standalone/OneDrive/Desktop/resources/watch-2/server.js || npm run start)"
+cmd = "npx prisma db push && (node .next/standalone/server.js || node .next/standalone/app/server.js || node .next/standalone/OneDrive/Desktop/resources/watch-2/server.js || npm run start)"
