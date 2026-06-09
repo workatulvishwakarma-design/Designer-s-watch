@@ -1,6 +1,9 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# ===========================
+# Git Ignore - Designer's Watch
+# Next.js + React + Node.js + Coolify + Nixpacks
+# ===========================
 
-# dependencies
+# --- Dependencies ---
 /node_modules
 /.pnp
 .pnp.*
@@ -10,48 +13,79 @@
 !.yarn/releases
 !.yarn/versions
 
-# testing
-/coverage
-
-# next.js
+# --- Next.js Build Output ---
 /.next/
 /out/
 
-# production
+# --- Production Build ---
 /build
+/dist
 
-# misc
-.DS_Store
-*.pem
+# --- Cache ---
+/.cache
+/.turbo
+/.swc
 
-# debug
+# --- Testing ---
+/coverage
+
+# --- Environment Files ---
+.env
+.env.local
+.env.development
+.env.development.local
+.env.test
+.env.test.local
+.env.production
+.env.production.local
+
+# --- TypeScript Build Cache ---
+*.tsbuildinfo
+next-env.d.ts
+
+# --- Debug Logs ---
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
-.env*
-
-# vercel
-.vercel
-
-# typescript
-*.tsbuildinfo
-next-env.d.ts
-
-# large archives (not needed for deployment)
-*.zip
-
-# dist / cache
-/dist
-/.cache
-
-# system junk
+# --- OS Files ---
+.DS_Store
 Thumbs.db
 ehthumbs.db
 Desktop.ini
+._*
 
+# --- IDE / Editor ---
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+*.sublime-project
+*.sublime-workspace
+
+# --- Non-web Assets (should not be in repo) ---
+*.zip
+*.psd
+*.HEIC
+*.ai
+*.sketch
+
+# --- Generated Files ---
 /src/generated/prisma
+
+# --- Development Scratch ---
 /scratch/
 
+# --- Deployment Platform Specific ---
+.vercel
+.netlify
+
+# --- Docker ---
+docker-compose.override.yml
+
+# --- Misc ---
+*.pem
+*.key
+*.cert
