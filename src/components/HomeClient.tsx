@@ -7,17 +7,20 @@ import dynamic from 'next/dynamic';
 import HeroBanner from '@/components/sections/HeroBanner';
 import HomeBrands from '@/components/sections/HomeBrands';
 import CraftSection from '@/components/sections/CraftSection';
+import LoadingScreen from '@/components/LoadingScreen';
 
 // Below the fold - Lazy Loaded
 const StatsCounter = dynamic(() => import('@/components/sections/StatsCounter'), { ssr: true });
-const OemCta = dynamic(() => import('@/components/sections/OemCta'), { ssr: true });
-const TrustGrid = dynamic(() => import('@/components/sections/TrustGrid'), { ssr: true });
-const FeatureStrip = dynamic(() => import('@/components/sections/FeatureStrip'), { ssr: true });
+const PartnerLogos = dynamic(() => import('@/components/sections/PartnerLogos'), { ssr: true });
+const JoinTheWorld = dynamic(() => import('@/components/sections/JoinTheWorld'), { ssr: true });
 const FAQSection = dynamic(() => import('@/components/sections/FAQSection'), { ssr: true });
-const BrandPillars = dynamic(() => import('@/components/sections/BrandPillars'), { ssr: true });
+// const BrandPillars = dynamic(() => import('@/components/sections/BrandPillars'), { ssr: true });
 const WatchDetails = dynamic(() => import('@/components/sections/WatchDetails'), { ssr: true });
+const HeritageIntro = dynamic(() => import('@/components/sections/HeritageIntro'), { ssr: true });
 const InstagramReels = dynamic(() => import('@/components/sections/InstagramReels'), { ssr: true });
-const CollectionStorySection = dynamic(() => import('@/components/sections/CollectionStorySection'), { ssr: true });
+// const CollectionStorySection = dynamic(() => import('@/components/sections/CollectionStorySection'), { ssr: true });
+const AboutCTA = dynamic(() => import('@/components/sections/AboutCTA'), { ssr: true });
+const WhyDesignerWorld = dynamic(() => import('@/components/sections/WhyDesignerWorld'), { ssr: true });
 import Link from 'next/link';
 import { motion, useInView } from 'framer-motion';
 import { ChevronLeft, ChevronRight, Eye, Package, Shield, Truck } from 'lucide-react';
@@ -402,16 +405,20 @@ export default function HomeClient({
 }) {
   return (
     <>
+      <LoadingScreen />
       <main>
         <HeroBanner />
 
         <div className="green-ambient-divider" />
 
           <HomeBrands />
+          {/* PROMPT 3.1: Heritage motion intro before specs */}
+          <HeritageIntro />
+
           <WatchDetails />
           <CraftSection />
 
-          <CollectionStorySection />
+          {/* <CollectionStorySection /> */}
 
           <section className="bg-[#FAF8F4] py-16">
             <div className="text-center mb-12">
@@ -428,13 +435,13 @@ export default function HomeClient({
 
             {menFamilies.length > 0 && (
               <FamilyEditorial
-                title="Men's Collection"
+                title="D'Signer Prestige"
                 subtitle="Crafted for the Modern Gentleman"
                 description="Timepieces engineered with precision and styled for the man who defines his own legacy. From boardroom to beyond."
                 families={menFamilies}
                 href="/collections/tactix"
                 variant="dark"
-                badge="⌚ FOR HIM"
+                badge="⌚ SIGNATURE SERIES"
               />
             )}
 
@@ -442,27 +449,32 @@ export default function HomeClient({
 
             {womenFamilies.length > 0 && (
               <FamilyEditorial
-                title="Women's Collection"
+                title="D'Signer Grace"
                 subtitle="Elegance Redefined"
                 description="Where timeless grace meets contemporary design. Each piece tells a story of sophistication and strength."
                 families={womenFamilies}
                 href="/collections/serene"
                 variant="light"
-                badge="✨ FOR HER"
+                badge="✨ ELEGANCE COLLECTION"
               />
             )}
           </section>
 
           <InstagramReels />
 
-          <div className="green-ambient-divider" />
+          <WhyDesignerWorld />
 
-          <BrandPillars />
+          {/* <BrandPillars /> */}
           <StatsCounter />
-          <OemCta />
-          <TrustGrid />
-          <FeatureStrip />
+          <PartnerLogos />
+
+          {/* PROMPT 1.7: Consolidated OemCta + TrustGrid + FeatureStrip */}
+          <JoinTheWorld />
+
           <FAQSection />
+
+          {/* Heritage CTA — PROMPT 1.5: positioned at end of homepage */}
+          <AboutCTA />
 
         </main>
     </>

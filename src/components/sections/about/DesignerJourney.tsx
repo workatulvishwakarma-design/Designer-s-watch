@@ -67,13 +67,13 @@ const MILESTONES: Milestone[] = [
   {
     year: "1998",
     title: "Introduction of Tissot in India",
-    desc: "We were the ones to launch TISSOT watches in India as national distributors. We initiated the distribution for Tissot, Givenchy Paris, Christian Bernard Paris, Rotary in India.",
+    desc: "Nagpal Group was among the first to launch TISSOT watches in India as national distributors. The group initiated the distribution for Tissot, Givenchy Paris, Christian Bernard Paris, Rotary in India.",
     type: "text-only",
   },
   {
     year: "2004",
     title: "D'signer Effects",
-    desc: "We started a division purely in the corporate gifts & promotion business under the name D'SIGNER EFFECTS. Here the idea was to connect with all small and large organizations, offering all sorts of promotional gifts for schemes and marketing plans.",
+    desc: "A division was started purely in the corporate gifts & promotion business under the name D'SIGNER EFFECTS. The idea was to connect with all small and large organizations, offering all sorts of promotional gifts for schemes and marketing plans.",
     type: "text-only",
   },
   {
@@ -92,8 +92,8 @@ const MILESTONES: Milestone[] = [
   },
   {
     year: "2015",
-    title: "Beyond Our Own Brand",
-    desc: "Expanding into OEM manufacturing, we began designing and producing watches for global and national brands.",
+    title: "Beyond the Brand",
+    desc: "Expanding into OEM manufacturing, the group began designing and producing watches for global and national brands.",
     type: "text-image",
     image: "/images/about us journey/2015 — Beyond Our Own Brand/WhatsApp Image 2026-04-04 at 4.14.22 PM (1).jpeg",
     imageType: "photo",
@@ -107,7 +107,7 @@ const MILESTONES: Milestone[] = [
   {
     year: "2020",
     title: "The Digital Shift",
-    desc: "With the rise of e-commerce, we adapted quickly — designing for online-first brands and expanding our reach.",
+    desc: "With the rise of e-commerce, Nagpal Group adapted quickly — designing for online-first brands and expanding reach across digital channels.",
     type: "text-only",
   },
   {
@@ -121,7 +121,7 @@ const MILESTONES: Milestone[] = [
   {
     year: "2024",
     title: "D'signer Diamond Watches",
-    desc: "Launched Lab Grown Diamond Studded Watches as a new step to reach a more luxury audience where we have models ranging up to Rs. 1,50,000/-.",
+    desc: "Launched Lab Grown Diamond Studded Watches as a new step to reach a more luxury audience with models ranging up to Rs. 1,50,000/-.",
     type: "text-image",
     image: "/images/about us journey/2024 - Designer Lab Grown Diamond studded watches/DIAMOND SHOOT 16-09-2025/746GM.2L.jpg",
     imageType: "photo",
@@ -129,7 +129,7 @@ const MILESTONES: Milestone[] = [
   {
     year: "2025",
     title: "Time Corridor",
-    desc: "A latest feather in Designer World's story. At Designer World it's not about just the product we make but the aura we pass to our users with the time we design. This retail Time Boutique is initiated to promote our home brands, D'SIGNER & ESCORT Watches — a unique experience store showcasing our prime models, new launches, top sellers & special editions with an appealing display and aura. This Time Corridor Boutique is a gesture to connect & add some value to our happy watch buyers.",
+    desc: "A latest feather in Designer World's story. At Designer World it's not about just the product but the aura passed to users with the time designed. This retail Time Boutique was initiated to promote the home brands, D'SIGNER & ESCORT Watches — a unique experience store showcasing prime models, new launches, top sellers & special editions with an appealing display and aura. This Time Corridor Boutique is a gesture to connect & add some value to happy watch buyers.",
     type: "text-image",
     image: "/images/about us journey/2025 - Time Corridor/1A1A8511.JPG",
     imageType: "photo",
@@ -743,6 +743,11 @@ export default function DesignerJourney() {
 
       <section className="relative w-full overflow-hidden" style={{ background: "#F5F2ED" }}>
 
+        {/* PROMPT 2.5: Heritage textured background layers */}
+        <div className="absolute inset-0 opacity-[0.04] pointer-events-none z-0" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }} />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[900px] bg-[radial-gradient(circle,rgba(184,147,90,0.05)_0%,transparent_65%)] pointer-events-none rounded-full -translate-y-1/3 z-0" />
+        <div className="absolute bottom-0 right-0 w-[700px] h-[700px] bg-[radial-gradient(circle,rgba(0,57,38,0.03)_0%,transparent_60%)] pointer-events-none rounded-full translate-x-1/4 translate-y-1/4 z-0" />
+
         {/* ═══ HERO INTRO ═══ */}
         <div ref={introRef} className="relative text-center pt-24 lg:pt-36 pb-12 lg:pb-20 px-6">
           {/* Faded large year */}
@@ -762,7 +767,7 @@ export default function DesignerJourney() {
           </h2>
           <div className={`jf ${iv} w-14 h-px mx-auto mt-7`} style={{ background: "#B8935A", opacity: 0.4, animationDelay: "0.25s" }} />
           <p className={`jf ${iv} font-dm text-[14px] sm:text-[15px] mt-5 max-w-xl mx-auto leading-[1.85] relative z-10`} style={{ color: "#9C9690", animationDelay: "0.35s" }}>
-            From a modest watch parts trading business in 1940s Amritsar to a multi-brand watch ecosystem today — every generation expanded our expertise and elevated our standards.
+            From a modest watch parts trading business in 1940s Amritsar to a multi-brand watch ecosystem today — every generation expanded the group's expertise and elevated its standards.
           </p>
 
           {/* First year intro block */}

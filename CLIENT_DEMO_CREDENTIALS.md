@@ -8,19 +8,20 @@ This document outlines the strict access control mechanisms, testing credentials
 
 ## 1. Quick Test Credentials
 
-If the database has been properly seeded via `npm run prisma db seed`, the following accounts are permanently injected for your convenience.
+If the database has been properly seeded, the following accounts are permanently injected for convenience.
 
 ### The Admin Persona
 *Grants full access to the backend product catalogs, inventory control, and order timeline modifications.*
 * **Email:** `admin@designerworld.com`
 * **Password:** `password123`
-* **Test Route:** [`http://localhost:3000/admin/dashboard`](http://localhost:3000/admin/dashboard)
+* **Live Route:** [http://187.127.140.26:3000/login](http://187.127.140.26:3000/login) (Redirects to `/admin/dashboard`)
 
 ### The VIP Customer Persona
 *Grants access to the user-facing store, personal profile, cart checkout, and review submission engine. This account is pre-loaded with a `DELIVERED` mock order to test the review mechanism instantly.*
 * **Email:** `customer@designerworld.com`
 * **Password:** `password123`
-* **Test Route:** [`http://localhost:3000/account`](http://localhost:3000/account)
+* **Live Route:** [http://187.127.140.26:3000/login](http://187.127.140.26:3000/login) (Redirects to `/account`)
+
 
 ---
 

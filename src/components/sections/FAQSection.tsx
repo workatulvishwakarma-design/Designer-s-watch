@@ -9,27 +9,27 @@ const faqs = [
   {
     question: "What materials are used in your watches?",
     answer:
-      "Our timepieces are crafted from premium materials including 316L surgical-grade stainless steel, scratch-resistant sapphire crystal, and genuine top-grain leather or durable silicone for straps, ensuring both luxury and longevity.",
+      "D'Signer and Escort timepieces are crafted from premium materials including 316L surgical-grade stainless steel, scratch-resistant sapphire crystal, and genuine top-grain leather or durable silicone for straps, ensuring both luxury and longevity.",
   },
   {
     question: "Do you offer warranty on your products?",
     answer:
-      "Yes, all our watches come with a comprehensive 2-year international warranty covering any manufacturing defects. Please register your watch on our portal after purchase.",
+      "Yes, all Designer World watches come with a comprehensive 2-year international warranty covering any manufacturing defects. Please register your watch on the Designer World portal after purchase.",
   },
   {
     question: "How long does delivery take?",
     answer:
-      "We offer free express shipping globally. Domestic orders are typically delivered within 2-4 business days, while international shipments may take 5-10 business days depending on customs clearance.",
+      "Designer World offers free express shipping globally. Domestic orders are typically delivered within 2-4 business days, while international shipments may take 5-10 business days depending on customs clearance.",
   },
   {
     question: "Can I explore multiple collections online?",
     answer:
-      "Absolutely. Our entire catalog, including exclusive D'SIGNER and Escort collections, is available to browse and purchase directly through our official E-Store with secure checkout.",
+      "Absolutely. The entire catalog, including exclusive D'SIGNER and Escort collections, is available to browse and purchase directly through the official E-Store with secure checkout.",
   },
   {
     question: "Do you support bulk or business orders?",
     answer:
-      "Yes. We have a dedicated B2B division that handles bulk corporate gifting, retail distribution, and comprehensive OEM/Private Label manufacturing services. Please reach out via our Partner portal.",
+      "Yes. Nagpal Group has a dedicated B2B division that handles bulk corporate gifting, retail distribution, and comprehensive OEM/Private Label manufacturing services. Please reach out via the Partner portal.",
   },
 ];
 
@@ -78,7 +78,7 @@ export default function FAQSection() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="font-dm text-[#1A1918]/70 text-[15px] lg:text-[17px] font-light leading-relaxed max-w-[460px] mb-12"
           >
-            Find answers to the most common queries about our watches, collections, shipping, and support policies. Everything you need, clearly defined in one place.
+            Find answers to the most common queries about Designer World watches, collections, shipping, and support policies. Everything you need, clearly defined in one place.
           </motion.p>
 
           {/* Support CTA Card */}
@@ -93,7 +93,7 @@ export default function FAQSection() {
               Still Have Questions?
             </h3>
             <p className="font-dm text-[14px] text-[#1A1918]/60 font-light leading-relaxed mb-8">
-              If you need additional help, our dedicated concierge team is perfectly positioned to guide you with product details, direct orders, and detailed support queries.
+              If you need additional help, the dedicated concierge team is perfectly positioned to guide you with product details, direct orders, and detailed support queries.
             </p>
             
             <button

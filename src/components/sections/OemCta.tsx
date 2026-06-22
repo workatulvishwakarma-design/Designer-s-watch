@@ -46,7 +46,7 @@ export default function OemCta() {
                     className="font-heading text-[40px] md:text-[56px] lg:text-[64px] leading-[1.1] text-white mb-8"
                 >
                     <span className="block font-light italic text-[#E8DFD0]">Your Vision.</span>
-                    <span className="block font-semibold">Our Watchmaking.</span>
+                    <span className="block font-semibold">Nagpal Group&apos;s Watchmaking.</span>
                 </motion.h2>
 
                 {/* Accent underline */}

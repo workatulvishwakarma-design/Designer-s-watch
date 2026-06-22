@@ -52,7 +52,7 @@ export default function OurExpertise() {
                             <h3 className="font-cormorant text-3xl text-[#1A1918]">Corporate & Institutional</h3>
                         </div>
                         <p className="font-dm text-sm md:text-base text-[#6B6560] leading-relaxed mb-6">
-                            What began with trusted corporate gifting partnerships with labels like Donear and Siyaram has scaled into a multi-decade legacy in institutional B2B manufacturing. We are the silent engine behind some of the largest corporate timepiece orders in the country.
+                            What began with trusted corporate gifting partnerships with labels like Donear and Siyaram has scaled into a multi-decade legacy in institutional B2B manufacturing. Nagpal Group is the silent engine behind some of the largest corporate timepiece orders in the country.
                         </p>
                         <ul className="space-y-4">
                             <li className="flex items-start gap-3">
@@ -65,7 +65,7 @@ export default function OurExpertise() {
                             </li>
                             <li className="flex items-start gap-3">
                                 <CheckCircle size={16} className="text-[#B8935A] mt-1 shrink-0" />
-                                <span className="font-dm text-sm text-[#4E4944]"><strong>ICICI Bank & Nikon:</strong> 100K+ and 300K+ units respectively, showcasing our adaptability.</span>
+                                <span className="font-dm text-sm text-[#4E4944]"><strong>ICICI Bank & Nikon:</strong> 100K+ and 300K+ units respectively, showcasing the group's adaptability.</span>
                             </li>
                             <li className="flex items-start gap-3">
                                 <CheckCircle size={16} className="text-[#B8935A] mt-1 shrink-0" />
@@ -149,7 +149,7 @@ export default function OurExpertise() {
                             <h3 className="font-cormorant text-3xl text-[#1A1918]">OEM & Private Label</h3>
                         </div>
                         <p className="font-dm text-sm md:text-base text-[#6B6560] leading-relaxed mb-6">
-                            The Nagpal Group provides end-to-end private label manufacturing for prominent domestic lifestyle brands and major e-commerce platforms. From design conceptualization and global sourcing to assembly and rigorous QC, we deliver a turnkey solution.
+                            The Nagpal Group provides end-to-end private label manufacturing for prominent domestic lifestyle brands and major e-commerce platforms. From design conceptualization and global sourcing to assembly and rigorous QC, the group delivers a turnkey solution.
                         </p>
                         
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-8">
@@ -166,7 +166,7 @@ export default function OurExpertise() {
                             <div className="bg-[#FAF8F4] p-5 rounded-xl border border-[#EDE8DF] sm:col-span-2">
                                 <Award size={20} className="text-[#003926] mb-3" />
                                 <h4 className="font-dm font-medium text-sm text-[#1A1918] mb-1">Unmatched After-Sales</h4>
-                                <p className="font-dm text-xs text-[#6B6560]">Our roots in spare parts distribution ensure lifelong serviceability, minimizing return rates and protecting brand reputation.</p>
+                                <p className="font-dm text-xs text-[#6B6560]">Nagpal Group's roots in spare parts distribution ensure lifelong serviceability, minimizing return rates and protecting brand reputation.</p>
                             </div>
                         </div>
                         <div className="mt-8">

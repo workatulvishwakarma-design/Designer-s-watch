@@ -73,3 +73,6 @@ src/generated/
 Dockerfile
 docker-compose*.yml
 .dockerignore
+
+# --- Assets (Mounted via volume instead of baked into image) ---
+public/images

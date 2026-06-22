@@ -26,7 +26,7 @@ export default function NagpalOEM() {
             <motion.div initial={{ opacity: 0, y: 10 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6 }}
               className="flex items-center gap-3 mb-5">
               <div className="w-8 h-px bg-[#B8935A]" />
-              <span className="font-dm text-[10px] tracking-[0.3em] uppercase text-[#B8935A]">OEM MANUFACTURING</span>
+              <span className="font-dm text-[10px] tracking-[0.3em] uppercase text-[#B8935A]">OEM (ORIGINAL EQUIPMENT MANUFACTURING)</span>
             </motion.div>
             <motion.h2 initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.8, delay: 0.1 }}
               className="font-cormorant text-[38px] sm:text-[48px] lg:text-[58px] text-white leading-[1.08]">

@@ -6,7 +6,7 @@ import Image from "next/image";
 const chainNodes = [
   "Sourcing",
   "Distribution",
-  "OEM Mfg",
+  "OEM Manufacturing",
   "Brand Dev",
 ];
 
@@ -69,9 +69,8 @@ export default function NagpalValueChain() {
                   transition={{ duration: 0.7 }}
                   className="font-cormorant text-[40px] md:text-[46px] lg:text-[54px] font-medium leading-[1.1] text-[#1A1918]"
                 >
-                  Operating <br/>
-                  Across the <br/>
-                  <span className="italic text-[#003926]">Watch</span> <br/>
+                  Operating Across the{" "}
+                  <span className="italic text-[#003926]">Watch</span>{" "}
                   Value Chain
                 </motion.h2>
               </div>

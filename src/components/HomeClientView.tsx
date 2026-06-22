@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
+import LoadingScreen from '@/components/LoadingScreen';
 import SmoothScrolling from '@/components/SmoothScrolling';
 import Header from '@/components/sections/Header';
 import HeroBanner from '@/components/sections/HeroBanner';
@@ -93,6 +94,7 @@ export default function HomeClientView({
 
   return (
     <div className="min-h-screen bg-background text-primaryText overflow-x-hidden">
+        <LoadingScreen />
         <main>
           {/* Inject dynamic content into Hero or other sections if needed */}
           <HeroBanner />

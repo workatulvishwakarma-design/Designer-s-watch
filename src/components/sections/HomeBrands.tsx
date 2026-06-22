@@ -13,9 +13,10 @@ interface BrandCardProps {
   ctaLabel: string;
   variant: "dark" | "light";
   delay?: number;
+  logo?: string;
 }
 
-function BrandCard({ title, subtitle, priceRange, image, href, ctaLabel, variant, delay = 0 }: BrandCardProps) {
+function BrandCard({ title, subtitle, priceRange, image, href, ctaLabel, variant, delay = 0, logo }: BrandCardProps) {
   const [hovered, setHovered] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(cardRef, { once: true, margin: "-60px" });
@@ -113,12 +114,15 @@ function BrandCard({ title, subtitle, priceRange, image, href, ctaLabel, variant
           </h3>
 
           {/* Price Range */}
-          <p
-            className="font-cormorant italic text-[16px] sm:text-[18px] mb-6 transition-colors duration-500"
-            style={{ color: hovered ? "#B8935A" : "rgba(255,255,255,0.55)" }}
-          >
-            {priceRange}
-          </p>
+          <div className="mb-6 flex flex-col items-start gap-0.5">
+            <span className="text-[9px] font-dm tracking-[0.25em] uppercase text-white/40">Price Range</span>
+            <span 
+              className="font-cormorant text-[18px] sm:text-[22px] font-medium tracking-[0.03em] transition-colors duration-500"
+              style={{ color: hovered ? "#B8935A" : "#FFFFFF" }}
+            >
+              {priceRange}
+            </span>
+          </div>
 
           {/* Divider */}
           <div
@@ -164,6 +168,22 @@ function BrandCard({ title, subtitle, priceRange, image, href, ctaLabel, variant
         >
           <path d="M0 28 L0 0 L28 0" strokeWidth="1.5" strokeLinecap="round" />
         </svg>
+
+        {/* Brand Logo */}
+        {logo && (
+          <div
+            className="absolute top-6 right-6 z-10 pointer-events-none transition-opacity duration-500"
+            style={{ opacity: hovered ? 0.95 : 0.7 }}
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={logo}
+              alt={`${title} logo`}
+              className="h-[28px] sm:h-[32px] lg:h-[36px] w-auto object-contain"
+              style={{ filter: "brightness(0) invert(1)", transition: "opacity 0.5s ease" }}
+            />
+          </div>
+        )}
       </Link>
     </motion.div>
   );
@@ -171,7 +191,7 @@ function BrandCard({ title, subtitle, priceRange, image, href, ctaLabel, variant
 
 export default function HomeBrands() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(sectionRef, { once: true, margin: "-80px" });
+  const isInView = useInView(sectionRef, { once: true, margin: "-60px" });
 
   return (
     <section ref={sectionRef} className="bg-[#FAF8F4] py-16 lg:py-24 relative overflow-hidden">
@@ -225,12 +245,13 @@ export default function HomeBrands() {
         <BrandCard
           title="D'SIGNER"
           subtitle="Premium Luxury"
-          priceRange="₹5,000 — ₹50,000"
+          priceRange="₹4,000 — ₹50,000"
           image="/images/new-content/new-1/d_signer mens/april_post05.png"
           href="/collections/dsigner"
           ctaLabel="Explore D'Signer"
           variant="dark"
           delay={0}
+          logo="/images/deigner.png"
         />
 
         {/* ESCORT Card */}
@@ -243,8 +264,45 @@ export default function HomeBrands() {
           ctaLabel="Explore Escort"
           variant="light"
           delay={0.15}
+          logo="/images/escort_b.png"
         />
       </div>
+
+      {/* PROMPT 2.8: 4-Category Quick Links */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={isInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.7, delay: 0.4 }}
+        className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4 mx-auto w-full mt-6 relative z-10"
+        style={{ maxWidth: 1300, padding: "0 24px" }}
+      >
+        {[
+          { label: "D'Signer Men's", href: "/collections/mens-designer", accent: "#003926" },
+          { label: "D'Signer Women's", href: "/collections/womens-designer", accent: "#B8935A" },
+          { label: "Escort Men's", href: "/collections/mens-escort", accent: "#003926" },
+          { label: "Escort Women's", href: "/collections/womens-escort", accent: "#B8935A" },
+        ].map((cat, i) => (
+          <Link
+            key={cat.label}
+            href={cat.href}
+            className="group flex items-center justify-center gap-2.5 px-5 py-4 rounded-2xl border border-[#EDE8DF] bg-white/70 backdrop-blur-sm transition-all duration-500 hover:border-[#B8935A]/30 hover:shadow-[0_8px_24px_rgba(184,147,90,0.08)] hover:-translate-y-0.5"
+          >
+            <span
+              className="w-1.5 h-1.5 rounded-full transition-all duration-500 group-hover:scale-125"
+              style={{ backgroundColor: cat.accent }}
+            />
+            <span className="font-dm text-[11px] sm:text-[12px] tracking-[0.12em] uppercase text-[#1A1918]/70 transition-colors duration-300 group-hover:text-[#1A1918]">
+              {cat.label}
+            </span>
+            <svg
+              width="14" height="14" viewBox="0 0 20 20" fill="none"
+              className="ml-auto opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-0.5"
+            >
+              <path d="M4 10h12M12 6l4 4-4 4" stroke="#B8935A" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </Link>
+        ))}
+      </motion.div>
     </section>
   );
 }

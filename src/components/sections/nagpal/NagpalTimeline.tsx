@@ -36,8 +36,9 @@ const journeyData = [
         color: "#E8720C",
         title: "The Beginning in Amritsar",
         content:
-          "Virbhan Nagpal, along with his 3 sons started a small setup in Amritsar — establishing the 1st & 2nd Generation legacy.",
+          "Virbhan Nagpal, along with his 3 sons started a small setup in Amritsar — establishing the 1st & 2nd Generation legacy. What began as a modest watch parts trading enterprise would lay the foundation for one of India's most enduring horological dynasties.",
         icon: Star,
+        achievement: "1st Generation"
       },
     ],
   },
@@ -49,16 +50,18 @@ const journeyData = [
         color: "#D94F2B",
         title: "3rd Generation Enters",
         content:
-          "Narinder & Jatinder walk in, officially launching Nagpals Bombay and setting the stage for national operations.",
+          "Narinder & Jatinder walk in, officially launching Nagpals Bombay and setting the stage for national operations. The move from Amritsar to Mumbai signified an ambitious leap — from regional parts distribution to a pan-India watch enterprise.",
         icon: Users,
+        achievement: "Pan-India Ops"
       },
       {
         year: "1981",
         color: "#C62828",
         title: "National Distribution Base",
         content:
-          "Nagpal Bombay acquires Pan-India distribution rights for premium batteries including Renata, Seiko, and Maxell.",
+          "Nagpal Bombay acquires Pan-India distribution rights for premium batteries including Renata, Seiko, and Maxell. This secured a critical revenue base that would fund the group's later entry into watch manufacturing.",
         icon: Globe,
+        achievement: "3 Major Brands"
       },
     ],
   },
@@ -70,24 +73,27 @@ const journeyData = [
         color: "#8E1C1C",
         title: "The First Home Brand",
         content:
-          "Official launch of the first home brand — D'SIGNER, cementing the transition from distribution to manufacturing.",
+          "Official launch of the first home brand — D'SIGNER, cementing the transition from distribution to manufacturing. Inspired by European design sensibilities, D'Signer targeted the premium fashion watch segment with an eye for detail and accessible luxury.",
         icon: Watch,
+        achievement: "Brand #1 Born"
       },
       {
         year: "1995",
         color: "#7B1FA2",
         title: "Second In-House Brand",
         content:
-          "Launch of the 2nd in-house brand — Escort, diversifying the product portfolio.",
+          "Launch of the 2nd in-house brand — Escort, diversifying the product portfolio. Escort was positioned as an everyday lifestyle brand, broadening the group's reach to a wider audience beyond premium-only buyers.",
         icon: Award,
+        achievement: "Brand #2 Born"
       },
       {
         year: "1997",
         color: "#283593",
         title: "International Distribution Arm",
         content:
-          "Initiated the distribution arm for International Swiss & fashion brands including Tissot, Givenchy, Christian Bernard, and Rotary.",
+          "Initiated the distribution arm for International Swiss & fashion brands including Tissot, Givenchy, Christian Bernard, and Rotary. This positioned Nagpal Group as the go-to partner for international watch brands entering the Indian market.",
         icon: Briefcase,
+        achievement: "4 Global Brands"
       },
     ],
   },
@@ -99,24 +105,27 @@ const journeyData = [
         color: "#1565C0",
         title: "The 4th Generation",
         content:
-          "Neeraj & Nischay step in to open the OEM/ODM vertical and aggressively expand the brand business footprint.",
+          "Neeraj & Nischay step in to open the OEM (Original Equipment Manufacturing) / ODM vertical and aggressively expand the brand business footprint. Under the 4th generation's leadership, the group's manufacturing capacity expanded exponentially.",
         icon: Rocket,
+        achievement: "4th Generation"
       },
       {
         year: "2007",
         color: "#0288D1",
         title: "Daniel Klein Distribution",
         content:
-          "Exclusive Distribution of Turkish Brand 'Daniel Klein' Watches and Accessories is officially launched.",
+          "Exclusive Distribution of Turkish Brand 'Daniel Klein' Watches and Accessories is officially launched. The partnership marked a new chapter in multi-brand distribution strategy.",
         icon: Store,
+        achievement: "Exclusive Partner"
       },
       {
         year: "2017",
         color: "#00897B",
         title: "Swiss Precision",
         content:
-          "Exclusively launched Mathey Tissot Swiss Made Watches across the Indian market.",
+          "Exclusively launched Mathey Tissot Swiss Made Watches across the Indian market. This brought genuine Swiss heritage watchmaking to Indian consumers through Nagpal Group's distribution network.",
         icon: Watch,
+        achievement: "Swiss Made"
       },
     ],
   },
@@ -128,31 +137,35 @@ const journeyData = [
         color: "#2E7D32",
         title: "Inter Luxury Group Partnership",
         content:
-          "Myank (the youngest of the 4th Generation) comes on board, taking over a massive strategic partnership with Inter Luxury Group including Superdry, French Connection, Timberland, Kenneth Cole, and Cerutti.",
+          "Myank (the youngest of the 4th Generation) comes on board, taking over a massive strategic partnership with Inter Luxury Group including Superdry, French Connection, Timberland, Kenneth Cole, and Cerutti. This single partnership added 5 international lifestyle brands to the portfolio.",
         icon: Briefcase,
+        achievement: "5 Luxury Labels"
       },
       {
         year: "2020",
         color: "#558B2F",
         title: "Digital Expansion",
-        content: "Went live with own direct-to-consumer E-Store: Ghadiwaala.com.",
+        content: "Went live with own direct-to-consumer E-Store: Ghadiwaala.com. The digital pivot opened a new channel for reaching customers nationwide without relying solely on traditional retail distribution.",
         icon: Globe,
+        achievement: "D2C Launch"
       },
       {
         year: "2022",
         color: "#9E9D24",
         title: "Smartwatches & Italian Brands",
         content:
-          "Introduced BFit Smart Watches & secured exclusive distribution of D1 Milano Italian watches. Added Ciga Design & SBPRC as sole distributors in India.",
+          "Introduced BFit Smart Watches & secured exclusive distribution of D1 Milano Italian watches. Added Ciga Design & SBPRC as sole distributors in India. The portfolio expanded to 20+ international brands across multiple watch categories.",
         icon: Watch,
+        achievement: "20+ Brands"
       },
       {
         year: "AT PRESENT",
         color: "#B8935A", // Changed to brand luxury gold
         title: "A Timeless Legacy",
         content:
-          "4 Generations, 20+ International brands handled exclusively, more than 500 Private labels manufactured, and many more stories yet to be unveiled.",
+          "4 Generations, 20+ International brands handled exclusively, more than 500 Private labels manufactured, and many more stories yet to be unveiled. From a small Amritsar shop to a vertically integrated watch ecosystem — the Nagpal Group legacy continues to grow.",
         icon: Star,
+        achievement: "500+ Labels"
       },
     ],
   },
@@ -167,17 +180,21 @@ const flatTimeline = journeyData.flatMap((eraGrp) =>
 const EraMarker = ({ era }: { era: string }) => {
   return (
     <div className="relative z-20 flex items-center justify-center w-full my-12 md:my-20">
+      {/* Left decorative line */}
+      <div className="hidden md:block flex-1 max-w-[120px] h-px bg-gradient-to-r from-transparent to-[#B8935A]/20" />
       <motion.div
         initial={{ opacity: 0, scale: 0.9, y: 10 }}
         whileInView={{ opacity: 1, scale: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.6 }}
-        className="px-6 py-2 bg-[#FAF8F4] border border-[#B8935A]/30 rounded-full shadow-sm relative z-20"
+        className="mx-4 px-8 py-3 bg-[#FAF8F4] border border-[#B8935A]/30 rounded-full shadow-[0_4px_20px_rgba(184,147,90,0.08)] relative z-20"
       >
-        <span className="text-[10px] md:text-xs font-dm uppercase tracking-[0.2em] text-[#B8935A] font-medium">
+        <span className="text-[10px] md:text-xs font-dm uppercase tracking-[0.25em] text-[#B8935A] font-semibold">
           {era}
         </span>
       </motion.div>
+      {/* Right decorative line */}
+      <div className="hidden md:block flex-1 max-w-[120px] h-px bg-gradient-to-l from-transparent to-[#B8935A]/20" />
     </div>
   );
 };
@@ -229,6 +246,15 @@ const MilestoneCard = ({
             <p className="font-dm text-[#1A1918]/70 text-[13px] lg:text-[14px] leading-relaxed font-light">
               {item.content}
             </p>
+            {/* Achievement badge */}
+            {item.achievement && (
+              <div className="mt-4 flex items-center gap-2">
+                <div className="w-1 h-1 rounded-full bg-[#B8935A]" />
+                <span className="font-dm text-[10px] tracking-[0.15em] uppercase text-[#B8935A] font-semibold">
+                  {item.achievement}
+                </span>
+              </div>
+            )}
           </div>
         </motion.div>
       </div>
@@ -279,6 +305,15 @@ const MilestoneCard = ({
           <p className="font-dm text-[#1A1918]/70 text-[12px] leading-relaxed font-light">
             {item.content}
           </p>
+          {/* Achievement badge (mobile) */}
+          {item.achievement && (
+            <div className="mt-3 flex items-center gap-2">
+              <div className="w-1 h-1 rounded-full bg-[#B8935A]" />
+              <span className="font-dm text-[9px] tracking-[0.15em] uppercase text-[#B8935A] font-semibold">
+                {item.achievement}
+              </span>
+            </div>
+          )}
         </motion.div>
       </div>
 
@@ -314,7 +349,7 @@ export default function NagpalTimeline() {
       <div
         className="absolute inset-0 pointer-events-none opacity-[0.03] mix-blend-multiply"
         style={{
-          backgroundImage: "url('/images/noise.png')",
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
           backgroundSize: "120px 120px",
         }}
       />

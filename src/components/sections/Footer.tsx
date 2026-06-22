@@ -40,7 +40,7 @@ export default function Footer() {
                     <div className="relative w-full rounded-[2.5rem] overflow-hidden bg-gradient-to-br from-[#003926] via-[#001F14] to-[#000A06] px-8 py-24 md:py-36 flex flex-col items-center text-center shadow-[0_40px_80px_rgba(0,57,38,0.12)] group/newsletter">
                         {/* Immersive background lighting */}
                         <div className="absolute top-0 right-0 w-[80vw] h-[80vw] pointer-events-none opacity-[0.08] bg-[radial-gradient(circle_at_top_right,_#FAF8F4_0%,_transparent_60%)] rounded-full transition-transform duration-[3s] group-hover/newsletter:scale-110" />
-                        <div className="absolute inset-0 pointer-events-none opacity-[0.1] bg-[url('/images/noise.png')] mix-blend-overlay" />
+                        <div className="absolute inset-0 pointer-events-none opacity-[0.03]" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }} />
                         
                         <div className="relative z-10 w-full max-w-5xl mx-auto flex flex-col items-center">
                             <span className="text-[10px] uppercase tracking-[0.4em] text-[#FAF8F4]/60 font-semibold font-body mb-8 block flex items-center gap-6">
@@ -109,8 +109,8 @@ export default function Footer() {
                             <nav className="flex flex-col gap-5 text-[13px] font-body tracking-[0.1em] text-[#003926]/70 uppercase font-medium">
                                 <Link href="/collections/dsigner" className="hover:text-[#001F14] transition-colors duration-500 w-fit relative group/link">D'Signer Core<span className="absolute -bottom-1 left-0 w-0 h-px bg-[#003926] group-hover/link:w-full transition-all duration-500" /></Link>
                                 <Link href="/collections/escort" className="hover:text-[#001F14] transition-colors duration-500 w-fit relative group/link">Escort Series<span className="absolute -bottom-1 left-0 w-0 h-px bg-[#003926] group-hover/link:w-full transition-all duration-500" /></Link>
-                                <Link href="/collections/mens" className="hover:text-[#001F14] transition-colors duration-500 w-fit relative group/link">Men's Timepieces<span className="absolute -bottom-1 left-0 w-0 h-px bg-[#003926] group-hover/link:w-full transition-all duration-500" /></Link>
-                                <Link href="/collections/womens" className="hover:text-[#001F14] transition-colors duration-500 w-fit relative group/link">Women's Timepieces<span className="absolute -bottom-1 left-0 w-0 h-px bg-[#003926] group-hover/link:w-full transition-all duration-500" /></Link>
+                                <Link href="/collections/men" className="hover:text-[#001F14] transition-colors duration-500 w-fit relative group/link">Men's Timepieces<span className="absolute -bottom-1 left-0 w-0 h-px bg-[#003926] group-hover/link:w-full transition-all duration-500" /></Link>
+                                <Link href="/collections/women" className="hover:text-[#001F14] transition-colors duration-500 w-fit relative group/link">Women's Timepieces<span className="absolute -bottom-1 left-0 w-0 h-px bg-[#003926] group-hover/link:w-full transition-all duration-500" /></Link>
                             </nav>
                         </motion.div>
 

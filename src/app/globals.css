@@ -866,4 +866,167 @@
   .trust-icon-card:hover {
     transform: none !important;
   }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   PARALLAX HERO — LUXURY SCROLL-TRIGGERED ANIMATION SYSTEM
+   ═══════════════════════════════════════════════════════════
+   Tunable CSS custom properties for parallax intensity.
+   Responsive breakpoints reduce complexity on smaller devices.
+   ═══════════════════════════════════════════════════════════ */
+
+:root {
+  --hero-parallax-speed: 0.4;     /* Desktop: full parallax */
+  --hero-pin-height: 300vh;       /* Desktop: immersive duration */
+}
+
+@media (max-width: 1024px) {
+  :root {
+    --hero-parallax-speed: 0.25;  /* Tablet: reduced parallax */
+    --hero-pin-height: 250vh;     /* Tablet: slightly faster */
+  }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --hero-parallax-speed: 0.1;   /* Mobile: minimal parallax */
+    --hero-pin-height: 200vh;     /* Mobile: prevent friction */
+  }
+}
+
+/* ─── Scroll-Pin Containers ─── */
+.parallax-hero-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.parallax-hero-sticky {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  height: 100svh; /* Safe viewport height — respects mobile browser chrome */
+  overflow: hidden;
+}
+
+/* ─── Video / Mobile Poster Toggle ─── */
+/* On mobile (≤768px): hide video to prevent battery drain + memory spikes.
+   Show the gradient poster fallback instead. */
+.hero-mobile-poster {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .hero-video-element {
+    display: none;
+  }
+  .hero-mobile-poster {
+    display: block;
+  }
+}
+
+/* ─── Responsive Logo Sizing ─── */
+.hero-logo-sizer {
+  width: 420px;
+  max-width: 80vw;
+}
+
+@media (max-width: 1024px) {
+  .hero-logo-sizer {
+    width: 320px;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-logo-sizer {
+    width: 220px;
+  }
+}
+
+/* ─── Responsive Watch Sizing ─── */
+.hero-watch-sizer {
+  max-width: 500px;
+  width: 70%;
+}
+
+@media (max-width: 1024px) {
+  .hero-watch-sizer {
+    max-width: 380px;
+    width: 65%;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-watch-sizer {
+    max-width: 260px;
+    width: 60%;
+  }
+}
+
+/* ─── Scroll Indicator Entrance ─── */
+.hero-scroll-entrance {
+  animation: heroScrollIndicatorIn 1s cubic-bezier(0.22, 1, 0.36, 1) 1.2s both;
+}
+
+@keyframes heroScrollIndicatorIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* ─── Skip Button Hover ─── */
+.hero-skip-btn:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: rgba(255, 255, 255, 0.5) !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+/* ─── CTA Button Hover Enhancement ─── */
+.hero-cta-btn:hover {
+  background: rgba(184, 147, 90, 0.15) !important;
+  border-color: rgba(184, 147, 90, 0.5) !important;
+  box-shadow: 0 8px 32px rgba(184, 147, 90, 0.15);
+}
+
+/* ─── Watch Product Hover — Desktop Only ─── */
+/* Subtle 3D tilt on hover creates interactivity on the final reveal */
+@media (min-width: 1025px) {
+  .hero-watch-sizer:hover img {
+    transform: scale(1.03) rotateY(-3deg) !important;
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+}
+
+/* ═══════════════════════════════════════════
+   PARALLAX HERO — ACCESSIBILITY
+   prefers-reduced-motion: Instantly show final state.
+   Users with vestibular disorders skip the animation entirely.
+   ═══════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  .parallax-hero-wrapper {
+    height: 100vh !important;
+    height: 100svh !important;
+  }
+
+  .parallax-hero-sticky,
+  .parallax-hero-sticky * {
+    animation: none !important;
+    transition: opacity 0.3s ease-out !important;
+  }
+
+  /* Show watch immediately */
+  .hero-watch-sizer img {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  /* Skip intro button — not needed */
+  .hero-skip-btn {
+    display: none !important;
+  }
 }

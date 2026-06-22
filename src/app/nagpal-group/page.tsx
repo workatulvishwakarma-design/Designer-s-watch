@@ -14,6 +14,7 @@ import NagpalPartner from "@/components/sections/nagpal/NagpalPartner";
 import NagpalTimeline from "@/components/sections/nagpal/NagpalTimeline";
 import NagpalCorporate from "@/components/sections/nagpal/NagpalCorporate";
 import NagpalOEM from "@/components/sections/nagpal/NagpalOEM";
+import PartnerLogos from "@/components/sections/PartnerLogos";
 
 function SectionDivider() {
   return (
@@ -63,6 +64,8 @@ export default function NagpalGroupPage() {
           <NagpalOEM />
           <SectionDivider />
           <NagpalPartner />
+          <SectionDivider />
+          <PartnerLogos />
         </main>
       </SmoothScrolling>
     </>

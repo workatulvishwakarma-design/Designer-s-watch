@@ -9,19 +9,19 @@ import { Check, Plus, Minus, ArrowRight } from "lucide-react";
 const faqs = [
   {
     question: "What does Nagpal Group specialize in?",
-    answer: "With decades of legacy, Nagpal Group specializes in comprehensive watch manufacturing, private label development, and nationwide distribution. We act as a vertically integrated partner handling everything from design to retail delivery."
+    answer: "With decades of legacy, Nagpal Group specializes in comprehensive watch manufacturing, private label development, and nationwide distribution. The group acts as a vertically integrated partner handling everything from design to retail delivery."
   },
   {
     question: "Does Nagpal Group support OEM / private label manufacturing?",
-    answer: "Yes, our OEM division provides end-to-end solutions for brands looking to launch or scale their watch collections. We manage sourcing, assembly, quality control, and testing to international standards."
+    answer: "Yes, the OEM division provides end-to-end solutions for brands looking to launch or scale their watch collections. Nagpal Group manages sourcing, assembly, quality control, and testing to international standards."
   },
   {
     question: "Which brands and distribution categories does Nagpal Group handle?",
-    answer: "We manage a diverse portfolio of in-house and partnered brands across premium, lifestyle, and everyday categories. Our flagship brand D'SIGNER leads our luxury segment, while Escort caters to the lifestyle market."
+    answer: "Nagpal Group manages a diverse portfolio of in-house and partnered brands across premium, lifestyle, and everyday categories. The flagship brand D'SIGNER leads the luxury segment, while Escort caters to the lifestyle market."
   },
   {
     question: "Does Nagpal Group work with retailers and business partners?",
-    answer: "Absolutely. We maintain a vast pan-India distribution network and actively collaborate with regional distributors, large-format retail chains, and independent watch boutiques."
+    answer: "Absolutely. Nagpal Group maintains a vast pan-India distribution network and actively collaborates with regional distributors, large-format retail chains, and independent watch boutiques."
   },
   {
     question: "Can businesses contact Nagpal Group for collaboration or sourcing?",
@@ -51,7 +51,7 @@ export default function NagpalPartner() {
           <div
             className="absolute inset-0 pointer-events-none opacity-[0.03] mix-blend-multiply"
             style={{
-              backgroundImage: "url('/images/noise.png')",
+              backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
               backgroundSize: "120px 120px",
             }}
           />

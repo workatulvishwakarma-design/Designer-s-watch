@@ -12,10 +12,7 @@ const GRID_COLLECTIONS = FEATURED.length >= 6
   ? FEATURED.slice(0, 6)
   : [...FEATURED, ...collections.filter(c => !c.featured)].slice(0, 6);
 
-/* ─── Gender label helper ─── */
-function genderLabel(gender: string) {
-  return gender === "Unisex" ? "His & Hers" : gender === "Men" ? "For Him" : "For Her";
-}
+/* ─── Gender label helper removed per PROMPT 1.4 ─── */
 
 /* ─── Editorial Collection Card ─── */
 function EditorialCard({
@@ -29,7 +26,6 @@ function EditorialCard({
 }) {
   const [hovered, setHovered] = useState(false);
   const img = collection.heroImage;
-  const gl = genderLabel(collection.gender);
 
   const heights: Record<string, string> = {
     large: "100%",
@@ -129,7 +125,7 @@ function EditorialCard({
                 transition: "all 0.4s ease"
               }}>
                 <span className="w-1.5 h-1.5 rounded-full bg-[#B8935A] animate-pulse" />
-                {gl}
+                {collection.identity?.split('·')[0]?.trim() || 'Signature Collection'}
               </span>
             </div>
 
