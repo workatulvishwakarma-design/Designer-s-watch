@@ -9,7 +9,6 @@ import LegacySection from '@/components/sections/LegacySection';
 import FeatureScroller from '@/components/sections/FeatureScroller';
 import HomeBrands from '@/components/sections/HomeBrands';
 import WatchDetails from '@/components/sections/WatchDetails';
-import StatsCounter from '@/components/sections/StatsCounter';
 import OemCta from '@/components/sections/OemCta';
 import TrustGrid from '@/components/sections/TrustGrid';
 import FeatureStrip from '@/components/sections/FeatureStrip';
@@ -115,7 +114,6 @@ export default function HomeClientView({
           <LegacySection />
           <CraftSection />
           <FeatureScroller />
-          <StatsCounter />
           <OemCta />
           <TrustGrid />
           <FeatureStrip />

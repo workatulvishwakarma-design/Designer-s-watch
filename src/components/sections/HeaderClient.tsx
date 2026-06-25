@@ -186,7 +186,7 @@ export default function HeaderClient({ hasAnnouncement = false, megaMenuPayload 
         gender: c.gender,
     })), []);
 
-    const isHeroPage = pathname === "/" || pathname === "/about" || pathname === "/nagpal-group";
+    const isHeroPage = pathname === "/about";
 
     useEffect(() => {
         const fn = () => setScrolled(window.scrollY > 30);
@@ -355,7 +355,7 @@ export default function HeaderClient({ hasAnnouncement = false, megaMenuPayload 
     const transparent = isHeroPage && !scrolled && !showMegaMenu;
     const headerBg = showMegaMenu ? "rgba(250,248,244,0.98)" : (transparent ? "transparent" : "rgba(250,248,244,0.95)");
     const blur = showMegaMenu ? "blur(40px) saturate(180%)" : scrolled ? "blur(30px) saturate(180%)" : "none";
-    const txtCol = transparent ? "#FFF" : "#001F14";
+    const txtCol = transparent ? "#FFF" : "#003926";
     const actCol = transparent ? "#FFF" : "#003926";
 
     return (
@@ -394,7 +394,7 @@ export default function HeaderClient({ hasAnnouncement = false, megaMenuPayload 
                                     onMouseLeave={item.isMega ? scheduleMegaClose : undefined}>
                                     <Link href={item.href}
                                         onClick={item.isMega ? (e) => { e.preventDefault(); setShowMegaMenu(!showMegaMenu); } : undefined}
-                                        className="text-[11.5px] font-body tracking-[0.2em] uppercase transition-colors duration-500 py-6 font-semibold flex items-center gap-1.5 hover:text-[#B8935A]"
+                                        className="text-[11.5px] font-body tracking-[0.2em] uppercase transition-colors duration-500 py-6 font-bold flex items-center gap-1.5 hover:text-[#B8935A]"
                                         style={{ color: act ? "#B8935A" : txtCol }}>
                                         {item.label}
                                         {item.isMega && (

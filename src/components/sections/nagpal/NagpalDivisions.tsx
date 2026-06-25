@@ -83,7 +83,7 @@ const NAGPAL_DIVISIONS: Division[] = [
   {
     index: "04",
     eyebrow: "BRAND PORTFOLIO",
-    title: "D'SIGNER & ESCORT",
+    title: "D'SIGNER • ESCORT: The Architecture of Time",
     headline: "Proprietary watchmaking embodying eight decades of heritage.",
     body: "In-house designed and manufactured watch brands offering premium timepieces that combine decades of horological expertise with contemporary design.",
     highlights: ["In-House Design", "Heritage Backed", "Premium Segment"],
@@ -386,14 +386,25 @@ function DivisionBlock({
               Division {division.index}
             </span>
             <h3
-              className="font-cormorant text-[42px] sm:text-[50px] lg:text-[64px] leading-[0.95] font-light"
+              className="font-cormorant text-[36px] sm:text-[46px] lg:text-[56px] leading-[1.05] font-light"
               style={{
                 color: division.textColor,
                 textShadow: isDark ? "0 2px 16px rgba(0,0,0,0.4)" : "none",
               }}
             >
-              {division.title}
-              <span style={{ color: division.accentColor }}>.</span>
+              {division.title.includes(":") ? (
+                <>
+                  <span className="block mb-2">{division.title.split(":")[0]}</span>
+                  <span className="block text-[18px] sm:text-[22px] lg:text-[26px] font-normal italic opacity-85" style={{ color: division.accentColor }}>
+                    {division.title.split(":")[1].trim()}
+                  </span>
+                </>
+              ) : (
+                <>
+                  {division.title}
+                  <span style={{ color: division.accentColor }}>.</span>
+                </>
+              )}
             </h3>
           </div>
 
@@ -592,13 +603,24 @@ function DivisionModal({
 
                 {/* Title with text shadow depth */}
                 <h3
-                  className="modal-heading font-cormorant text-[36px] sm:text-[48px] text-[#1A1918] font-light leading-[1.0] mb-4"
+                  className="modal-heading font-cormorant text-[30px] sm:text-[38px] text-[#1A1918] font-light leading-[1.1] mb-4"
                   style={{
                     textShadow: "0 2px 12px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.04)",
                   }}
                 >
-                  {division.title}
-                  <span className="text-[#B8935A]">.</span>
+                  {division.title.includes(":") ? (
+                    <>
+                      <span className="block mb-1.5">{division.title.split(":")[0]}</span>
+                      <span className="block text-[16px] sm:text-[20px] font-normal italic text-[#B8935A]">
+                        {division.title.split(":")[1].trim()}
+                      </span>
+                    </>
+                  ) : (
+                    <>
+                      {division.title}
+                      <span className="text-[#B8935A]">.</span>
+                    </>
+                  )}
                 </h3>
 
                 {/* Shimmer divider */}

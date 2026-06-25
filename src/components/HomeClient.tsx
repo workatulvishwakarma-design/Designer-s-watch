@@ -4,23 +4,21 @@ import { useRef, useState, useMemo } from "react";
 import dynamic from 'next/dynamic';
 
 // Above the fold
-import HeroBanner from '@/components/sections/HeroBanner';
 import HomeBrands from '@/components/sections/HomeBrands';
 import CraftSection from '@/components/sections/CraftSection';
 import LoadingScreen from '@/components/LoadingScreen';
+import HomeVideoBanner from '@/components/sections/HomeVideoBanner';
 
 // Below the fold - Lazy Loaded
-const StatsCounter = dynamic(() => import('@/components/sections/StatsCounter'), { ssr: true });
 const PartnerLogos = dynamic(() => import('@/components/sections/PartnerLogos'), { ssr: true });
 const JoinTheWorld = dynamic(() => import('@/components/sections/JoinTheWorld'), { ssr: true });
 const FAQSection = dynamic(() => import('@/components/sections/FAQSection'), { ssr: true });
 // const BrandPillars = dynamic(() => import('@/components/sections/BrandPillars'), { ssr: true });
 const WatchDetails = dynamic(() => import('@/components/sections/WatchDetails'), { ssr: true });
 const HeritageIntro = dynamic(() => import('@/components/sections/HeritageIntro'), { ssr: true });
-const InstagramReels = dynamic(() => import('@/components/sections/InstagramReels'), { ssr: true });
 // const CollectionStorySection = dynamic(() => import('@/components/sections/CollectionStorySection'), { ssr: true });
-const AboutCTA = dynamic(() => import('@/components/sections/AboutCTA'), { ssr: true });
 const WhyDesignerWorld = dynamic(() => import('@/components/sections/WhyDesignerWorld'), { ssr: true });
+const CoreValues = dynamic(() => import('@/components/sections/about/CoreValues'), { ssr: true });
 import Link from 'next/link';
 import { motion, useInView } from 'framer-motion';
 import { ChevronLeft, ChevronRight, Eye, Package, Shield, Truck } from 'lucide-react';
@@ -80,12 +78,11 @@ function FamilyCard({
   const [imgIdx, setImgIdx] = useState(0);
 
   const isDark = variant === "dark";
-  const cardBg = isDark ? "#1A1918" : "white";
-  const cardBorder = isDark ? "rgba(0,57,38,0.12)" : "#EDE8DF";
-  const imageBg = isDark ? "#222220" : "#F5F2ED";
-  const nameColor = isDark ? "white" : "#1A1918";
-  const brandColor = isDark ? "#B8935A" : "#003926";
-  const priceColor = "#003926";
+  const cardBg = "#003926"; // Luxury brand green background
+  const cardBorder = "rgba(212, 197, 160, 0.18)"; // Soft gold border
+  const nameColor = "#FFFFFF"; // Pure white for high contrast
+  const brandColor = "#D4C5A0"; // Luxury brand gold
+  const priceColor = "#D4C5A0"; // Matching gold price
 
   const primaryVariant = family.variants[0];
   
@@ -133,7 +130,7 @@ function FamilyCard({
     >
       <div
         className="relative w-full overflow-hidden"
-        style={{ aspectRatio: "4/5", background: isDark ? "radial-gradient(ellipse at center, #2A2927, #222220)" : "radial-gradient(ellipse at center, #F0EDE8, #F5F2ED)" }}
+        style={{ aspectRatio: "4/5", background: "radial-gradient(ellipse at center, #0F3227, #002318)" }}
       >
         {showImages ? (
           <>
@@ -174,7 +171,14 @@ function FamilyCard({
 
         <span
           className="absolute top-3 left-3 rounded-full font-dm px-3 py-1.5 z-10"
-          style={{ fontSize: "9px", letterSpacing: "0.1em", background: "#1A1918", color: "white" }}
+          style={{
+            fontSize: "9px",
+            letterSpacing: "0.1em",
+            background: "rgba(0, 57, 38, 0.6)",
+            color: "#D4C5A0",
+            border: "1px solid rgba(212, 197, 160, 0.35)",
+            backdropFilter: "blur(4px)"
+          }}
         >
           {family.variantCount} {family.variantCount === 1 ? "Style" : "Styles"}
         </span>
@@ -182,7 +186,7 @@ function FamilyCard({
         <div
           className="absolute inset-0 flex flex-col items-center justify-center gap-2 z-10"
           style={{
-            background: isDark ? "rgba(26,25,24,0.75)" : "rgba(250,248,244,0.70)",
+            background: "rgba(0, 57, 38, 0.75)",
             backdropFilter: "blur(12px)",
             WebkitBackdropFilter: "blur(12px)",
             opacity: hovered ? 1 : 0,
@@ -195,25 +199,25 @@ function FamilyCard({
             suppressHydrationWarning
             style={{
               background: "transparent",
-              border: `1px solid ${isDark ? "rgba(255,255,255,0.2)" : "#E0D8CE"}`,
-              color: isDark ? "white" : "#1A1918",
+              border: "1px solid #D4C5A0",
+              color: "white",
               fontSize: "12px",
               padding: "10px 20px",
               transition: "all 0.3s ease, transform 0.4s ease",
               transform: hovered ? "translateY(0)" : "translateY(16px)",
             }}
           >
-            <Eye size={14} />
+            <Eye size={14} className="text-[#D4C5A0]" />
             Explore Series
           </button>
         </div>
       </div>
 
       <div className="p-5 md:p-6 flex flex-col">
-        <p className="font-dm uppercase" style={{ fontSize: "9px", color: brandColor, letterSpacing: "0.2em" }}>
+        <p className="font-dm uppercase font-bold" style={{ fontSize: "9px", color: brandColor, letterSpacing: "0.2em" }}>
           {family.brand}
         </p>
-        <p className="font-dm font-medium mt-1" style={{ fontSize: "14px", color: nameColor }}>
+        <p className="font-dm font-semibold mt-1" style={{ fontSize: "14px", color: nameColor }}>
           {family.name}
         </p>
         <div className="flex items-baseline gap-2 mt-2">
@@ -221,7 +225,7 @@ function FamilyCard({
             {formattedPrice}
           </p>
           {family.variantCount > 1 && (
-            <p className="font-dm" style={{ fontSize: "11px", color: isDark ? "rgba(255,255,255,0.4)" : "#9C9690" }}>
+            <p className="font-dm" style={{ fontSize: "11px", color: "rgba(255, 255, 255, 0.5)" }}>
               · {family.variantCount} variants
             </p>
           )}
@@ -242,18 +246,31 @@ function scrollTrack(ref: React.RefObject<HTMLDivElement | null>, dir: "left" | 
 
 function TrustStrip() {
   const items = [
-    { icon: <Truck size={18} />, text: "Free Shipping Above ₹5,000" },
-    { icon: <Shield size={18} />, text: "100% Genuine Products" },
-    { icon: <Package size={18} />, text: "Easy 7-Day Returns" },
+    { icon: <Truck size={22} strokeWidth={1.5} />, label: "Free Shipping", text: "On orders above ₹5,000" },
+    { icon: <Shield size={22} strokeWidth={1.5} />, label: "100% Genuine", text: "Certified authentic products" },
+    { icon: <Package size={22} strokeWidth={1.5} />, label: "Easy Returns", text: "7-day hassle-free returns" },
   ];
 
   return (
-    <div className="max-w-7xl mx-auto px-6 mt-8 mb-4">
-      <div className="flex flex-wrap justify-center gap-6 md:gap-12">
+    <div className="max-w-5xl mx-auto px-6">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6">
         {items.map((item) => (
-          <div key={item.text} className="flex items-center gap-2 text-[#9C9690]">
-            <span className="text-[#003926]">{item.icon}</span>
-            <span className="font-dm text-[11px] tracking-wider uppercase">{item.text}</span>
+          <div
+            key={item.label}
+            className="group flex items-center gap-4 p-5 md:p-6 rounded-2xl transition-all duration-400 cursor-default hover:-translate-y-1"
+            style={{
+              background: "rgba(255,255,255,0.06)",
+              border: "1px solid rgba(255,255,255,0.08)",
+              backdropFilter: "blur(8px)",
+            }}
+          >
+            <div className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-110" style={{ background: "rgba(212,197,160,0.12)", border: "1px solid rgba(212,197,160,0.15)" }}>
+              <span className="text-[#D4C5A0]">{item.icon}</span>
+            </div>
+            <div>
+              <p className="font-dm font-bold text-[13px] tracking-[0.06em] uppercase text-white leading-[1.3]">{item.label}</p>
+              <p className="font-dm text-[12px] text-white/40 mt-0.5 leading-[1.4]">{item.text}</p>
+            </div>
           </div>
         ))}
       </div>
@@ -283,83 +300,112 @@ function FamilyEditorial({
   const isInView = useInView(sectionRef, { once: true, margin: "-80px" });
   const isDark = variant === "dark";
 
+  /* Luxury color scheme */
+  const sectionBg = isDark ? "#1F3B34" : "#FAFAF8";
+  const headingColor = isDark ? "#FFFFFF" : "#1A1A1A";
+  const subtitleColor = isDark ? "#B8A878" : "#9C9690";
+  const descColor = isDark ? "#D1D1D1" : "#9C9690";
+  const badgeColor = isDark ? "#D4C5A0" : "#003926";
+  const badgeBg = isDark ? "rgba(212,197,160,0.08)" : "#F0F7F4";
+  const badgeBorder = isDark ? "rgba(212,197,160,0.2)" : "rgba(0,57,38,0.15)";
+  const metaColor = isDark ? "rgba(212,197,160,0.5)" : "#9C9690";
+  const linkColor = "#D4C5A0";
+
   return (
     <div
       ref={sectionRef}
-      className={isDark ? "bg-[#111110] py-16 relative overflow-hidden" : "py-16 relative overflow-hidden"}
-      style={{ background: isDark ? "#111110" : undefined }}
+      className="relative overflow-hidden"
+      style={{
+        background: sectionBg,
+        padding: isDark ? "100px 0" : "80px 0",
+      }}
     >
+      {/* Ambient glow for dark variant */}
       {isDark && (
-        <div className="absolute top-1/2 left-1/4 w-[400px] h-[400px] pointer-events-none opacity-10 blur-[120px] -translate-y-1/2"
-          style={{ background: "radial-gradient(circle, rgba(0,57,38,0.6), transparent)" }}
-        />
+        <>
+          <div className="absolute top-1/2 left-[15%] w-[500px] h-[500px] pointer-events-none opacity-[0.08] blur-[150px] -translate-y-1/2"
+            style={{ background: "radial-gradient(circle, rgba(212,197,160,0.5), transparent)" }}
+          />
+          <div className="absolute bottom-0 right-[10%] w-[400px] h-[400px] pointer-events-none opacity-[0.05] blur-[120px]"
+            style={{ background: "radial-gradient(circle, rgba(0,120,80,0.5), transparent)" }}
+          />
+        </>
       )}
 
-      <div className="max-w-7xl mx-auto px-6 mb-8 flex flex-col md:flex-row justify-between items-start md:items-center relative z-10">
+      {/* Header row */}
+      <div className="max-w-7xl mx-auto px-6 lg:px-10 mb-10 flex flex-col md:flex-row justify-between items-start md:items-center relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
         >
+          {/* Badge */}
           <span
-            className="inline-block px-4 py-1.5 rounded-full font-dm text-[11px] mb-3"
-            style={{
-              background: isDark ? "rgba(0,57,38,0.2)" : "#F0F7F4",
-              color: isDark ? "#B8935A" : "#003926",
-              border: `1px solid ${isDark ? "rgba(0,57,38,0.2)" : "rgba(0,57,38,0.15)"}`,
-            }}
+            className="inline-block px-5 py-2 rounded-full font-dm text-[11px] mb-5 tracking-[0.12em] uppercase"
+            style={{ background: badgeBg, color: badgeColor, border: `1px solid ${badgeBorder}` }}
           >
             {badge}
           </span>
+
+          {/* Title */}
           <h3
-            className="font-cormorant text-[36px] sm:text-[42px] leading-[1.1] mt-1"
-            style={{ color: isDark ? "white" : "#1A1918" }}
+            className="font-cormorant text-[36px] sm:text-[42px] md:text-[48px] leading-[1.15] mt-1"
+            style={{ color: headingColor, letterSpacing: "-0.01em" }}
           >
             {title}
-            <span className="text-[#003926]">.</span>
+            <span style={{ color: isDark ? "#D4C5A0" : "#003926" }}>.</span>
           </h3>
-          <p className="font-cormorant italic text-[16px] mt-1" style={{ color: isDark ? "rgba(255,255,255,0.5)" : "#9C9690" }}>
+
+          {/* Subtitle */}
+          <p className="font-dm italic text-[16px] md:text-[18px] mt-3" style={{ color: subtitleColor }}>
             {subtitle}
           </p>
-          <div className="w-10 h-0.5 mt-3" style={{ background: "linear-gradient(90deg, #003926, #B8935A)" }} />
+
+          {/* Gold divider */}
+          <div className="h-[2px] mt-5" style={{ width: 100, background: "linear-gradient(90deg, #D4C5A0, rgba(212,197,160,0.2))" }} />
         </motion.div>
+
+        {/* Models count + View All */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ duration: 0.7, delay: 0.3 }}
         >
-          <div className="flex items-center gap-3 mt-3 md:mt-0">
-            <span className="font-dm text-[11px] tracking-[0.1em] uppercase" style={{ color: isDark ? "rgba(255,255,255,0.3)" : "#9C9690" }}>
+          <div className="flex items-center gap-4 mt-4 md:mt-0">
+            <span className="font-dm text-[12px] tracking-[0.1em] uppercase" style={{ color: metaColor }}>
               {families.length} {families.length === 1 ? "Model" : "Models"}
             </span>
             <Link
               href={href}
-              className="font-dm text-[12px] tracking-widest hover:underline underline-offset-2 transition-colors duration-300"
-              style={{ color: "#B8935A" }}
+              className="group/link font-dm text-[13px] tracking-[0.08em] uppercase transition-all duration-300 relative"
+              style={{ color: isDark ? linkColor : "#B8935A" }}
             >
-              View All →
+              <span>View All →</span>
+              <span className="absolute bottom-0 left-0 w-0 h-px group-hover/link:w-full transition-all duration-300" style={{ background: isDark ? linkColor : "#B8935A" }} />
             </Link>
           </div>
         </motion.div>
       </div>
 
+      {/* Description */}
       <motion.p
         initial={{ opacity: 0, y: 10 }}
-        animate={isInView ? { opacity: 1, y: 0 } : {}}
+        animate={isInView ? { opacity: 0.9, y: 0 } : {}}
         transition={{ duration: 0.6, delay: 0.2 }}
-        className="max-w-7xl mx-auto px-6 mb-8 font-dm text-[14px] max-w-lg leading-relaxed"
-        style={{ color: isDark ? "rgba(255,255,255,0.45)" : "#9C9690" }}
+        className="max-w-7xl mx-auto px-6 lg:px-10 mb-12 font-dm text-[14px] md:text-[15px] max-w-xl leading-[1.8] tracking-[0.01em]"
+        style={{ color: descColor }}
       >
         {description}
       </motion.p>
 
-      <div className="relative max-w-7xl mx-auto px-6">
+      {/* Carousel */}
+      <div className="relative max-w-7xl mx-auto px-6 lg:px-10">
         <CarouselArrow direction="left" onClick={() => scrollTrack(trackRef, "left")} />
         <CarouselArrow direction="right" onClick={() => scrollTrack(trackRef, "right")} />
         <div className="overflow-hidden">
           <div
             ref={trackRef}
-            className={`${isDark ? "carousel-track-dark" : "carousel-track"} flex gap-4 overflow-x-auto py-2 px-1`}
+            className={`${isDark ? "carousel-track-dark" : "carousel-track"} flex gap-5 overflow-x-auto py-2 px-1`}
             style={{ scrollSnapType: "x mandatory" }}
           >
             {families.map((f) => (
@@ -371,19 +417,21 @@ function FamilyEditorial({
         </div>
       </div>
 
+      {/* Explore CTA */}
       <motion.div
         initial={{ opacity: 0, y: 15 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.6, delay: 0.4 }}
-        className="max-w-7xl mx-auto px-6 mt-10 flex justify-center"
+        className="max-w-7xl mx-auto px-6 lg:px-10 mt-12 flex justify-center"
       >
         <Link
           href={href}
-          className="group inline-flex items-center gap-3 px-8 py-4 rounded-full font-dm text-[12px] tracking-[0.15em] uppercase transition-all duration-500 hover:-translate-y-1"
+          className="group inline-flex items-center gap-3 px-10 py-4 rounded-full font-dm text-[12px] tracking-[0.15em] uppercase transition-all duration-500 hover:-translate-y-1"
           style={{
-            background: isDark ? "transparent" : "#1A1918",
-            color: isDark ? "#B8935A" : "white",
-            border: isDark ? "1px solid rgba(184,147,90,0.3)" : "1px solid #1A1918",
+            background: isDark ? "transparent" : "#1F3B34",
+            color: isDark ? "#D4C5A0" : "white",
+            border: isDark ? "1px solid rgba(212,197,160,0.3)" : "1px solid #1F3B34",
+            boxShadow: isDark ? "0 0 30px rgba(212,197,160,0.05)" : "0 8px 24px rgba(31,59,52,0.2)",
           }}
         >
           <span className="group-hover:tracking-[0.2em] transition-all duration-300">Explore {title}</span>
@@ -407,31 +455,50 @@ export default function HomeClient({
     <>
       <LoadingScreen />
       <main>
-        <HeroBanner />
+        <HomeVideoBanner />
 
         <div className="green-ambient-divider" />
 
           <HomeBrands />
-          {/* PROMPT 3.1: Heritage motion intro before specs */}
-          <HeritageIntro />
+          <CoreValues />
 
           <WatchDetails />
           <CraftSection />
 
           {/* <CollectionStorySection /> */}
 
-          <section className="bg-[#FAF8F4] py-16">
-            <div className="text-center mb-12">
-              <p className="font-dm uppercase mb-3" style={{ fontSize: "10px", letterSpacing: "0.3em", color: "#003926" }}>
-                CURATED FOR YOU
-              </p>
-              <h2 className="font-cormorant text-5xl text-[#1A1918]">
-                Timepieces Worth Wearing.
-              </h2>
-              <div className="w-12 h-0.5 mx-auto mt-4" style={{ background: "linear-gradient(90deg, #003926, #B8935A)" }} />
+          <section className="relative overflow-hidden" style={{ background: "#003926" }}>
+            {/* Background texture & ambient glow */}
+            <div className="absolute inset-0 pointer-events-none">
+              <div className="absolute top-0 right-0 w-[600px] h-[600px] opacity-[0.06] blur-[150px]" style={{ background: "radial-gradient(circle, rgba(212,197,160,0.8), transparent)" }} />
+              <div className="absolute bottom-0 left-[10%] w-[500px] h-[500px] opacity-[0.04] blur-[120px]" style={{ background: "radial-gradient(circle, rgba(255,255,255,0.5), transparent)" }} />
             </div>
 
-            <TrustStrip />
+            <div className="relative z-10 text-center px-6 sm:px-10 pt-20 sm:pt-24 md:pt-28 pb-8 md:pb-12">
+              {/* Gold accent dot */}
+              <div className="w-2 h-2 rounded-full bg-[#D4C5A0] mx-auto mb-6 opacity-60" />
+
+              <p className="font-dm font-bold uppercase mb-5" style={{ fontSize: "13px", letterSpacing: "0.25em", color: "#D4C5A0" }}>
+                CURATED FOR YOU
+              </p>
+
+              <h2 className="font-cormorant text-[40px] sm:text-[54px] md:text-[68px] text-white font-light leading-[1.05]" style={{ letterSpacing: "-0.02em", maxWidth: "800px", margin: "0 auto" }}>
+                Timepieces Worth Wearing.
+              </h2>
+
+              <p className="font-dm text-[14px] md:text-[16px] text-white/35 mt-5 max-w-lg mx-auto leading-[1.7]">
+                Discover handcrafted luxury watches built on 75+ years of horological excellence.
+              </p>
+
+              {/* Gold gradient divider */}
+              <div className="mx-auto mt-8 mb-12" style={{ width: 100, height: 2, background: "linear-gradient(90deg, transparent, #D4C5A0, transparent)" }} />
+            </div>
+
+            {/* Trust badges inside the green section */}
+            <div className="relative z-10 pb-16 md:pb-20">
+              <TrustStrip />
+            </div>
+          </section>
 
             {menFamilies.length > 0 && (
               <FamilyEditorial
@@ -440,10 +507,12 @@ export default function HomeClient({
                 description="Timepieces engineered with precision and styled for the man who defines his own legacy. From boardroom to beyond."
                 families={menFamilies}
                 href="/collections/tactix"
-                variant="dark"
+                variant="light"
                 badge="⌚ SIGNATURE SERIES"
               />
             )}
+
+            <HeritageIntro />
 
             <div className="green-ambient-divider my-4" />
 
@@ -458,23 +527,16 @@ export default function HomeClient({
                 badge="✨ ELEGANCE COLLECTION"
               />
             )}
-          </section>
-
-          <InstagramReels />
 
           <WhyDesignerWorld />
 
           {/* <BrandPillars /> */}
-          <StatsCounter />
           <PartnerLogos />
 
           {/* PROMPT 1.7: Consolidated OemCta + TrustGrid + FeatureStrip */}
           <JoinTheWorld />
 
           <FAQSection />
-
-          {/* Heritage CTA — PROMPT 1.5: positioned at end of homepage */}
-          <AboutCTA />
 
         </main>
     </>

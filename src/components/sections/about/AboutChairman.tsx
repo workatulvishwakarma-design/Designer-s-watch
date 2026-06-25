@@ -47,30 +47,30 @@ export default function AboutChairman() {
                             <h3 className="font-heading font-light text-2xl md:text-3xl tracking-wide">Chairman&apos;s Message</h3>
                         </motion.div>
 
-                        {/* White Message Card */}
+                        {/* Bold Green Message Card */}
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.6, delay: 0.3 }}
-                            className="bg-white p-8 md:p-12 rounded-b-xl rounded-tr-xl lg:rounded-tl-none shadow-xl flex flex-col gap-5"
+                            className="bg-[#003926] p-8 md:p-12 rounded-b-xl rounded-tr-xl lg:rounded-tl-none shadow-[0_24px_50px_rgba(0,57,38,0.15)] border border-[#D4C5A0]/15 flex flex-col gap-5"
                         >
-                            <p className="font-sans text-[#4a5568] leading-relaxed text-[12px] md:text-[14px]">
+                            <p className="font-sans text-[#D4C5A0] font-semibold leading-relaxed text-[13px] md:text-[15px]">
                                 Dear Visitor,
                             </p>
-                            <p className="font-sans text-[#4a5568] leading-relaxed text-[12px] md:text-[14px]">
+                            <p className="font-sans text-[#EDE8DF]/90 leading-relaxed text-[12px] md:text-[14px] font-light">
                                 On behalf of our entire team, I extend my heartfelt thanks to all the proud owners and loyal users of our house brands - DSIGNER and ESCORT.<br />
                                 Our parent company, Nagpals, has been a trusted name in watch components for decades. Building on this rich legacy, we ventured into the world of premium timepieces in 1991, inspired by the elegance of Swiss and other European watchmaking traditions. This led to the birth of our premium fashion watch brand, DSIGNER, which quickly carved out a niche for itself in the segment by upholding the highest standards of design and quality.
                             </p>
-                            <p className="font-sans text-[#4a5568] leading-relaxed text-[12px] md:text-[14px]">
+                            <p className="font-sans text-[#EDE8DF]/90 leading-relaxed text-[12px] md:text-[14px] font-light">
                                 In 1995, we introduced ESCORT a brand that delivers high-quality watches at affordable prices, making stylish timekeeping accessible to all.<br />
                                 Today, both DSIGNER and ESCORT enjoy a strong presence across the country through our Multi brand stores, with millions of happy customers who continue to place their trust in us.<br />
                                 I sincerely thank each one of you for being a part of our journey. Here&apos;s wishing you happiness, success, and timeless moments ahead.
                             </p>
-                            <div className="font-sans text-[#4a5568] leading-snug text-[12px] md:text-[14px] mt-2">
-                                <p>Warm regards,</p>
-                                <p>Jatinder Nagpal</p>
-                                <p>Chairman</p>
+                            <div className="font-sans text-[#D4C5A0] leading-snug text-[13px] md:text-[15px] mt-2 font-medium">
+                                <p className="text-[#EDE8DF]/70 text-[11px] uppercase tracking-wider mb-1 font-light">Warm regards,</p>
+                                <p className="text-[#D4C5A0]">Jatinder Nagpal</p>
+                                <p className="text-[#D4C5A0]/80 text-[12px] font-light">Chairman</p>
                             </div>
                         </motion.div>
 

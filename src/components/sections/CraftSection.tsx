@@ -31,10 +31,10 @@ export default function CraftSection() {
   const headingExit = shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: -10 };
 
   return (
-    <section className="bg-[#111110] py-16 md:py-24 lg:py-32 relative overflow-hidden">
+    <section className="bg-[#003926] py-16 md:py-24 lg:py-32 relative overflow-hidden">
       {/* Background ambient lighting */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-0">
-        <div className="w-[600px] h-[600px] lg:w-[900px] lg:h-[900px] bg-[radial-gradient(circle,rgba(184,147,90,0.025)_0%,transparent_70%)] rounded-full" />
+        <div className="w-[600px] h-[600px] lg:w-[900px] lg:h-[900px] bg-[radial-gradient(circle,rgba(184,147,90,0.06)_0%,transparent_70%)] rounded-full" />
       </div>
 
       <div className="max-w-[1400px] w-full mx-auto px-10 md:px-16 lg:px-24 relative z-10">
@@ -62,7 +62,7 @@ export default function CraftSection() {
               </AnimatePresence>
             </div>
 
-            <p className="font-dm text-[16px] leading-[1.6] text-[#999999] max-w-[420px] mt-6 mb-8">
+            <p className="font-dm text-[16px] leading-[1.6] text-white/60 max-w-[420px] mt-6 mb-8">
               Precision-engineered from surgical stainless steel and protected by scratch-resistant sapphire glass. Every detail meticulously considered for enduring elegance.
             </p>
 

@@ -4,9 +4,6 @@ import { motion, useScroll, useSpring } from "framer-motion";
 import SmoothScrolling from "@/components/SmoothScrolling";
 import CustomCursor from "@/components/ui/CustomCursor";
 import Header from "@/components/sections/Header";
-import NagpalBanner from "@/components/sections/nagpal/NagpalBanner";
-import NagpalStats from "@/components/sections/nagpal/NagpalStats";
-import NagpalStrengths from "@/components/sections/nagpal/NagpalStrengths";
 import NagpalValueChain from "@/components/sections/nagpal/NagpalValueChain";
 import NagpalBrandStrip from "@/components/sections/nagpal/NagpalBrandStrip";
 import NagpalDivisions from "@/components/sections/nagpal/NagpalDivisions";
@@ -14,6 +11,7 @@ import NagpalPartner from "@/components/sections/nagpal/NagpalPartner";
 import NagpalTimeline from "@/components/sections/nagpal/NagpalTimeline";
 import NagpalCorporate from "@/components/sections/nagpal/NagpalCorporate";
 import NagpalOEM from "@/components/sections/nagpal/NagpalOEM";
+import NagpalVideoBanner from "@/components/sections/nagpal/NagpalVideoBanner";
 import PartnerLogos from "@/components/sections/PartnerLogos";
 
 function SectionDivider() {
@@ -48,11 +46,7 @@ export default function NagpalGroupPage() {
         />
 
         <main>
-          <NagpalBanner />
-          <SectionDivider />
-          <NagpalStats />
-          <SectionDivider />
-          <NagpalStrengths />
+          <NagpalVideoBanner />
           <SectionDivider />
           <NagpalValueChain />
           <SectionDivider />

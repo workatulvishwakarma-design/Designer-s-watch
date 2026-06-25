@@ -1,15 +1,11 @@
 "use client";
 
 const brands = [
-  "TISSOT",
   "DANIEL KLEIN",
-  "CIGA DESIGN",
   "SANTA BARBARA POLO",
   "MAXELL",
   "RENATA",
-  "SONY",
   "SEIZAIKEN",
-  "CASIO",
 ];
 
 export default function NagpalBrandStrip() {

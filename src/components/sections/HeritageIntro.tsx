@@ -34,6 +34,9 @@ export default function HeritageIntro() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const years = useCountUp(75, 2.5, isInView);
+  const genCount = useCountUp(3, 2.0, isInView);
+  const brandCount = useCountUp(50, 2.2, isInView);
+  const watchesCount = useCountUp(500, 2.5, isInView);
 
   return (
     <section
@@ -121,12 +124,12 @@ export default function HeritageIntro() {
           className="flex items-center justify-center gap-8 sm:gap-14 mt-10"
         >
           {[
-            { value: "4", label: "Generations" },
-            { value: "20+", label: "Brands" },
-            { value: "500+", label: "Private Labels" },
+            { value: `${genCount}+`, label: "Generations" },
+            { value: `${brandCount}+`, label: "Brands" },
+            { value: `${watchesCount}k+`, label: "Watches Manufactured" },
           ].map((stat) => (
             <div key={stat.label} className="flex flex-col items-center gap-1">
-              <span className="font-cormorant text-[24px] sm:text-[30px] text-[#B8935A] font-light">
+              <span className="font-cormorant text-[24px] sm:text-[30px] text-[#B8935A] font-light tabular-nums">
                 {stat.value}
               </span>
               <span className="font-dm text-[9px] sm:text-[10px] tracking-[0.2em] uppercase text-white/30">

@@ -26,6 +26,8 @@ export default function Footer() {
         show: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] as any } }
     };
 
+    const isHome = pathname === "/";
+
     return (
         <footer className="relative bg-[#FAF8F4] text-[#001F14] overflow-hidden pt-12 pb-12">
             <motion.div 
@@ -35,52 +37,54 @@ export default function Footer() {
                 viewport={{ once: true, margin: "-100px" }}
                 className="w-full max-w-[1800px] mx-auto px-4 xl:px-12"
             >
-                {/* TOP AREA: Massive Cinematic Newsletter Block */}
-                <motion.div variants={itemVariants} className="w-full mb-20">
-                    <div className="relative w-full rounded-[2.5rem] overflow-hidden bg-gradient-to-br from-[#003926] via-[#001F14] to-[#000A06] px-8 py-24 md:py-36 flex flex-col items-center text-center shadow-[0_40px_80px_rgba(0,57,38,0.12)] group/newsletter">
-                        {/* Immersive background lighting */}
-                        <div className="absolute top-0 right-0 w-[80vw] h-[80vw] pointer-events-none opacity-[0.08] bg-[radial-gradient(circle_at_top_right,_#FAF8F4_0%,_transparent_60%)] rounded-full transition-transform duration-[3s] group-hover/newsletter:scale-110" />
-                        <div className="absolute inset-0 pointer-events-none opacity-[0.03]" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }} />
-                        
-                        <div className="relative z-10 w-full max-w-5xl mx-auto flex flex-col items-center">
-                            <span className="text-[10px] uppercase tracking-[0.4em] text-[#FAF8F4]/60 font-semibold font-body mb-8 block flex items-center gap-6">
-                                <span className="w-12 h-px bg-[#FAF8F4]/20" />
-                                The Inner Circle
-                                <span className="w-12 h-px bg-[#FAF8F4]/20" />
-                            </span>
+                {/* TOP AREA: Massive Cinematic Newsletter Block (Only on Home Page) */}
+                {isHome && (
+                    <motion.div variants={itemVariants} className="w-full mb-20">
+                        <div className="relative w-full rounded-[2.5rem] overflow-hidden bg-gradient-to-br from-[#003926] via-[#001F14] to-[#000A06] px-8 py-24 md:py-36 flex flex-col items-center text-center shadow-[0_40px_80px_rgba(0,57,38,0.12)] group/newsletter">
+                            {/* Immersive background lighting */}
+                            <div className="absolute top-0 right-0 w-[80vw] h-[80vw] pointer-events-none opacity-[0.08] bg-[radial-gradient(circle_at_top_right,_#FAF8F4_0%,_transparent_60%)] rounded-full transition-transform duration-[3s] group-hover/newsletter:scale-110" />
+                            <div className="absolute inset-0 pointer-events-none opacity-[0.03]" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }} />
                             
-                            <h2 className="text-5xl md:text-7xl lg:text-[7rem] font-display text-white mb-10 tracking-widest leading-[1.1] uppercase opacity-95">
-                                Join the World
-                            </h2>
-                            
-                            <p className="text-[14px] md:text-[16px] text-white/50 font-body tracking-[0.1em] max-w-2xl mb-16 leading-relaxed">
-                                An exclusive invitation to discover new masterpieces, horological stories, and our relentless pursuit of perfection.
-                            </p>
-                            
-                            <form className="relative w-full max-w-2xl group mx-auto" onSubmit={(e) => e.preventDefault()}>
-                                <div className="absolute -inset-2 bg-gradient-to-r from-transparent via-[#FAF8F4]/10 to-transparent rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
+                            <div className="relative z-10 w-full max-w-5xl mx-auto flex flex-col items-center">
+                                <span className="text-[10px] uppercase tracking-[0.4em] text-[#FAF8F4]/60 font-semibold font-body mb-8 block flex items-center gap-6">
+                                    <span className="w-12 h-px bg-[#FAF8F4]/20" />
+                                    The Inner Circle
+                                    <span className="w-12 h-px bg-[#FAF8F4]/20" />
+                                </span>
                                 
-                                <div className="relative flex items-center bg-white/5 border border-white/10 rounded-full p-2 focus-within:border-white/30 focus-within:bg-white/10 transition-all duration-700 backdrop-blur-md">
-                                    <input 
-                                        type="email" 
-                                        placeholder="ENTER YOUR EMAIL" 
-                                        className="bg-transparent border-none text-[13px] text-white placeholder-white/30 px-10 py-5 w-full focus:outline-none focus:ring-0 font-body tracking-[0.2em] uppercase"
-                                        required
-                                        suppressHydrationWarning
-                                    />
-                                    <button 
-                                        type="button" 
-                                        className="h-[52px] px-10 rounded-full bg-[#FAF8F4] text-[#001F14] font-semibold text-[11px] tracking-[0.2em] uppercase flex items-center gap-4 hover:bg-white transition-all duration-700 hover:shadow-[0_10px_30px_rgba(250,248,244,0.3)] group/btn shrink-0"
-                                        suppressHydrationWarning
-                                    >
-                                        <span className="relative z-10">Subscribe</span>
-                                        <ArrowRight size={16} className="relative z-10 group-hover/btn:translate-x-1 transition-transform duration-500" />
-                                    </button>
-                                </div>
-                            </form>
+                                <h2 className="text-5xl md:text-7xl lg:text-[7rem] font-display text-white mb-10 tracking-widest leading-[1.1] uppercase opacity-95">
+                                    Join the World
+                                </h2>
+                                
+                                <p className="text-[14px] md:text-[16px] text-white/50 font-body tracking-[0.1em] max-w-2xl mb-16 leading-relaxed">
+                                    An exclusive invitation to discover new masterpieces, horological stories, and our relentless pursuit of perfection.
+                                </p>
+                                
+                                <form className="relative w-full max-w-2xl group mx-auto" onSubmit={(e) => e.preventDefault()}>
+                                    <div className="absolute -inset-2 bg-gradient-to-r from-transparent via-[#FAF8F4]/10 to-transparent rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
+                                    
+                                    <div className="relative flex items-center bg-white/5 border border-white/10 rounded-full p-2 focus-within:border-white/30 focus-within:bg-white/10 transition-all duration-700 backdrop-blur-md">
+                                        <input 
+                                            type="email" 
+                                            placeholder="ENTER YOUR EMAIL" 
+                                            className="bg-transparent border-none text-[13px] text-white placeholder-white/30 px-10 py-5 w-full focus:outline-none focus:ring-0 font-body tracking-[0.2em] uppercase"
+                                            required
+                                            suppressHydrationWarning
+                                        />
+                                        <button 
+                                            type="button" 
+                                            className="h-[52px] px-10 rounded-full bg-[#FAF8F4] text-[#001F14] font-semibold text-[11px] tracking-[0.2em] uppercase flex items-center gap-4 hover:bg-white transition-all duration-700 hover:shadow-[0_10px_30px_rgba(250,248,244,0.3)] group/btn shrink-0"
+                                            suppressHydrationWarning
+                                        >
+                                            <span className="relative z-10">Subscribe</span>
+                                            <ArrowRight size={16} className="relative z-10 group-hover/btn:translate-x-1 transition-transform duration-500" />
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
-                    </div>
-                </motion.div>
+                    </motion.div>
+                )}
 
                 {/* MIDDLE AREA: Asymmetrical Premium Link Layout */}
                 <div className="flex flex-col lg:flex-row justify-between gap-24 lg:gap-12 mb-32 px-4 md:px-12">
