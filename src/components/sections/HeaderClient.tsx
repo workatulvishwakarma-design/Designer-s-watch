@@ -122,7 +122,7 @@ const dropdownItemVariants = {
     visible: {
         opacity: 1,
         x: 0,
-        transition: { duration: 0.4, ease: "easeOut" }
+        transition: { duration: 0.4, ease: "easeOut" as const }
     }
 };
 
@@ -581,8 +581,8 @@ export default function HeaderClient({ hasAnnouncement = false, megaMenuPayload 
                                                     {/* Card Content (z-index 2) */}
                                                     <div className="relative z-10 w-full flex flex-col items-start">
                                                         <div className="w-[48px] h-[48px] border-2 border-[#B8935A] rounded-[12px] bg-gradient-to-br from-[rgba(184,147,90,0.12)] to-[rgba(184,147,90,0.02)] flex items-center justify-center text-[#B8935A] mb-[14px] transition-transform duration-500 group-hover:scale-110 shrink-0">
-                                                            <div className="text-[#B8935A] transition-transform duration-500 cubic-bezier(0.34,1.56,0.64,1) group-hover:rotate-[15deg] group-hover:scale-[1.15] group-hover:brightness-[1.3] group-hover:hue-rotate-[5deg]">
-                                                                {React.cloneElement(getCollectionIcon(item.slug) as React.ReactElement, { size: 28, strokeWidth: 2, className: "text-[#B8935A]" })}
+                                                            <div className="text-[#B8935A] transition-transform duration-500 [transition-timing-function:cubic-bezier(0.34,1.56,0.64,1)] group-hover:rotate-[15deg] group-hover:scale-[1.15] group-hover:brightness-[1.3] group-hover:hue-rotate-[5deg]">
+                                                                {React.cloneElement(getCollectionIcon(item.slug) as React.ReactElement, { size: 28, strokeWidth: 2, className: "text-[#B8935A]" } as any)}
                                                             </div>
                                                         </div>
                                                         <span className="font-cormorant text-[17px] font-medium text-[#111110] mb-[6px] leading-[1.2] transition-colors duration-400 group-hover:text-[#003926]">

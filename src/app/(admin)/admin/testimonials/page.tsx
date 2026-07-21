@@ -5,7 +5,7 @@ export default async function AdminTestimonialsPage() {
   const reviews = await prisma.review.findMany({
     include: {
       user: { select: { name: true, email: true } },
-      product: { select: { name: true, slug: true } }
+      family: { select: { name: true, slug: true } }
     },
     orderBy: { createdAt: "desc" }
   })
@@ -14,8 +14,8 @@ export default async function AdminTestimonialsPage() {
     id: r.id,
     userName: r.user.name || "Anonymous",
     userEmail: r.user.email || "",
-    productName: r.product.name,
-    productSlug: r.product.slug,
+    productName: r.family.name,
+    productSlug: r.family.slug,
     rating: r.rating,
     comment: r.comment || "",
     isApproved: r.isApproved,

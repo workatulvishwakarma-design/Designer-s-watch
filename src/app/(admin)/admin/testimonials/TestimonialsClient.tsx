@@ -45,12 +45,16 @@ export function TestimonialsClient({ reviews, stats }: { reviews: ReviewItem[]; 
   })
 
   const handleApprove = async (id: string) => {
-    await toggleReviewApproval(id)
+    const r = reviews.find(item => item.id === id)
+    if (!r) return
+    await toggleReviewApproval(id, r.isApproved)
     toast.success("Review visibility toggled")
   }
 
   const handleFeature = async (id: string) => {
-    await toggleReviewFeatured(id)
+    const r = reviews.find(item => item.id === id)
+    if (!r) return
+    await toggleReviewFeatured(id, r.isFeatured)
     toast.success("Featured status toggled")
   }
 

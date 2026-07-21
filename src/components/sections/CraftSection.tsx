@@ -24,7 +24,7 @@ export default function CraftSection() {
 
   const headingTransition = shouldReduceMotion 
     ? { duration: 0.2 } 
-    : { duration: 0.6, ease: "easeOut" };
+    : { duration: 0.6, ease: "easeOut" as const };
 
   const headingInitial = shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 10 };
   const headingAnimate = shouldReduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 };
