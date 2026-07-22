@@ -14,7 +14,7 @@ export default function HeroSection() {
         className="absolute inset-0 w-full h-full"
       >
         <Image
-          src="/images/new-content/home2-hero.png"
+          src="/img/home1.PNG"
           alt="Luxury Watch Background"
           fill
           priority
