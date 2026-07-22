@@ -44,7 +44,7 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="font-dm text-[11px] tracking-[0.3em] uppercase text-[#D4C5A0] mb-6 block"
+          className="font-montserrat text-[11px] tracking-[0.3em] uppercase text-[#D4C5A0] font-semibold mb-6 block"
         >
           FOUR GENERATIONS OF PRECISION
         </motion.span>
@@ -65,7 +65,7 @@ export default function HeroSection() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 0.7 }}
           transition={{ duration: 1.2, delay: 0.9 }}
-          className="font-dm text-[14px] sm:text-[16px] text-white max-w-md mt-6 leading-relaxed tracking-wide"
+          className="font-montserrat text-[14px] sm:text-[16px] text-white font-medium max-w-md mt-6 leading-relaxed tracking-wide"
         >
           Discover hand-assembled luxury timepieces engineered with horological mastery and timeless sophistication.
         </motion.p>
@@ -79,13 +79,13 @@ export default function HeroSection() {
         >
           <a
             href="#featured-collections"
-            className="group px-10 py-4 rounded-full font-dm text-[12px] tracking-[0.18em] uppercase text-white bg-[#003926] border border-[#D4C5A0]/30 hover:border-[#D4C5A0] hover:bg-transparent shadow-2xl transition-all duration-500 hover:-translate-y-0.5"
+            className="group px-10 py-4 rounded-full font-montserrat text-[12px] tracking-[0.18em] uppercase text-white bg-[#003926] font-bold border border-[#D4C5A0]/30 hover:border-[#D4C5A0] hover:bg-transparent shadow-2xl transition-all duration-500 hover:-translate-y-0.5"
           >
             Explore Masterpieces
           </a>
           <a
             href="#story"
-            className="group px-10 py-4 rounded-full font-dm text-[12px] tracking-[0.18em] uppercase text-[#D4C5A0] border border-[#D4C5A0]/20 hover:border-[#D4C5A0] hover:text-white transition-all duration-500 hover:-translate-y-0.5"
+            className="group px-10 py-4 rounded-full font-montserrat text-[12px] tracking-[0.18em] uppercase text-[#D4C5A0] font-bold border border-[#D4C5A0]/20 hover:border-[#D4C5A0] hover:text-white transition-all duration-500 hover:-translate-y-0.5"
           >
             The Heritage
           </a>
@@ -103,7 +103,7 @@ export default function HeroSection() {
           if (el) el.scrollIntoView({ behavior: "smooth" });
         }}
       >
-        <span className="font-dm text-[9px] tracking-[0.2em] text-[#D4C5A0]/80 uppercase">Scroll Down</span>
+        <span className="font-montserrat text-[9px] tracking-[0.2em] text-[#D4C5A0]/80 uppercase font-semibold">Scroll Down</span>
         <div className="w-[1px] h-10 bg-gradient-to-b from-[#D4C5A0]/60 to-transparent relative overflow-hidden">
           <motion.div
             animate={{ y: ["-100%", "100%"] }}

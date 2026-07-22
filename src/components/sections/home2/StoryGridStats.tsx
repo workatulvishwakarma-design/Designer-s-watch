@@ -58,7 +58,7 @@ export default function StoryGridStats() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="font-dm text-[36px] sm:text-[44px] font-bold text-[#1A1918] tracking-[0.1em] uppercase leading-none mb-4"
+            className="font-montserrat text-[36px] sm:text-[44px] font-bold text-[#1A1918] tracking-[0.1em] uppercase leading-none mb-4"
           >
             Our Story
           </motion.h2>
@@ -68,7 +68,7 @@ export default function StoryGridStats() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.15 }}
-            className="font-dm text-[10px] tracking-[0.25em] text-[#B8935A] font-bold block mb-8 uppercase"
+            className="font-montserrat text-[10px] tracking-[0.25em] text-[#B8935A] font-bold block mb-8 uppercase"
           >
             Crafting timepieces that balance precision, purpose, and individuality.
           </motion.span>
@@ -78,7 +78,7 @@ export default function StoryGridStats() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="font-dm text-[13px] sm:text-[14px] text-[#5C5750] leading-[1.9] max-w-2xl mx-auto"
+            className="font-montserrat text-[13px] sm:text-[14px] text-[#5C5750] font-medium leading-[1.9] max-w-2xl mx-auto"
           >
             Rooted in a legacy of precision, we translate horological vision into a distinct design language—layered with brushed metals, refined dial textures, and thoughtfully curated components. From sketch to final calibration, every detail is carefully considered to create watches that feel elevated, reliable, and uniquely personal, with a sense of effortless harmony.
           </motion.p>
@@ -87,7 +87,7 @@ export default function StoryGridStats() {
         {/* Categories of Work Collage with Left Side Vertical Label */}
         <div className="relative pl-8 sm:pl-12 w-full">
           {/* Vertical Left Label */}
-          <div className="absolute left-0 top-1/2 -translate-y-1/2 -rotate-90 origin-left text-[9px] sm:text-[10px] tracking-[0.4em] uppercase text-[#003926]/40 font-bold whitespace-nowrap hidden sm:block">
+          <div className="absolute left-0 top-1/2 -translate-y-1/2 -rotate-90 origin-left font-montserrat text-[9px] sm:text-[10px] tracking-[0.4em] uppercase text-[#003926]/40 font-bold whitespace-nowrap hidden sm:block">
             Categories of Craft
           </div>
 
@@ -176,7 +176,7 @@ export default function StoryGridStats() {
               >
                 <CountUpStat target={stat.target} suffix={stat.suffix} />
                 <div className="w-[1px] h-10 bg-[#E0D8CE] hidden lg:block self-center shrink-0" />
-                <span className="font-dm text-[9px] text-[#9C9690] uppercase tracking-[0.2em] leading-normal mt-1 max-w-[150px] text-center lg:text-left">
+                <span className="font-montserrat font-semibold text-[9px] text-[#9C9690] uppercase tracking-[0.2em] leading-normal mt-1 max-w-[150px] text-center lg:text-left">
                   {stat.label}
                 </span>
               </motion.div>

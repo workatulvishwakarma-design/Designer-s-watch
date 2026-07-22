@@ -61,7 +61,7 @@ export default function WatchGridCollage() {
         
         {/* Top Header / Title */}
         <div className="flex flex-col items-center justify-center text-center mb-8 md:mb-12 relative z-10">
-          <span className="font-dm text-[9px] sm:text-[10px] tracking-[0.35em] text-[#003926] font-bold uppercase mb-2">
+          <span className="font-montserrat text-[9px] sm:text-[10px] tracking-[0.35em] text-[#003926] font-bold uppercase mb-2">
             ✦ LIFESTYLE EDITORIAL ✦
           </span>
           <h2 className="font-cormorant text-[36px] sm:text-[48px] md:text-[56px] text-[#1A1918] font-light leading-none tracking-tight">
@@ -293,7 +293,7 @@ export default function WatchGridCollage() {
         <div className="mt-10 md:mt-14 flex flex-col sm:flex-row items-center justify-center gap-3 relative z-20">
           
           {/* Pill 1: Scroll to Explore */}
-          <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-black/40 backdrop-blur-md border border-white/20 text-white/90 text-[10px] sm:text-[11px] font-dm tracking-[0.18em] uppercase shadow-lg hover:bg-black/60 transition-all cursor-pointer">
+          <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-black/40 backdrop-blur-md border border-white/20 text-white/90 text-[10px] sm:text-[11px] font-montserrat tracking-[0.18em] uppercase font-bold shadow-lg hover:bg-black/60 transition-all cursor-pointer">
             <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
               <path d="M19 9l-7 7-7-7" />
             </svg>
@@ -301,12 +301,12 @@ export default function WatchGridCollage() {
           </div>
 
           {/* Pill 2: AI / Occasion Search Bar */}
-          <div className="inline-flex items-center justify-between gap-4 px-5 py-2.5 rounded-full bg-black/45 backdrop-blur-lg border border-white/20 text-white/80 text-[11px] font-dm shadow-2xl max-w-sm w-full sm:w-auto">
+          <div className="inline-flex items-center justify-between gap-4 px-5 py-2.5 rounded-full bg-black/45 backdrop-blur-lg border border-white/20 text-white/80 text-[11px] font-montserrat shadow-2xl max-w-sm w-full sm:w-auto">
             <div className="flex items-center gap-2">
               <span className="w-4 h-4 rounded-full bg-white/20 flex items-center justify-center text-white text-[10px] font-bold">
                 +
               </span>
-              <span className="text-white/80 text-[11px] font-light italic">
+              <span className="text-white/80 text-[11px] font-medium italic">
                 What should I wear for an aperitif?
               </span>
             </div>

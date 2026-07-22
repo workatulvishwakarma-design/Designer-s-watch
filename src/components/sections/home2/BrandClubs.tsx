@@ -18,10 +18,10 @@ export default function BrandClubs() {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-20 items-center">
           {/* Left panel: Text & watch insert (col-span-5) */}
           <div className="md:col-span-5 flex flex-col items-start relative z-10 order-2 md:order-1">
-            <h2 className="font-dm text-[36px] sm:text-[48px] uppercase tracking-[0.08em] leading-none mb-1 font-bold">
+            <h2 className="font-montserrat text-[36px] sm:text-[48px] uppercase tracking-[0.08em] leading-none mb-1 font-extrabold">
               D'signer
             </h2>
-            <h3 className="font-dm font-light text-[36px] sm:text-[48px] uppercase tracking-[0.15em] leading-none text-white/30 mb-8">
+            <h3 className="font-montserrat font-light text-[36px] sm:text-[48px] uppercase tracking-[0.15em] leading-none text-white/30 mb-8">
               Club
             </h3>
 
@@ -36,13 +36,13 @@ export default function BrandClubs() {
               />
             </div>
 
-            <p className="font-dm text-[13px] text-white/60 leading-[1.8] max-w-sm mb-8">
+            <p className="font-montserrat text-[13px] text-white/60 leading-[1.8] max-w-sm mb-8 font-medium">
               We use a diamond cut technique for a crisp finish. The hands glow beautifully in the dark for clear visibility.
             </p>
 
             <Link
               href="/collections/dsigner"
-              className="font-dm text-[11px] tracking-[0.2em] uppercase text-white hover:text-[#D4C5A0] border-b border-white/20 hover:border-[#D4C5A0] pb-1 transition-all duration-300 w-fit"
+              className="font-montserrat text-[11px] tracking-[0.2em] uppercase text-white hover:text-[#D4C5A0] border-b border-white/20 hover:border-[#D4C5A0] pb-1 transition-all duration-300 w-fit font-bold"
             >
               Discover More
             </Link>
@@ -95,20 +95,20 @@ export default function BrandClubs() {
 
           {/* Right panel: Text (col-span-5) */}
           <div className="md:col-span-5 flex flex-col items-start relative z-10">
-            <h2 className="font-dm text-[36px] sm:text-[48px] uppercase tracking-[0.08em] leading-none mb-1 font-bold">
+            <h2 className="font-montserrat text-[36px] sm:text-[48px] uppercase tracking-[0.08em] leading-none mb-1 font-extrabold">
               Escort
             </h2>
-            <h3 className="font-dm font-light text-[36px] sm:text-[48px] uppercase tracking-[0.15em] leading-none text-white/30 mb-8">
+            <h3 className="font-montserrat font-light text-[36px] sm:text-[48px] uppercase tracking-[0.15em] leading-none text-white/30 mb-8">
               Club
             </h3>
 
-            <p className="font-dm text-[13px] text-white/60 leading-[1.8] max-w-sm mb-8">
+            <p className="font-montserrat text-[13px] text-white/60 leading-[1.8] max-w-sm mb-8 font-medium">
               We use a diamond cut technique for a crisp finish. The hands glow beautifully in the dark for clear visibility.
             </p>
 
             <Link
               href="/collections/escort"
-              className="font-dm text-[11px] tracking-[0.2em] uppercase text-white hover:text-[#D4C5A0] border-b border-white/20 hover:border-[#D4C5A0] pb-1 transition-all duration-300 w-fit"
+              className="font-montserrat text-[11px] tracking-[0.2em] uppercase text-white hover:text-[#D4C5A0] border-b border-white/20 hover:border-[#D4C5A0] pb-1 transition-all duration-300 w-fit font-bold"
             >
               Discover More
             </Link>

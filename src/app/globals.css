@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=Bebas+Neue:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&family=Bebas+Neue:wght@400&display=swap');
 @import "tailwindcss";
 
 @theme {
@@ -16,6 +16,7 @@
   --font-heading: 'Cormorant Garamond', Georgia, serif;
   --font-body: 'DM Sans', 'Helvetica Neue', sans-serif;
   --font-display: 'Bebas Neue', 'Arial Narrow', sans-serif;
+  --font-montserrat: 'Montserrat', sans-serif;
 }
 
 @layer base {
@@ -86,6 +87,10 @@
 
   .font-bebas {
     font-family: var(--font-display);
+  }
+
+  .font-montserrat {
+    font-family: 'Montserrat', sans-serif;
   }
 
   /* Premium Form Controls */

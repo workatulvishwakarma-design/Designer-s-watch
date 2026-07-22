@@ -54,10 +54,10 @@ export default function SlideToSwitch() {
         
         {/* Section Title */}
         <div className="mb-6 flex justify-between items-center">
-          <span className="font-dm text-[11px] tracking-[0.25em] text-[#1A1918] font-bold uppercase">
+          <span className="font-montserrat text-[11px] tracking-[0.25em] text-[#1A1918] font-bold uppercase">
             Slide to Switch
           </span>
-          <span className="font-dm text-[10px] text-[#9C9690] tracking-wider uppercase">
+          <span className="font-montserrat text-[10px] text-[#9C9690] tracking-wider uppercase font-semibold">
             Drag divider to view dial colors
           </span>
         </div>
@@ -126,12 +126,12 @@ export default function SlideToSwitch() {
 
           {/* Bottom Left Label: Blue Dial */}
           <div className="absolute bottom-6 left-6 z-30 text-left">
-            <span className="font-dm text-[14px] font-medium text-[#1A1918] block mb-1">
+            <span className="font-montserrat text-[14px] font-bold text-[#1A1918] block mb-1">
               Ocean Blue Dial
             </span>
             <Link
               href="/product/escort-7931"
-              className="font-dm text-[9px] tracking-[0.2em] text-[#003926] uppercase font-bold hover:underline"
+              className="font-montserrat text-[9px] tracking-[0.2em] text-[#003926] uppercase font-bold hover:underline"
             >
               Shop Now
             </Link>
@@ -139,12 +139,12 @@ export default function SlideToSwitch() {
 
           {/* Bottom Right Label: White Dial */}
           <div className="absolute bottom-6 right-6 z-30 text-right">
-            <span className="font-dm text-[14px] font-medium text-[#1A1918] block mb-1">
+            <span className="font-montserrat text-[14px] font-bold text-[#1A1918] block mb-1">
               Alabaster White Dial
             </span>
             <Link
               href="/product/escort-7931"
-              className="font-dm text-[9px] tracking-[0.2em] text-[#003926] uppercase font-bold hover:underline"
+              className="font-montserrat text-[9px] tracking-[0.2em] text-[#003926] uppercase font-bold hover:underline"
             >
               Shop Now
             </Link>

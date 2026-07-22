@@ -53,7 +53,7 @@ export default function GenderSelector() {
           {/* Centered Overlay Content */}
           <div className="absolute inset-0 z-20 flex flex-col items-center justify-end pb-14 sm:pb-20 md:pb-24 px-6 text-center text-white pointer-events-none">
             <h2
-              className={`font-dm font-bold uppercase leading-none mb-4 transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] ${
+              className={`font-montserrat font-bold uppercase leading-none mb-4 transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] ${
                 hoveredCard === "men"
                   ? "text-[42px] sm:text-[56px] lg:text-[68px] scale-[1.05] tracking-[0.14em]"
                   : "text-[38px] sm:text-[48px] lg:text-[60px] scale-100 tracking-[0.1em]"
@@ -71,7 +71,7 @@ export default function GenderSelector() {
                   : "opacity-75 translate-y-2 sm:translate-y-3"
               }`}
             >
-              <span className="font-dm text-[11px] sm:text-[12px] tracking-[0.45em] uppercase text-white/90 font-medium pl-[0.45em]">
+              <span className="font-montserrat text-[11px] sm:text-[12px] tracking-[0.45em] uppercase text-white/90 font-semibold pl-[0.45em]">
                 Explore Collection
               </span>
               <svg
@@ -137,7 +137,7 @@ export default function GenderSelector() {
           {/* Centered Overlay Content */}
           <div className="absolute inset-0 z-20 flex flex-col items-center justify-end pb-14 sm:pb-20 md:pb-24 px-6 text-center text-white pointer-events-none">
             <h2
-              className={`font-dm font-bold uppercase leading-none mb-4 transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] ${
+              className={`font-montserrat font-bold uppercase leading-none mb-4 transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] ${
                 hoveredCard === "women"
                   ? "text-[42px] sm:text-[56px] lg:text-[68px] scale-[1.05] tracking-[0.14em]"
                   : "text-[38px] sm:text-[48px] lg:text-[60px] scale-100 tracking-[0.1em]"
@@ -155,7 +155,7 @@ export default function GenderSelector() {
                   : "opacity-75 translate-y-2 sm:translate-y-3"
               }`}
             >
-              <span className="font-dm text-[11px] sm:text-[12px] tracking-[0.45em] uppercase text-white/90 font-medium pl-[0.45em]">
+              <span className="font-montserrat text-[11px] sm:text-[12px] tracking-[0.45em] uppercase text-white/90 font-semibold pl-[0.45em]">
                 Explore Collection
               </span>
               <svg
