@@ -76,13 +76,13 @@ export default function SlideToSwitch() {
           }}
         >
           {/* Base Layer: White Dial Watch (Right Side) */}
-          <div className="absolute inset-0 w-full h-full flex items-center justify-center p-8 sm:p-12 md:p-16">
+          <div className="absolute inset-0 w-full h-full flex items-center justify-center p-3 sm:p-5 md:p-6">
             <div className="relative w-full h-full">
               <Image
                 src="/images/new-content/new-1/escort womens/E-7931/E-7931.RGM_White.png"
                 alt="White Dial Variant"
                 fill
-                className="object-contain"
+                className="object-contain scale-[1.28] origin-center"
                 sizes="(max-width: 1300px) 100vw, 1200px"
                 priority
               />
@@ -96,7 +96,7 @@ export default function SlideToSwitch() {
           >
             {/* The inner container must retain the full width of the parent so the image does not stretch */}
             <div
-              className="absolute inset-y-0 left-0 p-8 sm:p-12 md:p-16 flex items-center justify-center"
+              className="absolute inset-y-0 left-0 p-3 sm:p-5 md:p-6 flex items-center justify-center"
               style={{ width: containerRef.current?.getBoundingClientRect().width || "100%" }}
             >
               <div className="relative w-full h-full">
@@ -104,7 +104,7 @@ export default function SlideToSwitch() {
                   src="/images/new-content/new-1/escort womens/E-7931/E-7931.RGM_Blue.png"
                   alt="Blue Dial Variant"
                   fill
-                  className="object-contain"
+                  className="object-contain scale-[1.28] origin-center"
                   sizes="(max-width: 1300px) 100vw, 1200px"
                   priority
                 />
