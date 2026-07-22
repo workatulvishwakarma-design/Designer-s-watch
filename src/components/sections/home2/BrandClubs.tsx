@@ -31,7 +31,7 @@ export default function BrandClubs() {
                 src="/img/home6.PNG"
                 alt="D'Signer Watch Insert"
                 fill
-                className="object-contain object-[78%_center] scale-[1.4] -translate-x-[16%] mix-blend-multiply transition-transform duration-500 hover:scale-[1.45]"
+                className="object-contain object-[95%_center] scale-[1.7] -translate-x-[32%] mix-blend-multiply transition-transform duration-500 hover:scale-[1.75]"
                 sizes="360px"
               />
             </div>
