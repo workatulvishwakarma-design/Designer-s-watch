@@ -31,10 +31,12 @@ export default function BrandClubs() {
                 src="/img/home6.PNG"
                 alt="D'Signer Watch Insert"
                 fill
-                className="object-contain scale-[1.25] mix-blend-multiply transition-transform duration-500 hover:scale-[1.3]"
+                className="object-contain object-[78%_center] scale-[1.4] -translate-x-[16%] mix-blend-multiply transition-transform duration-500 hover:scale-[1.45]"
                 sizes="360px"
               />
             </div>
+
+
 
             <p className="font-montserrat text-[13px] text-white/60 leading-[1.8] max-w-sm mb-8 font-medium">
               We use a diamond cut technique for a crisp finish. The hands glow beautifully in the dark for clear visibility.
