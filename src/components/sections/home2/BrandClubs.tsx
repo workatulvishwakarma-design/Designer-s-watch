@@ -26,13 +26,13 @@ export default function BrandClubs() {
             </h3>
 
             {/* Watch display insert container */}
-            <div className="relative w-full max-w-[360px] aspect-[16/7] rounded-sm overflow-hidden mb-8 bg-transparent">
+            <div className="relative w-full max-w-[310px] aspect-[16/7] rounded-sm overflow-hidden mb-8 bg-transparent">
               <Image
                 src="/img/home6.PNG"
                 alt="D'Signer Watch Insert"
                 fill
-                className="object-contain object-[95%_center] scale-[1.7] -translate-x-[52%] mix-blend-multiply transition-transform duration-500 hover:scale-[1.75]"
-                sizes="360px"
+                className="object-contain object-[95%_center] scale-[1.3] -translate-x-[38%] mix-blend-multiply transition-transform duration-500 hover:scale-[1.35]"
+                sizes="310px"
               />
             </div>
 
