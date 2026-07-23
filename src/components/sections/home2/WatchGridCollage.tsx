@@ -2,13 +2,14 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 
 const IMAGES = {
   col1: {
-    src: "/images/new-content/home2-grid-1.png",
-    alt: "Gold Chronograph at Outdoor Cafe",
-    label: "Chrono Heritage",
+    src: "/images/new-content/home2-gender-men.png",
+    alt: "D'Signer Men's Executive Model",
+    label: "Men's Flagship Series",
   },
   col2_top: {
     src: "/images/new-content/home2-grid-2.png",
@@ -27,13 +28,13 @@ const IMAGES = {
   },
   col3_bottom: {
     src: "/images/new-content/home2-grid-5.png",
-    alt: "Skeleton Dial on Marble",
+    alt: "Skeleton Dial on Wrist",
     label: "Skeleton Automatix",
   },
   col4: {
-    src: "/images/new-content/home2-grid-6.png",
-    alt: "Royal Blue Watch with Tailored Suit",
-    label: "Royal Ocean Blue",
+    src: "/images/new-content/home2-gender-women.png",
+    alt: "D'Signer Women's Elegance Model",
+    label: "Women's Grace Series",
   },
 };
 
@@ -46,40 +47,55 @@ export default function WatchGridCollage() {
   };
 
   return (
-    <section className="relative w-full bg-[#E8E4DC] py-16 md:py-24 px-4 sm:px-8 overflow-hidden select-none border-b border-[#D6D0C4]">
+    <section className="relative w-full bg-[#E8E4DC] py-14 md:py-24 px-4 sm:px-8 overflow-hidden select-none border-b border-[#D6D0C4]">
       {/* Soft Studio Ambient Light */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse at 50% 30%, rgba(255,255,255,0.7) 0%, rgba(228,222,213,0.5) 60%, rgba(205,198,187,0.9) 100%)",
+            "radial-gradient(ellipse at 50% 30%, rgba(255,255,255,0.75) 0%, rgba(228,222,213,0.5) 60%, rgba(205,198,187,0.9) 100%)",
         }}
       />
 
-      {/* Main Catalog Shell Window */}
-      <div className="relative max-w-[1440px] mx-auto bg-[#DFD9CE]/60 backdrop-blur-md border border-white/60 shadow-2xl p-5 sm:p-8 md:p-10 overflow-hidden">
+      {/* Main Full-Width Catalog Shell Container */}
+      <div className="relative w-full max-w-[1800px] mx-auto bg-[#DFD9CE]/60 backdrop-blur-md border border-white/60 shadow-2xl p-4 sm:p-8 md:p-12 overflow-hidden rounded-sm">
         
-        {/* Top Header / Title */}
+        {/* Top Header & Navigation Buttons (Men's & Women's) */}
         <div className="flex flex-col items-center justify-center text-center mb-8 md:mb-12 relative z-10">
-          <span className="font-montserrat text-[9px] sm:text-[10px] tracking-[0.35em] text-[#003926] font-bold uppercase mb-2">
+          <span className="font-montserrat text-[10px] sm:text-[11px] tracking-[0.35em] text-[#003926] font-semibold uppercase mb-2">
             ✦ LIFESTYLE EDITORIAL ✦
           </span>
-          <h2 className="font-cormorant text-[36px] sm:text-[48px] md:text-[56px] text-[#1A1918] font-light leading-none tracking-tight">
+          <h2 className="font-montserrat text-[28px] sm:text-[40px] md:text-[48px] text-[#1A1918] font-medium leading-none tracking-[-0.01em] mb-6">
             Horology on Wrist
           </h2>
-          <div className="w-12 h-[1.5px] bg-[#B8935A] mt-4 opacity-80" />
+
+          {/* Men's & Women's Collection Buttons */}
+          <div className="flex items-center gap-4 flex-wrap justify-center mt-2">
+            <Link
+              href="/collections/mens-dsigner"
+              className="px-8 py-3.5 bg-[#003926] text-white font-montserrat text-[12px] md:text-[13px] tracking-[0.18em] uppercase font-medium hover:bg-[#1A1918] transition-all duration-300 shadow-lg"
+            >
+              MEN'S COLLECTION
+            </Link>
+            <Link
+              href="/collections/womens-dsigner"
+              className="px-8 py-3.5 bg-transparent border border-[#003926] text-[#003926] font-montserrat text-[12px] md:text-[13px] tracking-[0.18em] uppercase font-medium hover:bg-[#003926] hover:text-white transition-all duration-300 shadow-lg"
+            >
+              WOMEN'S COLLECTION
+            </Link>
+          </div>
         </div>
 
-        {/* 4-Column Grid Collage matching Cucinelli / Luxury Layout */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 items-stretch relative z-10">
+        {/* 4-Column Grid Collage with Real Model Images */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 md:gap-5 items-stretch relative z-10">
           
-          {/* COLUMN 1: Tall Left Portrait */}
+          {/* COLUMN 1: Tall Left Portrait (Real Men's Model) */}
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="relative overflow-hidden shadow-md aspect-[3/5] bg-[#D4CEBF] group"
+            className="relative overflow-hidden shadow-md aspect-[3/5] bg-[#D4CEBF] group rounded-xs"
           >
             <Image
               src={IMAGES.col1.src}
@@ -91,21 +107,19 @@ export default function WatchGridCollage() {
             />
             <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-all duration-500 pointer-events-none" />
 
-            {/* Bottom Label Overlay */}
-            <div className="absolute bottom-3 left-3 z-20 pointer-events-none">
-              <span className="font-cormorant italic text-[16px] text-white font-medium drop-shadow-md">
+            <div className="absolute bottom-4 left-4 z-20 pointer-events-none">
+              <span className="font-montserrat text-[14px] text-white font-medium drop-shadow-md tracking-wide block">
                 {IMAGES.col1.label}
               </span>
             </div>
 
-            {/* Heart Wishlist Icon Button */}
             <button
               onClick={(e) => toggleLike("col1", e)}
-              className="absolute bottom-3 right-3 z-30 w-7 h-7 rounded-full bg-black/30 backdrop-blur-md border border-white/30 flex items-center justify-center text-white/90 hover:bg-black/50 transition-all cursor-pointer"
+              className="absolute bottom-4 right-4 z-30 w-8 h-8 rounded-full bg-black/30 backdrop-blur-md border border-white/30 flex items-center justify-center text-white/90 hover:bg-black/60 transition-all cursor-pointer"
             >
               <svg
-                width="12"
-                height="12"
+                width="13"
+                height="13"
                 viewBox="0 0 24 24"
                 fill={likedCards["col1"] ? "#EF4444" : "none"}
                 stroke={likedCards["col1"] ? "#EF4444" : "currentColor"}
@@ -118,14 +132,14 @@ export default function WatchGridCollage() {
 
           {/* COLUMN 2: Two Stacked Cards */}
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col gap-3 md:gap-4"
+            className="flex flex-col gap-3 md:gap-5"
           >
             {/* Top Card */}
-            <div className="relative overflow-hidden shadow-md aspect-[4/3] bg-[#D4CEBF] group flex-grow">
+            <div className="relative overflow-hidden shadow-md aspect-[4/3] bg-[#D4CEBF] group flex-grow rounded-xs">
               <Image
                 src={IMAGES.col2_top.src}
                 alt={IMAGES.col2_top.alt}
@@ -135,19 +149,19 @@ export default function WatchGridCollage() {
               />
               <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-all duration-500 pointer-events-none" />
 
-              <div className="absolute bottom-3 left-3 z-20 pointer-events-none">
-                <span className="font-cormorant italic text-[16px] text-white font-medium drop-shadow-md">
+              <div className="absolute bottom-4 left-4 z-20 pointer-events-none">
+                <span className="font-montserrat text-[14px] text-white font-medium drop-shadow-md tracking-wide block">
                   {IMAGES.col2_top.label}
                 </span>
               </div>
 
               <button
                 onClick={(e) => toggleLike("col2_top", e)}
-                className="absolute bottom-3 right-3 z-30 w-7 h-7 rounded-full bg-black/30 backdrop-blur-md border border-white/30 flex items-center justify-center text-white/90 hover:bg-black/50 transition-all cursor-pointer"
+                className="absolute bottom-4 right-4 z-30 w-8 h-8 rounded-full bg-black/30 backdrop-blur-md border border-white/30 flex items-center justify-center text-white/90 hover:bg-black/60 transition-all cursor-pointer"
               >
                 <svg
-                  width="12"
-                  height="12"
+                  width="13"
+                  height="13"
                   viewBox="0 0 24 24"
                   fill={likedCards["col2_top"] ? "#EF4444" : "none"}
                   stroke={likedCards["col2_top"] ? "#EF4444" : "currentColor"}
@@ -159,7 +173,7 @@ export default function WatchGridCollage() {
             </div>
 
             {/* Bottom Card */}
-            <div className="relative overflow-hidden shadow-md aspect-[4/3] bg-[#D4CEBF] group flex-grow">
+            <div className="relative overflow-hidden shadow-md aspect-[4/3] bg-[#D4CEBF] group flex-grow rounded-xs">
               <Image
                 src={IMAGES.col2_bottom.src}
                 alt={IMAGES.col2_bottom.alt}
@@ -169,19 +183,19 @@ export default function WatchGridCollage() {
               />
               <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-all duration-500 pointer-events-none" />
 
-              <div className="absolute bottom-3 left-3 z-20 pointer-events-none">
-                <span className="font-cormorant italic text-[16px] text-white font-medium drop-shadow-md">
+              <div className="absolute bottom-4 left-4 z-20 pointer-events-none">
+                <span className="font-montserrat text-[14px] text-white font-medium drop-shadow-md tracking-wide block">
                   {IMAGES.col2_bottom.label}
                 </span>
               </div>
 
               <button
                 onClick={(e) => toggleLike("col2_bottom", e)}
-                className="absolute bottom-3 right-3 z-30 w-7 h-7 rounded-full bg-black/30 backdrop-blur-md border border-white/30 flex items-center justify-center text-white/90 hover:bg-black/50 transition-all cursor-pointer"
+                className="absolute bottom-4 right-4 z-30 w-8 h-8 rounded-full bg-black/30 backdrop-blur-md border border-white/30 flex items-center justify-center text-white/90 hover:bg-black/60 transition-all cursor-pointer"
               >
                 <svg
-                  width="12"
-                  height="12"
+                  width="13"
+                  height="13"
                   viewBox="0 0 24 24"
                   fill={likedCards["col2_bottom"] ? "#EF4444" : "none"}
                   stroke={likedCards["col2_bottom"] ? "#EF4444" : "currentColor"}
@@ -195,14 +209,14 @@ export default function WatchGridCollage() {
 
           {/* COLUMN 3: Two Stacked Cards */}
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col gap-3 md:gap-4"
+            className="flex flex-col gap-3 md:gap-5"
           >
             {/* Top Card */}
-            <div className="relative overflow-hidden shadow-md aspect-[4/3] bg-[#D4CEBF] group flex-grow">
+            <div className="relative overflow-hidden shadow-md aspect-[4/3] bg-[#D4CEBF] group flex-grow rounded-xs">
               <Image
                 src={IMAGES.col3_top.src}
                 alt={IMAGES.col3_top.alt}
@@ -212,19 +226,19 @@ export default function WatchGridCollage() {
               />
               <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-all duration-500 pointer-events-none" />
 
-              <div className="absolute bottom-3 left-3 z-20 pointer-events-none">
-                <span className="font-cormorant italic text-[16px] text-white font-medium drop-shadow-md">
+              <div className="absolute bottom-4 left-4 z-20 pointer-events-none">
+                <span className="font-montserrat text-[14px] text-white font-medium drop-shadow-md tracking-wide block">
                   {IMAGES.col3_top.label}
                 </span>
               </div>
 
               <button
                 onClick={(e) => toggleLike("col3_top", e)}
-                className="absolute bottom-3 right-3 z-30 w-7 h-7 rounded-full bg-black/30 backdrop-blur-md border border-white/30 flex items-center justify-center text-white/90 hover:bg-black/50 transition-all cursor-pointer"
+                className="absolute bottom-4 right-4 z-30 w-8 h-8 rounded-full bg-black/30 backdrop-blur-md border border-white/30 flex items-center justify-center text-white/90 hover:bg-black/60 transition-all cursor-pointer"
               >
                 <svg
-                  width="12"
-                  height="12"
+                  width="13"
+                  height="13"
                   viewBox="0 0 24 24"
                   fill={likedCards["col3_top"] ? "#EF4444" : "none"}
                   stroke={likedCards["col3_top"] ? "#EF4444" : "currentColor"}
@@ -236,7 +250,7 @@ export default function WatchGridCollage() {
             </div>
 
             {/* Bottom Card */}
-            <div className="relative overflow-hidden shadow-md aspect-[4/3] bg-[#D4CEBF] group flex-grow">
+            <div className="relative overflow-hidden shadow-md aspect-[4/3] bg-[#D4CEBF] group flex-grow rounded-xs">
               <Image
                 src={IMAGES.col3_bottom.src}
                 alt={IMAGES.col3_bottom.alt}
@@ -246,19 +260,19 @@ export default function WatchGridCollage() {
               />
               <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-all duration-500 pointer-events-none" />
 
-              <div className="absolute bottom-3 left-3 z-20 pointer-events-none">
-                <span className="font-cormorant italic text-[16px] text-white font-medium drop-shadow-md">
+              <div className="absolute bottom-4 left-4 z-20 pointer-events-none">
+                <span className="font-montserrat text-[14px] text-white font-medium drop-shadow-md tracking-wide block">
                   {IMAGES.col3_bottom.label}
                 </span>
               </div>
 
               <button
                 onClick={(e) => toggleLike("col3_bottom", e)}
-                className="absolute bottom-3 right-3 z-30 w-7 h-7 rounded-full bg-black/30 backdrop-blur-md border border-white/30 flex items-center justify-center text-white/90 hover:bg-black/50 transition-all cursor-pointer"
+                className="absolute bottom-4 right-4 z-30 w-8 h-8 rounded-full bg-black/30 backdrop-blur-md border border-white/30 flex items-center justify-center text-white/90 hover:bg-black/60 transition-all cursor-pointer"
               >
                 <svg
-                  width="12"
-                  height="12"
+                  width="13"
+                  height="13"
                   viewBox="0 0 24 24"
                   fill={likedCards["col3_bottom"] ? "#EF4444" : "none"}
                   stroke={likedCards["col3_bottom"] ? "#EF4444" : "currentColor"}
@@ -270,13 +284,13 @@ export default function WatchGridCollage() {
             </div>
           </motion.div>
 
-          {/* COLUMN 4: Tall Right Portrait */}
+          {/* COLUMN 4: Tall Right Portrait (Real Women's Model) */}
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="relative overflow-hidden shadow-md aspect-[3/5] bg-[#D4CEBF] group"
+            className="relative overflow-hidden shadow-md aspect-[3/5] bg-[#D4CEBF] group rounded-xs"
           >
             <Image
               src={IMAGES.col4.src}
@@ -288,19 +302,19 @@ export default function WatchGridCollage() {
             />
             <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-all duration-500 pointer-events-none" />
 
-            <div className="absolute bottom-3 left-3 z-20 pointer-events-none">
-              <span className="font-cormorant italic text-[16px] text-white font-medium drop-shadow-md">
+            <div className="absolute bottom-4 left-4 z-20 pointer-events-none">
+              <span className="font-montserrat text-[14px] text-white font-medium drop-shadow-md tracking-wide block">
                 {IMAGES.col4.label}
               </span>
             </div>
 
             <button
               onClick={(e) => toggleLike("col4", e)}
-              className="absolute bottom-3 right-3 z-30 w-7 h-7 rounded-full bg-black/30 backdrop-blur-md border border-white/30 flex items-center justify-center text-white/90 hover:bg-black/50 transition-all cursor-pointer"
+              className="absolute bottom-4 right-4 z-30 w-8 h-8 rounded-full bg-black/30 backdrop-blur-md border border-white/30 flex items-center justify-center text-white/90 hover:bg-black/60 transition-all cursor-pointer"
             >
               <svg
-                width="12"
-                height="12"
+                width="13"
+                height="13"
                 viewBox="0 0 24 24"
                 fill={likedCards["col4"] ? "#EF4444" : "none"}
                 stroke={likedCards["col4"] ? "#EF4444" : "currentColor"}
@@ -310,32 +324,6 @@ export default function WatchGridCollage() {
               </svg>
             </button>
           </motion.div>
-
-        </div>
-
-        {/* Floating Pills at Bottom Center (Brunello Cucinelli Style) */}
-        <div className="mt-10 md:mt-14 flex flex-col sm:flex-row items-center justify-center gap-3 relative z-20">
-          
-          {/* Pill 1: Scroll to Explore */}
-          <div className="inline-flex items-center gap-2 px-5 py-2.5 bg-black/40 backdrop-blur-md border border-white/20 text-white/90 text-[10px] sm:text-[11px] font-montserrat tracking-[0.18em] uppercase font-bold shadow-lg hover:bg-black/60 transition-all cursor-pointer">
-            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-              <path d="M19 9l-7 7-7-7" />
-            </svg>
-            <span>Scroll to explore</span>
-          </div>
-
-          {/* Pill 2: AI / Occasion Search Bar */}
-          <div className="inline-flex items-center justify-between gap-4 px-5 py-2.5 bg-black/45 backdrop-blur-lg border border-white/20 text-white/80 text-[11px] font-montserrat shadow-2xl max-w-sm w-full sm:w-auto">
-            <div className="flex items-center gap-2">
-              <span className="w-4 h-4 rounded-full bg-white/20 flex items-center justify-center text-white text-[10px] font-bold">
-                +
-              </span>
-              <span className="text-white/80 text-[11px] font-medium italic">
-                What should I wear for an aperitif?
-              </span>
-            </div>
-            <span className="text-white/60 text-[11px] font-bold">↑</span>
-          </div>
 
         </div>
 
