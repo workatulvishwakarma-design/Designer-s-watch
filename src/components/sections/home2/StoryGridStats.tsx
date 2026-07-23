@@ -48,9 +48,9 @@ function CountUpStat({ target, suffix = "+" }: { target: number; suffix?: string
 
 export default function StoryGridStats() {
   const images = {
-    hero: "/images/about us journey/2024 - Designer Lab Grown Diamond studded watches/DIAMOND SHOOT 16-09-2025/814GM.2G.jpg",
-    topRight: "/images/about us journey/2024 - Designer Lab Grown Diamond studded watches/DIAMOND SHOOT 16-09-2025/824 RGFS.5G.jpg",
-    bottomRight: "/images/about us journey/2024 - Designer Lab Grown Diamond studded watches/DIAMOND SHOOT 16-09-2025/840RGNFS.16G.jpg",
+    hero: "/images/about us journey/1976 - Nagpal Bombay/IMG_0216.jpeg",
+    topRight: "/images/about us journey/1991 — A Brand is Born/1 (7).jpg",
+    bottomRight: "/images/about us journey/2025 - Time Corridor/1A1A8511.JPG",
   };
 
   return (
@@ -106,7 +106,7 @@ export default function StoryGridStats() {
           {/* Grid Container */}
           <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 w-full items-stretch">
             
-            {/* Left Main Hero Image (Col-Span 7) */}
+            {/* Left Main Hero Image (Col-Span 7: 1976 Nagpal Bombay) */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -116,17 +116,17 @@ export default function StoryGridStats() {
             >
               <Image
                 src={images.hero}
-                alt="Luxury Chronographs D'Signer Watch"
+                alt="Nagpal Bombay Establishment 1976"
                 fill
                 sizes="(max-width: 768px) 100vw, 58vw"
                 className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                 priority
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent pointer-events-none" />
               
               <div className="absolute bottom-6 left-6 z-20 pointer-events-none">
                 <span className="font-cormorant italic text-[22px] sm:text-[26px] text-white font-medium drop-shadow-md">
-                  Luxury Chronographs
+                  1976 — Nagpal Bombay Foundation
                 </span>
               </div>
             </motion.div>
@@ -134,7 +134,7 @@ export default function StoryGridStats() {
             {/* Right Stacked Column (Col-Span 5) */}
             <div className="md:col-span-5 flex flex-col gap-6 md:gap-8 justify-between">
               
-              {/* Top Stacked Card */}
+              {/* Top Stacked Card: 1991 A Brand Is Born */}
               <motion.div
                 initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -144,21 +144,21 @@ export default function StoryGridStats() {
               >
                 <Image
                   src={images.topRight}
-                  alt="Elegant Dress Series D'Signer Watch"
+                  alt="1991 A Brand Is Born"
                   fill
                   sizes="(max-width: 768px) 100vw, 42vw"
                   className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent pointer-events-none" />
 
                 <div className="absolute bottom-5 left-5 z-20 pointer-events-none">
                   <span className="font-cormorant italic text-[20px] sm:text-[22px] text-white font-medium drop-shadow-md">
-                    Elegant Dress Series
+                    1991 — A Brand Is Born
                   </span>
                 </div>
               </motion.div>
 
-              {/* Bottom Stacked Card */}
+              {/* Bottom Stacked Card: 2025 Time Corridor */}
               <motion.div
                 initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -168,16 +168,16 @@ export default function StoryGridStats() {
               >
                 <Image
                   src={images.bottomRight}
-                  alt="Performance Sports Diver D'Signer Watch"
+                  alt="2025 Time Corridor"
                   fill
                   sizes="(max-width: 768px) 100vw, 42vw"
                   className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent pointer-events-none" />
 
                 <div className="absolute bottom-5 left-5 z-20 pointer-events-none">
                   <span className="font-cormorant italic text-[20px] sm:text-[22px] text-white font-medium drop-shadow-md">
-                    Performance Sports Diver
+                    2025 — Time Corridor Vision
                   </span>
                 </div>
               </motion.div>
