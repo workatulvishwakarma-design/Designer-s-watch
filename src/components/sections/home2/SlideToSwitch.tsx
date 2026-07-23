@@ -89,10 +89,10 @@ export default function SlideToSwitch() {
           </span>
         </div>
 
-        {/* Full-Width Slider Canvas Box */}
+        {/* Full-Width Slider Canvas Box (Height Increased by 25%) */}
         <div
           ref={containerRef}
-          className="relative w-full h-[60vh] min-h-[420px] max-h-[680px] overflow-hidden bg-[#EAE8E4] border border-[#E0D8CE] shadow-sm cursor-ew-resize rounded-sm"
+          className="relative w-full h-[75vh] min-h-[525px] max-h-[850px] overflow-hidden bg-[#EAE8E4] border border-[#E0D8CE] shadow-sm cursor-ew-resize rounded-sm"
           onMouseDown={(e) => {
             isDragging.current = true;
             handleMove(e.clientX);
@@ -103,13 +103,13 @@ export default function SlideToSwitch() {
           }}
         >
           {/* Base Layer: White Dial Watch (Right Side, Fixed Center) */}
-          <div className="absolute inset-0 w-full h-full flex items-center justify-center p-6 md:p-10">
-            <div className="relative w-full h-full max-w-xl mx-auto">
+          <div className="absolute inset-0 w-full h-full flex items-center justify-center p-2 md:p-4">
+            <div className="relative w-full h-full max-w-2xl lg:max-w-3xl mx-auto">
               <Image
                 src="/images/new-content/new-1/escort womens/E-7931/E-7931.RGM_White.png"
                 alt="Alabaster White Dial Variant"
                 fill
-                className="object-contain"
+                className="object-contain scale-110 md:scale-125"
                 sizes="100vw"
                 priority
               />
@@ -123,15 +123,15 @@ export default function SlideToSwitch() {
           >
             {/* The inner div matches containerWidth exactly so images overlay dead-center */}
             <div
-              className="absolute inset-y-0 left-0 h-full flex items-center justify-center p-6 md:p-10"
+              className="absolute inset-y-0 left-0 h-full flex items-center justify-center p-2 md:p-4"
               style={{ width: containerWidth ? `${containerWidth}px` : "100vw" }}
             >
-              <div className="relative w-full h-full max-w-xl mx-auto">
+              <div className="relative w-full h-full max-w-2xl lg:max-w-3xl mx-auto">
                 <Image
                   src="/images/new-content/new-1/escort womens/E-7931/E-7931.RGM_Blue.png"
                   alt="Ocean Blue Dial Variant"
                   fill
-                  className="object-contain"
+                  className="object-contain scale-110 md:scale-125"
                   sizes="100vw"
                   priority
                 />
