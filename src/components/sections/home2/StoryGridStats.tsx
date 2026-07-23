@@ -49,15 +49,15 @@ function CountUpStat({ target, suffix = "+" }: { target: number; suffix?: string
 export default function StoryGridStats() {
   const images = {
     hero: "/images/about us journey/1976 - Nagpal Bombay/IMG_0216.jpeg",
-    topRight: "/images/about us journey/1991 — A Brand is Born/1 (7).jpg",
+    topRight: "/images/about us journey/1995 — Style for All/IMG_7789.jpeg",
     bottomRight: "/images/about us journey/2025 - Time Corridor/1A1A8511.JPG",
   };
 
   return (
     <section className="bg-[#FAF8F4] py-16 md:py-24 overflow-hidden relative border-t border-[#003926]/5 select-none">
-      <div className="max-w-[1440px] mx-auto px-6 sm:px-10 md:px-12">
+      <div className="max-w-[1240px] mx-auto px-6 sm:px-10">
         
-        {/* Section Header - Matching Screenshot 2 Exactly */}
+        {/* Section Header - Perfectly Centered */}
         <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
           {/* Main Title: OUR STORY */}
           <motion.h2
@@ -93,96 +93,84 @@ export default function StoryGridStats() {
           </motion.p>
         </div>
 
-        {/* Asymmetric Grid Layout - Matching Screenshot 2 Exactly */}
-        <div className="relative flex flex-col md:flex-row gap-6 md:gap-8 items-stretch">
+        {/* Asymmetric Grid Layout - Dead Center Aligned */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 w-full items-stretch">
           
-          {/* Vertical Side Label: CATEGORIES OF CRAFT */}
-          <div className="hidden lg:flex items-center justify-center writing-mode-vertical -rotate-180 text-center select-none py-4">
-            <span className="font-montserrat text-[10px] tracking-[0.35em] text-[#9C9690] uppercase font-semibold whitespace-nowrap">
-              CATEGORIES OF CRAFT
-            </span>
-          </div>
-
-          {/* Grid Container */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 w-full items-stretch">
+          {/* Left Main Hero Image (Col-Span 7: 1976 Nagpal Bombay) */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.8 }}
+            className="md:col-span-7 relative min-h-[380px] sm:min-h-[480px] md:min-h-[540px] overflow-hidden rounded-xs shadow-lg group bg-[#EAE6DE]"
+          >
+            <Image
+              src={images.hero}
+              alt="Nagpal Bombay Establishment 1976"
+              fill
+              sizes="(max-width: 768px) 100vw, 58vw"
+              className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+              priority
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent pointer-events-none" />
             
-            {/* Left Main Hero Image (Col-Span 7: 1976 Nagpal Bombay) */}
+            <div className="absolute bottom-6 left-6 z-20 pointer-events-none">
+              <span className="font-cormorant italic text-[22px] sm:text-[26px] text-white font-medium drop-shadow-md">
+                1976 — Nagpal Bombay Foundation
+              </span>
+            </div>
+          </motion.div>
+
+          {/* Right Stacked Column (Col-Span 5) */}
+          <div className="md:col-span-5 flex flex-col gap-6 md:gap-8 justify-between">
+            
+            {/* Top Stacked Card: 1995 Style For All Real Historical Journey Photo */}
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
+              initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.8 }}
-              className="md:col-span-7 relative min-h-[380px] sm:min-h-[480px] md:min-h-[560px] overflow-hidden rounded-xs shadow-lg group bg-[#EAE6DE]"
+              transition={{ duration: 0.8, delay: 0.15 }}
+              className="relative flex-1 min-h-[220px] sm:min-h-[250px] overflow-hidden rounded-xs shadow-lg group bg-[#EAE6DE]"
             >
               <Image
-                src={images.hero}
-                alt="Nagpal Bombay Establishment 1976"
+                src={images.topRight}
+                alt="1995 Style For All Historical Journey"
                 fill
-                sizes="(max-width: 768px) 100vw, 58vw"
+                sizes="(max-width: 768px) 100vw, 42vw"
                 className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                priority
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent pointer-events-none" />
-              
-              <div className="absolute bottom-6 left-6 z-20 pointer-events-none">
-                <span className="font-cormorant italic text-[22px] sm:text-[26px] text-white font-medium drop-shadow-md">
-                  1976 — Nagpal Bombay Foundation
+
+              <div className="absolute bottom-5 left-5 z-20 pointer-events-none">
+                <span className="font-cormorant italic text-[20px] sm:text-[22px] text-white font-medium drop-shadow-md">
+                  1995 — Style For All
                 </span>
               </div>
             </motion.div>
 
-            {/* Right Stacked Column (Col-Span 5) */}
-            <div className="md:col-span-5 flex flex-col gap-6 md:gap-8 justify-between">
-              
-              {/* Top Stacked Card: 1991 A Brand Is Born */}
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.8, delay: 0.15 }}
-                className="relative flex-1 min-h-[220px] sm:min-h-[260px] overflow-hidden rounded-xs shadow-lg group bg-[#EAE6DE]"
-              >
-                <Image
-                  src={images.topRight}
-                  alt="1991 A Brand Is Born"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 42vw"
-                  className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent pointer-events-none" />
+            {/* Bottom Stacked Card: 2025 Time Corridor */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="relative flex-1 min-h-[220px] sm:min-h-[250px] overflow-hidden rounded-xs shadow-lg group bg-[#EAE6DE]"
+            >
+              <Image
+                src={images.bottomRight}
+                alt="2025 Time Corridor Vision"
+                fill
+                sizes="(max-width: 768px) 100vw, 42vw"
+                className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent pointer-events-none" />
 
-                <div className="absolute bottom-5 left-5 z-20 pointer-events-none">
-                  <span className="font-cormorant italic text-[20px] sm:text-[22px] text-white font-medium drop-shadow-md">
-                    1991 — A Brand Is Born
-                  </span>
-                </div>
-              </motion.div>
-
-              {/* Bottom Stacked Card: 2025 Time Corridor */}
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-                className="relative flex-1 min-h-[220px] sm:min-h-[260px] overflow-hidden rounded-xs shadow-lg group bg-[#EAE6DE]"
-              >
-                <Image
-                  src={images.bottomRight}
-                  alt="2025 Time Corridor"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 42vw"
-                  className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent pointer-events-none" />
-
-                <div className="absolute bottom-5 left-5 z-20 pointer-events-none">
-                  <span className="font-cormorant italic text-[20px] sm:text-[22px] text-white font-medium drop-shadow-md">
-                    2025 — Time Corridor Vision
-                  </span>
-                </div>
-              </motion.div>
-
-            </div>
+              <div className="absolute bottom-5 left-5 z-20 pointer-events-none">
+                <span className="font-cormorant italic text-[20px] sm:text-[22px] text-white font-medium drop-shadow-md">
+                  2025 — Time Corridor Vision
+                </span>
+              </div>
+            </motion.div>
 
           </div>
 
