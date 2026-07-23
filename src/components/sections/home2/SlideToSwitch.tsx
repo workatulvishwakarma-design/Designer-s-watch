@@ -7,8 +7,28 @@ import { motion } from "framer-motion";
 
 export default function SlideToSwitch() {
   const [position, setPosition] = useState(50); // percentage 0-100
+  const [containerWidth, setContainerWidth] = useState<number>(0);
   const containerRef = useRef<HTMLDivElement>(null);
   const isDragging = useRef(false);
+
+  useEffect(() => {
+    const updateWidth = () => {
+      if (containerRef.current) {
+        setContainerWidth(containerRef.current.offsetWidth);
+      }
+    };
+
+    updateWidth();
+    window.addEventListener("resize", updateWidth);
+
+    const observer = new ResizeObserver(updateWidth);
+    if (containerRef.current) observer.observe(containerRef.current);
+
+    return () => {
+      window.removeEventListener("resize", updateWidth);
+      observer.disconnect();
+    };
+  }, []);
 
   const handleMove = (clientX: number) => {
     const container = containerRef.current;
@@ -51,28 +71,28 @@ export default function SlideToSwitch() {
 
   return (
     <motion.section
-      initial={{ opacity: 0, y: 35 }}
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-      className="bg-[#FAF8F4] py-16 md:py-24 overflow-hidden select-none border-b border-[#E5E0D8]"
+      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+      className="w-full bg-[#FAF8F4] py-12 md:py-20 overflow-hidden select-none border-b border-[#E5E0D8]"
     >
-      <div className="max-w-[1300px] mx-auto px-6 sm:px-10">
+      <div className="w-full max-w-[1800px] mx-auto px-4 sm:px-8 md:px-12">
         
-        {/* Section Title */}
-        <div className="mb-6 flex justify-between items-center">
-          <span className="font-montserrat text-[11px] tracking-[0.25em] text-[#1A1918] font-bold uppercase">
-            Slide to Switch
+        {/* Section Title Header */}
+        <div className="mb-6 flex justify-between items-center px-2">
+          <span className="font-montserrat text-[12px] md:text-[13px] tracking-[0.2em] text-[#1A1918] font-medium uppercase">
+            SLIDE TO SWITCH
           </span>
-          <span className="font-montserrat text-[10px] text-[#9C9690] tracking-wider uppercase font-semibold">
-            Drag divider to view dial colors
+          <span className="font-montserrat text-[11px] md:text-[12px] text-[#5C5750] tracking-[0.08em] uppercase font-normal">
+            DRAG DIVIDER TO VIEW DIAL COLORS
           </span>
         </div>
 
-        {/* Slider Canvas Container */}
+        {/* Full-Width Slider Canvas Box */}
         <div
           ref={containerRef}
-          className="relative w-full aspect-[16/9] md:aspect-[21/9] overflow-hidden bg-[#EAE8E4] border border-[#E0D8CE] shadow-sm cursor-ew-resize"
+          className="relative w-full h-[60vh] min-h-[420px] max-h-[680px] overflow-hidden bg-[#EAE8E4] border border-[#E0D8CE] shadow-sm cursor-ew-resize rounded-sm"
           onMouseDown={(e) => {
             isDragging.current = true;
             handleMove(e.clientX);
@@ -82,76 +102,76 @@ export default function SlideToSwitch() {
             if (e.touches[0]) handleMove(e.touches[0].clientX);
           }}
         >
-          {/* Base Layer: White Dial Watch (Right Side) */}
-          <div className="absolute inset-0 w-full h-full flex items-center justify-center p-3 sm:p-5 md:p-6">
-            <div className="relative w-full h-full">
+          {/* Base Layer: White Dial Watch (Right Side, Fixed Center) */}
+          <div className="absolute inset-0 w-full h-full flex items-center justify-center p-6 md:p-10">
+            <div className="relative w-full h-full max-w-xl mx-auto">
               <Image
                 src="/images/new-content/new-1/escort womens/E-7931/E-7931.RGM_White.png"
-                alt="White Dial Variant"
+                alt="Alabaster White Dial Variant"
                 fill
-                className="object-contain scale-[1.28] origin-center"
-                sizes="(max-width: 1300px) 100vw, 1200px"
+                className="object-contain"
+                sizes="100vw"
                 priority
               />
             </div>
           </div>
 
-          {/* Overlay Layer: Blue Dial Watch (Left Side, Clipped) */}
+          {/* Overlay Layer: Blue Dial Watch (Clipped via position percentage) */}
           <div
-            className="absolute inset-y-0 left-0 overflow-hidden"
+            className="absolute inset-y-0 left-0 overflow-hidden z-10"
             style={{ width: `${position}%` }}
           >
-            {/* The inner container must retain the full width of the parent so the image does not stretch */}
+            {/* The inner div matches containerWidth exactly so images overlay dead-center */}
             <div
-              className="absolute inset-y-0 left-0 p-3 sm:p-5 md:p-6 flex items-center justify-center"
-              style={{ width: containerRef.current?.getBoundingClientRect().width || "100%" }}
+              className="absolute inset-y-0 left-0 h-full flex items-center justify-center p-6 md:p-10"
+              style={{ width: containerWidth ? `${containerWidth}px` : "100vw" }}
             >
-              <div className="relative w-full h-full">
+              <div className="relative w-full h-full max-w-xl mx-auto">
                 <Image
                   src="/images/new-content/new-1/escort womens/E-7931/E-7931.RGM_Blue.png"
-                  alt="Blue Dial Variant"
+                  alt="Ocean Blue Dial Variant"
                   fill
-                  className="object-contain scale-[1.28] origin-center"
-                  sizes="(max-width: 1300px) 100vw, 1200px"
+                  className="object-contain"
+                  sizes="100vw"
                   priority
                 />
               </div>
             </div>
           </div>
 
-          {/* Vertical Slider Line & Circular Handle */}
+          {/* Vertical Slider Divider Line & Drag Handle */}
           <div
-            className="absolute inset-y-0 z-20 w-[2px] bg-white cursor-ew-resize flex items-center justify-center"
+            className="absolute inset-y-0 z-20 w-[2px] bg-white cursor-ew-resize flex items-center justify-center pointer-events-none"
             style={{ left: `${position}%` }}
           >
-            <div className="w-10 h-10 rounded-full bg-white shadow-md border border-neutral-200 flex items-center justify-center text-neutral-600 hover:text-black transition-colors pointer-events-none">
+            <div className="w-10 h-10 rounded-full bg-white shadow-xl border border-neutral-300 flex items-center justify-center text-[#1A1918]">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                 <path d="M8 19l-7-7 7-7M16 5l7 7-7 7" />
               </svg>
             </div>
           </div>
 
-          {/* Bottom Left Label: Blue Dial */}
-          <div className="absolute bottom-6 left-6 z-30 text-left">
-            <span className="font-montserrat text-[14px] font-bold text-[#1A1918] block mb-1">
+          {/* Bottom Left Label: Ocean Blue Dial */}
+          <div className="absolute bottom-6 left-6 md:left-8 z-30 text-left bg-white/70 backdrop-blur-md px-4 py-2.5 rounded-sm border border-black/5">
+            <span className="font-montserrat text-[14px] font-medium text-[#1A1918] block mb-1">
               Ocean Blue Dial
             </span>
             <Link
               href="/product/escort-7931"
-              className="font-montserrat text-[9px] tracking-[0.2em] text-[#003926] uppercase font-bold hover:underline"
+              className="font-montserrat text-[11px] tracking-[0.15em] text-[#003926] uppercase font-medium hover:underline"
             >
               Shop Now
             </Link>
           </div>
 
-          {/* Bottom Right Label: White Dial */}
-          <div className="absolute bottom-6 right-6 z-30 text-right">
-            <span className="font-montserrat text-[14px] font-bold text-[#1A1918] block mb-1">
+          {/* Bottom Right Label: Alabaster White Dial */}
+          <div className="absolute bottom-6 right-6 md:right-8 z-30 text-right bg-white/70 backdrop-blur-md px-4 py-2.5 rounded-sm border border-black/5">
+            <span className="font-montserrat text-[14px] font-medium text-[#1A1918] block mb-1">
               Alabaster White Dial
             </span>
             <Link
               href="/product/escort-7931"
-              className="font-montserrat text-[9px] tracking-[0.2em] text-[#003926] uppercase font-bold hover:underline"
+              className="font-montserrat text-[11px] tracking-[0.15em] text-[#003926] uppercase font-medium hover:underline"
             >
               Shop Now
             </Link>
