@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export default function HeroSection() {
   return (
-    <section className="relative h-screen w-full flex items-center overflow-hidden bg-[#040806] select-none">
+    <section className="relative h-[130vh] min-h-[750px] md:min-h-[950px] w-full flex items-center overflow-hidden bg-[#040806] select-none">
       {/* 1. Dedicated Right-Side Watch Container (Fixes Black Strip & Positions Watch on Right) */}
       <div className="absolute right-0 top-0 bottom-0 w-full lg:w-[58%] h-full z-0 pointer-events-none">
         <Image
