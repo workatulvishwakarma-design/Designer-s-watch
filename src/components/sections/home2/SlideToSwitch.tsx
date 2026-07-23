@@ -89,10 +89,10 @@ export default function SlideToSwitch() {
           </span>
         </div>
 
-        {/* Full-Width Slider Canvas Box (Height Increased by 25%) */}
+        {/* Full-Width Slider Canvas Box (Height Increased with Padding for Breathing Room) */}
         <div
           ref={containerRef}
-          className="relative w-full h-[75vh] min-h-[525px] max-h-[850px] overflow-hidden bg-[#EAE8E4] border border-[#E0D8CE] shadow-sm cursor-ew-resize rounded-sm"
+          className="relative w-full h-[80vh] min-h-[580px] max-h-[900px] overflow-hidden bg-[#EAE8E4] border border-[#E0D8CE] shadow-sm cursor-ew-resize rounded-sm"
           onMouseDown={(e) => {
             isDragging.current = true;
             handleMove(e.clientX);
@@ -103,7 +103,7 @@ export default function SlideToSwitch() {
           }}
         >
           {/* Base Layer: White Dial Watch (Right Side, Fixed Center) */}
-          <div className="absolute inset-0 w-full h-full flex items-center justify-center p-2 md:p-4">
+          <div className="absolute inset-0 w-full h-full flex items-center justify-center py-10 md:py-14 px-4">
             <div className="relative w-full h-full max-w-2xl lg:max-w-3xl mx-auto">
               <Image
                 src="/images/new-content/new-1/escort womens/E-7931/E-7931.RGM_White.png"
@@ -123,7 +123,7 @@ export default function SlideToSwitch() {
           >
             {/* The inner div matches containerWidth exactly so images overlay dead-center */}
             <div
-              className="absolute inset-y-0 left-0 h-full flex items-center justify-center p-2 md:p-4"
+              className="absolute inset-y-0 left-0 h-full flex items-center justify-center py-10 md:py-14 px-4"
               style={{ width: containerWidth ? `${containerWidth}px` : "100vw" }}
             >
               <div className="relative w-full h-full max-w-2xl lg:max-w-3xl mx-auto">
