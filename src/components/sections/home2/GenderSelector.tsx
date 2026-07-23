@@ -3,14 +3,20 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 export default function GenderSelector() {
   const [hoveredCard, setHoveredCard] = useState<"men" | "women" | null>(null);
 
   return (
     <section className="w-full bg-[#FAF8F4] overflow-hidden">
-      <div className="flex flex-col md:flex-row w-full h-[650px] sm:h-[750px] md:h-[82vh] lg:h-[88vh] min-h-[550px] md:min-h-[700px]">
-        
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-80px" }}
+        transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+        className="flex flex-col md:flex-row w-full h-[650px] sm:h-[750px] md:h-[82vh] lg:h-[88vh] min-h-[550px] md:min-h-[700px]"
+      >
         {/* Left Card: MEN */}
         <Link
           href="/collections/men"
@@ -51,7 +57,13 @@ export default function GenderSelector() {
           />
 
           {/* Centered Overlay Content */}
-          <div className="absolute inset-0 z-20 flex flex-col items-center justify-end pb-14 sm:pb-20 md:pb-24 px-6 text-center text-white pointer-events-none">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="absolute inset-0 z-20 flex flex-col items-center justify-end pb-14 sm:pb-20 md:pb-24 px-6 text-center text-white pointer-events-none"
+          >
             <h2
               className={`font-montserrat font-bold uppercase leading-none mb-4 transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] ${
                 hoveredCard === "men"
@@ -92,7 +104,7 @@ export default function GenderSelector() {
                 />
               </svg>
             </div>
-          </div>
+          </motion.div>
         </Link>
 
         {/* Right Card: WOMEN */}
@@ -135,7 +147,13 @@ export default function GenderSelector() {
           />
 
           {/* Centered Overlay Content */}
-          <div className="absolute inset-0 z-20 flex flex-col items-center justify-end pb-14 sm:pb-20 md:pb-24 px-6 text-center text-white pointer-events-none">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="absolute inset-0 z-20 flex flex-col items-center justify-end pb-14 sm:pb-20 md:pb-24 px-6 text-center text-white pointer-events-none"
+          >
             <h2
               className={`font-montserrat font-bold uppercase leading-none mb-4 transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] ${
                 hoveredCard === "women"
@@ -176,10 +194,11 @@ export default function GenderSelector() {
                 />
               </svg>
             </div>
-          </div>
+          </motion.div>
         </Link>
 
-      </div>
+      </motion.div>
     </section>
   );
 }
+

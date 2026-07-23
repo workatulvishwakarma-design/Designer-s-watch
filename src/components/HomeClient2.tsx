@@ -1,6 +1,7 @@
 "use client";
 
 import LoadingScreen from "@/components/LoadingScreen";
+import SmoothScrolling from "@/components/SmoothScrolling";
 import HeroSection from "@/components/sections/home2/HeroSection";
 import GenderSelector from "@/components/sections/home2/GenderSelector";
 import BrandClubs from "@/components/sections/home2/BrandClubs";
@@ -17,7 +18,7 @@ interface HomeClient2Props {
 
 export default function HomeClient2({ menFamilies, womenFamilies }: HomeClient2Props) {
   return (
-    <>
+    <SmoothScrolling>
       <LoadingScreen />
       <main className="min-h-screen bg-[#FAF8F4] overflow-hidden">
         {/* === 1. Full-screen luxury hero banner === */}
@@ -41,6 +42,7 @@ export default function HomeClient2({ menFamilies, womenFamilies }: HomeClient2P
         {/* === 7. Slide to Switch interactive color slider === */}
         <SlideToSwitch />
       </main>
-    </>
+    </SmoothScrolling>
   );
 }
+

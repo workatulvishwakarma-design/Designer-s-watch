@@ -5,113 +5,135 @@ import Image from "next/image";
 
 export default function HeroSection() {
   return (
-    <section className="relative h-screen w-full flex items-center justify-center overflow-hidden bg-black">
-      {/* Background Image with Cinematic Zoom */}
-      <motion.div
-        initial={{ scale: 1.15, opacity: 0 }}
-        animate={{ scale: 1, opacity: 0.85 }}
-        transition={{ duration: 2.2, ease: [0.16, 1, 0.3, 1] }}
-        className="absolute inset-0 w-full h-full"
-      >
-        <Image
-          src="/img/home1.PNG"
-          alt="Luxury Watch Background"
-          fill
-          priority
-          className="object-cover object-center"
-        />
-      </motion.div>
+    <section className="relative h-screen w-full flex items-center overflow-hidden bg-[#040806] select-none">
+      {/* 1. Deep Radial Dark Emerald Glow on Right Side */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_70%_50%,rgba(0,70,45,0.45)_0%,rgba(0,30,20,0.2)_50%,transparent_75%)] pointer-events-none z-0" />
 
-      {/* Luxury Dark Green Overlay & Gradients */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent z-10" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,57,38,0.35)_0%,transparent_80%)] z-10" />
-
-      {/* Cinematic Grain Overlay */}
-      <div className="absolute inset-0 pointer-events-none z-20 opacity-[0.02]">
-        <svg width="100%" height="100%" aria-hidden>
-          <filter id="hero-grain">
-            <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" stitchTiles="stitch" />
-            <feColorMatrix type="saturate" values="0" />
-          </filter>
-          <rect width="100%" height="100%" filter="url(#hero-grain)" />
+      {/* 2. Concentric Orbit Circles behind Watch */}
+      <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[70%] h-[120%] pointer-events-none z-0 opacity-40">
+        <svg viewBox="0 0 800 800" className="w-full h-full">
+          <circle cx="550" cy="400" r="320" fill="none" stroke="#D4C5A0" strokeWidth="0.75" strokeDasharray="4 6" opacity="0.3" />
+          <circle cx="550" cy="400" r="260" fill="none" stroke="#005032" strokeWidth="1" opacity="0.4" />
+          <circle cx="550" cy="400" r="200" fill="none" stroke="#D4C5A0" strokeWidth="0.5" opacity="0.25" />
         </svg>
       </div>
 
-      {/* Core Hero Content */}
-      <div className="relative z-30 max-w-5xl mx-auto px-6 text-center flex flex-col items-center">
-        {/* Subtle Gold Subtitle */}
-        <motion.span
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="font-montserrat text-[11px] tracking-[0.3em] uppercase text-[#D4C5A0] font-semibold mb-6 block"
-        >
-          FOUR GENERATIONS OF PRECISION
-        </motion.span>
-
-        {/* Floating Heading */}
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="font-cormorant text-[45px] sm:text-[68px] md:text-[85px] text-white font-light leading-[1.08] tracking-tight max-w-4xl"
-        >
-          A Legacy Crafted <br />
-          <span className="italic font-normal text-[#D4C5A0]">For Eternity.</span>
-        </motion.h1>
-
-        {/* Minimal Description */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 0.7 }}
-          transition={{ duration: 1.2, delay: 0.9 }}
-          className="font-montserrat text-[14px] sm:text-[16px] text-white font-medium max-w-md mt-6 leading-relaxed tracking-wide"
-        >
-          Discover hand-assembled luxury timepieces engineered with horological mastery and timeless sophistication.
-        </motion.p>
-
-        {/* Luxury CTA Button */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.1 }}
-          className="mt-10 flex flex-col sm:flex-row gap-4"
-        >
-          <a
-            href="#featured-collections"
-            className="group px-10 py-4 rounded-full font-montserrat text-[12px] tracking-[0.18em] uppercase text-white bg-[#003926] font-bold border border-[#D4C5A0]/30 hover:border-[#D4C5A0] hover:bg-transparent shadow-2xl transition-all duration-500 hover:-translate-y-0.5"
-          >
-            Explore Masterpieces
-          </a>
-          <a
-            href="#story"
-            className="group px-10 py-4 rounded-full font-montserrat text-[12px] tracking-[0.18em] uppercase text-[#D4C5A0] font-bold border border-[#D4C5A0]/20 hover:border-[#D4C5A0] hover:text-white transition-all duration-500 hover:-translate-y-0.5"
-          >
-            The Heritage
-          </a>
-        </motion.div>
+      {/* 3. Top Header Elements (Logo Top-Left, Dots Top-Right) */}
+      <div className="absolute top-6 left-6 md:top-8 md:left-12 z-40 flex items-center gap-3">
+        <div className="w-8 h-8 rounded-full border border-[#D4C5A0]/50 flex items-center justify-center text-[#D4C5A0] font-serif text-[12px] font-bold tracking-tighter bg-black/30 backdrop-blur-sm">
+          D
+        </div>
       </div>
 
-      {/* Floating Scroll Indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 0.6 }}
-        transition={{ delay: 1.6, duration: 1 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center gap-2 cursor-pointer"
-        onClick={() => {
-          const el = document.getElementById("featured-collections");
-          if (el) el.scrollIntoView({ behavior: "smooth" });
-        }}
-      >
-        <span className="font-montserrat text-[9px] tracking-[0.2em] text-[#D4C5A0]/80 uppercase font-semibold">Scroll Down</span>
-        <div className="w-[1px] h-10 bg-gradient-to-b from-[#D4C5A0]/60 to-transparent relative overflow-hidden">
+      <div className="absolute top-6 right-6 md:top-8 md:right-12 z-40 flex items-center gap-1.5 opacity-80">
+        <span className="w-1.5 h-1.5 rounded-full bg-[#D4C5A0]" />
+        <span className="w-1.5 h-1.5 rounded-full bg-[#D4C5A0]" />
+        <span className="w-1.5 h-1.5 rounded-full bg-[#D4C5A0]" />
+      </div>
+
+      {/* 4. Left Side Core Hero Content */}
+      <div className="relative z-30 w-full max-w-7xl mx-auto px-6 md:px-12 lg:px-20 flex flex-col justify-center">
+        <div className="max-w-xl text-left">
+          
+          {/* Small Top Subtitle */}
           <motion.div
-            animate={{ y: ["-100%", "100%"] }}
-            transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-            className="absolute top-0 left-0 w-full h-1/2 bg-[#D4C5A0]"
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="flex items-center gap-3 mb-6"
+          >
+            <span className="font-montserrat text-[10px] sm:text-[11px] tracking-[0.35em] uppercase text-[#D4C5A0] font-medium">
+              FOUR GENERATIONS OF PRECISION
+            </span>
+          </motion.div>
+
+          {/* Main Heading (Refined, smaller & elegant as requested) */}
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            className="font-cormorant text-[38px] sm:text-[48px] md:text-[56px] lg:text-[62px] text-white font-normal leading-[1.08] tracking-tight"
+          >
+            A Legacy Crafted <br />
+            <span className="italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#F5E7C6] via-[#D4C5A0] to-[#B89855]">
+              For Eternity.
+            </span>
+          </motion.h1>
+
+          {/* Short Horizontal Accent Line */}
+          <motion.div
+            initial={{ opacity: 0, width: 0 }}
+            animate={{ opacity: 0.6, width: "40px" }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="h-[1.5px] bg-[#D4C5A0] my-6"
           />
+
+          {/* Minimal Subtitle */}
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 0.85 }}
+            transition={{ duration: 1, delay: 0.7 }}
+            className="font-montserrat text-[13px] sm:text-[14px] text-white/80 font-light tracking-wide mb-8"
+          >
+            Timeless craftsmanship. Enduring heritage.
+          </motion.p>
+
+          {/* Luxury Sharp Rectangular CTA Button */}
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.9 }}
+          >
+            <a
+              href="#featured-collections"
+              className="inline-flex items-center gap-3 px-7 py-3.5 font-montserrat text-[11px] tracking-[0.22em] uppercase text-[#D4C5A0] font-semibold bg-[#031A12]/80 border border-[#D4C5A0]/40 hover:border-[#D4C5A0] hover:bg-[#002B1D] hover:text-white shadow-xl transition-all duration-300"
+            >
+              <span>EXPLORE COLLECTION</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M9 18l6-6-6-6" />
+              </svg>
+            </a>
+          </motion.div>
+
         </div>
+      </div>
+
+      {/* 5. Right Side Watch Showcase Image */}
+      <motion.div
+        initial={{ opacity: 0, x: 50, scale: 0.95 }}
+        animate={{ opacity: 1, x: 0, scale: 1 }}
+        transition={{ duration: 1.8, ease: [0.16, 1, 0.3, 1] }}
+        className="absolute right-[-8%] sm:right-[-2%] md:right-[2%] lg:right-[4%] top-1/2 -translate-y-1/2 w-[72%] sm:w-[62%] md:w-[54%] lg:w-[50%] h-[85%] pointer-events-none z-10 flex items-center justify-center [mask-image:radial-gradient(ellipse_at_center,black_70%,transparent_100%)]"
+      >
+        <Image
+          src="/img/watch-hero-cutout.png"
+          alt="Luxury D'Signer Rose Gold Timepiece"
+          fill
+          priority
+          className="object-contain object-right drop-shadow-[0_25px_60px_rgba(0,0,0,0.9)]"
+        />
       </motion.div>
+
+      {/* 6. Bottom Corner Badges */}
+      {/* Bottom Left Circle Badge */}
+      <div className="absolute bottom-6 left-6 md:bottom-8 md:left-12 z-40">
+        <div className="w-8 h-8 rounded-full border border-white/20 bg-black/30 backdrop-blur-sm flex items-center justify-center text-white/70 font-montserrat text-[11px] font-medium">
+          N
+        </div>
+      </div>
+
+      {/* Bottom Right Floating Chat / Support Icon */}
+      <div className="absolute bottom-6 right-6 md:bottom-8 md:right-12 z-40">
+        <button
+          aria-label="Contact Support"
+          className="w-11 h-11 rounded-full border border-[#D4C5A0]/40 bg-black/50 backdrop-blur-md flex items-center justify-center text-[#D4C5A0] hover:border-[#D4C5A0] hover:bg-[#002B1D] hover:text-white transition-all shadow-lg cursor-pointer"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+          </svg>
+        </button>
+      </div>
     </section>
   );
 }
+

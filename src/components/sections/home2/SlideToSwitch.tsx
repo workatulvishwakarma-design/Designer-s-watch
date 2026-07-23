@@ -3,6 +3,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 export default function SlideToSwitch() {
   const [position, setPosition] = useState(50); // percentage 0-100
@@ -49,7 +50,13 @@ export default function SlideToSwitch() {
   }, []);
 
   return (
-    <section className="bg-[#FAF8F4] py-16 md:py-24 overflow-hidden select-none border-b border-[#E5E0D8]">
+    <motion.section
+      initial={{ opacity: 0, y: 35 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+      className="bg-[#FAF8F4] py-16 md:py-24 overflow-hidden select-none border-b border-[#E5E0D8]"
+    >
       <div className="max-w-[1300px] mx-auto px-6 sm:px-10">
         
         {/* Section Title */}
@@ -65,7 +72,7 @@ export default function SlideToSwitch() {
         {/* Slider Canvas Container */}
         <div
           ref={containerRef}
-          className="relative w-full aspect-[16/9] md:aspect-[21/9] rounded-md overflow-hidden bg-[#EAE8E4] border border-[#E0D8CE] shadow-sm cursor-ew-resize"
+          className="relative w-full aspect-[16/9] md:aspect-[21/9] overflow-hidden bg-[#EAE8E4] border border-[#E0D8CE] shadow-sm cursor-ew-resize"
           onMouseDown={(e) => {
             isDragging.current = true;
             handleMove(e.clientX);
@@ -153,6 +160,6 @@ export default function SlideToSwitch() {
         </div>
 
       </div>
-    </section>
+    </motion.section>
   );
 }

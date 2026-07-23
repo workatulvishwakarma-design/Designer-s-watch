@@ -93,7 +93,7 @@ export default function StoryGridStats() {
 
           <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-stretch">
             {/* Left Column: Large Image (col-span-8) */}
-            <div className="md:col-span-8 relative aspect-[4/3] sm:aspect-[16/10] md:aspect-[4/3] rounded-sm overflow-hidden shadow-lg bg-neutral-100 group">
+            <div className="md:col-span-8 relative aspect-[4/3] sm:aspect-[16/10] md:aspect-[4/3] overflow-hidden shadow-lg bg-neutral-100 group">
               <Image
                 src="/images/new-content/home2-story-chrono.png"
                 alt="Luxury Chronographs"
@@ -115,7 +115,7 @@ export default function StoryGridStats() {
             <div className="md:col-span-4 flex flex-col justify-between gap-4">
               
               {/* Top stack item */}
-              <div className="relative aspect-[4/3] rounded-sm overflow-hidden shadow-lg bg-neutral-100 group flex-grow">
+              <div className="relative aspect-[4/3] overflow-hidden shadow-lg bg-neutral-100 group flex-grow">
                 <Image
                   src="/images/new-content/home2-story-dress.png"
                   alt="Elegant Dress Series"
@@ -133,7 +133,7 @@ export default function StoryGridStats() {
               </div>
 
               {/* Bottom stack item */}
-              <div className="relative aspect-[4/3] rounded-sm overflow-hidden shadow-lg bg-neutral-100 group flex-grow">
+              <div className="relative aspect-[4/3] overflow-hidden shadow-lg bg-neutral-100 group flex-grow">
                 <Image
                   src="/images/new-content/home2-showcase.png"
                   alt="Performance Sports Diver"
