@@ -47,113 +47,50 @@ function CountUpStat({ target, suffix = "+" }: { target: number; suffix?: string
 }
 
 export default function StoryGridStats() {
+  const teamImages = [
+    { src: "/images/new-content/home2-story-chrono.png", alt: "Nagpal Group Team Legacy 1" },
+    { src: "/images/new-content/home2-story-dress.png", alt: "Nagpal Group Team Legacy 2" },
+    { src: "/images/new-content/home2-showcase.png", alt: "Nagpal Group Team Legacy 3" },
+  ];
+
   return (
-    <section className="bg-[#FAF8F4] pt-24 pb-0 overflow-hidden relative">
-      <div className="max-w-[1300px] mx-auto px-6 sm:px-10">
+    <section className="bg-[#FAF8F4] py-10 md:py-14 overflow-hidden relative border-t border-[#003926]/5">
+      <div className="max-w-[1380px] mx-auto px-6 sm:px-10">
         
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 md:mb-20">
+        {/* Section Header - Miraggio Spec: Montserrat H2 40px/26px */}
+        <div className="text-center max-w-xl mx-auto mb-8">
           <motion.h2
-            initial={{ opacity: 0, y: 15 }}
+            initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="font-montserrat text-[36px] sm:text-[44px] font-bold text-[#1A1918] tracking-[0.1em] uppercase leading-none mb-4"
+            className="font-montserrat text-[26px] md:text-[40px] font-medium text-[#1A1918] tracking-[-0.01em] uppercase leading-[1.2]"
           >
-            Our Story
+            OUR HERITAGE
           </motion.h2>
-          
-          <motion.span
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.15 }}
-            className="font-montserrat text-[10px] tracking-[0.25em] text-[#B8935A] font-bold block mb-8 uppercase"
-          >
-            Crafting timepieces that balance precision, purpose, and individuality.
-          </motion.span>
-          
-          <motion.p
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="font-montserrat text-[13px] sm:text-[14px] text-[#5C5750] font-medium leading-[1.9] max-w-2xl mx-auto"
-          >
-            Rooted in a legacy of precision, we translate horological vision into a distinct design language—layered with brushed metals, refined dial textures, and thoughtfully curated components. From sketch to final calibration, every detail is carefully considered to create watches that feel elevated, reliable, and uniquely personal, with a sense of effortless harmony.
-          </motion.p>
         </div>
 
-        {/* Categories of Work Collage with Left Side Vertical Label */}
-        <div className="relative pl-8 sm:pl-12 w-full">
-          {/* Vertical Left Label */}
-          <div className="absolute left-0 top-1/2 -translate-y-1/2 -rotate-90 origin-left font-montserrat text-[9px] sm:text-[10px] tracking-[0.4em] uppercase text-[#003926]/40 font-bold whitespace-nowrap hidden sm:block">
-            Categories of Craft
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-stretch">
-            {/* Left Column: Large Image (col-span-8) */}
-            <div className="md:col-span-8 relative aspect-[4/3] sm:aspect-[16/10] md:aspect-[4/3] overflow-hidden shadow-lg bg-neutral-100 group">
+        {/* Clean Team & Legacy Image Gallery Grid (No Heavy Paragraph Text) */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 items-stretch">
+          {teamImages.map((img, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: idx * 0.12 }}
+              className="relative aspect-[4/3] rounded-sm overflow-hidden bg-neutral-200 shadow-md group"
+            >
               <Image
-                src="/images/new-content/home2-story-chrono.png"
-                alt="Luxury Chronographs"
+                src={img.src}
+                alt={img.alt}
                 fill
-                className="object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-103"
-                sizes="(max-width: 768px) 100vw, 65vw"
+                sizes="(max-width: 768px) 100vw, 33vw"
+                className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10" />
-              
-              {/* Bottom Label overlay */}
-              <div className="absolute bottom-6 left-6 z-20 text-white">
-                <span className="font-cormorant italic text-[24px] sm:text-[30px] font-medium leading-none block">
-                  Luxury Chronographs
-                </span>
-              </div>
-            </div>
-
-            {/* Right Column: Two Stacked Images (col-span-4) */}
-            <div className="md:col-span-4 flex flex-col justify-between gap-4">
-              
-              {/* Top stack item */}
-              <div className="relative aspect-[4/3] overflow-hidden shadow-lg bg-neutral-100 group flex-grow">
-                <Image
-                  src="/images/new-content/home2-story-dress.png"
-                  alt="Elegant Dress Series"
-                  fill
-                  className="object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-103"
-                  sizes="(max-width: 768px) 100vw, 30vw"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10" />
-                
-                <div className="absolute bottom-5 left-5 z-20 text-white">
-                  <span className="font-cormorant italic text-[20px] sm:text-[24px] font-medium leading-none block">
-                    Elegant Dress Series
-                  </span>
-                </div>
-              </div>
-
-              {/* Bottom stack item */}
-              <div className="relative aspect-[4/3] overflow-hidden shadow-lg bg-neutral-100 group flex-grow">
-                <Image
-                  src="/images/new-content/home2-showcase.png"
-                  alt="Performance Sports Diver"
-                  fill
-                  className="object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-103"
-                  sizes="(max-width: 768px) 100vw, 30vw"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10" />
-                
-                <div className="absolute bottom-5 left-5 z-20 text-white">
-                  <span className="font-cormorant italic text-[20px] sm:text-[24px] font-medium leading-none block">
-                    Performance Sports Diver
-                  </span>
-                </div>
-              </div>
-
-            </div>
-          </div>
+            </motion.div>
+          ))}
         </div>
-
       </div>
 
       {/* Animated Stats Counter Row */}

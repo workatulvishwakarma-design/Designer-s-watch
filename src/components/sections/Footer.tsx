@@ -108,9 +108,9 @@ export default function Footer() {
                     {/* Editorial Link Masonry (Right) */}
                     <div className="lg:w-[65%] flex flex-wrap md:flex-nowrap justify-between gap-16 lg:gap-8">
                         {/* Collections */}
-                        <motion.div variants={itemVariants} className="flex flex-col gap-10">
-                            <h6 className="text-[#001F14] text-[10px] tracking-[0.3em] uppercase font-bold font-body">Collections</h6>
-                            <nav className="flex flex-col gap-5 text-[13px] font-body tracking-[0.1em] text-[#003926]/70 uppercase font-medium">
+                        <motion.div variants={itemVariants} className="flex flex-col gap-8">
+                            <h6 className="text-[#001F14] text-[15px] md:text-[16px] tracking-[0.1em] uppercase font-medium font-montserrat">Collections</h6>
+                            <nav className="flex flex-col gap-4 text-[13px] md:text-[14px] leading-[1.5] font-montserrat tracking-[0.04em] text-[#003926]/70 uppercase font-normal">
                                 <Link href="/collections/dsigner" className="hover:text-[#001F14] transition-colors duration-500 w-fit relative group/link">D'Signer Core<span className="absolute -bottom-1 left-0 w-0 h-px bg-[#003926] group-hover/link:w-full transition-all duration-500" /></Link>
                                 <Link href="/collections/escort" className="hover:text-[#001F14] transition-colors duration-500 w-fit relative group/link">Escort Series<span className="absolute -bottom-1 left-0 w-0 h-px bg-[#003926] group-hover/link:w-full transition-all duration-500" /></Link>
                                 <Link href="/collections/men" className="hover:text-[#001F14] transition-colors duration-500 w-fit relative group/link">Men's Timepieces<span className="absolute -bottom-1 left-0 w-0 h-px bg-[#003926] group-hover/link:w-full transition-all duration-500" /></Link>
@@ -119,9 +119,9 @@ export default function Footer() {
                         </motion.div>
 
                         {/* The Maison */}
-                        <motion.div variants={itemVariants} className="flex flex-col gap-10">
-                            <h6 className="text-[#001F14] text-[10px] tracking-[0.3em] uppercase font-bold font-body">The Maison</h6>
-                            <nav className="flex flex-col gap-6 text-[13px] font-body tracking-[0.1em] text-[#003926]/70 uppercase font-medium">
+                        <motion.div variants={itemVariants} className="flex flex-col gap-8">
+                            <h6 className="text-[#001F14] text-[15px] md:text-[16px] tracking-[0.1em] uppercase font-medium font-montserrat">The Maison</h6>
+                            <nav className="flex flex-col gap-4 text-[13px] md:text-[14px] leading-[1.5] font-montserrat tracking-[0.04em] text-[#003926]/70 uppercase font-normal">
                                 <Link href="/about" className="hover:text-[#001F14] transition-colors duration-500 w-fit">Our Heritage</Link>
                                 <Link href="/nagpal-group" className="hover:text-[#001F14] transition-colors duration-500 w-fit">Pillars</Link>
                                 <Link href="/about#expertise" className="hover:text-[#001F14] transition-colors duration-500 w-fit">Craftsmanship</Link>
@@ -129,9 +129,9 @@ export default function Footer() {
                         </motion.div>
 
                         {/* Client Services */}
-                        <motion.div variants={itemVariants} className="flex flex-col gap-10">
-                            <h6 className="text-[#001F14] text-[10px] tracking-[0.3em] uppercase font-bold font-body">Client Services</h6>
-                            <nav className="flex flex-col gap-6 text-[13px] font-body tracking-[0.1em] text-[#003926]/70 uppercase font-medium">
+                        <motion.div variants={itemVariants} className="flex flex-col gap-8">
+                            <h6 className="text-[#001F14] text-[15px] md:text-[16px] tracking-[0.1em] uppercase font-medium font-montserrat">Client Services</h6>
+                            <nav className="flex flex-col gap-4 text-[13px] md:text-[14px] leading-[1.5] font-montserrat tracking-[0.04em] text-[#003926]/70 uppercase font-normal">
                                 <Link href="/contact" className="hover:text-[#001F14] transition-colors duration-500 w-fit">Contact Us</Link>
                                 <Link href="/faq" className="hover:text-[#001F14] transition-colors duration-500 w-fit">FAQ</Link>
                                 <Link href="/service" className="hover:text-[#001F14] transition-colors duration-500 w-fit">Watch Service</Link>
@@ -140,9 +140,9 @@ export default function Footer() {
                         </motion.div>
 
                         {/* Legal */}
-                        <motion.div variants={itemVariants} className="flex flex-col gap-10">
-                            <h6 className="text-[#001F14] text-[10px] tracking-[0.3em] uppercase font-bold font-body">Legal</h6>
-                            <nav className="flex flex-col gap-6 text-[13px] font-body tracking-[0.1em] text-[#003926]/70 uppercase font-medium">
+                        <motion.div variants={itemVariants} className="flex flex-col gap-8">
+                            <h6 className="text-[#001F14] text-[15px] md:text-[16px] tracking-[0.1em] uppercase font-medium font-montserrat">Legal</h6>
+                            <nav className="flex flex-col gap-4 text-[13px] md:text-[14px] leading-[1.5] font-montserrat tracking-[0.04em] text-[#003926]/70 uppercase font-normal">
                                 <Link href="/privacy-policy" className="hover:text-[#001F14] transition-colors duration-500 w-fit">Privacy</Link>
                                 <Link href="/terms-and-conditions" className="hover:text-[#001F14] transition-colors duration-500 w-fit">Terms</Link>
                                 <Link href="/return-cancellation-policy" className="hover:text-[#001F14] transition-colors duration-500 w-fit">Returns</Link>

@@ -3,99 +3,124 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import { Plus, Check } from "lucide-react";
+import { useState } from "react";
+import { useCartStore } from "@/lib/store/cart";
+import { allModelFamilies } from "@/data/productData";
 
 export default function WatchShowcase() {
+  const { addItem, setIsOpen } = useCartStore();
+  const [addedSlug, setAddedSlug] = useState<string | null>(null);
+
+  // Take top 8 featured watch families
+  const featuredProducts = allModelFamilies.slice(0, 8);
+
+  const handleQuickAdd = (product: typeof featuredProducts[0]) => {
+    const mainImage = product.variants[0]?.gallery?.primary || "/images/new-content/home2-showcase.png";
+    const price = product.priceRange?.min || 14999;
+
+    addItem({
+      productId: product.slug,
+      name: product.name,
+      price: price,
+      quantity: 1,
+      image: mainImage,
+      slug: product.slug,
+    });
+
+    setAddedSlug(product.slug);
+    setIsOpen(true);
+
+    setTimeout(() => {
+      setAddedSlug(null);
+    }, 1800);
+  };
+
   return (
-    <section className="relative overflow-hidden text-white" style={{ background: "#003926" }}>
-      {/* Background ambient circular shadows */}
-      <div className="absolute top-1/2 left-[10%] w-[600px] h-[600px] pointer-events-none opacity-[0.08] blur-[150px]"
-        style={{ background: "radial-gradient(circle, rgba(212,197,160,0.5), transparent)" }}
-      />
-
-      {/* Subtle pattern overlay */}
-      <div className="absolute inset-0 pointer-events-none opacity-[0.02]"
-        style={{ backgroundImage: "radial-gradient(circle at 1px 1px, #D4C5A0 0.3px, transparent 0)", backgroundSize: "35px 35px" }}
-      />
-
-      <div className="max-w-[1400px] mx-auto px-6 sm:px-10 py-24 md:py-32 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-
-          {/* LEFT: Cinematic Water Splash Ad (7 cols) */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-7 relative w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl bg-[#082017]"
-          >
-            <Image
-              src="/images/new-content/home2-showcase.png"
-              alt="Bespoke Royal Blue Tourbillon"
-              fill
-              className="object-cover transition-transform duration-700 ease-out hover:scale-103"
-              sizes="(max-width: 1024px) 100vw, 60vw"
-            />
-            <div className="absolute inset-0 border border-[#D4C5A0]/10 rounded-2xl pointer-events-none" />
-            
-            {/* Corner badge */}
-            <div className="absolute top-5 left-5 z-10">
-              <span className="font-dm text-[8px] tracking-[0.2em] uppercase text-[#D4C5A0] bg-[#003926]/70 backdrop-blur-sm px-3 py-1.5 rounded-full border border-[#D4C5A0]/20">
-                Limited Edition
-              </span>
-            </div>
-          </motion.div>
-
-          {/* RIGHT: Flagship Spec Sheet & Buy CTA (5 cols) */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.15 }}
-            className="lg:col-span-5 flex flex-col items-start relative z-10"
-          >
-            <span className="font-dm text-[10px] tracking-[0.3em] text-[#D4C5A0] font-bold block mb-4 uppercase">
-              ✦ FLAGSHIP SHOWCASE
+    <section id="featured-products" className="w-full py-16 md:py-24 bg-[#FAF8F4] select-none">
+      <div className="max-w-[1440px] mx-auto px-6 md:px-12">
+        {/* Section Header - Miraggio H2 Spec: Desktop 40px, Mobile 26px, Line Height 120%, Letter Spacing -0.01em, Weight 500 */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 border-b border-[#003926]/10 pb-6">
+          <div>
+            <span className="font-montserrat text-[11px] md:text-[12px] tracking-[0.2em] uppercase text-[#003926] font-semibold block mb-2">
+              CURATED TIMEPIECES
             </span>
-            <h2 className="font-cormorant text-[36px] sm:text-[50px] leading-[1.15] font-light mb-2">
-              The Royal Ocean
+            <h2 className="font-montserrat text-[26px] md:text-[40px] font-medium leading-[1.2] tracking-[-0.01em] text-[#1A1918]">
+              Flagship Collection
             </h2>
-            <h3 className="font-cormorant text-[28px] sm:text-[38px] leading-[1.15] font-light italic text-[#D4C5A0] mb-6">
-              Diver Special Edition
-            </h3>
-            <div className="w-16 h-[1px] bg-[#D4C5A0] mb-8" />
+          </div>
+          <Link
+            href="/collections/dsigner"
+            className="font-montserrat text-[13px] md:text-[14px] font-medium tracking-[0.04em] uppercase text-[#003926] hover:text-[#B8935A] transition-colors mt-4 md:mt-0 inline-flex items-center gap-2"
+          >
+            <span>View All Models</span>
+            <span>→</span>
+          </Link>
+        </div>
 
-            <p className="font-dm text-[14px] text-white/65 leading-[1.85] mb-8">
-              Engineered for extreme performance and unmatched aesthetic elegance. Featuring a sunburst royal blue dial, custom machined gold markers, and a reinforced 300m water-resistant stainless steel case.
-            </p>
+        {/* Product Grid - 4 Columns Desktop, 2 Columns Mobile */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
+          {featuredProducts.map((product, idx) => {
+            const imageSrc = product.variants[0]?.gallery?.primary || "/images/new-content/home2-showcase.png";
+            const formattedPrice = `₹${(product.priceRange?.min || 14999).toLocaleString("en-IN")}`;
+            const isAdded = addedSlug === product.slug;
 
-            {/* Spec Sheet Grid */}
-            <div className="grid grid-cols-2 gap-x-8 gap-y-6 w-full font-dm text-[12px] border-t border-[#D4C5A0]/15 pt-8 mb-10">
-              {[
-                { label: "MOVEMENT", value: "Japanese Caliber 9015 Automatic" },
-                { label: "CASE DIAMETER", value: "41.5 mm Stainless Steel" },
-                { label: "GLASS TYPE", value: "Domed Anti-reflective Sapphire" },
-                { label: "WATER RESISTANCE", value: "30 ATM (300 meters)" },
-              ].map((spec) => (
-                <div key={spec.label}>
-                  <span className="text-[#D4C5A0] block font-bold tracking-[0.15em] uppercase mb-1.5 text-[9px]">
-                    {spec.label}
-                  </span>
-                  <span className="text-white/70 text-[12px]">{spec.value}</span>
+            return (
+              <motion.div
+                key={product.slug}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: idx * 0.08 }}
+                className="group relative flex flex-col justify-between bg-white border border-[#E0D8CE]/60 hover:border-[#003926]/40 rounded-sm p-4 md:p-6 transition-all duration-300 hover:shadow-xl"
+              >
+                {/* Image Container - Pure Clean White Photo */}
+                <div className="relative w-full aspect-square bg-white flex items-center justify-center overflow-hidden mb-5">
+                  <Link href={`/product/${product.slug}`} className="relative w-full h-full block">
+                    <Image
+                      src={imageSrc}
+                      alt={product.name}
+                      fill
+                      sizes="(max-width: 768px) 50vw, 25vw"
+                      className="object-contain p-2 group-hover:scale-105 transition-transform duration-500"
+                    />
+                  </Link>
+
+                  {/* + Quick Add To Cart Button */}
+                  <button
+                    onClick={() => handleQuickAdd(product)}
+                    aria-label={`Add ${product.name} to cart`}
+                    className={`absolute bottom-3 right-3 w-10 h-10 md:w-11 md:h-11 rounded-full flex items-center justify-center transition-all duration-300 shadow-md ${
+                      isAdded
+                        ? "bg-[#003926] text-white"
+                        : "bg-white text-[#003926] border border-[#003926]/20 hover:bg-[#003926] hover:text-white hover:border-[#003926]"
+                    }`}
+                  >
+                    {isAdded ? (
+                      <Check size={18} strokeWidth={2.5} />
+                    ) : (
+                      <Plus size={20} strokeWidth={2} />
+                    )}
+                  </button>
                 </div>
-              ))}
-            </div>
 
-            <Link
-              href="/product/royal-ocean"
-              className="group inline-flex items-center gap-3 px-10 py-4 rounded-sm font-dm text-[11px] tracking-[0.18em] uppercase bg-[#D4C5A0] text-[#003926] font-bold hover:bg-white shadow-xl transition-all duration-500 hover:-translate-y-0.5"
-            >
-              <span>Explore Series</span>
-              <svg width="14" height="14" viewBox="0 0 20 20" fill="none" className="group-hover:translate-x-1 transition-transform duration-300">
-                <path d="M4 10h12M12 6l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </Link>
-          </motion.div>
-
+                {/* Product Info - Miraggio Specs: Title Desktop 18px / Mobile 16px, Price 20px / 18px */}
+                <div>
+                  <span className="font-montserrat text-[10px] md:text-[11px] uppercase tracking-[0.12em] text-[#5C5750] block mb-1">
+                    {product.brand || "D'Signer"}
+                  </span>
+                  <Link href={`/product/${product.slug}`} className="block">
+                    <h3 className="font-montserrat text-[16px] md:text-[18px] font-medium leading-[1.3] text-[#1A1918] group-hover:text-[#003926] transition-colors line-clamp-1 mb-2">
+                      {product.name}
+                    </h3>
+                  </Link>
+                  <p className="font-montserrat text-[18px] md:text-[20px] font-medium text-[#003926]">
+                    {formattedPrice}
+                  </p>
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>

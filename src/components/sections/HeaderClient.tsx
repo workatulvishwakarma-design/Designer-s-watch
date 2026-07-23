@@ -346,17 +346,11 @@ export default function HeaderClient({ hasAnnouncement = false, megaMenuPayload 
         }
     ], []);
 
-    const curatedCols = useMemo(() => {
-        const order = ["grandeur", "eternal", "hallmark", "serene", "glimmer"];
-        return order.map(slug => collections.find(c => c.slug === slug)).filter(Boolean) as Collection[];
-    }, []);
-
     // Dynamic styling
     const transparent = isHeroPage && !scrolled && !showMegaMenu;
     const headerBg = showMegaMenu ? "rgba(250,248,244,0.98)" : (transparent ? "transparent" : "rgba(250,248,244,0.95)");
     const blur = showMegaMenu ? "blur(40px) saturate(180%)" : scrolled ? "blur(30px) saturate(180%)" : "none";
     const txtCol = transparent ? "#FFF" : "#003926";
-    const actCol = transparent ? "#FFF" : "#003926";
 
     return (
         <>
@@ -373,68 +367,79 @@ export default function HeaderClient({ hasAnnouncement = false, megaMenuPayload 
                     transition: "all 0.6s cubic-bezier(0.16,1,0.3,1)",
                 }}
             >
-                <div className="max-w-[1800px] mx-auto px-8 xl:px-16 flex items-center justify-between h-[72px] md:h-[80px] xl:h-[88px] relative">
-                    {/* Logo */}
-                    <Link href="/" className="relative h-[32px] w-[160px] md:h-[40px] md:w-[200px] xl:h-[48px] xl:w-[240px] hover:opacity-60 transition-opacity duration-500 z-50">
-                        <Image
-                            src={pathname.includes("/collections/escort") ? "/images/escort_b.png" : "/images/designer world logo_B.png"}
-                            alt="Designer World" fill className="object-contain"
-                            style={{ filter: transparent ? "brightness(0) invert(1)" : "none", transition: "filter 0.6s ease" }}
-                            priority
-                        />
-                    </Link>
+                <div className="max-w-[1800px] mx-auto px-6 md:px-12 flex items-center justify-between h-[72px] md:h-[80px] xl:h-[88px] relative">
+                    
+                    {/* Left: Mobile Hamburger / Desktop Nav */}
+                    <div className="flex items-center gap-6">
+                        <button
+                            className="flex items-center gap-2 hover:opacity-70 transition-opacity z-50 text-white"
+                            style={{ color: txtCol }}
+                            onClick={() => setMobileOpen(!mobileOpen)}
+                            aria-label="Toggle Menu"
+                        >
+                            {mobileOpen ? <X size={24} strokeWidth={1.5} /> : <Menu size={24} strokeWidth={1.5} />}
+                            <span className="hidden sm:inline font-montserrat text-[13px] tracking-[0.08em] uppercase font-medium">MENU</span>
+                        </button>
 
-                    {/* Desktop Nav */}
-                    <nav className="hidden xl:flex items-center gap-10 h-full">
-                        {navLinks.map(item => {
-                            const act = isActive(item.href) || (item.isMega && showMegaMenu);
-                            return (
-                                <div key={item.label} className="relative h-full flex items-center group/nav"
-                                    onMouseEnter={item.isMega ? openMega : undefined}
-                                    onMouseLeave={item.isMega ? scheduleMegaClose : undefined}>
-                                    <Link href={item.href}
-                                        onClick={item.isMega ? (e) => { e.preventDefault(); setShowMegaMenu(!showMegaMenu); } : undefined}
-                                        className="text-[11.5px] font-body tracking-[0.2em] uppercase transition-colors duration-500 py-6 font-bold flex items-center gap-1.5 hover:text-[#B8935A]"
+                        <nav className="hidden xl:flex items-center gap-8 h-full ml-4">
+                            {navLinks.slice(0, 2).map(item => {
+                                const act = isActive(item.href) || (item.isMega && showMegaMenu);
+                                return (
+                                    <div key={item.label} className="relative h-full flex items-center group/nav"
+                                        onMouseEnter={item.isMega ? openMega : undefined}
+                                        onMouseLeave={item.isMega ? scheduleMegaClose : undefined}>
+                                        <Link href={item.href}
+                                            onClick={item.isMega ? (e) => { e.preventDefault(); setShowMegaMenu(!showMegaMenu); } : undefined}
+                                            className="font-montserrat text-[14px] leading-[1.2] tracking-[0.04em] uppercase transition-colors duration-500 py-6 font-medium flex items-center gap-1.5 hover:text-[#B8935A]"
+                                            style={{ color: act ? "#B8935A" : txtCol }}>
+                                            {item.label}
+                                            {item.isMega && (
+                                                <ChevronDown size={11} className={`transition-transform duration-400 text-[#B8935A] ${showMegaMenu ? "rotate-180" : ""}`} />
+                                            )}
+                                        </Link>
+                                    </div>
+                                );
+                            })}
+                        </nav>
+                    </div>
+
+                    {/* Center: Centered Logo */}
+                    <div className="absolute left-1/2 -translate-x-1/2 z-50">
+                        <Link href="/home-2" className="relative h-[32px] w-[160px] md:h-[40px] md:w-[200px] xl:h-[48px] xl:w-[220px] block hover:opacity-80 transition-opacity duration-300">
+                            <Image
+                                src={pathname.includes("/collections/escort") ? "/images/escort_b.png" : "/images/designer world logo_B.png"}
+                                alt="Designer World" fill className="object-contain"
+                                style={{ filter: transparent ? "brightness(0) invert(1)" : "none", transition: "filter 0.6s ease" }}
+                                priority
+                            />
+                        </Link>
+                    </div>
+
+                    {/* Right: Right Links & Search / Cart */}
+                    <div className="flex items-center gap-6 z-50">
+                        <nav className="hidden xl:flex items-center gap-8 h-full mr-4">
+                            {navLinks.slice(2).map(item => {
+                                const act = isActive(item.href);
+                                return (
+                                    <Link key={item.label} href={item.href}
+                                        className="font-montserrat text-[14px] leading-[1.2] tracking-[0.04em] uppercase transition-colors duration-500 py-6 font-medium flex items-center gap-1.5 hover:text-[#B8935A]"
                                         style={{ color: act ? "#B8935A" : txtCol }}>
                                         {item.label}
-                                        {item.isMega && (
-                                            <ChevronDown size={9} className={`transition-transform duration-400 text-[#B8935A] ${showMegaMenu ? "rotate-180" : ""}`} />
-                                        )}
                                     </Link>
-                                    
-                                    {/* Hover sweep underline */}
-                                    <div className="absolute bottom-[20px] left-0 w-full h-[2px] bg-gradient-to-r from-[#003926] to-[#B8935A] scale-x-0 group-hover/nav:scale-x-100 transition-transform duration-500 origin-left" />
+                                );
+                            })}
+                        </nav>
 
-                                    {/* Active state line */}
-                                    {act && (
-                                        <motion.div 
-                                            layoutId="nav-active-line" 
-                                            className="absolute bottom-[20px] left-0 w-full h-[2px] bg-[#B8935A]" 
-                                            transition={{ type: "spring", stiffness: 180, damping: 25 }} 
-                                        />
-                                    )}
-                                </div>
-                            );
-                        })}
-                    </nav>
-
-                    {/* Right Icons */}
-                    <div className="flex items-center gap-6 z-50">
-                        <button onClick={() => setSearchOpen(true)} className="hover:opacity-50 transition-opacity" style={{ color: txtCol }} aria-label="Search">
-                            <Search size={19} strokeWidth={1.5} />
+                        <button onClick={() => setSearchOpen(true)} className="hover:opacity-60 transition-opacity" style={{ color: txtCol }} aria-label="Search">
+                            <Search size={20} strokeWidth={1.5} />
                         </button>
-                        <button onClick={() => setIsOpen(true)} className="relative hover:opacity-50 transition-opacity" style={{ color: txtCol }}>
-                            <ShoppingBag size={20} strokeWidth={1.5} />
+                        <button onClick={() => setIsOpen(true)} className="relative hover:opacity-60 transition-opacity" style={{ color: txtCol }} aria-label="Cart">
+                            <ShoppingBag size={21} strokeWidth={1.5} />
                             {mounted && cartCount > 0 && (
-                                <span className="absolute -top-1 -right-2 w-[16px] h-[16px] bg-[#003926] rounded-full text-[8px] flex items-center justify-center text-white font-bold shadow-md">
+                                <span className="absolute -top-1.5 -right-2 w-[17px] h-[17px] bg-[#003926] rounded-full text-[9px] flex items-center justify-center text-white font-medium shadow-md">
                                     {cartCount}
                                 </span>
                             )}
-                        </button>
-                        <button className="xl:hidden hover:opacity-50 transition-opacity"
-                            style={{ color: mobileOpen ? "#001F14" : txtCol }}
-                            onClick={() => setMobileOpen(!mobileOpen)}>
-                            {mobileOpen ? <X size={24} strokeWidth={1.5} /> : <Menu size={24} strokeWidth={1.5} />}
                         </button>
                     </div>
                 </div>

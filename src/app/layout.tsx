@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Suspense } from "react";
 import { Loader2 } from "lucide-react";
-import { Inter, Playfair_Display } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/sections/Header";
 import Footer from "@/components/sections/Footer";
@@ -13,15 +13,10 @@ import { prisma } from "@/lib/db";
 import { Toaster } from "sonner";
 import CookieConsent from "@/components/ui/CookieConsent";
 
-const inter = Inter({
+const montserrat = Montserrat({
   subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-});
-
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  variable: "--font-playfair",
+  weight: ["300", "400", "500", "600", "700", "800"],
+  variable: "--font-montserrat",
   display: "swap",
 });
 
@@ -76,7 +71,7 @@ export default async function RootLayout({
   const showAnnouncement = !!(settings?.announcementActive && settings.announcementText);
 
   return (
-    <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
+    <html lang="en" className={`${montserrat.variable} font-sans`}>
        <body suppressHydrationWarning className="antialiased bg-background text-primaryText overflow-x-hidden">
           <PublicShell
             customCursor={<CustomCursor />}
