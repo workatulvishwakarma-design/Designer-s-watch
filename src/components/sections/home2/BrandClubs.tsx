@@ -65,14 +65,14 @@ export default function BrandClubs() {
             </Link>
           </motion.div>
 
-          {/* Right panel: Tall Portrait B&W Image (col-span-7) */}
-          <div className="md:col-span-7 relative w-full order-1 md:order-2">
+          {/* Right panel: Reduced Height B&W Image (col-span-7) */}
+          <div className="md:col-span-7 relative w-full order-1 md:order-2 flex items-center justify-center">
             <motion.div
               initial={{ opacity: 0, y: 40, scale: 0.98 }}
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-              className="relative w-full aspect-[3/4] sm:aspect-[4/5] md:aspect-[3/4] overflow-hidden shadow-2xl bg-[#092218]"
+              className="relative w-full aspect-[16/10] sm:aspect-[16/10] md:aspect-[16/10] max-h-[460px] overflow-hidden shadow-2xl bg-[#092218]"
             >
               <Image
                 src="/img/home5.PNG"
