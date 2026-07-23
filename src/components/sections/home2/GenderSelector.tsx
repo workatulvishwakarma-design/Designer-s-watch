@@ -22,20 +22,24 @@ export default function GenderSelector() {
           href="/collections/men"
           onMouseEnter={() => setHoveredCard("men")}
           onMouseLeave={() => setHoveredCard(null)}
-          className="relative block overflow-hidden cursor-pointer w-full md:flex-1 h-full"
+          className="relative block overflow-hidden cursor-pointer w-full md:flex-1 h-full bg-[#040806]"
         >
-          {/* Image Container */}
-          <div className="absolute inset-0 z-0 overflow-hidden">
-            <Image
-              src="/img/home3.PNG"
-              alt="Men's Timepieces"
-              fill
-              className={`object-cover object-center w-full h-full scale-110 transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] will-change-transform ${
-                hoveredCard === "men" ? "translate-x-[18%]" : "translate-x-0"
+          {/* Oversized Image Container (Extends 20% past edges so right-sliding reveals image, not white space) */}
+          <div className="absolute -inset-x-[20%] inset-y-0 z-0 overflow-hidden">
+            <div
+              className={`relative w-full h-full transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] will-change-transform ${
+                hoveredCard === "men" ? "translate-x-[10%]" : "-translate-x-[5%]"
               }`}
-              sizes="(max-width: 768px) 100vw, 50vw"
-              priority
-            />
+            >
+              <Image
+                src="/img/home3.PNG"
+                alt="Men's Timepieces"
+                fill
+                className="object-cover object-center w-full h-full"
+                sizes="(max-width: 768px) 100vw, 60vw"
+                priority
+              />
+            </div>
           </div>
 
           {/* Dark Gradient Overlay */}
@@ -97,20 +101,24 @@ export default function GenderSelector() {
           href="/collections/women"
           onMouseEnter={() => setHoveredCard("women")}
           onMouseLeave={() => setHoveredCard(null)}
-          className="relative block overflow-hidden cursor-pointer w-full md:flex-1 h-full"
+          className="relative block overflow-hidden cursor-pointer w-full md:flex-1 h-full bg-[#040806]"
         >
-          {/* Image Container */}
-          <div className="absolute inset-0 z-0 overflow-hidden">
-            <Image
-              src="/img/home4.PNG"
-              alt="Women's Timepieces"
-              fill
-              className={`object-cover object-center w-full h-full scale-110 transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] will-change-transform ${
-                hoveredCard === "women" ? "-translate-x-[18%]" : "translate-x-0"
+          {/* Oversized Image Container (Extends 20% past edges so left-sliding reveals image, not white space) */}
+          <div className="absolute -inset-x-[20%] inset-y-0 z-0 overflow-hidden">
+            <div
+              className={`relative w-full h-full transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] will-change-transform ${
+                hoveredCard === "women" ? "-translate-x-[10%]" : "translate-x-[5%]"
               }`}
-              sizes="(max-width: 768px) 100vw, 50vw"
-              priority
-            />
+            >
+              <Image
+                src="/img/home4.PNG"
+                alt="Women's Timepieces"
+                fill
+                className="object-cover object-center w-full h-full"
+                sizes="(max-width: 768px) 100vw, 60vw"
+                priority
+              />
+            </div>
           </div>
 
           {/* Dark Gradient Overlay */}
