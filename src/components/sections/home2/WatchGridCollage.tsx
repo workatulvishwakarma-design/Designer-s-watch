@@ -3,47 +3,79 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useCartStore } from "@/lib/store/cart";
 
 const IMAGES = {
   col1: {
-    src: "/images/new-content/home2-gender-men.png",
-    alt: "D'Signer Men's Executive Model",
-    label: "Men's Flagship Series",
+    id: "dsigner-808-gm",
+    name: "D'Signer 808 Gold Chrono",
+    price: 14500,
+    slug: "dsigner-808-gm",
+    src: "/images/new-img/model-1/808/PNG/808GM.8.G.png",
+    alt: "D'Signer 808 Gold Chronograph Timepiece",
+    label: "D'Signer 808 Gold",
   },
   col2_top: {
-    src: "/images/new-content/home2-grid-2.png",
-    alt: "Rose Gold Ladies Watch with Handbag",
-    label: "Regal Rose",
+    id: "dsigner-804-rgm",
+    name: "D'Signer 804 Rose Gold",
+    price: 12800,
+    slug: "dsigner-804-rgm",
+    src: "/images/new-img/model-1/804/804RGM.3G.png",
+    alt: "D'Signer 804 Rose Gold Variant",
+    label: "D'Signer 804 Rose",
   },
   col2_bottom: {
-    src: "/images/new-content/home2-grid-3.png",
-    alt: "Steel Diver on Steering Wheel",
-    label: "Motorsport Diver",
+    id: "escort-830-rbg",
+    name: "Escort 830 Rose Black",
+    price: 9800,
+    slug: "escort-830-rbg",
+    src: "/images/new-img/model-2/830/830/830RBGFS.16G.png",
+    alt: "Escort 830 Rose Black Dial",
+    label: "Escort 830 Black",
   },
   col3_top: {
-    src: "/images/new-content/home2-grid-4.png",
-    alt: "Gold Evening Gala Watch",
-    label: "Champagne Velvet",
+    id: "dsigner-753-rgm",
+    name: "D'Signer 753 Champagne",
+    price: 13900,
+    slug: "dsigner-753-rgm",
+    src: "/images/new-img/model-1/808/PNG/753RGM.16.G.png",
+    alt: "D'Signer 753 Champagne Dial",
+    label: "D'Signer 753 Gold",
   },
   col3_bottom: {
-    src: "/images/new-content/home2-grid-5.png",
-    alt: "Skeleton Dial on Wrist",
-    label: "Skeleton Automatix",
+    id: "escort-830-gnfs",
+    name: "Escort 830 Emerald Green",
+    price: 10500,
+    slug: "escort-830-gnfs",
+    src: "/images/new-img/model-2/830/830/830GNFS.8G.png",
+    alt: "Escort 830 Emerald Green Dial",
+    label: "Escort 830 Emerald",
   },
   col4: {
-    src: "/images/new-content/home2-gender-women.png",
-    alt: "D'Signer Women's Elegance Model",
-    label: "Women's Grace Series",
+    id: "dsigner-873-gm",
+    name: "D'Signer 873 Women Grace",
+    price: 11200,
+    slug: "dsigner-873-gm",
+    src: "/images/new-img/model-1/808/PNG/873GM.16.L.png",
+    alt: "D'Signer 873 Women Grace Timepiece",
+    label: "D'Signer 873 Grace",
   },
 };
 
 export default function WatchGridCollage() {
-  const [likedCards, setLikedCards] = useState<Record<string, boolean>>({});
+  const addItem = useCartStore((state) => state.addItem);
 
-  const toggleLike = (id: string, e: React.MouseEvent) => {
+  const handleQuickAdd = (item: (typeof IMAGES)[keyof typeof IMAGES], e: React.MouseEvent) => {
+    e.preventDefault();
     e.stopPropagation();
-    setLikedCards((prev) => ({ ...prev, [id]: !prev[id] }));
+    addItem({
+      productId: item.id,
+      name: item.name,
+      price: item.price,
+      quantity: 1,
+      image: item.src,
+      slug: item.slug,
+    });
   };
 
   return (
@@ -86,46 +118,42 @@ export default function WatchGridCollage() {
           </div>
         </div>
 
-        {/* 4-Column Grid Collage with Real Model Images */}
+        {/* 4-Column Grid Collage with Real Watch Product Images */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 md:gap-5 items-stretch relative z-10">
           
-          {/* COLUMN 1: Tall Left Portrait (Real Men's Model) */}
+          {/* COLUMN 1: Tall Left Portrait */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="relative overflow-hidden shadow-md aspect-[3/5] bg-[#D4CEBF] group rounded-xs"
+            className="relative overflow-hidden shadow-md aspect-[3/5] bg-[#FAF8F4] group rounded-xs border border-black/5"
           >
-            <Image
-              src={IMAGES.col1.src}
-              alt={IMAGES.col1.alt}
-              fill
-              className="object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-[1.04]"
-              sizes="(max-width: 768px) 100vw, 25vw"
-              priority
-            />
-            <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-all duration-500 pointer-events-none" />
+            <div className="relative w-full h-full p-6 md:p-8 flex items-center justify-center">
+              <Image
+                src={IMAGES.col1.src}
+                alt={IMAGES.col1.alt}
+                fill
+                className="object-contain p-6 transition-transform duration-700 ease-out group-hover:scale-108"
+                sizes="(max-width: 768px) 100vw, 25vw"
+                priority
+              />
+            </div>
 
             <div className="absolute bottom-4 left-4 z-20 pointer-events-none">
-              <span className="font-montserrat text-[14px] text-white font-medium drop-shadow-md tracking-wide block">
+              <span className="font-montserrat text-[13px] text-[#1A1918] font-semibold tracking-wide block bg-white/80 backdrop-blur-md px-3 py-1 rounded-xs border border-black/5">
                 {IMAGES.col1.label}
               </span>
             </div>
 
+            {/* Plus Quick-Add Symbol Button */}
             <button
-              onClick={(e) => toggleLike("col1", e)}
-              className="absolute bottom-4 right-4 z-30 w-8 h-8 rounded-full bg-black/30 backdrop-blur-md border border-white/30 flex items-center justify-center text-white/90 hover:bg-black/60 transition-all cursor-pointer"
+              onClick={(e) => handleQuickAdd(IMAGES.col1, e)}
+              className="absolute bottom-4 right-4 z-30 w-9 h-9 rounded-full bg-[#003926] text-white flex items-center justify-center hover:bg-[#1A1918] transition-all cursor-pointer shadow-lg border border-white/20"
+              title="Quick Add to Cart"
             >
-              <svg
-                width="13"
-                height="13"
-                viewBox="0 0 24 24"
-                fill={likedCards["col1"] ? "#EF4444" : "none"}
-                stroke={likedCards["col1"] ? "#EF4444" : "currentColor"}
-                strokeWidth="2"
-              >
-                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <path d="M12 5v14M5 12h14" />
               </svg>
             </button>
           </motion.div>
@@ -139,69 +167,59 @@ export default function WatchGridCollage() {
             className="flex flex-col gap-3 md:gap-5"
           >
             {/* Top Card */}
-            <div className="relative overflow-hidden shadow-md aspect-[4/3] bg-[#D4CEBF] group flex-grow rounded-xs">
-              <Image
-                src={IMAGES.col2_top.src}
-                alt={IMAGES.col2_top.alt}
-                fill
-                className="object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-[1.04]"
-                sizes="(max-width: 768px) 100vw, 25vw"
-              />
-              <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-all duration-500 pointer-events-none" />
+            <div className="relative overflow-hidden shadow-md aspect-[4/3] bg-[#FAF8F4] group flex-grow rounded-xs border border-black/5">
+              <div className="relative w-full h-full p-4 flex items-center justify-center">
+                <Image
+                  src={IMAGES.col2_top.src}
+                  alt={IMAGES.col2_top.alt}
+                  fill
+                  className="object-contain p-4 transition-transform duration-700 ease-out group-hover:scale-108"
+                  sizes="(max-width: 768px) 100vw, 25vw"
+                />
+              </div>
 
               <div className="absolute bottom-4 left-4 z-20 pointer-events-none">
-                <span className="font-montserrat text-[14px] text-white font-medium drop-shadow-md tracking-wide block">
+                <span className="font-montserrat text-[13px] text-[#1A1918] font-semibold tracking-wide block bg-white/80 backdrop-blur-md px-3 py-1 rounded-xs border border-black/5">
                   {IMAGES.col2_top.label}
                 </span>
               </div>
 
               <button
-                onClick={(e) => toggleLike("col2_top", e)}
-                className="absolute bottom-4 right-4 z-30 w-8 h-8 rounded-full bg-black/30 backdrop-blur-md border border-white/30 flex items-center justify-center text-white/90 hover:bg-black/60 transition-all cursor-pointer"
+                onClick={(e) => handleQuickAdd(IMAGES.col2_top, e)}
+                className="absolute bottom-4 right-4 z-30 w-9 h-9 rounded-full bg-[#003926] text-white flex items-center justify-center hover:bg-[#1A1918] transition-all cursor-pointer shadow-lg border border-white/20"
+                title="Quick Add to Cart"
               >
-                <svg
-                  width="13"
-                  height="13"
-                  viewBox="0 0 24 24"
-                  fill={likedCards["col2_top"] ? "#EF4444" : "none"}
-                  stroke={likedCards["col2_top"] ? "#EF4444" : "currentColor"}
-                  strokeWidth="2"
-                >
-                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <path d="M12 5v14M5 12h14" />
                 </svg>
               </button>
             </div>
 
             {/* Bottom Card */}
-            <div className="relative overflow-hidden shadow-md aspect-[4/3] bg-[#D4CEBF] group flex-grow rounded-xs">
-              <Image
-                src={IMAGES.col2_bottom.src}
-                alt={IMAGES.col2_bottom.alt}
-                fill
-                className="object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-[1.04]"
-                sizes="(max-width: 768px) 100vw, 25vw"
-              />
-              <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-all duration-500 pointer-events-none" />
+            <div className="relative overflow-hidden shadow-md aspect-[4/3] bg-[#FAF8F4] group flex-grow rounded-xs border border-black/5">
+              <div className="relative w-full h-full p-4 flex items-center justify-center">
+                <Image
+                  src={IMAGES.col2_bottom.src}
+                  alt={IMAGES.col2_bottom.alt}
+                  fill
+                  className="object-contain p-4 transition-transform duration-700 ease-out group-hover:scale-108"
+                  sizes="(max-width: 768px) 100vw, 25vw"
+                />
+              </div>
 
               <div className="absolute bottom-4 left-4 z-20 pointer-events-none">
-                <span className="font-montserrat text-[14px] text-white font-medium drop-shadow-md tracking-wide block">
+                <span className="font-montserrat text-[13px] text-[#1A1918] font-semibold tracking-wide block bg-white/80 backdrop-blur-md px-3 py-1 rounded-xs border border-black/5">
                   {IMAGES.col2_bottom.label}
                 </span>
               </div>
 
               <button
-                onClick={(e) => toggleLike("col2_bottom", e)}
-                className="absolute bottom-4 right-4 z-30 w-8 h-8 rounded-full bg-black/30 backdrop-blur-md border border-white/30 flex items-center justify-center text-white/90 hover:bg-black/60 transition-all cursor-pointer"
+                onClick={(e) => handleQuickAdd(IMAGES.col2_bottom, e)}
+                className="absolute bottom-4 right-4 z-30 w-9 h-9 rounded-full bg-[#003926] text-white flex items-center justify-center hover:bg-[#1A1918] transition-all cursor-pointer shadow-lg border border-white/20"
+                title="Quick Add to Cart"
               >
-                <svg
-                  width="13"
-                  height="13"
-                  viewBox="0 0 24 24"
-                  fill={likedCards["col2_bottom"] ? "#EF4444" : "none"}
-                  stroke={likedCards["col2_bottom"] ? "#EF4444" : "currentColor"}
-                  strokeWidth="2"
-                >
-                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <path d="M12 5v14M5 12h14" />
                 </svg>
               </button>
             </div>
@@ -216,111 +234,96 @@ export default function WatchGridCollage() {
             className="flex flex-col gap-3 md:gap-5"
           >
             {/* Top Card */}
-            <div className="relative overflow-hidden shadow-md aspect-[4/3] bg-[#D4CEBF] group flex-grow rounded-xs">
-              <Image
-                src={IMAGES.col3_top.src}
-                alt={IMAGES.col3_top.alt}
-                fill
-                className="object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-[1.04]"
-                sizes="(max-width: 768px) 100vw, 25vw"
-              />
-              <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-all duration-500 pointer-events-none" />
+            <div className="relative overflow-hidden shadow-md aspect-[4/3] bg-[#FAF8F4] group flex-grow rounded-xs border border-black/5">
+              <div className="relative w-full h-full p-4 flex items-center justify-center">
+                <Image
+                  src={IMAGES.col3_top.src}
+                  alt={IMAGES.col3_top.alt}
+                  fill
+                  className="object-contain p-4 transition-transform duration-700 ease-out group-hover:scale-108"
+                  sizes="(max-width: 768px) 100vw, 25vw"
+                />
+              </div>
 
               <div className="absolute bottom-4 left-4 z-20 pointer-events-none">
-                <span className="font-montserrat text-[14px] text-white font-medium drop-shadow-md tracking-wide block">
+                <span className="font-montserrat text-[13px] text-[#1A1918] font-semibold tracking-wide block bg-white/80 backdrop-blur-md px-3 py-1 rounded-xs border border-black/5">
                   {IMAGES.col3_top.label}
                 </span>
               </div>
 
               <button
-                onClick={(e) => toggleLike("col3_top", e)}
-                className="absolute bottom-4 right-4 z-30 w-8 h-8 rounded-full bg-black/30 backdrop-blur-md border border-white/30 flex items-center justify-center text-white/90 hover:bg-black/60 transition-all cursor-pointer"
+                onClick={(e) => handleQuickAdd(IMAGES.col3_top, e)}
+                className="absolute bottom-4 right-4 z-30 w-9 h-9 rounded-full bg-[#003926] text-white flex items-center justify-center hover:bg-[#1A1918] transition-all cursor-pointer shadow-lg border border-white/20"
+                title="Quick Add to Cart"
               >
-                <svg
-                  width="13"
-                  height="13"
-                  viewBox="0 0 24 24"
-                  fill={likedCards["col3_top"] ? "#EF4444" : "none"}
-                  stroke={likedCards["col3_top"] ? "#EF4444" : "currentColor"}
-                  strokeWidth="2"
-                >
-                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <path d="M12 5v14M5 12h14" />
                 </svg>
               </button>
             </div>
 
             {/* Bottom Card */}
-            <div className="relative overflow-hidden shadow-md aspect-[4/3] bg-[#D4CEBF] group flex-grow rounded-xs">
-              <Image
-                src={IMAGES.col3_bottom.src}
-                alt={IMAGES.col3_bottom.alt}
-                fill
-                className="object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-[1.04]"
-                sizes="(max-width: 768px) 100vw, 25vw"
-              />
-              <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-all duration-500 pointer-events-none" />
+            <div className="relative overflow-hidden shadow-md aspect-[4/3] bg-[#FAF8F4] group flex-grow rounded-xs border border-black/5">
+              <div className="relative w-full h-full p-4 flex items-center justify-center">
+                <Image
+                  src={IMAGES.col3_bottom.src}
+                  alt={IMAGES.col3_bottom.alt}
+                  fill
+                  className="object-contain p-4 transition-transform duration-700 ease-out group-hover:scale-108"
+                  sizes="(max-width: 768px) 100vw, 25vw"
+                />
+              </div>
 
               <div className="absolute bottom-4 left-4 z-20 pointer-events-none">
-                <span className="font-montserrat text-[14px] text-white font-medium drop-shadow-md tracking-wide block">
+                <span className="font-montserrat text-[13px] text-[#1A1918] font-semibold tracking-wide block bg-white/80 backdrop-blur-md px-3 py-1 rounded-xs border border-black/5">
                   {IMAGES.col3_bottom.label}
                 </span>
               </div>
 
               <button
-                onClick={(e) => toggleLike("col3_bottom", e)}
-                className="absolute bottom-4 right-4 z-30 w-8 h-8 rounded-full bg-black/30 backdrop-blur-md border border-white/30 flex items-center justify-center text-white/90 hover:bg-black/60 transition-all cursor-pointer"
+                onClick={(e) => handleQuickAdd(IMAGES.col3_bottom, e)}
+                className="absolute bottom-4 right-4 z-30 w-9 h-9 rounded-full bg-[#003926] text-white flex items-center justify-center hover:bg-[#1A1918] transition-all cursor-pointer shadow-lg border border-white/20"
+                title="Quick Add to Cart"
               >
-                <svg
-                  width="13"
-                  height="13"
-                  viewBox="0 0 24 24"
-                  fill={likedCards["col3_bottom"] ? "#EF4444" : "none"}
-                  stroke={likedCards["col3_bottom"] ? "#EF4444" : "currentColor"}
-                  strokeWidth="2"
-                >
-                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <path d="M12 5v14M5 12h14" />
                 </svg>
               </button>
             </div>
           </motion.div>
 
-          {/* COLUMN 4: Tall Right Portrait (Real Women's Model) */}
+          {/* COLUMN 4: Tall Right Portrait */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="relative overflow-hidden shadow-md aspect-[3/5] bg-[#D4CEBF] group rounded-xs"
+            className="relative overflow-hidden shadow-md aspect-[3/5] bg-[#FAF8F4] group rounded-xs border border-black/5"
           >
-            <Image
-              src={IMAGES.col4.src}
-              alt={IMAGES.col4.alt}
-              fill
-              className="object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-[1.04]"
-              sizes="(max-width: 768px) 100vw, 25vw"
-              priority
-            />
-            <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-all duration-500 pointer-events-none" />
+            <div className="relative w-full h-full p-6 md:p-8 flex items-center justify-center">
+              <Image
+                src={IMAGES.col4.src}
+                alt={IMAGES.col4.alt}
+                fill
+                className="object-contain p-6 transition-transform duration-700 ease-out group-hover:scale-108"
+                sizes="(max-width: 768px) 100vw, 25vw"
+                priority
+              />
+            </div>
 
             <div className="absolute bottom-4 left-4 z-20 pointer-events-none">
-              <span className="font-montserrat text-[14px] text-white font-medium drop-shadow-md tracking-wide block">
+              <span className="font-montserrat text-[13px] text-[#1A1918] font-semibold tracking-wide block bg-white/80 backdrop-blur-md px-3 py-1 rounded-xs border border-black/5">
                 {IMAGES.col4.label}
               </span>
             </div>
 
             <button
-              onClick={(e) => toggleLike("col4", e)}
-              className="absolute bottom-4 right-4 z-30 w-8 h-8 rounded-full bg-black/30 backdrop-blur-md border border-white/30 flex items-center justify-center text-white/90 hover:bg-black/60 transition-all cursor-pointer"
+              onClick={(e) => handleQuickAdd(IMAGES.col4, e)}
+              className="absolute bottom-4 right-4 z-30 w-9 h-9 rounded-full bg-[#003926] text-white flex items-center justify-center hover:bg-[#1A1918] transition-all cursor-pointer shadow-lg border border-white/20"
+              title="Quick Add to Cart"
             >
-              <svg
-                width="13"
-                height="13"
-                viewBox="0 0 24 24"
-                fill={likedCards["col4"] ? "#EF4444" : "none"}
-                stroke={likedCards["col4"] ? "#EF4444" : "currentColor"}
-                strokeWidth="2"
-              >
-                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <path d="M12 5v14M5 12h14" />
               </svg>
             </button>
           </motion.div>
