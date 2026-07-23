@@ -6,17 +6,17 @@ import Image from "next/image";
 export default function HeroSection() {
   return (
     <section className="relative h-screen w-full flex items-center overflow-hidden bg-[#040806] select-none">
-      {/* 1. Full Page Background Image (Shifted Further Right to Match Reference Banner) */}
+      {/* 1. Full Page Background Image (Shifted Right and Scaled Down 25%) */}
       <div className="absolute inset-0 z-0">
         <Image
           src="/img/home1.PNG"
           alt="Luxury D'Signer Timepiece"
           fill
           priority
-          className="object-cover object-[75%_center] md:object-[82%_center] scale-110 filter brightness-[0.72] contrast-[1.08]"
+          className="object-cover object-[82%_center] md:object-[90%_center] scale-[0.82] filter brightness-[0.85] contrast-[1.08]"
         />
-        {/* Soft Left Side Gradient Overlay for Crisp Text Readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/40 to-transparent z-10" />
+        {/* Soft Left Side Gradient Overlay for Text Readability */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#040806] via-[#040806]/60 to-transparent z-10" />
       </div>
 
       {/* 2. Left-Aligned Minimal Content (Matches Reference Screenshot Exactly) */}
