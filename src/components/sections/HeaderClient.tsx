@@ -131,6 +131,7 @@ export default function HeaderClient({ hasAnnouncement = false, megaMenuPayload 
     const [mobileOpen, setMobileOpen] = useState(false);
     const [showMegaMenu, setShowMegaMenu] = useState(false);
     const [searchOpen, setSearchOpen] = useState(false);
+    const [isHeaderHovered, setIsHeaderHovered] = useState(false);
     const closeTimerRef = useRef<NodeJS.Timeout | null>(null);
     const pathname = usePathname();
     const { items, setIsOpen } = useCartStore();
@@ -186,7 +187,7 @@ export default function HeaderClient({ hasAnnouncement = false, megaMenuPayload 
         gender: c.gender,
     })), []);
 
-    const isHeroPage = pathname === "/about";
+    const isHeroPage = pathname === "/about" || pathname === "/home-2" || pathname.startsWith("/home-2") || pathname === "/";
 
     useEffect(() => {
         const fn = () => setScrolled(window.scrollY > 30);
@@ -348,8 +349,22 @@ export default function HeaderClient({ hasAnnouncement = false, megaMenuPayload 
 
     // Dynamic styling
     const transparent = isHeroPage && !scrolled && !showMegaMenu;
-    const headerBg = showMegaMenu ? "rgba(250,248,244,0.98)" : (transparent ? "transparent" : "rgba(250,248,244,0.95)");
-    const blur = showMegaMenu ? "blur(40px) saturate(180%)" : scrolled ? "blur(30px) saturate(180%)" : "none";
+    const headerBg = showMegaMenu
+        ? "rgba(250,248,244,0.98)"
+        : scrolled
+            ? "rgba(250,248,244,0.95)"
+            : transparent
+                ? (isHeaderHovered ? "rgba(0, 31, 20, 0.50)" : "transparent")
+                : "rgba(250,248,244,0.95)";
+
+    const blur = showMegaMenu
+        ? "blur(40px) saturate(180%)"
+        : scrolled
+            ? "blur(30px) saturate(180%)"
+            : transparent
+                ? (isHeaderHovered ? "blur(20px) saturate(160%)" : "none")
+                : "none";
+
     const txtCol = transparent ? "#FFF" : "#003926";
 
     return (
@@ -358,13 +373,23 @@ export default function HeaderClient({ hasAnnouncement = false, megaMenuPayload 
                 initial={{ y: -100, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-                className="fixed top-0 left-0 w-full z-[100]"
+                onMouseEnter={() => setIsHeaderHovered(true)}
+                onMouseLeave={() => setIsHeaderHovered(false)}
+                className="fixed top-0 left-0 w-full z-[100] transition-all duration-500"
                 style={{
                     backgroundColor: headerBg,
                     backdropFilter: blur, WebkitBackdropFilter: blur,
-                    borderBottom: scrolled || showMegaMenu ? "1px solid rgba(0,57,38,0.06)" : "1px solid transparent",
-                    boxShadow: scrolled || showMegaMenu ? "0 8px 32px rgba(0,31,20,0.04)" : "none",
-                    transition: "all 0.6s cubic-bezier(0.16,1,0.3,1)",
+                    borderBottom: scrolled || showMegaMenu
+                        ? "1px solid rgba(0,57,38,0.06)"
+                        : (transparent && isHeaderHovered)
+                            ? "1px solid rgba(255,255,255,0.12)"
+                            : "1px solid transparent",
+                    boxShadow: scrolled || showMegaMenu
+                        ? "0 8px 32px rgba(0,31,20,0.04)"
+                        : (transparent && isHeaderHovered)
+                            ? "0 12px 32px rgba(0,0,0,0.25)"
+                            : "none",
+                    transition: "all 0.5s cubic-bezier(0.16,1,0.3,1)",
                 }}
             >
                 <div className="max-w-[1800px] mx-auto px-6 md:px-12 flex items-center justify-between h-[72px] md:h-[80px] xl:h-[88px] relative">
@@ -372,8 +397,8 @@ export default function HeaderClient({ hasAnnouncement = false, megaMenuPayload 
                     {/* Left: Mobile Hamburger / Desktop Nav */}
                     <div className="flex items-center gap-6">
                         <button
-                            className="flex items-center gap-2 hover:opacity-70 transition-opacity z-50 text-white"
-                            style={{ color: txtCol }}
+                            className="flex items-center gap-2 px-3 py-1.5 rounded-full hover:bg-white/15 transition-all duration-300 z-50 text-white"
+                            style={{ color: txtCol, backgroundColor: isHeaderHovered && transparent ? "rgba(255, 255, 255, 0.1)" : "transparent" }}
                             onClick={() => setMobileOpen(!mobileOpen)}
                             aria-label="Toggle Menu"
                         >
@@ -381,7 +406,7 @@ export default function HeaderClient({ hasAnnouncement = false, megaMenuPayload 
                             <span className="hidden sm:inline font-montserrat text-[13px] tracking-[0.08em] uppercase font-medium">MENU</span>
                         </button>
 
-                        <nav className="hidden xl:flex items-center gap-8 h-full ml-4">
+                        <nav className="hidden xl:flex items-center gap-2 h-full ml-4">
                             {navLinks.slice(0, 2).map(item => {
                                 const act = isActive(item.href) || (item.isMega && showMegaMenu);
                                 return (
@@ -390,7 +415,7 @@ export default function HeaderClient({ hasAnnouncement = false, megaMenuPayload 
                                         onMouseLeave={item.isMega ? scheduleMegaClose : undefined}>
                                         <Link href={item.href}
                                             onClick={item.isMega ? (e) => { e.preventDefault(); setShowMegaMenu(!showMegaMenu); } : undefined}
-                                            className="font-montserrat text-[14px] leading-[1.2] tracking-[0.04em] uppercase transition-colors duration-500 py-6 font-medium flex items-center gap-1.5 hover:text-[#B8935A]"
+                                            className="font-montserrat text-[14px] leading-[1.2] tracking-[0.04em] uppercase transition-all duration-300 px-4 py-2 rounded-full font-medium flex items-center gap-1.5 hover:text-[#B8935A] hover:bg-white/10"
                                             style={{ color: act ? "#B8935A" : txtCol }}>
                                             {item.label}
                                             {item.isMega && (
@@ -416,13 +441,13 @@ export default function HeaderClient({ hasAnnouncement = false, megaMenuPayload 
                     </div>
 
                     {/* Right: Right Links & Search / Cart */}
-                    <div className="flex items-center gap-6 z-50">
-                        <nav className="hidden xl:flex items-center gap-8 h-full mr-4">
+                    <div className="flex items-center gap-4 z-50">
+                        <nav className="hidden xl:flex items-center gap-2 h-full mr-2">
                             {navLinks.slice(2).map(item => {
                                 const act = isActive(item.href);
                                 return (
                                     <Link key={item.label} href={item.href}
-                                        className="font-montserrat text-[14px] leading-[1.2] tracking-[0.04em] uppercase transition-colors duration-500 py-6 font-medium flex items-center gap-1.5 hover:text-[#B8935A]"
+                                        className="font-montserrat text-[14px] leading-[1.2] tracking-[0.04em] uppercase transition-all duration-300 px-4 py-2 rounded-full font-medium flex items-center gap-1.5 hover:text-[#B8935A] hover:bg-white/10"
                                         style={{ color: act ? "#B8935A" : txtCol }}>
                                         {item.label}
                                     </Link>
@@ -430,13 +455,13 @@ export default function HeaderClient({ hasAnnouncement = false, megaMenuPayload 
                             })}
                         </nav>
 
-                        <button onClick={() => setSearchOpen(true)} className="hover:opacity-60 transition-opacity" style={{ color: txtCol }} aria-label="Search">
+                        <button onClick={() => setSearchOpen(true)} className="p-2.5 rounded-full hover:bg-white/15 transition-all duration-300" style={{ color: txtCol }} aria-label="Search">
                             <Search size={20} strokeWidth={1.5} />
                         </button>
-                        <button onClick={() => setIsOpen(true)} className="relative hover:opacity-60 transition-opacity" style={{ color: txtCol }} aria-label="Cart">
+                        <button onClick={() => setIsOpen(true)} className="relative p-2.5 rounded-full hover:bg-white/15 transition-all duration-300" style={{ color: txtCol }} aria-label="Cart">
                             <ShoppingBag size={21} strokeWidth={1.5} />
                             {mounted && cartCount > 0 && (
-                                <span className="absolute -top-1.5 -right-2 w-[17px] h-[17px] bg-[#003926] rounded-full text-[9px] flex items-center justify-center text-white font-medium shadow-md">
+                                <span className="absolute top-0 right-0 w-[17px] h-[17px] bg-[#003926] rounded-full text-[9px] flex items-center justify-center text-white font-medium shadow-md">
                                     {cartCount}
                                 </span>
                             )}
