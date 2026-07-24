@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -30,44 +30,35 @@ export default function SlideToSwitch() {
     };
   }, []);
 
-  const handleMove = (clientX: number) => {
+  const updatePosition = useCallback((clientX: number) => {
     const container = containerRef.current;
     if (!container) return;
     const rect = container.getBoundingClientRect();
     const x = clientX - rect.left;
     const percentage = Math.max(0, Math.min(100, (x / rect.width) * 100));
     setPosition(percentage);
+  }, []);
+
+  const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    isDragging.current = true;
+    updatePosition(e.clientX);
+    // Capture pointer so drag events continue smoothly even if cursor moves outside canvas
+    e.currentTarget.setPointerCapture(e.pointerId);
   };
 
-  const handleMouseMove = (e: MouseEvent) => {
+  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
     if (!isDragging.current) return;
-    handleMove(e.clientX);
+    updatePosition(e.clientX);
   };
 
-  const handleTouchMove = (e: TouchEvent) => {
-    if (!isDragging.current) return;
-    if (e.touches[0]) {
-      handleMove(e.touches[0].clientX);
+  const handlePointerUp = (e: React.PointerEvent<HTMLDivElement>) => {
+    isDragging.current = false;
+    try {
+      e.currentTarget.releasePointerCapture(e.pointerId);
+    } catch {
+      // Ignored if already released
     }
   };
-
-  const handleMouseUp = () => {
-    isDragging.current = false;
-  };
-
-  useEffect(() => {
-    window.addEventListener("mousemove", handleMouseMove);
-    window.addEventListener("mouseup", handleMouseUp);
-    window.addEventListener("touchmove", handleTouchMove);
-    window.addEventListener("touchend", handleMouseUp);
-
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-      window.removeEventListener("mouseup", handleMouseUp);
-      window.removeEventListener("touchmove", handleTouchMove);
-      window.removeEventListener("touchend", handleMouseUp);
-    };
-  }, []);
 
   return (
     <motion.section
@@ -92,24 +83,21 @@ export default function SlideToSwitch() {
         {/* Full-Width Slider Canvas Box (Height Increased with Padding for Breathing Room) */}
         <div
           ref={containerRef}
-          className="relative w-full h-[80vh] min-h-[580px] max-h-[900px] overflow-hidden bg-[#EAE8E4] border border-[#E0D8CE] shadow-sm cursor-ew-resize rounded-sm"
-          onMouseDown={(e) => {
-            isDragging.current = true;
-            handleMove(e.clientX);
-          }}
-          onTouchStart={(e) => {
-            isDragging.current = true;
-            if (e.touches[0]) handleMove(e.touches[0].clientX);
-          }}
+          className="relative w-full h-[80vh] min-h-[580px] max-h-[900px] overflow-hidden bg-[#EAE8E4] border border-[#E0D8CE] shadow-sm cursor-ew-resize rounded-sm touch-none select-none"
+          onPointerDown={handlePointerDown}
+          onPointerMove={handlePointerMove}
+          onPointerUp={handlePointerUp}
+          onPointerCancel={handlePointerUp}
         >
           {/* Base Layer: White Dial Watch (Right Side, Fixed Center) */}
-          <div className="absolute inset-0 w-full h-full flex items-center justify-center py-10 md:py-14 px-4">
+          <div className="absolute inset-0 w-full h-full flex items-center justify-center py-10 md:py-14 px-4 pointer-events-none">
             <div className="relative w-full h-full max-w-2xl lg:max-w-3xl mx-auto">
               <Image
                 src="/images/new-content/new-1/escort womens/E-7931/E-7931.RGM_White.png"
                 alt="Alabaster White Dial Variant"
                 fill
-                className="object-contain scale-110 md:scale-125"
+                draggable={false}
+                className="object-contain scale-110 md:scale-125 select-none pointer-events-none"
                 sizes="100vw"
                 priority
               />
@@ -118,12 +106,12 @@ export default function SlideToSwitch() {
 
           {/* Overlay Layer: Blue Dial Watch (Clipped via position percentage) */}
           <div
-            className="absolute inset-y-0 left-0 overflow-hidden z-10"
+            className="absolute inset-y-0 left-0 overflow-hidden z-10 pointer-events-none"
             style={{ width: `${position}%` }}
           >
             {/* The inner div matches containerWidth exactly so images overlay dead-center */}
             <div
-              className="absolute inset-y-0 left-0 h-full flex items-center justify-center py-10 md:py-14 px-4"
+              className="absolute inset-y-0 left-0 h-full flex items-center justify-center py-10 md:py-14 px-4 pointer-events-none"
               style={{ width: containerWidth ? `${containerWidth}px` : "100vw" }}
             >
               <div className="relative w-full h-full max-w-2xl lg:max-w-3xl mx-auto">
@@ -131,7 +119,8 @@ export default function SlideToSwitch() {
                   src="/images/new-content/new-1/escort womens/E-7931/E-7931.RGM_Blue.png"
                   alt="Ocean Blue Dial Variant"
                   fill
-                  className="object-contain scale-110 md:scale-125"
+                  draggable={false}
+                  className="object-contain scale-110 md:scale-125 select-none pointer-events-none"
                   sizes="100vw"
                   priority
                 />
@@ -144,7 +133,7 @@ export default function SlideToSwitch() {
             className="absolute inset-y-0 z-20 w-[2px] bg-white cursor-ew-resize flex items-center justify-center pointer-events-none"
             style={{ left: `${position}%` }}
           >
-            <div className="w-10 h-10 rounded-full bg-white shadow-xl border border-neutral-300 flex items-center justify-center text-[#1A1918]">
+            <div className="w-10 h-10 rounded-full bg-white shadow-xl border border-neutral-300 flex items-center justify-center text-[#1A1918] pointer-events-none">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                 <path d="M8 19l-7-7 7-7M16 5l7 7-7 7" />
               </svg>
@@ -152,7 +141,7 @@ export default function SlideToSwitch() {
           </div>
 
           {/* Bottom Left Label: Ocean Blue Dial */}
-          <div className="absolute bottom-6 left-6 md:left-8 z-30 text-left bg-white/70 backdrop-blur-md px-4 py-2.5 rounded-sm border border-black/5">
+          <div className="absolute bottom-6 left-6 md:left-8 z-30 text-left bg-white/70 backdrop-blur-md px-4 py-2.5 rounded-sm border border-black/5 pointer-events-auto">
             <span className="font-montserrat text-[14px] font-medium text-[#1A1918] block mb-1">
               Ocean Blue Dial
             </span>
@@ -165,7 +154,7 @@ export default function SlideToSwitch() {
           </div>
 
           {/* Bottom Right Label: Alabaster White Dial */}
-          <div className="absolute bottom-6 right-6 md:right-8 z-30 text-right bg-white/70 backdrop-blur-md px-4 py-2.5 rounded-sm border border-black/5">
+          <div className="absolute bottom-6 right-6 md:right-8 z-30 text-right bg-white/70 backdrop-blur-md px-4 py-2.5 rounded-sm border border-black/5 pointer-events-auto">
             <span className="font-montserrat text-[14px] font-medium text-[#1A1918] block mb-1">
               Alabaster White Dial
             </span>
