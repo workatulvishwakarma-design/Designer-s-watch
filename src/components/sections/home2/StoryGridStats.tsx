@@ -49,7 +49,7 @@ function CountUpStat({ target, suffix = "+" }: { target: number; suffix?: string
 export default function StoryGridStats() {
   const images = {
     hero: "/images/about us journey/1976 - Nagpal Bombay/IMG_0216.jpeg",
-    topRight: "/images/about us journey/1995 — Style for All/IMG_7789.jpeg",
+    topRight: "/images/about_1995_style_for_all.jpg",
     bottomRight: "/images/about us journey/2025 - Time Corridor/1A1A8511.JPG",
   };
 

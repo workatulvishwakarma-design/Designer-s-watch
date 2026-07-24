@@ -13,13 +13,16 @@ export default function FullVideoBanner() {
     >
       {/* Background Autoplay Video */}
       <video
-        src="/images/new-content/videobanner-1.MP4"
         autoPlay
         muted
         loop
         playsInline
+        preload="metadata"
         className="absolute inset-0 w-full h-full object-cover scale-102 pointer-events-none"
-      />
+      >
+        <source src="/images/videobanner_home2.mp4" type="video/mp4" />
+        <source src="/images/new-img/video/D_SIGNER shot video 01.mp4" type="video/mp4" />
+      </video>
 
       {/* Subtle Edge Vignette */}
       <div 
