@@ -1,0 +1,549 @@
+"use client";
+
+import React, { useState, useEffect, useRef, useCallback } from "react";
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { Menu, X } from "lucide-react";
+
+/* ════════════════════════════════════════════════════════════════
+   DATA
+════════════════════════════════════════════════════════════════ */
+interface Milestone {
+  year: string;
+  title: string;
+  text: string;
+  image: string;
+}
+
+const milestones: Milestone[] = [
+  {
+    year: "1940s",
+    title: "The Beginning",
+    text: "A small watch parts shop in Amritsar marked the start of a journey rooted in craftsmanship and trust. Shree Virbhan Nagpal laid the foundation for what would become a national watch business spanning generations.",
+    image: "/images/about us journey/1940s — The Beginning/about-img1_1.webp",
+  },
+  {
+    year: "1960s",
+    title: "2nd Generation",
+    text: "The 2nd generation of the Nagpal family enters the business, deepening roots in horology and building relationships with international component suppliers across northern India.",
+    image: "/images/about us journey/1960- The 2nd Generation/WhatsApp Image 2026-04-27 at 10.50.37 AM.jpeg",
+  },
+  {
+    year: "1976",
+    title: "Nagpal's Bombay",
+    text: "The 3rd generation moves to Mumbai and establishes 'NAGPALS BOMBAY'. The network expands all around India, with international travel for parts & battery distribution. MAXELL and RENATA become major focus areas.",
+    image: "/images/about us journey/1976 - Nagpal Bombay/IMG_0216.jpeg",
+  },
+  {
+    year: "1991",
+    title: "A Brand is Born",
+    text: "D'SIGNER is introduced — a step into creating watches defined by design, quality, and individuality. One of the early Indian brands to design and manufacture to international standards.",
+    image: "/images/about us journey/1991 — A Brand is Born/Backup_of_dq designer old logo-13.png",
+  },
+  {
+    year: "1992",
+    title: "Voltage Batteries",
+    text: "An ambitious attempt to produce watch button cells with a small manufacturing unit in Nashik — a pioneering step into domestic production of watch components.",
+    image: "/images/about us journey/1992 - Voltage Batteries/IMG_0205.jpeg",
+  },
+  {
+    year: "1995",
+    title: "Style for All",
+    text: "ESCORT is launched to make timeless design more accessible, bringing reliable quality watches to a wider Indian audience at affordable prices.",
+    image: "/images/about us journey/1995 — Style for All/Escort Logo 1995.png",
+  },
+  {
+    year: "1998",
+    title: "Tissot in India",
+    text: "Nagpal Group becomes among the first national distributors for TISSOT, Givenchy Paris, Christian Bernard Paris, and Rotary in India — a major credibility milestone.",
+    image: "/images/new-img/pillars/GW-Ads-BArtboard 5.jpg",
+  },
+  {
+    year: "2004",
+    title: "D'signer Effects",
+    text: "A corporate gifts & promotion division launched under D'SIGNER EFFECTS to connect with organisations, offering promotional gifts for schemes and marketing plans.",
+    image: "/images/about us journey/2007 - Daniel Klein/daniel klein exclusive-13.png",
+  },
+  {
+    year: "2007",
+    title: "Daniel Klein",
+    text: "Exclusive distribution rights for Turkish brand Daniel Klein in India. Grows into a top performer on e-commerce platforms with 1000+ models per year.",
+    image: "/images/about us journey/2007 - Daniel Klein/daniel klein exclusive-13.png",
+  },
+  {
+    year: "2010",
+    title: "B2B & Corporate",
+    text: "Corporate gifting becomes a strategic pillar. Largest volume B2B watch orders for TATA INDICOM, REEBOK, NIKON, and leading pharma companies. Clocks & bags added under D'SIGNER.",
+    image: "/images/new-img/pillars/4.jpg",
+  },
+  {
+    year: "2015",
+    title: "Beyond the Brand",
+    text: "Expanding into OEM manufacturing — designing and producing watches for global and national brands, a significant leap in manufacturing capability.",
+    image: "/images/about us journey/2015 — Beyond Our Own Brand/WhatsApp Image 2026-04-04 at 4.14.22 PM (1).jpeg",
+  },
+  {
+    year: "2017",
+    title: "Adding More Brands",
+    text: "MATHEY TISSOT and D1 MILANO join the portfolio. Designer World steps into international exports — London, Singapore, Bahrain, and Oman.",
+    image: "/images/about us journey/2022 - Designer world Brands/DW-BRANDS-LOGO-B.png",
+  },
+  {
+    year: "2020",
+    title: "The Digital Shift",
+    text: "Nagpal Group adapts quickly to the e-commerce boom, designing for online-first brands and expanding reach across all major digital channels in India.",
+    image: "/images/new-img/pillars/GW-Ads-BArtboard 6.jpg",
+  },
+  {
+    year: "2022",
+    title: "Designer World Brands",
+    text: "A new division managing foreign brand distribution — DESIGNER WORLD BRANDS — adds INGERSOL, INVICTA, and SANTA BARBARA POLO CLUB to the portfolio.",
+    image: "/images/about us journey/2022 - Designer world Brands/DW-BRANDS-LOGO-B.png",
+  },
+  {
+    year: "2024",
+    title: "Diamond Watches",
+    text: "Lab Grown Diamond Studded Watches launched, targeting a luxury audience with models up to ₹1,50,000. A new chapter in premium horology.",
+    image: "/images/about us journey/2024 - Designer Lab Grown Diamond studded watches/DIAMOND SHOOT 16-09-2025/746GM.2L.jpg",
+  },
+  {
+    year: "2025",
+    title: "Time Corridor",
+    text: "A retail Time Boutique showcasing D'SIGNER & ESCORT — prime models, new launches, top sellers and special editions in a unique experience store.",
+    image: "/images/about us journey/2025 - Time Corridor/1A1A8511.JPG",
+  },
+  {
+    year: "Today",
+    title: "Affordable Luxury",
+    text: "4 generations of expertise. 20+ international brands. 500+ private labels manufactured. Blending legacy with modern design to create watches that balance style, quality, and accessibility.",
+    image: "/images/today1.png",
+  },
+];
+
+const ERA_RANGES = [
+  { label: "1940s – 1976", start: 0, end: 2 },
+  { label: "1991 – 2010", start: 3, end: 9 },
+  { label: "2015 – Today", start: 10, end: 16 },
+];
+
+const FALLBACK = "/images/main-img1.png";
+
+/* ════════════════════════════════════════════════════════════════
+   PAGE COMPONENT
+════════════════════════════════════════════════════════════════ */
+export default function AboutPage2() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  // For section-1 era selectors
+  const [eraIdx, setEraIdx] = useState(0);
+  // For section-2 sticky tabs active year
+  const [stickyActive, setStickyActive] = useState(0);
+
+  const slideRefs = useRef<(HTMLElement | null)[]>([]);
+  const stickyActiveRef = useRef(0);
+
+  /* ── IntersectionObserver for sticky tabs in section 2 ── */
+  useEffect(() => {
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const idx = Number(entry.target.getAttribute("data-slide-idx"));
+            if (!isNaN(idx) && stickyActiveRef.current !== idx) {
+              stickyActiveRef.current = idx;
+              setStickyActive(idx);
+              // Also sync era selector in sidebar section-2
+              const eraMatch = ERA_RANGES.findIndex((e) => idx >= e.start && idx <= e.end);
+              if (eraMatch >= 0) setEraIdx(eraMatch);
+            }
+          }
+        });
+      },
+      { rootMargin: "-40% 0px -40% 0px", threshold: 0 }
+    );
+    slideRefs.current.forEach((el) => el && obs.observe(el));
+    return () => obs.disconnect();
+  }, []);
+
+  const scrollToSlide = useCallback((idx: number) => {
+    const el = slideRefs.current[idx];
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, []);
+
+  return (
+    <div style={{ fontFamily: "'Inter', 'Helvetica Neue', Arial, sans-serif", background: "#fff" }}>
+      {/* ════════ GLOBAL HEADER ════════ */}
+      <header
+        style={{
+          position: "sticky", top: 0, zIndex: 50,
+          background: "#fff", borderBottom: "1px solid #e8e8e8",
+          display: "flex", alignItems: "center", justifyContent: "space-between",
+          padding: "1.1rem 2.5rem",
+        }}
+      >
+        <Link href="/">
+          <span style={{ color: "#003926", fontWeight: 800, fontSize: "1rem", letterSpacing: "0.22em" }}>
+            D&apos;SIGNER
+          </span>
+        </Link>
+        <nav className="hidden md:flex" style={{ gap: "2.5rem" }}>
+          {["About", "Collections", "Craftsmanship", "Journal", "Contact"].map((item) => (
+            <Link key={item} href={item === "About" ? "/about" : item === "Contact" ? "/contact" : "/"}
+              style={{ fontSize: "0.65rem", fontWeight: 600, letterSpacing: "0.16em", color: "#1a1a1a", textTransform: "uppercase", textDecoration: "none" }}
+              className="hover:text-[#003926] transition-colors"
+            >
+              {item}
+            </Link>
+          ))}
+        </nav>
+        <button className="md:hidden" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} aria-label="Toggle menu">
+          {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
+        </button>
+      </header>
+
+      {/* ════════════════════════════════════════════════════════════════
+          SECTION 1 — Figma Multi-Column Overview (100vh)
+      ════════════════════════════════════════════════════════════════ */}
+      <section
+        style={{
+          height: "calc(100vh - 57px)",
+          display: "flex",
+          overflow: "hidden",
+          background: "#fff",
+        }}
+      >
+        {/* LEFT SIDEBAR */}
+        <aside
+          data-sidebar=""
+          className="hidden lg:flex"
+          style={{
+            width: "220px", flexShrink: 0,
+            flexDirection: "column", justifyContent: "space-between",
+            padding: "2.5rem 1.75rem", borderRight: "1px solid #e8e8e8",
+            overflow: "hidden",
+          }}
+        >
+          <div>
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "2rem" }}>
+              <span style={{ color: "#003926", fontWeight: 700, fontSize: "0.6rem", letterSpacing: "0.25em", textTransform: "uppercase" }}>
+                HISTORY
+              </span>
+              <Menu size={15} style={{ color: "#bbb" }} />
+            </div>
+            <h1 style={{ fontSize: "1.1rem", fontWeight: 900, lineHeight: 1.18, color: "#111", textTransform: "uppercase", marginBottom: "2rem", wordBreak: "break-word" }}>
+              TIMELESS<br />CRAFTSMANSHIP<br />LASTING LEGACY
+            </h1>
+            <ul style={{ listStyle: "none", padding: 0, margin: "0 0 1rem 0" }}>
+              {["Showcase", "This Day in History", "Chronicles", "Topics"].map((link) => (
+                <li key={link} style={{ marginBottom: "0.55rem" }}>
+                  <button style={{ fontSize: "0.7rem", fontWeight: 500, color: "#666", background: "none", border: "none", cursor: "pointer", padding: 0 }}
+                    className="hover:text-[#003926] transition-colors">{link}</button>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div style={{ borderTop: "1px solid #e8e8e8", paddingTop: "1.5rem" }}>
+            {ERA_RANGES.map((era, i) => {
+              const isActive = eraIdx === i;
+              return (
+                <button key={era.label}
+                  onClick={() => {
+                    setEraIdx(i);
+                    // scroll first section's column track to show that era start column
+                    document.getElementById(`s1-col-${era.start}`)?.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" });
+                  }}
+                  style={{ display: "flex", alignItems: "center", gap: "0.6rem", width: "100%", textAlign: "left", marginBottom: "0.85rem", background: "none", border: "none", cursor: "pointer", padding: 0 }}
+                >
+                  <div style={{ width: 13, height: 13, borderRadius: "50%", border: isActive ? "2px solid #003926" : "1.5px solid #ccc", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                    {isActive && <div style={{ width: 5, height: 5, borderRadius: "50%", background: "#003926" }} />}
+                  </div>
+                  <span style={{ fontSize: "0.65rem", fontWeight: isActive ? 700 : 500, color: isActive ? "#003926" : "#777", letterSpacing: "0.05em" }}>
+                    {era.label}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+        </aside>
+
+        {/* MAIN: top tabs + columns + bottom track */}
+        <div style={{ flex: 1, display: "flex", flexDirection: "column", overflow: "hidden", minWidth: 0 }}>
+          {/* TOP YEAR TABS */}
+          <div style={{ borderBottom: "1px solid #e8e8e8", background: "#fff", flexShrink: 0, display: "flex", alignItems: "center", padding: "0 2rem", overflowX: "auto", scrollbarWidth: "none" }}>
+            <div style={{ display: "flex", alignItems: "center", flex: 1, overflowX: "auto", scrollbarWidth: "none" }}>
+              {milestones.map((m, i) => (
+                <button key={i}
+                  onClick={() => document.getElementById(`s1-col-${i}`)?.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" })}
+                  style={{
+                    padding: "0.95rem 0", marginRight: "1.6rem",
+                    fontSize: "0.65rem", fontWeight: 500, color: "#aaa",
+                    letterSpacing: "0.1em", textTransform: "uppercase",
+                    background: "none", border: "none", borderBottom: "2px solid transparent",
+                    cursor: "pointer", whiteSpace: "nowrap", flexShrink: 0, outline: "none",
+                    transition: "color 0.2s",
+                  }}
+                  className="hover:!text-[#003926]"
+                >
+                  {m.year}
+                </button>
+              ))}
+            </div>
+            <Link href="/about" style={{ padding: "0.5rem", color: "#bbb", flexShrink: 0, textDecoration: "none", display: "flex", alignItems: "center" }} title="Back to About">
+              <X size={15} />
+            </Link>
+          </div>
+
+          {/* MULTI-COLUMN CARD TRACK */}
+          <div
+            style={{
+              flex: 1, overflowX: "auto", overflowY: "hidden",
+              scrollbarWidth: "none", display: "flex", alignItems: "stretch",
+              padding: "2rem 2rem", gap: 0, minHeight: 0,
+            }}
+          >
+            {milestones.map((m, i) => (
+              <div id={`s1-col-${i}`} key={i}
+                style={{
+                  minWidth: "260px", maxWidth: "300px", flexShrink: 0,
+                  display: "flex", flexDirection: "column",
+                  borderRight: i < milestones.length - 1 ? "1px solid #e8e8e8" : "none",
+                  padding: "0 1.75rem", cursor: "default",
+                }}
+              >
+                <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", marginBottom: "0.5rem" }}>
+                  <span style={{ fontSize: "2rem", fontWeight: 900, color: "#111", letterSpacing: "-0.02em", lineHeight: 1 }}>
+                    {m.year}
+                  </span>
+                  <span style={{ fontSize: "0.7rem", color: "#ddd", fontWeight: 500 }}>
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                </div>
+                <p style={{ fontSize: "0.6rem", fontWeight: 700, color: "#003926", letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: "0.65rem" }}>
+                  {m.title}
+                </p>
+                <p style={{ fontSize: "0.78rem", color: "#555", lineHeight: 1.65, flex: 1, marginBottom: "1.25rem" }}>
+                  {m.text}
+                </p>
+                <div style={{ borderRadius: "0.75rem", overflow: "hidden", border: "1.5px solid #e0e0e0", background: "#f5f5f5" }}>
+                  <img src={m.image} alt={m.title}
+                    style={{ width: "100%", height: "150px", objectFit: "cover", display: "block" }}
+                    onError={(e) => { (e.target as HTMLImageElement).src = FALLBACK; }}
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* BOTTOM TIMELINE TRACK */}
+          <div style={{ borderTop: "1px solid #e8e8e8", background: "#fff", flexShrink: 0, padding: "0 2rem" }}>
+            <div style={{ height: 3, background: "#eee", position: "relative" }}>
+              <div style={{
+                position: "absolute", top: 0, left: 0, height: "100%", background: "#003926",
+                width: `${((ERA_RANGES[eraIdx].end + 1) / milestones.length) * 100}%`,
+                transition: "width 0.4s ease",
+              }} />
+            </div>
+            <div style={{ display: "flex", alignItems: "center", padding: "0.6rem 0 0.7rem", overflowX: "auto", scrollbarWidth: "none", gap: 0 }}>
+              {milestones.map((m, i) => {
+                const inEra = i >= ERA_RANGES[eraIdx].start && i <= ERA_RANGES[eraIdx].end;
+                return (
+                  <button key={i}
+                    onClick={() => document.getElementById(`s1-col-${i}`)?.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" })}
+                    style={{ flex: "1 0 auto", minWidth: "52px", display: "flex", flexDirection: "column", alignItems: "center", gap: 3, background: "none", border: "none", cursor: "pointer", outline: "none", padding: "0 2px" }}
+                  >
+                    <span style={{ fontSize: "0.58rem", fontWeight: inEra ? 600 : 400, color: inEra ? "#003926" : "#bbb", letterSpacing: "0.04em", whiteSpace: "nowrap", transition: "color 0.25s" }}>
+                      {m.year}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ════════════════════════════════════════════════════════════════
+          SECTION 2 — Cellini Scrollytelling Timeline
+          Each milestone = 100vh slide, animates in as you scroll
+      ════════════════════════════════════════════════════════════════ */}
+      <section style={{ background: "#fafafa", borderTop: "1px solid #e8e8e8" }}>
+        {/* Sticky Year Tabs for section 2 */}
+        <div
+          style={{
+            position: "sticky", top: "57px", zIndex: 30,
+            background: "rgba(255,255,255,0.96)",
+            backdropFilter: "blur(12px)",
+            borderBottom: "1px solid #e8e8e8",
+            padding: "0 2rem",
+            display: "flex", alignItems: "center",
+          }}
+        >
+          <div style={{ display: "flex", alignItems: "center", flex: 1, overflowX: "auto", scrollbarWidth: "none", gap: 0 }}>
+            {milestones.map((m, i) => {
+              const isActive = stickyActive === i;
+              return (
+                <button
+                  id={`sticky-tab-${i}`}
+                  key={i}
+                  onClick={() => scrollToSlide(i)}
+                  style={{
+                    padding: "0.9rem 0", marginRight: "1.6rem",
+                    fontSize: "0.65rem",
+                    fontWeight: isActive ? 700 : 400,
+                    color: isActive ? "#003926" : "#aaa",
+                    letterSpacing: "0.1em", textTransform: "uppercase",
+                    background: "none", border: "none",
+                    borderBottom: isActive ? "2px solid #003926" : "2px solid transparent",
+                    cursor: "pointer", whiteSpace: "nowrap", flexShrink: 0,
+                    outline: "none",
+                    transition: "color 0.25s, border-color 0.25s",
+                  }}
+                >
+                  {m.year}
+                </button>
+              );
+            })}
+          </div>
+          <Link href="/about" style={{ padding: "0.5rem", color: "#bbb", flexShrink: 0, textDecoration: "none", display: "flex", alignItems: "center" }}>
+            <X size={15} />
+          </Link>
+        </div>
+
+        {/* MILESTONE SLIDES */}
+        {milestones.map((m, i) => (
+          <motion.section
+            key={i}
+            ref={(el: HTMLElement | null) => { slideRefs.current[i] = el; }}
+            data-slide-idx={i}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.35 }}
+            transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+            style={{
+              minHeight: "100vh",
+              display: "flex",
+              alignItems: "center",
+              borderBottom: "1px solid #eee",
+              background: i % 2 === 0 ? "#fff" : "#fafafa",
+              padding: "0 2.5rem",
+              position: "relative",
+            }}
+          >
+            {/* Cellini 3-column layout */}
+            <div style={{
+              width: "100%", maxWidth: "1200px", margin: "0 auto",
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr 1fr",
+              gap: "3rem",
+              alignItems: "center",
+              padding: "6rem 0",
+            }}>
+
+              {/* LEFT: heading + text + small image */}
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: false, amount: 0.4 }}
+                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+              >
+                <p style={{
+                  fontSize: "0.6rem", fontWeight: 700, color: "#003926",
+                  letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: "1rem",
+                }}>
+                  {m.title}
+                </p>
+                <p style={{
+                  fontSize: "0.88rem", color: "#444", lineHeight: 1.8,
+                  marginBottom: "2rem", maxWidth: "340px",
+                }}>
+                  {m.text}
+                </p>
+                {/* Small secondary image */}
+                <div style={{
+                  borderRadius: "0.875rem", overflow: "hidden",
+                  border: "1px solid #e0e0e0", background: "#f8f8f8",
+                  maxWidth: "260px",
+                }}>
+                  <img
+                    src={m.image}
+                    alt={`${m.title} — detail`}
+                    style={{ width: "100%", height: "200px", objectFit: "cover", display: "block" }}
+                    onError={(e) => { (e.target as HTMLImageElement).src = FALLBACK; }}
+                  />
+                </div>
+              </motion.div>
+
+              {/* CENTER: Giant year watermark + step number */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.92 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: false, amount: 0.4 }}
+                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
+                style={{ textAlign: "center" }}
+              >
+                <div style={{
+                  fontSize: "clamp(5rem, 10vw, 8.5rem)",
+                  fontWeight: 900,
+                  color: "#f0f0f0",
+                  letterSpacing: "-0.04em",
+                  lineHeight: 1,
+                  userSelect: "none",
+                  marginBottom: "1.5rem",
+                  fontVariantNumeric: "tabular-nums",
+                }}>
+                  {m.year}
+                </div>
+                <div style={{
+                  width: 48, height: 48, borderRadius: "50%",
+                  border: "1.5px solid #e0e0e0",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  margin: "0 auto",
+                }}>
+                  <span style={{ fontSize: "0.7rem", fontWeight: 700, color: "#999", letterSpacing: "0.06em" }}>
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                </div>
+              </motion.div>
+
+              {/* RIGHT: main feature image + caption */}
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: false, amount: 0.4 }}
+                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+              >
+                <div style={{
+                  borderRadius: "1rem", overflow: "hidden",
+                  border: "1px solid #e0e0e0", background: "#f8f8f8",
+                  marginBottom: "1.25rem",
+                  boxShadow: "0 4px 24px rgba(0,0,0,0.06)",
+                }}>
+                  <img
+                    src={m.image}
+                    alt={m.title}
+                    style={{ width: "100%", height: "280px", objectFit: "cover", display: "block" }}
+                    onError={(e) => { (e.target as HTMLImageElement).src = FALLBACK; }}
+                  />
+                </div>
+                <p style={{ fontSize: "0.78rem", color: "#888", lineHeight: 1.65, fontStyle: "italic" }}>
+                  {m.year} · {m.title}
+                </p>
+              </motion.div>
+
+            </div>
+
+            {/* Milestone index line on far right */}
+            <div style={{
+              position: "absolute", right: "2.5rem", top: "50%",
+              transform: "translateY(-50%)",
+              fontSize: "0.6rem", fontWeight: 700, color: "#e0e0e0",
+              letterSpacing: "0.1em", writingMode: "vertical-rl",
+              userSelect: "none",
+            }}>
+              {String(i + 1).padStart(2, "0")} / {milestones.length}
+            </div>
+          </motion.section>
+        ))}
+      </section>
+    </div>
+  );
+}
