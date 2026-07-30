@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import Image from "next/image";
 
-function CountUpStat({ target, suffix = "+" }: { target: number; suffix?: string }) {
+function CountUpStat({ target, suffix = "+", lakh = false }: { target: number; suffix?: string; lakh?: boolean }) {
   const [count, setCount] = useState(0);
   const ref = useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
@@ -12,19 +12,15 @@ function CountUpStat({ target, suffix = "+" }: { target: number; suffix?: string
   useEffect(() => {
     if (!isInView) return;
 
-    const duration = 2000; // 2 seconds duration
+    const duration = 2000;
     const startTime = performance.now();
 
     const updateCount = (currentTime: number) => {
       const elapsedTime = currentTime - startTime;
       const progress = Math.min(elapsedTime / duration, 1);
-
-      // Smooth easeOutCubic curve
       const easeOutProgress = 1 - Math.pow(1 - progress, 3);
       const currentCount = Math.floor(easeOutProgress * target);
-
       setCount(currentCount);
-
       if (progress < 1) {
         requestAnimationFrame(updateCount);
       } else {
@@ -35,12 +31,26 @@ function CountUpStat({ target, suffix = "+" }: { target: number; suffix?: string
     requestAnimationFrame(updateCount);
   }, [isInView, target]);
 
+  // Format number: Indian lakh format (5,00,000) or plain with commas
+  const formatCount = (n: number) => {
+    if (lakh) {
+      // Indian number format
+      const s = n.toString();
+      if (s.length <= 3) return s;
+      const last3 = s.slice(-3);
+      const rest = s.slice(0, -3);
+      const restFormatted = rest.replace(/\B(?=(\d{2})+(?!\d))/g, ",");
+      return `${restFormatted},${last3}`;
+    }
+    return n.toLocaleString("en-IN");
+  };
+
   return (
     <span
       ref={ref}
       className="font-cormorant text-[48px] md:text-[56px] text-[#003926] font-semibold leading-none shrink-0 tabular-nums"
     >
-      {count}
+      {formatCount(count)}
       {suffix}
     </span>
   );
@@ -65,7 +75,7 @@ export default function StoryGridStats() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="font-montserrat text-[32px] sm:text-[44px] md:text-[52px] font-extrabold text-[#1A1918] tracking-[0.14em] uppercase leading-none mb-3"
+            className="font-montserrat text-[32px] sm:text-[44px] md:text-[52px] font-medium text-[#1A1918] tracking-[0.14em] uppercase leading-none mb-3"
           >
             OUR STORY
           </motion.h2>

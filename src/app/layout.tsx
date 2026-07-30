@@ -12,6 +12,7 @@ import { PublicShell } from "@/components/PublicShell";
 import { prisma } from "@/lib/db";
 import { Toaster } from "sonner";
 import CookieConsent from "@/components/ui/CookieConsent";
+import CelebrationPopup from "@/components/ui/CelebrationPopup";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -86,6 +87,7 @@ export default async function RootLayout({
           </PublicShell>
           <Toaster richColors position="top-center" />
           <CookieConsent />
+          <CelebrationPopup />
       </body>
     </html>
   );

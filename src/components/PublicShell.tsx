@@ -21,10 +21,9 @@ export function PublicShell({
 }) {
   const pathname = usePathname()
   const isAdmin = pathname.startsWith("/admin")
-  const isStandalone = pathname === "/about-2"
 
-  // Admin and standalone custom layout routes render ONLY children — no default public header/footer
-  if (isAdmin || isStandalone) {
+  // Admin custom layout routes render ONLY children — no default public header/footer
+  if (isAdmin) {
     return <>{children}</>
   }
 

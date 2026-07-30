@@ -7,16 +7,16 @@ export default function HeroSection() {
   return (
     <section className="relative h-screen w-full flex items-center overflow-hidden bg-[#040806] select-none">
       {/* 1. Full-Bleed Edge-to-Edge Background Image (Zero Space Top/Bottom, Watch Focused Right) */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0 overflow-hidden">
         <Image
-          src="/img/home1.PNG"
+          src="/img/home-2.png"
           alt="Luxury D'Signer Timepiece"
           fill
           priority
-          className="object-cover object-[85%_center] md:object-[88%_center] filter brightness-[0.82] contrast-[1.05]"
+          className="object-cover object-[right_center] md:object-[right_center] scale-120 md:scale-[1.20] filter brightness-[0.95] contrast-[1.05] transition-transform duration-700"
         />
         {/* Soft Left Side Gradient Overlay for Text Readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#040806] via-[#040806]/75 to-transparent z-10" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#040806]/85 via-[#040806]/50 to-transparent z-10" />
       </div>
 
       {/* 2. Left-Aligned Minimal Content */}
@@ -54,4 +54,3 @@ export default function HeroSection() {
     </section>
   );
 }
-

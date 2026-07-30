@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { X } from "lucide-react";
 
 /* ════════════════════════════════════════════════════════════════
    DATA
@@ -132,7 +132,6 @@ const FALLBACK = "/images/main-img1.png";
    PAGE COMPONENT
 ════════════════════════════════════════════════════════════════ */
 export default function AboutPage2() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   // For section-1 era selectors
   const [eraIdx, setEraIdx] = useState(0);
   // For section-2 sticky tabs active year
@@ -171,194 +170,28 @@ export default function AboutPage2() {
 
   return (
     <div style={{ fontFamily: "'Inter', 'Helvetica Neue', Arial, sans-serif", background: "#fff" }}>
-      {/* ════════ GLOBAL HEADER ════════ */}
-      <header
-        style={{
-          position: "sticky", top: 0, zIndex: 50,
-          background: "#fff", borderBottom: "1px solid #e8e8e8",
-          display: "flex", alignItems: "center", justifyContent: "space-between",
-          padding: "1.1rem 2.5rem",
-        }}
-      >
-        <Link href="/">
-          <span style={{ color: "#003926", fontWeight: 800, fontSize: "1rem", letterSpacing: "0.22em" }}>
-            D&apos;SIGNER
-          </span>
-        </Link>
-        <nav className="hidden md:flex" style={{ gap: "2.5rem" }}>
-          {["About", "Collections", "Craftsmanship", "Journal", "Contact"].map((item) => (
-            <Link key={item} href={item === "About" ? "/about" : item === "Contact" ? "/contact" : "/"}
-              style={{ fontSize: "0.65rem", fontWeight: 600, letterSpacing: "0.16em", color: "#1a1a1a", textTransform: "uppercase", textDecoration: "none" }}
-              className="hover:text-[#003926] transition-colors"
-            >
-              {item}
-            </Link>
-          ))}
-        </nav>
-        <button className="md:hidden" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} aria-label="Toggle menu">
-          {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
-        </button>
-      </header>
 
       {/* ════════════════════════════════════════════════════════════════
-          SECTION 1 — Figma Multi-Column Overview (100vh)
+          SECTION 1 — Banner Image
       ════════════════════════════════════════════════════════════════ */}
       <section
         style={{
-          height: "calc(100vh - 57px)",
-          display: "flex",
+          height: "100vh",
           overflow: "hidden",
-          background: "#fff",
+          lineHeight: 0,
         }}
       >
-        {/* LEFT SIDEBAR */}
-        <aside
-          data-sidebar=""
-          className="hidden lg:flex"
+        <img
+          src="/img/about-2.png"
+          alt="About Us"
           style={{
-            width: "220px", flexShrink: 0,
-            flexDirection: "column", justifyContent: "space-between",
-            padding: "2.5rem 1.75rem", borderRight: "1px solid #e8e8e8",
-            overflow: "hidden",
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            objectPosition: "center",
+            display: "block",
           }}
-        >
-          <div>
-            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "2rem" }}>
-              <span style={{ color: "#003926", fontWeight: 700, fontSize: "0.6rem", letterSpacing: "0.25em", textTransform: "uppercase" }}>
-                HISTORY
-              </span>
-              <Menu size={15} style={{ color: "#bbb" }} />
-            </div>
-            <h1 style={{ fontSize: "1.1rem", fontWeight: 900, lineHeight: 1.18, color: "#111", textTransform: "uppercase", marginBottom: "2rem", wordBreak: "break-word" }}>
-              TIMELESS<br />CRAFTSMANSHIP<br />LASTING LEGACY
-            </h1>
-            <ul style={{ listStyle: "none", padding: 0, margin: "0 0 1rem 0" }}>
-              {["Showcase", "This Day in History", "Chronicles", "Topics"].map((link) => (
-                <li key={link} style={{ marginBottom: "0.55rem" }}>
-                  <button style={{ fontSize: "0.7rem", fontWeight: 500, color: "#666", background: "none", border: "none", cursor: "pointer", padding: 0 }}
-                    className="hover:text-[#003926] transition-colors">{link}</button>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div style={{ borderTop: "1px solid #e8e8e8", paddingTop: "1.5rem" }}>
-            {ERA_RANGES.map((era, i) => {
-              const isActive = eraIdx === i;
-              return (
-                <button key={era.label}
-                  onClick={() => {
-                    setEraIdx(i);
-                    // scroll first section's column track to show that era start column
-                    document.getElementById(`s1-col-${era.start}`)?.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" });
-                  }}
-                  style={{ display: "flex", alignItems: "center", gap: "0.6rem", width: "100%", textAlign: "left", marginBottom: "0.85rem", background: "none", border: "none", cursor: "pointer", padding: 0 }}
-                >
-                  <div style={{ width: 13, height: 13, borderRadius: "50%", border: isActive ? "2px solid #003926" : "1.5px solid #ccc", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                    {isActive && <div style={{ width: 5, height: 5, borderRadius: "50%", background: "#003926" }} />}
-                  </div>
-                  <span style={{ fontSize: "0.65rem", fontWeight: isActive ? 700 : 500, color: isActive ? "#003926" : "#777", letterSpacing: "0.05em" }}>
-                    {era.label}
-                  </span>
-                </button>
-              );
-            })}
-          </div>
-        </aside>
-
-        {/* MAIN: top tabs + columns + bottom track */}
-        <div style={{ flex: 1, display: "flex", flexDirection: "column", overflow: "hidden", minWidth: 0 }}>
-          {/* TOP YEAR TABS */}
-          <div style={{ borderBottom: "1px solid #e8e8e8", background: "#fff", flexShrink: 0, display: "flex", alignItems: "center", padding: "0 2rem", overflowX: "auto", scrollbarWidth: "none" }}>
-            <div style={{ display: "flex", alignItems: "center", flex: 1, overflowX: "auto", scrollbarWidth: "none" }}>
-              {milestones.map((m, i) => (
-                <button key={i}
-                  onClick={() => document.getElementById(`s1-col-${i}`)?.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" })}
-                  style={{
-                    padding: "0.95rem 0", marginRight: "1.6rem",
-                    fontSize: "0.65rem", fontWeight: 500, color: "#aaa",
-                    letterSpacing: "0.1em", textTransform: "uppercase",
-                    background: "none", border: "none", borderBottom: "2px solid transparent",
-                    cursor: "pointer", whiteSpace: "nowrap", flexShrink: 0, outline: "none",
-                    transition: "color 0.2s",
-                  }}
-                  className="hover:!text-[#003926]"
-                >
-                  {m.year}
-                </button>
-              ))}
-            </div>
-            <Link href="/about" style={{ padding: "0.5rem", color: "#bbb", flexShrink: 0, textDecoration: "none", display: "flex", alignItems: "center" }} title="Back to About">
-              <X size={15} />
-            </Link>
-          </div>
-
-          {/* MULTI-COLUMN CARD TRACK */}
-          <div
-            style={{
-              flex: 1, overflowX: "auto", overflowY: "hidden",
-              scrollbarWidth: "none", display: "flex", alignItems: "stretch",
-              padding: "2rem 2rem", gap: 0, minHeight: 0,
-            }}
-          >
-            {milestones.map((m, i) => (
-              <div id={`s1-col-${i}`} key={i}
-                style={{
-                  minWidth: "260px", maxWidth: "300px", flexShrink: 0,
-                  display: "flex", flexDirection: "column",
-                  borderRight: i < milestones.length - 1 ? "1px solid #e8e8e8" : "none",
-                  padding: "0 1.75rem", cursor: "default",
-                }}
-              >
-                <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", marginBottom: "0.5rem" }}>
-                  <span style={{ fontSize: "2rem", fontWeight: 900, color: "#111", letterSpacing: "-0.02em", lineHeight: 1 }}>
-                    {m.year}
-                  </span>
-                  <span style={{ fontSize: "0.7rem", color: "#ddd", fontWeight: 500 }}>
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                </div>
-                <p style={{ fontSize: "0.6rem", fontWeight: 700, color: "#003926", letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: "0.65rem" }}>
-                  {m.title}
-                </p>
-                <p style={{ fontSize: "0.78rem", color: "#555", lineHeight: 1.65, flex: 1, marginBottom: "1.25rem" }}>
-                  {m.text}
-                </p>
-                <div style={{ borderRadius: "0.75rem", overflow: "hidden", border: "1.5px solid #e0e0e0", background: "#f5f5f5" }}>
-                  <img src={m.image} alt={m.title}
-                    style={{ width: "100%", height: "150px", objectFit: "cover", display: "block" }}
-                    onError={(e) => { (e.target as HTMLImageElement).src = FALLBACK; }}
-                  />
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* BOTTOM TIMELINE TRACK */}
-          <div style={{ borderTop: "1px solid #e8e8e8", background: "#fff", flexShrink: 0, padding: "0 2rem" }}>
-            <div style={{ height: 3, background: "#eee", position: "relative" }}>
-              <div style={{
-                position: "absolute", top: 0, left: 0, height: "100%", background: "#003926",
-                width: `${((ERA_RANGES[eraIdx].end + 1) / milestones.length) * 100}%`,
-                transition: "width 0.4s ease",
-              }} />
-            </div>
-            <div style={{ display: "flex", alignItems: "center", padding: "0.6rem 0 0.7rem", overflowX: "auto", scrollbarWidth: "none", gap: 0 }}>
-              {milestones.map((m, i) => {
-                const inEra = i >= ERA_RANGES[eraIdx].start && i <= ERA_RANGES[eraIdx].end;
-                return (
-                  <button key={i}
-                    onClick={() => document.getElementById(`s1-col-${i}`)?.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" })}
-                    style={{ flex: "1 0 auto", minWidth: "52px", display: "flex", flexDirection: "column", alignItems: "center", gap: 3, background: "none", border: "none", cursor: "pointer", outline: "none", padding: "0 2px" }}
-                  >
-                    <span style={{ fontSize: "0.58rem", fontWeight: inEra ? 600 : 400, color: inEra ? "#003926" : "#bbb", letterSpacing: "0.04em", whiteSpace: "nowrap", transition: "color 0.25s" }}>
-                      {m.year}
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-        </div>
+        />
       </section>
 
       {/* ════════════════════════════════════════════════════════════════
@@ -369,7 +202,7 @@ export default function AboutPage2() {
         {/* Sticky Year Tabs for section 2 */}
         <div
           style={{
-            position: "sticky", top: "57px", zIndex: 30,
+            position: "sticky", top: "88px", zIndex: 30,
             background: "rgba(255,255,255,0.96)",
             backdropFilter: "blur(12px)",
             borderBottom: "1px solid #e8e8e8",

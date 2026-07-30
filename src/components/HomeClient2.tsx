@@ -5,9 +5,9 @@ import SmoothScrolling from "@/components/SmoothScrolling";
 import HeroSection from "@/components/sections/home2/HeroSection";
 import GenderSelector from "@/components/sections/home2/GenderSelector";
 import BrandClubs from "@/components/sections/home2/BrandClubs";
+import WatchDetails from "@/components/sections/WatchDetails";
 import WatchGridCollage from "@/components/sections/home2/WatchGridCollage";
 import FullVideoBanner from "@/components/sections/home2/FullVideoBanner";
-import StoryGridStats from "@/components/sections/home2/StoryGridStats";
 import SlideToSwitch from "@/components/sections/home2/SlideToSwitch";
 import type { ModelFamilyGroup } from "@/types/product";
 
@@ -30,14 +30,15 @@ export default function HomeClient2({ menFamilies, womenFamilies }: HomeClient2P
         {/* === 3. Brand Club Portfolios (D'Signer Club & Escort Club) === */}
         <BrandClubs />
 
+        {/* === Anatomy section === */}
+        <WatchDetails />
+
         {/* === 4. Wrist watch different angle collage grid === */}
         <WatchGridCollage />
 
         {/* === 5. Full-width autoplay video banner === */}
         <FullVideoBanner />
 
-        {/* === 6. Brand Story Collage & Counters (Our Story) === */}
-        <StoryGridStats />
 
         {/* === 7. Slide to Switch interactive color slider === */}
         <SlideToSwitch />
@@ -45,4 +46,3 @@ export default function HomeClient2({ menFamilies, womenFamilies }: HomeClient2P
     </SmoothScrolling>
   );
 }
-

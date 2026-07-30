@@ -187,7 +187,7 @@ export default function HeaderClient({ hasAnnouncement = false, megaMenuPayload 
         gender: c.gender,
     })), []);
 
-    const isHeroPage = pathname === "/about" || pathname === "/home-2" || pathname.startsWith("/home-2") || pathname === "/";
+    const isHeroPage = pathname === "/about" || pathname === "/home-2" || pathname.startsWith("/home-2") || pathname === "/" || pathname === "/about-2" || pathname.startsWith("/about-2");
 
     useEffect(() => {
         const fn = () => setScrolled(window.scrollY > 30);
@@ -406,7 +406,7 @@ export default function HeaderClient({ hasAnnouncement = false, megaMenuPayload 
                             <span className="hidden sm:inline font-montserrat text-[13px] tracking-[0.08em] uppercase font-medium">MENU</span>
                         </button>
 
-                        <nav className="hidden xl:flex items-center gap-2 h-full ml-4">
+                        <nav className="hidden items-center gap-2 h-full ml-4">
                             {navLinks.slice(0, 2).map(item => {
                                 const act = isActive(item.href) || (item.isMega && showMegaMenu);
                                 return (
@@ -442,7 +442,7 @@ export default function HeaderClient({ hasAnnouncement = false, megaMenuPayload 
 
                     {/* Right: Right Links & Search / Cart */}
                     <div className="flex items-center gap-4 z-50">
-                        <nav className="hidden xl:flex items-center gap-2 h-full mr-2">
+                        <nav className="hidden items-center gap-2 h-full mr-2">
                             {navLinks.slice(2).map(item => {
                                 const act = isActive(item.href);
                                 return (

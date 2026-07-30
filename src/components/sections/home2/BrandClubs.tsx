@@ -28,11 +28,11 @@ export default function BrandClubs() {
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
             className="md:col-span-5 flex flex-col items-start relative z-10 order-2 md:order-1"
           >
-            <h2 className="font-montserrat text-[36px] sm:text-[48px] uppercase tracking-[0.08em] leading-none mb-1 font-extrabold">
-              D'signer
+            <h2 className="font-montserrat text-[36px] sm:text-[48px] uppercase tracking-[0.08em] leading-none mb-1 font-medium">
+              D&apos;signer
             </h2>
-            <h3 className="font-montserrat font-light text-[36px] sm:text-[48px] uppercase tracking-[0.15em] leading-none text-white/30 mb-8">
-              Club
+            <h3 className="font-montserrat font-light text-[24px] sm:text-[32px] md:text-[38px] uppercase tracking-[0.12em] leading-none text-white/30 mb-8">
+              For the Masses
             </h3>
 
             {/* Watch display insert container */}
@@ -53,8 +53,7 @@ export default function BrandClubs() {
             </motion.div>
 
             <p className="font-montserrat text-[13px] text-white/60 leading-[1.8] max-w-sm mb-8 font-medium">
-              We use a diamond cut technique for a crisp finish. The hands glow
-              beautifully in the dark for clear visibility.
+              Democratic luxury crafted for the masses. Combining signature diamond-cut precision with daily durability, D&apos;signer brings premium horology within reach for everyone.
             </p>
 
             <Link
@@ -118,16 +117,15 @@ export default function BrandClubs() {
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
             className="md:col-span-5 flex flex-col items-start relative z-10"
           >
-            <h2 className="font-montserrat text-[36px] sm:text-[48px] uppercase tracking-[0.08em] leading-none mb-1 font-extrabold">
+            <h2 className="font-montserrat text-[36px] sm:text-[48px] uppercase tracking-[0.08em] leading-none mb-1 font-medium">
               Escort
             </h2>
-            <h3 className="font-montserrat font-light text-[36px] sm:text-[48px] uppercase tracking-[0.15em] leading-none text-white/30 mb-8">
-              Club
+            <h3 className="font-montserrat font-light text-[24px] sm:text-[32px] md:text-[38px] uppercase tracking-[0.12em] leading-none text-white/30 mb-8">
+              For the Classes
             </h3>
 
             <p className="font-montserrat text-[13px] text-white/60 leading-[1.8] max-w-sm mb-8 font-medium">
-              We use a diamond cut technique for a crisp finish. The hands glow
-              beautifully in the dark for clear visibility.
+              Elite craftsmanship curated for the classes. Built with sovereign precision and subtle prestige, Escort is designed exclusively for those who appreciate the finer circles of life.
             </p>
 
             <Link
@@ -142,4 +140,3 @@ export default function BrandClubs() {
     </section>
   );
 }
-

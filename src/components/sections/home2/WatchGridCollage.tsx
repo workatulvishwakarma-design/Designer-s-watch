@@ -7,58 +7,58 @@ import { useCartStore } from "@/lib/store/cart";
 
 const IMAGES = {
   col1: {
-    id: "dsigner-808-gm",
-    name: "D'Signer 808 Gold Chrono",
+    id: "915BFS-3G",
+    name: "D'Signer 915BFS.3G",
     price: 14500,
-    slug: "dsigner-808-gm",
-    src: "/images/new-img/model-1/808/PNG/808GM.8.G.png",
-    alt: "D'Signer 808 Gold Chronograph Timepiece",
-    label: "D'Signer 808 Gold",
+    slug: "dsigner-915",
+    src: "/img/models/915BFS.3G.jpg",
+    alt: "D'Signer 915BFS.3G – Black Gold Skeleton Chronograph",
+    label: "915BFS.3G",
   },
   col2_top: {
-    id: "dsigner-804-rgm",
-    name: "D'Signer 804 Rose Gold",
+    id: "875RGBLM-5G",
+    name: "D'Signer 875RGBLM.5G",
     price: 12800,
-    slug: "dsigner-804-rgm",
-    src: "/images/new-img/model-1/804/804RGM.3G.png",
-    alt: "D'Signer 804 Rose Gold Variant",
-    label: "D'Signer 804 Rose",
+    slug: "dsigner-875-rgblm",
+    src: "/img/models/875RGBLM.5G.jpg",
+    alt: "D'Signer 875RGBLM.5G – Rose Gold Black Link Bracelet",
+    label: "875RGBLM.5G",
   },
   col2_bottom: {
-    id: "escort-830-rbg",
-    name: "Escort 830 Rose Black",
-    price: 9800,
-    slug: "escort-830-rbg",
-    src: "/images/new-img/model-2/830/830/830RBGFS.16G.png",
-    alt: "Escort 830 Rose Black Dial",
-    label: "Escort 830 Black",
+    id: "875RGGNM-3G",
+    name: "D'Signer 875RGGNM.3G",
+    price: 13200,
+    slug: "dsigner-875-rggnm",
+    src: "/img/models/875RGGNM.3G.jpg",
+    alt: "D'Signer 875RGGNM.3G – Rose Gold Multi Sub-Dial",
+    label: "875RGGNM.3G",
   },
   col3_top: {
-    id: "dsigner-753-rgm",
-    name: "D'Signer 753 Champagne",
-    price: 13900,
-    slug: "dsigner-753-rgm",
-    src: "/images/new-img/model-1/808/PNG/753RGM.16.G.png",
-    alt: "D'Signer 753 Champagne Dial",
-    label: "D'Signer 753 Gold",
+    id: "980GFS-16",
+    name: "D'Signer 980GFS.16",
+    price: 18900,
+    slug: "dsigner-980-gfs",
+    src: "/img/models/980GFS.16.jpg",
+    alt: "D'Signer 980GFS.16 – Green Gold Skeleton Tourbillon",
+    label: "980GFS.16",
   },
   col3_bottom: {
-    id: "escort-830-gnfs",
-    name: "Escort 830 Emerald Green",
-    price: 10500,
-    slug: "escort-830-gnfs",
-    src: "/images/new-img/model-2/830/830/830GNFS.8G.png",
-    alt: "Escort 830 Emerald Green Dial",
-    label: "Escort 830 Emerald",
+    id: "916GNM-16G",
+    name: "D'Signer 916GNM.16G",
+    price: 15500,
+    slug: "dsigner-916-gnm",
+    src: "/img/models/916GNM.16G.jpg",
+    alt: "D'Signer 916GNM.16G – Green Drum Chrono",
+    label: "916GNM.16G",
   },
   col4: {
-    id: "dsigner-873-gm",
-    name: "D'Signer 873 Women Grace",
+    id: "824GFS-16G",
+    name: "D'Signer 824GFS.16G",
     price: 11200,
-    slug: "dsigner-873-gm",
-    src: "/images/new-img/model-1/808/PNG/873GM.16.L.png",
-    alt: "D'Signer 873 Women Grace Timepiece",
-    label: "D'Signer 873 Grace",
+    slug: "dsigner-824-gfs",
+    src: "/images/new-img/model-2/916/916/916GNM.16G.png",
+    alt: "D'Signer 824GFS.16G",
+    label: "824GFS.16G",
   },
 };
 
@@ -96,7 +96,7 @@ export default function WatchGridCollage() {
           <div className="flex items-center gap-4 flex-wrap justify-center mt-2">
             <Link
               href="/collections/mens-dsigner"
-              className="px-8 py-3.5 bg-[#003926] text-white font-montserrat text-[12px] md:text-[13px] tracking-[0.18em] uppercase font-medium hover:bg-[#1A1918] transition-all duration-300"
+              className="px-8 py-3.5 bg-[#003926] text-white font-montserrat text-[12px] md:text-[13px] tracking-[0.18em] uppercase font-medium hover:bg-[#1A1918] transition-all duration-300 shadow-md"
             >
               MEN'S COLLECTION
             </Link>
@@ -109,7 +109,7 @@ export default function WatchGridCollage() {
           </div>
         </div>
 
-        {/* 4-Column Grid Collage with Real Watch Product Images */}
+        {/* 4-Column Grid Collage with Edge-to-Edge Premium Fitting Images */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 md:gap-5 items-stretch relative z-10">
           
           {/* COLUMN 1: Tall Left Portrait */}
@@ -118,21 +118,21 @@ export default function WatchGridCollage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="relative overflow-hidden aspect-[3/5] bg-[#FAF8F4] group rounded-xs border border-black/5"
+            className="relative overflow-hidden aspect-[3/5] bg-[#0A120E] group rounded-sm border border-black/10 shadow-lg"
           >
-            <div className="relative w-full h-full p-6 md:p-8 flex items-center justify-center">
-              <Image
-                src={IMAGES.col1.src}
-                alt={IMAGES.col1.alt}
-                fill
-                className="object-contain p-6 transition-transform duration-700 ease-out group-hover:scale-108"
-                sizes="(max-width: 768px) 100vw, 25vw"
-                priority
-              />
-            </div>
+            <Image
+              src={IMAGES.col1.src}
+              alt={IMAGES.col1.alt}
+              fill
+              className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+              sizes="(max-width: 768px) 100vw, 25vw"
+              priority
+            />
+            {/* Dark Gradient Overlay for text contrast */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent pointer-events-none" />
 
             <div className="absolute bottom-4 left-4 z-20 pointer-events-none">
-              <span className="font-montserrat text-[13px] text-[#1A1918] font-semibold tracking-wide block bg-white/80 backdrop-blur-md px-3 py-1 rounded-xs border border-black/5">
+              <span className="font-montserrat text-[12px] text-white font-medium tracking-wider block bg-black/60 backdrop-blur-md px-3.5 py-1.5 rounded-sm border border-white/20 shadow-md">
                 {IMAGES.col1.label}
               </span>
             </div>
@@ -140,7 +140,7 @@ export default function WatchGridCollage() {
             {/* Plus Quick-Add Symbol Button */}
             <button
               onClick={(e) => handleQuickAdd(IMAGES.col1, e)}
-              className="absolute bottom-4 right-4 z-30 w-9 h-9 rounded-full bg-[#003926] text-white flex items-center justify-center hover:bg-[#1A1918] transition-all cursor-pointer border border-white/20"
+              className="absolute bottom-4 right-4 z-30 w-9 h-9 rounded-full bg-transparent text-white flex items-center justify-center hover:bg-[#003926] hover:border-[#003926] transition-all duration-300 cursor-pointer border border-white/40 backdrop-blur-sm shadow-lg"
               title="Quick Add to Cart"
             >
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
@@ -158,26 +158,25 @@ export default function WatchGridCollage() {
             className="flex flex-col gap-3 md:gap-5"
           >
             {/* Top Card */}
-            <div className="relative overflow-hidden aspect-[4/3] bg-[#FAF8F4] group flex-grow rounded-xs border border-black/5">
-              <div className="relative w-full h-full p-4 flex items-center justify-center">
-                <Image
-                  src={IMAGES.col2_top.src}
-                  alt={IMAGES.col2_top.alt}
-                  fill
-                  className="object-contain p-4 transition-transform duration-700 ease-out group-hover:scale-108"
-                  sizes="(max-width: 768px) 100vw, 25vw"
-                />
-              </div>
+            <div className="relative overflow-hidden aspect-[4/3] bg-[#0A120E] group flex-grow rounded-sm border border-black/10 shadow-lg">
+              <Image
+                src={IMAGES.col2_top.src}
+                alt={IMAGES.col2_top.alt}
+                fill
+                className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                sizes="(max-width: 768px) 100vw, 25vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent pointer-events-none" />
 
               <div className="absolute bottom-4 left-4 z-20 pointer-events-none">
-                <span className="font-montserrat text-[13px] text-[#1A1918] font-semibold tracking-wide block bg-white/80 backdrop-blur-md px-3 py-1 rounded-xs border border-black/5">
+                <span className="font-montserrat text-[12px] text-white font-medium tracking-wider block bg-black/60 backdrop-blur-md px-3.5 py-1.5 rounded-sm border border-white/20 shadow-md">
                   {IMAGES.col2_top.label}
                 </span>
               </div>
 
               <button
                 onClick={(e) => handleQuickAdd(IMAGES.col2_top, e)}
-                className="absolute bottom-4 right-4 z-30 w-9 h-9 rounded-full bg-[#003926] text-white flex items-center justify-center hover:bg-[#1A1918] transition-all cursor-pointer border border-white/20"
+                className="absolute bottom-4 right-4 z-30 w-9 h-9 rounded-full bg-transparent text-white flex items-center justify-center hover:bg-[#003926] hover:border-[#003926] transition-all duration-300 cursor-pointer border border-white/40 backdrop-blur-sm shadow-lg"
                 title="Quick Add to Cart"
               >
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
@@ -187,26 +186,25 @@ export default function WatchGridCollage() {
             </div>
 
             {/* Bottom Card */}
-            <div className="relative overflow-hidden aspect-[4/3] bg-[#FAF8F4] group flex-grow rounded-xs border border-black/5">
-              <div className="relative w-full h-full p-4 flex items-center justify-center">
-                <Image
-                  src={IMAGES.col2_bottom.src}
-                  alt={IMAGES.col2_bottom.alt}
-                  fill
-                  className="object-contain p-4 transition-transform duration-700 ease-out group-hover:scale-108"
-                  sizes="(max-width: 768px) 100vw, 25vw"
-                />
-              </div>
+            <div className="relative overflow-hidden aspect-[4/3] bg-[#0A120E] group flex-grow rounded-sm border border-black/10 shadow-lg">
+              <Image
+                src={IMAGES.col2_bottom.src}
+                alt={IMAGES.col2_bottom.alt}
+                fill
+                className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                sizes="(max-width: 768px) 100vw, 25vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent pointer-events-none" />
 
               <div className="absolute bottom-4 left-4 z-20 pointer-events-none">
-                <span className="font-montserrat text-[13px] text-[#1A1918] font-semibold tracking-wide block bg-white/80 backdrop-blur-md px-3 py-1 rounded-xs border border-black/5">
+                <span className="font-montserrat text-[12px] text-white font-medium tracking-wider block bg-black/60 backdrop-blur-md px-3.5 py-1.5 rounded-sm border border-white/20 shadow-md">
                   {IMAGES.col2_bottom.label}
                 </span>
               </div>
 
               <button
                 onClick={(e) => handleQuickAdd(IMAGES.col2_bottom, e)}
-                className="absolute bottom-4 right-4 z-30 w-9 h-9 rounded-full bg-[#003926] text-white flex items-center justify-center hover:bg-[#1A1918] transition-all cursor-pointer border border-white/20"
+                className="absolute bottom-4 right-4 z-30 w-9 h-9 rounded-full bg-transparent text-white flex items-center justify-center hover:bg-[#003926] hover:border-[#003926] transition-all duration-300 cursor-pointer border border-white/40 backdrop-blur-sm shadow-lg"
                 title="Quick Add to Cart"
               >
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
@@ -225,26 +223,25 @@ export default function WatchGridCollage() {
             className="flex flex-col gap-3 md:gap-5"
           >
             {/* Top Card */}
-            <div className="relative overflow-hidden aspect-[4/3] bg-[#FAF8F4] group flex-grow rounded-xs border border-black/5">
-              <div className="relative w-full h-full p-4 flex items-center justify-center">
-                <Image
-                  src={IMAGES.col3_top.src}
-                  alt={IMAGES.col3_top.alt}
-                  fill
-                  className="object-contain p-4 transition-transform duration-700 ease-out group-hover:scale-108"
-                  sizes="(max-width: 768px) 100vw, 25vw"
-                />
-              </div>
+            <div className="relative overflow-hidden aspect-[4/3] bg-[#0A120E] group flex-grow rounded-sm border border-black/10 shadow-lg">
+              <Image
+                src={IMAGES.col3_top.src}
+                alt={IMAGES.col3_top.alt}
+                fill
+                className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                sizes="(max-width: 768px) 100vw, 25vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent pointer-events-none" />
 
               <div className="absolute bottom-4 left-4 z-20 pointer-events-none">
-                <span className="font-montserrat text-[13px] text-[#1A1918] font-semibold tracking-wide block bg-white/80 backdrop-blur-md px-3 py-1 rounded-xs border border-black/5">
+                <span className="font-montserrat text-[12px] text-white font-medium tracking-wider block bg-black/60 backdrop-blur-md px-3.5 py-1.5 rounded-sm border border-white/20 shadow-md">
                   {IMAGES.col3_top.label}
                 </span>
               </div>
 
               <button
                 onClick={(e) => handleQuickAdd(IMAGES.col3_top, e)}
-                className="absolute bottom-4 right-4 z-30 w-9 h-9 rounded-full bg-[#003926] text-white flex items-center justify-center hover:bg-[#1A1918] transition-all cursor-pointer border border-white/20"
+                className="absolute bottom-4 right-4 z-30 w-9 h-9 rounded-full bg-transparent text-white flex items-center justify-center hover:bg-[#003926] hover:border-[#003926] transition-all duration-300 cursor-pointer border border-white/40 backdrop-blur-sm shadow-lg"
                 title="Quick Add to Cart"
               >
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
@@ -254,26 +251,25 @@ export default function WatchGridCollage() {
             </div>
 
             {/* Bottom Card */}
-            <div className="relative overflow-hidden aspect-[4/3] bg-[#FAF8F4] group flex-grow rounded-xs border border-black/5">
-              <div className="relative w-full h-full p-4 flex items-center justify-center">
-                <Image
-                  src={IMAGES.col3_bottom.src}
-                  alt={IMAGES.col3_bottom.alt}
-                  fill
-                  className="object-contain p-4 transition-transform duration-700 ease-out group-hover:scale-108"
-                  sizes="(max-width: 768px) 100vw, 25vw"
-                />
-              </div>
+            <div className="relative overflow-hidden aspect-[4/3] bg-[#0A120E] group flex-grow rounded-sm border border-black/10 shadow-lg">
+              <Image
+                src={IMAGES.col3_bottom.src}
+                alt={IMAGES.col3_bottom.alt}
+                fill
+                className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                sizes="(max-width: 768px) 100vw, 25vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent pointer-events-none" />
 
               <div className="absolute bottom-4 left-4 z-20 pointer-events-none">
-                <span className="font-montserrat text-[13px] text-[#1A1918] font-semibold tracking-wide block bg-white/80 backdrop-blur-md px-3 py-1 rounded-xs border border-black/5">
+                <span className="font-montserrat text-[12px] text-white font-medium tracking-wider block bg-black/60 backdrop-blur-md px-3.5 py-1.5 rounded-sm border border-white/20 shadow-md">
                   {IMAGES.col3_bottom.label}
                 </span>
               </div>
 
               <button
                 onClick={(e) => handleQuickAdd(IMAGES.col3_bottom, e)}
-                className="absolute bottom-4 right-4 z-30 w-9 h-9 rounded-full bg-[#003926] text-white flex items-center justify-center hover:bg-[#1A1918] transition-all cursor-pointer border border-white/20"
+                className="absolute bottom-4 right-4 z-30 w-9 h-9 rounded-full bg-transparent text-white flex items-center justify-center hover:bg-[#003926] hover:border-[#003926] transition-all duration-300 cursor-pointer border border-white/40 backdrop-blur-sm shadow-lg"
                 title="Quick Add to Cart"
               >
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
@@ -289,28 +285,30 @@ export default function WatchGridCollage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="relative overflow-hidden aspect-[3/5] bg-[#FAF8F4] group rounded-xs border border-black/5"
+            className="relative overflow-hidden aspect-[3/5] bg-[#0A120E] group rounded-sm border border-black/10 shadow-lg"
           >
-            <div className="relative w-full h-full p-6 md:p-8 flex items-center justify-center">
+            {/* Cutout PNG Watch product styling with dark background */}
+            <div className="relative w-full h-full p-6 flex items-center justify-center">
               <Image
                 src={IMAGES.col4.src}
                 alt={IMAGES.col4.alt}
                 fill
-                className="object-contain p-6 transition-transform duration-700 ease-out group-hover:scale-108"
+                className="object-contain p-6 transition-transform duration-700 ease-out group-hover:scale-108 drop-shadow-[0_15px_30px_rgba(0,0,0,0.7)]"
                 sizes="(max-width: 768px) 100vw, 25vw"
                 priority
               />
             </div>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
 
             <div className="absolute bottom-4 left-4 z-20 pointer-events-none">
-              <span className="font-montserrat text-[13px] text-[#1A1918] font-semibold tracking-wide block bg-white/80 backdrop-blur-md px-3 py-1 rounded-xs border border-black/5">
+              <span className="font-montserrat text-[12px] text-white font-medium tracking-wider block bg-black/60 backdrop-blur-md px-3.5 py-1.5 rounded-sm border border-white/20 shadow-md">
                 {IMAGES.col4.label}
               </span>
             </div>
 
             <button
               onClick={(e) => handleQuickAdd(IMAGES.col4, e)}
-              className="absolute bottom-4 right-4 z-30 w-9 h-9 rounded-full bg-[#003926] text-white flex items-center justify-center hover:bg-[#1A1918] transition-all cursor-pointer border border-white/20"
+              className="absolute bottom-4 right-4 z-30 w-9 h-9 rounded-full bg-transparent text-white flex items-center justify-center hover:bg-[#003926] hover:border-[#003926] transition-all duration-300 cursor-pointer border border-white/40 backdrop-blur-sm shadow-lg"
               title="Quick Add to Cart"
             >
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">

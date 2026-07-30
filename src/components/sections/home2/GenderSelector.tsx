@@ -8,175 +8,177 @@ import { motion } from "framer-motion";
 export default function GenderSelector() {
   const [hoveredCard, setHoveredCard] = useState<"men" | "women" | null>(null);
 
+  const menWidth =
+    hoveredCard === "women" ? "40%" : hoveredCard === "men" ? "60%" : "50%";
+  const womenWidth =
+    hoveredCard === "men" ? "40%" : hoveredCard === "women" ? "60%" : "50%";
+
+  const panelTransition = "width 0.7s cubic-bezier(0.22, 1, 0.36, 1)";
+
   return (
-    <section className="w-full bg-[#FAF8F4] overflow-hidden">
+    <section className="w-full bg-[#040806] overflow-hidden">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-80px" }}
         transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-        className="flex flex-col md:flex-row w-full h-[650px] sm:h-[750px] md:h-[82vh] lg:h-[88vh] min-h-[550px] md:min-h-[700px]"
+        className="flex w-full h-[650px] sm:h-[750px] md:h-[82vh] lg:h-[88vh] min-h-[550px] md:min-h-[700px]"
       >
-        {/* Left Card: MEN */}
-        <Link
-          href="/collections/men"
+        {/* ── Left Panel: MEN ── */}
+        <div
           onMouseEnter={() => setHoveredCard("men")}
           onMouseLeave={() => setHoveredCard(null)}
-          className="relative block overflow-hidden cursor-pointer w-full md:flex-1 h-full bg-[#040806]"
+          className="relative overflow-hidden cursor-pointer h-full flex-shrink-0 bg-[#040806]"
+          style={{ width: menWidth, transition: panelTransition }}
         >
-          {/* Oversized Image Container (Extends 20% past edges so right-sliding reveals image, not white space) */}
-          <div className="absolute -inset-x-[20%] inset-y-0 z-0 overflow-hidden">
-            <div
-              className={`relative w-full h-full transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] will-change-transform ${
-                hoveredCard === "men" ? "translate-x-[10%]" : "-translate-x-[5%]"
-              }`}
-            >
-              <Image
-                src="/img/home3.PNG"
-                alt="Men's Timepieces"
-                fill
-                className="object-cover object-center w-full h-full"
-                sizes="(max-width: 768px) 100vw, 60vw"
-                priority
-              />
-            </div>
+          {/*
+            Image wrapper is FIXED at 75vw wide, anchored to left: 0.
+            It NEVER changes size — no zoom, ever.
+            The panel's overflow: hidden clips how much is visible.
+            As panel grows 50%→75%, more of the fixed image is revealed (slide).
+          */}
+          <div
+            style={{
+              position: "absolute",
+              top: 0,
+              bottom: 0,
+              left: "-15vw",
+              width: "75vw",
+              pointerEvents: "none",
+            }}
+          >
+            <Image
+              src="/img/home3.PNG"
+              alt="Men's Timepieces"
+              fill
+              style={{ objectFit: "cover", objectPosition: "center" }}
+              sizes="75vw"
+              priority
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
           </div>
 
-          {/* Dark Gradient Overlay */}
-          <div
-            className={`absolute inset-0 bg-gradient-to-t from-black/80 via-black/35 to-black/15 z-10 transition-opacity duration-700 ease-out ${
-              hoveredCard === "men" ? "opacity-60" : "opacity-75"
-            }`}
-          />
-
-          {/* Centered Overlay Content */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="absolute inset-0 z-20 flex flex-col items-center justify-end pb-14 sm:pb-20 md:pb-24 px-6 text-center text-white pointer-events-none"
-          >
+          {/* Heading */}
+          <div className="absolute inset-0 z-10 flex flex-col items-center justify-end pb-16 md:pb-20 pointer-events-none">
             <h2
-              className="font-montserrat font-bold uppercase text-[38px] sm:text-[48px] lg:text-[60px] tracking-[0.12em] leading-none mb-4"
-              style={{ textShadow: "0 4px 20px rgba(0,0,0,0.4)" }}
+              className="font-montserrat font-medium text-[64px] sm:text-[80px] md:text-[96px] uppercase tracking-[0.1em] text-white leading-none"
+              style={{
+                opacity: hoveredCard === "women" ? 0.35 : 1,
+                transition: "opacity 0.5s ease",
+              }}
             >
-              Men
+              MEN
             </h2>
-
-            {/* "Explore" CTA button with upwards motion & fade */}
-            <div
-              className={`flex items-center gap-2 transition-all duration-500 ease-out ${
-                hoveredCard === "men"
-                  ? "opacity-100 translate-y-0 text-white"
-                  : "opacity-75 translate-y-2 sm:translate-y-3 text-white/80"
-              }`}
+            <p
+              className="font-montserrat text-[9px] tracking-[0.3em] uppercase text-white/70 mt-3"
+              style={{
+                opacity: hoveredCard === "women" ? 0 : 1,
+                transition: "opacity 0.4s ease",
+              }}
             >
-              <span className="font-montserrat text-[11px] sm:text-[12px] tracking-[0.45em] uppercase font-semibold pl-[0.45em]">
-                Explore Collection
-              </span>
-              <svg
-                width="14"
-                height="14"
-                viewBox="0 0 20 20"
-                fill="none"
-                className={`transition-transform duration-500 ${
-                  hoveredCard === "men" ? "translate-x-1.5" : "translate-x-0"
-                }`}
-              >
-                <path
-                  d="M4 10h12M12 6l4 4-4 4"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </div>
-          </motion.div>
-        </Link>
+              EXPLORE COLLECTION &rarr;
+            </p>
+          </div>
 
-        {/* Right Card: WOMEN */}
-        <Link
-          href="/collections/women"
+          {/* Buttons */}
+          <div className="absolute bottom-5 inset-x-0 z-20 flex flex-row items-center justify-center gap-4 pointer-events-none">
+            <Link
+              href="/collections/men"
+              className="pointer-events-auto font-montserrat text-[10px] md:text-[11px] tracking-[0.22em] uppercase font-semibold text-white border border-white/50 px-5 py-2.5 backdrop-blur-sm bg-white/5 hover:bg-white hover:text-[#003926] hover:border-white transition-all duration-300"
+              onClick={(e) => e.stopPropagation()}
+            >
+              MEN&apos;S
+            </Link>
+            <Link
+              href="/collections/women"
+              className="pointer-events-auto font-montserrat text-[10px] md:text-[11px] tracking-[0.22em] uppercase font-semibold text-white border border-white/50 px-5 py-2.5 backdrop-blur-sm bg-white/5 hover:bg-white hover:text-[#003926] hover:border-white transition-all duration-300"
+              onClick={(e) => e.stopPropagation()}
+            >
+              WOMEN&apos;S
+            </Link>
+          </div>
+        </div>
+
+        {/* Thin Vertical Divider */}
+        <div className="w-[1px] bg-white/10 shrink-0 z-20 relative hidden md:block">
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/15 to-transparent" />
+        </div>
+
+        {/* ── Right Panel: WOMEN ── */}
+        <div
           onMouseEnter={() => setHoveredCard("women")}
           onMouseLeave={() => setHoveredCard(null)}
-          className="relative block overflow-hidden cursor-pointer w-full md:flex-1 h-full bg-[#040806]"
+          className="relative overflow-hidden cursor-pointer h-full flex-shrink-0 bg-[#040806]"
+          style={{ width: womenWidth, transition: panelTransition }}
         >
-          {/* Oversized Image Container (Extends 20% past edges so left-sliding reveals image, not white space) */}
-          <div className="absolute -inset-x-[20%] inset-y-0 z-0 overflow-hidden">
-            <div
-              className={`relative w-full h-full transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] will-change-transform ${
-                hoveredCard === "women" ? "-translate-x-[10%]" : "translate-x-[5%]"
-              }`}
-            >
-              <Image
-                src="/img/home4.PNG"
-                alt="Women's Timepieces"
-                fill
-                className="object-cover object-center w-full h-full"
-                sizes="(max-width: 768px) 100vw, 60vw"
-                priority
-              />
-            </div>
+          {/*
+            Image wrapper is FIXED at 75vw wide, anchored to right: 0.
+            As panel grows 50%→75%, more of the left side is revealed (slide).
+            Zero zoom — same fixed size always.
+          */}
+          <div
+            style={{
+              position: "absolute",
+              top: 0,
+              bottom: 0,
+              right: 0,
+              width: "75vw",
+              pointerEvents: "none",
+            }}
+          >
+            <Image
+              src="/img/home4.PNG"
+              alt="Women's Timepieces"
+              fill
+              style={{ objectFit: "cover", objectPosition: "center" }}
+              sizes="75vw"
+              priority
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
           </div>
 
-          {/* Dark Gradient Overlay */}
-          <div
-            className={`absolute inset-0 bg-gradient-to-t from-black/80 via-black/35 to-black/15 z-10 transition-opacity duration-700 ease-out ${
-              hoveredCard === "women" ? "opacity-60" : "opacity-75"
-            }`}
-          />
-
-          {/* Centered Overlay Content */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="absolute inset-0 z-20 flex flex-col items-center justify-end pb-14 sm:pb-20 md:pb-24 px-6 text-center text-white pointer-events-none"
-          >
+          {/* Heading */}
+          <div className="absolute inset-0 z-10 flex flex-col items-center justify-end pb-16 md:pb-20 pointer-events-none">
             <h2
-              className="font-montserrat font-bold uppercase text-[38px] sm:text-[48px] lg:text-[60px] tracking-[0.12em] leading-none mb-4"
-              style={{ textShadow: "0 4px 20px rgba(0,0,0,0.4)" }}
+              className="font-montserrat font-medium text-[64px] sm:text-[80px] md:text-[96px] uppercase tracking-[0.1em] text-white leading-none"
+              style={{
+                opacity: hoveredCard === "men" ? 0.35 : 1,
+                transition: "opacity 0.5s ease",
+              }}
             >
-              Women
+              WOMEN
             </h2>
-
-            {/* "Explore" CTA button with upwards motion & fade */}
-            <div
-              className={`flex items-center gap-2 transition-all duration-500 ease-out ${
-                hoveredCard === "women"
-                  ? "opacity-100 translate-y-0 text-white"
-                  : "opacity-75 translate-y-2 sm:translate-y-3 text-white/80"
-              }`}
+            <p
+              className="font-montserrat text-[9px] tracking-[0.3em] uppercase text-white/70 mt-3"
+              style={{
+                opacity: hoveredCard === "men" ? 0 : 1,
+                transition: "opacity 0.4s ease",
+              }}
             >
-              <span className="font-montserrat text-[11px] sm:text-[12px] tracking-[0.45em] uppercase font-semibold pl-[0.45em]">
-                Explore Collection
-              </span>
-              <svg
-                width="14"
-                height="14"
-                viewBox="0 0 20 20"
-                fill="none"
-                className={`transition-transform duration-500 ${
-                  hoveredCard === "women" ? "translate-x-1.5" : "translate-x-0"
-                }`}
-              >
-                <path
-                  d="M4 10h12M12 6l4 4-4 4"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </div>
-          </motion.div>
-        </Link>
+              EXPLORE COLLECTION &rarr;
+            </p>
+          </div>
+
+          {/* Buttons */}
+          <div className="absolute bottom-5 inset-x-0 z-20 flex flex-row items-center justify-center gap-4 pointer-events-none">
+            <Link
+              href="/collections/men"
+              className="pointer-events-auto font-montserrat text-[10px] md:text-[11px] tracking-[0.22em] uppercase font-semibold text-white border border-white/50 px-5 py-2.5 backdrop-blur-sm bg-white/5 hover:bg-white hover:text-[#003926] hover:border-white transition-all duration-300"
+              onClick={(e) => e.stopPropagation()}
+            >
+              MEN&apos;S
+            </Link>
+            <Link
+              href="/collections/women"
+              className="pointer-events-auto font-montserrat text-[10px] md:text-[11px] tracking-[0.22em] uppercase font-semibold text-white border border-white/50 px-5 py-2.5 backdrop-blur-sm bg-white/5 hover:bg-white hover:text-[#003926] hover:border-white transition-all duration-300"
+              onClick={(e) => e.stopPropagation()}
+            >
+              WOMEN&apos;S
+            </Link>
+          </div>
+        </div>
 
       </motion.div>
     </section>
   );
 }
-

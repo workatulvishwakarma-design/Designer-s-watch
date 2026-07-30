@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 export default function FullVideoBanner() {
   return (
@@ -17,10 +18,9 @@ export default function FullVideoBanner() {
         muted
         loop
         playsInline
-        preload="metadata"
+        preload="auto"
         className="absolute inset-0 w-full h-full object-cover scale-102 pointer-events-none"
       >
-        <source src="/images/videobanner_home2.mp4" type="video/mp4" />
         <source src="/images/new-img/video/D_SIGNER shot video 01.mp4" type="video/mp4" />
       </video>
 
@@ -34,4 +34,3 @@ export default function FullVideoBanner() {
     </motion.section>
   );
 }
-
