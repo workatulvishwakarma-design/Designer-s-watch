@@ -190,14 +190,15 @@ export default function AboutPage2() {
             objectFit: "cover",
             objectPosition: "center",
             display: "block",
+            filter: "brightness(0.85)",
           }}
         />
-        {/* 20% Black Overlay */}
+        {/* Dark Black Overlay */}
         <div
           style={{
             position: "absolute",
             inset: 0,
-            backgroundColor: "rgba(0, 0, 0, 0.20)",
+            backgroundColor: "rgba(0, 0, 0, 0.45)",
             zIndex: 1,
           }}
         />
