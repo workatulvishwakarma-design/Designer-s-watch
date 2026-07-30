@@ -36,7 +36,7 @@ const milestones: Milestone[] = [
     title: "Nagpal's Bombay",
     text: "The 3rd generation moves to Mumbai and establishes 'NAGPALS BOMBAY'. The network expands all around India, with international travel for parts & battery distribution. MAXELL and RENATA become major focus areas.",
     image1: "/images/about us journey/1976 - Nagpal Bombay/IMG_0216.jpeg",
-    image2: "/images/about us journey/1980_s - Becoming Pan India Distributor for Batteries/Nagpal's Bombay got distribution of Renata And Maxell Batteries.png",
+    image2: "/images/new-img/pillars/GW-Ads-BArtboard 1.jpg",
   },
   {
     year: "1991",
@@ -50,14 +50,14 @@ const milestones: Milestone[] = [
     title: "Voltage Batteries",
     text: "An ambitious attempt to produce watch button cells with a small manufacturing unit in Nashik — a pioneering step into domestic production of watch components.",
     image1: "/images/about us journey/1992 - Voltage Batteries/IMG_0205.jpeg",
-    image2: "/images/about us journey/1980_s - Becoming Pan India Distributor for Batteries/Nagpal's Bombay got distribution of Renata And Maxell Batteries.png",
+    image2: "/images/new-img/pillars/GW-Ads-BArtboard 2.jpg",
   },
   {
     year: "1995",
     title: "Style for All",
     text: "ESCORT is launched to make timeless design more accessible, bringing reliable quality watches to a wider Indian audience at affordable prices.",
     image1: "/images/about us journey/1995 — Style for All/Escort Logo 1995.png",
-    image2: "/images/about us journey/1995 — Style for All/IMG_7789.jpeg",
+    image2: "/images/watches/ESCORT POSTER-20260312T064608Z-1-001/ESCORT POSTER/Escort.jpg",
   },
   {
     year: "1998",
@@ -85,28 +85,28 @@ const milestones: Milestone[] = [
     title: "B2B & Corporate",
     text: "Corporate gifting becomes a strategic pillar. Largest volume B2B watch orders for TATA INDICOM, REEBOK, NIKON, and leading pharma companies. Clocks & bags added under D'SIGNER.",
     image1: "/images/about us journey/2010 - Corporate Gifting/Nagpal's Bombay got distribution of Renata And Maxell Batteries (2).png",
-    image2: "/images/new-img/pillars/4.jpg",
+    image2: "/images/new-img/pillars/GW-Ads-BArtboard 3.jpg",
   },
   {
     year: "2015",
     title: "Beyond the Brand",
     text: "Expanding into OEM manufacturing — designing and producing watches for global and national brands, a significant leap in manufacturing capability.",
     image1: "/images/about us journey/2015 — Beyond Our Own Brand/WhatsApp Image 2026-04-04 at 4.14.22 PM (1).jpeg",
-    image2: "/images/about us journey/1991 — A Brand is Born/4 (3).jpg",
+    image2: "/images/new-img/pillars/GW-Ads-BArtboard 4.jpg",
   },
   {
     year: "2017",
     title: "Adding More Brands",
     text: "MATHEY TISSOT and D1 MILANO join the portfolio. Designer World steps into international exports — London, Singapore, Bahrain, and Oman.",
     image1: "/images/about us journey/2017 - Getting Sole Distribution of Mathey Tissot and D1 Milano/Nagpal's Bombay got distribution of Renata And Maxell Batteries (3).png",
-    image2: "/images/about us journey/2022 - Designer world Brands/DW-BRANDS-LOGO-B.png",
+    image2: "/images/threeimg1-nobg.png",
   },
   {
     year: "2020",
     title: "The Digital Shift",
     text: "Nagpal Group adapts quickly to the e-commerce boom, designing for online-first brands and expanding reach across all major digital channels in India.",
     image1: "/images/about us journey/2020 - The Digital Shift/Nagpal's Bombay got distribution of Renata And Maxell Batteries (4).png",
-    image2: "/images/about us journey/1991 — A Brand is Born/5 (2).jpg",
+    image2: "/images/new-img/pillars/GW-Ads-BArtboard 6.jpg",
   },
   {
     year: "2022",
@@ -134,7 +134,7 @@ const milestones: Milestone[] = [
     title: "Affordable Luxury",
     text: "4 generations of expertise. 20+ international brands. 500+ private labels manufactured. Blending legacy with modern design to create watches that balance style, quality, and accessibility.",
     image1: "/images/today1.png",
-    image2: "/images/about us journey/1991 — A Brand is Born/1 (7).jpg",
+    image2: "/images/new-img/model-2/950/950/950GNFS.16G.png",
   },
 ];
 
