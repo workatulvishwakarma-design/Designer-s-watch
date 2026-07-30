@@ -178,7 +178,7 @@ export default function AboutPage2() {
         style={{
           height: "100vh",
           overflow: "hidden",
-          lineHeight: 0,
+          position: "relative",
         }}
       >
         <img
@@ -192,6 +192,36 @@ export default function AboutPage2() {
             display: "block",
           }}
         />
+        {/* 20% Black Overlay */}
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            backgroundColor: "rgba(0, 0, 0, 0.20)",
+            zIndex: 1,
+          }}
+        />
+
+        {/* Centered 3-Word White Heading */}
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            zIndex: 2,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "0 1.5rem",
+            textAlign: "center",
+          }}
+        >
+          <h1
+            className="font-montserrat font-medium text-white text-3xl sm:text-5xl md:text-6xl tracking-[0.25em] uppercase drop-shadow-md max-w-4xl leading-tight"
+          >
+            OUR HOROLOGICAL LEGACY
+          </h1>
+        </div>
       </section>
 
       {/* ════════════════════════════════════════════════════════════════
