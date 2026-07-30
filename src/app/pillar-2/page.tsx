@@ -303,25 +303,67 @@ export default function Pillars2Page() {
         .p2-rail { display:flex; height:100%; transition:transform 0.55s cubic-bezier(0.22,1,0.36,1); }
 
         /* CARD */
-        .p2-card { width:320px; min-width:320px; height:100%; flex-shrink:0; border-right:1px solid #E8E8E8; background:#fff; display:flex; flex-direction:column; transition:background 0.2s; }
-        .p2-card:hover,.p2-card.card-on { background:#FEFCF8; }
-        .p2-card-hdr { padding:22px 22px 14px; border-bottom:1px solid #F0F0F0; flex-shrink:0; }
+        .p2-card {
+          width:320px; min-width:320px; height:100%; flex-shrink:0;
+          border-right:1px solid #E8E8E8; background:#fff;
+          display:flex; flex-direction:column;
+          transition: background 0.35s ease, transform 0.35s ease, box-shadow 0.35s ease;
+        }
+        .p2-card:hover {
+          background: #003926 !important;
+          box-shadow: 0 14px 32px rgba(0,57,38,0.25);
+          z-index: 5;
+        }
+        .p2-card:hover .p2-card-word,
+        .p2-card:hover .p2-card-name {
+          color: #ffffff !important;
+        }
+        .p2-card:hover .p2-card-idx {
+          color: rgba(255,255,255,0.5) !important;
+        }
+        .p2-card:hover .p2-eline {
+          background: #ffffff !important;
+        }
+        .p2-card:hover .p2-eyebrow {
+          color: rgba(255,255,255,0.9) !important;
+        }
+        .p2-card:hover .p2-card-desc {
+          color: rgba(255,255,255,0.85) !important;
+        }
+        .p2-card:hover .p2-chip {
+          color: #ffffff !important;
+          border-color: rgba(255,255,255,0.25) !important;
+          background: rgba(255,255,255,0.12) !important;
+        }
+        .p2-card:hover .p2-readmore {
+          color: #ffffff !important;
+        }
+        .p2-card:hover .p2-readmore svg path {
+          stroke: #ffffff !important;
+        }
+        .p2-card:hover .p2-card-img {
+          border-color: rgba(255,255,255,0.25) !important;
+          box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+        }
+        .p2-card-hdr { padding:22px 22px 14px; border-bottom:1px solid #F0F0F0; flex-shrink:0; transition:border-color 0.35s ease; }
+        .p2-card:hover .p2-card-hdr { border-bottom-color: rgba(255,255,255,0.15) !important; }
         .p2-card-meta { display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:9px; }
-        .p2-card-word { font-family:var(--font-montserrat),sans-serif; font-size:24px; font-weight:500; color:#1A1918; line-height:1; }
+        .p2-card-word { font-family:var(--font-montserrat),sans-serif; font-size:24px; font-weight:500; color:#1A1918; line-height:1; transition:color 0.35s ease; }
         .p2-card-word.word-on { color:#003926; }
-        .p2-card-idx { font-family:var(--font-montserrat),sans-serif; font-size:12px; color:#CECCCA; font-weight:500; }
-        .p2-eline { width:20px; height:1.5px; background:#003926; margin-bottom:5px; }
-        .p2-eyebrow { font-family:var(--font-montserrat),sans-serif; font-size:8px; letter-spacing:0.3em; text-transform:uppercase; color:#003926; font-weight:500; }
+        .p2-card-idx { font-family:var(--font-montserrat),sans-serif; font-size:12px; color:#CECCCA; font-weight:500; transition:color 0.35s ease; }
+        .p2-eline { width:20px; height:1.5px; background:#003926; margin-bottom:5px; transition:background 0.35s ease; }
+        .p2-eyebrow { font-family:var(--font-montserrat),sans-serif; font-size:8px; letter-spacing:0.3em; text-transform:uppercase; color:#003926; font-weight:500; transition:color 0.35s ease; }
         .p2-card-body { padding:14px 22px 0; flex:1; display:flex; flex-direction:column; min-height:0; overflow:hidden; }
-        .p2-card-name { font-family:var(--font-montserrat),sans-serif; font-size:11px; font-weight:500; color:#1A1918; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:8px; }
-        .p2-card-desc { font-family:var(--font-montserrat),sans-serif; font-size:11.5px; color:#888; line-height:1.75; flex:1; }
+        .p2-card-name { font-family:var(--font-montserrat),sans-serif; font-size:11px; font-weight:500; color:#1A1918; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:8px; transition:color 0.35s ease; }
+        .p2-card-desc { font-family:var(--font-montserrat),sans-serif; font-size:11.5px; color:#888; line-height:1.75; flex:1; transition:color 0.35s ease; }
         .p2-card-chips { display:flex; flex-wrap:wrap; gap:4px; margin-top:10px; }
-        .p2-chip { font-family:var(--font-montserrat),sans-serif; font-size:8.5px; letter-spacing:0.05em; color:#003926; border:1px solid rgba(0,57,38,0.18); border-radius:100px; padding:2px 9px; background:rgba(0,57,38,0.04); }
-        .p2-readmore { display:inline-flex; align-items:center; gap:5px; margin-top:12px; margin-bottom:2px; font-family:var(--font-montserrat),sans-serif; font-size:9px; letter-spacing:0.18em; text-transform:uppercase; color:#003926; background:none; border:none; cursor:pointer; padding:0; flex-shrink:0; transition:opacity 0.2s; }
-        .p2-readmore:hover { opacity:0.6; }
+        .p2-chip { font-family:var(--font-montserrat),sans-serif; font-size:8.5px; letter-spacing:0.05em; color:#003926; border:1px solid rgba(0,57,38,0.18); border-radius:100px; padding:2px 9px; background:rgba(0,57,38,0.04); transition:all 0.35s ease; }
+        .p2-readmore { display:inline-flex; align-items:center; gap:5px; margin-top:12px; margin-bottom:2px; font-family:var(--font-montserrat),sans-serif; font-size:9px; letter-spacing:0.18em; text-transform:uppercase; color:#003926; background:none; border:none; cursor:pointer; padding:0; flex-shrink:0; transition:color 0.35s ease, opacity 0.2s; }
+        .p2-readmore:hover { opacity:0.85; }
         .p2-readmore:hover svg { transform:translateX(3px); }
         .p2-readmore svg { transition:transform 0.2s; }
-        .p2-card-img { margin:12px 16px 14px; border-radius:5px; overflow:hidden; border:1px solid #EBEBEB; flex-shrink:0; background:#F2F2F2; position:relative; aspect-ratio:16/10; }
+        .p2-readmore svg path { transition:stroke 0.35s ease; }
+        .p2-card-img { margin:12px 16px 14px; border-radius:5px; overflow:hidden; border:1px solid #EBEBEB; flex-shrink:0; background:#F2F2F2; position:relative; aspect-ratio:16/10; transition:border-color 0.35s ease, box-shadow 0.35s ease; }
         .p2-card-img img { width:100%; height:100%; object-fit:cover; display:block; }
         .p2-imgph { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-family:var(--font-montserrat),sans-serif; font-size:9px; letter-spacing:0.15em; text-transform:uppercase; color:#C8C8C8; background:#F4F4F4; }
 
