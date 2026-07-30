@@ -218,9 +218,11 @@ export default function AboutPage2() {
           }}
         >
           <h1
-            className="font-montserrat font-medium text-white text-3xl sm:text-5xl md:text-6xl tracking-[0.25em] uppercase drop-shadow-md max-w-4xl leading-tight"
+            className="font-montserrat font-medium text-white text-lg sm:text-2xl md:text-3xl tracking-[0.18em] uppercase drop-shadow-md max-w-3xl leading-relaxed"
           >
-            OUR HOROLOGICAL LEGACY
+            Built Across Generations.
+            <br />
+            Strengthened by Time.
           </h1>
         </div>
       </section>
