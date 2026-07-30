@@ -12,7 +12,8 @@ interface Milestone {
   year: string;
   title: string;
   text: string;
-  image: string;
+  image1: string;
+  image2: string;
 }
 
 const milestones: Milestone[] = [
@@ -20,103 +21,120 @@ const milestones: Milestone[] = [
     year: "1940s",
     title: "The Beginning",
     text: "A small watch parts shop in Amritsar marked the start of a journey rooted in craftsmanship and trust. Shree Virbhan Nagpal laid the foundation for what would become a national watch business spanning generations.",
-    image: "/images/about us journey/1940s — The Beginning/about-img1_1.webp",
+    image1: "/images/about us journey/1940s — The Beginning/about-img1_1.webp",
+    image2: "/images/main-img1.png",
   },
   {
     year: "1960s",
     title: "2nd Generation",
     text: "The 2nd generation of the Nagpal family enters the business, deepening roots in horology and building relationships with international component suppliers across northern India.",
-    image: "/images/about us journey/1960- The 2nd Generation/WhatsApp Image 2026-04-27 at 10.50.37 AM.jpeg",
+    image1: "/images/about us journey/1960- The 2nd Generation/WhatsApp Image 2026-04-27 at 10.50.37 AM.jpeg",
+    image2: "/images/about us journey/1960- The 2nd Generation/WhatsApp Image 2026-04-13 at 8.14.16 AM (1).jpeg",
   },
   {
     year: "1976",
     title: "Nagpal's Bombay",
     text: "The 3rd generation moves to Mumbai and establishes 'NAGPALS BOMBAY'. The network expands all around India, with international travel for parts & battery distribution. MAXELL and RENATA become major focus areas.",
-    image: "/images/about us journey/1976 - Nagpal Bombay/IMG_0216.jpeg",
+    image1: "/images/about us journey/1976 - Nagpal Bombay/IMG_0216.jpeg",
+    image2: "/images/about us journey/1980_s - Becoming Pan India Distributor for Batteries/Nagpal's Bombay got distribution of Renata And Maxell Batteries.png",
   },
   {
     year: "1991",
     title: "A Brand is Born",
     text: "D'SIGNER is introduced — a step into creating watches defined by design, quality, and individuality. One of the early Indian brands to design and manufacture to international standards.",
-    image: "/images/about us journey/1991 — A Brand is Born/Backup_of_dq designer old logo-13.png",
+    image1: "/images/about us journey/1991 — A Brand is Born/Backup_of_dq designer old logo-13.png",
+    image2: "/images/about us journey/1991 — A Brand is Born/1 (7).jpg",
   },
   {
     year: "1992",
     title: "Voltage Batteries",
     text: "An ambitious attempt to produce watch button cells with a small manufacturing unit in Nashik — a pioneering step into domestic production of watch components.",
-    image: "/images/about us journey/1992 - Voltage Batteries/IMG_0205.jpeg",
+    image1: "/images/about us journey/1992 - Voltage Batteries/IMG_0205.jpeg",
+    image2: "/images/about us journey/1980_s - Becoming Pan India Distributor for Batteries/Nagpal's Bombay got distribution of Renata And Maxell Batteries.png",
   },
   {
     year: "1995",
     title: "Style for All",
     text: "ESCORT is launched to make timeless design more accessible, bringing reliable quality watches to a wider Indian audience at affordable prices.",
-    image: "/images/about us journey/1995 — Style for All/Escort Logo 1995.png",
+    image1: "/images/about us journey/1995 — Style for All/Escort Logo 1995.png",
+    image2: "/images/about us journey/1995 — Style for All/IMG_7789.jpeg",
   },
   {
     year: "1998",
     title: "Tissot in India",
     text: "Nagpal Group becomes among the first national distributors for TISSOT, Givenchy Paris, Christian Bernard Paris, and Rotary in India — a major credibility milestone.",
-    image: "/images/new-img/pillars/GW-Ads-BArtboard 5.jpg",
+    image1: "/images/about us journey/1998 - Introduction of Tissot to india/Nagpal's Bombay got distribution of Renata And Maxell Batteries (1).png",
+    image2: "/images/new-img/pillars/GW-Ads-BArtboard 5.jpg",
   },
   {
     year: "2004",
     title: "D'signer Effects",
     text: "A corporate gifts & promotion division launched under D'SIGNER EFFECTS to connect with organisations, offering promotional gifts for schemes and marketing plans.",
-    image: "/images/about us journey/2007 - Daniel Klein/daniel klein exclusive-13.png",
+    image1: "/images/about us journey/1991 — A Brand is Born/2 (6).jpg",
+    image2: "/images/new-img/pillars/4.jpg",
   },
   {
     year: "2007",
     title: "Daniel Klein",
     text: "Exclusive distribution rights for Turkish brand Daniel Klein in India. Grows into a top performer on e-commerce platforms with 1000+ models per year.",
-    image: "/images/about us journey/2007 - Daniel Klein/daniel klein exclusive-13.png",
+    image1: "/images/about us journey/2007 - Daniel Klein/daniel klein exclusive-13.png",
+    image2: "/images/about us journey/1991 — A Brand is Born/3 (3).jpg",
   },
   {
     year: "2010",
     title: "B2B & Corporate",
     text: "Corporate gifting becomes a strategic pillar. Largest volume B2B watch orders for TATA INDICOM, REEBOK, NIKON, and leading pharma companies. Clocks & bags added under D'SIGNER.",
-    image: "/images/new-img/pillars/4.jpg",
+    image1: "/images/about us journey/2010 - Corporate Gifting/Nagpal's Bombay got distribution of Renata And Maxell Batteries (2).png",
+    image2: "/images/new-img/pillars/4.jpg",
   },
   {
     year: "2015",
     title: "Beyond the Brand",
     text: "Expanding into OEM manufacturing — designing and producing watches for global and national brands, a significant leap in manufacturing capability.",
-    image: "/images/about us journey/2015 — Beyond Our Own Brand/WhatsApp Image 2026-04-04 at 4.14.22 PM (1).jpeg",
+    image1: "/images/about us journey/2015 — Beyond Our Own Brand/WhatsApp Image 2026-04-04 at 4.14.22 PM (1).jpeg",
+    image2: "/images/about us journey/1991 — A Brand is Born/4 (3).jpg",
   },
   {
     year: "2017",
     title: "Adding More Brands",
     text: "MATHEY TISSOT and D1 MILANO join the portfolio. Designer World steps into international exports — London, Singapore, Bahrain, and Oman.",
-    image: "/images/about us journey/2022 - Designer world Brands/DW-BRANDS-LOGO-B.png",
+    image1: "/images/about us journey/2017 - Getting Sole Distribution of Mathey Tissot and D1 Milano/Nagpal's Bombay got distribution of Renata And Maxell Batteries (3).png",
+    image2: "/images/about us journey/2022 - Designer world Brands/DW-BRANDS-LOGO-B.png",
   },
   {
     year: "2020",
     title: "The Digital Shift",
     text: "Nagpal Group adapts quickly to the e-commerce boom, designing for online-first brands and expanding reach across all major digital channels in India.",
-    image: "/images/new-img/pillars/GW-Ads-BArtboard 6.jpg",
+    image1: "/images/about us journey/2020 - The Digital Shift/Nagpal's Bombay got distribution of Renata And Maxell Batteries (4).png",
+    image2: "/images/about us journey/1991 — A Brand is Born/5 (2).jpg",
   },
   {
     year: "2022",
     title: "Designer World Brands",
     text: "A new division managing foreign brand distribution — DESIGNER WORLD BRANDS — adds INGERSOL, INVICTA, and SANTA BARBARA POLO CLUB to the portfolio.",
-    image: "/images/about us journey/2022 - Designer world Brands/DW-BRANDS-LOGO-B.png",
+    image1: "/images/about us journey/2022 - Designer world Brands/DW-BRANDS-LOGO-B.png",
+    image2: "/images/about us journey/2022 - Designer world Brands/DW-BRANDS-LOGO-White (1).png",
   },
   {
     year: "2024",
     title: "Diamond Watches",
     text: "Lab Grown Diamond Studded Watches launched, targeting a luxury audience with models up to ₹1,50,000. A new chapter in premium horology.",
-    image: "/images/about us journey/2024 - Designer Lab Grown Diamond studded watches/DIAMOND SHOOT 16-09-2025/746GM.2L.jpg",
+    image1: "/images/about us journey/2024 - Designer Lab Grown Diamond studded watches/DIAMOND SHOOT 16-09-2025/746GM.2L.jpg",
+    image2: "/images/about us journey/2024 - Designer Lab Grown Diamond studded watches/DIAMOND SHOOT 16-09-2025/810GM.2L.jpg",
   },
   {
     year: "2025",
     title: "Time Corridor",
     text: "A retail Time Boutique showcasing D'SIGNER & ESCORT — prime models, new launches, top sellers and special editions in a unique experience store.",
-    image: "/images/about us journey/2025 - Time Corridor/1A1A8511.JPG",
+    image1: "/images/about us journey/2025 - Time Corridor/1A1A8511.JPG",
+    image2: "/images/about us journey/2025 - Time Corridor/DSIGNER TIME CORRIDOR LOGO final.png",
   },
   {
     year: "Today",
     title: "Affordable Luxury",
     text: "4 generations of expertise. 20+ international brands. 500+ private labels manufactured. Blending legacy with modern design to create watches that balance style, quality, and accessibility.",
-    image: "/images/today1.png",
+    image1: "/images/today1.png",
+    image2: "/images/about us journey/1991 — A Brand is Born/1 (7).jpg",
   },
 ];
 
@@ -330,7 +348,7 @@ export default function AboutPage2() {
                   maxWidth: "260px",
                 }}>
                   <img
-                    src={m.image}
+                    src={m.image1}
                     alt={`${m.title} — detail`}
                     style={{ width: "100%", height: "200px", objectFit: "cover", display: "block" }}
                     onError={(e) => { (e.target as HTMLImageElement).src = FALLBACK; }}
@@ -384,7 +402,7 @@ export default function AboutPage2() {
                   boxShadow: "0 4px 24px rgba(0,0,0,0.06)",
                 }}>
                   <img
-                    src={m.image}
+                    src={m.image2}
                     alt={m.title}
                     style={{ width: "100%", height: "280px", objectFit: "cover", display: "block" }}
                     onError={(e) => { (e.target as HTMLImageElement).src = FALLBACK; }}
