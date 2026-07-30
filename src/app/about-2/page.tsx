@@ -22,7 +22,7 @@ const milestones: Milestone[] = [
     title: "The Beginning",
     text: "A small watch parts shop in Amritsar marked the start of a journey rooted in craftsmanship and trust. Shree Virbhan Nagpal laid the foundation for what would become a national watch business spanning generations.",
     image1: "/images/about us journey/1940s — The Beginning/about-img1_1.webp",
-    image2: "/images/main-img1.png",
+    image2: "/images/about us journey/1960- The 2nd Generation/WhatsApp Image 2026-04-27 at 10.50.37 AM (1).jpeg",
   },
   {
     year: "1960s",
@@ -36,7 +36,7 @@ const milestones: Milestone[] = [
     title: "Nagpal's Bombay",
     text: "The 3rd generation moves to Mumbai and establishes 'NAGPALS BOMBAY'. The network expands all around India, with international travel for parts & battery distribution. MAXELL and RENATA become major focus areas.",
     image1: "/images/about us journey/1976 - Nagpal Bombay/IMG_0216.jpeg",
-    image2: "/images/new-img/pillars/GW-Ads-BArtboard 1.jpg",
+    image2: "/images/new-content/pillars/Corporate B2B/34.jpg",
   },
   {
     year: "1991",
@@ -50,21 +50,21 @@ const milestones: Milestone[] = [
     title: "Voltage Batteries",
     text: "An ambitious attempt to produce watch button cells with a small manufacturing unit in Nashik — a pioneering step into domestic production of watch components.",
     image1: "/images/about us journey/1992 - Voltage Batteries/IMG_0205.jpeg",
-    image2: "/images/new-img/pillars/GW-Ads-BArtboard 2.jpg",
+    image2: "/images/new-content/pillars/Corporate B2B/4.jpg",
   },
   {
     year: "1995",
     title: "Style for All",
     text: "ESCORT is launched to make timeless design more accessible, bringing reliable quality watches to a wider Indian audience at affordable prices.",
     image1: "/images/about us journey/1995 — Style for All/Escort Logo 1995.png",
-    image2: "/images/watches/ESCORT POSTER-20260312T064608Z-1-001/ESCORT POSTER/Escort.jpg",
+    image2: "/images/about us journey/1995 — Style for All/IMG_7789.jpeg",
   },
   {
     year: "1998",
     title: "Tissot in India",
     text: "Nagpal Group becomes among the first national distributors for TISSOT, Givenchy Paris, Christian Bernard Paris, and Rotary in India — a major credibility milestone.",
-    image1: "/images/watches/ESCORT POSTER-20260312T064608Z-1-001/ESCORT POSTER/Escort-1.jpg",
-    image2: "/images/new-img/pillars/GW-Ads-BArtboard 5.jpg",
+    image1: "/images/watches/ESCORT POSTER-20260312T064608Z-1-001/ESCORT POSTER/Escort -1.jpg",
+    image2: "/images/watches/ESCORT POSTER-20260312T064608Z-1-001/ESCORT POSTER/Escort.jpg",
   },
   {
     year: "2004",
@@ -85,14 +85,14 @@ const milestones: Milestone[] = [
     title: "B2B & Corporate",
     text: "Corporate gifting becomes a strategic pillar. Largest volume B2B watch orders for TATA INDICOM, REEBOK, NIKON, and leading pharma companies. Clocks & bags added under D'SIGNER.",
     image1: "/images/watches/ESCORT POSTER-20260312T064608Z-1-001/ESCORT POSTER/Escort-2.jpg",
-    image2: "/images/new-img/pillars/GW-Ads-BArtboard 3.jpg",
+    image2: "/images/new-content/home2-club-escort-hand.png",
   },
   {
     year: "2015",
     title: "Beyond the Brand",
     text: "Expanding into OEM manufacturing — designing and producing watches for global and national brands, a significant leap in manufacturing capability.",
     image1: "/images/about us journey/2015 — Beyond Our Own Brand/WhatsApp Image 2026-04-04 at 4.14.22 PM (1).jpeg",
-    image2: "/images/new-img/pillars/GW-Ads-BArtboard 4.jpg",
+    image2: "/images/watches/ESCORT POSTER-20260312T064608Z-1-001/ESCORT POSTER/1 (4).jpg",
   },
   {
     year: "2017",
@@ -106,7 +106,7 @@ const milestones: Milestone[] = [
     title: "The Digital Shift",
     text: "Nagpal Group adapts quickly to the e-commerce boom, designing for online-first brands and expanding reach across all major digital channels in India.",
     image1: "/images/about us journey/1991 — A Brand is Born/5 (2).jpg",
-    image2: "/images/new-img/pillars/GW-Ads-BArtboard 6.jpg",
+    image2: "/images/threeimg2-nobg.png",
   },
   {
     year: "2022",
@@ -134,7 +134,7 @@ const milestones: Milestone[] = [
     title: "Affordable Luxury",
     text: "4 generations of expertise. 20+ international brands. 500+ private labels manufactured. Blending legacy with modern design to create watches that balance style, quality, and accessibility.",
     image1: "/images/today1.png",
-    image2: "/images/new-img/model-2/950/950/950GNFS.16G.png",
+    image2: "/images/about us journey/2024 - Designer Lab Grown Diamond studded watches/DIAMOND SHOOT 16-09-2025/834GM.16L.jpg",
   },
 ];
 
@@ -144,7 +144,7 @@ const ERA_RANGES = [
   { label: "2015 – Today", start: 10, end: 16 },
 ];
 
-const FALLBACK = "/images/main-img1.png";
+const FALLBACK = "/images/today1.png";
 
 /* ════════════════════════════════════════════════════════════════
    PAGE COMPONENT
