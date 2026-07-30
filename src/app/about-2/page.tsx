@@ -373,8 +373,8 @@ export default function AboutPage2() {
         }}
       >
         <img
-          src="/img/about-2.PNG"
-          alt="About Us"
+          src="/images/about-2.png"
+          alt="Built Across Generations"
           style={{
             width: "100%",
             height: "100%",
@@ -382,6 +382,12 @@ export default function AboutPage2() {
             objectPosition: "center",
             display: "block",
             filter: "brightness(0.85)",
+          }}
+          onError={(e) => {
+            const target = e.target as HTMLImageElement;
+            if (target.src.includes("/images/about-2.png")) {
+              target.src = "/img/about-2.png";
+            }
           }}
         />
         {/* Dark Black Overlay */}
