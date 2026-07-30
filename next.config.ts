@@ -16,6 +16,25 @@ const nextConfig: NextConfig = {
       }
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: '/about 2',
+        destination: '/about-2',
+        permanent: true,
+      },
+      {
+        source: '/about%202',
+        destination: '/about-2',
+        permanent: true,
+      },
+      {
+        source: '/about_2',
+        destination: '/about-2',
+        permanent: true,
+      },
+    ];
+  },
   typescript: {
     ignoreBuildErrors: true,
   },

@@ -373,7 +373,7 @@ export default function AboutPage2() {
         }}
       >
         <img
-          src="/img/about-2.png"
+          src="/img/about-2.PNG"
           alt="About Us"
           style={{
             width: "100%",
