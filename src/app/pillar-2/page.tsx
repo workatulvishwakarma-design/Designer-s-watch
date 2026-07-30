@@ -382,46 +382,15 @@ export default function Pillars2Page() {
         .p2-arr:hover:not(:disabled) path { stroke:#fff; }
         .p2-arr:disabled { opacity:0.25; cursor:not-allowed; }
 
-        /* TABLET */
-        @media (min-width:768px) and (max-width:1023px) {
-          .p2-sidebar { width:200px; min-width:200px; padding:22px 18px 18px; }
-          .p2-sb-heading { font-size:26px; }
-          .p2-card { width:280px; min-width:280px; }
-        }
+        /* MOBILE VIEW DISPLAY UTILITIES */
+        .p2-mobile-view { display:none; }
+        .p2-desktop-view { display:flex; }
 
-        /* Mobile-only elements: hidden on desktop, shown via @media below */
-        .p2-mob-hdr { display:none; }
-        .p2-mob-tabs { display:none; }
-        .p2-mob-dots { display:none; }
-
-        /* MOBILE */
         @media (max-width:767px) {
-          .p2-page { flex-direction:column; height:auto; overflow:visible; }
-          .p2-sidebar { display:none; }
-          .p2-mob-hdr { display:block; background:#fff; border-bottom:1px solid #E8E8E8; padding:24px 20px 18px; }
-          .p2-mob-label { display:flex; align-items:center; gap:8px; margin-bottom:10px; font-family:var(--font-montserrat),sans-serif; font-size:8px; letter-spacing:0.38em; text-transform:uppercase; color:#003926; font-weight:500; }
-          .p2-mob-label::before { content:''; display:block; width:14px; height:1px; background:#003926; flex-shrink:0; }
-          .p2-mob-hdr h1 { font-family:var(--font-montserrat),sans-serif; font-size:34px; font-weight:500; line-height:1.08; color:#1A1918; margin:0; }
-          .p2-mob-hdr h1 em { font-style:italic; color:#003926; }
-          .p2-mob-tabs { display:flex; overflow-x:auto; scrollbar-width:none; background:#fff; border-bottom:1px solid #E8E8E8; }
-          .p2-mob-tabs::-webkit-scrollbar { display:none; }
-          .p2-mob-tab { flex-shrink:0; padding:11px 14px; font-family:var(--font-montserrat),sans-serif; font-size:9px; letter-spacing:0.08em; text-transform:uppercase; color:#AAA; background:none; border:none; border-bottom:2px solid transparent; cursor:pointer; white-space:nowrap; transition:all 0.2s; }
-          .p2-mob-tab.tab-on { color:#003926; border-bottom-color:#003926; }
-          .p2-carousel-col { height:auto; overflow:visible; }
-          .p2-rail-wrap { height:auto; overflow:hidden; cursor:default; flex:none; }
-          .p2-rail { height:auto; }
-          .p2-card { width:100vw; min-width:100vw; height:auto; border-right:none; border-bottom:1px solid #E8E8E8; }
-          .p2-card-hdr { padding:20px 20px 12px; }
-          .p2-card-word { font-size:30px; font-weight:500; }
-          .p2-card-body { padding:12px 20px 0; overflow:visible; }
-          .p2-card-desc { flex:none; }
-          .p2-card-img { aspect-ratio:4/3; }
-          .p2-mob-dots { display:flex; justify-content:center; gap:7px; padding:14px 0 4px; background:#fff; }
-          .p2-mob-dot { width:6px; height:6px; border-radius:50%; background:#DDD; transition:all 0.25s; cursor:pointer; border:none; padding:0; }
-          .p2-mob-dot.mdot-on { background:#003926; width:18px; border-radius:3px; }
-          .p2-bar { height:42px; padding:0 10px; }
-          .p2-tick { padding:0 8px; }
-          .p2-tick-lbl { font-size:7.5px; }
+          .p2-desktop-view { display:none !important; }
+          .p2-mobile-view { display:block !important; }
+          .p2-mob-hdr { display:none !important; }
+          .p2-mob-tabs { display:none !important; }
         }
       `}</style>
 
@@ -429,25 +398,133 @@ export default function Pillars2Page() {
         className="pt-[72px] md:pt-[80px] xl:pt-[88px]" 
         style={{ fontFamily:"var(--font-montserrat),sans-serif", background:"#FAFAFA" }}
       >
+        {/* MOBILE STORY TIMELINE LAYOUT (< 768px) - MATCHES SCREENSHOT 2 */}
+        <div className="p2-mobile-view bg-white px-5 pt-6 pb-24">
+          {/* Header */}
+          <div className="mb-8">
+            <span className="text-[10px] font-bold text-[#003926] tracking-[0.25em] uppercase block mb-2">
+              OUR STORY
+            </span>
+            <h1 className="text-2xl sm:text-3xl font-extrabold text-[#111111] leading-[1.15] tracking-tight uppercase mb-6">
+              TIMELESS<br />
+              CRAFTSMANSHIP<br />
+              LASTING LEGACY
+            </h1>
+            
+            {/* Features with icons */}
+            <div className="grid grid-cols-1 gap-2.5 mb-6">
+              <div className="flex items-center gap-2 text-xs font-semibold text-[#222]">
+                <span className="text-sm">🎯</span> PRECISION
+              </div>
+              <div className="flex items-center gap-2 text-xs font-semibold text-[#222]">
+                <span className="text-sm">💎</span> HERITAGE & PASSION
+              </div>
+              <div className="flex items-center gap-2 text-xs font-semibold text-[#222]">
+                <span className="text-sm">⚡</span> INNOVATION
+              </div>
+              <div className="flex items-center gap-2 text-xs font-semibold text-[#222]">
+                <span className="text-sm">♾️</span> TIMELESS
+              </div>
+            </div>
+          </div>
 
+          {/* Vertical Timeline Items */}
+          <div className="divide-y divide-gray-100">
+            {NAGPAL_DIVISIONS.map((div, i) => {
+              const yearStr = ["1976", "1991", "1992", "2010", "2015", "2017", "2025"][i] || "2026";
+              return (
+                <div key={div.index} id={`mob-div-${i}`} className="py-7 flex gap-3 sm:gap-4 items-start">
+                  {/* Left Year & Index */}
+                  <div className="w-16 flex-shrink-0 flex items-baseline gap-1 pt-0.5">
+                    <span className="font-extrabold text-base text-[#111] tracking-tight">
+                      {yearStr}
+                    </span>
+                    <span className="text-gray-300 font-light text-xs">|</span>
+                    <span className="text-gray-400 text-[10px] font-semibold">{div.index}</span>
+                  </div>
 
-        {/* Mobile header (hidden on desktop via CSS) */}
-        <div className="p2-mob-hdr">
-          <div className="p2-mob-label">Verticals</div>
-          <h1>OUR CORE<br /><em>DIVISIONS.</em></h1>
+                  {/* Center Content */}
+                  <div className="flex-1 min-w-0 pr-1">
+                    <h3 className="text-[11px] font-bold text-[#003926] tracking-wider uppercase mb-1">
+                      {div.eyebrow}
+                    </h3>
+                    <h4 className="text-xs font-bold text-[#111] uppercase tracking-wide mb-2">
+                      {div.title}
+                    </h4>
+                    <p className="text-[11px] text-gray-600 leading-relaxed mb-3">
+                      {div.body}
+                    </p>
+                    
+                    {/* Chips */}
+                    <div className="flex flex-wrap gap-1.5 mb-3">
+                      {div.highlights.map((h) => (
+                        <span key={h} className="text-[8.5px] font-semibold text-[#003926] bg-[#003926]/5 border border-[#003926]/15 px-2 py-0.5 rounded-full">
+                          {h}
+                        </span>
+                      ))}
+                    </div>
+
+                    <button
+                      onClick={() => setActiveDivision(div)}
+                      className="inline-flex items-center gap-1 text-[9px] font-bold text-[#003926] tracking-wider uppercase hover:underline"
+                    >
+                      READ MORE →
+                    </button>
+                  </div>
+
+                  {/* Right Image */}
+                  <div className="w-24 h-24 sm:w-28 sm:h-28 flex-shrink-0 rounded-lg overflow-hidden border border-dashed border-gray-300 bg-gray-50 relative">
+                    <img
+                      src={div.image}
+                      alt={div.title}
+                      className="w-full h-full object-cover"
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).style.display = "none";
+                      }}
+                    />
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Bottom Bullet Points */}
+          <div className="my-8 pt-6 border-t border-gray-100 grid grid-cols-1 gap-2.5">
+            <div className="flex items-center gap-2 text-xs font-semibold text-[#222]">
+              <span className="text-sm">🎯</span> FOCUS & VISION
+            </div>
+            <div className="flex items-center gap-2 text-xs font-semibold text-[#222]">
+              <span className="text-sm">💎</span> QUALITY & TRUST
+            </div>
+            <div className="flex items-center gap-2 text-xs font-semibold text-[#222]">
+              <span className="text-sm">⚡</span> DESIGN & INNOVATION
+            </div>
+            <div className="flex items-center gap-2 text-xs font-semibold text-[#222]">
+              <span className="text-sm">♾️</span> TIMELESS BY DESIGN
+            </div>
+          </div>
+
+          {/* Bottom Fixed/Sticky Timeline Year Bar */}
+          <div className="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-gray-200 py-2.5 px-4 flex overflow-x-auto gap-4 scrollbar-none z-40 shadow-lg">
+            {["1976", "1991", "1992", "2010", "2015", "2017", "2025"].map((yr, i) => (
+              <button
+                key={yr}
+                onClick={() => {
+                  const el = document.getElementById(`mob-div-${i}`);
+                  if (el) el.scrollIntoView({ behavior: "smooth", block: "center" });
+                }}
+                className={`text-xs font-semibold whitespace-nowrap px-2 py-0.5 rounded transition-colors ${
+                  activeIndex === i ? "text-[#003926] border-b-2 border-[#003926] font-bold" : "text-gray-400"
+                }`}
+              >
+                {yr}
+              </button>
+            ))}
+          </div>
         </div>
 
-        {/* Mobile scrollable tab bar */}
-        <div className="p2-mob-tabs">
-          {NAGPAL_DIVISIONS.map((d, i) => (
-            <button key={d.index} className={`p2-mob-tab ${activeIndex === i ? "tab-on" : ""}`} onClick={() => goTo(i)}>
-              {d.eyebrow}
-            </button>
-          ))}
-        </div>
-
-        {/* MAIN */}
-        <div className="p2-page">
+        {/* DESKTOP LAYOUT (>= 768px) - UNCHANGED */}
+        <div className="p2-page p2-desktop-view">
 
           {/* SIDEBAR (desktop/tablet only) */}
           <aside className="p2-sidebar">
@@ -479,7 +556,7 @@ export default function Pillars2Page() {
               onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}
               style={{ userSelect: isDragging ? "none" : "auto" }}>
               <div className="p2-rail"
-                style={{ transform: isMobile ? `translateX(calc(-${activeIndex} * 100vw))` : `translateX(calc(-${activeIndex} * ${CARD_WIDTH + 1}px))` }}>
+                style={{ transform: `translateX(calc(-${activeIndex} * ${CARD_WIDTH + 1}px))` }}>
                 {NAGPAL_DIVISIONS.map((div, idx) => {
                   const active = activeIndex === idx;
                   return (
@@ -519,13 +596,6 @@ export default function Pillars2Page() {
                   );
                 })}
               </div>
-            </div>
-
-            {/* Mobile progress dots */}
-            <div className="p2-mob-dots">
-              {NAGPAL_DIVISIONS.map((d, i) => (
-                <button key={d.index} className={`p2-mob-dot ${activeIndex === i ? "mdot-on" : ""}`} onClick={() => goTo(i)} aria-label={d.title} />
-              ))}
             </div>
 
             {/* Timeline bar */}
