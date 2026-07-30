@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { X } from "lucide-react";
 
 /* ════════════════════════════════════════════════════════════════
@@ -147,6 +147,180 @@ const ERA_RANGES = [
 const FALLBACK = "/images/today1.png";
 
 /* ════════════════════════════════════════════════════════════════
+   3D CARD STACKING SLIDE COMPONENT WITH PARALLAX SWIPE
+════════════════════════════════════════════════════════════════ */
+function TimelineCard({
+  m,
+  i,
+  total,
+  slideRef,
+}: {
+  m: Milestone;
+  i: number;
+  total: number;
+  slideRef: (el: HTMLElement | null) => void;
+}) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "start start"],
+  });
+
+  // 3D Parallax & Card Swipe Transformations
+  const yOffset = useTransform(scrollYProgress, [0, 1], [80, 0]);
+  const scale = useTransform(scrollYProgress, [0.4, 1], [0.95, 1]);
+  const opacity = useTransform(scrollYProgress, [0, 0.3, 1], [0.35, 0.85, 1]);
+
+  return (
+    <div
+      ref={containerRef}
+      style={{
+        position: "sticky",
+        top: `calc(120px + ${i * 4}px)`,
+        zIndex: i + 1,
+      }}
+    >
+      <motion.section
+        ref={slideRef}
+        data-slide-idx={i}
+        style={{
+          y: yOffset,
+          scale,
+          opacity,
+          minHeight: "82vh",
+          display: "flex",
+          alignItems: "center",
+          borderRadius: "1.5rem 1.5rem 0 0",
+          borderTop: "1px solid rgba(0,0,0,0.09)",
+          borderLeft: "1px solid rgba(0,0,0,0.04)",
+          borderRight: "1px solid rgba(0,0,0,0.04)",
+          boxShadow: "0 -16px 36px rgba(0,0,0,0.06)",
+          background: i % 2 === 0 ? "#ffffff" : "#fbfbfb",
+          padding: "0 2.5rem",
+          position: "relative",
+          transformOrigin: "center top",
+        }}
+      >
+        {/* Cellini 3-column layout */}
+        <div style={{
+          width: "100%", maxWidth: "1200px", margin: "0 auto",
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr 1fr",
+          gap: "3rem",
+          alignItems: "center",
+          padding: "4rem 0",
+        }}>
+
+          {/* LEFT: heading + text + small image */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: false, amount: 0.4 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+          >
+            <p style={{
+              fontSize: "0.6rem", fontWeight: 700, color: "#003926",
+              letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: "1rem",
+            }}>
+              {m.title}
+            </p>
+            <p style={{
+              fontSize: "0.88rem", color: "#444", lineHeight: 1.8,
+              marginBottom: "2rem", maxWidth: "340px",
+            }}>
+              {m.text}
+            </p>
+            {/* Small secondary image */}
+            <div style={{
+              borderRadius: "0.875rem", overflow: "hidden",
+              border: "1px solid #e0e0e0", background: "#f8f8f8",
+              maxWidth: "260px",
+            }}>
+              <img
+                src={m.image1}
+                alt={`${m.title} — detail`}
+                style={{ width: "100%", height: "200px", objectFit: "cover", display: "block" }}
+                onError={(e) => { (e.target as HTMLImageElement).src = FALLBACK; }}
+              />
+            </div>
+          </motion.div>
+
+          {/* CENTER: Giant year watermark + step number */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.92 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: false, amount: 0.4 }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
+            style={{ textAlign: "center" }}
+          >
+            <div style={{
+              fontSize: "clamp(5rem, 10vw, 8.5rem)",
+              fontWeight: 900,
+              color: "#f0f0f0",
+              letterSpacing: "-0.04em",
+              lineHeight: 1,
+              userSelect: "none",
+              marginBottom: "1.5rem",
+              fontVariantNumeric: "tabular-nums",
+            }}>
+              {m.year}
+            </div>
+            <div style={{
+              width: 48, height: 48, borderRadius: "50%",
+              border: "1.5px solid #e0e0e0",
+              display: "flex", alignItems: "center", justifyContent: "center",
+              margin: "0 auto",
+            }}>
+              <span style={{ fontSize: "0.7rem", fontWeight: 700, color: "#999", letterSpacing: "0.06em" }}>
+                {String(i + 1).padStart(2, "0")}
+              </span>
+            </div>
+          </motion.div>
+
+          {/* RIGHT: main feature image + caption */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: false, amount: 0.4 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+          >
+            <div style={{
+              borderRadius: "1rem", overflow: "hidden",
+              border: "1px solid #e0e0e0", background: "#f8f8f8",
+              marginBottom: "1.25rem",
+              boxShadow: "0 4px 24px rgba(0,0,0,0.06)",
+            }}>
+              <img
+                src={m.image2}
+                alt={m.title}
+                style={{ width: "100%", height: "280px", objectFit: "cover", display: "block" }}
+                onError={(e) => { (e.target as HTMLImageElement).src = FALLBACK; }}
+              />
+            </div>
+            <p style={{ fontSize: "0.78rem", color: "#888", lineHeight: 1.65, fontStyle: "italic" }}>
+              {m.year} · {m.title}
+            </p>
+          </motion.div>
+
+        </div>
+
+        {/* Milestone index line on far right */}
+        <div style={{
+          position: "absolute", right: "2.5rem", top: "50%",
+          transform: "translateY(-50%)",
+          fontSize: "0.6rem", fontWeight: 700, color: "#e0e0e0",
+          letterSpacing: "0.1em", writingMode: "vertical-rl",
+          userSelect: "none",
+        }}>
+          {String(i + 1).padStart(2, "0")} / {total}
+        </div>
+      </motion.section>
+    </div>
+  );
+}
+
+/* ════════════════════════════════════════════════════════════════
    PAGE COMPONENT
 ════════════════════════════════════════════════════════════════ */
 export default function AboutPage2() {
@@ -168,7 +342,6 @@ export default function AboutPage2() {
             if (!isNaN(idx) && stickyActiveRef.current !== idx) {
               stickyActiveRef.current = idx;
               setStickyActive(idx);
-              // Also sync era selector in sidebar section-2
               const eraMatch = ERA_RANGES.findIndex((e) => idx >= e.start && idx <= e.end);
               if (eraMatch >= 0) setEraIdx(eraMatch);
             }
@@ -187,7 +360,7 @@ export default function AboutPage2() {
   }, []);
 
   return (
-    <div style={{ fontFamily: "'Inter', 'Helvetica Neue', Arial, sans-serif", background: "#fff" }}>
+    <div style={{ fontFamily: "'Inter', 'Helvetica Neue', Arial, sans-serif", background: "#f8f8f8" }}>
 
       {/* ════════════════════════════════════════════════════════════════
           SECTION 1 — Banner Image
@@ -246,14 +419,13 @@ export default function AboutPage2() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════════
-          SECTION 2 — Cellini Scrollytelling Timeline
-          Each milestone = 100vh slide, animates in as you scroll
+          SECTION 2 — 3D Card Parallax Stacking Timeline
       ════════════════════════════════════════════════════════════════ */}
-      <section style={{ background: "#fafafa", borderTop: "1px solid #e8e8e8" }}>
+      <section style={{ background: "#f5f5f5", borderTop: "1px solid #e8e8e8", position: "relative" }}>
         {/* Sticky Year Tabs for section 2 */}
         <div
           style={{
-            position: "sticky", top: "88px", zIndex: 30,
+            position: "sticky", top: "88px", zIndex: 50,
             background: "rgba(255,255,255,0.96)",
             backdropFilter: "blur(12px)",
             borderBottom: "1px solid #e8e8e8",
@@ -292,140 +464,15 @@ export default function AboutPage2() {
           </Link>
         </div>
 
-        {/* MILESTONE SLIDES */}
+        {/* 3D PARALLAX SWIPE CARDS */}
         {milestones.map((m, i) => (
-          <motion.section
+          <TimelineCard
             key={i}
-            ref={(el: HTMLElement | null) => { slideRefs.current[i] = el; }}
-            data-slide-idx={i}
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.35 }}
-            transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-            style={{
-              minHeight: "100vh",
-              display: "flex",
-              alignItems: "center",
-              borderBottom: "1px solid #eee",
-              background: i % 2 === 0 ? "#fff" : "#fafafa",
-              padding: "0 2.5rem",
-              position: "relative",
-            }}
-          >
-            {/* Cellini 3-column layout */}
-            <div style={{
-              width: "100%", maxWidth: "1200px", margin: "0 auto",
-              display: "grid",
-              gridTemplateColumns: "1fr 1fr 1fr",
-              gap: "3rem",
-              alignItems: "center",
-              padding: "6rem 0",
-            }}>
-
-              {/* LEFT: heading + text + small image */}
-              <motion.div
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: false, amount: 0.4 }}
-                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
-              >
-                <p style={{
-                  fontSize: "0.6rem", fontWeight: 700, color: "#003926",
-                  letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: "1rem",
-                }}>
-                  {m.title}
-                </p>
-                <p style={{
-                  fontSize: "0.88rem", color: "#444", lineHeight: 1.8,
-                  marginBottom: "2rem", maxWidth: "340px",
-                }}>
-                  {m.text}
-                </p>
-                {/* Small secondary image */}
-                <div style={{
-                  borderRadius: "0.875rem", overflow: "hidden",
-                  border: "1px solid #e0e0e0", background: "#f8f8f8",
-                  maxWidth: "260px",
-                }}>
-                  <img
-                    src={m.image1}
-                    alt={`${m.title} — detail`}
-                    style={{ width: "100%", height: "200px", objectFit: "cover", display: "block" }}
-                    onError={(e) => { (e.target as HTMLImageElement).src = FALLBACK; }}
-                  />
-                </div>
-              </motion.div>
-
-              {/* CENTER: Giant year watermark + step number */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.92 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: false, amount: 0.4 }}
-                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
-                style={{ textAlign: "center" }}
-              >
-                <div style={{
-                  fontSize: "clamp(5rem, 10vw, 8.5rem)",
-                  fontWeight: 900,
-                  color: "#f0f0f0",
-                  letterSpacing: "-0.04em",
-                  lineHeight: 1,
-                  userSelect: "none",
-                  marginBottom: "1.5rem",
-                  fontVariantNumeric: "tabular-nums",
-                }}>
-                  {m.year}
-                </div>
-                <div style={{
-                  width: 48, height: 48, borderRadius: "50%",
-                  border: "1.5px solid #e0e0e0",
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                  margin: "0 auto",
-                }}>
-                  <span style={{ fontSize: "0.7rem", fontWeight: 700, color: "#999", letterSpacing: "0.06em" }}>
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                </div>
-              </motion.div>
-
-              {/* RIGHT: main feature image + caption */}
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: false, amount: 0.4 }}
-                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
-              >
-                <div style={{
-                  borderRadius: "1rem", overflow: "hidden",
-                  border: "1px solid #e0e0e0", background: "#f8f8f8",
-                  marginBottom: "1.25rem",
-                  boxShadow: "0 4px 24px rgba(0,0,0,0.06)",
-                }}>
-                  <img
-                    src={m.image2}
-                    alt={m.title}
-                    style={{ width: "100%", height: "280px", objectFit: "cover", display: "block" }}
-                    onError={(e) => { (e.target as HTMLImageElement).src = FALLBACK; }}
-                  />
-                </div>
-                <p style={{ fontSize: "0.78rem", color: "#888", lineHeight: 1.65, fontStyle: "italic" }}>
-                  {m.year} · {m.title}
-                </p>
-              </motion.div>
-
-            </div>
-
-            {/* Milestone index line on far right */}
-            <div style={{
-              position: "absolute", right: "2.5rem", top: "50%",
-              transform: "translateY(-50%)",
-              fontSize: "0.6rem", fontWeight: 700, color: "#e0e0e0",
-              letterSpacing: "0.1em", writingMode: "vertical-rl",
-              userSelect: "none",
-            }}>
-              {String(i + 1).padStart(2, "0")} / {milestones.length}
-            </div>
-          </motion.section>
+            m={m}
+            i={i}
+            total={milestones.length}
+            slideRef={(el) => { slideRefs.current[i] = el; }}
+          />
         ))}
       </section>
     </div>
