@@ -63,7 +63,7 @@ const milestones: Milestone[] = [
     year: "1998",
     title: "Tissot in India",
     text: "Nagpal Group becomes among the first national distributors for TISSOT, Givenchy Paris, Christian Bernard Paris, and Rotary in India — a major credibility milestone.",
-    image1: "/images/about us journey/1998 - Introduction of Tissot to india/Nagpal's Bombay got distribution of Renata And Maxell Batteries (1).png",
+    image1: "/images/watches/ESCORT POSTER-20260312T064608Z-1-001/ESCORT POSTER/Escort-1.jpg",
     image2: "/images/new-img/pillars/GW-Ads-BArtboard 5.jpg",
   },
   {
@@ -84,7 +84,7 @@ const milestones: Milestone[] = [
     year: "2010",
     title: "B2B & Corporate",
     text: "Corporate gifting becomes a strategic pillar. Largest volume B2B watch orders for TATA INDICOM, REEBOK, NIKON, and leading pharma companies. Clocks & bags added under D'SIGNER.",
-    image1: "/images/about us journey/2010 - Corporate Gifting/Nagpal's Bombay got distribution of Renata And Maxell Batteries (2).png",
+    image1: "/images/watches/ESCORT POSTER-20260312T064608Z-1-001/ESCORT POSTER/Escort-2.jpg",
     image2: "/images/new-img/pillars/GW-Ads-BArtboard 3.jpg",
   },
   {
@@ -98,14 +98,14 @@ const milestones: Milestone[] = [
     year: "2017",
     title: "Adding More Brands",
     text: "MATHEY TISSOT and D1 MILANO join the portfolio. Designer World steps into international exports — London, Singapore, Bahrain, and Oman.",
-    image1: "/images/about us journey/2017 - Getting Sole Distribution of Mathey Tissot and D1 Milano/Nagpal's Bombay got distribution of Renata And Maxell Batteries (3).png",
+    image1: "/images/watches/ESCORT POSTER-20260312T064608Z-1-001/ESCORT POSTER/824RGFS.16G.jpg",
     image2: "/images/threeimg1-nobg.png",
   },
   {
     year: "2020",
     title: "The Digital Shift",
     text: "Nagpal Group adapts quickly to the e-commerce boom, designing for online-first brands and expanding reach across all major digital channels in India.",
-    image1: "/images/about us journey/2020 - The Digital Shift/Nagpal's Bombay got distribution of Renata And Maxell Batteries (4).png",
+    image1: "/images/about us journey/1991 — A Brand is Born/5 (2).jpg",
     image2: "/images/new-img/pillars/GW-Ads-BArtboard 6.jpg",
   },
   {
