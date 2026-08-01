@@ -61,7 +61,7 @@ export default function GenderSelector() {
           {/* Heading */}
           <div className="absolute inset-0 z-10 flex flex-col items-center justify-end pb-16 md:pb-20 pointer-events-none">
             <h2
-              className="font-montserrat font-medium text-[64px] sm:text-[80px] md:text-[96px] uppercase tracking-[0.1em] text-white leading-none"
+              className="font-montserrat font-medium text-[48px] sm:text-[60px] md:text-[72px] uppercase tracking-[0.1em] text-white leading-none"
               style={{
                 opacity: hoveredCard === "women" ? 0.35 : 1,
                 transition: "opacity 0.5s ease",
@@ -69,32 +69,23 @@ export default function GenderSelector() {
             >
               MEN
             </h2>
-            <p
-              className="font-montserrat text-[9px] tracking-[0.3em] uppercase text-white/70 mt-3"
-              style={{
-                opacity: hoveredCard === "women" ? 0 : 1,
-                transition: "opacity 0.4s ease",
-              }}
-            >
-              EXPLORE COLLECTION &rarr;
-            </p>
           </div>
 
           {/* Buttons */}
           <div className="absolute bottom-5 inset-x-0 z-20 flex flex-row items-center justify-center gap-4 pointer-events-none">
             <Link
-              href="/collections/men"
+              href="/collections/mens-designer"
               className="pointer-events-auto font-montserrat text-[10px] md:text-[11px] tracking-[0.22em] uppercase font-semibold text-white border border-white/50 px-5 py-2.5 backdrop-blur-sm bg-white/5 hover:bg-white hover:text-[#003926] hover:border-white transition-all duration-300"
               onClick={(e) => e.stopPropagation()}
             >
-              MEN&apos;S
+              D&apos;SIGNER&apos;S
             </Link>
             <Link
-              href="/collections/women"
+              href="/collections/mens-escort"
               className="pointer-events-auto font-montserrat text-[10px] md:text-[11px] tracking-[0.22em] uppercase font-semibold text-white border border-white/50 px-5 py-2.5 backdrop-blur-sm bg-white/5 hover:bg-white hover:text-[#003926] hover:border-white transition-all duration-300"
               onClick={(e) => e.stopPropagation()}
             >
-              WOMEN&apos;S
+              ESCORT
             </Link>
           </div>
         </div>
@@ -140,7 +131,7 @@ export default function GenderSelector() {
           {/* Heading */}
           <div className="absolute inset-0 z-10 flex flex-col items-center justify-end pb-16 md:pb-20 pointer-events-none">
             <h2
-              className="font-montserrat font-medium text-[64px] sm:text-[80px] md:text-[96px] uppercase tracking-[0.1em] text-white leading-none"
+              className="font-montserrat font-medium text-[48px] sm:text-[60px] md:text-[72px] uppercase tracking-[0.1em] text-white leading-none"
               style={{
                 opacity: hoveredCard === "men" ? 0.35 : 1,
                 transition: "opacity 0.5s ease",
@@ -148,32 +139,23 @@ export default function GenderSelector() {
             >
               WOMEN
             </h2>
-            <p
-              className="font-montserrat text-[9px] tracking-[0.3em] uppercase text-white/70 mt-3"
-              style={{
-                opacity: hoveredCard === "men" ? 0 : 1,
-                transition: "opacity 0.4s ease",
-              }}
-            >
-              EXPLORE COLLECTION &rarr;
-            </p>
           </div>
 
           {/* Buttons */}
           <div className="absolute bottom-5 inset-x-0 z-20 flex flex-row items-center justify-center gap-4 pointer-events-none">
             <Link
-              href="/collections/men"
+              href="/collections/womens-designer"
               className="pointer-events-auto font-montserrat text-[10px] md:text-[11px] tracking-[0.22em] uppercase font-semibold text-white border border-white/50 px-5 py-2.5 backdrop-blur-sm bg-white/5 hover:bg-white hover:text-[#003926] hover:border-white transition-all duration-300"
               onClick={(e) => e.stopPropagation()}
             >
-              MEN&apos;S
+              D&apos;SIGNER&apos;S
             </Link>
             <Link
-              href="/collections/women"
+              href="/collections/womens-escort"
               className="pointer-events-auto font-montserrat text-[10px] md:text-[11px] tracking-[0.22em] uppercase font-semibold text-white border border-white/50 px-5 py-2.5 backdrop-blur-sm bg-white/5 hover:bg-white hover:text-[#003926] hover:border-white transition-all duration-300"
               onClick={(e) => e.stopPropagation()}
             >
-              WOMEN&apos;S
+              ESCORT
             </Link>
           </div>
         </div>
