@@ -42,7 +42,11 @@ const tabNames = [
   "Case & Leather"
 ];
 
-export default function WatchDetails() {
+export default function WatchDetails({
+  videoSrc = "/img/magnific_a-luxury-mechanical-watch_rgjTSHgxtc.mp4"
+}: {
+  videoSrc?: string;
+} = {}) {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
@@ -122,12 +126,11 @@ export default function WatchDetails() {
               className="relative w-full max-w-[240px] sm:max-w-[280px] lg:max-w-[380px] aspect-[4/5] overflow-hidden"
             >
               <video
-                src="/images/new-img/vid-1.mp4"
+                src={videoSrc}
                 autoPlay
                 muted
                 loop
                 playsInline
-                poster="/images/image-strap.png"
                 className="absolute inset-0 w-full h-full object-contain mix-blend-multiply"
               />
             </div>
