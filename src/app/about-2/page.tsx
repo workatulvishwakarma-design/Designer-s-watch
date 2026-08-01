@@ -200,6 +200,7 @@ function TimelineCard({
           padding: "0 2.5rem",
           position: "relative",
           transformOrigin: "center top",
+          scrollMarginTop: "140px",
         }}
       >
         {/* Cellini 3-column layout */}
@@ -326,13 +327,25 @@ function TimelineCard({
 export default function AboutPage2() {
   // For section-1 era selectors
   const [eraIdx, setEraIdx] = useState(0);
-  // For section-2 sticky tabs active year
+  // For sticky active year
   const [stickyActive, setStickyActive] = useState(0);
+  // For hover state active year
+  const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
+  // Track scroll position for sticky header style transition
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const slideRefs = useRef<(HTMLElement | null)[]>([]);
   const stickyActiveRef = useRef(0);
 
-  /* ── IntersectionObserver for sticky tabs in section 2 ── */
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 400);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  /* ── IntersectionObserver for timeline slides ── */
   useEffect(() => {
     const obs = new IntersectionObserver(
       (entries) => {
@@ -363,25 +376,26 @@ export default function AboutPage2() {
     <div style={{ fontFamily: "'Inter', 'Helvetica Neue', Arial, sans-serif", background: "#f8f8f8" }}>
 
       {/* ════════════════════════════════════════════════════════════════
-          SECTION 1 — Banner Image
+          SECTION 1 — Hero Banner Image (Height increased by 30% to 80vh)
       ════════════════════════════════════════════════════════════════ */}
       <section
         style={{
-          height: "100vh",
+          height: "80vh",
+          minHeight: "560px",
           overflow: "hidden",
           position: "relative",
         }}
       >
         <img
           src="/images/about-2.png"
-          alt="Built Across Generations"
+          alt="About Nagpal Group History"
           style={{
             width: "100%",
             height: "100%",
             objectFit: "cover",
             objectPosition: "center",
             display: "block",
-            filter: "brightness(0.85)",
+            filter: "brightness(0.8)",
           }}
           onError={(e) => {
             const target = e.target as HTMLImageElement;
@@ -390,17 +404,17 @@ export default function AboutPage2() {
             }
           }}
         />
-        {/* Dark Black Overlay */}
+        {/* Dark Overlay */}
         <div
           style={{
             position: "absolute",
             inset: 0,
-            backgroundColor: "rgba(0, 0, 0, 0.45)",
+            backgroundColor: "rgba(0, 0, 0, 0.4)",
             zIndex: 1,
           }}
         />
 
-        {/* Centered 3-Word White Heading */}
+        {/* Banner Content Container */}
         <div
           style={{
             position: "absolute",
@@ -409,55 +423,143 @@ export default function AboutPage2() {
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            justifyContent: "center",
-            padding: "0 1.5rem",
+            justifyContent: "space-between",
+            paddingTop: "7rem",
+            paddingBottom: "2rem",
             textAlign: "center",
           }}
         >
-          <h1
-            className="font-montserrat font-medium text-white text-lg sm:text-2xl md:text-3xl tracking-[0.18em] uppercase drop-shadow-md max-w-3xl leading-relaxed"
+          {/* Centered History Title */}
+          <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <h1
+              style={{
+                fontSize: "clamp(2.8rem, 6vw, 4.5rem)",
+                fontWeight: 600,
+                color: "#ffffff",
+                letterSpacing: "0.05em",
+                textTransform: "none",
+                textShadow: "0 4px 20px rgba(0,0,0,0.5)",
+                margin: 0,
+              }}
+            >
+              History
+            </h1>
+          </div>
+
+          {/* Year numbers directly on banner background */}
+          <div
+            style={{
+              width: "100%",
+              maxWidth: "1400px",
+              padding: "0 1.5rem",
+            }}
           >
-            Built Across Generations.
-            <br />
-            Strengthened by Time.
-          </h1>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                flexWrap: "nowrap",
+                gap: "1.6rem",
+                overflowX: "auto",
+                scrollbarWidth: "none",
+                padding: "0.5rem 0",
+              }}
+              className="no-scrollbar"
+            >
+              {milestones.map((m, i) => {
+                const isActive = hoveredIdx !== null ? hoveredIdx === i : stickyActive === i;
+                return (
+                  <button
+                    key={i}
+                    onClick={() => scrollToSlide(i)}
+                    onMouseEnter={() => {
+                      setHoveredIdx(i);
+                      scrollToSlide(i);
+                    }}
+                    onMouseLeave={() => setHoveredIdx(null)}
+                    style={{
+                      fontSize: "0.85rem",
+                      fontWeight: isActive ? 700 : 500,
+                      color: isActive ? "#ffffff" : "rgba(255, 255, 255, 0.65)",
+                      letterSpacing: "0.08em",
+                      textTransform: "lowercase",
+                      background: "none",
+                      border: "none",
+                      borderBottom: isActive ? "2px solid #ffffff" : "2px solid transparent",
+                      paddingBottom: "0.3rem",
+                      cursor: "pointer",
+                      whiteSpace: "nowrap",
+                      flexShrink: 0,
+                      transition: "all 0.2s ease-in-out",
+                      outline: "none",
+                      textShadow: isActive ? "0 0 12px rgba(255,255,255,0.6)" : "none",
+                    }}
+                  >
+                    {m.year}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* ════════════════════════════════════════════════════════════════
-          SECTION 2 — 3D Card Parallax Stacking Timeline
-      ════════════════════════════════════════════════════════════════ */}
-      <section style={{ background: "#f5f5f5", borderTop: "1px solid #e8e8e8", position: "relative" }}>
-        {/* Sticky Year Tabs for section 2 */}
+      {/* Sticky Year Navigation Header when scrolling down past banner */}
+      {isScrolled && (
         <div
           style={{
-            position: "sticky", top: "88px", zIndex: 50,
-            background: "rgba(255,255,255,0.96)",
+            position: "sticky",
+            top: "88px",
+            zIndex: 50,
+            background: "rgba(255, 255, 255, 0.96)",
             backdropFilter: "blur(12px)",
             borderBottom: "1px solid #e8e8e8",
             padding: "0 2rem",
-            display: "flex", alignItems: "center",
+            display: "flex",
+            alignItems: "center",
+            animation: "fadeIn 0.2s ease-in-out",
           }}
         >
-          <div style={{ display: "flex", alignItems: "center", flex: 1, overflowX: "auto", scrollbarWidth: "none", gap: 0 }}>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              flex: 1,
+              overflowX: "auto",
+              scrollbarWidth: "none",
+              gap: 0,
+            }}
+            className="no-scrollbar"
+          >
             {milestones.map((m, i) => {
-              const isActive = stickyActive === i;
+              const isActive = hoveredIdx !== null ? hoveredIdx === i : stickyActive === i;
               return (
                 <button
                   id={`sticky-tab-${i}`}
                   key={i}
                   onClick={() => scrollToSlide(i)}
+                  onMouseEnter={() => {
+                    setHoveredIdx(i);
+                    scrollToSlide(i);
+                  }}
+                  onMouseLeave={() => setHoveredIdx(null)}
                   style={{
-                    padding: "0.9rem 0", marginRight: "1.6rem",
-                    fontSize: "0.65rem",
-                    fontWeight: isActive ? 700 : 400,
-                    color: isActive ? "#003926" : "#aaa",
-                    letterSpacing: "0.1em", textTransform: "uppercase",
-                    background: "none", border: "none",
+                    padding: "0.9rem 0",
+                    marginRight: "1.6rem",
+                    fontSize: "0.75rem",
+                    fontWeight: isActive ? 700 : 500,
+                    color: isActive ? "#003926" : "#777777",
+                    letterSpacing: "0.08em",
+                    textTransform: "lowercase",
+                    background: "none",
+                    border: "none",
                     borderBottom: isActive ? "2px solid #003926" : "2px solid transparent",
-                    cursor: "pointer", whiteSpace: "nowrap", flexShrink: 0,
+                    cursor: "pointer",
+                    whiteSpace: "nowrap",
+                    flexShrink: 0,
                     outline: "none",
-                    transition: "color 0.25s, border-color 0.25s",
+                    transition: "all 0.2s ease-in-out",
                   }}
                 >
                   {m.year}
@@ -465,11 +567,26 @@ export default function AboutPage2() {
               );
             })}
           </div>
-          <Link href="/about" style={{ padding: "0.5rem", color: "#bbb", flexShrink: 0, textDecoration: "none", display: "flex", alignItems: "center" }}>
+          <Link
+            href="/about"
+            style={{
+              padding: "0.5rem",
+              color: "#bbb",
+              flexShrink: 0,
+              textDecoration: "none",
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
             <X size={15} />
           </Link>
         </div>
+      )}
 
+      {/* ════════════════════════════════════════════════════════════════
+          SECTION 2 — 3D Card Parallax Stacking Timeline
+      ════════════════════════════════════════════════════════════════ */}
+      <section style={{ background: "#f5f5f5", borderTop: "1px solid #e8e8e8", position: "relative" }}>
         {/* 3D PARALLAX SWIPE CARDS */}
         {milestones.map((m, i) => (
           <TimelineCard
