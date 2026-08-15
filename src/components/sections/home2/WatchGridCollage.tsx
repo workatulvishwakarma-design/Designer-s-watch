@@ -35,12 +35,12 @@ const IMAGES = {
   },
   col3_top: {
     id: "980GFS-16",
-    name: "D'Signer Bolt 980",
+    name: "D'Signer Grandeur 980",
     price: 18900,
     slug: "dsigner-980-gfs",
     src: "/img/models/980GFS.16.jpg",
-    alt: "D'Signer Bolt 980 – Green Gold Skeleton Tourbillon",
-    label: "BOLT",
+    alt: "D'Signer Grandeur 980 – Green Gold Skeleton Tourbillon",
+    label: "GRANDEUR",
   },
   col3_bottom: {
     id: "916GNM-16G",
