@@ -28,8 +28,9 @@ export default function BrandClubs() {
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
             className="md:col-span-5 flex flex-col items-start relative z-10 order-2 md:order-1"
           >
-            <h2 className="font-montserrat text-[36px] sm:text-[48px] uppercase tracking-[0.08em] leading-none mb-8 font-medium">
-              D&apos;signer Watch
+            <h2 className="font-montserrat text-[36px] sm:text-[48px] uppercase tracking-[0.08em] leading-[1.15] mb-8">
+              <span className="font-bold block">D&apos;SIGNER</span>
+              <span className="font-light block">WATCH</span>
             </h2>
 
             {/* Watch display insert container */}
@@ -114,8 +115,9 @@ export default function BrandClubs() {
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
             className="md:col-span-5 flex flex-col items-start relative z-10"
           >
-            <h2 className="font-montserrat text-[36px] sm:text-[48px] uppercase tracking-[0.08em] leading-none mb-8 font-medium">
-              Escort Watch
+            <h2 className="font-montserrat text-[36px] sm:text-[48px] uppercase tracking-[0.08em] leading-[1.15] mb-8">
+              <span className="font-bold block">ESCORT</span>
+              <span className="font-light block">WATCH</span>
             </h2>
 
             <p className="font-montserrat text-[13px] text-white/60 leading-[1.8] max-w-sm mb-8 font-medium">

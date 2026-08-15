@@ -3,7 +3,7 @@
 import { useState, useMemo, useRef } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ChevronLeft, ChevronRight, Eye } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import type { ModelFamilyGroup } from "@/types/product";
 import { getAllPrimaryImageCandidates } from "@/lib/imageResolver";
 import LuxuryPlaceholder from "@/components/ui/LuxuryPlaceholder";
@@ -107,10 +107,12 @@ function ProductCard({ family }: { family: ModelFamilyGroup }) {
   }, [family.familyId, primaryVariant]);
 
   const primaryImage = primaryCandidates[imgIdx] || primaryVariant?.gallery?.primary || "";
+  const hoverImage = primaryVariant?.gallery?.hover || (primaryCandidates.length > 1 ? primaryCandidates[1] : "") || primaryImage;
+  const hasSecondImage = hoverImage && hoverImage !== primaryImage;
 
-  const formattedPrice = family.priceRange.min === family.priceRange.max
-    ? `₹${family.priceRange.min.toLocaleString("en-IN")}`
-    : `From ₹${family.priceRange.min.toLocaleString("en-IN")}`;
+  const price = family.priceRange.min;
+  const mrp = primaryVariant?.mrp || 0;
+  const discount = mrp && mrp > price ? Math.round(((mrp - price) / mrp) * 100) : 0;
 
   const handleImageError = () => {
     if (imgIdx < primaryCandidates.length - 1) {
@@ -125,12 +127,11 @@ function ProductCard({ family }: { family: ModelFamilyGroup }) {
   return (
     <Link href={`/product/${family.slug}`} className="block">
       <div
-        className="w-[260px] sm:w-[300px] rounded-2xl overflow-hidden transition-all duration-500"
+        className="w-[260px] sm:w-[300px] rounded-2xl overflow-hidden transition-all duration-500 bg-white"
         style={{
-          background: "#0A2E21",
-          border: "1px solid rgba(212,197,160,0.12)",
+          border: `1px solid ${hovered ? "rgba(0,57,38,0.2)" : "#EDE8DF"}`,
           transform: hovered ? "translateY(-6px)" : "translateY(0)",
-          boxShadow: hovered ? "0 20px 50px rgba(0,0,0,0.3)" : "0 4px 16px rgba(0,0,0,0.1)",
+          boxShadow: hovered ? "0 20px 50px rgba(0,0,0,0.1)" : "0 2px 8px rgba(0,0,0,0.04)",
         }}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
@@ -138,7 +139,7 @@ function ProductCard({ family }: { family: ModelFamilyGroup }) {
         {/* Image */}
         <div
           className="relative w-full overflow-hidden"
-          style={{ aspectRatio: "1/1", background: "radial-gradient(ellipse at center, #163828, #0A2E21)" }}
+          style={{ aspectRatio: "4/5", background: "#FAFAF8" }}
         >
           {showImages ? (
             <>
@@ -146,66 +147,99 @@ function ProductCard({ family }: { family: ModelFamilyGroup }) {
               <img
                 src={primaryImage}
                 alt={family.name}
-                className="absolute inset-0 w-full h-full object-contain p-6"
+                className="absolute inset-0 w-full h-full object-contain p-8"
                 style={{
-                  transition: "transform 0.7s cubic-bezier(0.22,1,0.36,1)",
-                  transform: hovered ? "scale(1.08)" : "scale(1)",
+                  transition: "all 0.7s cubic-bezier(0.22,1,0.36,1)",
+                  transform: hovered ? "scale(1.06)" : "scale(1)",
+                  opacity: hovered && hasSecondImage ? 0 : 1,
                 }}
                 onError={handleImageError}
                 loading="lazy"
               />
+              {hasSecondImage && (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={hoverImage}
+                  alt={`${family.name} alt`}
+                  className="absolute inset-0 w-full h-full object-contain p-8"
+                  style={{
+                    transition: "all 0.7s cubic-bezier(0.22,1,0.36,1)",
+                    transform: hovered ? "scale(1.06)" : "scale(1.02)",
+                    opacity: hovered ? 1 : 0,
+                  }}
+                  loading="lazy"
+                />
+              )}
             </>
           ) : (
             <LuxuryPlaceholder />
           )}
 
-          {/* Hover overlay */}
-          <div
-            className="absolute inset-0 flex items-center justify-center z-10 transition-opacity duration-300"
-            style={{
-              background: "rgba(0,57,38,0.65)",
-              backdropFilter: "blur(4px)",
-              opacity: hovered ? 1 : 0,
-              pointerEvents: hovered ? "auto" : "none",
-            }}
-          >
-            <span className="px-6 py-2.5 rounded-full border border-[#D4C5A0] text-white font-dm text-[10px] uppercase tracking-[0.15em] flex items-center gap-2">
-              <Eye size={12} className="text-[#D4C5A0]" />
-              View Watch
-            </span>
-          </div>
-
-          {/* Variant count badge */}
-          {family.variantCount > 1 && (
+          {/* Discount Badge */}
+          {discount > 0 && (
             <span
-              className="absolute top-3 left-3 rounded-full font-dm px-3 py-1 z-10"
+              className="absolute top-3 left-3 z-10 font-montserrat font-bold text-white px-3 py-1.5"
               style={{
-                fontSize: "9px",
-                letterSpacing: "0.1em",
-                background: "rgba(0,57,38,0.7)",
-                color: "#D4C5A0",
-                border: "1px solid rgba(212,197,160,0.3)",
-                backdropFilter: "blur(4px)",
+                fontSize: "11px",
+                letterSpacing: "0.02em",
+                background: "#C8102E",
               }}
             >
-              {family.variantCount} Styles
+              {discount}% OFF
             </span>
           )}
+
+          {/* Wishlist Heart */}
+          <button
+            className="absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-white/80 backdrop-blur-sm flex items-center justify-center text-[#9C9690] hover:text-[#C8102E] transition-colors duration-300 shadow-sm"
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+            }}
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+            </svg>
+          </button>
         </div>
 
         {/* Details */}
-        <div className="p-5">
-          <span className="font-dm text-[8px] tracking-[0.2em] text-[#D4C5A0] uppercase font-bold block">
-            {family.brand}
-          </span>
-          <h3 className="font-dm font-semibold text-[13px] text-white mt-1 leading-tight truncate">
-            {family.name}
-          </h3>
-          <p className="font-cormorant italic text-[18px] text-[#D4C5A0] mt-1.5">
-            {formattedPrice}
-          </p>
+        <div className="p-5 flex items-end justify-between">
+          <div>
+            <span className="font-montserrat uppercase block" style={{ fontSize: "10px", color: "#003926", letterSpacing: "0.15em", fontWeight: 600 }}>
+              {family.brand}
+            </span>
+            <h3 className="font-dm font-medium text-[14px] text-[#1A1918] mt-1 leading-tight truncate max-w-[200px]">
+              {family.name}
+            </h3>
+            <div className="flex items-baseline gap-2 mt-1.5">
+              <span className="font-cormorant italic text-[18px] text-[#003926] font-semibold">
+                Rs. {price.toLocaleString("en-IN")}
+              </span>
+              {mrp > price && (
+                <span className="font-dm text-[13px] text-[#9C9690] line-through">
+                  ₹{mrp.toLocaleString("en-IN")}
+                </span>
+              )}
+            </div>
+          </div>
+
+          {/* Quick Add */}
+          <button
+            className="w-8 h-8 flex items-center justify-center text-[#003926] hover:bg-[#003926] hover:text-white rounded-full border border-[#003926]/20 transition-all duration-300 shrink-0"
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+            }}
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="12" y1="5" x2="12" y2="19" />
+              <line x1="5" y1="12" x2="19" y2="12" />
+            </svg>
+          </button>
         </div>
       </div>
     </Link>
   );
 }
+

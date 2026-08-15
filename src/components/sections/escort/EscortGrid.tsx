@@ -94,7 +94,7 @@ export default function EscortGrid({ gender = "All" }: EscortGridProps) {
 
     return (
         <section
-            className="bg-[#FAF8F4] pt-12 pb-24 relative overflow-hidden"
+            className="bg-[#FAF8F4] pt-28 md:pt-32 pb-24 relative overflow-hidden"
             style={{
                 backgroundImage: `repeating-linear-gradient(
                     -45deg,
@@ -106,6 +106,17 @@ export default function EscortGrid({ gender = "All" }: EscortGridProps) {
             }}
         >
             <GrainOverlay />
+            
+            {/* Category Personality Tagline & Title */}
+            <div className="text-center pb-6 px-6">
+                <h1 className="font-cormorant text-3xl md:text-4xl text-[#1A1918] mb-2 tracking-wide font-medium">
+                    {gender ? `${gender}'s Escort Collection` : "Escort Collection"}
+                </h1>
+                <p className="font-cormorant italic text-lg md:text-xl text-[#003926]">
+                    &quot;{categoryTaglines[activeCategory] || categoryTaglines["All"]}&quot;
+                </p>
+            </div>
+
             <FilterBar
                 totalItems={filteredProducts.length}
                 categories={categories}
@@ -116,13 +127,7 @@ export default function EscortGrid({ gender = "All" }: EscortGridProps) {
                 onSearchChange={setSearchQuery}
             />
 
-            <div className="max-w-7xl mx-auto px-6 mt-12">
-                {/* Category Personality Tagline */}
-                <div className="text-center mb-10">
-                    <p className="font-cormorant italic text-2xl md:text-3xl text-[#003926]">
-                        &quot;{categoryTaglines[activeCategory] || categoryTaglines["All"]}&quot;
-                    </p>
-                </div>
+            <div className="max-w-7xl mx-auto px-6 pt-16 sm:pt-20 pb-12">
 
                 {filteredProducts.length === 0 ? (
                     <div className="text-center py-16">

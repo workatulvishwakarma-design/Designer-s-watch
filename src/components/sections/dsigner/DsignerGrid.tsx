@@ -78,7 +78,7 @@ export default function DsignerGrid() {
 
     return (
         <section
-            className="bg-[#FAF8F4] pt-12 pb-24 relative overflow-hidden"
+            className="bg-[#FAF8F4] pt-28 md:pt-32 pb-24 relative overflow-hidden"
             style={{
                 backgroundImage: `repeating-linear-gradient(
                     -45deg,
@@ -90,6 +90,16 @@ export default function DsignerGrid() {
             }}
         >
             <GrainOverlay />
+
+            {/* Category Title & Subtitle */}
+            <div className="text-center pb-6 px-6">
+                <h1 className="font-cormorant text-3xl md:text-4xl text-[#1A1918] mb-2 tracking-wide font-medium">
+                    D'Signer Luxury Collection
+                </h1>
+                <p className="font-cormorant italic text-lg md:text-xl text-[#003926]">
+                    &quot;Haute Horlogerie & Heritage Craftsmanship&quot;
+                </p>
+            </div>
             <FilterBar
                 totalItems={filteredProducts.length}
                 categories={categories}
@@ -100,7 +110,7 @@ export default function DsignerGrid() {
                 onSearchChange={setSearchQuery}
             />
 
-            <div className="max-w-7xl mx-auto px-6 mt-12">
+            <div className="max-w-7xl mx-auto px-6 pt-16 sm:pt-20 pb-12">
                 {filteredProducts.length === 0 ? (
                     <div className="text-center py-16">
                         <p className="font-cormorant text-2xl text-[#1A1918] mb-3">No products found</p>

@@ -55,6 +55,76 @@ const getCollectionIcon = (slug: string) => {
     }
 };
 
+const brandPreviews = {
+    "mens-designer": {
+        slug: "mens-designer",
+        title: "D'Signer Men's",
+        tagline: "Precision Meets Commanding Aesthetics",
+        description: "Engineered with surgical-grade stainless steel and sapphire glass. Premium luxury timepieces crafted for the modern man.",
+        heroImage: "/images/new-img/model-2/950/950/950GNFS.16G.png",
+        ctaLabel: "Browse Men's D'Signer"
+    },
+    "womens-designer": {
+        slug: "womens-designer",
+        title: "D'Signer Women's Grace",
+        tagline: "Elegance & Fine Craftsmanship",
+        description: "Delicate proportions and sparkling accents designed for timeless sophistication.",
+        heroImage: "/images/new-img/model-2/950/950/950GNFS.16G.png",
+        ctaLabel: "Browse Women's D'Signer"
+    },
+    "designer-couple": {
+        slug: "duetto",
+        title: "Duetto Couple Series",
+        tagline: "Pair Timepieces of Distinction",
+        description: "Matching sets created for couples who share a passion for luxury and heritage.",
+        heroImage: "/images/new-img/model-2/950/950/950GNFS.16G.png",
+        ctaLabel: "Browse Duetto Sets"
+    },
+    "mens-escort": {
+        slug: "mens-escort",
+        title: "Escort Men's Classic",
+        tagline: "Everyday Reliability",
+        description: "Versatile, robust timepieces designed for daily wear without compromising on style.",
+        heroImage: "/images/new-img/model-2/950/950/950GNFS.16G.png",
+        ctaLabel: "Browse Men's Escort"
+    },
+    "womens-escort": {
+        slug: "womens-escort",
+        title: "Escort Women's Classic",
+        tagline: "Refined Simplicity",
+        description: "Graceful timepieces built to accompany every moment with charm and accuracy.",
+        heroImage: "/images/new-img/model-2/950/950/950GNFS.16G.png",
+        ctaLabel: "Browse Women's Escort"
+    },
+    "escort-everyday": {
+        slug: "escort",
+        title: "Escort Everyday Series",
+        tagline: "Accessible Quality",
+        description: "Timeless designs engineered with precision for everyday living.",
+        heroImage: "/images/new-img/model-2/950/950/950GNFS.16G.png",
+        ctaLabel: "Browse Everyday Series"
+    }
+};
+
+const megaMenuCategories = [
+    {
+        name: "Luxury & Heritage",
+        items: [
+            { slug: "dsigner", title: "D'Signer Collection" },
+            { slug: "grandeur", title: "Grandeur Series" },
+            { slug: "eternal", title: "Eternal Heritage" }
+        ]
+    },
+    {
+        name: "Everyday & Sport",
+        items: [
+            { slug: "escort", title: "Escort Collection" },
+            { slug: "bolt", title: "Bolt Chrono" },
+            { slug: "vortex", title: "Vortex Sport" }
+        ]
+    }
+];
+
 /* ─── Mobile Accordion Group ─── */
 function MobileAccordionGroup({
     title,
@@ -187,8 +257,6 @@ export default function HeaderClient({ hasAnnouncement = false, megaMenuPayload 
         gender: c.gender,
     })), []);
 
-    const isHeroPage = pathname === "/about" || pathname === "/home-2" || pathname.startsWith("/home-2") || pathname === "/" || pathname === "/about-2" || pathname.startsWith("/about-2");
-
     useEffect(() => {
         const fn = () => setScrolled(window.scrollY > 30);
         window.addEventListener("scroll", fn, { passive: true });
@@ -225,130 +293,9 @@ export default function HeaderClient({ hasAnnouncement = false, megaMenuPayload 
         }, 250);
     }, []);
 
-    // Mega menu categories setup
-    const megaMenuCategories = useMemo(() => [
-        {
-            name: "Signature Collections",
-            items: collections.filter(c => c.category === "Signature Collections")
-        },
-        {
-            name: "Performance Collections",
-            items: collections.filter(c => c.category === "Performance Collections")
-        },
-        {
-            name: "Minimal Collections",
-            items: collections.filter(c => c.category === "Minimal Collections")
-        },
-        {
-            name: "Women's Collections",
-            items: collections.filter(c => c.category === "Women's Collections")
-        },
-        {
-            name: "Couple Collections",
-            items: collections.filter(c => c.category === "Couple Collections")
-        }
-    ], []);
+    const isDarkHeroPage = pathname === "/" || pathname === "/home-2" || pathname.startsWith("/home-2") || pathname === "/about" || pathname === "/about-2" || pathname.startsWith("/about-2");
+    const transparent = isDarkHeroPage && !scrolled && !showMegaMenu;
 
-    // Category details for Column 1 brand hover previews — using clean product shots
-    const brandPreviews = useMemo(() => ({
-        "mens-designer": {
-            slug: "mens-designer",
-            title: "D'Signer Men's",
-            tagline: "Precision Meets Commanding Aesthetics",
-            description: "Engineered with surgical-grade stainless steel and sapphire glass. Premium luxury timepieces crafted for the modern man.",
-            heroImage: "/images/new-img/model-2/950/950/950GNFS.16G.png",
-            ctaLabel: "Browse Men's D'Signer"
-        },
-        "womens-designer": {
-            slug: "womens-designer",
-            title: "D'Signer Women's",
-            tagline: "Elegance Redefined",
-            description: "Sophisticated styling, delicate dial details, and radiant finishing designed to make a graceful statement.",
-            heroImage: "/images/new-img/model-2/901/901/901GM_Green.png",
-            ctaLabel: "Browse Women's D'Signer"
-        },
-        "designer-couple": {
-            slug: "duetto",
-            title: "D'Signer Couple",
-            tagline: "Perfect Harmony of Shared Elegance",
-            description: "Coordinating premium watches crafted in complementary pairs for his-and-hers styles.",
-            heroImage: "/images/doublewatch-nobg.png",
-            ctaLabel: "Explore Couple Series"
-        },
-        "mens-escort": {
-            slug: "mens-escort",
-            title: "Escort Men's",
-            tagline: "Everyday Precision & Style",
-            description: "Durability meets classic styling. Refined timepieces designed for the modern gentleman's daily journey.",
-            heroImage: "/images/threeimg1-nobg.png",
-            ctaLabel: "Browse Men's Escort"
-        },
-        "womens-escort": {
-            slug: "womens-escort",
-            title: "Escort Women's",
-            tagline: "Subtle Daily Elegance",
-            description: "Effortless, light, and versatile timepieces tailored to bring timeless styling to everyday attire.",
-            heroImage: "/images/threeimg2-nobg.png",
-            ctaLabel: "Browse Women's Escort"
-        },
-        "escort-everyday": {
-            slug: "escort",
-            title: "Escort Everyday",
-            tagline: "Timeless Quality for Every Moment",
-            description: "Affordable luxury watches built to accompany you through every day with confidence and durability.",
-            heroImage: "/images/threeimg3-nobg.png",
-            ctaLabel: "Explore Escort Series"
-        }
-    }), []);
-
-    // Brand cards mapping configuration for Megamenu Column 1
-    const brandCards = useMemo(() => [
-        {
-            id: "mens-designer",
-            title: "D'Signer Men's",
-            tagline: "Precision & commanding aesthetics",
-            href: "/collections/mens-designer",
-            previewKey: "mens-designer"
-        },
-        {
-            id: "womens-designer",
-            title: "D'Signer Women's",
-            tagline: "Graceful elegance & luxury details",
-            href: "/collections/womens-designer",
-            previewKey: "womens-designer"
-        },
-        {
-            id: "designer-couple",
-            title: "D'Signer Couple",
-            tagline: "Harmonious matching watch pairs",
-            href: "/collections/duetto",
-            previewKey: "designer-couple"
-        },
-        {
-            id: "mens-escort",
-            title: "Escort Men's",
-            tagline: "Everyday precision & durable style",
-            href: "/collections/mens-escort",
-            previewKey: "mens-escort"
-        },
-        {
-            id: "womens-escort",
-            title: "Escort Women's",
-            tagline: "Subtle daily grace & clean profiles",
-            href: "/collections/womens-escort",
-            previewKey: "womens-escort"
-        },
-        {
-            id: "escort-everyday",
-            title: "Escort Everyday",
-            tagline: "Timeless quality for every hour",
-            href: "/collections/escort",
-            previewKey: "escort-everyday"
-        }
-    ], []);
-
-    // Dynamic styling
-    const transparent = isHeroPage && !scrolled && !showMegaMenu;
     const headerBg = showMegaMenu
         ? "rgba(250,248,244,0.98)"
         : scrolled
@@ -366,6 +313,7 @@ export default function HeaderClient({ hasAnnouncement = false, megaMenuPayload 
                 : "none";
 
     const txtCol = transparent ? "#FFF" : "#003926";
+    const logoFilter = transparent ? "brightness(0) invert(1)" : "none";
 
     return (
         <>
@@ -434,7 +382,7 @@ export default function HeaderClient({ hasAnnouncement = false, megaMenuPayload 
                             <Image
                                 src={pathname.includes("/collections/escort") ? "/images/escort_b.png" : "/images/designer world logo_B.png"}
                                 alt="Designer World" fill className="object-contain"
-                                style={{ filter: transparent ? "brightness(0) invert(1)" : "none", transition: "filter 0.6s ease" }}
+                                style={{ filter: logoFilter, transition: "filter 0.6s ease" }}
                                 priority
                             />
                         </Link>

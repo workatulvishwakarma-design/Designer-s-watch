@@ -20,6 +20,40 @@
 }
 
 @layer base {
+  *,
+  *::before,
+  *::after {
+    border-radius: 0 !important;
+    cursor: none !important;
+  }
+
+  html,
+  body,
+  a,
+  button,
+  input,
+  textarea,
+  select,
+  label {
+    cursor: none !important;
+  }
+
+  @media (pointer: coarse) {
+    *,
+    *::before,
+    *::after,
+    html,
+    body,
+    a,
+    button,
+    input,
+    textarea,
+    select,
+    label {
+      cursor: auto !important;
+    }
+  }
+
   html {
     scroll-behavior: auto !important;
   }

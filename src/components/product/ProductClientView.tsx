@@ -92,7 +92,9 @@ function ProductHero({ family }: { family: ModelFamilyGroup }) {
   const router = useRouter();
 
   const variant = family.variants[selectedVariantIndex];
-  const allGalleryImages = [variant.gallery.primary, variant.gallery.hover, ...variant.gallery.detail].filter(Boolean);
+  // Limit gallery to max 4 images: primary, hover, and up to 2 details
+  const rawGalleryImages = [variant.gallery.primary, variant.gallery.hover, ...variant.gallery.detail].filter(Boolean);
+  const allGalleryImages = Array.from(new Set(rawGalleryImages)).slice(0, 4);
   const mainImage = allGalleryImages[selectedImageIndex] || "";
   
   const discount = variant.mrp && variant.price && variant.mrp > variant.price
@@ -106,16 +108,12 @@ function ProductHero({ family }: { family: ModelFamilyGroup }) {
   }, [mainImage]);
 
   // Placeholder logic for stock
-  const stock = 10;
-  const isLowStock = false;
   const isInStock = true;
 
   // Simulated social proof (client-only to avoid hydration mismatch)
   const [viewerCount, setViewerCount] = useState(24);
-  const [boughtRecentlyTimer, setBoughtRecentlyTimer] = useState(2);
   useEffect(() => {
     setViewerCount(Math.floor(Math.random() * 30) + 12);
-    setBoughtRecentlyTimer(Math.floor(Math.random() * 5) + 1);
   }, []);
 
   // JSON-LD structured data for SEO
@@ -143,7 +141,6 @@ function ProductHero({ family }: { family: ModelFamilyGroup }) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[radial-gradient(circle,rgba(184,147,90,0.06)_0%,transparent_70%)] rounded-full pointer-events-none -translate-y-1/3 translate-x-1/4" />
 
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
         {/* Breadcrumb */}
@@ -157,13 +154,113 @@ function ProductHero({ family }: { family: ModelFamilyGroup }) {
           <span className="text-[#1A1918]">{family.name}</span>
         </nav>
 
-        {/* 3-Column Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+        {/* 2-Column Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
 
-          {/* ── LEFT: Product Info ── */}
-          <div className="lg:col-span-4 flex flex-col justify-center order-2 lg:order-1">
+          {/* ── LEFT: Thumbnail Strip + Main Image ── */}
+          <div className="flex flex-col-reverse md:flex-row items-start gap-4">
+            
+            {/* Vertical Thumbnail Strip — max 4 */}
+            {allGalleryImages.length > 1 && (
+              <div className="flex md:flex-col gap-3 w-full md:w-[72px] shrink-0 overflow-x-auto md:overflow-visible pb-2 md:pb-0">
+                {allGalleryImages.map((img: string, i: number) => (
+                  <motion.button
+                    key={i}
+                    whileHover={{ scale: 1.05 }}
+                    onClick={() => setSelectedImageIndex(i)}
+                    className="relative w-16 h-16 md:w-full md:h-[80px] shrink-0 rounded-xl overflow-hidden transition-all duration-300"
+                    style={{
+                      border: selectedImageIndex === i ? '2px solid #003926' : '1.5px solid #EDE8DF',
+                      background: '#F7F4EF',
+                      boxShadow: selectedImageIndex === i ? '0 4px 12px rgba(0,57,38,0.1)' : 'none',
+                    }}
+                  >
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={img}
+                      alt={`View ${i + 1}`}
+                      className="absolute inset-0 w-full h-full object-contain p-1.5"
+                      onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                    />
+                  </motion.button>
+                ))}
+              </div>
+            )}
+
+            {/* Main Image */}
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+              className="relative w-full aspect-[4/5] overflow-hidden rounded-2xl bg-gradient-to-b from-[#F7F4EF] to-[#EDE8DF] cursor-zoom-in"
+              onClick={() => setIsLightboxOpen(true)}
+            >
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={mainImage}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 1.02 }}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
+                  className="absolute inset-0 flex items-center justify-center p-10 md:p-12"
+                >
+                  {mainImage && !imgFailed ? (
+                    /* eslint-disable-next-line @next/next/no-img-element */
+                    <img
+                      src={mainImage}
+                      alt={family.name}
+                      className="w-full h-full object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.12)]"
+                      onLoad={() => setImgFailed(false)}
+                      onError={() => setImgFailed(true)}
+                    />
+                  ) : (
+                    <LuxuryPlaceholder text="Image Coming Soon" />
+                  )}
+                </motion.div>
+              </AnimatePresence>
+
+              {/* Discount Badge */}
+              {discount > 0 && (
+                <span
+                  className="absolute top-4 left-4 z-10 font-montserrat font-bold text-white px-3 py-1.5"
+                  style={{ fontSize: "11px", background: "#C8102E" }}
+                >
+                  {discount}% OFF
+                </span>
+              )}
+            </motion.div>
+
+            {/* Lightbox Modal */}
+            <AnimatePresence>
+              {isLightboxOpen && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  onClick={() => setIsLightboxOpen(false)}
+                  className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4 cursor-zoom-out"
+                >
+                  <div className="relative w-full max-w-4xl max-h-[90vh] aspect-square lg:aspect-auto h-[80vh]">
+                    {mainImage && !imgFailed ? (
+                      /* eslint-disable-next-line @next/next/no-img-element */
+                      <img
+                        src={mainImage}
+                        alt={family.name}
+                        className="w-full h-full object-contain drop-shadow-[0_40px_80px_rgba(0,0,0,0.5)]"
+                      />
+                    ) : (
+                      <LuxuryPlaceholder text="Image Coming Soon" />
+                    )}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+
+          {/* ── RIGHT: Product Info ── */}
+          <div className="flex flex-col justify-start lg:sticky lg:top-32 self-start">
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             >
@@ -173,31 +270,23 @@ function ProductHero({ family }: { family: ModelFamilyGroup }) {
               </span>
 
               {/* Title */}
-              <h1 className="font-cormorant text-4xl md:text-5xl lg:text-[56px] text-[#1A1918] font-light leading-[1.05] mb-3">
+              <h1 className="font-cormorant text-4xl md:text-5xl text-[#1A1918] font-light leading-[1.05] mb-3">
                 <span className="font-semibold">{family.name}</span>
               </h1>
               
               <p className="font-dm text-sm text-[#9C9690] mb-4">Model No: {variant.sku}</p>
 
               {/* Social proof */}
-              <div className="flex flex-col gap-2 mb-4">
-                  <div className="flex items-center gap-2">
-                    <Eye size={14} className="text-[#B8935A]" />
-                    <span className="font-dm text-[12px] text-[#9C9690]">
-                      {viewerCount} people viewing this right now
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Check size={14} className="text-[#B8935A]" />
-                    <span className="font-dm text-[12px] text-[#9C9690]">
-                      Bought {boughtRecentlyTimer} hours ago
-                    </span>
-                  </div>
+              <div className="flex items-center gap-2 mb-4">
+                <Eye size={14} className="text-[#B8935A]" />
+                <span className="font-dm text-[12px] text-[#9C9690]">
+                  {viewerCount} people viewing this right now
+                </span>
               </div>
 
-              {/* Price — Luxury Treatment */}
+              {/* Price */}
               <div className="flex items-baseline gap-3 mb-2">
-                <span className="font-cormorant italic text-[42px] leading-none" style={{ background: 'linear-gradient(135deg, #003926 30%, #B8935A 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+                <span className="font-cormorant italic text-[38px] leading-none text-[#003926] font-semibold">
                   ₹{Number(variant.price).toLocaleString()}
                 </span>
                 {variant.mrp && variant.mrp > variant.price && (
@@ -205,105 +294,75 @@ function ProductHero({ family }: { family: ModelFamilyGroup }) {
                     <span className="font-dm text-[15px] line-through text-[#9C9690]">
                       ₹{Number(variant.mrp).toLocaleString()}
                     </span>
-                    <span className="bg-[#003926]/10 text-[#003926] text-[10px] font-dm font-medium px-2.5 py-1 rounded-full">
+                    <span className="bg-[#C8102E]/10 text-[#C8102E] text-[10px] font-dm font-medium px-2.5 py-1 rounded-full">
                       {discount}% OFF
                     </span>
                   </>
                 )}
               </div>
-              <p className="font-dm text-[11px] text-[#9C9690] mb-4">Inclusive of all taxes</p>
+              <p className="font-dm text-[11px] text-[#9C9690] mb-6">Inclusive of all taxes</p>
 
-              {/* Stock Status — Luxury Treatment */}
-              <div className="mb-6">
-                {isInStock ? (
-                  <div className="flex items-center gap-2.5">
-                    {isLowStock ? (
-                      <>
-                        <Flame size={14} className="text-[#D4455A] animate-pulse" />
-                        <span className="font-cormorant italic text-[14px] text-[#D4455A]">
-                          Only {stock} remaining — reserve yours
-                        </span>
-                      </>
-                    ) : (
-                      <>
-                        <span className="relative flex h-2.5 w-2.5">
-                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#003926] opacity-40" />
-                          <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#003926]" />
-                        </span>
-                        <span className="font-cormorant italic text-[14px] text-[#003926]">Available for Immediate Dispatch</span>
-                      </>
-                    )}
+              {/* Color / Variant Selection */}
+              {family.variants.length > 1 && (
+                <div className="mb-6">
+                  <p className="font-dm text-[11px] tracking-[0.15em] uppercase text-[#9C9690] mb-3">
+                    Color: <span className="text-[#1A1918] font-medium">{variant.dialColor.name}</span>
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {family.variants.map((v: Variant, i: number) => (
+                      <button
+                        key={v.sku}
+                        onClick={() => { setSelectedVariantIndex(i); setSelectedImageIndex(0); }}
+                        className="px-4 py-2 rounded-full font-dm text-[12px] transition-all duration-300"
+                        style={{
+                          border: selectedVariantIndex === i ? '1.5px solid #003926' : '1.5px solid #EDE8DF',
+                          background: selectedVariantIndex === i ? '#003926' : 'white',
+                          color: selectedVariantIndex === i ? 'white' : '#1A1918',
+                        }}
+                      >
+                        {v.dialColor.name}
+                      </button>
+                    ))}
                   </div>
-                ) : (
-                  <span className="font-cormorant italic text-[14px] text-[#D4455A]">Currently Unavailable</span>
-                )}
+                </div>
+              )}
+
+              {/* Size chart link */}
+              <div className="flex items-center gap-2 mb-6">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#003926" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                  <polyline points="14 2 14 8 20 8" />
+                  <line x1="9" y1="15" x2="15" y2="15" />
+                </svg>
+                <span className="font-dm text-[13px] text-[#003926] font-medium cursor-pointer hover:underline">Size chart</span>
               </div>
 
-              {/* Quantity + CTA — Luxury Emerald System */}
+              {/* Quantity + CTA */}
               <div className="flex flex-col gap-4 mb-6">
-                {/* Quantity Selector — Premium Capsule */}
+                {/* Quantity Selector */}
                 <div className="flex items-center gap-4">
-                  <span className="font-dm text-[11px] tracking-[0.15em] uppercase text-[#9C9690]">Quantity</span>
-                  <div className="inline-flex items-center rounded-full overflow-hidden" style={{ background: 'rgba(250,248,244,0.8)', backdropFilter: 'blur(12px)', border: '1px solid #EDE8DF', boxShadow: '0 2px 12px rgba(0,0,0,0.04)' }}>
-                    <motion.button
-                      whileHover={{ scale: 1.1, backgroundColor: 'rgba(0,57,38,0.06)' }}
-                      whileTap={{ scale: 0.92 }}
+                  <div className="inline-flex items-center rounded-full overflow-hidden border border-[#EDE8DF]">
+                    <button
                       onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                      className="w-11 h-11 flex items-center justify-center font-dm text-[16px] text-[#003926] transition-colors rounded-full"
+                      className="w-11 h-11 flex items-center justify-center font-dm text-[16px] text-[#003926] hover:bg-[#F5F2ED] transition-colors"
                     >
                       −
-                    </motion.button>
-                    <span className="w-10 text-center font-dm text-[14px] font-medium text-[#1A1918]" style={{ borderLeft: '1px solid rgba(184,147,90,0.15)', borderRight: '1px solid rgba(184,147,90,0.15)' }}>{quantity}</span>
-                    <motion.button
-                      whileHover={{ scale: 1.1, backgroundColor: 'rgba(0,57,38,0.06)' }}
-                      whileTap={{ scale: 0.92 }}
+                    </button>
+                    <span className="w-10 text-center font-dm text-[14px] font-medium text-[#1A1918] border-x border-[#EDE8DF]">{quantity}</span>
+                    <button
                       onClick={() => setQuantity(quantity + 1)}
-                      className="w-11 h-11 flex items-center justify-center font-dm text-[16px] text-[#003926] transition-colors rounded-full"
+                      className="w-11 h-11 flex items-center justify-center font-dm text-[16px] text-[#003926] hover:bg-[#F5F2ED] transition-colors"
                     >
                       +
-                    </motion.button>
+                    </button>
                   </div>
                 </div>
 
-                {/* Action Buttons Row */}
+                {/* Action Buttons */}
                 <div className="flex gap-3">
-                  {/* Buy Now — Primary Emerald CTA */}
-                  {isInStock && (
-                    <motion.button
-                      whileHover={{ y: -2, boxShadow: '0 10px 30px rgba(0,80,50,0.22), 0 0 0 1px rgba(184,147,90,0.15)' }}
-                      whileTap={{ scale: 0.97 }}
-                      onClick={() => {
-                        addItem({
-                          productId: variant.sku,
-                          name: `${family.name} - ${variant.sku}`,
-                          price: Number(variant.price),
-                          quantity,
-                          image: variant.gallery.primary || "",
-                          slug: family.slug,
-                          variant: {
-                            color: variant.dialColor.name,
-                            size: variant.specs.caseSize || "Standard",
-                          },
-                        });
-                        router.push("/checkout");
-                      }}
-                      className="flex-1 py-4 rounded-full font-dm text-[11px] font-medium tracking-[0.2em] uppercase flex items-center justify-center gap-2 cursor-pointer relative overflow-hidden group bg-[#003926] text-[#F5F2ED]"
-                      style={{
-                        boxShadow: '0 4px 20px rgba(0,57,38,0.15)',
-                        transition: 'all 0.5s cubic-bezier(0.22,1,0.36,1)',
-                      }}
-                    >
-                      {/* Gold shimmer sweep on hover */}
-                      <span className="absolute inset-0 bg-gradient-to-r from-transparent via-[rgba(184,147,90,0.2)] to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-1000 pointer-events-none" />
-                      <span className="relative z-10 flex items-center gap-2">BUY NOW</span>
-                    </motion.button>
-                  )}
-
-                  {/* Add to Cart — Secondary Outlined */}
                   <motion.button
-                    whileHover={{ y: -2, backgroundColor: 'rgba(0,57,38,0.04)', borderColor: '#003926', boxShadow: '0 8px 24px rgba(0,57,38,0.08)' }}
+                    whileHover={{ y: -2, boxShadow: '0 10px 30px rgba(0,80,50,0.22)' }}
                     whileTap={{ scale: 0.97 }}
-                    disabled={!isInStock}
                     onClick={() => {
                       addItem({
                         productId: variant.sku,
@@ -319,30 +378,15 @@ function ProductHero({ family }: { family: ModelFamilyGroup }) {
                       });
                       toast.success(`${family.name} added to cart`);
                     }}
-                    className="flex-1 py-4 rounded-full font-dm text-[11px] font-medium tracking-[0.2em] uppercase flex items-center justify-center gap-2 cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed border-[1.5px] border-[#003926] text-[#003926]"
-                    style={{
-                      transition: 'all 0.5s cubic-bezier(0.22,1,0.36,1)',
-                    }}
+                    className="flex-1 py-4 rounded-full font-dm text-[11px] font-medium tracking-[0.2em] uppercase flex items-center justify-center gap-2 cursor-pointer border-[1.5px] border-[#1A1918] text-[#1A1918] hover:bg-[#1A1918] hover:text-white transition-all duration-300"
                   >
-                    <Package size={15} />
-                    {isInStock ? "ADD TO CART" : "SOLD OUT"}
+                    Add to cart
                   </motion.button>
                 </div>
-
-                {/* Wishlist — Emerald Glow Heart */}
-                <motion.button
-                  whileHover={{ scale: 1.05, borderColor: '#003926', boxShadow: '0 0 16px rgba(0,57,38,0.12)' }}
-                  whileTap={{ scale: 0.92 }}
-                  className="self-start flex items-center gap-2 px-5 py-2.5 rounded-full transition-all duration-400"
-                  style={{ border: '1px solid #EDE8DF', background: 'transparent' }}
-                >
-                  <Heart size={16} className="text-[#9C9690] group-hover:text-[#003926] transition-colors" />
-                  <span className="font-dm text-[11px] tracking-[0.1em] uppercase text-[#9C9690]">Add to Wishlist</span>
-                </motion.button>
               </div>
 
               {/* Accordions */}
-              <div className="mt-8 pt-6 border-t border-[#EDE8DF] space-y-4">
+              <div className="mt-4 pt-6 border-t border-[#EDE8DF] space-y-3">
                 {/* Description Accordion */}
                 <div className="border border-[#EDE8DF] rounded-xl overflow-hidden bg-white">
                   <button 
@@ -402,197 +446,6 @@ function ProductHero({ family }: { family: ModelFamilyGroup }) {
                   )}
                 </div>
               </div>
-            </motion.div>
-          </div>
-
-          {/* ── CENTER: Main Image — Cinematic Gallery ── */}
-          <div className="lg:col-span-5 flex flex-col-reverse md:flex-row items-center justify-center order-1 lg:order-2 relative gap-4 lg:gap-6">
-            
-            {/* Vertical Thumbnail Strip */}
-            {allGalleryImages.length > 1 && (
-              <div className="flex md:flex-col gap-3 w-full md:w-[70px] shrink-0 overflow-x-auto md:overflow-visible pb-2 md:pb-0">
-                {allGalleryImages.map((img: string, i: number) => (
-                  <motion.button
-                    key={i}
-                    whileHover={{ scale: 1.05, borderColor: '#003926' }}
-                    onClick={() => setSelectedImageIndex(i)}
-                    className="relative w-16 h-16 md:w-full md:h-[80px] shrink-0 rounded-xl overflow-hidden transition-all duration-300"
-                    style={{
-                      border: selectedImageIndex === i ? '1.5px solid #003926' : '1.5px solid #EDE8DF',
-                      background: '#F7F4EF',
-                      boxShadow: selectedImageIndex === i ? '0 4px 12px rgba(0,57,38,0.1)' : 'none',
-                    }}
-                  >
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={img}
-                      alt={`View ${i + 1}`}
-                      className="absolute inset-0 w-full h-full object-contain p-2"
-                      onError={(e) => { e.currentTarget.style.display = 'none'; }}
-                    />
-                  </motion.button>
-                ))}
-              </div>
-            )}
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-              className="relative w-full max-w-[400px] md:max-w-[500px] lg:max-w-[500px] aspect-[4/5] lg:aspect-[4/5] overflow-hidden rounded-[32px] group/gallery"
-            >
-              <div className="absolute inset-0 bg-gradient-to-b from-[#F7F4EF] to-[#EDE8DF] shadow-[0_30px_80px_rgba(0,0,0,0.08)] group-hover/gallery:shadow-[0_30px_80px_rgba(0,57,38,0.10)] transition-shadow duration-700" />
-
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={mainImage}
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 1.02 }}
-                  whileHover={{ scale: 1.03 }}
-                  transition={{ duration: 0.4, ease: "easeOut", scale: { type: "spring", stiffness: 200, damping: 20 } }}
-                  onClick={() => setIsLightboxOpen(true)}
-                  className="absolute inset-0 flex items-center justify-center p-10 md:p-12 cursor-zoom-in"
-                >
-                  <div className="relative w-full h-full">
-                    {mainImage && !imgFailed ? (
-                      /* eslint-disable-next-line @next/next/no-img-element */
-                      <img
-                        src={mainImage}
-                        alt={family.name}
-                        className="absolute inset-0 w-full h-full object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.12)]"
-                        onLoad={() => setImgFailed(false)}
-                        onError={() => setImgFailed(true)}
-                      />
-                    ) : (
-                      <LuxuryPlaceholder text="Image Coming Soon" />
-                    )}
-                  </div>
-                </motion.div>
-              </AnimatePresence>
-
-              {/* Lightbox Modal */}
-              <AnimatePresence>
-                {isLightboxOpen && (
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    onClick={() => setIsLightboxOpen(false)}
-                    className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4 cursor-zoom-out"
-                  >
-                    <div className="relative w-full max-w-4xl max-h-[90vh] aspect-square lg:aspect-auto h-[80vh]">
-                      {mainImage && !imgFailed ? (
-                        /* eslint-disable-next-line @next/next/no-img-element */
-                        <img
-                          src={mainImage}
-                          alt={family.name}
-                          className="w-full h-full object-contain drop-shadow-[0_40px_80px_rgba(0,0,0,0.5)]"
-                        />
-                      ) : (
-                        <LuxuryPlaceholder text="Image Coming Soon" />
-                      )}
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-
-              <div
-                className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-[70%] h-[60px] rounded-full pointer-events-none"
-                style={{
-                  background: "radial-gradient(ellipse, rgba(0,0,0,0.06) 0%, transparent 70%)",
-                }}
-              />
-            </motion.div>
-          </div>
-
-          {/* ── RIGHT: Options ── */}
-          <div className="lg:col-span-3 flex flex-col justify-start order-3 lg:sticky lg:top-32 self-start pb-12">
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-              className="space-y-8"
-            >
-              {/* Thumbnail-based Variant Selectors */}
-              {family.variants.length > 1 && (
-                <div>
-                  <p className="font-dm text-[11px] tracking-[0.15em] uppercase text-[#9C9690] mb-3">
-                    Select Variant — <span className="text-[#1A1918] font-medium">{variant.sku}</span>
-                  </p>
-                  <div className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-4 gap-3">
-                    {family.variants.map((v: Variant, i: number) => {
-                      const vImage = v.gallery.primary || v.gallery.hover || "";
-                      return (
-                          <motion.button
-                            key={v.sku}
-                            whileHover={{ scale: 1.05, boxShadow: '0 8px 24px rgba(0,57,38,0.1)' }}
-                            whileTap={{ scale: 0.95 }}
-                            onClick={() => { setSelectedVariantIndex(i); setSelectedImageIndex(0); }}
-                            className="relative aspect-[4/5] rounded-xl overflow-hidden transition-all duration-400 group"
-                            style={{
-                              border: selectedVariantIndex === i ? '1.5px solid #003926' : '1.5px solid #EDE8DF',
-                              background: '#F7F4EF',
-                              boxShadow: selectedVariantIndex === i ? '0 4px 16px rgba(0,57,38,0.12)' : 'none',
-                            }}
-                            title={`SKU: ${v.sku} - ${v.dialColor.name}`}
-                          >
-                            {/* Selected Indicator */}
-                            <AnimatePresence>
-                              {selectedVariantIndex === i && (
-                                <motion.div
-                                  initial={{ opacity: 0, scale: 0.8 }}
-                                  animate={{ opacity: 1, scale: 1 }}
-                                  exit={{ opacity: 0, scale: 0.8 }}
-                                  className="absolute top-1.5 right-1.5 z-10 w-4 h-4 rounded-full bg-[#003926] flex items-center justify-center shadow-sm"
-                                >
-                                  <Check size={10} color="#F5F2ED" strokeWidth={3} />
-                                </motion.div>
-                              )}
-                            </AnimatePresence>
-
-                            {vImage ? (
-                              /* eslint-disable-next-line @next/next/no-img-element */
-                              <img
-                                src={vImage}
-                                alt={v.sku}
-                                className="absolute inset-0 w-full h-[75%] object-contain p-2 group-hover:scale-105 transition-transform duration-700"
-                                onError={(e) => { e.currentTarget.style.display = 'none'; }}
-                              />
-                            ) : (
-                              <div className="absolute inset-0 h-[75%] flex items-center justify-center p-1.5 bg-[#FAF8F4]">
-                                <span className="text-[8px] text-[#9C9690] uppercase tracking-wider">No Img</span>
-                              </div>
-                            )}
-                            {/* Dial color name — bottom section */}
-                            <div className="absolute bottom-0 left-0 right-0 h-[25%] bg-white/50 backdrop-blur-sm border-t border-[#EDE8DF] flex items-center justify-center px-1">
-                              <span className="text-center font-dm text-[8px] font-medium tracking-wide uppercase text-[#1A1918] truncate w-full">{v.dialColor.name}</span>
-                            </div>
-                          </motion.button>
-                      );
-                    })}
-                  </div>
-                </div>
-              )}
-
-              {/* Quick Specs Preview */}
-              <div className="bg-white rounded-2xl border border-[#EDE8DF] p-5">
-                <p className="font-dm text-[11px] tracking-[0.15em] uppercase text-[#9C9690] mb-3">Quick Specs</p>
-                <div className="space-y-2.5">
-                  {(["movement", "strap", "glass", "warranty"] as const).map((key) => {
-                    // @ts-ignore
-                    const val = variant.specs[key];
-                    if (!val) return null;
-                    return (
-                      <div key={key} className="flex justify-between items-center">
-                        <span className="font-dm text-[12px] text-[#9C9690]">{specLabels[key] || key}</span>
-                        <span className="font-dm text-[12px] text-[#1A1918] font-medium">{val}</span>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-
             </motion.div>
           </div>
 

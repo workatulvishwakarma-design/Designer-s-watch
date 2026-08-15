@@ -83,14 +83,14 @@ export default function ProductCard({ product, variant = "premium", index = 0 }:
             <div className="relative aspect-[4/5] bg-[#F7F4EF] flex items-center justify-center p-7 overflow-hidden">
                 {/* Badge */}
                 {product.badge && (
-                    <div className={`absolute top-3 left-3 px-3 py-1.5 rounded-full text-[9px] font-dm tracking-[0.15em] uppercase z-10 ${getBadgeStyle(product.badge)}`}>
+                    <div className={`absolute top-6 left-6 px-3 py-1.5 rounded-full text-[9px] font-dm tracking-[0.15em] uppercase z-10 ${getBadgeStyle(product.badge)}`}>
                         {product.badge}
                     </div>
                 )}
 
                 {/* Sale badge */}
                 {discountPercent > 0 && (
-                    <div className="absolute top-3 right-12 px-2 py-1 rounded-full text-[9px] font-dm bg-[#D4455A] text-white z-10">
+                    <div className="absolute top-6 right-16 px-2.5 py-1 rounded-full text-[9px] font-dm bg-[#D4455A] text-white z-10 font-semibold shadow-sm">
                         {discountPercent}% OFF
                     </div>
                 )}
@@ -98,7 +98,7 @@ export default function ProductCard({ product, variant = "premium", index = 0 }:
                 {/* Wishlist Button */}
                 <button
                     onClick={(e) => { e.preventDefault(); setIsWishlisted(!isWishlisted); }}
-                    className="absolute top-3 right-3 w-9 h-9 rounded-full bg-white/70 backdrop-blur-sm flex items-center justify-center transition-all duration-300 hover:bg-white z-10"
+                    className="absolute top-6 right-6 w-9 h-9 rounded-full bg-white/80 backdrop-blur-sm flex items-center justify-center transition-all duration-300 hover:bg-white shadow-sm z-10"
                 >
                     <Heart size={16} className={isWishlisted ? "fill-[#D4455A] text-[#D4455A]" : "text-[#1A1918]"} />
                 </button>
@@ -116,7 +116,7 @@ export default function ProductCard({ product, variant = "premium", index = 0 }:
                         <img
                             src={product.image}
                             alt={product.name}
-                            className="absolute inset-0 w-full h-full object-contain transition-opacity duration-500"
+                            className="absolute inset-0 w-full h-full object-contain p-8 sm:p-10 transition-opacity duration-500"
                             style={{ opacity: isHovered && product.hoverImage ? 0 : 1 }}
                             onError={() => setImageError(true)}
                             loading="lazy"
@@ -127,7 +127,7 @@ export default function ProductCard({ product, variant = "premium", index = 0 }:
                           <img
                               src={product.hoverImage}
                               alt={`${product.name} - alternate view`}
-                              className="absolute inset-0 w-full h-full object-contain transition-opacity duration-500"
+                              className="absolute inset-0 w-full h-full object-contain p-8 sm:p-10 transition-opacity duration-500"
                               style={{ opacity: isHovered ? 1 : 0 }}
                               onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
                               loading="lazy"

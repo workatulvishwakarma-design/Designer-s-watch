@@ -79,38 +79,41 @@ function getHex(colour: string | null): string {
 // ─── EXTRACT MODEL FAMILY ───
 const KNOWN_FAMILIES = Object.keys(COLLECTION_MAP).sort((a, b) => b.length - a.length);
 
-// Escort SKU prefix patterns: E-2200-7806, E-2250-7779, E-2300-7779
-const ESCORT_PREFIX_RE = /^E-\d{4}-(.+)/i;
-
 function extractFamily(modelNo: string): string | null {
   if (!modelNo) return null;
-  const upper = modelNo.toUpperCase();
-  
-  // Handle Escort compound SKUs: E-2200-7806.GM.16L → family 7806
-  const escortMatch = upper.match(ESCORT_PREFIX_RE);
-  if (escortMatch) {
-    const remainder = escortMatch[1]; // e.g., "7806.GM.16L" or "7908.GM_WHITE"
-    // Extract the model number before the first dot or underscore
-    const famMatch = remainder.match(/^([A-Z0-9-]+?)(?:[._]|$)/i);
-    let extracted = famMatch ? famMatch[1] : remainder;
-    if (KNOWN_FAMILIES.includes("E-" + extracted)) {
-      extracted = "E-" + extracted;
-    }
-    return extracted;
-  }
-  
-  // Match exact known families first (handles E-7914, A-1589, 901L, 820G, etc.)
+  const upper = modelNo.toUpperCase().trim();
+
+  // 1. Check exact known families (handles E-7914, A-1589, E-7751, E-7908, E-7931, etc.)
   for (const fam of KNOWN_FAMILIES) {
-    if (upper.startsWith(fam.toUpperCase())) return fam;
+    const famUpper = fam.toUpperCase();
+    if (upper.startsWith(famUpper)) return fam;
   }
-  
-  // Fallback: extract leading numeric block
-  const numMatch = modelNo.match(/^(\d+)/);
+
+  // 2. Check compound Escort SKUs (e.g., E1650-1890.SM.2, E-1750-7443.SM.16, E-2200-7806.GM.16L)
+  // Match any known family present after a dash/prefix or dot
+  for (const fam of KNOWN_FAMILIES) {
+    const famUpper = fam.toUpperCase();
+    const pattern = new RegExp(`(?:^|[\\-_\\.\\s])${famUpper}(?:$|[\\-_\\.\\s])`, 'i');
+    if (pattern.test(upper)) {
+      return fam;
+    }
+  }
+
+  // 3. Extract 4-digit base model number if present
+  const digits = upper.match(/\d{4}/g);
+  if (digits && digits.length > 0) {
+    const lastBase = digits[digits.length - 1];
+    if (COLLECTION_MAP[lastBase]) return lastBase;
+    return lastBase;
+  }
+
+  // 4. Fallback: extract leading numeric block
+  const numMatch = upper.match(/^(\d+)/);
   if (numMatch) return numMatch[1];
-  
-  // Last resort: extract leading alphanumeric block
-  const match = modelNo.match(/^([A-Z0-9-]+)/i);
-  return match ? match[1].toUpperCase() : null;
+
+  // 5. Last resort: extract leading alphanumeric block
+  const match = upper.match(/^([A-Z0-9-]+)/i);
+  return match ? match[1] : null;
 }
 
 // ─── NORMALIZE GENDER ───

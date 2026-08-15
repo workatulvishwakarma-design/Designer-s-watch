@@ -122,9 +122,9 @@ export default function Footer() {
                         <motion.div variants={itemVariants} className="flex flex-col gap-8">
                             <h6 className="text-[#001F14] text-[15px] md:text-[16px] tracking-[0.1em] uppercase font-medium font-montserrat">The Maison</h6>
                             <nav className="flex flex-col gap-4 text-[13px] md:text-[14px] leading-[1.5] font-montserrat tracking-[0.04em] text-[#003926]/70 uppercase font-normal">
-                                <Link href="/about" className="hover:text-[#001F14] transition-colors duration-500 w-fit">Our Heritage</Link>
-                                <Link href="/nagpal-group" className="hover:text-[#001F14] transition-colors duration-500 w-fit">Pillars</Link>
-                                <Link href="/about#expertise" className="hover:text-[#001F14] transition-colors duration-500 w-fit">Craftsmanship</Link>
+                                <Link href="/about-2" className="hover:text-[#001F14] transition-colors duration-500 w-fit">Our Heritage</Link>
+                                <Link href="/pillar-2" className="hover:text-[#001F14] transition-colors duration-500 w-fit">Pillars</Link>
+                                <Link href="/about-2" className="hover:text-[#001F14] transition-colors duration-500 w-fit">Craftsmanship</Link>
                             </nav>
                         </motion.div>
 
@@ -133,8 +133,8 @@ export default function Footer() {
                             <h6 className="text-[#001F14] text-[15px] md:text-[16px] tracking-[0.1em] uppercase font-medium font-montserrat">Client Services</h6>
                             <nav className="flex flex-col gap-4 text-[13px] md:text-[14px] leading-[1.5] font-montserrat tracking-[0.04em] text-[#003926]/70 uppercase font-normal">
                                 <Link href="/contact" className="hover:text-[#001F14] transition-colors duration-500 w-fit">Contact Us</Link>
-                                <Link href="/faq" className="hover:text-[#001F14] transition-colors duration-500 w-fit">FAQ</Link>
-                                <Link href="/service" className="hover:text-[#001F14] transition-colors duration-500 w-fit">Watch Service</Link>
+                                <Link href="/contact" className="hover:text-[#001F14] transition-colors duration-500 w-fit">FAQ</Link>
+                                <Link href="/contact" className="hover:text-[#001F14] transition-colors duration-500 w-fit">Watch Service</Link>
                                 <a href="https://nagpalgroup.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#001F14] transition-colors duration-500 w-fit">Corporate Portal</a>
                             </nav>
                         </motion.div>

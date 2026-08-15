@@ -43,7 +43,7 @@ const tabNames = [
 ];
 
 export default function WatchDetails({
-  videoSrc = "/img/magnific_a-luxury-mechanical-watch_rgjTSHgxtc.mp4"
+  videoSrc = "/images/new-img/video-transfer.mp4"
 }: {
   videoSrc?: string;
 } = {}) {
@@ -123,16 +123,19 @@ export default function WatchDetails({
           {/* Center Column - Main Video */}
           <div className="w-full lg:w-1/3 flex justify-center items-center order-1 lg:order-2 relative shrink-0 py-2 lg:py-0">
             <div 
-              className="relative w-full max-w-[240px] sm:max-w-[280px] lg:max-w-[380px] aspect-[4/5] overflow-hidden"
+              className="relative w-full max-w-[280px] sm:max-w-[340px] lg:max-w-[400px] aspect-[4/5] flex items-center justify-center bg-transparent"
             >
               <video
-                src={videoSrc}
                 autoPlay
                 muted
                 loop
                 playsInline
-                className="absolute inset-0 w-full h-full object-contain mix-blend-multiply"
-              />
+                preload="auto"
+                className="w-full h-full object-contain pointer-events-none"
+              >
+                <source src="/images/new-img/video-transfer-alpha.webm" type="video/webm" />
+                <source src={videoSrc} type="video/mp4" />
+              </video>
             </div>
           </div>
 
@@ -163,4 +166,3 @@ export default function WatchDetails({
     </section>
   );
 }
-

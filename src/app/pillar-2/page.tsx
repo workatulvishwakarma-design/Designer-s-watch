@@ -275,15 +275,25 @@ export default function Pillars2Page() {
         html,body { margin:0; padding:0; overflow-x:hidden; }
         *,*::before,*::after { box-sizing:border-box; }
 
-        /* DESKTOP LAYOUT — sits below fixed global header (80px tall) */
-        .p2-page { display:flex; height:calc(100vh - 180px); overflow:hidden; background:#FAFAFA; margin-bottom: 40px; }
+        /* DESKTOP LAYOUT — centered with 10% space on left and right, clean without outer card box or border */
+        .p2-page {
+          display: flex;
+          height: clamp(620px, 80vh, 860px);
+          overflow: visible;
+          background: #FAFAFA;
+          width: 80vw;
+          max-width: 1400px;
+          margin: 0 auto;
+          border-radius: 0;
+          border: none;
+          box-shadow: none;
+          position: relative;
+        }
+        .p2-desktop-view { flex-direction:column !important; }
 
-        /* SIDEBAR */
-        .p2-sidebar { width:250px; min-width:250px; flex-shrink:0; border-right:1px solid #E8E8E8; background:#fff; display:flex; flex-direction:column; justify-content:space-between; padding:32px 26px 26px; overflow-y:auto; }
-        .p2-sb-label { display:flex; align-items:center; gap:9px; margin-bottom:14px; font-family:var(--font-montserrat),sans-serif; font-size:8.5px; letter-spacing:0.38em; text-transform:uppercase; color:#003926; font-weight:500; }
-        .p2-sb-label::before { content:''; display:block; width:16px; height:1px; background:#003926; flex-shrink:0; }
-        .p2-sb-heading { font-family:var(--font-montserrat),sans-serif; font-size:30px; font-weight:500; line-height:1.08; color:#1A1918; margin:0 0 22px; }
-        .p2-sb-heading em { font-style:italic; color:#003926; }
+        /* HEADING (top centre, no sidebar) */
+        .p2-sb-heading { font-family:var(--font-montserrat),sans-serif; font-size:26px; font-weight:600; line-height:1.15; color:#1A1918; margin:0; text-align:center; letter-spacing:0.05em; text-transform:uppercase; }
+        .p2-sb-heading em { font-style:italic; color:#003926; font-weight:700; }
         .p2-sb-nav { list-style:none; margin:0 0 22px; padding:0; }
         .p2-sb-nav li { margin-bottom:9px; }
         .p2-sb-nav button { background:none; border:none; cursor:pointer; padding:0; font-family:var(--font-montserrat),sans-serif; font-size:11.5px; color:#AAA; text-align:left; transition:color 0.2s; }
@@ -297,18 +307,20 @@ export default function Pillars2Page() {
         .p2-dot-row:hover .p2-dot-lbl,.p2-dot-row.dot-on .p2-dot-lbl { color:#333; }
 
         /* CAROUSEL COLUMN */
-        .p2-carousel-col { flex:1; min-width:0; display:flex; flex-direction:column; overflow:hidden; }
+        .p2-carousel-col { flex:1; min-width:0; display:flex; flex-direction:column; overflow:visible; position:relative; }
         .p2-rail-wrap { flex:1; overflow:hidden; cursor:grab; min-height:0; }
         .p2-rail-wrap:active { cursor:grabbing; }
         .p2-rail { display:flex; height:100%; transition:transform 0.55s cubic-bezier(0.22,1,0.36,1); }
 
-        /* CARD */
+        /* CARD & HOVER IMAGE EXPANSION */
         .p2-card {
-          width:320px; min-width:320px; height:100%; flex-shrink:0;
+          width:340px; min-width:340px; height:100%; flex-shrink:0;
           border-right:1px solid #E8E8E8; background:#fff;
-          display:flex; flex-direction:column;
+          display:flex; flex-direction:column; justify-content:space-between;
           transition: background 0.35s ease, transform 0.35s ease, box-shadow 0.35s ease;
+          overflow: hidden;
         }
+        .p2-card:first-child { border-left: 1px solid #E8E8E8; }
         .p2-card:hover {
           background: #003926 !important;
           box-shadow: 0 14px 32px rgba(0,57,38,0.25);
@@ -327,45 +339,113 @@ export default function Pillars2Page() {
         .p2-card:hover .p2-eyebrow {
           color: rgba(255,255,255,0.9) !important;
         }
-        .p2-card:hover .p2-card-desc {
-          color: rgba(255,255,255,0.85) !important;
-        }
-        .p2-card:hover .p2-chip {
-          color: #ffffff !important;
-          border-color: rgba(255,255,255,0.25) !important;
-          background: rgba(255,255,255,0.12) !important;
-        }
         .p2-card:hover .p2-readmore {
           color: #ffffff !important;
         }
         .p2-card:hover .p2-readmore svg path {
           stroke: #ffffff !important;
         }
-        .p2-card:hover .p2-card-img {
-          border-color: rgba(255,255,255,0.25) !important;
-          box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+        .p2-card:hover .p2-card-hdr {
+          border-bottom-color: rgba(255,255,255,0.15) !important;
         }
-        .p2-card-hdr { padding:22px 22px 14px; border-bottom:1px solid #F0F0F0; flex-shrink:0; transition:border-color 0.35s ease; }
-        .p2-card:hover .p2-card-hdr { border-bottom-color: rgba(255,255,255,0.15) !important; }
-        .p2-card-meta { display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:9px; }
-        .p2-card-word { font-family:var(--font-montserrat),sans-serif; font-size:24px; font-weight:500; color:#1A1918; line-height:1; transition:color 0.35s ease; }
-        .p2-card-word.word-on { color:#003926; }
+
+        .p2-card-hdr { padding:16px 20px 10px; border-bottom:1px solid #F0F0F0; flex-shrink:0; transition:border-color 0.35s ease; }
+        .p2-card-meta { display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:6px; }
+        .p2-card-word { font-family:var(--font-montserrat),sans-serif; font-size:22px; font-weight:500; color:#1A1918; line-height:1; transition:color 0.35s ease; }
         .p2-card-idx { font-family:var(--font-montserrat),sans-serif; font-size:12px; color:#CECCCA; font-weight:500; transition:color 0.35s ease; }
         .p2-eline { width:20px; height:1.5px; background:#003926; margin-bottom:5px; transition:background 0.35s ease; }
         .p2-eyebrow { font-family:var(--font-montserrat),sans-serif; font-size:8px; letter-spacing:0.3em; text-transform:uppercase; color:#003926; font-weight:500; transition:color 0.35s ease; }
-        .p2-card-body { padding:14px 22px 0; flex:1; display:flex; flex-direction:column; min-height:0; overflow:hidden; }
-        .p2-card-name { font-family:var(--font-montserrat),sans-serif; font-size:11px; font-weight:500; color:#1A1918; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:8px; transition:color 0.35s ease; }
-        .p2-card-desc { font-family:var(--font-montserrat),sans-serif; font-size:11.5px; color:#888; line-height:1.75; flex:1; transition:color 0.35s ease; }
-        .p2-card-chips { display:flex; flex-wrap:wrap; gap:4px; margin-top:10px; }
-        .p2-chip { font-family:var(--font-montserrat),sans-serif; font-size:8.5px; letter-spacing:0.05em; color:#003926; border:1px solid rgba(0,57,38,0.18); border-radius:100px; padding:2px 9px; background:rgba(0,57,38,0.04); transition:all 0.35s ease; }
-        .p2-readmore { display:inline-flex; align-items:center; gap:5px; margin-top:12px; margin-bottom:2px; font-family:var(--font-montserrat),sans-serif; font-size:9px; letter-spacing:0.18em; text-transform:uppercase; color:#003926; background:none; border:none; cursor:pointer; padding:0; flex-shrink:0; transition:color 0.35s ease, opacity 0.2s; }
+
+        .p2-card-body { padding:12px 20px 8px; flex-shrink:0; display:flex; flex-direction:column; justify-content:flex-start; overflow:hidden; }
+        .p2-card-body::-webkit-scrollbar { display:none; }
+        .p2-card-name { font-family:var(--font-montserrat),sans-serif; font-size:12px; font-weight:600; color:#1A1918; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:6px; transition:color 0.35s ease; flex-shrink:0; }
+
+        /* COLLAPSIBLE ON HOVER: Description & Chips */
+        .p2-card-desc {
+          font-family:var(--font-montserrat),sans-serif; font-size:11px; color:#666; line-height:1.65;
+          margin-bottom:8px; flex-shrink:0;
+          max-height: 140px; opacity: 1;
+          transition: max-height 0.45s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.35s ease, margin 0.45s ease;
+        }
+        .p2-card-chips {
+          display:flex; flex-wrap:wrap; gap:4px; margin-top:4px; margin-bottom:6px; flex-shrink:0;
+          max-height: 90px; opacity: 1;
+          transition: max-height 0.45s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.35s ease, margin 0.45s ease;
+        }
+        .p2-chip { font-family:var(--font-montserrat),sans-serif; font-size:8px; letter-spacing:0.04em; color:#003926; border:1px solid rgba(0,57,38,0.18); border-radius:100px; padding:2px 8px; background:rgba(0,57,38,0.04); transition:all 0.35s ease; }
+
+        .p2-card:hover .p2-card-desc {
+          max-height: 0px !important; opacity: 0 !important; margin-bottom: 0 !important; overflow: hidden;
+        }
+        .p2-card:hover .p2-card-chips {
+          max-height: 0px !important; opacity: 0 !important; margin-top: 0 !important; margin-bottom: 0 !important; overflow: hidden;
+        }
+
+        .p2-readmore { display:inline-flex; align-items:center; gap:5px; margin-top:6px; margin-bottom:4px; font-family:var(--font-montserrat),sans-serif; font-size:9px; letter-spacing:0.18em; text-transform:uppercase; color:#003926; background:none; border:none; cursor:pointer; padding:0; flex-shrink:0; transition:color 0.35s ease, opacity 0.2s; }
         .p2-readmore:hover { opacity:0.85; }
         .p2-readmore:hover svg { transform:translateX(3px); }
         .p2-readmore svg { transition:transform 0.2s; }
         .p2-readmore svg path { transition:stroke 0.35s ease; }
-        .p2-card-img { margin:12px 16px 14px; border-radius:5px; overflow:hidden; border:1px solid #EBEBEB; flex-shrink:0; background:#F2F2F2; position:relative; aspect-ratio:16/10; transition:border-color 0.35s ease, box-shadow 0.35s ease; }
-        .p2-card-img img { width:100%; height:100%; object-fit:cover; display:block; }
+
+        /* EXPANDING IMAGE BOX ON HOVER */
+        .p2-card-img {
+          margin:8px 14px 12px; border-radius:6px; overflow:hidden; border:1px solid #EBEBEB;
+          background:#F2F2F2; position:relative; aspect-ratio:1.75/1; flex-shrink:0;
+          transition: aspect-ratio 0.45s ease, flex 0.45s ease, height 0.45s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+        }
+        .p2-card:hover .p2-card-img {
+          flex: 1 1 auto !important;
+          height: 100% !important;
+          min-height: 260px !important;
+          aspect-ratio: auto !important;
+          border-color: rgba(255,255,255,0.25) !important;
+          box-shadow: 0 12px 32px rgba(0,0,0,0.35);
+        }
+        .p2-card-img img { width:100%; height:100%; object-fit:cover; display:block; transition: transform 0.5s ease; }
+        .p2-card:hover .p2-card-img img {
+          transform: scale(1.04);
+        }
         .p2-imgph { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-family:var(--font-montserrat),sans-serif; font-size:9px; letter-spacing:0.15em; text-transform:uppercase; color:#C8C8C8; background:#F4F4F4; }
+
+        /* SLEEK SIDE SLIDER ARROW BUTTONS */
+        .p2-side-arr {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          z-index: 100;
+          width: 38px;
+          height: 38px;
+          border-radius: 50%;
+          border: 1.5px solid #003926;
+          background: #FFFFFF;
+          color: #003926;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          box-shadow: 0 4px 14px rgba(0,57,38,0.18);
+          transition: all 0.25s ease;
+        }
+        .p2-side-arr-left {
+          left: -48px;
+        }
+        .p2-side-arr-right {
+          right: -48px;
+        }
+        .p2-side-arr:hover:not(:disabled) {
+          background: #003926;
+          border-color: #003926;
+          color: #FFFFFF;
+          box-shadow: 0 6px 20px rgba(0,57,38,0.35);
+          transform: translateY(-50%) scale(1.08);
+        }
+        .p2-side-arr:disabled {
+          opacity: 0.25;
+          cursor: not-allowed;
+          box-shadow: none;
+          border-color: #CCC;
+          color: #AAA;
+        }
 
         /* TIMELINE BAR */
         .p2-bar { flex-shrink:0; border-top:1px solid #E8E8E8; display:flex; align-items:center; background:#fff; padding:0 14px; height:48px; overflow-x:auto; overflow-y:hidden; scrollbar-width:none; }
@@ -526,44 +606,49 @@ export default function Pillars2Page() {
         {/* DESKTOP LAYOUT (>= 768px) - UNCHANGED */}
         <div className="p2-page p2-desktop-view">
 
-          {/* SIDEBAR (desktop/tablet only) */}
-          <aside className="p2-sidebar">
-            <div>
-              <div className="p2-sb-label">Verticals</div>
-              <h2 className="p2-sb-heading">OUR<br />CORE<br /><em>DIVISIONS.</em></h2>
-              <ul className="p2-sb-nav">
-                {NAGPAL_DIVISIONS.map((d, i) => (
-                  <li key={d.index}>
-                    <button className={activeIndex === i ? "sb-on" : ""} onClick={() => goTo(i)}>{d.title}</button>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="p2-dots">
-              {NAGPAL_DIVISIONS.map((d, i) => (
-                <div key={d.index} className={`p2-dot-row ${activeIndex === i ? "dot-on" : ""}`} onClick={() => goTo(i)}>
-                  <div className={`p2-dot ${activeIndex === i ? "dot-on" : ""}`} />
-                  <span className="p2-dot-lbl">{d.title}</span>
-                </div>
-              ))}
-            </div>
-          </aside>
+          {/* HEADING - top centre */}
+          <div style={{ textAlign: "center", padding: "1.8rem 0 1.2rem", background: "#FAFAFA" }}>
+            <h2 className="p2-sb-heading" style={{ display: "inline-block", textAlign: "center" }}>OUR CORE <em>DIVISIONS.</em></h2>
+          </div>
 
           {/* CAROUSEL */}
-          <div className="p2-carousel-col">
+          <div className="p2-carousel-col" style={{ position: "relative" }}>
+            {/* Left Slider Arrow Button */}
+            <button 
+              className="p2-side-arr p2-side-arr-left" 
+              onClick={() => goTo(activeIndex - 1)} 
+              disabled={activeIndex === 0}
+              aria-label="Previous division"
+            >
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path d="M8 2L4 6l4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </button>
+
+            {/* Right Slider Arrow Button */}
+            <button 
+              className="p2-side-arr p2-side-arr-right" 
+              onClick={() => goTo(activeIndex + 1)} 
+              disabled={activeIndex === total - 1}
+              aria-label="Next division"
+            >
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path d="M4 2l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </button>
+
             <div className="p2-rail-wrap"
               onMouseDown={onMouseDown} onMouseUp={onMouseUp}
               onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}
               style={{ userSelect: isDragging ? "none" : "auto" }}>
               <div className="p2-rail"
                 style={{ transform: `translateX(calc(-${activeIndex} * ${CARD_WIDTH + 1}px))` }}>
-                {NAGPAL_DIVISIONS.map((div, idx) => {
-                  const active = activeIndex === idx;
+                {NAGPAL_DIVISIONS.map((div) => {
                   return (
-                    <div key={div.index} className={`p2-card ${active ? "card-on" : ""}`}>
+                    <div key={div.index} className="p2-card">
                       <div className="p2-card-hdr">
                         <div className="p2-card-meta">
-                          <span className={`p2-card-word ${active ? "word-on" : ""}`}>{div.title.split(" ")[0]}</span>
+                          <span className="p2-card-word">{div.title.split(" ")[0]}</span>
                           <span className="p2-card-idx">{div.index}</span>
                         </div>
                         <div className="p2-eline" />
@@ -598,23 +683,7 @@ export default function Pillars2Page() {
               </div>
             </div>
 
-            {/* Timeline bar */}
-            <div className="p2-bar">
-              {NAGPAL_DIVISIONS.map((div, i) => (
-                <div key={div.index} className={`p2-tick ${activeIndex === i ? "tick-on" : ""}`} onClick={() => goTo(i)}>
-                  <div className="p2-tick-line" />
-                  <div className="p2-tick-lbl">{div.eyebrow}</div>
-                </div>
-              ))}
-              <div className="p2-arrows">
-                <button className="p2-arr" onClick={() => goTo(activeIndex - 1)} disabled={activeIndex === 0} aria-label="Prev">
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M8 2L4 6l4 4" stroke="#1A1918" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/></svg>
-                </button>
-                <button className="p2-arr" onClick={() => goTo(activeIndex + 1)} disabled={activeIndex === total - 1} aria-label="Next">
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4 2l4 4-4 4" stroke="#1A1918" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/></svg>
-                </button>
-              </div>
-            </div>
+
           </div>
         </div>
       </div>

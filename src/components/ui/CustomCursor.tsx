@@ -3,14 +3,11 @@
 import { useEffect, useRef, useState } from "react";
 
 export default function CustomCursor() {
-    const dotRef = useRef<HTMLDivElement>(null);
-    const ringRef = useRef<HTMLDivElement>(null);
+    const cursorRef = useRef<HTMLDivElement>(null);
     const [isHovering, setIsHovering] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
     const [windowFocused, setWindowFocused] = useState(true);
     const [isTouch, setIsTouch] = useState(false);
-    const mouse = useRef({ x: 0, y: 0 });
-    const ring = useRef({ x: 0, y: 0 });
 
     useEffect(() => {
         // Detect touch device
@@ -34,10 +31,9 @@ export default function CustomCursor() {
         window.addEventListener("blur", handleBlur);
 
         const handleMouseMove = (e: MouseEvent) => {
-            mouse.current = { x: e.clientX, y: e.clientY };
             if (!isVisible) setIsVisible(true);
-            if (dotRef.current) {
-                dotRef.current.style.transform = `translate(${e.clientX - 5}px, ${e.clientY - 5}px)`;
+            if (cursorRef.current) {
+                cursorRef.current.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
             }
         };
 
@@ -61,31 +57,15 @@ export default function CustomCursor() {
         const observer = new MutationObserver(addHoverListeners);
         observer.observe(document.body, { childList: true, subtree: true });
 
-        // Ring lerp animation
-        let rafId: number;
-        const animate = () => {
-            ring.current.x += (mouse.current.x - ring.current.x) * 0.12;
-            ring.current.y += (mouse.current.y - ring.current.y) * 0.12;
-            if (ringRef.current) {
-                const size = isHovering ? 60 : 36;
-                ringRef.current.style.width = `${size}px`;
-                ringRef.current.style.height = `${size}px`;
-                ringRef.current.style.transform = `translate(${ring.current.x - size / 2}px, ${ring.current.y - size / 2}px)`;
-            }
-            rafId = requestAnimationFrame(animate);
-        };
-        rafId = requestAnimationFrame(animate);
-
         return () => {
             window.removeEventListener("focus", handleFocus);
             window.removeEventListener("blur", handleBlur);
             document.removeEventListener("mousemove", handleMouseMove);
             document.removeEventListener("mouseenter", handleMouseEnter);
             document.removeEventListener("mouseleave", handleMouseLeave);
-            cancelAnimationFrame(rafId);
             observer.disconnect();
         };
-    }, [isVisible, isHovering]);
+    }, [isVisible]);
 
     // Hide cursor on touch devices
     if (isTouch) return null;
@@ -93,33 +73,35 @@ export default function CustomCursor() {
     const show = windowFocused && isVisible;
 
     return (
-        <>
-            {/* Dot */}
-            <div
-                ref={dotRef}
-                className="fixed top-0 left-0 z-[9999] pointer-events-none mix-blend-difference"
+        <div
+            ref={cursorRef}
+            className="fixed top-0 left-0 z-[99999] pointer-events-none transition-opacity duration-200"
+            style={{
+                opacity: show ? 1 : 0,
+                willChange: "transform",
+            }}
+        >
+            {/* Normal Cursor Arrow in Green (#003926) */}
+            <svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
                 style={{
-                    width: 10,
-                    height: 10,
-                    borderRadius: "50%",
-                    backgroundColor: "#003926",
-                    opacity: show && !isHovering ? 1 : 0,
-                    transition: "opacity 0.2s ease",
+                    transform: isHovering ? "scale(1.15)" : "scale(1)",
+                    transition: "transform 0.15s ease",
+                    filter: "drop-shadow(0px 1px 2px rgba(0,0,0,0.3))",
                 }}
-            />
-            {/* Ring */}
-            <div
-                ref={ringRef}
-                className="fixed top-0 left-0 z-[9999] pointer-events-none"
-                style={{
-                    width: 36,
-                    height: 36,
-                    borderRadius: "50%",
-                    border: "1.5px solid #003926",
-                    opacity: show ? 0.7 : 0,
-                    transition: "width 0.3s ease, height 0.3s ease, opacity 0.2s ease",
-                }}
-            />
-        </>
+            >
+                <path
+                    d="M3 3L10.07 19.97L13.58 12.58L20.97 9.07L3 3Z"
+                    fill="#003926"
+                    stroke="#ffffff"
+                    strokeWidth="1.5"
+                    strokeLinejoin="round"
+                />
+            </svg>
+        </div>
     );
 }

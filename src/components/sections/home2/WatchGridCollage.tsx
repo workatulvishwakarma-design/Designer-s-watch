@@ -8,57 +8,57 @@ import { useCartStore } from "@/lib/store/cart";
 const IMAGES = {
   col1: {
     id: "915BFS-3G",
-    name: "D'Signer 915BFS.3G",
+    name: "D'Signer Grandeur 915",
     price: 14500,
     slug: "dsigner-915",
     src: "/img/models/915BFS.3G.jpg",
-    alt: "D'Signer 915BFS.3G – Black Gold Skeleton Chronograph",
-    label: "915BFS.3G",
+    alt: "D'Signer Grandeur 915 – Black Gold Skeleton Chronograph",
+    label: "GRANDEUR",
   },
   col2_top: {
     id: "875RGBLM-5G",
-    name: "D'Signer 875RGBLM.5G",
+    name: "D'Signer Tactix 875",
     price: 12800,
     slug: "dsigner-875-rgblm",
     src: "/img/models/875RGBLM.5G.jpg",
-    alt: "D'Signer 875RGBLM.5G – Rose Gold Black Link Bracelet",
-    label: "875RGBLM.5G",
+    alt: "D'Signer Tactix 875 – Rose Gold Black Link Bracelet",
+    label: "TACTIX",
   },
   col2_bottom: {
     id: "875RGGNM-3G",
-    name: "D'Signer 875RGGNM.3G",
+    name: "D'Signer Tactix 875",
     price: 13200,
     slug: "dsigner-875-rggnm",
     src: "/img/models/875RGGNM.3G.jpg",
-    alt: "D'Signer 875RGGNM.3G – Rose Gold Multi Sub-Dial",
-    label: "875RGGNM.3G",
+    alt: "D'Signer Tactix 875 – Rose Gold Multi Sub-Dial",
+    label: "TACTIX",
   },
   col3_top: {
     id: "980GFS-16",
-    name: "D'Signer 980GFS.16",
+    name: "D'Signer Stratos 980",
     price: 18900,
     slug: "dsigner-980-gfs",
     src: "/img/models/980GFS.16.jpg",
-    alt: "D'Signer 980GFS.16 – Green Gold Skeleton Tourbillon",
-    label: "980GFS.16",
+    alt: "D'Signer Stratos 980 – Green Gold Skeleton Tourbillon",
+    label: "STRATOS",
   },
   col3_bottom: {
     id: "916GNM-16G",
-    name: "D'Signer 916GNM.16G",
+    name: "D'Signer Grandeur 916",
     price: 15500,
     slug: "dsigner-916-gnm",
     src: "/img/models/916GNM.16G.jpg",
-    alt: "D'Signer 916GNM.16G – Green Drum Chrono",
-    label: "916GNM.16G",
+    alt: "D'Signer Grandeur 916 – Green Drum Chrono",
+    label: "GRANDEUR",
   },
   col4: {
-    id: "824GFS-16G",
-    name: "D'Signer 824GFS.16G",
+    id: "824RGFS-3G",
+    name: "D'Signer Grandeur 824",
     price: 11200,
-    slug: "dsigner-824-gfs",
-    src: "/images/new-img/model-2/916/916/916GNM.16G.png",
-    alt: "D'Signer 824GFS.16G",
-    label: "824GFS.16G",
+    slug: "dsigner-824-rgfs-3g",
+    src: "/images/new-img/model-1/824/824-RGFS-3-nobg.png",
+    alt: "D'Signer Grandeur 824",
+    label: "GRANDEUR",
   },
 };
 
@@ -83,30 +83,14 @@ export default function WatchGridCollage() {
       {/* Main Full-Width Catalog Shell Container */}
       <div className="relative w-full max-w-[1800px] mx-auto p-4 sm:p-8 md:p-12 overflow-hidden">
         
-        {/* Top Header & Navigation Buttons (Men's & Women's) */}
+        {/* Top Header & Navigation */}
         <div className="flex flex-col items-center justify-center text-center mb-8 md:mb-12 relative z-10">
           <span className="font-montserrat text-[10px] sm:text-[11px] tracking-[0.35em] text-[#003926] font-semibold uppercase mb-2">
             ✦ LIFESTYLE EDITORIAL ✦
           </span>
-          <h2 className="font-montserrat text-[28px] sm:text-[40px] md:text-[48px] text-[#1A1918] font-medium leading-none tracking-[-0.01em] mb-6">
+          <h2 className="font-montserrat text-[28px] sm:text-[40px] md:text-[48px] text-[#1A1918] font-medium leading-none tracking-[-0.01em]">
             Horology on Wrist
           </h2>
-
-          {/* Men's & Women's Collection Buttons */}
-          <div className="flex items-center gap-4 flex-wrap justify-center mt-2">
-            <Link
-              href="/collections/mens-dsigner"
-              className="px-8 py-3.5 bg-[#003926] text-white font-montserrat text-[12px] md:text-[13px] tracking-[0.18em] uppercase font-medium hover:bg-[#1A1918] transition-all duration-300 shadow-md"
-            >
-              MEN'S COLLECTION
-            </Link>
-            <Link
-              href="/collections/womens-dsigner"
-              className="px-8 py-3.5 bg-transparent border border-[#003926] text-[#003926] font-montserrat text-[12px] md:text-[13px] tracking-[0.18em] uppercase font-medium hover:bg-[#003926] hover:text-white transition-all duration-300"
-            >
-              WOMEN'S COLLECTION
-            </Link>
-          </div>
         </div>
 
         {/* 4-Column Grid Collage with Edge-to-Edge Premium Fitting Images */}

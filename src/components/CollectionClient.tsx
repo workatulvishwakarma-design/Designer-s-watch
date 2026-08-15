@@ -18,15 +18,18 @@ function CollectionFamilyCard({ family }: { family: ModelFamilyGroup }) {
   const [imgFailed, setImgFailed] = useState(false);
   const primaryImage = family.variants[0]?.gallery?.primary || "";
   const secondaryImage = family.variants[0]?.gallery?.hover || family.variants[0]?.gallery?.detail?.[1] || primaryImage;
-  const formattedPrice = `From ₹${family.priceRange.min.toLocaleString("en-IN")}`;
+  const hasSecondImage = secondaryImage && secondaryImage !== primaryImage;
+
+  const price = family.priceRange.min;
+  const mrp = family.variants[0]?.mrp || 0;
+  const discount = mrp && mrp > price ? Math.round(((mrp - price) / mrp) * 100) : 0;
   const showImages = primaryImage && !imgFailed;
 
   return (
     <Link href={`/product/${family.slug}`} className="block group">
       <div
-        className="rounded-2xl overflow-hidden cursor-pointer relative"
+        className="rounded-2xl overflow-hidden cursor-pointer relative bg-white"
         style={{
-          background: "white",
           border: `1px solid ${hovered ? "rgba(0,57,38,0.2)" : "#EDE8DF"}`,
           transform: hovered ? "translateY(-6px)" : "translateY(0)",
           boxShadow: hovered ? "0 24px 60px rgba(0,0,0,0.1), 0 0 40px rgba(0,57,38,0.06)" : "0 2px 8px rgba(0,0,0,0.04)",
@@ -39,16 +42,16 @@ function CollectionFamilyCard({ family }: { family: ModelFamilyGroup }) {
           className="relative w-full overflow-hidden"
           style={{
             aspectRatio: "4/5",
-            background: "radial-gradient(ellipse at center, #F0EDE8, #F5F2ED)",
+            background: "#FAFAF8",
           }}
         >
           {showImages ? (
             <>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={primaryImage} alt={family.name} className="absolute inset-0 w-full h-full object-contain p-8"
-                style={{ transition: "all 0.7s cubic-bezier(0.22,1,0.36,1)", transform: hovered ? "scale(1.06)" : "scale(1)", opacity: hovered && secondaryImage !== primaryImage ? 0 : 1 }}
+                style={{ transition: "all 0.7s cubic-bezier(0.22,1,0.36,1)", transform: hovered ? "scale(1.06)" : "scale(1)", opacity: hovered && hasSecondImage ? 0 : 1 }}
                 onError={() => setImgFailed(true)} loading="lazy" />
-              {secondaryImage !== primaryImage && (
+              {hasSecondImage && (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img src={secondaryImage} alt={`${family.name} alt`} className="absolute inset-0 w-full h-full object-contain p-8"
                   style={{ transition: "all 0.7s cubic-bezier(0.22,1,0.36,1)", transform: hovered ? "scale(1.06)" : "scale(1.02)", opacity: hovered ? 1 : 0 }} loading="lazy" />
@@ -58,34 +61,49 @@ function CollectionFamilyCard({ family }: { family: ModelFamilyGroup }) {
             <LuxuryPlaceholder />
           )}
 
-          {/* Styles badge */}
-          <span className="absolute top-3 left-3 rounded-full font-dm px-3 py-1.5 z-10"
-            style={{ fontSize: "9px", letterSpacing: "0.1em", background: "#1A1918", color: "white" }}>
-            {family.variantCount} {family.variantCount === 1 ? "Style" : "Styles"}
-          </span>
+          {/* Discount Badge */}
+          {discount > 0 && (
+            <span
+              className="absolute top-3 left-3 z-10 font-montserrat font-bold text-white px-3 py-1.5"
+              style={{ fontSize: "11px", letterSpacing: "0.02em", background: "#C8102E" }}
+            >
+              {discount}% OFF
+            </span>
+          )}
 
-          {/* Hover overlay */}
-          <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 z-10"
-            style={{ background: "rgba(250,248,244,0.70)", backdropFilter: "blur(12px)", opacity: hovered ? 1 : 0, transition: "opacity 0.3s ease", pointerEvents: hovered ? "auto" : "none" }}>
-            <button className="rounded-full font-dm flex items-center gap-2"
-              style={{ background: "transparent", border: "1px solid #E0D8CE", color: "#1A1918", fontSize: "12px", padding: "10px 20px", transition: "all 0.3s ease, transform 0.4s ease 0.07s", transform: hovered ? "translateY(0)" : "translateY(16px)" }}>
-              <Eye size={14} />Explore Series
-            </button>
-          </div>
-
-          {/* Inner shadow for depth */}
-          <div className="absolute inset-0 pointer-events-none rounded-t-2xl" style={{ boxShadow: "inset 0 0 40px rgba(0,0,0,0.03)" }} />
+          {/* Wishlist Heart */}
+          <button
+            className="absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-white/80 backdrop-blur-sm flex items-center justify-center text-[#9C9690] hover:text-[#C8102E] transition-colors duration-300 shadow-sm"
+            onClick={(e) => { e.preventDefault(); e.stopPropagation(); }}
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+            </svg>
+          </button>
         </div>
 
-        <div className="p-5 md:p-6 flex flex-col">
-          <p className="font-dm uppercase" style={{ fontSize: "9px", color: "#003926", letterSpacing: "0.2em" }}>{family.brand}</p>
-          <p className="font-dm font-medium mt-1" style={{ fontSize: "14px", color: "#1A1918" }}>{family.name}</p>
-          <div className="flex items-baseline gap-2 mt-2">
-            <p className="font-cormorant italic" style={{ fontSize: "20px", color: "#003926" }}>{formattedPrice}</p>
-            {family.variantCount > 1 && (
-              <p className="font-dm" style={{ fontSize: "11px", color: "#9C9690" }}>· {family.variantCount} variants</p>
-            )}
+        <div className="p-5 md:p-6 flex items-end justify-between">
+          <div className="min-w-0 flex-1">
+            <p className="font-montserrat uppercase" style={{ fontSize: "10px", color: "#003926", letterSpacing: "0.15em", fontWeight: 600 }}>{family.brand}</p>
+            <p className="font-dm font-medium mt-1 truncate" style={{ fontSize: "14px", color: "#1A1918" }}>{family.name}</p>
+            <div className="flex items-baseline gap-2 mt-2">
+              <p className="font-cormorant italic font-semibold" style={{ fontSize: "20px", color: "#003926" }}>Rs. {price.toLocaleString("en-IN")}</p>
+              {mrp > price && (
+                <p className="font-dm line-through" style={{ fontSize: "13px", color: "#9C9690" }}>₹{mrp.toLocaleString("en-IN")}</p>
+              )}
+            </div>
           </div>
+
+          {/* Quick Add + */}
+          <button
+            className="w-8 h-8 flex items-center justify-center text-[#003926] hover:bg-[#003926] hover:text-white rounded-full border border-[#003926]/20 transition-all duration-300 shrink-0 ml-3"
+            onClick={(e) => { e.preventDefault(); e.stopPropagation(); }}
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="12" y1="5" x2="12" y2="19" />
+              <line x1="5" y1="12" x2="19" y2="12" />
+            </svg>
+          </button>
         </div>
       </div>
     </Link>

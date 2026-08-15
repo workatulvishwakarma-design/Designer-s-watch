@@ -71,6 +71,13 @@ Desktop.ini
 *.HEIC
 *.ai
 *.sketch
+*.xlsx
+*.csv
+~$*
+escort_*.json
+analyze_*.py
+escort_*.py
+print_*.py
 
 # --- Generated Files ---
 /src/generated/prisma

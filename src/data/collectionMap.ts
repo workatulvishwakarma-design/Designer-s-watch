@@ -127,20 +127,81 @@ export const COLLECTION_MAP: Record<string, string> = {
 
   // ═══════════════════════════════════════════════════
   //  ESCORT BRAND — Everyday Excellence
+  //  56 model families from ESCORT LINE SHEET 20-04-2026
   // ═══════════════════════════════════════════════════
 
-  // ESCORT WOMEN'S — Bracelet & Leather
+  // ESCORT MEN'S
+  "1890": "escort",
+  "7226": "escort",
+  "7308": "escort",
+  "7359": "escort",
+  "7393": "escort",
+  "7406": "escort",
+  "7426": "escort",
+  "7441": "escort",
+  "7443": "escort",
+  "7444": "escort",
+  "7449": "escort",
+  "7450": "escort",
+  "7455": "escort",
+  "7548": "escort",
+  "7594": "escort",
+  "7689": "escort",
+  "7690": "escort",
+  "A-1589": "escort",
+  "E-7751": "escort",
+
+  // ESCORT WOMEN'S
+  "1850": "escort",
+  "7154": "escort",
+  "7280": "escort",
+  "7337": "escort",
+  "7395": "escort",
+  "7399": "escort",
+  "7405": "escort",
+  "7409": "escort",
+  "7413": "escort",
+  "7422": "escort",
+  "7428": "escort",
+  "7430": "escort",
+  "7440": "escort",
+  "7447": "escort",
+  "7458": "escort",
+  "7459": "escort",
+  "7461": "escort",
+  "7463": "escort",
+  "7530": "escort",
+  "7533": "escort",
+  "7560": "escort",
+  "7566": "escort",
+  "7567": "escort",
+  "7575": "escort",
+  "7597": "escort",
+  "7598": "escort",
+  "7620": "escort",
+  "7626": "escort",
+  "7627": "escort",
+  "7691": "escort",
+  "7706": "escort",
+  "7724": "escort",
+  "7731": "escort",
+  "7732": "escort",
+  "7733": "escort",
+  "7734": "escort",
+  "7768": "escort",
+  "7776": "escort",
+  "7777": "escort",
   "7779": "escort",
+  "7781": "escort",
+  "7791": "escort",
   "7806": "escort",
   "E-7914": "escort",
   "E-7931": "escort",
 
-  // ESCORT MEN'S — Metal Bracelet
-  "A-1589": "escort",
-  "E-7751": "escort",
-
-  // ESCORT UNISEX — Leather
+  // ESCORT UNISEX
   "E-7908": "escort",
+  "1900": "escort",
+  "2150": "escort",
 };
 
 export function getCollectionForFamily(familyId: string): string | null {
