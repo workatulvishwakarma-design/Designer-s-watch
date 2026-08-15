@@ -36,15 +36,9 @@ export default function GenderSelector() {
             } as React.CSSProperties
           }
         >
+          {/* Inner image container fixed to viewport half so image doesn't scale on slide */}
           <div
-            style={{
-              position: "absolute",
-              top: 0,
-              bottom: 0,
-              left: 0,
-              right: 0,
-              pointerEvents: "none",
-            }}
+            className="absolute inset-0 md:w-[50vw] pointer-events-none"
           >
             <Image
               src="/images/new-img/mens-d.png"
@@ -104,15 +98,9 @@ export default function GenderSelector() {
             } as React.CSSProperties
           }
         >
+          {/* Inner image container anchored right and fixed to viewport half so image doesn't scale on slide */}
           <div
-            style={{
-              position: "absolute",
-              top: 0,
-              bottom: 0,
-              left: 0,
-              right: 0,
-              pointerEvents: "none",
-            }}
+            className="absolute inset-0 md:left-auto md:right-0 md:w-[50vw] pointer-events-none"
           >
             <Image
               src="/images/new-img/womens.png"
