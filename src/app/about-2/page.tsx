@@ -1,18 +1,7 @@
 "use client";
 
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-
-function useIsMobile(breakpoint = 768) {
-  const [isMobile, setIsMobile] = useState(false);
-  useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < breakpoint);
-    check();
-    window.addEventListener("resize", check);
-    return () => window.removeEventListener("resize", check);
-  }, [breakpoint]);
-  return isMobile;
-}
 
 type Milestone = {
   year: string;
@@ -59,73 +48,61 @@ const milestones: Milestone[] = [
     isLogo: true,
   },
   {
+    year: "1992",
+    title: "Voltage Batteries",
+    text: "Entered button cell batteries under the brand VOLTAGE, creating a strong supply network across India and establishing a cornerstone for the company's component distribution ecosystem.",
+    image1: "/images/about us journey/1992 - Voltage Batteries/IMG_0205.jpeg",
+    image2: "",
+    extra: "Voltage Batteries powered millions of timepieces across the nation, cementing the group's reputation for uncompromising component reliability.",
+  },
+  {
     year: "1995",
-    title: "Style for All",
-    text: "ESCORT is launched to make timeless design more accessible, bringing reliable quality watches to a wider Indian audience at affordable prices.",
-    image1: "/images/about us journey/1995 — Style for All/Escort Logo 1995.png",
-    image2: "/images/about us journey/1995 — Style for All/IMG_7789.jpeg",
-    extra: "If D'Signer spoke to the connoisseur, Escort spoke to everyone else. Millions of Indian wrists would come to carry an Escort, a brand built on the belief that quality should never be a luxury.",
+    title: "Escort Launched",
+    text: "ESCORT is launched to make stylish, quality watches accessible to a wider audience, democratizing good design with robust everyday timepieces at honest prices.",
+    image1: "/images/about us journey/1995 - Escort Launched/escort-logo.png",
+    image2: "/images/about us journey/1995 - Escort Launched/1 (3).jpg",
+    extra: "Escort answered a simple question: why shouldn't every Indian have access to a reliable, beautifully finished timepiece? The market responded with extraordinary enthusiasm.",
     isLogo: true,
   },
   {
-    year: "2007",
-    title: "Daniel Klein",
-    text: "Exclusive distribution rights for Turkish brand Daniel Klein in India. Grows into a top performer on e-commerce platforms with 1000+ models per year.",
-    image1: "/images/about us journey/2007 - Daniel Klein/daniel klein exclusive-13.png",
-    image2: "/images/about us journey/1991 — A Brand is Born/3 (3).jpg",
-    extra: "Daniel Klein represented Designer World's first global foray, building bridges between Turkish craftsmanship and India's rapidly expanding digital market. The partnership unlocked new frontiers in e-commerce-first brand building.",
-    isLogo: true,
-  },
-  {
-    year: "2015",
-    title: "Beyond the Brand",
+    year: "2000s",
+    title: "OEM Manufacturing",
     text: "Expanding into OEM manufacturing, designing and producing watches for global and national brands, a significant leap in manufacturing capability.",
-    image1: "/images/about us journey/2015 — Beyond Our Own Brand/WhatsApp Image 2026-04-04 at 4.14.22 PM (1).jpeg",
-    image2: "/images/watches/ESCORT POSTER-20260312T064608Z-1-001/ESCORT POSTER/1 (4).jpg",
+    image1: "/images/about us journey/2000s - OEM Manufacturing/1 (6).jpg",
+    image2: "/images/about us journey/2000s - OEM Manufacturing/1 (5).jpg",
     extra: "OEM manufacturing elevated Designer World from a brand house into a complete horological enterprise. Over 500 private labels would trust the group manufacturing muscle for precision watches produced to exacting international benchmarks.",
   },
   {
-    year: "2022",
-    title: "Designer World Brands",
-    text: "A new division managing foreign brand distribution adds INGERSOL, INVICTA, and SANTA BARBARA POLO CLUB to the portfolio.",
-    image1: "/images/about us journey/2022 - Designer world Brands/DW-BRANDS-LOGO-B.png",
-    image2: "/images/about us journey/2022 - Designer world Brands/DW-BRANDS-LOGO-White (1).png",
-    extra: "Bringing Invicta and Ingersoll to India was a landmark moment, affirming Designer World Brands as an authoritative voice in luxury watch distribution, extending an ecosystem spanning entry-level to premium segments.",
+    year: "2010s",
+    title: "Global Brands",
+    text: "Partnering with international brands like ESCORT and expanding distribution across modern retail and e-commerce platforms, bringing world-class horology closer to Indian consumers.",
+    image1: "/images/about us journey/2010s - Global Brands/1 (1).jpg",
+    image2: "/images/about us journey/2010s - Global Brands/1 (2).jpg",
+    extra: "As India's retail landscape transformed with modern retail and e-commerce, the group positioned its portfolio at the forefront of the digital revolution.",
   },
   {
-    year: "2024",
-    title: "Diamond Watches",
-    text: "Lab Grown Diamond Studded Watches launched, targeting a luxury audience with models up to Rs 1,50,000. A new chapter in premium horology.",
-    image1: "/images/about us journey/2024 - Designer Lab Grown Diamond studded watches/DIAMOND SHOOT 16-09-2025/746GM.2L.jpg",
-    image2: "/images/about us journey/2024 - Designer Lab Grown Diamond studded watches/DIAMOND SHOOT 16-09-2025/810GM.2L.jpg",
-    extra: "Lab-grown diamonds brought ethical luxury within reach. Set in D'Signer's signature stainless steel cases, these timepieces blend sustainable sparkle with four generations of watchmaking heritage.",
-  },
-  {
-    year: "2025",
-    title: "Time Corridor",
-    text: "A retail Time Boutique showcasing D'SIGNER and ESCORT, prime models, new launches, top sellers and special editions in a unique experience store.",
-    image1: "/images/about us journey/2025 - Time Corridor/1A1A8511.JPG",
-    image2: "/images/about us journey/2025 - Time Corridor/DSIGNER TIME CORRIDOR LOGO final.png",
-    extra: "Time Corridor is more than a store, it is an experience. Customers step into a curated world of D'Signer and Escort, guided by knowledgeable staff, surrounded by decades of design excellence on every shelf.",
+    year: "2020s",
+    title: "Modern Horology",
+    text: "A new era of horological innovation, blending heritage with contemporary watchmaking, smart horology, and state-of-the-art manufacturing facilities.",
+    image1: "/images/about us journey/2020s - Modern Horology/IMG_0211.jpeg",
+    image2: "/images/about us journey/2020s - Modern Horology/IMG_0209.jpeg",
+    extra: "The fourth generation brings digital precision, sustainable manufacturing, and contemporary design language to an enduring family enterprise.",
   },
 ];
 
-const FALLBACK = "/images/today1.png";
-
-/* Brand palette */
 const GREEN = "#003926";
-const GREEN_LIGHT = "#005a3c";
-const GOLD = "#B8935A";
+const GOLD = "#D4C5A0";
+const FALLBACK = "/images/new-img/model-1/824/824-RGFS-3-nobg.png";
 
-function FadeIn({ children, delay = 0, className = "", style }: { children: React.ReactNode; delay?: number; className?: string; style?: React.CSSProperties }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
+function FadeIn({ children, delay = 0, className = "", style = {} }: { children: React.ReactNode; delay?: number; className?: string; style?: React.CSSProperties }) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-60px" });
   return (
     <motion.div
       ref={ref}
       initial={{ opacity: 0, y: 28 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1], delay }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 28 }}
+      transition={{ duration: 0.75, delay, ease: [0.22, 1, 0.36, 1] }}
       className={className}
       style={style}
     >
@@ -136,35 +113,35 @@ function FadeIn({ children, delay = 0, className = "", style }: { children: Reac
 
 function MilestoneSection({ m, index }: { m: Milestone; index: number }) {
   const isEven = index % 2 === 0;
-  const sectionBg = index % 3 === 1 ? "#f9f9f7" : "#ffffff";
-  const isMobile = useIsMobile();
+  const sectionBg = isEven ? "#ffffff" : "#fbfbfa";
+
   return (
     <section style={{ borderBottom: "1px solid rgba(0,0,0,0.08)", background: sectionBg }}>
-      <div style={{ maxWidth: "1240px", margin: "0 auto", padding: isMobile ? "2.5rem 1rem 3rem" : "4rem 1.5rem 5rem" }}>
+      <div className="max-w-[1240px] mx-auto px-4 sm:px-6 md:px-8 py-10 sm:py-14 md:py-16">
 
         {/* Year + Title Header Row */}
-        <div style={{ display: "flex", flexDirection: isMobile ? "column" : (isEven ? "row" : "row-reverse"), alignItems: "flex-start", gap: isMobile ? "1.5rem" : "3rem", marginBottom: isMobile ? "2rem" : "3rem", flexWrap: "wrap" }}>
-          <FadeIn delay={0} className="select-none">
-            <div style={{ fontSize: "clamp(5rem, 13vw, 10rem)", color: GREEN, fontFamily: "'Inter', sans-serif", lineHeight: 0.85, fontWeight: 900, letterSpacing: "-0.04em" }}>
+        <div className={`flex flex-col ${isEven ? "md:flex-row" : "md:flex-row-reverse"} items-start gap-6 md:gap-12 mb-8 md:mb-12`}>
+          <FadeIn delay={0} className="select-none shrink-0">
+            <div style={{ fontSize: "clamp(4.5rem, 12vw, 9.5rem)", color: GREEN, fontFamily: "'Inter', sans-serif", lineHeight: 0.85, fontWeight: 900, letterSpacing: "-0.04em" }}>
               {m.year}
             </div>
             <div style={{ width: "3.5rem", height: "4px", background: GOLD, marginTop: "0.5rem" }} />
           </FadeIn>
 
-          <FadeIn delay={0.12} className="max-w-sm" style={{ paddingTop: "0.5rem" }}>
-            <h2 style={{ fontSize: "clamp(1rem, 2vw, 1.4rem)", color: "#111", letterSpacing: "0.04em", fontFamily: "'Inter', sans-serif", fontWeight: 900, textTransform: "uppercase", marginBottom: "0.6rem", lineHeight: 1.2 }}>
+          <FadeIn delay={0.12} className="max-w-md pt-2">
+            <h2 style={{ fontSize: "clamp(1.1rem, 2vw, 1.4rem)", color: "#111", letterSpacing: "0.04em", fontFamily: "'Inter', sans-serif", fontWeight: 900, textTransform: "uppercase", marginBottom: "0.6rem", lineHeight: 1.2 }}>
               {m.title}
             </h2>
             <div style={{ width: "2rem", height: "2px", background: GREEN, marginBottom: "0.7rem" }} />
-            <p style={{ fontSize: "0.83rem", lineHeight: 1.75, color: "#555", fontFamily: "Georgia, serif" }}>
+            <p style={{ fontSize: "0.85rem", lineHeight: 1.75, color: "#555", fontFamily: "Georgia, serif" }}>
               {m.text}
             </p>
           </FadeIn>
         </div>
 
         {/* Photo + Text Grid */}
-        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(2, 1fr)", gap: isMobile ? "1.5rem" : "3rem", alignItems: "start" }}>
-          <FadeIn delay={0.08} style={{ order: isEven ? 1 : 2 }}>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 items-start">
+          <FadeIn delay={0.08} className={isEven ? "order-1" : "order-1 md:order-2"}>
             <div style={{ position: "relative", borderRadius: "3px", background: sectionBg, display: "flex", alignItems: "center", justifyContent: "center", minHeight: "200px", border: "1px solid rgba(0,0,0,0.06)", padding: m.isLogo ? "3rem 2rem 4.5rem" : "0" }}>
               <img
                 src={m.image1}
@@ -188,7 +165,7 @@ function MilestoneSection({ m, index }: { m: Milestone; index: number }) {
             </div>
           </FadeIn>
 
-          <FadeIn delay={0.18} style={{ order: isEven ? 2 : 1 }}>
+          <FadeIn delay={0.18} className={isEven ? "order-2" : "order-2 md:order-1"}>
             <p style={{ fontSize: "clamp(0.85rem, 1.1vw, 0.97rem)", lineHeight: 1.9, color: "#1a1a1a", fontFamily: "Georgia, serif", marginBottom: m.image2 ? "1.5rem" : 0, textAlign: "justify" }}>
               <span style={{ float: "left", fontSize: "clamp(2.5rem, 4.5vw, 3.5rem)", fontWeight: 900, lineHeight: 0.78, marginRight: "0.12em", marginTop: "0.06em", color: GREEN, fontFamily: "Georgia, serif" }}>
                 {m.extra.charAt(0)}
@@ -213,7 +190,6 @@ function MilestoneSection({ m, index }: { m: Milestone; index: number }) {
 }
 
 export default function AboutPage2() {
-  const isMobile2 = useIsMobile();
   return (
     <div style={{ fontFamily: "'Inter', 'Helvetica Neue', Arial, sans-serif", background: "#ffffff" }}>
 
@@ -231,7 +207,7 @@ export default function AboutPage2() {
       <section style={{ borderBottom: "1px solid rgba(0,0,0,0.08)" }}>
         <div style={{ maxWidth: "1240px", margin: "0 auto", padding: "4rem 1.5rem 0" }}>
           <FadeIn delay={0.1}>
-            <div style={{ display: "grid", gridTemplateColumns: isMobile2 ? "1fr" : "1fr 1fr", gap: isMobile2 ? "2rem" : "4rem" }}>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16">
               <div>
                 <p style={{ fontSize: "clamp(0.9rem, 1.3vw, 1.05rem)", lineHeight: 1.88, color: "#1a1a1a", fontFamily: "Georgia, serif", textAlign: "justify" }}>
                   <span style={{ float: "left", fontSize: "clamp(2.8rem, 6vw, 4.2rem)", fontWeight: 900, lineHeight: 0.75, marginRight: "0.12em", marginTop: "0.08em", color: GREEN, fontFamily: "Georgia, serif" }}>A</span>
@@ -245,11 +221,11 @@ export default function AboutPage2() {
               </div>
             </div>
 
-            <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: isMobile2 ? "2rem" : "5rem", marginTop: "2.5rem", paddingTop: "2.5rem", paddingBottom: "2.5rem", borderTop: "1px solid rgba(0,0,0,0.08)", textAlign: "center", width: "100%" }}>
+            <div className="flex flex-wrap sm:flex-nowrap justify-center items-center gap-8 sm:gap-20 my-10 pt-10 pb-10 border-t border-black/[0.08] text-center w-full">
               {[["4", "Generations"], ["20+", "Intl Brands"], ["500+", "OEM Labels"]].map(([num, label]) => (
                 <div key={label} style={{ textAlign: "center" }}>
                   <div style={{ fontSize: "1.76rem", fontWeight: 900, color: GREEN, fontFamily: "'Inter', sans-serif", lineHeight: 1 }}>{num}</div>
-                  <div style={{ fontSize: "0.66rem", color: "#888", letterSpacing: "0.14em", textTransform: "uppercase" as const, marginTop: "4px" }}>{label}</div>
+                  <div style={{ fontSize: "0.66rem", color: "#888", letterSpacing: "0.14em", textTransform: "uppercase", marginTop: "4px" }}>{label}</div>
                 </div>
               ))}
             </div>
@@ -266,7 +242,7 @@ export default function AboutPage2() {
       <section style={{ borderBottom: "1px solid rgba(0,0,0,0.08)", background: "#f6f6f3" }}>
         <div style={{ maxWidth: "1240px", margin: "0 auto", padding: "4.5rem 1.5rem" }}>
           <FadeIn>
-            <div style={{ display: "grid", gridTemplateColumns: isMobile2 ? "1fr" : "1fr 2fr", gap: isMobile2 ? "2rem" : "4rem", alignItems: "start" }}>
+            <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-8 md:gap-16 items-start">
               <div>
                 <div style={{ position: "relative", overflow: "hidden", borderRadius: "3px" }}>
                   <img
@@ -310,7 +286,7 @@ export default function AboutPage2() {
       <section style={{ background: GREEN }}>
         <div style={{ maxWidth: "1240px", margin: "0 auto", padding: "5.5rem 1.5rem" }}>
           <FadeIn>
-            <div style={{ display: "grid", gridTemplateColumns: isMobile2 ? "1fr" : "1fr 1fr", gap: isMobile2 ? "2.5rem" : "5rem", alignItems: "center" }}>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20 items-center">
               <div>
                 <p style={{ fontSize: "0.62rem", color: GOLD, letterSpacing: "0.28em", textTransform: "uppercase", fontFamily: "'Inter', sans-serif", marginBottom: "0.9rem" }}>TODAY</p>
                 <h2 style={{ fontSize: "clamp(2rem, 5vw, 4rem)", color: "#ffffff", fontFamily: "'Inter', sans-serif", letterSpacing: "-0.02em", fontWeight: 300, lineHeight: 1.1, marginBottom: "1.25rem" }}>
