@@ -229,7 +229,7 @@ export default function AboutPage2() {
 
       {/* ---- INTRO TEXT SECTION ---- */}
       <section style={{ borderBottom: "1px solid rgba(0,0,0,0.08)" }}>
-        <div style={{ maxWidth: "1240px", margin: "0 auto", padding: "4rem 1.5rem" }}>
+        <div style={{ maxWidth: "1240px", margin: "0 auto", padding: "4rem 1.5rem 0" }}>
           <FadeIn>
             <div style={{ display: "flex", alignItems: "flex-start", gap: "1.25rem", marginBottom: "2.5rem", maxWidth: "680px" }}>
               <div style={{ flexShrink: 0, overflow: "hidden", borderRadius: "50%", width: 52, height: 52, border: "2px solid " + GOLD }}>
@@ -261,7 +261,7 @@ export default function AboutPage2() {
               </div>
             </div>
 
-            <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: isMobile2 ? "2rem" : "5rem", marginTop: "2.5rem", paddingTop: "2.5rem", paddingBottom: "1.5rem", borderTop: "1px solid rgba(0,0,0,0.08)", textAlign: "center", width: "100%" }}>
+            <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: isMobile2 ? "2rem" : "5rem", marginTop: "2.5rem", paddingTop: "2.5rem", paddingBottom: "2.5rem", borderTop: "1px solid rgba(0,0,0,0.08)", textAlign: "center", width: "100%" }}>
               {[["4", "Generations"], ["20+", "Intl Brands"], ["500+", "OEM Labels"]].map(([num, label]) => (
                 <div key={label} style={{ textAlign: "center" }}>
                   <div style={{ fontSize: "1.76rem", fontWeight: 900, color: GREEN, fontFamily: "'Inter', sans-serif", lineHeight: 1 }}>{num}</div>
