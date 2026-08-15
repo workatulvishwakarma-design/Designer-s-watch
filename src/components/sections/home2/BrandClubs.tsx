@@ -30,7 +30,7 @@ export default function BrandClubs() {
           >
             <h2 className="font-montserrat text-[36px] sm:text-[48px] uppercase tracking-[0.08em] leading-[1.15] mb-8">
               <span className="font-bold block">D&apos;SIGNER</span>
-              <span className="font-light block">WATCH</span>
+              <span className="font-light block">WATCHES</span>
             </h2>
 
             {/* Watch display insert container */}
@@ -117,7 +117,7 @@ export default function BrandClubs() {
           >
             <h2 className="font-montserrat text-[36px] sm:text-[48px] uppercase tracking-[0.08em] leading-[1.15] mb-8">
               <span className="font-bold block">ESCORT</span>
-              <span className="font-light block">WATCH</span>
+              <span className="font-light block">WATCHES</span>
             </h2>
 
             <p className="font-montserrat text-[13px] text-white/60 leading-[1.8] max-w-sm mb-8 font-medium">
