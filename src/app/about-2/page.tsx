@@ -261,11 +261,11 @@ export default function AboutPage2() {
               </div>
             </div>
 
-            <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "4rem", marginTop: "2.5rem", paddingTop: "1.75rem", borderTop: "1px solid rgba(0,0,0,0.08)", textAlign: "center" }}>
+            <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: isMobile2 ? "2rem" : "6rem", marginTop: "3.5rem", paddingTop: "3rem", paddingBottom: "1.5rem", borderTop: "1px solid rgba(0,0,0,0.08)", textAlign: "center", width: "100%" }}>
               {[["4", "Generations"], ["20+", "Intl Brands"], ["500+", "OEM Labels"]].map(([num, label]) => (
-                <div key={label} style={{ textAlign: "center" }}>
-                  <div style={{ fontSize: "1.76rem", fontWeight: 900, color: GREEN, fontFamily: "'Inter', sans-serif", lineHeight: 1 }}>{num}</div>
-                  <div style={{ fontSize: "0.66rem", color: "#888", letterSpacing: "0.14em", textTransform: "uppercase" as const, marginTop: "4px" }}>{label}</div>
+                <div key={label} style={{ textAlign: "center", minWidth: isMobile2 ? "85px" : "130px" }}>
+                  <div style={{ fontSize: "clamp(1.85rem, 2.8vw, 2.4rem)", fontWeight: 900, color: GREEN, fontFamily: "'Inter', sans-serif", lineHeight: 1.1 }}>{num}</div>
+                  <div style={{ fontSize: "0.72rem", color: "#888", letterSpacing: "0.16em", textTransform: "uppercase" as const, marginTop: "8px", fontWeight: 500 }}>{label}</div>
                 </div>
               ))}
             </div>
