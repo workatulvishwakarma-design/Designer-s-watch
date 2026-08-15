@@ -230,24 +230,8 @@ export default function AboutPage2() {
       {/* ---- INTRO TEXT SECTION ---- */}
       <section style={{ borderBottom: "1px solid rgba(0,0,0,0.08)" }}>
         <div style={{ maxWidth: "1240px", margin: "0 auto", padding: "4rem 1.5rem 0" }}>
-          <FadeIn>
-            <div style={{ display: "flex", alignItems: "flex-start", gap: "1.25rem", marginBottom: "2.5rem", maxWidth: "680px" }}>
-              <div style={{ flexShrink: 0, overflow: "hidden", borderRadius: "50%", width: 52, height: 52, border: "2px solid " + GOLD }}>
-                <img
-                  src="/images/aboutImg3.png"
-                  alt="Chairman"
-                  style={{ width: "100%", height: "100%", objectFit: "cover", filter: "grayscale(30%)" }}
-                  onError={(e) => { (e.target as HTMLImageElement).src = FALLBACK; }}
-                />
-              </div>
-              <p style={{ fontSize: "0.84rem", lineHeight: 1.65, color: "#444", fontFamily: "Georgia, serif", fontStyle: "italic" }}>
-                Jatinder Nagpal discusses the Nagpal Group legacy, a multi-brand watch enterprise built on trust, craftsmanship, and four generations of uncompromised expertise in horology.
-              </p>
-            </div>
-          </FadeIn>
-
           <FadeIn delay={0.1}>
-            <div style={{ display: "grid", gridTemplateColumns: isMobile2 ? "1fr" : "1fr 1fr", gap: isMobile2 ? "2rem" : "4rem", paddingTop: "1.5rem", borderTop: "1px solid rgba(0,0,0,0.08)" }}>
+            <div style={{ display: "grid", gridTemplateColumns: isMobile2 ? "1fr" : "1fr 1fr", gap: isMobile2 ? "2rem" : "4rem" }}>
               <div>
                 <p style={{ fontSize: "clamp(0.9rem, 1.3vw, 1.05rem)", lineHeight: 1.88, color: "#1a1a1a", fontFamily: "Georgia, serif", textAlign: "justify" }}>
                   <span style={{ float: "left", fontSize: "clamp(2.8rem, 6vw, 4.2rem)", fontWeight: 900, lineHeight: 0.75, marginRight: "0.12em", marginTop: "0.08em", color: GREEN, fontFamily: "Georgia, serif" }}>A</span>
