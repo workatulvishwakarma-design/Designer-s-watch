@@ -36,16 +36,16 @@ export default function GenderSelector() {
             } as React.CSSProperties
           }
         >
-          {/* Inner image container fixed to viewport half so image doesn't scale on slide */}
+          {/* Inner image container covers maximum 60vw expansion without zooming or black gap */}
           <div
-            className="absolute inset-0 md:w-[50vw] pointer-events-none"
+            className="absolute inset-0 md:w-[60vw] pointer-events-none"
           >
             <Image
               src="/images/new-img/mens-d.png"
               alt="Men's Timepieces"
               fill
               style={{ objectFit: "cover", objectPosition: "center 25%" }}
-              sizes="(max-width: 768px) 100vw, 50vw"
+              sizes="(max-width: 768px) 100vw, 60vw"
               priority
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-transparent" />
@@ -98,16 +98,16 @@ export default function GenderSelector() {
             } as React.CSSProperties
           }
         >
-          {/* Inner image container anchored right and fixed to viewport half so image doesn't scale on slide */}
+          {/* Inner image container anchored right at 60vw so expanding left doesn't reveal black background */}
           <div
-            className="absolute inset-0 md:left-auto md:right-0 md:w-[50vw] pointer-events-none"
+            className="absolute inset-0 md:left-auto md:right-0 md:w-[60vw] pointer-events-none"
           >
             <Image
               src="/images/new-img/womens.png"
               alt="Women's Timepieces"
               fill
               style={{ objectFit: "cover", objectPosition: "center 20%" }}
-              sizes="(max-width: 768px) 100vw, 50vw"
+              sizes="(max-width: 768px) 100vw, 60vw"
               priority
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-transparent" />
