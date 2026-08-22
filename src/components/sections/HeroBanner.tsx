@@ -29,19 +29,27 @@ export default function HeroBanner() {
         >
             {/* FULL WIDTH VIDEO BACKGROUND */}
             <motion.div 
-                className="absolute inset-0 z-0 w-full h-full"
-                style={{ y, scale }}
+                className="absolute inset-0 z-0 w-full h-full bg-cover bg-center"
+                style={{ 
+                    y, 
+                    scale,
+                    backgroundImage: "url('/images/new-img/home-2-dark.jpg')" 
+                }}
             >
                 <video
                     autoPlay
                     muted
                     loop
                     playsInline
-                    preload="metadata"
+                    preload="auto"
+                    poster="/images/new-img/home-2-dark.jpg"
                     className="absolute inset-0 w-full h-full object-cover cinematic-zoom"
                     style={{ willChange: "transform" }}
-                    src="/images/new-img/video/D_SIGNER shot video 01.mp4"
-                />
+                >
+                    <source src="/images/new-img/video/D_SIGNER%20shot%20video%2001.mp4" type="video/mp4" />
+                    <source src="/images/new-img/video/D_SIGNER shot video 01.mp4" type="video/mp4" />
+                    <source src="/img/banner-34.mp4" type="video/mp4" />
+                </video>
                 
                 {/* Multi-layer dark emerald overlay gradient */}
                 <div 

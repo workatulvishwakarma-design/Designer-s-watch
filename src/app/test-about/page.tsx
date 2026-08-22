@@ -357,10 +357,13 @@ export default function TestAboutPage() {
       <section className={styles.heroBanner}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/images/about us journey/banner-tt.jpg"
+          src="/images/about us journey/banner-tt.JPG"
           alt="Nagpal Group Heritage"
           className={styles.heroImg}
-          onError={(e) => { const t = e.target as HTMLImageElement; if (t.src.includes("banner-tt.jpg")) t.src = "/images/about-2.png"; }}
+          onError={(e) => {
+            const t = e.target as HTMLImageElement;
+            t.src = "/img/about-2.png";
+          }}
         />
         <div className={styles.heroCaption}>
           <p className={styles.heroCaptionText}>
