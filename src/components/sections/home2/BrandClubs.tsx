@@ -72,7 +72,7 @@ export default function BrandClubs() {
               className="relative w-full aspect-[16/10] sm:aspect-[16/10] md:aspect-[16/10] max-h-[460px] overflow-hidden shadow-2xl bg-[#092218]"
             >
               <Image
-                src="/images/new-img/dsigner-m.png"
+                src="/images/new-img/dsigner-m.PNG"
                 alt="D'Signer Style Man"
                 fill
                 className="object-cover object-center grayscale contrast-[1.1] transition-transform duration-[1.5s] ease-out hover:scale-103"
@@ -96,7 +96,7 @@ export default function BrandClubs() {
               className="relative w-full aspect-[4/3] overflow-hidden shadow-2xl bg-[#092218]"
             >
               <Image
-                src="/images/new-img/escort-f.png"
+                src="/images/new-img/escort-f.PNG"
                 alt="Escort Style Hand"
                 fill
                 className="object-cover object-center grayscale contrast-[1.1] transition-transform duration-[1.5s] ease-out hover:scale-103"
