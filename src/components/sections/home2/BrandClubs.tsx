@@ -39,14 +39,14 @@ export default function BrandClubs() {
               whileInView={{ scale: 1, opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative w-full max-w-[310px] aspect-[16/7] overflow-hidden mb-8 bg-transparent"
+              className="relative w-full max-w-[320px] aspect-[2/1] overflow-hidden mb-8 shadow-lg"
             >
               <Image
-                src="/img/home6.PNG"
+                src="/images/new-img/small-img.PNG"
                 alt="D'Signer Watch Insert"
                 fill
-                className="object-contain object-[95%_center] scale-[1.3] -translate-x-[38%] mix-blend-multiply transition-transform duration-500 hover:scale-[1.35]"
-                sizes="310px"
+                className="object-cover object-center transition-transform duration-500 hover:scale-105"
+                sizes="320px"
               />
             </motion.div>
 
@@ -72,7 +72,7 @@ export default function BrandClubs() {
               className="relative w-full aspect-[16/10] sm:aspect-[16/10] md:aspect-[16/10] max-h-[460px] overflow-hidden shadow-2xl bg-[#092218]"
             >
               <Image
-                src="/img/home5.PNG"
+                src="/images/new-img/dsigner-m.png"
                 alt="D'Signer Style Man"
                 fill
                 className="object-cover object-center grayscale contrast-[1.1] transition-transform duration-[1.5s] ease-out hover:scale-103"
@@ -96,7 +96,7 @@ export default function BrandClubs() {
               className="relative w-full aspect-[4/3] overflow-hidden shadow-2xl bg-[#092218]"
             >
               <Image
-                src="/img/home7.PNG"
+                src="/images/new-img/escort-f.png"
                 alt="Escort Style Hand"
                 fill
                 className="object-cover object-center grayscale contrast-[1.1] transition-transform duration-[1.5s] ease-out hover:scale-103"

@@ -293,16 +293,27 @@ export default function HeaderClient({ hasAnnouncement = false, megaMenuPayload 
         }, 250);
     }, []);
 
-    const isDarkHeroPage = pathname === "/" || pathname === "/home-2" || pathname.startsWith("/home-2") || pathname === "/about" || pathname === "/about-2" || pathname.startsWith("/about-2");
-    const transparent = isDarkHeroPage && !scrolled && !showMegaMenu;
+    const isDarkHeroPage =
+        pathname === "/" ||
+        pathname === "/home-2" ||
+        pathname.startsWith("/home-2") ||
+        pathname === "/about" ||
+        pathname === "/about-2" ||
+        pathname.startsWith("/about-2") ||
+        pathname === "/test-about" ||
+        pathname.startsWith("/test-about") ||
+        pathname === "/about-test" ||
+        pathname.startsWith("/about-test");
+    const isTransparentLightPage = pathname === "/about-3" || pathname.startsWith("/about-3");
+    const transparent = (isDarkHeroPage || isTransparentLightPage) && !scrolled && !showMegaMenu;
 
     const headerBg = showMegaMenu
-        ? "rgba(250,248,244,0.98)"
+        ? "rgba(255,255,255,0.98)"
         : scrolled
-            ? "rgba(250,248,244,0.95)"
+            ? "#FFFFFF"
             : transparent
-                ? (isHeaderHovered ? "rgba(0, 31, 20, 0.50)" : "transparent")
-                : "rgba(250,248,244,0.95)";
+                ? (isHeaderHovered ? (isTransparentLightPage ? "rgba(250,248,244,0.75)" : "rgba(0, 31, 20, 0.50)") : "transparent")
+                : "#FFFFFF";
 
     const blur = showMegaMenu
         ? "blur(40px) saturate(180%)"
@@ -312,7 +323,7 @@ export default function HeaderClient({ hasAnnouncement = false, megaMenuPayload 
                 ? (isHeaderHovered ? "blur(20px) saturate(160%)" : "none")
                 : "none";
 
-    const txtCol = transparent ? "#FFF" : "#003926";
+    const txtCol = isDarkHeroPage && transparent ? "#FFF" : "#003926";
     const logoFilter = transparent ? "brightness(0) invert(1)" : "none";
 
     return (

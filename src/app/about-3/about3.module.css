@@ -1,0 +1,579 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Montserrat:wght@700;800;900&family=Oswald:wght@700;800;900&display=swap');
+
+/* ════════════════════════════════════════════════════════════════
+   ABOUT-3 — Clean Editorial Timeline
+   LEFT | CENTER (connected green artwork) | RIGHT
+   Original 4th.png background artwork per spread with seamless joins
+   ════════════════════════════════════════════════════════════════ */
+
+/* ── Page Container ── */
+.page {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #E6DFD3;
+  color: #1A1A1A;
+  font-family: 'Cormorant Garamond', 'Georgia', serif;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Hero Banner ── */
+.heroBanner {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.heroImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  filter: grayscale(100%) brightness(0.78);
+}
+
+.heroCaption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: clamp(0.85rem, 2vw, 1.4rem) 1.5rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.72) 0%, rgba(0, 0, 0, 0.32) 65%, transparent 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.heroCaptionText {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: clamp(11.5px, 0.9vw, 14.5px);
+  letter-spacing: 0.18em;
+  color: rgba(255, 255, 255, 0.92);
+  text-transform: uppercase;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   INTRO TEXT & STATS SECTION (Below Hero Banner)
+   ════════════════════════════════════════════════════════════════ */
+
+.introSection {
+  position: relative;
+  width: 100%;
+  background-image: url('/images/about us journey/4th.png');
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-color: #E6DFD3;
+}
+
+.introContainer {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: clamp(3.5rem, 5.5vw, 4.8rem) clamp(1.5rem, 4vw, 3rem) clamp(2.5rem, 4vw, 3.5rem);
+}
+
+.introGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1.5rem, 4vw, 4rem);
+  align-items: start;
+}
+
+.introTextLeft {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(13px, 0.88vw, 15px);
+  line-height: 1.85;
+  color: #1A1918;
+  font-weight: 400;
+  text-align: left;
+  margin: 0;
+}
+
+.dropCap {
+  float: left;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  line-height: 0.75;
+  margin-right: 0.55rem;
+  margin-top: 0.2rem;
+  color: #275239;
+  font-size: clamp(2.8rem, 5.5vw, 4.2rem);
+}
+
+.introTextRight {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(13px, 0.88vw, 15px);
+  line-height: 1.85;
+  color: #454039;
+  font-weight: 400;
+  text-align: left;
+  margin: 0;
+}
+
+.statsDivider {
+  width: 100%;
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.08);
+  margin: clamp(2.2rem, 3.5vw, 3.2rem) 0 clamp(2.2rem, 3.5vw, 3.2rem);
+}
+
+.statsRow {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(2.5rem, 8vw, 7rem);
+  text-align: center;
+  width: 100%;
+}
+
+.statItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.statNum {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(34px, 3.8vw, 50px);
+  font-weight: 800;
+  color: #275239;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.statLabel {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(10.5px, 0.75vw, 12px);
+  color: #7A746B;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-weight: 700;
+  margin-top: 0.65rem;
+}
+
+@media (max-width: 768px) {
+  .introGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .statsRow {
+    gap: 2rem;
+  }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   TIMELINE CONTAINER
+   ════════════════════════════════════════════════════════════════ */
+
+.timelineContainer {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  background-color: #E6DFD3;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   SPREAD — Original 4th.png Canvas per spread with seamless flush joins
+   Scaled down by ~10% for complete single-viewport fit
+   ════════════════════════════════════════════════════════════════ */
+
+.spreadWrapper {
+  position: relative;
+  width: 100%;
+  min-height: clamp(560px, 88vh, 860px);
+  margin: 0;
+  padding: 0;
+  border: none;
+  background-image: url('/images/about us journey/4th.png');
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── 3-col × 2-row Grid (Desktop) ── */
+.spreadGrid {
+  width: 100%;
+  min-height: clamp(560px, 88vh, 860px);
+  display: grid;
+  grid-template-columns: 1fr clamp(175px, 17.55vw, 256px) 1fr;
+  grid-template-rows: 1fr 1fr;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Explicit cell placement ── */
+.r1Col1 { grid-row: 1; grid-column: 1; }
+.r1Col3 { grid-row: 1; grid-column: 3; }
+.r2Col1 { grid-row: 2; grid-column: 1; }
+.r2Col3 { grid-row: 2; grid-column: 3; }
+
+/* Outer cells: vertically centered content with safe padding */
+.gridCell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cellInner {
+  width: 100%;
+  max-width: 378px;
+  padding: clamp(16px, 2.6vw, 42px) clamp(16px, 2.4vw, 38px);
+}
+
+/* ── CENTER column: flush connected continuous artwork ── */
+.centerCol {
+  grid-row: 1 / -1;
+  grid-column: 2;
+  position: relative;
+  z-index: 4;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: stretch;
+}
+
+.centerImgWrap {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.centerImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   YEAR + TAGLINE (big bold green year, italic tagline underneath)
+   Scaled down by ~10%
+   ════════════════════════════════════════════════════════════════ */
+
+.yearTaglineContent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-top: 2px;
+}
+
+.bigYear {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(64px, 7.9vw, 122px);
+  font-weight: 800;
+  line-height: 0.84;
+  color: #275239;
+  letter-spacing: -0.03em;
+  display: flex;
+  flex-direction: column;
+  user-select: none;
+}
+
+.bigYearBottom {
+  display: flex;
+  align-items: flex-end;
+}
+
+.yearSuffix {
+  font-size: 0.42em;
+  line-height: 1;
+  font-weight: 700;
+  margin-left: 2px;
+  margin-bottom: clamp(3px, 0.7vw, 9px);
+  color: #275239;
+}
+
+.tagline {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(16px, 1.6vw, 23.4px);
+  font-weight: 600;
+  font-style: italic;
+  color: #1A1A1A;
+  margin-top: 10px;
+  line-height: 1.15;
+  white-space: nowrap;
+}
+
+.tagline sup {
+  font-size: 0.6em;
+  top: -0.4em;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   DESCRIPTION (body paragraphs)
+   Scaled down by ~10%
+   ════════════════════════════════════════════════════════════════ */
+
+.descriptionContent {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(10.5px, 0.77vw, 12.2px);
+  line-height: 1.68;
+  color: #383838;
+  text-align: left;
+  word-spacing: normal;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.descriptionContent p {
+  margin: 0;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   RESPONSIVE — Tablets & Mobile
+   ════════════════════════════════════════════════════════════════ */
+
+@media (max-width: 900px) {
+  .spreadWrapper {
+    min-height: auto;
+    padding: clamp(2rem, 5vw, 3rem) 0;
+  }
+
+  .spreadGrid {
+    display: flex;
+    flex-direction: column;
+    min-height: auto;
+    width: 100%;
+  }
+
+  /* Explicit natural mobile flow:
+     Era1 Year -> Era1 Desc -> Center Artwork -> Era2 Year -> Era2 Desc */
+  .mobileOrder1 { order: 1; }
+  .mobileOrder2 { order: 2; }
+  .mobileOrder3 { order: 3; }
+  .mobileOrder4 { order: 4; }
+  .mobileOrder5 { order: 5; }
+
+  .gridCell {
+    width: 100%;
+    display: block;
+  }
+
+  .cellInner {
+    max-width: 100%;
+    padding: clamp(8px, 2vw, 14px) clamp(20px, 5vw, 32px);
+  }
+
+  .bigYear {
+    font-size: clamp(56px, 14vw, 76px);
+    line-height: 0.86;
+  }
+
+  .yearSuffix {
+    font-size: 0.4em;
+    margin-bottom: 4px;
+  }
+
+  .tagline {
+    font-size: clamp(18px, 4.8vw, 23px);
+    white-space: normal;
+    margin-top: 8px;
+  }
+
+  .descriptionContent {
+    font-size: clamp(13px, 3.5vw, 14.5px);
+    line-height: 1.72;
+    color: #403C36;
+    margin-top: 6px;
+    margin-bottom: 8px;
+  }
+
+  /* Center Column Artwork on Mobile */
+  .centerCol {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: clamp(20px, 5vw, 32px) 0;
+    padding: 0 clamp(16px, 4vw, 24px);
+  }
+
+  .centerImgWrap {
+    width: 100%;
+    max-width: clamp(240px, 72vw, 310px);
+    height: auto;
+    margin: 0 auto;
+    border-radius: 4px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.1);
+  }
+
+  .centerImg {
+    width: 100%;
+    height: auto;
+    max-height: clamp(340px, 56vh, 460px);
+    object-fit: cover;
+    object-position: center top;
+  }
+}
+
+@media (max-width: 480px) {
+  .heroBanner {
+    height: 100vh;
+    min-height: 100svh;
+  }
+
+  .heroCaptionText {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    white-space: normal;
+    padding: 0 12px;
+  }
+
+  .introContainer {
+    padding: 2.8rem 1.25rem 2rem;
+  }
+
+  .statsDivider {
+    margin: 1.8rem 0;
+  }
+
+  .statsRow {
+    gap: 1.5rem 2.5rem;
+  }
+
+  .cellInner {
+    padding: 8px 18px;
+  }
+
+  .bigYear {
+    font-size: clamp(52px, 15vw, 70px);
+  }
+
+  .centerCol {
+    padding: 0 16px;
+    margin: 18px 0;
+  }
+
+  .centerImgWrap {
+    max-width: 82vw;
+  }
+
+  .chairmanContainer {
+    padding: 2.8rem 1.25rem;
+  }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   CHAIRMAN MESSAGE SECTION
+   ════════════════════════════════════════════════════════════════ */
+
+.chairmanSection {
+  position: relative;
+  width: 100%;
+  background-image: url('/images/about us journey/4th.png');
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-color: #E6DFD3;
+}
+
+.chairmanContainer {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: clamp(3.5rem, 6vw, 5.5rem) clamp(1.5rem, 4vw, 3rem);
+}
+
+.chairmanImgWrap {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 12px 36px rgba(0, 57, 38, 0.12), 0 2px 8px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background-color: #dfd8cc;
+}
+
+.chairmanImg {
+  width: 100%;
+  object-fit: cover;
+  object-position: center top;
+  height: clamp(280px, 34vw, 480px);
+  display: block;
+  filter: grayscale(15%);
+  transition: filter 0.4s ease, transform 0.4s ease;
+}
+
+.chairmanImgWrap:hover .chairmanImg {
+  filter: grayscale(0%);
+  transform: scale(1.02);
+}
+
+.chairmanBadge {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0.6rem 1rem;
+  background: rgba(0, 57, 38, 0.88);
+  backdrop-filter: blur(4px);
+}
+
+.chairmanHeadingWrap {
+  border-left: 4px solid #275239;
+  padding-left: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.chairmanHeading {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #1A1918;
+  font-size: clamp(1.2rem, 2.2vw, 1.75rem);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.chairmanText {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(12.5px, 0.88vw, 14px);
+  line-height: 1.8;
+  color: #383838;
+  font-weight: 400;
+  text-align: left;
+  margin: 0 0 1rem 0;
+}
+
+.chairmanSign {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11.5px;
+  color: #275239;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-weight: 700;
+  margin-top: 1.5rem;
+}

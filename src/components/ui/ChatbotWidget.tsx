@@ -48,7 +48,7 @@ export default function ChatbotWidget() {
         // Simulate bot typing/response delay
         setTimeout(() => {
             let botReply: Message = { id: (Date.now() + 1).toString(), text: "", sender: "bot" };
-            
+
             const lowerText = text.toLowerCase();
             if (lowerText.includes("order") || lowerText.includes("track")) {
                 botReply.text = "To track your order, please visit the 'My Orders' section in your account dashboard. You'll need your Order ID.";
@@ -126,16 +126,15 @@ export default function ChatbotWidget() {
                         <div className="flex-1 p-4 overflow-y-auto bg-[#FAF8F4] flex flex-col gap-4">
                             {messages.map((msg) => (
                                 <div key={msg.id} className={`flex flex-col ${msg.sender === "user" ? "items-end" : "items-start"}`}>
-                                    <div 
-                                        className={`max-w-[85%] p-3 rounded-2xl text-[13px] font-dm ${
-                                            msg.sender === "user" 
-                                                ? "bg-[#B8935A] text-white rounded-br-sm" 
+                                    <div
+                                        className={`max-w-[85%] p-3 rounded-2xl text-[13px] font-dm ${msg.sender === "user"
+                                                ? "bg-[#B8935A] text-white rounded-br-sm"
                                                 : "bg-white text-[#1A1918] border border-[#EDE8DF] rounded-bl-sm"
-                                        }`}
+                                            }`}
                                     >
                                         {msg.text}
                                     </div>
-                                    
+
                                     {/* Options Bubbles */}
                                     {msg.options && msg.options.length > 0 && (
                                         <div className="flex flex-wrap gap-2 mt-3 pl-2">
