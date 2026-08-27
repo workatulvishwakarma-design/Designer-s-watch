@@ -85,6 +85,7 @@ function Section1940s() {
             className={styles.rightArtworkWrap}
             style={{
               marginLeft: "calc(-140px - clamp(20px, 2.5vw, 50px))",
+              marginTop: "clamp(80px, 18vh, 150px)",
               width: "clamp(300px, 28vw, 400px)",
               position: "relative",
               zIndex: 6,
