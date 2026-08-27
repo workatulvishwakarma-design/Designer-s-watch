@@ -1,0 +1,1085 @@
+{
+  "home2_active": [
+    {
+      "rel_path": "/images/new-img/video-transfer.mp4",
+      "clean_path": "images/new-img/video-transfer.mp4",
+      "abs_path": "C:\\Users\\rajti\\OneDrive\\Desktop\\resources\\watch-2\\public\\images\\new-img\\video-transfer.mp4",
+      "size_bytes": 7717584,
+      "size_kb": 7536.7,
+      "size_mb": 7.36,
+      "dimensions": "Video File",
+      "is_video": true,
+      "is_image": false,
+      "used_in": [
+        "src/components/HomeClient2.tsx",
+        "src/components/sections/WatchDetails.tsx"
+      ]
+    },
+    {
+      "rel_path": "/images/new-img/home-2-dark.jpg",
+      "clean_path": "images/new-img/home-2-dark.jpg",
+      "abs_path": "C:\\Users\\rajti\\OneDrive\\Desktop\\resources\\watch-2\\public\\images\\new-img\\home-2-dark.jpg",
+      "size_bytes": 603786,
+      "size_kb": 589.63,
+      "size_mb": 0.58,
+      "dimensions": "1500x2000",
+      "is_video": false,
+      "is_image": true,
+      "used_in": [
+        "src/components/sections/HeroBanner.tsx",
+        "src/components/sections/HeroBanner.tsx",
+        "src/components/sections/home2/WatchGridCollage.tsx"
+      ]
+    },
+    {
+      "rel_path": "/images/new-img/video/D_SIGNER shot video 01.mp4",
+      "clean_path": "images/new-img/video/D_SIGNER shot video 01.mp4",
+      "abs_path": "C:\\Users\\rajti\\OneDrive\\Desktop\\resources\\watch-2\\public\\images\\new-img\\video\\D_SIGNER shot video 01.mp4",
+      "size_bytes": 12817676,
+      "size_kb": 12517.26,
+      "size_mb": 12.22,
+      "dimensions": "Video File",
+      "is_video": true,
+      "is_image": false,
+      "used_in": [
+        "src/components/sections/HeroBanner.tsx",
+        "src/components/sections/HeroBanner.tsx"
+      ]
+    },
+    {
+      "rel_path": "/img/banner-34.mp4",
+      "clean_path": "img/banner-34.mp4",
+      "abs_path": "C:\\Users\\rajti\\OneDrive\\Desktop\\resources\\watch-2\\public\\img\\banner-34.mp4",
+      "size_bytes": 7357945,
+      "size_kb": 7185.49,
+      "size_mb": 7.02,
+      "dimensions": "Video File",
+      "is_video": true,
+      "is_image": false,
+      "used_in": [
+        "src/components/sections/HeroBanner.tsx"
+      ]
+    },
+    {
+      "rel_path": "/images/new-img/mens-d.png",
+      "clean_path": "images/new-img/mens-d.png",
+      "abs_path": "C:\\Users\\rajti\\OneDrive\\Desktop\\resources\\watch-2\\public\\images\\new-img\\mens-d.png",
+      "size_bytes": 2429782,
+      "size_kb": 2372.83,
+      "size_mb": 2.32,
+      "dimensions": "1023x1537",
+      "is_video": false,
+      "is_image": true,
+      "used_in": [
+        "src/components/sections/home2/GenderSelector.tsx"
+      ]
+    },
+    {
+      "rel_path": "/images/new-img/womens.png",
+      "clean_path": "images/new-img/womens.png",
+      "abs_path": "C:\\Users\\rajti\\OneDrive\\Desktop\\resources\\watch-2\\public\\images\\new-img\\womens.png",
+      "size_bytes": 2215868,
+      "size_kb": 2163.93,
+      "size_mb": 2.11,
+      "dimensions": "1023x1537",
+      "is_video": false,
+      "is_image": true,
+      "used_in": [
+        "src/components/sections/home2/GenderSelector.tsx"
+      ]
+    },
+    {
+      "rel_path": "/img/models/875RGBLM.5G.jpg",
+      "clean_path": "img/models/875RGBLM.5G.jpg",
+      "abs_path": "C:\\Users\\rajti\\OneDrive\\Desktop\\resources\\watch-2\\public\\img\\models\\875RGBLM.5G.jpg",
+      "size_bytes": 286008,
+      "size_kb": 279.3,
+      "size_mb": 0.27,
+      "dimensions": "1024x630",
+      "is_video": false,
+      "is_image": true,
+      "used_in": [
+        "src/components/sections/home2/WatchGridCollage.tsx"
+      ]
+    },
+    {
+      "rel_path": "/images/new-img/homme-3.png",
+      "clean_path": "images/new-img/homme-3.png",
+      "abs_path": "C:\\Users\\rajti\\OneDrive\\Desktop\\resources\\watch-2\\public\\images\\new-img\\homme-3.png",
+      "size_bytes": 2130074,
+      "size_kb": 2080.15,
+      "size_mb": 2.03,
+      "dimensions": "1672x941",
+      "is_video": false,
+      "is_image": true,
+      "used_in": [
+        "src/components/sections/home2/WatchGridCollage.tsx"
+      ]
+    },
+    {
+      "rel_path": "/img/models/980GFS.16.jpg",
+      "clean_path": "img/models/980GFS.16.jpg",
+      "abs_path": "C:\\Users\\rajti\\OneDrive\\Desktop\\resources\\watch-2\\public\\img\\models\\980GFS.16.jpg",
+      "size_bytes": 457242,
+      "size_kb": 446.53,
+      "size_mb": 0.44,
+      "dimensions": "1024x895",
+      "is_video": false,
+      "is_image": true,
+      "used_in": [
+        "src/components/sections/home2/WatchGridCollage.tsx"
+      ]
+    },
+    {
+      "rel_path": "/img/models/916GNM.16G.jpg",
+      "clean_path": "img/models/916GNM.16G.jpg",
+      "abs_path": "C:\\Users\\rajti\\OneDrive\\Desktop\\resources\\watch-2\\public\\img\\models\\916GNM.16G.jpg",
+      "size_bytes": 279876,
+      "size_kb": 273.32,
+      "size_mb": 0.27,
+      "dimensions": "1024x752",
+      "is_video": false,
+      "is_image": true,
+      "used_in": [
+        "src/components/sections/home2/WatchGridCollage.tsx"
+      ]
+    },
+    {
+      "rel_path": "/images/new-img/model-1/824/824-RGFS-3-nobg.png",
+      "clean_path": "images/new-img/model-1/824/824-RGFS-3-nobg.png",
+      "abs_path": "C:\\Users\\rajti\\OneDrive\\Desktop\\resources\\watch-2\\public\\images\\new-img\\model-1\\824\\824-RGFS-3-nobg.png",
+      "size_bytes": 2917178,
+      "size_kb": 2848.81,
+      "size_mb": 2.78,
+      "dimensions": "1500x2000",
+      "is_video": false,
+      "is_image": true,
+      "used_in": [
+        "src/components/sections/home2/WatchGridCollage.tsx"
+      ]
+    },
+    {
+      "rel_path": "/images/new-img/small-img.PNG",
+      "clean_path": "images/new-img/small-img.PNG",
+      "abs_path": "C:\\Users\\rajti\\OneDrive\\Desktop\\resources\\watch-2\\public\\images\\new-img\\small-img.PNG",
+      "size_bytes": 1358467,
+      "size_kb": 1326.63,
+      "size_mb": 1.3,
+      "dimensions": "1536x1024",
+      "is_video": false,
+      "is_image": true,
+      "used_in": [
+        "src/components/sections/home2/BrandClubs.tsx"
+      ]
+    },
+    {
+      "rel_path": "/images/new-img/dsigner-m.PNG",
+      "clean_path": "images/new-img/dsigner-m.PNG",
+      "abs_path": "C:\\Users\\rajti\\OneDrive\\Desktop\\resources\\watch-2\\public\\images\\new-img\\dsigner-m.PNG",
+      "size_bytes": 1958605,
+      "size_kb": 1912.7,
+      "size_mb": 1.87,
+      "dimensions": "1572x1001",
+      "is_video": false,
+      "is_image": true,
+      "used_in": [
+        "src/components/sections/home2/BrandClubs.tsx"
+      ]
+    },
+    {
+      "rel_path": "/images/new-img/escort-f.PNG",
+      "clean_path": "images/new-img/escort-f.PNG",
+      "abs_path": "C:\\Users\\rajti\\OneDrive\\Desktop\\resources\\watch-2\\public\\images\\new-img\\escort-f.PNG",
+      "size_bytes": 522348,
+      "size_kb": 510.11,
+      "size_mb": 0.5,
+      "dimensions": "1122x1402",
+      "is_video": false,
+      "is_image": true,
+      "used_in": [
+        "src/components/sections/home2/BrandClubs.tsx"
+      ]
+    },
+    {
+      "rel_path": "/images/new-img/video-transfer-alpha.webm",
+      "clean_path": "images/new-img/video-transfer-alpha.webm",
+      "abs_path": "C:\\Users\\rajti\\OneDrive\\Desktop\\resources\\watch-2\\public\\images\\new-img\\video-transfer-alpha.webm",
+      "size_bytes": 7786882,
+      "size_kb": 7604.38,
+      "size_mb": 7.43,
+      "dimensions": "Video File",
+      "is_video": true,
+      "is_image": false,
+      "used_in": [
+        "src/components/sections/WatchDetails.tsx"
+      ]
+    },
+    {
+      "rel_path": "/images/new-content/new-1/escort womens/E-7931/E-7931.RGM_White.png",
+      "clean_path": "images/new-content/new-1/escort womens/E-7931/E-7931.RGM_White.png",
+      "abs_path": "C:\\Users\\rajti\\OneDrive\\Desktop\\resources\\watch-2\\public\\images\\new-content\\new-1\\escort womens\\E-7931\\E-7931.RGM_White.png",
+      "size_bytes": 2023557,
+      "size_kb": 1976.13,
+      "size_mb": 1.93,
+      "dimensions": "1500x2000",
+      "is_video": false,
+      "is_image": true,
+      "used_in": [
+        "src/components/sections/home2/SlideToSwitch.tsx"
+      ]
+    },
+    {
+      "rel_path": "/images/new-content/new-1/escort womens/E-7931/E-7931.RGM_Blue.png",
+      "clean_path": "images/new-content/new-1/escort womens/E-7931/E-7931.RGM_Blue.png",
+      "abs_path": "C:\\Users\\rajti\\OneDrive\\Desktop\\resources\\watch-2\\public\\images\\new-content\\new-1\\escort womens\\E-7931\\E-7931.RGM_Blue.png",
+      "size_bytes": 1973609,
+      "size_kb": 1927.35,
+      "size_mb": 1.88,
+      "dimensions": "1500x2000",
+      "is_video": false,
+      "is_image": true,
+      "used_in": [
+        "src/components/sections/home2/SlideToSwitch.tsx"
+      ]
+    }
+  ],
+  "home2_all": [
+    {
+      "rel_path": "/images/new-img/video-transfer.mp4",
+      "clean_path": "images/new-img/video-transfer.mp4",
+      "abs_path": "C:\\Users\\rajti\\OneDrive\\Desktop\\resources\\watch-2\\public\\images\\new-img\\video-transfer.mp4",
+      "size_bytes": 7717584,
+      "size_kb": 7536.7,
+      "size_mb": 7.36,
+      "dimensions": "Video File",
+      "is_video": true,
+      "is_image": false,
+      "used_in": [
+        "src/components/HomeClient2.tsx",
+        "src/components/sections/WatchDetails.tsx"
+      ]
+    },
+    {
+      "rel_path": "/images/new-img/home-2-dark.jpg",
+      "clean_path": "images/new-img/home-2-dark.jpg",
+      "abs_path": "C:\\Users\\rajti\\OneDrive\\Desktop\\resources\\watch-2\\public\\images\\new-img\\home-2-dark.jpg",
+      "size_bytes": 603786,
+      "size_kb": 589.63,
+      "size_mb": 0.58,
+      "dimensions": "1500x2000",
+      "is_video": false,
+      "is_image": true,
+      "used_in": [
+        "src/components/sections/HeroBanner.tsx",
+        "src/components/sections/HeroBanner.tsx",
+        "src/components/sections/home2/WatchGridCollage.tsx"
+      ]
+    },
+    {
+      "rel_path": "/images/new-img/video/D_SIGNER shot video 01.mp4",
+      "clean_path": "images/new-img/video/D_SIGNER shot video 01.mp4",
+      "abs_path": "C:\\Users\\rajti\\OneDrive\\Desktop\\resources\\watch-2\\public\\images\\new-img\\video\\D_SIGNER shot video 01.mp4",
+      "size_bytes": 12817676,
+      "size_kb": 12517.26,
+      "size_mb": 12.22,
+      "dimensions": "Video File",
+      "is_video": true,
+      "is_image": false,
+      "used_in": [
+        "src/components/sections/HeroBanner.tsx",
+        "src/components/sections/HeroBanner.tsx",
+        "src/components/sections/home2/FullVideoBanner.tsx"
+      ]
+    },
+    {
+      "rel_path": "/img/banner-34.mp4",
+      "clean_path": "img/banner-34.mp4",
+      "abs_path": "C:\\Users\\rajti\\OneDrive\\Desktop\\resources\\watch-2\\public\\img\\banner-34.mp4",
+      "size_bytes": 7357945,
+      "size_kb": 7185.49,
+      "size_mb": 7.02,
+      "dimensions": "Video File",
+      "is_video": true,
+      "is_image": false,
+      "used_in": [
+        "src/components/sections/HeroBanner.tsx"
+      ]
+    },
+    {
+      "rel_path": "/images/new-img/mens-d.png",
+      "clean_path": "images/new-img/mens-d.png",
+      "abs_path": "C:\\Users\\rajti\\OneDrive\\Desktop\\resources\\watch-2\\public\\images\\new-img\\mens-d.png",
+      "size_bytes": 2429782,
+      "size_kb": 2372.83,
+      "size_mb": 2.32,
+      "dimensions": "1023x1537",
+      "is_video": false,
+      "is_image": true,
+      "used_in": [
+        "src/components/sections/home2/GenderSelector.tsx"
+      ]
+    },
+    {
+      "rel_path": "/images/new-img/womens.png",
+      "clean_path": "images/new-img/womens.png",
+      "abs_path": "C:\\Users\\rajti\\OneDrive\\Desktop\\resources\\watch-2\\public\\images\\new-img\\womens.png",
+      "size_bytes": 2215868,
+      "size_kb": 2163.93,
+      "size_mb": 2.11,
+      "dimensions": "1023x1537",
+      "is_video": false,
+      "is_image": true,
+      "used_in": [
+        "src/components/sections/home2/GenderSelector.tsx"
+      ]
+    },
+    {
+      "rel_path": "/img/models/875RGBLM.5G.jpg",
+      "clean_path": "img/models/875RGBLM.5G.jpg",
+      "abs_path": "C:\\Users\\rajti\\OneDrive\\Desktop\\resources\\watch-2\\public\\img\\models\\875RGBLM.5G.jpg",
+      "size_bytes": 286008,
+      "size_kb": 279.3,
+      "size_mb": 0.27,
+      "dimensions": "1024x630",
+      "is_video": false,
+      "is_image": true,
+      "used_in": [
+        "src/components/sections/home2/WatchGridCollage.tsx"
+      ]
+    },
+    {
+      "rel_path": "/images/new-img/homme-3.png",
+      "clean_path": "images/new-img/homme-3.png",
+      "abs_path": "C:\\Users\\rajti\\OneDrive\\Desktop\\resources\\watch-2\\public\\images\\new-img\\homme-3.png",
+      "size_bytes": 2130074,
+      "size_kb": 2080.15,
+      "size_mb": 2.03,
+      "dimensions": "1672x941",
+      "is_video": false,
+      "is_image": true,
+      "used_in": [
+        "src/components/sections/home2/WatchGridCollage.tsx"
+      ]
+    },
+    {
+      "rel_path": "/img/models/980GFS.16.jpg",
+      "clean_path": "img/models/980GFS.16.jpg",
+      "abs_path": "C:\\Users\\rajti\\OneDrive\\Desktop\\resources\\watch-2\\public\\img\\models\\980GFS.16.jpg",
+      "size_bytes": 457242,
+      "size_kb": 446.53,
+      "size_mb": 0.44,
+      "dimensions": "1024x895",
+      "is_video": false,
+      "is_image": true,
+      "used_in": [
+        "src/components/sections/home2/WatchGridCollage.tsx"
+      ]
+    },
+    {
+      "rel_path": "/img/models/916GNM.16G.jpg",
+      "clean_path": "img/models/916GNM.16G.jpg",
+      "abs_path": "C:\\Users\\rajti\\OneDrive\\Desktop\\resources\\watch-2\\public\\img\\models\\916GNM.16G.jpg",
+      "size_bytes": 279876,
+      "size_kb": 273.32,
+      "size_mb": 0.27,
+      "dimensions": "1024x752",
+      "is_video": false,
+      "is_image": true,
+      "used_in": [
+        "src/components/sections/home2/WatchGridCollage.tsx"
+      ]
+    },
+    {
+      "rel_path": "/images/new-img/model-1/824/824-RGFS-3-nobg.png",
+      "clean_path": "images/new-img/model-1/824/824-RGFS-3-nobg.png",
+      "abs_path": "C:\\Users\\rajti\\OneDrive\\Desktop\\resources\\watch-2\\public\\images\\new-img\\model-1\\824\\824-RGFS-3-nobg.png",
+      "size_bytes": 2917178,
+      "size_kb": 2848.81,
+      "size_mb": 2.78,
+      "dimensions": "1500x2000",
+      "is_video": false,
+      "is_image": true,
+      "used_in": [
+        "src/components/sections/home2/WatchGridCollage.tsx"
+      ]
+    },
+    {
+      "rel_path": "/images/new-img/small-img.PNG",
+      "clean_path": "images/new-img/small-img.PNG",
+      "abs_path": "C:\\Users\\rajti\\OneDrive\\Desktop\\resources\\watch-2\\public\\images\\new-img\\small-img.PNG",
+      "size_bytes": 1358467,
+      "size_kb": 1326.63,
+      "size_mb": 1.3,
+      "dimensions": "1536x1024",
+      "is_video": false,
+      "is_image": true,
+      "used_in": [
+        "src/components/sections/home2/BrandClubs.tsx"
+      ]
+    },
+    {
+      "rel_path": "/images/new-img/dsigner-m.PNG",
+      "clean_path": "images/new-img/dsigner-m.PNG",
+      "abs_path": "C:\\Users\\rajti\\OneDrive\\Desktop\\resources\\watch-2\\public\\images\\new-img\\dsigner-m.PNG",
+      "size_bytes": 1958605,
+      "size_kb": 1912.7,
+      "size_mb": 1.87,
+      "dimensions": "1572x1001",
+      "is_video": false,
+      "is_image": true,
+      "used_in": [
+        "src/components/sections/home2/BrandClubs.tsx"
+      ]
+    },
+    {
+      "rel_path": "/images/new-img/escort-f.PNG",
+      "clean_path": "images/new-img/escort-f.PNG",
+      "abs_path": "C:\\Users\\rajti\\OneDrive\\Desktop\\resources\\watch-2\\public\\images\\new-img\\escort-f.PNG",
+      "size_bytes": 522348,
+      "size_kb": 510.11,
+      "size_mb": 0.5,
+      "dimensions": "1122x1402",
+      "is_video": false,
+      "is_image": true,
+      "used_in": [
+        "src/components/sections/home2/BrandClubs.tsx"
+      ]
+    },
+    {
+      "rel_path": "/images/new-img/video-transfer-alpha.webm",
+      "clean_path": "images/new-img/video-transfer-alpha.webm",
+      "abs_path": "C:\\Users\\rajti\\OneDrive\\Desktop\\resources\\watch-2\\public\\images\\new-img\\video-transfer-alpha.webm",
+      "size_bytes": 7786882,
+      "size_kb": 7604.38,
+      "size_mb": 7.43,
+      "dimensions": "Video File",
+      "is_video": true,
+      "is_image": false,
+      "used_in": [
+        "src/components/sections/WatchDetails.tsx"
+      ]
+    },
+    {
+      "rel_path": "/images/new-content/new-1/escort womens/E-7931/E-7931.RGM_White.png",
+      "clean_path": "images/new-content/new-1/escort womens/E-7931/E-7931.RGM_White.png",
+      "abs_path": "C:\\Users\\rajti\\OneDrive\\Desktop\\resources\\watch-2\\public\\images\\new-content\\new-1\\escort womens\\E-7931\\E-7931.RGM_White.png",
+      "size_bytes": 2023557,
+      "size_kb": 1976.13,
+      "size_mb": 1.93,
+      "dimensions": "1500x2000",
+      "is_video": false,
+      "is_image": true,
+      "used_in": [
+        "src/components/sections/home2/SlideToSwitch.tsx"
+      ]
+    },
+    {
+      "rel_path": "/images/new-content/new-1/escort womens/E-7931/E-7931.RGM_Blue.png",
+      "clean_path": "images/new-content/new-1/escort womens/E-7931/E-7931.RGM_Blue.png",
+      "abs_path": "C:\\Users\\rajti\\OneDrive\\Desktop\\resources\\watch-2\\public\\images\\new-content\\new-1\\escort womens\\E-7931\\E-7931.RGM_Blue.png",
+      "size_bytes": 1973609,
+      "size_kb": 1927.35,
+      "size_mb": 1.88,
+      "dimensions": "1500x2000",
+      "is_video": false,
+      "is_image": true,
+      "used_in": [
+        "src/components/sections/home2/SlideToSwitch.tsx"
+      ]
+    },
+    {
+      "rel_path": "/images/new-content/home2-hero.png",
+      "clean_path": "images/new-content/home2-hero.png",
+      "abs_path": "C:\\Users\\rajti\\OneDrive\\Desktop\\resources\\watch-2\\public\\images\\new-content\\home2-hero.png",
+      "size_bytes": 729149,
+      "size_kb": 712.06,
+      "size_mb": 0.7,
+      "dimensions": "1024x1024",
+      "is_video": false,
+      "is_image": true,
+      "used_in": [
+        "src/components/sections/home2/CallToAction.tsx"
+      ]
+    },
+    {
+      "rel_path": "/images/new-content/home2-coll-1.png",
+      "clean_path": "images/new-content/home2-coll-1.png",
+      "abs_path": "C:\\Users\\rajti\\OneDrive\\Desktop\\resources\\watch-2\\public\\images\\new-content\\home2-coll-1.png",
+      "size_bytes": 756787,
+      "size_kb": 739.05,
+      "size_mb": 0.72,
+      "dimensions": "1024x1024",
+      "is_video": false,
+      "is_image": true,
+      "used_in": [
+        "src/components/sections/home2/CollectionsGrid.tsx"
+      ]
+    },
+    {
+      "rel_path": "/images/new-content/home2-coll-2.png",
+      "clean_path": "images/new-content/home2-coll-2.png",
+      "abs_path": "C:\\Users\\rajti\\OneDrive\\Desktop\\resources\\watch-2\\public\\images\\new-content\\home2-coll-2.png",
+      "size_bytes": 680263,
+      "size_kb": 664.32,
+      "size_mb": 0.65,
+      "dimensions": "1024x1024",
+      "is_video": false,
+      "is_image": true,
+      "used_in": [
+        "src/components/sections/home2/CollectionsGrid.tsx"
+      ]
+    },
+    {
+      "rel_path": "/images/new-content/home2-coll-3.png",
+      "clean_path": "images/new-content/home2-coll-3.png",
+      "abs_path": "C:\\Users\\rajti\\OneDrive\\Desktop\\resources\\watch-2\\public\\images\\new-content\\home2-coll-3.png",
+      "size_bytes": 709351,
+      "size_kb": 692.73,
+      "size_mb": 0.68,
+      "dimensions": "1024x1024",
+      "is_video": false,
+      "is_image": true,
+      "used_in": [
+        "src/components/sections/home2/CollectionsGrid.tsx"
+      ]
+    },
+    {
+      "rel_path": "/images/new-content/home2-designer.png",
+      "clean_path": "images/new-content/home2-designer.png",
+      "abs_path": "C:\\Users\\rajti\\OneDrive\\Desktop\\resources\\watch-2\\public\\images\\new-content\\home2-designer.png",
+      "size_bytes": 763217,
+      "size_kb": 745.33,
+      "size_mb": 0.73,
+      "dimensions": "1024x1024",
+      "is_video": false,
+      "is_image": true,
+      "used_in": [
+        "src/components/sections/home2/DesignerPicks.tsx"
+      ]
+    },
+    {
+      "rel_path": "/images/new-content/home2-craftsmanship.png",
+      "clean_path": "images/new-content/home2-craftsmanship.png",
+      "abs_path": "C:\\Users\\rajti\\OneDrive\\Desktop\\resources\\watch-2\\public\\images\\new-content\\home2-craftsmanship.png",
+      "size_bytes": 734294,
+      "size_kb": 717.08,
+      "size_mb": 0.7,
+      "dimensions": "1024x1024",
+      "is_video": false,
+      "is_image": true,
+      "used_in": [
+        "src/components/sections/home2/HeritageSection.tsx"
+      ]
+    },
+    {
+      "rel_path": "/images/new-content/videobanner-1.mp4",
+      "clean_path": "images/new-content/videobanner-1.mp4",
+      "abs_path": "C:\\Users\\rajti\\OneDrive\\Desktop\\resources\\watch-2\\public\\images\\new-content\\videobanner-1.mp4",
+      "size_bytes": 95500092,
+      "size_kb": 93261.81,
+      "size_mb": 91.08,
+      "dimensions": "Video File",
+      "is_video": true,
+      "is_image": false,
+      "used_in": [
+        "src/components/sections/home2/HeroSection.tsx"
+      ]
+    },
+    {
+      "rel_path": "/images/new-content/home2-lifestyle-1.png",
+      "clean_path": "images/new-content/home2-lifestyle-1.png",
+      "abs_path": "C:\\Users\\rajti\\OneDrive\\Desktop\\resources\\watch-2\\public\\images\\new-content\\home2-lifestyle-1.png",
+      "size_bytes": 662185,
+      "size_kb": 646.67,
+      "size_mb": 0.63,
+      "dimensions": "1024x1024",
+      "is_video": false,
+      "is_image": true,
+      "used_in": [
+        "src/components/sections/home2/LifestyleGallery.tsx"
+      ]
+    },
+    {
+      "rel_path": "/images/new-content/home2-lifestyle-2.png",
+      "clean_path": "images/new-content/home2-lifestyle-2.png",
+      "abs_path": "C:\\Users\\rajti\\OneDrive\\Desktop\\resources\\watch-2\\public\\images\\new-content\\home2-lifestyle-2.png",
+      "size_bytes": 820217,
+      "size_kb": 800.99,
+      "size_mb": 0.78,
+      "dimensions": "1024x1024",
+      "is_video": false,
+      "is_image": true,
+      "used_in": [
+        "src/components/sections/home2/LifestyleGallery.tsx"
+      ]
+    },
+    {
+      "rel_path": "/images/about us journey/1976 - Nagpal Bombay/IMG_0216.jpeg",
+      "clean_path": "images/about us journey/1976 - Nagpal Bombay/IMG_0216.jpeg",
+      "abs_path": "C:\\Users\\rajti\\OneDrive\\Desktop\\resources\\watch-2\\public\\images\\about us journey\\1976 - Nagpal Bombay\\IMG_0216.jpeg",
+      "size_bytes": 1262295,
+      "size_kb": 1232.71,
+      "size_mb": 1.2,
+      "dimensions": "3848x2389",
+      "is_video": false,
+      "is_image": true,
+      "used_in": [
+        "src/components/sections/home2/StoryGridStats.tsx"
+      ]
+    },
+    {
+      "rel_path": "/images/about_1995_style_for_all.jpg",
+      "clean_path": "images/about_1995_style_for_all.jpg",
+      "abs_path": "C:\\Users\\rajti\\OneDrive\\Desktop\\resources\\watch-2\\public\\images\\about_1995_style_for_all.jpg",
+      "size_bytes": 2224537,
+      "size_kb": 2172.4,
+      "size_mb": 2.12,
+      "dimensions": "3852x2351",
+      "is_video": false,
+      "is_image": true,
+      "used_in": [
+        "src/components/sections/home2/StoryGridStats.tsx"
+      ]
+    },
+    {
+      "rel_path": "/images/about us journey/2025 - Time Corridor/1A1A8511.JPG",
+      "clean_path": "images/about us journey/2025 - Time Corridor/1A1A8511.JPG",
+      "abs_path": "C:\\Users\\rajti\\OneDrive\\Desktop\\resources\\watch-2\\public\\images\\about us journey\\2025 - Time Corridor\\1A1A8511.JPG",
+      "size_bytes": 7379363,
+      "size_kb": 7206.41,
+      "size_mb": 7.04,
+      "dimensions": "6000x4000",
+      "is_video": false,
+      "is_image": true,
+      "used_in": [
+        "src/components/sections/home2/StoryGridStats.tsx"
+      ]
+    },
+    {
+      "rel_path": "/images/new-content/home2-showcase.png",
+      "clean_path": "images/new-content/home2-showcase.png",
+      "abs_path": "C:\\Users\\rajti\\OneDrive\\Desktop\\resources\\watch-2\\public\\images\\new-content\\home2-showcase.png",
+      "size_bytes": 830029,
+      "size_kb": 810.58,
+      "size_mb": 0.79,
+      "dimensions": "1024x1024",
+      "is_video": false,
+      "is_image": true,
+      "used_in": [
+        "src/components/sections/home2/WatchShowcase.tsx",
+        "src/components/sections/home2/WatchShowcase.tsx"
+      ]
+    }
+  ],
+  "about5": [
+    {
+      "rel_path": "/images/new-img/model-1/824/824-RGFS-3-nobg.png",
+      "clean_path": "images/new-img/model-1/824/824-RGFS-3-nobg.png",
+      "abs_path": "C:\\Users\\rajti\\OneDrive\\Desktop\\resources\\watch-2\\public\\images\\new-img\\model-1\\824\\824-RGFS-3-nobg.png",
+      "size_bytes": 2917178,
+      "size_kb": 2848.81,
+      "size_mb": 2.78,
+      "dimensions": "1500x2000",
+      "is_video": false,
+      "is_image": true,
+      "used_in": [
+        "src/app/about-5/page.tsx"
+      ]
+    },
+    {
+      "rel_path": "/about-us-coded/assets/x102.png",
+      "clean_path": "about-us-coded/assets/x102.png",
+      "abs_path": "C:\\Users\\rajti\\OneDrive\\Desktop\\resources\\watch-2\\public\\about-us-coded\\assets\\x102.png",
+      "size_bytes": 1206849,
+      "size_kb": 1178.56,
+      "size_mb": 1.15,
+      "dimensions": "1108x1419",
+      "is_video": false,
+      "is_image": true,
+      "used_in": [
+        "src/app/about-5/page.tsx"
+      ]
+    },
+    {
+      "rel_path": "/about-us-coded/assets/x122.png",
+      "clean_path": "about-us-coded/assets/x122.png",
+      "abs_path": "C:\\Users\\rajti\\OneDrive\\Desktop\\resources\\watch-2\\public\\about-us-coded\\assets\\x122.png",
+      "size_bytes": 1543740,
+      "size_kb": 1507.56,
+      "size_mb": 1.47,
+      "dimensions": "1049x1017",
+      "is_video": false,
+      "is_image": true,
+      "used_in": [
+        "src/app/about-5/page.tsx"
+      ]
+    },
+    {
+      "rel_path": "/about-us-coded/assets/x114.png",
+      "clean_path": "about-us-coded/assets/x114.png",
+      "abs_path": "C:\\Users\\rajti\\OneDrive\\Desktop\\resources\\watch-2\\public\\about-us-coded\\assets\\x114.png",
+      "size_bytes": 1099383,
+      "size_kb": 1073.62,
+      "size_mb": 1.05,
+      "dimensions": "1536x1024",
+      "is_video": false,
+      "is_image": true,
+      "used_in": [
+        "src/app/about-5/page.tsx",
+        "src/app/about-5/page.tsx"
+      ]
+    },
+    {
+      "rel_path": "/about-us-coded/assets/x130.png",
+      "clean_path": "about-us-coded/assets/x130.png",
+      "abs_path": "C:\\Users\\rajti\\OneDrive\\Desktop\\resources\\watch-2\\public\\about-us-coded\\assets\\x130.png",
+      "size_bytes": 613197,
+      "size_kb": 598.83,
+      "size_mb": 0.58,
+      "dimensions": "1983x793",
+      "is_video": false,
+      "is_image": true,
+      "used_in": [
+        "src/app/about-5/page.tsx"
+      ]
+    },
+    {
+      "rel_path": "/about-us-coded/assets/x110.png",
+      "clean_path": "about-us-coded/assets/x110.png",
+      "abs_path": "C:\\Users\\rajti\\OneDrive\\Desktop\\resources\\watch-2\\public\\about-us-coded\\assets\\x110.png",
+      "size_bytes": 376235,
+      "size_kb": 367.42,
+      "size_mb": 0.36,
+      "dimensions": "2046x768",
+      "is_video": false,
+      "is_image": true,
+      "used_in": [
+        "src/app/about-5/page.tsx"
+      ]
+    },
+    {
+      "rel_path": "/about-us-coded/assets/x98.png",
+      "clean_path": "about-us-coded/assets/x98.png",
+      "abs_path": "C:\\Users\\rajti\\OneDrive\\Desktop\\resources\\watch-2\\public\\about-us-coded\\assets\\x98.png",
+      "size_bytes": 2463604,
+      "size_kb": 2405.86,
+      "size_mb": 2.35,
+      "dimensions": "1536x1024",
+      "is_video": false,
+      "is_image": true,
+      "used_in": [
+        "src/app/about-5/page.tsx"
+      ]
+    },
+    {
+      "rel_path": "/about-us-coded/assets/x126.png",
+      "clean_path": "about-us-coded/assets/x126.png",
+      "abs_path": "C:\\Users\\rajti\\OneDrive\\Desktop\\resources\\watch-2\\public\\about-us-coded\\assets\\x126.png",
+      "size_bytes": 520828,
+      "size_kb": 508.62,
+      "size_mb": 0.5,
+      "dimensions": "1672x941",
+      "is_video": false,
+      "is_image": true,
+      "used_in": [
+        "src/app/about-5/page.tsx"
+      ]
+    },
+    {
+      "rel_path": "/about-us-coded/assets/x88.png",
+      "clean_path": "about-us-coded/assets/x88.png",
+      "abs_path": "C:\\Users\\rajti\\OneDrive\\Desktop\\resources\\watch-2\\public\\about-us-coded\\assets\\x88.png",
+      "size_bytes": 1487470,
+      "size_kb": 1452.61,
+      "size_mb": 1.42,
+      "dimensions": "1536x1024",
+      "is_video": false,
+      "is_image": true,
+      "used_in": [
+        "src/app/about-5/page.tsx"
+      ]
+    },
+    {
+      "rel_path": "/about-us-coded/assets/x106.png",
+      "clean_path": "about-us-coded/assets/x106.png",
+      "abs_path": "C:\\Users\\rajti\\OneDrive\\Desktop\\resources\\watch-2\\public\\about-us-coded\\assets\\x106.png",
+      "size_bytes": 1346157,
+      "size_kb": 1314.61,
+      "size_mb": 1.28,
+      "dimensions": "1536x1024",
+      "is_video": false,
+      "is_image": true,
+      "used_in": [
+        "src/app/about-5/page.tsx"
+      ]
+    },
+    {
+      "rel_path": "/about-us-coded/assets/x72.png",
+      "clean_path": "about-us-coded/assets/x72.png",
+      "abs_path": "C:\\Users\\rajti\\OneDrive\\Desktop\\resources\\watch-2\\public\\about-us-coded\\assets\\x72.png",
+      "size_bytes": 453532,
+      "size_kb": 442.9,
+      "size_mb": 0.43,
+      "dimensions": "510x638",
+      "is_video": false,
+      "is_image": true,
+      "used_in": [
+        "src/app/about-5/page.tsx"
+      ]
+    },
+    {
+      "rel_path": "/about-us-coded/assets/x76.png",
+      "clean_path": "about-us-coded/assets/x76.png",
+      "abs_path": "C:\\Users\\rajti\\OneDrive\\Desktop\\resources\\watch-2\\public\\about-us-coded\\assets\\x76.png",
+      "size_bytes": 850153,
+      "size_kb": 830.23,
+      "size_mb": 0.81,
+      "dimensions": "1200x1600",
+      "is_video": false,
+      "is_image": true,
+      "used_in": [
+        "src/app/about-5/page.tsx"
+      ]
+    },
+    {
+      "rel_path": "/about-us-coded/assets/x46.png",
+      "clean_path": "about-us-coded/assets/x46.png",
+      "abs_path": "C:\\Users\\rajti\\OneDrive\\Desktop\\resources\\watch-2\\public\\about-us-coded\\assets\\x46.png",
+      "size_bytes": 1219785,
+      "size_kb": 1191.2,
+      "size_mb": 1.16,
+      "dimensions": "1500x1500",
+      "is_video": false,
+      "is_image": true,
+      "used_in": [
+        "src/app/about-5/page.tsx"
+      ]
+    },
+    {
+      "rel_path": "/about-us-coded/assets/x50.png",
+      "clean_path": "about-us-coded/assets/x50.png",
+      "abs_path": "C:\\Users\\rajti\\OneDrive\\Desktop\\resources\\watch-2\\public\\about-us-coded\\assets\\x50.png",
+      "size_bytes": 1202130,
+      "size_kb": 1173.96,
+      "size_mb": 1.15,
+      "dimensions": "1536x1024",
+      "is_video": false,
+      "is_image": true,
+      "used_in": [
+        "src/app/about-5/page.tsx"
+      ]
+    },
+    {
+      "rel_path": "/about-us-coded/assets/x84.png",
+      "clean_path": "about-us-coded/assets/x84.png",
+      "abs_path": "C:\\Users\\rajti\\OneDrive\\Desktop\\resources\\watch-2\\public\\about-us-coded\\assets\\x84.png",
+      "size_bytes": 1579624,
+      "size_kb": 1542.6,
+      "size_mb": 1.51,
+      "dimensions": "1024x1536",
+      "is_video": false,
+      "is_image": true,
+      "used_in": [
+        "src/app/about-5/page.tsx"
+      ]
+    },
+    {
+      "rel_path": "/about-us-coded/assets/x60.png",
+      "clean_path": "about-us-coded/assets/x60.png",
+      "abs_path": "C:\\Users\\rajti\\OneDrive\\Desktop\\resources\\watch-2\\public\\about-us-coded\\assets\\x60.png",
+      "size_bytes": 679538,
+      "size_kb": 663.61,
+      "size_mb": 0.65,
+      "dimensions": "1331x1182",
+      "is_video": false,
+      "is_image": true,
+      "used_in": [
+        "src/app/about-5/page.tsx"
+      ]
+    },
+    {
+      "rel_path": "/about-us-coded/assets/x42.png",
+      "clean_path": "about-us-coded/assets/x42.png",
+      "abs_path": "C:\\Users\\rajti\\OneDrive\\Desktop\\resources\\watch-2\\public\\about-us-coded\\assets\\x42.png",
+      "size_bytes": 1646255,
+      "size_kb": 1607.67,
+      "size_mb": 1.57,
+      "dimensions": "1132x1600",
+      "is_video": false,
+      "is_image": true,
+      "used_in": [
+        "src/app/about-5/page.tsx"
+      ]
+    },
+    {
+      "rel_path": "/about-us-coded/assets/x34.png",
+      "clean_path": "about-us-coded/assets/x34.png",
+      "abs_path": "C:\\Users\\rajti\\OneDrive\\Desktop\\resources\\watch-2\\public\\about-us-coded\\assets\\x34.png",
+      "size_bytes": 1742250,
+      "size_kb": 1701.42,
+      "size_mb": 1.66,
+      "dimensions": "1536x1024",
+      "is_video": false,
+      "is_image": true,
+      "used_in": [
+        "src/app/about-5/page.tsx"
+      ]
+    },
+    {
+      "rel_path": "/about-us-coded/assets/x24.png",
+      "clean_path": "about-us-coded/assets/x24.png",
+      "abs_path": "C:\\Users\\rajti\\OneDrive\\Desktop\\resources\\watch-2\\public\\about-us-coded\\assets\\x24.png",
+      "size_bytes": 379363,
+      "size_kb": 370.47,
+      "size_mb": 0.36,
+      "dimensions": "2172x724",
+      "is_video": false,
+      "is_image": true,
+      "used_in": [
+        "src/app/about-5/page.tsx"
+      ]
+    },
+    {
+      "rel_path": "/about-us-coded/assets/x20.png",
+      "clean_path": "about-us-coded/assets/x20.png",
+      "abs_path": "C:\\Users\\rajti\\OneDrive\\Desktop\\resources\\watch-2\\public\\about-us-coded\\assets\\x20.png",
+      "size_bytes": 1938111,
+      "size_kb": 1892.69,
+      "size_mb": 1.85,
+      "dimensions": "1536x1024",
+      "is_video": false,
+      "is_image": true,
+      "used_in": [
+        "src/app/about-5/page.tsx"
+      ]
+    },
+    {
+      "rel_path": "/about-us-coded/assets/x16.png",
+      "clean_path": "about-us-coded/assets/x16.png",
+      "abs_path": "C:\\Users\\rajti\\OneDrive\\Desktop\\resources\\watch-2\\public\\about-us-coded\\assets\\x16.png",
+      "size_bytes": 4119730,
+      "size_kb": 4023.17,
+      "size_mb": 3.93,
+      "dimensions": "3000x3749",
+      "is_video": false,
+      "is_image": true,
+      "used_in": [
+        "src/app/about-5/page.tsx"
+      ]
+    },
+    {
+      "rel_path": "/about-us-coded/assets/x12.png",
+      "clean_path": "about-us-coded/assets/x12.png",
+      "abs_path": "C:\\Users\\rajti\\OneDrive\\Desktop\\resources\\watch-2\\public\\about-us-coded\\assets\\x12.png",
+      "size_bytes": 1415377,
+      "size_kb": 1382.2,
+      "size_mb": 1.35,
+      "dimensions": "1024x1536",
+      "is_video": false,
+      "is_image": true,
+      "used_in": [
+        "src/app/about-5/page.tsx"
+      ]
+    },
+    {
+      "rel_path": "/about-us-coded/assets/x8.png",
+      "clean_path": "about-us-coded/assets/x8.png",
+      "abs_path": "C:\\Users\\rajti\\OneDrive\\Desktop\\resources\\watch-2\\public\\about-us-coded\\assets\\x8.png",
+      "size_bytes": 1857144,
+      "size_kb": 1813.62,
+      "size_mb": 1.77,
+      "dimensions": "1536x1024",
+      "is_video": false,
+      "is_image": true,
+      "used_in": [
+        "src/app/about-5/page.tsx"
+      ]
+    },
+    {
+      "rel_path": "/images/about us journey/banner-tt.JPG",
+      "clean_path": "images/about us journey/banner-tt.JPG",
+      "abs_path": "C:\\Users\\rajti\\OneDrive\\Desktop\\resources\\watch-2\\public\\images\\about us journey\\banner-tt.JPG",
+      "size_bytes": 6695430,
+      "size_kb": 6538.51,
+      "size_mb": 6.39,
+      "dimensions": "4608x3072",
+      "is_video": false,
+      "is_image": true,
+      "used_in": [
+        "src/app/about-5/page.tsx"
+      ]
+    },
+    {
+      "rel_path": "/img/about-2.png",
+      "clean_path": "img/about-2.png",
+      "abs_path": "C:\\Users\\rajti\\OneDrive\\Desktop\\resources\\watch-2\\public\\img\\about-2.png",
+      "size_bytes": 575901,
+      "size_kb": 562.4,
+      "size_mb": 0.55,
+      "dimensions": "1605x980",
+      "is_video": false,
+      "is_image": true,
+      "used_in": [
+        "src/app/about-5/page.tsx"
+      ]
+    },
+    {
+      "rel_path": "/images/aboutImg3.png",
+      "clean_path": "images/aboutImg3.png",
+      "abs_path": "C:\\Users\\rajti\\OneDrive\\Desktop\\resources\\watch-2\\public\\images\\aboutImg3.png",
+      "size_bytes": 11648170,
+      "size_kb": 11375.17,
+      "size_mb": 11.11,
+      "dimensions": "2731x4096",
+      "is_video": false,
+      "is_image": true,
+      "used_in": [
+        "src/app/about-5/page.tsx"
+      ]
+    },
+    {
+      "rel_path": "/images/about us journey/1992 - Voltage Batteries/IMG_0205.jpeg",
+      "clean_path": "images/about us journey/1992 - Voltage Batteries/IMG_0205.jpeg",
+      "abs_path": "C:\\Users\\rajti\\OneDrive\\Desktop\\resources\\watch-2\\public\\images\\about us journey\\1992 - Voltage Batteries\\IMG_0205.jpeg",
+      "size_bytes": 1800301,
+      "size_kb": 1758.11,
+      "size_mb": 1.72,
+      "dimensions": "3458x2466",
+      "is_video": false,
+      "is_image": true,
+      "used_in": [
+        "src/app/about-5/page.tsx"
+      ]
+    },
+    {
+      "rel_path": "/about-us-coded/assets/texture.jpg",
+      "clean_path": "about-us-coded/assets/texture.jpg",
+      "abs_path": "C:\\Users\\rajti\\OneDrive\\Desktop\\resources\\watch-2\\public\\about-us-coded\\assets\\texture.jpg",
+      "size_bytes": 156907,
+      "size_kb": 153.23,
+      "size_mb": 0.15,
+      "dimensions": "1536x1024",
+      "is_video": false,
+      "is_image": true,
+      "used_in": [
+        "src/app/about-5/about5.module.css",
+        "src/app/about-5/about5.module.css",
+        "src/app/about-5/about5.module.css"
+      ]
+    },
+    {
+      "rel_path": "/about-us-coded/assets/green.png",
+      "clean_path": "about-us-coded/assets/green.png",
+      "abs_path": "C:\\Users\\rajti\\OneDrive\\Desktop\\resources\\watch-2\\public\\about-us-coded\\assets\\green.png",
+      "size_bytes": 916404,
+      "size_kb": 894.93,
+      "size_mb": 0.87,
+      "dimensions": "793x1983",
+      "is_video": false,
+      "is_image": true,
+      "used_in": [
+        "src/app/about-5/about5.module.css"
+      ]
+    }
+  ]
+}

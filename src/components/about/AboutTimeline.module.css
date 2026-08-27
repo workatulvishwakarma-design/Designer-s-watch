@@ -1,0 +1,390 @@
+/* ─── Global Design Tokens ─── */
+.pageRoot {
+  --green: #275239;
+  --ink: #1A1A1A;
+  --body: #383838;
+  --bg-page: #E6DFD3;
+  --spine-width: clamp(220px, 20vw, 300px);
+}
+
+/* ─── Full-width Page Background ─── */
+.pageWrap {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--bg-page);
+  background-image: url('/about-us-coded/assets/texture.jpg');
+  background-repeat: repeat;
+  background-position: center top;
+  position: relative;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 80px;
+  padding-bottom: 120px;
+}
+
+/* ─── Continuous Torn Green Center Spine ─── */
+.greenSpine {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: var(--spine-width);
+  background-image: url('/about-us-coded/assets/green.png');
+  background-repeat: repeat-y;
+  background-position: center top;
+  background-size: var(--spine-width) auto;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ─── Main Timeline Canvas ─── */
+.timelineContainer {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ─── Base 3-Column Editorial Grid for Each Section ─── */
+.editorialSection {
+  position: relative;
+  width: 100%;
+  max-width: 1360px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--spine-width) minmax(0, 1fr);
+  align-items: start;
+  padding: 60px clamp(16px, 3vw, 48px);
+  min-height: 680px;
+}
+
+/* ─── Columns ─── */
+.leftCol {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: left;
+  padding-right: clamp(24px, 4vw, 56px);
+  padding-left: 12px;
+  position: relative;
+  z-index: 3;
+}
+
+.centerCol {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  z-index: 5;
+  width: 100%;
+}
+
+.rightCol {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  padding-left: clamp(24px, 4vw, 56px);
+  padding-right: 12px;
+  position: relative;
+  z-index: 3;
+}
+
+.contentCard {
+  width: 100%;
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ─── Typography (Matched to about-3) ─── */
+.bigYear {
+  font-family: var(--font-montserrat, 'Montserrat', sans-serif);
+  font-weight: 800;
+  font-size: clamp(68px, 6.2vw, 96px);
+  line-height: 0.82;
+  letter-spacing: -0.04em;
+  color: var(--green);
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 14px;
+}
+
+.yearNumber {
+  display: block;
+}
+
+.yearSuffix {
+  font-family: var(--font-cormorant, 'Cormorant Garamond', Georgia, serif);
+  font-style: italic;
+  font-size: 0.42em;
+  font-weight: 700;
+  color: var(--green);
+  letter-spacing: 0;
+  margin-left: 2px;
+}
+
+.smallYear {
+  font-family: var(--font-cormorant, 'Cormorant Garamond', Georgia, serif);
+  font-style: italic;
+  font-weight: 600;
+  font-size: clamp(28px, 2.6vw, 36px);
+  line-height: 1;
+  color: var(--green);
+  margin-bottom: 12px;
+}
+
+.editorialTitle {
+  font-family: var(--font-cormorant, 'Cormorant Garamond', Georgia, serif);
+  font-style: italic;
+  font-weight: 600;
+  font-size: clamp(24px, 2.3vw, 32px);
+  line-height: 1.05;
+  color: var(--ink);
+  margin: 6px 0 0;
+  letter-spacing: -0.01em;
+}
+
+.editorialTitleGreen {
+  color: var(--green) !important;
+}
+
+.greenRule {
+  width: 76px;
+  height: 2px;
+  background-color: var(--green);
+  margin: 10px 0 16px;
+}
+
+.bodyParagraph {
+  font-family: var(--font-montserrat, 'Montserrat', Arial, sans-serif);
+  font-size: clamp(11px, 0.85vw, 12.5px);
+  line-height: 1.72;
+  font-style: italic;
+  color: var(--body);
+  font-weight: 400;
+  margin: 0 0 12px;
+}
+
+.bodyParagraph b,
+.bodyParagraph strong {
+  font-weight: 700;
+  color: var(--ink);
+}
+
+/* ─── 1940s Specific Imagery ─── */
+.portraitWrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.portraitImg {
+  width: clamp(260px, 24vw, 360px);
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.2));
+  display: block;
+}
+
+.storeArtworkWrap {
+  margin-top: 24px;
+  width: 100%;
+  max-width: 480px;
+  position: relative;
+  z-index: 6;
+}
+
+.storeImg {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 20px rgba(0, 0, 0, 0.15));
+  display: block;
+}
+
+/* ─── 1960s Specific Imagery ─── */
+.familyPhotoWrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.familyPhotoImg {
+  width: clamp(340px, 34vw, 500px);
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.18));
+  display: block;
+}
+
+/* ─── Center Logos & Product Art ─── */
+.centerLogoWrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+
+.centerLogoImg {
+  max-width: 220px;
+  width: 80%;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.1));
+}
+
+.centerProductImg {
+  width: clamp(280px, 26vw, 400px);
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.2));
+  display: block;
+}
+
+/* ─── TODAY Section ─── */
+.todaySection {
+  position: relative;
+  width: 100%;
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 60px clamp(16px, 3vw, 48px) 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.todayGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--spine-width) minmax(0, 1fr);
+  width: 100%;
+  align-items: start;
+  margin-bottom: 40px;
+}
+
+.todayHeading {
+  font-family: var(--font-montserrat, 'Montserrat', sans-serif);
+  font-weight: 800;
+  color: var(--green);
+  font-size: clamp(52px, 5.2vw, 78px);
+  line-height: 0.82;
+  letter-spacing: -0.04em;
+  margin: 0 0 12px;
+}
+
+.affordHeading {
+  font-family: var(--font-cormorant, 'Cormorant Garamond', Georgia, serif);
+  color: var(--green);
+  font-size: clamp(28px, 2.8vw, 38px);
+  line-height: 1;
+  font-style: italic;
+  font-weight: 600;
+  margin: 0 0 12px;
+}
+
+.teamPhotoWrap {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  max-width: 880px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.teamPhotoImg {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.2));
+}
+
+/* ─── Tablet Responsiveness ─── */
+@media (max-width: 992px) {
+  .pageRoot {
+    --spine-width: 200px;
+  }
+
+  .editorialSection {
+    min-height: 560px;
+    padding: 40px 16px;
+  }
+
+  .leftCol {
+    padding-right: 20px;
+  }
+
+  .rightCol {
+    padding-left: 20px;
+  }
+
+  .contentCard {
+    max-width: 290px;
+  }
+}
+
+/* ─── Mobile Responsiveness ─── */
+@media (max-width: 680px) {
+  .pageWrap {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+
+  .pageRoot {
+    --spine-width: 50px;
+  }
+
+  .greenSpine {
+    left: 30px;
+    transform: none;
+    width: 50px;
+    background-size: 50px auto;
+  }
+
+  .editorialSection {
+    display: flex;
+    flex-direction: column;
+    min-height: auto;
+    padding: 30px 14px 30px 65px;
+    align-items: flex-start;
+  }
+
+  .leftCol,
+  .rightCol {
+    padding: 0;
+    width: 100%;
+    align-items: flex-start;
+  }
+
+  .contentCard {
+    max-width: 100%;
+  }
+
+  .centerCol {
+    width: 100%;
+    margin: 20px 0;
+    align-items: flex-start;
+  }
+
+  .todayGrid {
+    display: flex;
+    flex-direction: column;
+    padding-left: 65px;
+  }
+
+  .todayHeading {
+    font-size: 42px;
+  }
+
+  .affordHeading {
+    font-size: 24px;
+  }
+}

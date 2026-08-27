@@ -1,0 +1,557 @@
+export type SectionRule = {
+  x: number;
+  y: number;
+  w: number;
+};
+
+export type SectionYear = {
+  x: number;
+  y: number;
+  cls: string;
+  html: string;
+};
+
+export type SectionText = {
+  x: number;
+  y: number;
+  w: number;
+  cls: string;
+  html: string;
+};
+
+export type SectionImage = {
+  src: string;
+  x: number;
+  y: number;
+  w: number;
+  h: number;
+  alt: string;
+};
+
+export type MilestoneSectionData = {
+  id: string;
+  title: string;
+  height: number;
+  rules: SectionRule[];
+  years: SectionYear[];
+  texts: SectionText[];
+  images: SectionImage[];
+};
+
+export const TIMELINE_SECTIONS_DATA: MilestoneSectionData[] = [
+  {
+    id: '1940s',
+    title: '1940s — The Beginning',
+    height: 760,
+    rules: [{ x: 49, y: 398, w: 78 }],
+    years: [
+      { x: 49, y: 59, cls: 'year big', html: '19<br><span class="suffix">40s</span>' },
+      { x: 611, y: 145, cls: 'story green s', html: '1940s' },
+    ],
+    texts: [
+      { x: 49, y: 344, w: 210, cls: 'story s', html: 'The Beginning' },
+      {
+        x: 49,
+        y: 423,
+        w: 200,
+        cls: 'kicker',
+        html: 'Started a new division solely managing foreign brand distribution under the name <b>DESIGNER WORLD BRANDS</b> &amp; added more labels like INGERSOLL, INVICTA, and SANTA BARBARA POLO CLUB.',
+      },
+      {
+        x: 611,
+        y: 228,
+        w: 225,
+        cls: 'kicker',
+        html: 'Dedicated brand management infrastructure empowered global fashion icons to flourish in the Indian marketplace.',
+      },
+    ],
+    images: [
+      { src: 'x102.png', x: 290, y: 60, w: 330, h: 423, alt: 'Founder Portrait' },
+      { src: 'x122.png', x: 467, y: 350, w: 449, h: 437, alt: 'Nagpal Watch Co. Store' },
+    ],
+  },
+  {
+    id: '1960s',
+    title: '1960s — The 2nd Generation',
+    height: 820,
+    rules: [],
+    years: [
+      { x: 47, y: 218, cls: 'year small', html: '1960s' },
+      { x: 611, y: 53, cls: 'year big', html: '19<br><span class="suffix">60s</span>' },
+    ],
+    texts: [
+      {
+        x: 47,
+        y: 290,
+        w: 170,
+        cls: 'kicker',
+        html: 'International partnerships formed the backbone of a growing enterprise. By the mid-60s, Nagpals had become a trusted name in the Northern India trade circuit for precision components and watch batteries.',
+      },
+      {
+        x: 611,
+        y: 359,
+        w: 220,
+        cls: 'story green s',
+        html: 'The 2nd Generation<br>of Nagpal Watch.CO',
+      },
+      {
+        x: 611,
+        y: 448,
+        w: 245,
+        cls: 'kicker',
+        html: 'This was when the 2nd generation of Nagpal’s family entered the business, deepening roots in horology and building relationships with component suppliers across Northern India.',
+      },
+    ],
+    images: [
+      { src: 'x114.png', x: 129, y: 429, w: 482, h: 321, alt: '1960s Family Group' },
+    ],
+  },
+  {
+    id: '1976',
+    title: "1976 — Nagpal's Bombay Was Formed",
+    height: 770,
+    rules: [],
+    years: [
+      { x: 38, y: 126, cls: 'year big', html: '19<br><span class="suffix">76</span>' },
+      { x: 611, y: 160, cls: 'year small', html: '1976' },
+    ],
+    texts: [
+      {
+        x: 38,
+        y: 390,
+        w: 220,
+        cls: 'story s',
+        html: '‘Nagpal’s Bombay‘<br>was formed',
+      },
+      {
+        x: 38,
+        y: 525,
+        w: 210,
+        cls: 'kicker',
+        html: 'This was when the 2nd generation of Nagpal’s family entered the business, deepening roots in horology and building relationships across Northern India.',
+      },
+      {
+        x: 611,
+        y: 239,
+        w: 235,
+        cls: 'kicker',
+        html: 'This was the time when they travelled to international markets to import parts &amp; components for direct distribution and during various BUTTON CELL brands tied up with NAGPALS BOMBAY for battery distribution all over India. Brands from Japan like MAXELL &amp; Swiss like RENATA became a major area of company’s focus for growth.',
+      },
+    ],
+    images: [
+      { src: 'x130.png', x: 342, y: 254, w: 228, h: 91, alt: "Nagpal's Bombay Logo" },
+    ],
+  },
+  {
+    id: '1991',
+    title: '1991 — A Brand Is Born',
+    height: 670,
+    rules: [],
+    years: [
+      { x: 38, y: 188, cls: 'year small', html: '1991' },
+      { x: 611, y: 42, cls: 'year big', html: '19<br><span class="suffix">91</span>' },
+    ],
+    texts: [
+      {
+        x: 38,
+        y: 240,
+        w: 225,
+        cls: 'kicker',
+        html: 'D’SIGNER was not simply a product launch but a philosophical statement. At a time when Indian watchmaking was dominated by mass-market models, D’SIGNER chose craftsmanship over compromise and design over convention.',
+      },
+      { x: 611, y: 328, w: 220, cls: 'story green s', html: 'A Brand Is Born' },
+      {
+        x: 611,
+        y: 370,
+        w: 225,
+        cls: 'kicker',
+        html: 'D’SIGNER was introduced, a step into creating watches defined by design, quality, and individuality. One of the early Indian brands to design and manufacture to international horological standards.',
+      },
+    ],
+    images: [
+      { src: 'x110.png', x: 351, y: 171, w: 211, h: 79, alt: "D'SIGNER Logo" },
+      { src: 'x98.png', x: 267, y: 302, w: 349, h: 232, alt: "D'SIGNER Couple Ad" },
+    ],
+  },
+  {
+    id: '1995',
+    title: '1995 — Style For All',
+    height: 630,
+    rules: [],
+    years: [
+      { x: 47, y: 13, cls: 'year big', html: '19<br><span class="suffix">95</span>' },
+      { x: 609, y: 68, cls: 'year small', html: '1995' },
+    ],
+    texts: [
+      { x: 47, y: 299, w: 165, cls: 'story s', html: 'Style For All' },
+      {
+        x: 47,
+        y: 388,
+        w: 210,
+        cls: 'kicker',
+        html: 'ESCORT was launched to make timeless design more accessible, bringing style to a wider audience with robust everyday timepieces at honest prices.',
+      },
+      {
+        x: 609,
+        y: 113,
+        w: 235,
+        cls: 'kicker',
+        html: 'Escort answered a simple question: why shouldn’t every Indian have access to a reliable, beautifully finished timepiece? The market responded with extraordinary enthusiasm.',
+      },
+    ],
+    images: [
+      { src: 'x126.png', x: 358, y: 97, w: 212, h: 119, alt: 'ESCORT Logo' },
+      { src: 'x88.png', x: 296, y: 264, w: 407, h: 271, alt: 'ESCORT Launch Banquet' },
+    ],
+  },
+  {
+    id: '1998',
+    title: '1998 — Introduction of Tissot in India',
+    height: 700,
+    rules: [],
+    years: [
+      { x: 41, y: 123, cls: 'year small', html: '1998' },
+      { x: 616, y: 17, cls: 'year big', html: '19<br><span class="suffix">98</span>' },
+    ],
+    texts: [
+      {
+        x: 41,
+        y: 205,
+        w: 225,
+        cls: 'kicker',
+        html: 'Bringing prestige Swiss and French horological brands to Indian retail counters established the Nagpal Group as an esteemed national distributor.',
+      },
+      {
+        x: 616,
+        y: 349,
+        w: 220,
+        cls: 'story green s',
+        html: 'Introduction of<br>Tissot in India',
+      },
+      {
+        x: 616,
+        y: 430,
+        w: 226,
+        cls: 'kicker',
+        html: 'We were the ones to launch TISSOT watches in India as national distributors. We initiated the distribution for Tissot, Givenchy Paris, Christian Bernard Paris, and Rotary in India.',
+      },
+    ],
+    images: [
+      { src: 'x106.png', x: 236, y: 216, w: 393, h: 262, alt: 'Tissot Partnership' },
+    ],
+  },
+  {
+    id: '2004',
+    title: "2004 — D'signer Effects",
+    height: 700,
+    rules: [],
+    years: [
+      { x: 54, y: 28, cls: 'year big', html: '20<br><span class="suffix">04</span>' },
+      { x: 616, y: 188, cls: 'year small', html: '2004' },
+    ],
+    texts: [
+      { x: 54, y: 314, w: 210, cls: 'story s', html: 'D’signer Effects' },
+      {
+        x: 54,
+        y: 427,
+        w: 230,
+        cls: 'kicker',
+        html: 'Connecting brand messaging with high-quality custom corporate gifts allowed businesses across India to elevate their marketing initiatives and employee reward programs.',
+      },
+      {
+        x: 616,
+        y: 260,
+        w: 228,
+        cls: 'kicker',
+        html: 'We started a division purely in the corporate gifts &amp; promotion business under the name D’SIGNER EFFECTS. Here the idea was to connect with all small and large organizations, offering all sorts of promotion gifts for schemes and marketing plans.',
+      },
+    ],
+    images: [
+      { src: 'x72.png', x: 335, y: 191, w: 246, h: 308, alt: "D'SIGNER Effects Flyer" },
+    ],
+  },
+  {
+    id: '2010',
+    title: '2010 — B2B & Corporate Gifting',
+    height: 900,
+    rules: [],
+    years: [
+      { x: 41, y: 146, cls: 'year big', html: '20<br><span class="suffix">10</span>' },
+      { x: 616, y: 0, cls: 'year big', html: '20<br><span class="suffix">10</span>' },
+    ],
+    texts: [
+      {
+        x: 41,
+        y: 225,
+        w: 170,
+        cls: 'kicker',
+        html: 'DESIGNER WATCHES scaled production skills and managed largest volume B2B orders of watches in lakhs, delivering projects for esteemed groups like TATA INDICOM, REEBOK, NIKON, and PHARMA COMPANIES.',
+      },
+      {
+        x: 41,
+        y: 550,
+        w: 175,
+        cls: 'kicker',
+        html: 'B2B &amp; Corporate Gifting became a very important focus as wristwatches became a strong category for business promotion and marketing plans for major corporates. Launched clocks &amp; bags category under D’SIGNER for B2B requirements.',
+      },
+      {
+        x: 616,
+        y: 302,
+        w: 235,
+        cls: 'story green s',
+        html: 'B2B &amp; Corporate<br>Gifting',
+      },
+    ],
+    images: [
+      { src: 'x76.png', x: 288, y: 99, w: 164, h: 219, alt: 'Antique Clock' },
+      { src: 'x46.png', x: 398, y: 187, w: 245, h: 245, alt: 'Desk Clock' },
+      { src: 'x50.png', x: 197, y: 399, w: 508, h: 339, alt: 'Clock Collection' },
+    ],
+  },
+  {
+    id: '2013',
+    title: '2013 — Daniel Klein in India',
+    height: 650,
+    rules: [],
+    years: [
+      { x: 46, y: 1, cls: 'year big', html: '20<br><span class="suffix">13</span>' },
+      { x: 614, y: 96, cls: 'year small', html: '2013' },
+    ],
+    texts: [
+      { x: 46, y: 287, w: 225, cls: 'story s', html: 'Daniel Klein in India' },
+      {
+        x: 46,
+        y: 377,
+        w: 210,
+        cls: 'kicker',
+        html: 'Got exclusive distribution of Daniel Klein, a leading Turkish brand of watches and fashion accessories, in India.',
+      },
+      {
+        x: 614,
+        y: 220,
+        w: 250,
+        cls: 'kicker',
+        html: 'Bringing dynamic international styling and accessible luxury to retail counters opened new fashion-forward demographics across all major tier-1 and tier-2 cities.',
+      },
+    ],
+    images: [
+      { src: 'x84.png', x: 292, y: 27, w: 347, h: 520, alt: 'Daniel Klein Liquid Chrome Splash' },
+    ],
+  },
+  {
+    id: '2015',
+    title: '2015 — Beyond Our Own Brand',
+    height: 680,
+    rules: [],
+    years: [
+      { x: 41, y: 157, cls: 'year small', html: '2015' },
+      { x: 616, y: 7, cls: 'year big', html: '20<br><span class="suffix">15</span>' },
+    ],
+    texts: [
+      {
+        x: 41,
+        y: 430,
+        w: 215,
+        cls: 'kicker',
+        html: 'Over 500 private labels would trust our manufacturing expertise to engineer precision timepieces adhering to international quality benchmarks.',
+      },
+      {
+        x: 616,
+        y: 313,
+        w: 230,
+        cls: 'story green s',
+        html: 'Beyond Our Own<br>Brand',
+      },
+      {
+        x: 616,
+        y: 405,
+        w: 235,
+        cls: 'kicker',
+        html: 'Expanding into OEM manufacturing, we began designing and producing watches for global and national brands, marking a significant leap in manufacturing capability.',
+      },
+    ],
+    images: [
+      { src: 'x60.png', x: 385, y: 69, w: 150, h: 133, alt: 'OEM Time Lab' },
+      { src: 'x42.png', x: 316, y: 219, w: 283, h: 400, alt: 'Every Second Handcrafted' },
+    ],
+  },
+  {
+    id: '2017',
+    title: '2017 — Adding More Brands',
+    height: 600,
+    rules: [],
+    years: [
+      { x: 39, y: 17, cls: 'year big', html: '20<br><span class="suffix">17</span>' },
+      { x: 614, y: 195, cls: 'year small', html: '2017' },
+    ],
+    texts: [
+      { x: 39, y: 335, w: 220, cls: 'story s', html: 'Adding More Brands' },
+      {
+        x: 39,
+        y: 425,
+        w: 230,
+        cls: 'kicker',
+        html: 'Same year Designer World stepped into international exports, in London, Singapore, and in Middle Eastern countries like Bahrain and Oman.',
+      },
+      {
+        x: 614,
+        y: 270,
+        w: 238,
+        cls: 'kicker',
+        html: 'The house introduced few more international fashion brands in its distribution channel: MATHEY TISSOT and D1 MILANO.',
+      },
+    ],
+    images: [
+      { src: 'x34.png', x: 276, y: 307, w: 366, h: 244, alt: 'Mathey-Tissot Watch' },
+    ],
+  },
+  {
+    id: '2020',
+    title: '2020 — The Digital Shift',
+    height: 500,
+    rules: [],
+    years: [
+      { x: 50, y: 162, cls: 'year small', html: '2020' },
+      { x: 625, y: 12, cls: 'year big', html: '20<br><span class="suffix">20</span>' },
+    ],
+    texts: [
+      {
+        x: 50,
+        y: 245,
+        w: 235,
+        cls: 'kicker',
+        html: 'Direct-to-consumer acceleration and modern logistics allowed us to deliver timepieces with agility to watch lovers across India.',
+      },
+      { x: 625, y: 318, w: 215, cls: 'story green s', html: 'The Digital Shift' },
+      {
+        x: 625,
+        y: 408,
+        w: 230,
+        cls: 'kicker',
+        html: 'With the rise of e-commerce, we adapted quickly, designing for online-first brands and expanding our reach across digital platforms.',
+      },
+    ],
+    images: [
+      { src: 'x24.png', x: 348, y: 261, w: 216, h: 72, alt: 'ghadiwaala Logo' },
+    ],
+  },
+  {
+    id: '2022',
+    title: '2022 — Designer World Brands',
+    height: 600,
+    rules: [],
+    years: [
+      { x: 50, y: 10, cls: 'year big', html: '20<br><span class="suffix">22</span>' },
+      { x: 625, y: 188, cls: 'story green s', html: '2022' },
+    ],
+    texts: [
+      { x: 50, y: 305, w: 190, cls: 'story green s', html: 'Designer World<br>Brands' },
+      {
+        x: 50,
+        y: 410,
+        w: 218,
+        cls: 'kicker',
+        html: 'Dedicated brand management infrastructure empowered global fashion icons to flourish in the Indian marketplace.',
+      },
+      {
+        x: 625,
+        y: 268,
+        w: 236,
+        cls: 'kicker',
+        html: 'Started a new division solely managing foreign brand distribution under the name DESIGNER WORLD BRANDS &amp; added more labels like INGERSOLL, INVICTA, and SANTA BARBARA POLO CLUB.',
+      },
+    ],
+    images: [
+      { src: 'x20.png', x: 129, y: 177, w: 318, h: 212, alt: 'Designer World Brands' },
+    ],
+  },
+  {
+    id: '2024',
+    title: "2024 — D'signer Diamond Watches",
+    height: 720,
+    rules: [],
+    years: [
+      { x: 50, y: 151, cls: 'year small', html: '2024' },
+      { x: 625, y: 1, cls: 'year big', html: '20<br><span class="suffix">24</span>' },
+    ],
+    texts: [
+      {
+        x: 50,
+        y: 248,
+        w: 220,
+        cls: 'kicker',
+        html: 'Combining modern ethical lab-grown diamonds with Swiss-inspired horology to deliver sophisticated luxury for discerning collectors.',
+      },
+      { x: 625, y: 307, w: 235, cls: 'story green s', html: 'D’signer Diamond<br>Watches' },
+      {
+        x: 625,
+        y: 417,
+        w: 225,
+        cls: 'kicker',
+        html: 'Launched Lab Grown Diamond Studded Watches as a new step to reach a more luxury audience, featuring models ranging up to Rs. 1,50,000/-.',
+      },
+    ],
+    images: [
+      { src: 'x16.png', x: 253, y: 39, w: 370, h: 463, alt: "D'SIGNER Diamond Watches" },
+    ],
+  },
+  {
+    id: '2025',
+    title: '2025 — Time Corridor',
+    height: 850,
+    rules: [],
+    years: [
+      { x: 62, y: 9, cls: 'year big', html: '20<br><span class="suffix">25</span>' },
+      { x: 649, y: 158, cls: 'year small', html: '2025' },
+    ],
+    texts: [
+      { x: 62, y: 330, w: 225, cls: 'story s', html: 'Time Corridor' },
+      {
+        x: 62,
+        y: 400,
+        w: 240,
+        cls: 'kicker',
+        html: 'A latest feather in Designer World story. At Designer World it’s not about just the product we make but the aura we pass to our user with the time we design.',
+      },
+      {
+        x: 649,
+        y: 290,
+        w: 220,
+        cls: 'kicker',
+        html: 'This retail Time Boutique is initiated to promote our home brands, D’SIGNER &amp; ESCORT watches at a unique experience store showcasing our prime models, new launches, top sellers &amp; special editions with an appealing display and aura. A gesture to connect &amp; add some value to our happy watch buyers.',
+      },
+    ],
+    images: [
+      { src: 'x12.png', x: 290, y: 66, w: 390, h: 585, alt: 'Time Corridor Boutique' },
+    ],
+  },
+  {
+    id: 'today',
+    title: 'TODAY — Affordable Luxury',
+    height: 640,
+    rules: [],
+    years: [
+      { x: 38, y: 105, cls: 'today', html: 'TODAY' },
+      { x: 625, y: 168, cls: 'afford', html: 'Affordable Luxury' },
+    ],
+    texts: [
+      {
+        x: 38,
+        y: 160,
+        w: 220,
+        cls: 'kicker',
+        html: 'Blending decades of legacy with modern design, Designer World continues to create watches that balance style, quality, and accessibility.',
+      },
+      {
+        x: 625,
+        y: 226,
+        w: 225,
+        cls: 'kicker',
+        html: 'Where heritage meets modern design, Designer World creates watches that combine timeless style, reliable quality, and everyday accessibility.',
+      },
+    ],
+    images: [
+      { src: 'x8.png', x: 155, y: 289, w: 547, h: 365, alt: 'Designer World Team' },
+    ],
+  },
+];

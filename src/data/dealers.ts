@@ -11,6 +11,8 @@ export interface Dealer {
   city: string;
   state: string;
   location: string;
+  address?: string;
+  addressStatus?: string;
   tabs: string[];
   googleMapsQuery: string;
   searchIndex: string;
@@ -38,6 +40,7 @@ export const allStates: string[] = Array.from(
  *    - City exact/prefix match (Score 100+)
  *    - Area exact/prefix match (Score 80+)
  *    - Store name match (Score 60+)
+ *    - Address match (Score 50+)
  *    - State match (Score 40+)
  *    - Generic searchIndex match (Score 20+)
  */
@@ -68,6 +71,7 @@ export function searchDealers(
     const cityLower = dealer.city.toLowerCase();
     const stateLower = dealer.state.toLowerCase();
     const areaLower = dealer.area.toLowerCase();
+    const addressLower = (dealer.address || "").toLowerCase();
     const phoneClean = dealer.phone.replace(/[^0-9]/g, "");
     const qClean = q.replace(/[^0-9]/g, "");
 
@@ -90,6 +94,11 @@ export function searchDealers(
       score += 70;
     } else if (nameLower.includes(q)) {
       score += 50;
+    }
+
+    // Address match
+    if (addressLower && addressLower.includes(q)) {
+      score += 45;
     }
 
     // State match

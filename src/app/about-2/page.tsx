@@ -34,7 +34,7 @@ const milestones: Milestone[] = [
     year: "1976",
     title: "Nagpal's Bombay was formed",
     text: "In 1976 the family established their new company here under the name 'NAGPALS BOMBAY'. With extensive efforts, support & dedication the network expanded all around India. This was the time when they travelled to international markets to import parts & components for direct distribution.",
-    image1: "/images/about us journey/1976 - Nagpal Bombay/IMG_0216.jpeg",
+    image1: "/about-us-coded/assets/x118.png",
     image2: "/images/about us journey/1976.png",
     extra: "During 1980s various BUTTON CELL brands tied up with NAGPALS BOMBAY for battery distribution all over India. Brands from Japan like MAXELL & Swiss like RENATA became a major area of company's focus for growth.",
   },

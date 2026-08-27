@@ -24,17 +24,18 @@ import {
 } from "@/data/dealers";
 
 const POPULAR_CITIES = [
-  "DELHI",
   "MUMBAI",
-  "SURAT",
-  "AMRITSAR",
-  "KANPUR",
   "LUCKNOW",
-  "AHMEDABAD",
-  "BANGALORE",
-  "CHENNAI",
+  "DELHI",
+  "KANPUR",
+  "VARANASI",
+  "SURAT",
   "PUNE",
-  "KOLKATA",
+  "AHMEDABAD",
+  "BATHINDA",
+  "AMRITSAR",
+  "COIMBATORE",
+  "BAREILLY",
 ];
 
 export default function StoreLocator() {
@@ -624,6 +625,15 @@ export default function StoreLocator() {
                             </span>
                           )}
                         </div>
+
+                        {/* Full Store Address if verified */}
+                        {dealer.address &&
+                          !dealer.address.toLowerCase().includes("not confidently") &&
+                          !dealer.address.toLowerCase().includes("verify manually") && (
+                            <p className="text-[11.5px] font-montserrat text-[#78726A] line-clamp-2 leading-relaxed pt-0.5">
+                              {dealer.address}
+                            </p>
+                          )}
 
                         {/* Contact Person & Phone */}
                         <div className="flex flex-wrap items-center gap-x-5 gap-y-1 pt-0.5 text-[11.5px] font-montserrat text-[#5C5750]">

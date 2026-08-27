@@ -1,7 +1,7 @@
 import { prisma } from "@/lib/db";
 import { mapPrismaFamilyToGroup } from "@/lib/prismaMappers";
 import { getFamiliesByGender } from "@/data/productData";
-import HomeClient from "@/components/HomeClient";
+import HomeClient2 from "@/components/HomeClient2";
 
 export const dynamic = "force-dynamic";
 
@@ -30,7 +30,7 @@ export default async function HomePage() {
     // DB tables don't exist — expected during development without migrations
   }
 
-  // Fallback to static JSON data (already sorted: images-first)
+  // Fallback to static JSON data
   if (menFamilies.length === 0) {
     menFamilies = getFamiliesByGender("Men").slice(0, 12);
   }
@@ -38,5 +38,5 @@ export default async function HomePage() {
     womenFamilies = getFamiliesByGender("Women").slice(0, 12);
   }
 
-  return <HomeClient menFamilies={menFamilies} womenFamilies={womenFamilies} />;
+  return <HomeClient2 menFamilies={menFamilies} womenFamilies={womenFamilies} />;
 }

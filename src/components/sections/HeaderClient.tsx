@@ -300,6 +300,10 @@ export default function HeaderClient({ hasAnnouncement = false, megaMenuPayload 
         pathname === "/about" ||
         pathname === "/about-2" ||
         pathname.startsWith("/about-2") ||
+        pathname === "/about-4" ||
+        pathname.startsWith("/about-4") ||
+        pathname === "/about-5" ||
+        pathname.startsWith("/about-5") ||
         pathname === "/test-about" ||
         pathname.startsWith("/test-about") ||
         pathname === "/about-test" ||

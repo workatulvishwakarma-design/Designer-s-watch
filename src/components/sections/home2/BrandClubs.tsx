@@ -42,7 +42,7 @@ export default function BrandClubs() {
               className="relative w-full max-w-[320px] aspect-[2/1] overflow-hidden mb-8 shadow-lg"
             >
               <Image
-                src="/images/new-img/small-img.PNG"
+                src="/images/new-img/home-small2.png"
                 alt="D'Signer Watch Insert"
                 fill
                 className="object-cover object-center transition-transform duration-500 hover:scale-105"

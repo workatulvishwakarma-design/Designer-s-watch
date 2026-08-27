@@ -1,0 +1,1159 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+
+/* ════════════════════════════════════════════════════════════════
+   ABOUT-5 — Luxury Editorial Timeline Layout
+   Unified Font Style: Montserrat (Matching Home-2 Brand System)
+   ════════════════════════════════════════════════════════════════ */
+
+:root {
+  --color-green: #275239;
+  --color-ink: #1A1A1A;
+  --color-body: #383838;
+  --color-bg: #E6DFD3;
+  --spine-width: clamp(264px, 24vw, 360px);
+  --green-strip-width: clamp(502px, 45.5vw, 684px);
+  --font-main: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* ── Page Shell ── */
+.page {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-main);
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Hero Banner ── */
+.heroBanner {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.heroImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  filter: grayscale(100%) brightness(0.78);
+}
+
+.heroCaption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: clamp(0.85rem, 2vw, 1.4rem) 1.5rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.72) 0%, rgba(0, 0, 0, 0.32) 65%, transparent 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.heroCaptionText {
+  font-family: var(--font-main);
+  font-weight: 400;
+  font-size: clamp(11.5px, 0.9vw, 14.5px);
+  letter-spacing: 0.18em;
+  color: rgba(255, 255, 255, 0.92);
+  text-transform: uppercase;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   INTRO TEXT & STATS SECTION
+   ════════════════════════════════════════════════════════════════ */
+
+.introSection {
+  position: relative;
+  width: 100%;
+  background-color: #E6DFD3;
+  background-image: url('/about-us-coded/assets/texture.jpg');
+  background-repeat: repeat;
+  background-position: center top;
+}
+
+.introContainer {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: clamp(3.5rem, 5.5vw, 4.8rem) clamp(1.5rem, 4vw, 3rem) clamp(2.5rem, 4vw, 3.5rem);
+}
+
+.introGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1.5rem, 4vw, 4rem);
+  align-items: start;
+}
+
+.introTextLeft {
+  font-family: var(--font-main);
+  font-size: clamp(13px, 0.88vw, 15px);
+  line-height: 1.85;
+  color: #1A1918;
+  font-weight: 400;
+  text-align: left;
+  margin: 0;
+}
+
+.dropCap {
+  float: left;
+  font-family: var(--font-main);
+  font-weight: 800;
+  line-height: 0.75;
+  margin-right: 0.55rem;
+  margin-top: 0.2rem;
+  color: #275239;
+  font-size: clamp(2.8rem, 5.5vw, 4.2rem);
+}
+
+.introTextRight {
+  font-family: var(--font-main);
+  font-size: clamp(13px, 0.88vw, 15px);
+  line-height: 1.85;
+  color: #454039;
+  font-weight: 400;
+  text-align: left;
+  margin: 0;
+}
+
+.statsDivider {
+  width: 100%;
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.08);
+  margin: clamp(2.2rem, 3.5vw, 3.2rem) 0 clamp(2.2rem, 3.5vw, 3.2rem);
+}
+
+.statsRow {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(2.5rem, 8vw, 7rem);
+  text-align: center;
+  width: 100%;
+}
+
+.statItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.statNum {
+  font-family: var(--font-main);
+  font-size: clamp(34px, 3.8vw, 50px);
+  font-weight: 800;
+  color: #275239;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.statLabel {
+  font-family: var(--font-main);
+  font-size: clamp(10.5px, 0.75vw, 12px);
+  color: #7A746B;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-weight: 700;
+  margin-top: 0.65rem;
+}
+
+@media (max-width: 768px) {
+  .introGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .statsRow {
+    gap: 2rem;
+  }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   CONTINUOUS TIMELINE BODY
+   ════════════════════════════════════════════════════════════════ */
+
+.timelineBody {
+  position: relative;
+  width: 100%;
+  background-color: #E6DFD3;
+  background-image: url('/about-us-coded/assets/texture.jpg');
+  background-repeat: repeat;
+  background-position: center top;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 0 60px;
+}
+
+/* ── Continuous Torn Green Spine ── */
+.greenSpine {
+  position: absolute;
+  top: 0;
+  bottom: clamp(140px, 16vw, 220px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: var(--green-strip-width);
+  background-image: url('/about-us-coded/assets/green.png');
+  background-repeat: repeat-y;
+  background-position: center top;
+  background-size: var(--green-strip-width) auto;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   1940s SECTION
+   ════════════════════════════════════════════════════════════════ */
+
+.section1940 {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  min-height: auto;
+  margin: 0 0 clamp(24px, 3.5vh, 44px) 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 24px clamp(24px, 4vw, 64px) 10px;
+  z-index: 2;
+}
+
+.leftCol1940 {
+  width: 100%;
+  max-width: 380px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  padding-left: clamp(20px, 3.5vw, 48px);
+  z-index: 5;
+  position: relative;
+}
+
+.bigYear1940 {
+  font-family: var(--font-main);
+  font-weight: 800;
+  font-size: clamp(96px, 8.5vw, 134px);
+  line-height: 0.82;
+  letter-spacing: -0.04em;
+  color: var(--color-green);
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 8px;
+}
+
+.yearBottomRow {
+  display: flex;
+  align-items: flex-end;
+}
+
+.yearNumber {
+  display: block;
+}
+
+.yearSuffix {
+  font-family: var(--font-main);
+  font-size: 0.32em;
+  font-weight: 800;
+  color: var(--color-green);
+  letter-spacing: 0;
+  margin-left: 3px;
+  margin-bottom: 12px;
+  line-height: 1;
+}
+
+.editorialTitle1940 {
+  font-family: var(--font-main);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 1.15;
+  color: var(--color-ink);
+  margin: 10px 0 0;
+  letter-spacing: -0.01em;
+}
+
+.greenDivider1940 {
+  width: 68px;
+  height: 3px;
+  background-color: var(--color-green);
+  margin: 10px 0 16px;
+  border-radius: 1px;
+}
+
+.bodyParagraph1940 {
+  font-family: var(--font-main);
+  font-size: 12.5px;
+  line-height: 1.75;
+  font-style: italic;
+  color: var(--color-ink);
+  font-weight: 400;
+  margin: 0;
+  max-width: 290px;
+}
+
+.bodyParagraph1940 strong,
+.bodyParagraph1940 b {
+  font-weight: 700;
+  color: var(--color-ink);
+}
+
+.portraitWrap1940 {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 36px;
+  width: 320px;
+  display: flex;
+  justify-content: center;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.portraitImg1940 {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.22));
+  display: block;
+}
+
+.rightCol1940 {
+  width: 100%;
+  max-width: 380px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  padding-left: clamp(24px, 3.5vw, 56px);
+  z-index: 5;
+  position: relative;
+}
+
+.rightYearHeading1940 {
+  font-family: var(--font-main);
+  font-weight: 800;
+  font-size: 28px;
+  line-height: 1;
+  color: var(--color-green);
+  letter-spacing: -0.02em;
+  margin-top: 14px;
+}
+
+.rightYearSuffix {
+  font-size: 0.75em;
+  font-weight: 700;
+  margin-left: 1px;
+}
+
+.rightGreenDivider1940 {
+  width: 48px;
+  height: 2.5px;
+  background-color: var(--color-green);
+  margin: 10px 0 14px;
+  border-radius: 1px;
+}
+
+.storeWrap1940 {
+  margin-top: 20px;
+  width: 330px;
+  margin-left: calc(-240px - clamp(24px, 3.5vw, 56px));
+  position: relative;
+  z-index: 4;
+}
+
+.storeImg1940 {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.25));
+  display: block;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   GENERAL MILESTONE SECTION
+   ════════════════════════════════════════════════════════════════ */
+
+.milestoneSection {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  min-height: auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--spine-width) minmax(0, 1fr);
+  align-items: center;
+  padding: clamp(8px, 1vw, 16px) clamp(24px, 4vw, 64px);
+  z-index: 2;
+}
+
+#section-1991,
+#section-1995,
+#section-1998,
+#section-2004,
+#section-2010,
+#section-2013 {
+  margin-bottom: clamp(60px, 10vh, 120px);
+}
+
+.leftCol {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: left;
+  padding-right: clamp(16px, 2.5vw, 36px);
+  padding-left: 0;
+  z-index: 5;
+}
+
+.leftCard {
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+.centerCol {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  z-index: 3;
+  gap: 16px;
+}
+
+.centerArtworkImg {
+  display: block;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.2));
+  transition: transform 0.3s ease;
+}
+
+.centerArtworkImg:hover {
+  transform: scale(1.02);
+}
+
+.rightCol {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  padding-left: clamp(16px, 2.5vw, 36px);
+  padding-right: 0;
+  z-index: 4;
+}
+
+.rightCard {
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+.rightArtworkWrap {
+  margin-top: 20px;
+  width: 100%;
+  max-width: 480px;
+  position: relative;
+}
+
+.rightArtworkImg {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 20px rgba(0, 0, 0, 0.18));
+  display: block;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   TODAY FULL-WIDTH SECTION
+   ════════════════════════════════════════════════════════════════ */
+
+.todaySection {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: clamp(24px, 3vw, 40px) clamp(24px, 4vw, 64px) 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 2;
+}
+
+.todayGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--spine-width) minmax(0, 1fr);
+  width: 100%;
+  align-items: start;
+  margin-bottom: 0;
+}
+
+.teamPhotoWrap {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  max-width: 880px;
+  margin: clamp(-100px, -10vh, -40px) auto 0;
+  text-align: center;
+}
+
+.teamPhotoImg {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.2));
+  border-radius: 4px;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   TYPOGRAPHY (Montserrat System matching Home-2)
+   ════════════════════════════════════════════════════════════════ */
+
+.bigYear {
+  font-family: var(--font-main);
+  font-weight: 800;
+  font-size: clamp(96px, 8.5vw, 134px);
+  line-height: 0.82;
+  letter-spacing: -0.04em;
+  color: var(--color-green);
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 12px;
+}
+
+.editorialTitle {
+  font-family: var(--font-main);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(22px, 2.2vw, 28px);
+  line-height: 1.15;
+  color: var(--color-ink);
+  margin: 8px 0 0;
+  letter-spacing: -0.01em;
+}
+
+.editorialTitleGreen {
+  color: var(--color-ink) !important;
+}
+
+.smallYearLabel {
+  font-family: var(--font-main);
+  font-weight: 800;
+  font-size: clamp(26px, 2.4vw, 34px);
+  line-height: 1;
+  color: var(--color-green);
+  margin-bottom: 12px;
+  letter-spacing: -0.02em;
+}
+
+.greenDivider {
+  width: 76px;
+  height: 2px;
+  background-color: var(--color-green);
+  margin: 12px 0 16px;
+}
+
+.bodyParagraph {
+  font-family: var(--font-main);
+  font-size: clamp(11.5px, 0.85vw, 13px);
+  line-height: 1.74;
+  font-style: italic;
+  color: var(--color-body);
+  font-weight: 400;
+  margin: 0 0 12px;
+}
+
+.bodyParagraph strong,
+.bodyParagraph b {
+  font-weight: 700;
+  color: var(--color-ink);
+}
+
+/* ════════════════════════════════════════════════════════════════
+   CHAIRMAN MESSAGE SECTION
+   ════════════════════════════════════════════════════════════════ */
+
+.chairmanSection {
+  position: relative;
+  width: 100%;
+  background-color: #E6DFD3;
+  background-image: url('/about-us-coded/assets/texture.jpg');
+  background-repeat: repeat;
+  background-position: center top;
+}
+
+.chairmanContainer {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: clamp(3.5rem, 6vw, 5.5rem) clamp(1.5rem, 4vw, 3rem);
+}
+
+.chairmanImgWrap {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 12px 36px rgba(0, 57, 38, 0.12), 0 2px 8px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background-color: #dfd8cc;
+}
+
+.chairmanImg {
+  width: 100%;
+  object-fit: cover;
+  object-position: center top;
+  height: clamp(280px, 34vw, 480px);
+  display: block;
+  filter: grayscale(15%);
+  transition: filter 0.4s ease, transform 0.4s ease;
+}
+
+.chairmanImgWrap:hover .chairmanImg {
+  filter: grayscale(0%);
+  transform: scale(1.02);
+}
+
+.chairmanBadge {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0.6rem 1rem;
+  background: rgba(0, 57, 38, 0.88);
+  backdrop-filter: blur(4px);
+}
+
+.chairmanHeadingWrap {
+  border-left: 4px solid #275239;
+  padding-left: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.chairmanHeading {
+  font-family: var(--font-main);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #1A1918;
+  font-size: clamp(1.2rem, 2.2vw, 1.75rem);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.chairmanText {
+  font-family: var(--font-main);
+  font-size: clamp(12.5px, 0.88vw, 14px);
+  line-height: 1.8;
+  color: #383838;
+  font-weight: 400;
+  text-align: left;
+  margin: 0 0 1rem 0;
+}
+
+.chairmanSign {
+  font-family: var(--font-main);
+  font-size: 11.5px;
+  color: #275239;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-weight: 700;
+  margin-top: 1.5rem;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   RESPONSIVE — Tablet & Mobile Overrides Only
+   (Desktop styles above are completely preserved and untouched)
+   ════════════════════════════════════════════════════════════════ */
+
+/* ── Tablet (768px – 1024px) ── */
+@media (min-width: 768px) and (max-width: 1024px) {
+  :root {
+    --spine-width: clamp(160px, 20vw, 220px);
+    --green-strip-width: clamp(280px, 34vw, 380px);
+  }
+
+  .section1940 {
+    padding: 20px clamp(16px, 2.5vw, 32px) 10px;
+    margin-bottom: 24px;
+  }
+
+  .leftCol1940 {
+    max-width: 280px;
+    padding-left: clamp(12px, 2vw, 24px);
+  }
+
+  .bigYear1940,
+  .bigYear {
+    font-size: clamp(64px, 7.5vw, 84px);
+  }
+
+  .editorialTitle1940,
+  .editorialTitle {
+    font-size: clamp(18px, 2vw, 22px);
+  }
+
+  .bodyParagraph1940,
+  .bodyParagraph {
+    font-size: 11.5px;
+    line-height: 1.65;
+  }
+
+  .portraitWrap1940 {
+    width: clamp(180px, 22vw, 240px);
+    top: 20px;
+  }
+
+  .rightCol1940 {
+    max-width: 280px;
+    padding-left: clamp(12px, 2vw, 24px);
+  }
+
+  .storeWrap1940 {
+    width: clamp(200px, 24vw, 260px);
+    margin-left: calc(-120px - clamp(12px, 2vw, 24px));
+    margin-top: 14px;
+  }
+
+  .milestoneSection {
+    grid-template-columns: minmax(0, 1fr) var(--spine-width) minmax(0, 1fr);
+    padding: 12px clamp(16px, 2.5vw, 32px);
+  }
+
+  .leftCol {
+    padding-right: clamp(12px, 2vw, 20px);
+  }
+
+  .rightCol {
+    padding-left: clamp(12px, 2vw, 20px);
+  }
+
+  .leftCard,
+  .rightCard {
+    max-width: 290px;
+  }
+
+  .centerArtworkImg {
+    max-width: clamp(160px, 20vw, 230px);
+  }
+
+  .smallYearLabel {
+    font-size: clamp(20px, 2.2vw, 26px);
+  }
+}
+
+/* ── Mobile Viewports (< 768px) ── */
+@media (max-width: 767px) {
+  :root {
+    --spine-width: 100%;
+    --green-strip-width: 14px;
+  }
+
+  /* Page container */
+  .page {
+    overflow-x: hidden;
+  }
+
+  /* Hero Banner */
+  .heroBanner {
+    height: clamp(340px, 55vh, 460px);
+    min-height: clamp(340px, 55vh, 460px);
+  }
+
+  .heroCaption {
+    padding: 0.75rem 1rem;
+  }
+
+  .heroCaptionText {
+    white-space: normal;
+    font-size: 10.5px;
+    line-height: 1.4;
+    letter-spacing: 0.12em;
+    text-overflow: unset;
+  }
+
+  /* Intro Section */
+  .introContainer {
+    padding: 2.5rem 1.25rem 2rem;
+  }
+
+  .introGrid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .introTextLeft,
+  .introTextRight {
+    font-size: 13.5px;
+    line-height: 1.75;
+  }
+
+  .dropCap {
+    font-size: 3rem;
+  }
+
+  .statsRow {
+    gap: 1.5rem;
+    justify-content: space-around;
+  }
+
+  .statNum {
+    font-size: 32px;
+  }
+
+  .statLabel {
+    font-size: 10px;
+    letter-spacing: 0.16em;
+  }
+
+  /* Continuous Timeline Body */
+  .timelineBody {
+    padding: 32px 0 50px;
+    position: relative;
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  /* Green Spine as Continuous Left Vertical Anchor */
+  .greenSpine {
+    left: 14px;
+    transform: none;
+    width: 14px;
+    top: 10px;
+    bottom: 40px;
+    background-size: 14px auto;
+    background-repeat: repeat-y;
+    opacity: 0.85;
+    border-radius: 1px;
+    z-index: 1;
+  }
+
+  /* ── 1. 1940s Section on Mobile ── */
+  .section1940 {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 100%;
+    padding: 20px 18px 24px 44px;
+    margin: 0 0 16px 0;
+    box-sizing: border-box;
+    align-items: flex-start;
+  }
+
+  .leftCol1940 {
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+    margin: 0;
+    order: 1;
+    align-items: flex-start;
+    text-align: left;
+    z-index: 3;
+  }
+
+  .bigYear1940 {
+    font-size: clamp(52px, 14vw, 68px);
+    line-height: 0.85;
+    margin-bottom: 6px;
+  }
+
+  .yearSuffix {
+    margin-bottom: 6px;
+  }
+
+
+  .editorialTitle1940 {
+    font-size: clamp(20px, 5.5vw, 24px);
+    line-height: 1.2;
+    margin: 4px 0 0;
+  }
+
+  .greenDivider1940 {
+    width: 54px;
+    height: 2.5px;
+    margin: 8px 0 12px;
+  }
+
+  .bodyParagraph1940 {
+    font-size: 13px;
+    line-height: 1.75;
+    max-width: 100%;
+    margin: 0;
+    color: var(--color-ink);
+  }
+
+  .portraitWrap1940 {
+    position: relative;
+    left: auto;
+    transform: none;
+    top: auto;
+    width: 100%;
+    max-width: 300px;
+    margin: 20px auto 14px;
+    order: 2;
+    pointer-events: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 3;
+  }
+
+  .portraitImg1940 {
+    width: 100%;
+    max-width: 260px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.2));
+  }
+
+  .rightCol1940 {
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+    margin: 6px 0 0 0;
+    order: 3;
+    align-items: flex-start;
+    text-align: left;
+    z-index: 3;
+  }
+
+  .rightYearHeading1940 {
+    font-size: 16px;
+    margin-top: 6px;
+    letter-spacing: 0.05em;
+  }
+
+  .rightGreenDivider1940 {
+    width: 36px;
+    height: 2px;
+    margin: 6px 0 10px;
+  }
+
+  .storeWrap1940 {
+    width: 100%;
+    max-width: 300px;
+    margin: 16px auto 0;
+    position: relative;
+    left: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .storeImg1940 {
+    width: 100%;
+    max-width: 270px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+
+  /* ── 2. Milestone Sections on Mobile (Single Column Editorial Flow) ── */
+  .milestoneSection {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 100%;
+    padding: 20px 18px 24px 44px;
+    margin: 0;
+    box-sizing: border-box;
+    align-items: flex-start;
+  }
+
+  /* Left & Right Column Containers */
+  .leftCol,
+  .rightCol {
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+    margin: 0;
+    align-items: flex-start;
+    text-align: left;
+    z-index: 3;
+  }
+
+  .leftCard,
+  .rightCard {
+    width: 100%;
+    max-width: 100%;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  /* Order Management using CSS :has() for Single-Column Flow:
+     1. Column with Big Year (Header + Title + Narrative)
+     2. Center Column with Artwork / Photograph
+     3. Column with Supporting Details */
+  .leftCol:has(.bigYear),
+  .rightCol:has(.bigYear) {
+    order: 1;
+    margin-bottom: 0;
+  }
+
+  .centerCol {
+    order: 2;
+    width: 100%;
+    margin: 18px 0 14px;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+  }
+
+  .leftCol:not(:has(.bigYear)),
+  .rightCol:not(:has(.bigYear)) {
+    order: 3;
+    margin-top: 4px;
+  }
+
+  /* In mobile single-column flow, hide redundant second smallYearLabel if main bigYear is present */
+  .leftCol:not(:has(.bigYear)) .smallYearLabel,
+  .rightCol:not(:has(.bigYear)) .smallYearLabel {
+    display: none;
+  }
+
+  .leftCol:not(:has(.bigYear)) .greenDivider,
+  .rightCol:not(:has(.bigYear)) .greenDivider {
+    display: none;
+  }
+
+  /* Artwork Responsiveness */
+  .centerArtworkImg {
+    max-width: min(100%, 280px) !important;
+    width: auto !important;
+    height: auto !important;
+    margin: 0 auto;
+    display: block;
+  }
+
+  /* Milestone Typography */
+  .bigYear {
+    font-size: clamp(52px, 14vw, 68px);
+    line-height: 0.85;
+    margin-bottom: 6px;
+  }
+
+  .editorialTitle {
+    font-size: clamp(20px, 5.5vw, 24px);
+    line-height: 1.2;
+    margin: 4px 0 0;
+  }
+
+  .greenDivider {
+    width: 54px;
+    height: 2.5px;
+    margin: 8px 0 12px;
+  }
+
+  .bodyParagraph {
+    font-size: 13px;
+    line-height: 1.75;
+    margin: 0 0 10px;
+    color: var(--color-ink);
+    max-width: 100%;
+  }
+
+  /* ── 3. Today Section on Mobile ── */
+  .todaySection {
+    padding: 20px 18px 24px 44px;
+    width: 100%;
+    box-sizing: border-box;
+    align-items: flex-start;
+  }
+
+  .todayGrid {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .teamPhotoWrap {
+    width: 100%;
+    max-width: 100%;
+    margin: 8px 0 0;
+  }
+
+  .teamPhotoImg {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+  }
+
+  /* ── 4. Chairman Section on Mobile ── */
+  .chairmanContainer {
+    padding: 2.5rem 1.25rem;
+  }
+
+  .chairmanHeadingWrap {
+    margin-bottom: 1rem;
+    padding-left: 0.85rem;
+  }
+
+  .chairmanHeading {
+    font-size: 1.25rem;
+  }
+
+  .chairmanText {
+    font-size: 13px;
+    line-height: 1.75;
+  }
+}
+
+/* ── Extra Small Mobile Viewports (< 380px) ── */
+@media (max-width: 379px) {
+  .greenSpine {
+    left: 10px;
+    width: 12px;
+    background-size: 12px auto;
+  }
+
+  .section1940,
+  .milestoneSection,
+  .todaySection {
+    padding-left: 36px;
+    padding-right: 12px;
+  }
+
+  .bigYear1940,
+  .bigYear {
+    font-size: 46px;
+  }
+
+  .editorialTitle1940,
+  .editorialTitle {
+    font-size: 19px;
+  }
+
+  .bodyParagraph1940,
+  .bodyParagraph {
+    font-size: 12px;
+    line-height: 1.65;
+  }
+}
+

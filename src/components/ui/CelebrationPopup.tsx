@@ -30,7 +30,7 @@ export default function CelebrationPopup() {
   return (
     <AnimatePresence>
       {visible && (
-        <div className="fixed inset-0 z-[99999] flex items-center justify-center p-4 sm:p-6 select-none">
+        <div className="fixed inset-0 z-[9990] flex items-center justify-center p-4 sm:p-6 select-none">
           {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}

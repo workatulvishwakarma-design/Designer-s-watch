@@ -75,10 +75,11 @@ export default function CustomCursor() {
     return (
         <div
             ref={cursorRef}
-            className="fixed top-0 left-0 z-[99999] pointer-events-none transition-opacity duration-200"
+            className="fixed top-0 left-0 pointer-events-none transition-opacity duration-200"
             style={{
                 opacity: show ? 1 : 0,
                 willChange: "transform",
+                zIndex: 2147483647,
             }}
         >
             {/* Normal Cursor Arrow in Green (#003926) */}
