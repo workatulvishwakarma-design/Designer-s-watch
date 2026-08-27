@@ -39,7 +39,11 @@ function FadeIn({
    ═══════════════════════════════════════════════════════════════ */
 function Section1940s() {
   return (
-    <section id="section-1940s" className={styles.milestoneSection}>
+    <section
+      id="section-1940s"
+      className={styles.milestoneSection}
+      style={{ alignItems: "flex-start", paddingTop: "clamp(12px, 1.5vh, 24px)" }}
+    >
       {/* ── Left Column: 19/40s, The Beginning, Rule, Narrative ── */}
       <div className={styles.leftCol}>
         <div className={styles.leftCard}>
@@ -60,14 +64,14 @@ function Section1940s() {
         </div>
       </div>
 
-      {/* ── Center Portrait: Anchored directly over the green spine ── */}
-      <div className={styles.centerCol}>
+      {/* ── Center Portrait: Anchored at top of green spine ── */}
+      <div className={styles.centerCol} style={{ alignSelf: "flex-start" }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/about-us-coded/assets/x102.png"
           alt="1940s Founder Portrait"
           className={styles.centerArtworkImg}
-          style={{ width: "clamp(260px, 26vw, 360px)" }}
+          style={{ width: "clamp(260px, 26vw, 360px)", marginTop: 0 }}
           loading="eager"
         />
       </div>
@@ -85,7 +89,7 @@ function Section1940s() {
             className={styles.rightArtworkWrap}
             style={{
               marginLeft: "calc(-140px - clamp(20px, 2.5vw, 50px))",
-              marginTop: "clamp(80px, 18vh, 150px)",
+              marginTop: "clamp(60px, 25vh, 180px)",
               width: "clamp(300px, 28vw, 400px)",
               position: "relative",
               zIndex: 6,
