@@ -39,54 +39,56 @@ function FadeIn({
    ═══════════════════════════════════════════════════════════════ */
 function Section1940s() {
   return (
-    <section id="section-1940s" className={styles.section1940}>
+    <section id="section-1940s" className={styles.milestoneSection}>
       {/* ── Left Column: 19/40s, The Beginning, Rule, Narrative ── */}
-      <div className={styles.leftCol1940}>
-        <div className={styles.bigYear1940}>
-          <span className={styles.yearNumber}>19</span>
-          <div className={styles.yearBottomRow}>
-            <span className={styles.yearNumber}>40</span>
-            <span className={styles.yearSuffix}>s</span>
+      <div className={styles.leftCol}>
+        <div className={styles.leftCard}>
+          <div className={styles.bigYear}>
+            <span className={styles.yearNumber}>19</span>
+            <div style={{ display: "flex", alignItems: "flex-end" }}>
+              <span className={styles.yearNumber}>40</span>
+              <span className={styles.yearSuffix}>s</span>
+            </div>
           </div>
+          <h2 className={styles.editorialTitle}>The Beginning</h2>
+          <div className={styles.greenDivider} />
+          <p className={styles.bodyParagraph}>
+            Started a new division solely managing foreign brand distribution
+            under the name <strong>DESIGNER WORLD BRANDS</strong> &amp; added
+            more labels like INGERSOLL, INVICTA, and SANTA BARBARA POLO CLUB.
+          </p>
         </div>
-        <h2 className={styles.editorialTitle1940}>The Beginning</h2>
-        <div className={styles.greenDivider1940} />
-        <p className={styles.bodyParagraph1940}>
-          Started a new division solely managing foreign brand distribution
-          under the name <strong>DESIGNER WORLD BRANDS</strong> &amp; added
-          more labels like INGERSOLL, INVICTA, and SANTA BARBARA POLO CLUB.
-        </p>
       </div>
 
       {/* ── Center Portrait: Anchored directly over the green spine ── */}
-      <div className={styles.portraitWrap1940}>
+      <div className={styles.centerCol}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/about-us-coded/assets/x102.png"
           alt="1940s Founder Portrait"
-          className={styles.portraitImg1940}
+          className={styles.centerArtworkImg}
+          style={{ width: "clamp(260px, 26vw, 360px)" }}
           loading="eager"
         />
       </div>
 
-      {/* ── Right Column: 1940s, Rule, Narrative + Storefront Artwork ── */}
-      <div className={styles.rightCol1940}>
-        <div className={styles.rightYearHeading1940}>
-          1940<span className={styles.rightYearSuffix}>s</span>
-        </div>
-        <div className={styles.rightGreenDivider1940} />
-        <p className={styles.bodyParagraph1940}>
-          Dedicated brand management infrastructure empowered global fashion
-          icons to flourish in the Indian marketplace.
-        </p>
-        <div className={styles.storeWrap1940}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/about-us-coded/assets/x122.png"
-            alt="Nagpal Watch Co. Historical Storefront"
-            className={styles.storeImg1940}
-            loading="eager"
-          />
+      {/* ── Right Column: 1940s, Narrative + Storefront Artwork ── */}
+      <div className={styles.rightCol}>
+        <div className={styles.rightCard}>
+          <div className={styles.smallYearLabel}>1940s</div>
+          <p className={styles.bodyParagraph}>
+            Dedicated brand management infrastructure empowered global fashion
+            icons to flourish in the Indian marketplace.
+          </p>
+          <div className={styles.rightArtworkWrap}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/about-us-coded/assets/x122.png"
+              alt="Nagpal Watch Co. Historical Storefront"
+              className={styles.rightArtworkImg}
+              loading="eager"
+            />
+          </div>
         </div>
       </div>
     </section>
