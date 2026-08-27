@@ -81,7 +81,15 @@ function Section1940s() {
             Dedicated brand management infrastructure empowered global fashion
             icons to flourish in the Indian marketplace.
           </p>
-          <div className={styles.rightArtworkWrap}>
+          <div
+            className={styles.rightArtworkWrap}
+            style={{
+              marginLeft: "calc(-140px - clamp(20px, 2.5vw, 50px))",
+              width: "clamp(300px, 28vw, 400px)",
+              position: "relative",
+              zIndex: 6,
+            }}
+          >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/about-us-coded/assets/x122.png"
