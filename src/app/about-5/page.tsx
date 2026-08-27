@@ -76,6 +76,7 @@ function Section1940s() {
       <div className={styles.rightCol}>
         <div className={styles.rightCard}>
           <div className={styles.smallYearLabel}>1940s</div>
+          <div className={styles.smallYearDivider} />
           <p className={styles.bodyParagraph}>
             Dedicated brand management infrastructure empowered global fashion
             icons to flourish in the Indian marketplace.
@@ -104,6 +105,7 @@ function Section1960s() {
       <div className={styles.leftCol}>
         <div className={styles.leftCard}>
           <div className={styles.smallYearLabel}>1960s</div>
+          <div className={styles.smallYearDivider} />
           <p className={styles.bodyParagraph}>
             International partnerships formed the backbone of a growing
             enterprise. By the mid-60s, Nagpals had become a trusted name in the
@@ -193,7 +195,7 @@ function Section1976() {
       <div className={styles.rightCol}>
         <div className={styles.rightCard}>
           <div className={styles.smallYearLabel}>1976</div>
-          <div className={styles.greenDivider} style={{ width: '48px', height: '2.5px', margin: '8px 0 14px' }} />
+          <div className={styles.smallYearDivider} />
           <p className={styles.bodyParagraph}>
             This was the time when they travelled to international markets to
             import parts &amp; components for direct distribution and during
@@ -221,6 +223,7 @@ function Section1991() {
       <div className={styles.leftCol}>
         <div className={styles.leftCard}>
           <div className={styles.smallYearLabel}>1991</div>
+          <div className={styles.smallYearDivider} />
           <p className={styles.bodyParagraph}>
             D&apos;Signer was not simply a product launch but a philosophical
             statement. At a time when Indian watchmaking was dominated by
@@ -316,6 +319,7 @@ function Section1995() {
       <div className={styles.rightCol}>
         <div className={styles.rightCard}>
           <div className={styles.smallYearLabel}>1995</div>
+          <div className={styles.smallYearDivider} />
           <p className={styles.bodyParagraph}>
             Escort answered a simple question: why shouldn&apos;t every Indian
             have access to a reliable, beautifully finished timepiece? The
@@ -340,6 +344,7 @@ function Section1998() {
       <div className={styles.leftCol}>
         <div className={styles.leftCard}>
           <div className={styles.smallYearLabel}>1998</div>
+          <div className={styles.smallYearDivider} />
           <p className={styles.bodyParagraph}>
             Bringing prestige Swiss and French horological brands to Indian
             retail counters established the Nagpal Group as an esteemed
@@ -429,6 +434,7 @@ function Section2004() {
       <div className={styles.rightCol}>
         <div className={styles.rightCard}>
           <div className={styles.smallYearLabel}>2004</div>
+          <div className={styles.smallYearDivider} />
           <p className={styles.bodyParagraph}>
             Connecting brand messaging with high-quality custom corporate
             gifts allowed businesses across India to elevate their marketing
@@ -453,6 +459,7 @@ function Section2010() {
       <div className={styles.leftCol}>
         <div className={styles.leftCard}>
           <div className={styles.smallYearLabel}>2010</div>
+          <div className={styles.smallYearDivider} />
           <p className={styles.bodyParagraph}>
             DESIGNER WATCHES scaled production skills and managed largest volume
             B2B orders of watches in lakhs, delivering projects for esteemed
@@ -549,6 +556,7 @@ function Section2013() {
       <div className={styles.rightCol}>
         <div className={styles.rightCard}>
           <div className={styles.smallYearLabel}>2013</div>
+          <div className={styles.smallYearDivider} />
           <p className={styles.bodyParagraph}>
             Bringing dynamic international styling and accessible luxury to
             retail counters opened new fashion-forward demographics across all
@@ -569,6 +577,7 @@ function Section2015() {
       <div className={styles.leftCol}>
         <div className={styles.leftCard}>
           <div className={styles.smallYearLabel}>2015</div>
+          <div className={styles.smallYearDivider} />
           <p className={styles.bodyParagraph}>
             Over 500 private labels would trust our manufacturing expertise to
             engineer precision timepieces adhering to international quality
@@ -652,6 +661,7 @@ function Section2017() {
       <div className={styles.rightCol}>
         <div className={styles.rightCard}>
           <div className={styles.smallYearLabel}>2017</div>
+          <div className={styles.smallYearDivider} />
           <p className={styles.bodyParagraph}>
             Same year Designer World stepped into international exports, in
             London, Singapore, and in Middle Eastern countries like Bahrain and
@@ -672,6 +682,7 @@ function Section2020() {
       <div className={styles.leftCol}>
         <div className={styles.leftCard}>
           <div className={styles.smallYearLabel}>2020</div>
+          <div className={styles.smallYearDivider} />
           <p className={styles.bodyParagraph}>
             Direct-to-consumer acceleration and modern logistics allowed us to
             deliver timepieces with agility to watch lovers across India.
@@ -751,6 +762,7 @@ function Section2022() {
       <div className={styles.rightCol}>
         <div className={styles.rightCard}>
           <div className={styles.smallYearLabel}>2022</div>
+          <div className={styles.smallYearDivider} />
           <p className={styles.bodyParagraph}>
             Dedicated brand management infrastructure empowered global fashion
             icons to flourish in the Indian marketplace.
@@ -770,6 +782,7 @@ function Section2024() {
       <div className={styles.leftCol}>
         <div className={styles.leftCard}>
           <div className={styles.smallYearLabel}>2024</div>
+          <div className={styles.smallYearDivider} />
           <p className={styles.bodyParagraph}>
             Combining modern ethical lab-grown diamonds with Swiss-inspired
             horology to deliver sophisticated luxury for discerning collectors.
@@ -846,6 +859,7 @@ function Section2025() {
       <div className={styles.rightCol}>
         <div className={styles.rightCard}>
           <div className={styles.smallYearLabel}>2025</div>
+          <div className={styles.smallYearDivider} />
           <p className={styles.bodyParagraph}>
             A latest feather in Designer World story. At Designer World it’s
             not about just the product we make but the aura we pass to our user
@@ -868,10 +882,7 @@ function SectionToday() {
         <div className={styles.leftCol}>
           <div className={styles.leftCard}>
             <div className={styles.smallYearLabel}>TODAY</div>
-            <div
-              className={styles.greenDivider}
-              style={{ width: "48px", height: "2.5px", margin: "8px 0 14px" }}
-            />
+            <div className={styles.smallYearDivider} />
             <p className={styles.bodyParagraph}>
               Blending decades of legacy with modern design, Designer World
               continues to create watches that balance style, quality, and

@@ -568,8 +568,16 @@
   font-size: clamp(26px, 2.4vw, 34px);
   line-height: 1;
   color: var(--color-green);
-  margin-bottom: 12px;
+  margin-bottom: 0;
   letter-spacing: -0.02em;
+}
+
+.smallYearDivider {
+  width: 48px;
+  height: 2.5px;
+  background-color: var(--color-green);
+  margin: 8px 0 14px;
+  border-radius: 1px;
 }
 
 .greenDivider {
