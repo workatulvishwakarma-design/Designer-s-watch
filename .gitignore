@@ -74,10 +74,10 @@ Desktop.ini
 *.xlsx
 *.csv
 ~$*
-escort_*.json
-analyze_*.py
-escort_*.py
-print_*.py
+/escort_*.json
+/analyze_*.py
+/escort_*.py
+/print_*.py
 
 # --- Generated Files ---
 /src/generated/prisma
