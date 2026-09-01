@@ -5994,162 +5994,6 @@
       ]
     },
     {
-      "modelNo": "E2150-7626GM.2",
-      "slug": "e2150-7626gm-2-white",
-      "series": "7626",
-      "baseModel": "7626",
-      "brand": "ESCORT",
-      "mrp": 3195,
-      "price": 3195,
-      "dialColor": "White",
-      "dialHex": "#EAEAEA",
-      "strapColor": "Gold",
-      "strapHex": "#D4AF37",
-      "caseSize": "",
-      "dialSize": "",
-      "dialShape": "Round",
-      "movement": "Quartz",
-      "waterResistance": "3 ATM",
-      "category": "Ladies",
-      "gender": "Women",
-      "description": "Elevate your everyday style with the Escort E2150-7626GM.2. Featuring a sophisticated White dial encased in stainless steel with high-precision quartz movement and 3 ATM water resistance.",
-      "primaryImage": "/images/new-img/escort/Ladies/E-7626 with bracelet/E-7626.GM_White.jpg",
-      "hoverImage": "/images/new-img/escort/Ladies/E-7626 with bracelet/E-7626.GM_White.jpg",
-      "gallery": [
-        "/images/new-img/escort/Ladies/E-7626 with bracelet/E-7626.GM_White.jpg"
-      ]
-    },
-    {
-      "modelNo": "E2250-7626BM.16",
-      "slug": "e2250-7626bm-16-black",
-      "series": "7626",
-      "baseModel": "7626",
-      "brand": "ESCORT",
-      "mrp": 2495,
-      "price": 2495,
-      "dialColor": "Black",
-      "dialHex": "#1A1918",
-      "strapColor": "Black",
-      "strapHex": "#1A1918",
-      "caseSize": "",
-      "dialSize": "",
-      "dialShape": "Round",
-      "movement": "Quartz",
-      "waterResistance": "3 ATM",
-      "category": "Ladies",
-      "gender": "Women",
-      "description": "Elevate your everyday style with the Escort E2250-7626BM.16. Featuring a sophisticated Black dial encased in stainless steel with high-precision quartz movement and 3 ATM water resistance.",
-      "primaryImage": "/images/new-img/escort/Ladies/E-7626 with bracelet/E-7626.BM_Green.jpg",
-      "hoverImage": "/images/new-img/escort/Ladies/E-7626 with bracelet/E-7626.BM_Green.jpg",
-      "gallery": [
-        "/images/new-img/escort/Ladies/E-7626 with bracelet/E-7626.BM_Green.jpg"
-      ]
-    },
-    {
-      "modelNo": "E2250-7626BM.8",
-      "slug": "e2250-7626bm-8-black",
-      "series": "7626",
-      "baseModel": "7626",
-      "brand": "ESCORT",
-      "mrp": 2495,
-      "price": 2495,
-      "dialColor": "Black",
-      "dialHex": "#1A1918",
-      "strapColor": "Black",
-      "strapHex": "#1A1918",
-      "caseSize": "",
-      "dialSize": "",
-      "dialShape": "Round",
-      "movement": "Quartz",
-      "waterResistance": "3 ATM",
-      "category": "Ladies",
-      "gender": "Women",
-      "description": "Elevate your everyday style with the Escort E2250-7626BM.8. Featuring a sophisticated Black dial encased in stainless steel with high-precision quartz movement and 3 ATM water resistance.",
-      "primaryImage": "/images/new-img/escort/Ladies/E-7626 with bracelet/E-7626.BM_Green.jpg",
-      "hoverImage": "/images/new-img/escort/Ladies/E-7626 with bracelet/E-7626.BM_Green.jpg",
-      "gallery": [
-        "/images/new-img/escort/Ladies/E-7626 with bracelet/E-7626.BM_Green.jpg"
-      ]
-    },
-    {
-      "modelNo": "E2250-7626BRNM.9",
-      "slug": "e2250-7626brnm-9-brown",
-      "series": "7626",
-      "baseModel": "7626",
-      "brand": "ESCORT",
-      "mrp": 2495,
-      "price": 2495,
-      "dialColor": "Brown",
-      "dialHex": "#6B3E26",
-      "strapColor": "Brown",
-      "strapHex": "#6B3E26",
-      "caseSize": "",
-      "dialSize": "",
-      "dialShape": "Round",
-      "movement": "Quartz",
-      "waterResistance": "3 ATM",
-      "category": "Ladies",
-      "gender": "Women",
-      "description": "Elevate your everyday style with the Escort E2250-7626BRNM.9. Featuring a sophisticated Brown dial encased in stainless steel with high-precision quartz movement and 3 ATM water resistance.",
-      "primaryImage": "/images/new-img/escort/Ladies/E-7626 with bracelet/E-7626.BRNM_Brown.jpg",
-      "hoverImage": "/images/new-img/escort/Ladies/E-7626 with bracelet/E-7626.BRNM_Brown.jpg",
-      "gallery": [
-        "/images/new-img/escort/Ladies/E-7626 with bracelet/E-7626.BRNM_Brown.jpg"
-      ]
-    },
-    {
-      "modelNo": "E2250-7626RGM.16",
-      "slug": "e2250-7626rgm-16-green",
-      "series": "7626",
-      "baseModel": "7626",
-      "brand": "ESCORT",
-      "mrp": 2495,
-      "price": 2495,
-      "dialColor": "Green",
-      "dialHex": "#2E5A3C",
-      "strapColor": "Rose Gold",
-      "strapHex": "#B76E79",
-      "caseSize": "",
-      "dialSize": "",
-      "dialShape": "Round",
-      "movement": "Quartz",
-      "waterResistance": "3 ATM",
-      "category": "Ladies",
-      "gender": "Women",
-      "description": "Elevate your everyday style with the Escort E2250-7626RGM.16. Featuring a sophisticated Green dial encased in stainless steel with high-precision quartz movement and 3 ATM water resistance.",
-      "primaryImage": "/images/new-img/escort/Ladies/E-7626 with bracelet/E-7626.RGM_Green.jpg",
-      "hoverImage": "/images/new-img/escort/Ladies/E-7626 with bracelet/E-7626.RGM_Green.jpg",
-      "gallery": [
-        "/images/new-img/escort/Ladies/E-7626 with bracelet/E-7626.RGM_Green.jpg"
-      ]
-    },
-    {
-      "modelNo": "E2250-7626RTM.16",
-      "slug": "e2250-7626rtm-16-green",
-      "series": "7626",
-      "baseModel": "7626",
-      "brand": "ESCORT",
-      "mrp": 2495,
-      "price": 2495,
-      "dialColor": "Green",
-      "dialHex": "#2E5A3C",
-      "strapColor": "GOLD Two Tone",
-      "strapHex": "#6B3E26",
-      "caseSize": "",
-      "dialSize": "",
-      "dialShape": "Round",
-      "movement": "Quartz",
-      "waterResistance": "3 ATM",
-      "category": "Ladies",
-      "gender": "Women",
-      "description": "Elevate your everyday style with the Escort E2250-7626RTM.16. Featuring a sophisticated Green dial encased in stainless steel with high-precision quartz movement and 3 ATM water resistance.",
-      "primaryImage": "/images/new-img/escort/Ladies/E-7626 with bracelet/E-7626.RTM_Green.jpg",
-      "hoverImage": "/images/new-img/escort/Ladies/E-7626 with bracelet/E-7626.RTM_Green.jpg",
-      "gallery": [
-        "/images/new-img/escort/Ladies/E-7626 with bracelet/E-7626.RTM_Green.jpg"
-      ]
-    },
-    {
       "modelNo": "E1850-7627GM.16",
       "slug": "e1850-7627gm-16-green",
       "series": "7627",
@@ -8320,10 +8164,10 @@
       "category": "Ladies",
       "gender": "Women",
       "description": "Elevate your everyday style with the Escort E-2250-7779.TM.16L. Featuring a sophisticated Green dial encased in stainless steel with high-precision quartz movement and 3 ATM water resistance.",
-      "primaryImage": "/images/new-img/escort/Ladies/7779/7779_Poster_1.jpg",
-      "hoverImage": "/images/new-img/escort/Ladies/7779/7779_Poster_1.jpg",
+      "primaryImage": "/images/new-img/escort/Ladies/7779/E-7779/E-2250-7779.7M.16L.png",
+      "hoverImage": "/images/new-img/escort/Ladies/7779/E-7779/E-2250-7779.7M.16L.png",
       "gallery": [
-        "/images/new-img/escort/Ladies/7779/7779_Poster_1.jpg"
+        "/images/new-img/escort/Ladies/7779/E-7779/E-2250-7779.7M.16L.png"
       ]
     },
     {
@@ -8346,10 +8190,10 @@
       "category": "Ladies",
       "gender": "Women",
       "description": "Elevate your everyday style with the Escort E-2250-7779.TM.2L. Featuring a sophisticated SILVER dial encased in stainless steel with high-precision quartz movement and 3 ATM water resistance.",
-      "primaryImage": "/images/new-img/escort/Ladies/7779/7779_Poster_1.jpg",
-      "hoverImage": "/images/new-img/escort/Ladies/7779/7779_Poster_1.jpg",
+      "primaryImage": "/images/new-img/escort/Ladies/7779/E-7779/E-2250-7779.7M.2L.png",
+      "hoverImage": "/images/new-img/escort/Ladies/7779/E-7779/E-2250-7779.7M.2L.png",
       "gallery": [
-        "/images/new-img/escort/Ladies/7779/7779_Poster_1.jpg"
+        "/images/new-img/escort/Ladies/7779/E-7779/E-2250-7779.7M.2L.png"
       ]
     },
     {
@@ -8372,10 +8216,10 @@
       "category": "Ladies",
       "gender": "Women",
       "description": "Elevate your everyday style with the Escort E-2250-7779.TM.3L. Featuring a sophisticated black dial encased in stainless steel with high-precision quartz movement and 3 ATM water resistance.",
-      "primaryImage": "/images/new-img/escort/Ladies/7779/7779_Poster_1.jpg",
-      "hoverImage": "/images/new-img/escort/Ladies/7779/7779_Poster_1.jpg",
+      "primaryImage": "/images/new-img/escort/Ladies/7779/E-7779/E-2250-7779.7M.3L.png",
+      "hoverImage": "/images/new-img/escort/Ladies/7779/E-7779/E-2250-7779.7M.3L.png",
       "gallery": [
-        "/images/new-img/escort/Ladies/7779/7779_Poster_1.jpg"
+        "/images/new-img/escort/Ladies/7779/E-7779/E-2250-7779.7M.3L.png"
       ]
     },
     {
@@ -8398,10 +8242,10 @@
       "category": "Ladies",
       "gender": "Women",
       "description": "Elevate your everyday style with the Escort E-2250-7779.TM.5L. Featuring a sophisticated blue dial encased in stainless steel with high-precision quartz movement and 3 ATM water resistance.",
-      "primaryImage": "/images/new-img/escort/Ladies/7779/7779_Poster_1.jpg",
-      "hoverImage": "/images/new-img/escort/Ladies/7779/7779_Poster_1.jpg",
+      "primaryImage": "/images/new-img/escort/Ladies/7779/E-7779/E-2250-7779.7M.5L.png",
+      "hoverImage": "/images/new-img/escort/Ladies/7779/E-7779/E-2250-7779.7M.5L.png",
       "gallery": [
-        "/images/new-img/escort/Ladies/7779/7779_Poster_1.jpg"
+        "/images/new-img/escort/Ladies/7779/E-7779/E-2250-7779.7M.5L.png"
       ]
     },
     {
