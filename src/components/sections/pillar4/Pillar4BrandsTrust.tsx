@@ -42,7 +42,7 @@ export default function Pillar4BrandsTrust() {
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/images/new-content/partner.png"
+            src="/images/new-img/pillars/frame-1.png"
             alt="Brands That Trust Nagpal Group"
             className="w-full h-auto object-contain transition-transform duration-700 group-hover:scale-[1.01]"
           />

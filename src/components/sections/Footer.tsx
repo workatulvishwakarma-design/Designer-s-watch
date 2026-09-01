@@ -91,7 +91,7 @@ export default function Footer() {
                     
                     {/* Brand Anchor (Left) */}
                     <motion.div variants={itemVariants} className="lg:w-[35%] flex flex-col justify-start">
-                        <Link href="/" className="block transition-opacity duration-700 hover:opacity-60 w-fit mb-12">
+                        <Link href="/home-2" className="block transition-opacity duration-700 hover:opacity-60 w-fit mb-12">
                             <Image
                                 src={isEscort ? "/images/escort_b.png" : "/images/designer world logo_B.png"}
                                 alt="Designer World Logo"
@@ -111,10 +111,10 @@ export default function Footer() {
                         <motion.div variants={itemVariants} className="flex flex-col gap-8">
                             <h6 className="text-[#001F14] text-[15px] md:text-[16px] tracking-[0.1em] uppercase font-medium font-montserrat">Collections</h6>
                             <nav className="flex flex-col gap-4 text-[13px] md:text-[14px] leading-[1.5] font-montserrat tracking-[0.04em] text-[#003926]/70 uppercase font-normal">
-                                <Link href="/collections/dsigner" className="hover:text-[#001F14] transition-colors duration-500 w-fit relative group/link">D'Signer Core<span className="absolute -bottom-1 left-0 w-0 h-px bg-[#003926] group-hover/link:w-full transition-all duration-500" /></Link>
-                                <Link href="/collections/escort" className="hover:text-[#001F14] transition-colors duration-500 w-fit relative group/link">Escort Series<span className="absolute -bottom-1 left-0 w-0 h-px bg-[#003926] group-hover/link:w-full transition-all duration-500" /></Link>
-                                <Link href="/collections/men" className="hover:text-[#001F14] transition-colors duration-500 w-fit relative group/link">Men's Timepieces<span className="absolute -bottom-1 left-0 w-0 h-px bg-[#003926] group-hover/link:w-full transition-all duration-500" /></Link>
-                                <Link href="/collections/women" className="hover:text-[#001F14] transition-colors duration-500 w-fit relative group/link">Women's Timepieces<span className="absolute -bottom-1 left-0 w-0 h-px bg-[#003926] group-hover/link:w-full transition-all duration-500" /></Link>
+                                <Link href="/collections/dsigner-men" className="hover:text-[#001F14] transition-colors duration-500 w-fit relative group/link">D&apos;Signer Men<span className="absolute -bottom-1 left-0 w-0 h-px bg-[#003926] group-hover/link:w-full transition-all duration-500" /></Link>
+                                <Link href="/collections/dsigner-womens" className="hover:text-[#001F14] transition-colors duration-500 w-fit relative group/link">D&apos;Signer Women<span className="absolute -bottom-1 left-0 w-0 h-px bg-[#003926] group-hover/link:w-full transition-all duration-500" /></Link>
+                                <Link href="/collections/Escort-men" className="hover:text-[#001F14] transition-colors duration-500 w-fit relative group/link">Escort Men<span className="absolute -bottom-1 left-0 w-0 h-px bg-[#003926] group-hover/link:w-full transition-all duration-500" /></Link>
+                                <Link href="/collections/Escort-womens" className="hover:text-[#001F14] transition-colors duration-500 w-fit relative group/link">Escort Women<span className="absolute -bottom-1 left-0 w-0 h-px bg-[#003926] group-hover/link:w-full transition-all duration-500" /></Link>
                             </nav>
                         </motion.div>
 
@@ -122,9 +122,9 @@ export default function Footer() {
                         <motion.div variants={itemVariants} className="flex flex-col gap-8">
                             <h6 className="text-[#001F14] text-[15px] md:text-[16px] tracking-[0.1em] uppercase font-medium font-montserrat">The Maison</h6>
                             <nav className="flex flex-col gap-4 text-[13px] md:text-[14px] leading-[1.5] font-montserrat tracking-[0.04em] text-[#003926]/70 uppercase font-normal">
-                                <Link href="/about-2" className="hover:text-[#001F14] transition-colors duration-500 w-fit">Our Heritage</Link>
-                                <Link href="/pillar-2" className="hover:text-[#001F14] transition-colors duration-500 w-fit">Pillars</Link>
-                                <Link href="/about-2" className="hover:text-[#001F14] transition-colors duration-500 w-fit">Craftsmanship</Link>
+                                <Link href="/about-5" className="hover:text-[#001F14] transition-colors duration-500 w-fit">Our Heritage</Link>
+                                <Link href="/pillar-4" className="hover:text-[#001F14] transition-colors duration-500 w-fit">Core Divisions</Link>
+                                <Link href="/about-5" className="hover:text-[#001F14] transition-colors duration-500 w-fit">Craftsmanship</Link>
                             </nav>
                         </motion.div>
 

@@ -192,7 +192,7 @@ export default function ContactSection() {
                         We manufacture for 500+ brands worldwide.
                     </p>
                     <Link
-                        href="/oem"
+                        href="/pillar-4"
                         className="px-10 py-4 bg-primaryText text-white font-body text-xs tracking-[0.2em] uppercase rounded-xl hover:bg-gold-light hover:text-primaryText transition-all transform hover:scale-105 shadow-xl"
                     >
                         Start Your Project →

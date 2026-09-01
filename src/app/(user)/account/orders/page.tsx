@@ -55,7 +55,7 @@ export default async function OrdersPage() {
            <h3 className="mt-2 text-sm font-semibold text-gray-900 dark:text-white">No orders yet</h3>
            <p className="mt-1 text-sm text-gray-500">When you place an order, it will appear here.</p>
            <div className="mt-6">
-             <Link href="/watches" className="rounded-md bg-black dark:bg-white px-4 py-2 text-sm font-semibold text-white dark:text-black shadow-sm hover:bg-zinc-800">
+             <Link href="/collections/dsigner-men" className="rounded-md bg-black dark:bg-white px-4 py-2 text-sm font-semibold text-white dark:text-black shadow-sm hover:bg-zinc-800">
                Start Shopping
              </Link>
            </div>

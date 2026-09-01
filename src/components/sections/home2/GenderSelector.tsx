@@ -64,14 +64,14 @@ export default function GenderSelector() {
             </h2>
             <div className="flex flex-row items-center justify-center gap-3 sm:gap-4 pointer-events-auto flex-wrap sm:flex-nowrap">
               <Link
-                href="/collections/mens-designer"
+                href="/collections/dsigner-men"
                 className="pointer-events-auto font-montserrat text-[10px] sm:text-[11px] tracking-[0.18em] sm:tracking-[0.22em] uppercase font-semibold text-white border border-white/50 px-4 sm:px-5 py-2 sm:py-2.5 backdrop-blur-sm bg-white/5 hover:bg-white hover:text-[#003926] hover:border-white transition-all duration-300"
                 onClick={(e) => e.stopPropagation()}
               >
                 D&apos;SIGNER
               </Link>
               <Link
-                href="/collections/mens-escort"
+                href="/collections/Escort-men"
                 className="pointer-events-auto font-montserrat text-[10px] sm:text-[11px] tracking-[0.18em] sm:tracking-[0.22em] uppercase font-semibold text-white border border-white/50 px-4 sm:px-5 py-2 sm:py-2.5 backdrop-blur-sm bg-white/5 hover:bg-white hover:text-[#003926] hover:border-white transition-all duration-300"
                 onClick={(e) => e.stopPropagation()}
               >
@@ -126,14 +126,14 @@ export default function GenderSelector() {
             </h2>
             <div className="flex flex-row items-center justify-center gap-3 sm:gap-4 pointer-events-auto flex-wrap sm:flex-nowrap">
               <Link
-                href="/collections/womens-designer"
+                href="/collections/dsigner-womens"
                 className="pointer-events-auto font-montserrat text-[10px] sm:text-[11px] tracking-[0.18em] sm:tracking-[0.22em] uppercase font-semibold text-white border border-white/50 px-4 sm:px-5 py-2 sm:py-2.5 backdrop-blur-sm bg-white/5 hover:bg-white hover:text-[#003926] hover:border-white transition-all duration-300"
                 onClick={(e) => e.stopPropagation()}
               >
                 D&apos;SIGNER
               </Link>
               <Link
-                href="/collections/womens-escort"
+                href="/collections/Escort-womens"
                 className="pointer-events-auto font-montserrat text-[10px] sm:text-[11px] tracking-[0.18em] sm:tracking-[0.22em] uppercase font-semibold text-white border border-white/50 px-4 sm:px-5 py-2 sm:py-2.5 backdrop-blur-sm bg-white/5 hover:bg-white hover:text-[#003926] hover:border-white transition-all duration-300"
                 onClick={(e) => e.stopPropagation()}
               >

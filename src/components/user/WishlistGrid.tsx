@@ -29,7 +29,7 @@ export function WishlistGrid() {
         <h3 className="mt-2 text-sm font-semibold text-gray-900 dark:text-white">Empty Wishlist</h3>
         <p className="mt-1 text-sm text-gray-500">You haven't saved any items to your wishlist yet.</p>
         <div className="mt-6">
-          <Link href="/watches" className="text-sm font-semibold leading-6 text-blue-600 dark:text-blue-400 hover:text-blue-500">
+          <Link href="/collections/dsigner-men" className="text-sm font-semibold leading-6 text-blue-600 dark:text-blue-400 hover:text-blue-500">
             Browse Watches <span aria-hidden="true">&rarr;</span>
           </Link>
         </div>

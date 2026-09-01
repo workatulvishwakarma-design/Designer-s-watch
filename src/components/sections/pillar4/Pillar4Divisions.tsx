@@ -37,7 +37,7 @@ const NAGPAL_DIVISIONS: Division[] = [
       "A name and goodwill running strong for 50 years now. 1976–2026."
     ],
     image: "/images/new-content/pillars/Nagpal_s Bombay/ng-bombay.jpg",
-    bg: "#0D0D0C",
+    bg: "#003926",
     textColor: "#FAFAF8",
     accentColor: "#B8935A",
     imageContain: false,
@@ -56,9 +56,9 @@ const NAGPAL_DIVISIONS: Division[] = [
       "From bespoke dial customization to specialized packaging and nationwide delivery logistics, our corporate division operates with the exacting standards and reliability demanded by India's most respected conglomerates."
     ],
     image: "/images/new-content/pillars/Corporate B2B/2a.jpg",
-    bg: "#FAF8F4",
-    textColor: "#1A1918",
-    accentColor: "#003926",
+    bg: "#FFFFFF",
+    textColor: "#003926",
+    accentColor: "#B8935A",
     imageContain: false,
   },
   {
@@ -75,7 +75,7 @@ const NAGPAL_DIVISIONS: Division[] = [
       "By maintaining strict confidentiality and uncompromising production standards, we serve as the silent engine behind many successful watch brands operating in the market today."
     ],
     image: "/images/new-content/pillars/OEM- ODM/WhatsApp Image 2026-04-04 at 4.14.22 PM (1).jpeg",
-    bg: "#111110",
+    bg: "#003926",
     textColor: "#FAFAF8",
     accentColor: "#B8935A",
     imageContain: false,
@@ -94,9 +94,9 @@ const NAGPAL_DIVISIONS: Division[] = [
       "Together, these house brands represent the full spectrum of our capability—from design studio creativity to manufacturing floor precision and lifelong after-sales commitment."
     ],
     image: "/images/new-img/pillars/8.jpg",
-    bg: "#F2EDE6",
-    textColor: "#1A1918",
-    accentColor: "#003926",
+    bg: "#FFFFFF",
+    textColor: "#003926",
+    accentColor: "#B8935A",
     imageContain: false,
   },
   {
@@ -113,7 +113,7 @@ const NAGPAL_DIVISIONS: Division[] = [
       "This division also serves as a window into global trends and competitive benchmarks, bringing back insights that inform product development across the group."
     ],
     image: "/images/new-content/pillars/Exports/WhatsApp Image 2026-04-15 at 11.30.22 AM.jpeg",
-    bg: "#0D0D0C",
+    bg: "#003926",
     textColor: "#FAFAF8",
     accentColor: "#B8935A",
     imageContain: false,
@@ -132,9 +132,9 @@ const NAGPAL_DIVISIONS: Division[] = [
       "This boutique is a gesture to connect with watch enthusiasts and add enduring value to our happy watch buyers. First location: Agra."
     ],
     image: "/images/new-content/pillars/Time Corridor/time corriddor/1A1A8499.JPG",
-    bg: "#FAF8F4",
-    textColor: "#1A1918",
-    accentColor: "#003926",
+    bg: "#FFFFFF",
+    textColor: "#003926",
+    accentColor: "#B8935A",
     imageContain: false,
   },
   {
@@ -150,7 +150,7 @@ const NAGPAL_DIVISIONS: Division[] = [
       "We supply genuine button cells to independent retailers, authorised service centres, and major watch networks, ensuring the reliable performance of timepieces nationwide."
     ],
     image: "/images/new-content/pillars/Batteries/batteries-banner.webp",
-    bg: "#111110",
+    bg: "#003926",
     textColor: "#FAFAF8",
     accentColor: "#B8935A",
     imageContain: false,
@@ -267,78 +267,86 @@ function DivisionBlock({
   onOpenModal: () => void;
 }) {
   const { ref, isVisible } = useScrollReveal(0.12);
-  const isDark = division.bg === "#0D0D0C" || division.bg === "#111110";
+  const isDark = division.bg === "#003926";
   const vis = isVisible ? "visible" : "";
 
   return (
     <div
       ref={ref}
-      className="w-full relative overflow-hidden"
+      className="w-full relative overflow-hidden transition-colors duration-500"
       style={{ background: division.bg }}
     >
-      {/* Green ambient glow for dark sections */}
-      {isDark && (
-        <div
-          className="absolute top-1/2 right-0 w-[350px] h-[350px] pointer-events-none opacity-[0.08] blur-[120px] -translate-y-1/2"
-          style={{ background: "radial-gradient(circle, rgba(0,57,38,0.6), transparent)" }}
-        />
-      )}
-      <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-2 min-h-[80vh] lg:min-h-[85vh] relative z-[2]">
+      {/* Subtle brand dots pattern overlay matching home-2 */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage: isDark
+            ? "radial-gradient(circle at 1px 1px, #D4C5A0 0.5px, transparent 0)"
+            : "radial-gradient(circle at 1px 1px, rgba(0,57,38,0.06) 0.5px, transparent 0)",
+          backgroundSize: "30px 30px",
+          opacity: isDark ? 0.025 : 0.04,
+        }}
+      />
+
+      {/* Ambient glow */}
+      <div
+        className="absolute top-1/2 right-0 w-[400px] h-[400px] pointer-events-none blur-[130px] -translate-y-1/2"
+        style={{
+          background: isDark
+            ? "radial-gradient(circle, rgba(184,147,90,0.25), transparent)"
+            : "radial-gradient(circle, rgba(184,147,90,0.16), transparent)",
+          opacity: isDark ? 0.12 : 0.08,
+        }}
+      />
+      <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-2 min-h-[60vh] lg:min-h-[65vh] py-8 lg:py-12 relative z-[2]">
         {/* IMAGE */}
         <div
-          className={`flex items-center justify-center p-6 sm:p-8 lg:p-12 ${
+          className={`flex items-center justify-center p-6 sm:p-8 lg:p-10 ${
             reversed ? "lg:order-2" : "lg:order-1"
           } order-1`}
         >
           <div
-            className={`pillar-img-wrap ${vis} relative w-full overflow-hidden`}
+            className={`pillar-img-wrap ${vis} relative w-full max-w-[420px] overflow-hidden mx-auto rounded-2xl`}
             style={{
-              borderRadius: "20%",
               animationDelay: "0.1s",
               boxShadow: isDark
-                ? "0 20px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(184,147,90,0.08)"
-                : "0 20px 60px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.04)",
+                ? "0 25px 70px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.08)"
+                : "0 25px 70px rgba(0,57,38,0.1), 0 0 0 1px rgba(0,57,38,0.08)",
             }}
           >
             <div 
-              className="pillar-img-inner relative w-full" 
+              className="pillar-img-inner relative w-full rounded-2xl overflow-hidden" 
               style={{ 
-                aspectRatio: "4/5", 
-                borderRadius: "20%",
-                background: division.imageContain 
-                  ? (isDark ? "linear-gradient(180deg, #1A1A18 0%, #0A0A09 100%)" : "linear-gradient(180deg, #FFFFFF 0%, #F5F2ED 100%)") 
-                  : "transparent"
+                aspectRatio: "3/4", 
+                background: "#092218"
               }}
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={division.image}
                 alt={division.title}
-                className={`absolute inset-0 w-full h-full ${division.imageContain ? "object-contain p-8 sm:p-12 lg:p-16" : "object-cover"}`}
-                style={{ objectPosition: division.imageContain ? "center" : "center 30%", borderRadius: "20%" }}
+                className={`absolute inset-0 w-full h-full grayscale contrast-[1.1] ${division.imageContain ? "object-contain p-6 sm:p-8" : "object-cover"}`}
+                style={{ objectPosition: "center" }}
                 onError={(e) => {
                   (e.target as HTMLImageElement).src = "/images/main-img1.png";
                 }}
               />
 
-              {/* Subtle gradient overlay */}
+              {/* Subtle bottom shadow overlay */}
               <div
-                className="absolute inset-0"
+                className="absolute inset-0 pointer-events-none"
                 style={{
-                  borderRadius: "20%",
-                  background: isDark
-                    ? "linear-gradient(180deg, transparent 40%, rgba(13,13,12,0.5) 100%)"
-                    : "linear-gradient(180deg, transparent 60%, rgba(0,0,0,0.06) 100%)",
+                  background: "linear-gradient(180deg, transparent 70%, rgba(0,27,18,0.4) 100%)",
                 }}
               />
 
               {/* Pillar index */}
-              <div className="absolute bottom-6 left-6 lg:bottom-10 lg:left-10 z-10">
+              <div className="absolute bottom-4 left-4 lg:bottom-6 lg:left-6 z-10 pointer-events-none">
                 <span
-                  className="font-montserrat font-bold text-[56px] lg:text-[80px] leading-none select-none tracking-tight"
+                  className="font-montserrat font-bold text-[42px] lg:text-[56px] leading-none select-none tracking-tight"
                   style={{
-                    color: "rgba(255,255,255,0.12)",
-                    textShadow: "0 2px 20px rgba(0,0,0,0.25)",
+                    color: "rgba(255,255,255,0.22)",
+                    textShadow: "0 2px 16px rgba(0,0,0,0.4)",
                   }}
                 >
                   {division.index}
@@ -389,14 +397,14 @@ function DivisionBlock({
             <h3
               className="font-montserrat font-bold text-[32px] sm:text-[40px] lg:text-[48px] uppercase tracking-[0.06em] leading-[1.12]"
               style={{
-                color: division.textColor,
+                color: isDark ? "#FAFAF8" : "#003926",
                 textShadow: isDark ? "0 2px 16px rgba(0,0,0,0.4)" : "none",
               }}
             >
               {division.title.includes(":") ? (
                 <>
                   <span className="block mb-2">{division.title.split(":")[0]}</span>
-                  <span className="block text-[16px] sm:text-[19px] lg:text-[22px] font-medium tracking-[0.08em] opacity-85" style={{ color: division.accentColor }}>
+                  <span className="block text-[16px] sm:text-[19px] lg:text-[22px] font-medium tracking-[0.08em] opacity-90" style={{ color: division.accentColor }}>
                     {division.title.split(":")[1].trim()}
                   </span>
                 </>
@@ -415,7 +423,7 @@ function DivisionBlock({
             style={{
               background: division.accentColor,
               width: 44,
-              opacity: 0.45,
+              opacity: isDark ? 0.45 : 0.6,
               animationDelay: "0.4s",
             }}
           />
@@ -424,8 +432,8 @@ function DivisionBlock({
           <p
             className={`pillar-reveal ${vis} font-montserrat font-medium text-[16px] sm:text-[18px] lg:text-[20px] leading-[1.5] mb-5 max-w-[480px]`}
             style={{
-              color: division.textColor,
-              opacity: 0.85,
+              color: isDark ? "#FAFAF8" : "#1A1918",
+              opacity: isDark ? 0.85 : 0.95,
               animationDelay: "0.45s",
               textShadow: isDark ? "0 1px 8px rgba(0,0,0,0.3)" : "none",
             }}
@@ -437,8 +445,8 @@ function DivisionBlock({
           <p
             className={`pillar-reveal ${vis} font-montserrat text-[13px] sm:text-[14px] leading-[1.85] font-normal max-w-[460px] mb-8`}
             style={{
-              color: division.textColor,
-              opacity: 0.65,
+              color: isDark ? "#FAFAF8" : "#4A4742",
+              opacity: isDark ? 0.65 : 0.88,
               animationDelay: "0.55s",
             }}
           >
@@ -453,8 +461,8 @@ function DivisionBlock({
                 className={`pillar-highlight ${vis} inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full font-montserrat text-[10px] tracking-[0.15em] uppercase font-semibold`}
                 style={{
                   color: isDark ? "rgba(255,255,255,0.75)" : "#003926",
-                  background: isDark ? "rgba(255,255,255,0.06)" : "rgba(0,57,38,0.05)",
-                  border: isDark ? "1px solid rgba(255,255,255,0.1)" : "1px solid rgba(0,57,38,0.1)",
+                  background: isDark ? "rgba(255,255,255,0.06)" : "rgba(0,57,38,0.06)",
+                  border: isDark ? "1px solid rgba(255,255,255,0.1)" : "1px solid rgba(0,57,38,0.15)",
                   animationDelay: `${0.65 + i * 0.1}s`,
                 }}
               >
@@ -476,9 +484,9 @@ function DivisionBlock({
               onClick={onOpenModal}
               className="group relative inline-flex items-center gap-3 px-7 py-3.5 rounded-full font-montserrat font-bold text-[11px] tracking-[0.2em] uppercase transition-all duration-300 cursor-pointer overflow-hidden"
               style={{
-                color: isDark ? "#FAFAF8" : "#1A1918",
-                border: isDark ? "1px solid rgba(255,255,255,0.2)" : "1px solid rgba(0,0,0,0.15)",
-                background: isDark ? "rgba(255,255,255,0.04)" : "rgba(0,0,0,0.02)",
+                color: isDark ? "#FAFAF8" : "#003926",
+                border: isDark ? "1px solid rgba(255,255,255,0.2)" : "1px solid rgba(0,57,38,0.25)",
+                background: isDark ? "rgba(255,255,255,0.04)" : "rgba(0,57,38,0.03)",
               }}
             >
               <span className="relative z-10">Explore Division</span>
@@ -493,7 +501,7 @@ function DivisionBlock({
                 style={{
                   background: isDark
                     ? "linear-gradient(90deg, rgba(184,147,90,0.15), rgba(184,147,90,0.05))"
-                    : "linear-gradient(90deg, rgba(0,57,38,0.08), rgba(0,57,38,0.02))",
+                    : "linear-gradient(90deg, rgba(0,57,38,0.09), rgba(0,57,38,0.02))",
                 }}
               />
             </button>
@@ -692,18 +700,28 @@ export default function Pillar4Divisions() {
         {/* ── SECTION INTRO ── */}
         <div
           ref={introRef}
-          className="bg-[#FAF8F4] py-20 lg:py-28 text-center px-6 relative overflow-hidden"
+          className="bg-[#003926] py-20 lg:py-28 text-center px-6 relative overflow-hidden"
         >
-          {/* Green ambient glow */}
+          {/* Subtle brand dots pattern overlay matching home-2 */}
           <div
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] pointer-events-none opacity-[0.06] blur-[100px]"
-            style={{ background: "radial-gradient(circle, rgba(0,57,38,0.3), transparent)" }}
+            className="absolute inset-0 pointer-events-none opacity-[0.025]"
+            style={{
+              backgroundImage:
+                "radial-gradient(circle at 1px 1px, #D4C5A0 0.5px, transparent 0)",
+              backgroundSize: "30px 30px",
+            }}
+          />
+
+          {/* Gold ambient glow */}
+          <div
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] pointer-events-none opacity-[0.1] blur-[100px]"
+            style={{ background: "radial-gradient(circle, rgba(184,147,90,0.35), transparent)" }}
           />
           {/* Decorative background */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
             <span
               className="font-montserrat font-extrabold text-[160px] lg:text-[240px] leading-none"
-              style={{ color: "rgba(184,147,90,0.035)" }}
+              style={{ color: "rgba(184,147,90,0.04)" }}
             >
               V
             </span>
@@ -717,10 +735,10 @@ export default function Pillar4Divisions() {
           </p>
 
           <h2
-            className={`pillar-reveal ${introVisible ? "visible" : ""} font-montserrat font-bold text-[34px] sm:text-[44px] lg:text-[54px] uppercase tracking-[0.08em] text-[#1A1918] leading-[1.1] max-w-3xl mx-auto relative z-10`}
+            className={`pillar-reveal ${introVisible ? "visible" : ""} font-montserrat font-bold text-[34px] sm:text-[44px] lg:text-[54px] uppercase tracking-[0.08em] text-[#FAFAF8] leading-[1.1] max-w-3xl mx-auto relative z-10`}
             style={{
               animationDelay: "0.15s",
-              textShadow: "0 2px 12px rgba(0,0,0,0.04)",
+              textShadow: "0 2px 16px rgba(0,0,0,0.35)",
             }}
           >
             Our Core{" "}
@@ -734,7 +752,7 @@ export default function Pillar4Divisions() {
           />
 
           <p
-            className={`pillar-reveal ${introVisible ? "visible" : ""} font-montserrat text-[13px] sm:text-[14px] text-[#9C9690] mt-5 max-w-lg mx-auto leading-[1.85] font-normal relative z-10`}
+            className={`pillar-reveal ${introVisible ? "visible" : ""} font-montserrat text-[13px] sm:text-[14px] text-white/70 mt-5 max-w-lg mx-auto leading-[1.85] font-normal relative z-10`}
             style={{ animationDelay: "0.45s" }}
           >
             Specialised business verticals that operate across manufacturing, distribution,

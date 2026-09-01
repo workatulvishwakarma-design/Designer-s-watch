@@ -91,13 +91,17 @@ function ProductHero({ family }: { family: ModelFamilyGroup }) {
   const { addItem } = useCartStore();
   const router = useRouter();
 
-  const variant = family.variants[selectedVariantIndex];
+  const variant = family.variants?.[selectedVariantIndex] || family.variants?.[0] || ({} as Variant);
   // Limit gallery to max 4 images: primary, hover, and up to 2 details
-  const rawGalleryImages = [variant.gallery.primary, variant.gallery.hover, ...variant.gallery.detail].filter(Boolean);
+  const rawGalleryImages = [
+    variant?.gallery?.primary,
+    variant?.gallery?.hover,
+    ...(variant?.gallery?.detail || [])
+  ].filter(Boolean);
   const allGalleryImages = Array.from(new Set(rawGalleryImages)).slice(0, 4);
-  const mainImage = allGalleryImages[selectedImageIndex] || "";
+  const mainImage = allGalleryImages[selectedImageIndex] || allGalleryImages[0] || "";
   
-  const discount = variant.mrp && variant.price && variant.mrp > variant.price
+  const discount = (variant?.mrp && variant?.price && variant.mrp > variant.price)
     ? Math.round(((variant.mrp - variant.price) / variant.mrp) * 100)
     : 0;
 
@@ -121,15 +125,15 @@ function ProductHero({ family }: { family: ModelFamilyGroup }) {
     "@context": "https://schema.org",
     "@type": "Product",
     "name": family.name,
-    "image": variant.gallery.primary || "",
-    "description": variant.description,
+    "image": variant?.gallery?.primary || "",
+    "description": variant?.description || "",
     "brand": {
       "@type": "Brand",
       "name": family.brand
     },
     "offers": {
       "@type": "Offer",
-      "price": variant.price,
+      "price": variant?.price || 0,
       "priceCurrency": "INR",
       "availability": isInStock ? "https://schema.org/InStock" : "https://schema.org/OutOfStock"
     }
@@ -302,31 +306,6 @@ function ProductHero({ family }: { family: ModelFamilyGroup }) {
               </div>
               <p className="font-dm text-[11px] text-[#9C9690] mb-6">Inclusive of all taxes</p>
 
-              {/* Color / Variant Selection */}
-              {family.variants.length > 1 && (
-                <div className="mb-6">
-                  <p className="font-dm text-[11px] tracking-[0.15em] uppercase text-[#9C9690] mb-3">
-                    Color: <span className="text-[#1A1918] font-medium">{variant.dialColor.name}</span>
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {family.variants.map((v: Variant, i: number) => (
-                      <button
-                        key={v.sku}
-                        onClick={() => { setSelectedVariantIndex(i); setSelectedImageIndex(0); }}
-                        className="px-4 py-2 rounded-full font-dm text-[12px] transition-all duration-300"
-                        style={{
-                          border: selectedVariantIndex === i ? '1.5px solid #003926' : '1.5px solid #EDE8DF',
-                          background: selectedVariantIndex === i ? '#003926' : 'white',
-                          color: selectedVariantIndex === i ? 'white' : '#1A1918',
-                        }}
-                      >
-                        {v.dialColor.name}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              )}
-
               {/* Size chart link */}
               <div className="flex items-center gap-2 mb-6">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#003926" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -460,7 +439,8 @@ function ProductHero({ family }: { family: ModelFamilyGroup }) {
    ═══════════════════════════════════════════ */
 function SpecificationsAccordion({ family }: { family: ModelFamilyGroup }) {
   const [openSection, setOpenSection] = useState<string | null>("specs");
-  const variant = family.variants[0];
+  const variant = family.variants?.[0] || ({} as Variant);
+  const specs = variant?.specs || ({} as Record<string, string>);
 
   const sections = [
     {
@@ -469,7 +449,7 @@ function SpecificationsAccordion({ family }: { family: ModelFamilyGroup }) {
       icon: <Settings2 size={18} />,
       content: (
         <div className="grid grid-cols-2 gap-x-8 gap-y-3">
-          {Object.entries(variant.specs).map(([key, val]) => {
+          {Object.entries(specs).map(([key, val]) => {
             if (!val) return null;
             const label = specLabels[key] || key.replace(/([A-Z])/g, " $1").replace(/^./, s => s.toUpperCase());
             return (
@@ -492,19 +472,19 @@ function SpecificationsAccordion({ family }: { family: ModelFamilyGroup }) {
           <div className="grid grid-cols-2 gap-3 mt-3">
             <div className="bg-[#F7F4EF] rounded-xl p-3">
               <p className="text-[10px] text-[#9C9690] uppercase tracking-wider mb-1">Case</p>
-              <p className="text-[#1A1918] font-medium text-[12px]">{variant.specs.caseMaterial}</p>
+              <p className="text-[#1A1918] font-medium text-[12px]">{specs.caseMaterial || "Stainless Steel"}</p>
             </div>
             <div className="bg-[#F7F4EF] rounded-xl p-3">
               <p className="text-[10px] text-[#9C9690] uppercase tracking-wider mb-1">Glass</p>
-              <p className="text-[#1A1918] font-medium text-[12px]">{variant.specs.glass}</p>
+              <p className="text-[#1A1918] font-medium text-[12px]">{specs.glass || "Mineral Glass"}</p>
             </div>
             <div className="bg-[#F7F4EF] rounded-xl p-3">
               <p className="text-[10px] text-[#9C9690] uppercase tracking-wider mb-1">Strap</p>
-              <p className="text-[#1A1918] font-medium text-[12px]">{variant.specs.strap}</p>
+              <p className="text-[#1A1918] font-medium text-[12px]">{specs.strap || "Stainless Steel"}</p>
             </div>
             <div className="bg-[#F7F4EF] rounded-xl p-3">
               <p className="text-[10px] text-[#9C9690] uppercase tracking-wider mb-1">Water Resistance</p>
-              <p className="text-[#1A1918] font-medium text-[12px]">{variant.specs.waterResistance}</p>
+              <p className="text-[#1A1918] font-medium text-[12px]">{specs.waterResistance || "30 m"}</p>
             </div>
           </div>
         </div>
@@ -516,9 +496,9 @@ function SpecificationsAccordion({ family }: { family: ModelFamilyGroup }) {
       icon: <Watch size={18} />,
       content: (
         <div className="font-dm text-[13px] text-[#5C5752] leading-relaxed space-y-2">
-          <p>Powered by a {variant.specs.movement} movement, delivering reliable timekeeping with exceptional accuracy.</p>
-          {variant.specs.functionality && (
-            <p>Functionality: <span className="text-[#1A1918] font-medium">{variant.specs.functionality}</span></p>
+          <p>Powered by a {specs.movement || "Quartz"} movement, delivering reliable timekeeping with exceptional accuracy.</p>
+          {specs.functionality && (
+            <p>Functionality: <span className="text-[#1A1918] font-medium">{specs.functionality}</span></p>
           )}
         </div>
       ),
@@ -529,7 +509,7 @@ function SpecificationsAccordion({ family }: { family: ModelFamilyGroup }) {
       icon: <ShieldCheck size={18} />,
       content: (
         <div className="font-dm text-[13px] text-[#5C5752] leading-relaxed space-y-2">
-          <p>Every D&apos;SIGNER timepiece comes with a <span className="text-[#1A1918] font-medium">{variant.specs.warranty}</span> manufacturer warranty covering defects in materials and workmanship.</p>
+          <p>Every D&apos;SIGNER timepiece comes with a <span className="text-[#1A1918] font-medium">{specs.warranty || "2-Year"}</span> manufacturer warranty covering defects in materials and workmanship.</p>
           <p>Each watch includes a certificate of authenticity and is shipped in premium branded packaging.</p>
         </div>
       ),
@@ -874,7 +854,7 @@ function RelatedSection({ related }: { related: ModelFamilyGroup[] }) {
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
           {related.map((f, i) => {
-            const img = f.variants[0]?.gallery.primary || "";
+            const img = f.variants?.[0]?.gallery?.primary || "";
             return (
               <Link key={f.slug} href={`/product/${f.slug}`}>
                 <motion.div

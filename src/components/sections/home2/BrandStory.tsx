@@ -63,7 +63,7 @@ export default function BrandStory() {
           className="mt-14"
         >
           <Link
-            href="/about"
+            href="/about-5"
             className="inline-flex items-center gap-3 font-dm text-[11px] tracking-[0.2em] uppercase text-[#D4C5A0] border-b border-[#D4C5A0]/40 pb-1 hover:border-[#D4C5A0] hover:text-white transition-all duration-500"
           >
             Read Our Full Heritage

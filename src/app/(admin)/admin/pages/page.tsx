@@ -16,7 +16,7 @@ export default async function AdminPagesPage() {
           <p className="text-xs text-gray-500 mt-1">Manage static legal documents, boutique information, and service policies.</p>
         </div>
         <Link 
-          href="/admin/pages/new"
+          href="/admin/content"
           className="flex items-center gap-2 bg-black dark:bg-white text-white dark:text-black px-6 py-2.5 rounded-xl text-[10px] font-bold uppercase tracking-widest shadow-xl hover:opacity-90 transition-all"
         >
           <Plus className="w-4 h-4" /> Add Page

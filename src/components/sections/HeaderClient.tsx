@@ -57,7 +57,7 @@ const getCollectionIcon = (slug: string) => {
 
 const brandPreviews = {
     "mens-designer": {
-        slug: "mens-designer",
+        slug: "dsigner-men",
         title: "D'Signer Men's",
         tagline: "Precision Meets Commanding Aesthetics",
         description: "Engineered with surgical-grade stainless steel and sapphire glass. Premium luxury timepieces crafted for the modern man.",
@@ -65,43 +65,43 @@ const brandPreviews = {
         ctaLabel: "Browse Men's D'Signer"
     },
     "womens-designer": {
-        slug: "womens-designer",
-        title: "D'Signer Women's Grace",
-        tagline: "Elegance & Fine Craftsmanship",
-        description: "Delicate proportions and sparkling accents designed for timeless sophistication.",
-        heroImage: "/images/new-img/model-2/950/950/950GNFS.16G.png",
+        slug: "dsigner-womens",
+        title: "D'Signer Women's",
+        tagline: "Graceful Allure & Modern Refinement",
+        description: "Delicate silhouettes, radiant mother-of-pearl dials, and refined diamond accents. Timeless pieces tailored for feminine grace.",
+        heroImage: "/images/new-img/model-2/853/853/853RGM.8L.png",
         ctaLabel: "Browse Women's D'Signer"
     },
     "designer-couple": {
         slug: "duetto",
-        title: "Duetto Couple Series",
-        tagline: "Pair Timepieces of Distinction",
-        description: "Matching sets created for couples who share a passion for luxury and heritage.",
-        heroImage: "/images/new-img/model-2/950/950/950GNFS.16G.png",
-        ctaLabel: "Browse Duetto Sets"
+        title: "D'Signer Duetto Pairs",
+        tagline: "Coordinated Pairs of Pure Harmony",
+        description: "Perfectly matching his-and-hers sets crafted to commemorate weddings, anniversaries, and shared lifelong journeys.",
+        heroImage: "/images/doublewatch-nobg.png",
+        ctaLabel: "Explore Couple Pairs"
     },
     "mens-escort": {
-        slug: "mens-escort",
-        title: "Escort Men's Classic",
+        slug: "Escort-men",
+        title: "Escort Men's",
         tagline: "Everyday Reliability",
         description: "Versatile, robust timepieces designed for daily wear without compromising on style.",
-        heroImage: "/images/new-img/model-2/950/950/950GNFS.16G.png",
+        heroImage: "/images/threeimg1-nobg.png",
         ctaLabel: "Browse Men's Escort"
     },
     "womens-escort": {
-        slug: "womens-escort",
-        title: "Escort Women's Classic",
+        slug: "Escort-womens",
+        title: "Escort Women's",
         tagline: "Refined Simplicity",
         description: "Graceful timepieces built to accompany every moment with charm and accuracy.",
-        heroImage: "/images/new-img/model-2/950/950/950GNFS.16G.png",
+        heroImage: "/images/threeimg2-nobg.png",
         ctaLabel: "Browse Women's Escort"
     },
     "escort-everyday": {
-        slug: "escort",
+        slug: "Escort-men",
         title: "Escort Everyday Series",
         tagline: "Accessible Quality",
         description: "Timeless designs engineered with precision for everyday living.",
-        heroImage: "/images/new-img/model-2/950/950/950GNFS.16G.png",
+        heroImage: "/images/threeimg3-nobg.png",
         ctaLabel: "Browse Everyday Series"
     }
 };
@@ -270,14 +270,20 @@ export default function HeaderClient({ hasAnnouncement = false, megaMenuPayload 
     }, [pathname]);
 
     const navLinks = [
-        { label: "Home", href: "/" },
-        { label: "Collections", href: "/collections/dsigner", isMega: true },
-        { label: "Pillars", href: "/nagpal-group" },
-        { label: "About", href: "/about" },
+        { label: "Home", href: "/home-2" },
+        { label: "Collections", href: "/collections/dsigner-men", isMega: true },
+        { label: "Pillars", href: "/pillar-4" },
+        { label: "About", href: "/about-5" },
         { label: "Contact", href: "/contact" },
     ];
 
-    const isActive = (h: string) => h === "/" ? pathname === "/" : pathname === h;
+    const isActive = (h: string) => {
+        if (h === "/home-2" || h === "/") return pathname === "/" || pathname === "/home-2";
+        if (h === "/about-5") return pathname.startsWith("/about");
+        if (h === "/pillar-4") return pathname.startsWith("/pillar") || pathname === "/nagpal-group";
+        if (h === "/collections/dsigner-men") return pathname.startsWith("/collections");
+        return pathname === h;
+    };
 
     const openMega = useCallback(() => {
         if (closeTimerRef.current) {
@@ -473,8 +479,8 @@ export default function HeaderClient({ hasAnnouncement = false, megaMenuPayload 
                                                 <span className="font-cormorant text-[24px] text-[#111110] font-normal tracking-[1px] leading-[1.1] block mb-[16px] mt-0 pl-1">D&apos;SIGNER</span>
                                                 <div className="flex flex-col gap-0">
                                                     {[
-                                                        { id: "mens-prestige", title: "Men's Prestige", href: "/collections/mens-designer", key: "mens-designer" },
-                                                        { id: "womens-grace", title: "Women's Grace", href: "/collections/womens-designer", key: "womens-designer" },
+                                                        { id: "mens-prestige", title: "Men's Prestige", href: "/collections/dsigner-men", key: "mens-designer" },
+                                                        { id: "womens-grace", title: "Women's Grace", href: "/collections/dsigner-womens", key: "womens-designer" },
                                                         { id: "duetto-couple", title: "Duetto Couple", href: "/collections/duetto", key: "designer-couple" }
                                                     ].map((item) => {
                                                         const act = pathname === item.href;
@@ -501,9 +507,9 @@ export default function HeaderClient({ hasAnnouncement = false, megaMenuPayload 
                                                 <span className="font-cormorant text-[24px] text-[#111110] font-normal tracking-[1px] leading-[1.1] block mb-[16px] mt-[28px] pl-1">ESCORT</span>
                                                 <div className="flex flex-col gap-0">
                                                     {[
-                                                        { id: "mens-classic", title: "Men's Classic", href: "/collections/mens-escort", key: "mens-escort" },
-                                                        { id: "womens-classic", title: "Women's Classic", href: "/collections/womens-escort", key: "womens-escort" },
-                                                        { id: "everyday-series", title: "Everyday Series", href: "/collections/escort", key: "escort-everyday" }
+                                                        { id: "mens-classic", title: "Men's Classic", href: "/collections/Escort-men", key: "mens-escort" },
+                                                        { id: "womens-classic", title: "Women's Classic", href: "/collections/Escort-womens", key: "womens-escort" },
+                                                        { id: "everyday-series", title: "Everyday Series", href: "/collections/Escort-men", key: "escort-everyday" }
                                                     ].map((item) => {
                                                         const act = pathname === item.href;
                                                         return (
@@ -716,17 +722,17 @@ export default function HeaderClient({ hasAnnouncement = false, megaMenuPayload 
                                         <div>
                                             <h5 className="text-[10px] font-body font-bold text-[#B8935A] uppercase tracking-[0.1em] mb-1">D'Signer</h5>
                                             <div className="grid grid-cols-3 gap-2 pl-2">
-                                                <Link href="/collections/mens-designer" onClick={() => setMobileOpen(false)} className="text-[11px] font-body text-[#003926]/75 uppercase py-1">Men's</Link>
-                                                <Link href="/collections/womens-designer" onClick={() => setMobileOpen(false)} className="text-[11px] font-body text-[#003926]/75 uppercase py-1">Women's</Link>
+                                                <Link href="/collections/dsigner-men" onClick={() => setMobileOpen(false)} className="text-[11px] font-body text-[#003926]/75 uppercase py-1">Men's</Link>
+                                                <Link href="/collections/dsigner-womens" onClick={() => setMobileOpen(false)} className="text-[11px] font-body text-[#003926]/75 uppercase py-1">Women's</Link>
                                                 <Link href="/collections/duetto" onClick={() => setMobileOpen(false)} className="text-[11px] font-body text-[#003926]/75 uppercase py-1">Couple</Link>
                                             </div>
                                         </div>
                                         <div>
                                             <h5 className="text-[10px] font-body font-bold text-[#B8935A] uppercase tracking-[0.1em] mb-1">Escort</h5>
                                             <div className="grid grid-cols-3 gap-2 pl-2">
-                                                <Link href="/collections/mens-escort" onClick={() => setMobileOpen(false)} className="text-[11px] font-body text-[#003926]/75 uppercase py-1">Men's</Link>
-                                                <Link href="/collections/womens-escort" onClick={() => setMobileOpen(false)} className="text-[11px] font-body text-[#003926]/75 uppercase py-1">Women's</Link>
-                                                <Link href="/collections/escort" onClick={() => setMobileOpen(false)} className="text-[11px] font-body text-[#003926]/75 uppercase py-1">Everyday</Link>
+                                                <Link href="/collections/Escort-men" onClick={() => setMobileOpen(false)} className="text-[11px] font-body text-[#003926]/75 uppercase py-1">Men's</Link>
+                                                <Link href="/collections/Escort-womens" onClick={() => setMobileOpen(false)} className="text-[11px] font-body text-[#003926]/75 uppercase py-1">Women's</Link>
+                                                <Link href="/collections/Escort-men" onClick={() => setMobileOpen(false)} className="text-[11px] font-body text-[#003926]/75 uppercase py-1">Everyday</Link>
                                             </div>
                                         </div>
                                     </div>
@@ -758,7 +764,7 @@ export default function HeaderClient({ hasAnnouncement = false, megaMenuPayload 
                             {/* Browse All CTA */}
                             <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.25 }}
                                 className="mt-4 text-center">
-                                <Link href="/collections/dsigner" onClick={() => setMobileOpen(false)}
+                                <Link href="/collections/dsigner-men" onClick={() => setMobileOpen(false)}
                                     className="luxury-cta-primary w-full justify-center">
                                     Browse All Collections
                                 </Link>

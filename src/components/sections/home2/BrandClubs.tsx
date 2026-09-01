@@ -55,7 +55,7 @@ export default function BrandClubs() {
             </p>
 
             <Link
-              href="/collections/dsigner"
+              href="/collections/dsigner-men"
               className="font-montserrat text-[11px] tracking-[0.2em] uppercase text-white hover:text-[#D4C5A0] border-b border-white/20 hover:border-[#D4C5A0] pb-1 transition-all duration-300 w-fit font-bold"
             >
               Discover More
@@ -125,7 +125,7 @@ export default function BrandClubs() {
             </p>
 
             <Link
-              href="/collections/escort"
+              href="/collections/Escort-men"
               className="font-montserrat text-[11px] tracking-[0.2em] uppercase text-white hover:text-[#D4C5A0] border-b border-white/20 hover:border-[#D4C5A0] pb-1 transition-all duration-300 w-fit font-bold"
             >
               Discover More

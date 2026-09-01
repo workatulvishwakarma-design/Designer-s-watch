@@ -4,6 +4,8 @@ import ProductClientView from "@/components/product/ProductClientView";
 import { prisma } from "@/lib/db";
 import { mapPrismaFamilyToGroup } from "@/lib/prismaMappers";
 import { getFamilyBySlug, getFamilyBySku, getFamiliesByCollection } from "@/data/productData";
+import { getDsignerProductBySlug } from "@/lib/dsignerCatalog";
+import { getEscortProductBySlug } from "@/lib/escortCatalog";
 import { ModelFamilyGroup } from "@/types/product";
 
 export const dynamic = "force-dynamic";
@@ -12,23 +14,25 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug: urlSlug } = await params;
   const slug = decodeURIComponent(urlSlug);
   
-  let family: ModelFamilyGroup | undefined;
+  let family: ModelFamilyGroup | undefined = getDsignerProductBySlug(slug) || getEscortProductBySlug(slug);
 
-  try {
-    const familyRaw = await prisma.productFamily.findUnique({
-      where: { slug },
-      include: {
-        variants: { include: { images: true, inventory: true } },
-        images: true,
-        collection: true
+  if (!family) {
+    try {
+      const familyRaw = await prisma.productFamily.findUnique({
+        where: { slug },
+        include: {
+          variants: { include: { images: true, inventory: true } },
+          images: true,
+          collection: true
+        }
+      });
+
+      if (familyRaw) {
+        family = mapPrismaFamilyToGroup(familyRaw as any);
       }
-    });
-
-    if (familyRaw) {
-      family = mapPrismaFamilyToGroup(familyRaw as any);
+    } catch (error) {
+      console.warn("generateMetadata: DB query failed, using static data fallback:", (error as Error).message);
     }
-  } catch (error) {
-    console.warn("generateMetadata: DB query failed, using static data fallback:", (error as Error).message);
   }
 
   // Fallback to static data
@@ -69,64 +73,71 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   const { slug: urlSlug } = await params;
   const slug = decodeURIComponent(urlSlug);
 
-  let family: ModelFamilyGroup | undefined;
+  let family: ModelFamilyGroup | undefined = getDsignerProductBySlug(slug) || getEscortProductBySlug(slug);
   let relatedFamilies: ModelFamilyGroup[] = [];
 
-  try {
-    const familyRaw = await prisma.productFamily.findUnique({
-      where: { slug },
-      include: {
-        collection: true,
-        variants: { include: { images: true, inventory: true } },
-        images: true,
-      },
-    });
-
-    if (!familyRaw) {
-      const variantRaw = await prisma.productVariant.findUnique({
-        where: { sku: slug },
-        include: { family: true }
-      });
-
-      if (variantRaw?.family?.slug) {
-        redirect(`/product/${variantRaw.family.slug}`);
-      }
-    }
-
-    if (familyRaw) {
-      family = mapPrismaFamilyToGroup(familyRaw as any);
-      
-      const collectionSlug = familyRaw.collection?.slug || "designer";
-      const relatedFamiliesRaw = await prisma.productFamily.findMany({
-        where: {
-          collection: { slug: collectionSlug },
-          status: "ACTIVE",
-          NOT: { id: familyRaw.id }
-        },
+  if (family) {
+    // D'SIGNER / ESCORT Product: provide related watches
+    const collectionSlug = family.gender === "Women" ? "womens-designer" : "mens-designer";
+    const allRelated = getFamiliesByCollection(collectionSlug);
+    relatedFamilies = allRelated.filter(f => f.slug !== family!.slug).slice(0, 4);
+  } else {
+    try {
+      const familyRaw = await prisma.productFamily.findUnique({
+        where: { slug },
         include: {
           collection: true,
           variants: { include: { images: true, inventory: true } },
           images: true,
         },
-        take: 4
       });
-      
-      relatedFamilies = relatedFamiliesRaw.map(f => mapPrismaFamilyToGroup(f as any));
-    }
-  } catch (error) {
-    console.warn("ProductPage: DB query failed, using static data fallback:", (error as Error).message);
-  }
 
-  // Fallback to static data
-  if (!family) {
-    family = getFamilyBySlug(slug);
-    if (!family) {
-      family = getFamilyBySku(slug);
+      if (!familyRaw) {
+        const variantRaw = await prisma.productVariant.findUnique({
+          where: { sku: slug },
+          include: { family: true }
+        });
+
+        if (variantRaw?.family?.slug) {
+          redirect(`/product/${variantRaw.family.slug}`);
+        }
+      }
+
+      if (familyRaw) {
+        family = mapPrismaFamilyToGroup(familyRaw as any);
+        
+        const collectionSlug = familyRaw.collection?.slug || "designer";
+        const relatedFamiliesRaw = await prisma.productFamily.findMany({
+          where: {
+            collection: { slug: collectionSlug },
+            status: "ACTIVE",
+            NOT: { id: familyRaw.id }
+          },
+          include: {
+            collection: true,
+            variants: { include: { images: true, inventory: true } },
+            images: true,
+          },
+          take: 4
+        });
+        
+        relatedFamilies = relatedFamiliesRaw.map(f => mapPrismaFamilyToGroup(f as any));
+      }
+    } catch (error) {
+      console.warn("ProductPage: DB query failed, using static data fallback:", (error as Error).message);
     }
-    
-    if (family) {
-      const allInCollection = getFamiliesByCollection(family.collectionSlug || "designer");
-      relatedFamilies = allInCollection.filter(f => f.slug !== family!.slug).slice(0, 4);
+
+    // Fallback to static data
+    if (!family) {
+      family = getFamilyBySlug(slug);
+      if (!family) {
+        family = getFamilyBySku(slug);
+      }
+      
+      if (family) {
+        const allInCollection = getFamiliesByCollection(family.collectionSlug || "designer");
+        relatedFamilies = allInCollection.filter(f => f.slug !== family!.slug).slice(0, 4);
+      }
     }
   }
 

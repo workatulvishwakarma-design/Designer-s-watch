@@ -78,7 +78,7 @@ export default function CallToAction() {
             Schedule Consultation
           </Link>
           <Link
-            href="/about"
+            href="/about-5"
             className="inline-flex items-center justify-center gap-2 px-10 py-4 rounded-sm border border-[#D4C5A0]/30 text-[#D4C5A0] font-dm text-[11px] tracking-[0.2em] uppercase font-bold hover:bg-[#D4C5A0] hover:text-[#003926] transition-all duration-500"
           >
             The Atelier
