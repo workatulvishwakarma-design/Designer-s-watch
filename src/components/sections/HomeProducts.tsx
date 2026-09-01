@@ -99,7 +99,7 @@ export default function HomeProducts() {
       <div className="pb-[80px]">
         <div className="max-w-7xl mx-auto px-6 mb-10 flex flex-col md:flex-row justify-between">
           <div>
-            <span className="inline-block bg-[#F0F7F4] text-[#003926] border border-[#003926]/20 px-4 py-1.5 rounded-full font-dm text-[11px]">⌚ EVERYDAY</span>
+            <span className="inline-block bg-[#F0F7F4] text-[#003926] border border-[#003926]/20 px-4 py-1.5 rounded-full font-dm text-[11px]">⌚ LIFESTYLE</span>
             <h3 className="font-bebas text-[40px] text-[#1A1918] mt-3">Escort Collection</h3>
           </div>
           <div className="mt-4 md:mt-0">

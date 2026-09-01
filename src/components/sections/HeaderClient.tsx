@@ -480,8 +480,7 @@ export default function HeaderClient({ hasAnnouncement = false, megaMenuPayload 
                                                 <div className="flex flex-col gap-0">
                                                     {[
                                                         { id: "mens-prestige", title: "Men's Prestige", href: "/collections/dsigner-men", key: "mens-designer" },
-                                                        { id: "womens-grace", title: "Women's Grace", href: "/collections/dsigner-womens", key: "womens-designer" },
-                                                        { id: "duetto-couple", title: "Duetto Couple", href: "/collections/duetto", key: "designer-couple" }
+                                                        { id: "womens-grace", title: "Women's Grace", href: "/collections/dsigner-womens", key: "womens-designer" }
                                                     ].map((item) => {
                                                         const act = pathname === item.href;
                                                         return (
@@ -508,8 +507,7 @@ export default function HeaderClient({ hasAnnouncement = false, megaMenuPayload 
                                                 <div className="flex flex-col gap-0">
                                                     {[
                                                         { id: "mens-classic", title: "Men's Classic", href: "/collections/Escort-men", key: "mens-escort" },
-                                                        { id: "womens-classic", title: "Women's Classic", href: "/collections/Escort-womens", key: "womens-escort" },
-                                                        { id: "everyday-series", title: "Everyday Series", href: "/collections/Escort-men", key: "escort-everyday" }
+                                                        { id: "womens-classic", title: "Women's Classic", href: "/collections/Escort-womens", key: "womens-escort" }
                                                     ].map((item) => {
                                                         const act = pathname === item.href;
                                                         return (
@@ -721,18 +719,16 @@ export default function HeaderClient({ hasAnnouncement = false, megaMenuPayload 
                                     <div className="space-y-4 mt-2">
                                         <div>
                                             <h5 className="text-[10px] font-body font-bold text-[#B8935A] uppercase tracking-[0.1em] mb-1">D'Signer</h5>
-                                            <div className="grid grid-cols-3 gap-2 pl-2">
+                                            <div className="grid grid-cols-2 gap-2 pl-2">
                                                 <Link href="/collections/dsigner-men" onClick={() => setMobileOpen(false)} className="text-[11px] font-body text-[#003926]/75 uppercase py-1">Men's</Link>
                                                 <Link href="/collections/dsigner-womens" onClick={() => setMobileOpen(false)} className="text-[11px] font-body text-[#003926]/75 uppercase py-1">Women's</Link>
-                                                <Link href="/collections/duetto" onClick={() => setMobileOpen(false)} className="text-[11px] font-body text-[#003926]/75 uppercase py-1">Couple</Link>
                                             </div>
                                         </div>
                                         <div>
                                             <h5 className="text-[10px] font-body font-bold text-[#B8935A] uppercase tracking-[0.1em] mb-1">Escort</h5>
-                                            <div className="grid grid-cols-3 gap-2 pl-2">
+                                            <div className="grid grid-cols-2 gap-2 pl-2">
                                                 <Link href="/collections/Escort-men" onClick={() => setMobileOpen(false)} className="text-[11px] font-body text-[#003926]/75 uppercase py-1">Men's</Link>
                                                 <Link href="/collections/Escort-womens" onClick={() => setMobileOpen(false)} className="text-[11px] font-body text-[#003926]/75 uppercase py-1">Women's</Link>
-                                                <Link href="/collections/Escort-men" onClick={() => setMobileOpen(false)} className="text-[11px] font-body text-[#003926]/75 uppercase py-1">Everyday</Link>
                                             </div>
                                         </div>
                                     </div>

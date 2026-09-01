@@ -37,7 +37,6 @@ export default function SegmentedCollections({
     { id: "new-arrivals", label: "✨ New Arrivals" },
     { id: "best-value", label: "💰 Best Value" },
     { id: "sport", label: "🏃 Sport" },
-    { id: "everyday", label: "⌚ Everyday" },
   ];
 
   const tabs = brand === "dsigner" ? dsignerTabs : escortTabs;
