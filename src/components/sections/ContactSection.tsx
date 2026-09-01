@@ -27,22 +27,22 @@ export default function ContactSection() {
     };
 
     return (
-        <section className="bg-[#FAF8F4] relative overflow-hidden">
+        <section className="bg-[#FAF8F4] relative overflow-hidden font-dm">
             <GrainOverlay />
 
             {/* Contact Hero */}
             <div className="relative py-24 px-6 text-center overflow-hidden" style={{
                 background: `linear-gradient(135deg, #F8F5F0 0%, #EFE9E0 100%)`
             }}>
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.06] text-gold select-none pointer-events-none z-0">
-                    <span className="font-heading text-[200px]">✦</span>
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.06] text-[#B8935A] select-none pointer-events-none z-0">
+                    <span className="font-cormorant text-[200px]">✦</span>
                 </div>
 
-                <div className="relative z-10">
+                <div className="relative z-10 max-w-3xl mx-auto">
                     <motion.span
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="text-gold font-body text-[11px] tracking-[0.3em] uppercase mb-4 inline-block"
+                        className="text-[#B8935A] font-dm text-[11px] tracking-[0.3em] uppercase mb-4 inline-block font-semibold"
                     >
                         GET IN TOUCH
                     </motion.span>
@@ -50,15 +50,15 @@ export default function ContactSection() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.1 }}
-                        className="font-heading text-5xl md:text-6xl text-primaryText mb-6"
+                        className="font-cormorant text-5xl md:text-6xl text-[#111110] font-normal leading-[1.15] mb-6 tracking-[0.5px]"
                     >
-                        We&apos;d Love to Hear <span className="italic">From You.</span>
+                        We&apos;d Love to Hear <span className="italic font-normal">From You.</span>
                     </motion.h1>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.2 }}
-                        className="font-body text-secondaryText text-lg max-w-2xl mx-auto leading-relaxed"
+                        className="font-dm text-[#555555] text-lg max-w-2xl mx-auto leading-relaxed font-light"
                     >
                         Whether it&apos;s a query, OEM enquiry, or partnership — our team responds within 24 hours.
                     </motion.p>
@@ -99,7 +99,7 @@ export default function ContactSection() {
                             initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="bg-white border border-border rounded-[20px] p-8 md:p-12 shadow-[0_8px_40px_rgba(0,0,0,0.06)]"
+                            className="bg-white border border-[#003926]/10 rounded-[20px] p-8 md:p-12 shadow-[0_8px_40px_rgba(0,0,0,0.04)]"
                         >
                             {formStatus === "success" ? (
                                 <motion.div
@@ -107,33 +107,33 @@ export default function ContactSection() {
                                     animate={{ opacity: 1, scale: 1 }}
                                     className="py-12 text-center"
                                 >
-                                    <div className="w-20 h-20 bg-gold/10 rounded-full flex items-center justify-center mx-auto mb-8">
-                                        <Check size={40} className="text-gold" />
+                                    <div className="w-20 h-20 bg-[#B8935A]/10 rounded-full flex items-center justify-center mx-auto mb-8">
+                                        <Check size={40} className="text-[#B8935A]" />
                                     </div>
-                                    <h2 className="font-heading text-4xl text-primaryText mb-4">Message Sent!</h2>
-                                    <p className="font-body text-secondaryText mb-10">We&apos;ll get back to you within 24 hours.</p>
+                                    <h2 className="font-cormorant text-4xl text-[#111110] mb-4">Message Sent!</h2>
+                                    <p className="font-dm text-[#555555] mb-10 font-light">We&apos;ll get back to you within 24 hours.</p>
                                     <button
                                         onClick={() => setFormStatus("idle")}
-                                        className="text-gold font-body text-sm tracking-widest uppercase border-b border-gold"
+                                        className="text-[#B8935A] font-dm text-sm tracking-widest uppercase border-b border-[#B8935A] font-medium"
                                     >
                                         Send another message
                                     </button>
                                 </motion.div>
                             ) : (
                                 <>
-                                    <h2 className="font-heading text-3xl text-primaryText mb-10">Send Us a Message</h2>
+                                    <h2 className="font-cormorant text-3xl md:text-4xl text-[#111110] font-normal mb-8">Send Us a Message</h2>
                                     <form onSubmit={handleSubmit} className="space-y-6">
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                            <InputField name="name" label="Full Name" placeholder="Atul Vishwakarma" required />
-                                            <InputField name="email" label="Email Address" type="email" placeholder="atul@example.com" required />
+                                            <InputField name="name" label="Full Name" placeholder="Your Name" required />
+                                            <InputField name="email" label="Email Address" type="email" placeholder="you@example.com" required />
                                         </div>
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                             <InputField name="phone" label="Phone Number" placeholder="+91 00000 00000" />
                                             <InputField name="subject" label="Subject" placeholder="How can we help?" />
                                         </div>
                                         <div>
-                                            <label className="block text-[11px] font-body tracking-widest uppercase text-lightText mb-3">Enquiry Type</label>
-                                            <select name="enquiryType" className="w-full bg-[#FAF8F4] border border-border rounded-xl px-5 py-4 font-body text-sm focus:border-gold focus:ring-1 focus:ring-gold/10 outline-none transition-all appearance-none cursor-pointer">
+                                            <label className="block text-[11px] font-dm tracking-widest uppercase text-[#777777] mb-3 font-medium">Enquiry Type</label>
+                                            <select name="enquiryType" className="w-full bg-[#FAF8F4] border border-[#003926]/10 rounded-xl px-5 py-4 font-dm text-sm focus:border-[#B8935A] focus:ring-1 focus:ring-[#B8935A]/20 outline-none transition-all appearance-none cursor-pointer text-[#111110]">
                                                 <option>General Enquiry</option>
                                                 <option>OEM / Private Label</option>
                                                 <option>Retail Partnership</option>
@@ -142,10 +142,10 @@ export default function ContactSection() {
                                             </select>
                                         </div>
                                         <div>
-                                            <label className="block text-[11px] font-body tracking-widest uppercase text-lightText mb-3">Your Message</label>
+                                            <label className="block text-[11px] font-dm tracking-widest uppercase text-[#777777] mb-3 font-medium">Your Message</label>
                                             <textarea
                                                 name="message"
-                                                className="w-full bg-[#FAF8F4] border border-border rounded-xl px-5 py-4 font-body text-sm focus:border-gold focus:ring-1 focus:ring-gold/10 outline-none transition-all resize-none"
+                                                className="w-full bg-[#FAF8F4] border border-[#003926]/10 rounded-xl px-5 py-4 font-dm text-sm focus:border-[#B8935A] focus:ring-1 focus:ring-[#B8935A]/20 outline-none transition-all resize-none text-[#111110]"
                                                 rows={5}
                                                 placeholder="Tell us about your project or query..."
                                                 required
@@ -153,17 +153,17 @@ export default function ContactSection() {
                                         </div>
 
                                         <label className="flex items-center gap-3 cursor-pointer group">
-                                            <div className="relative w-5 h-5 border border-border rounded flex items-center justify-center transition-colors group-hover:border-gold">
+                                            <div className="relative w-5 h-5 border border-[#003926]/20 rounded flex items-center justify-center transition-colors group-hover:border-[#B8935A]">
                                                 <input type="checkbox" className="absolute inset-0 opacity-0 cursor-pointer peer" />
-                                                <Check size={14} className="text-gold opacity-0 peer-checked:opacity-100 transition-opacity" />
+                                                <Check size={14} className="text-[#B8935A] opacity-0 peer-checked:opacity-100 transition-opacity" />
                                             </div>
-                                            <span className="text-[13px] font-body text-secondaryText">I&apos;m interested in OEM manufacturing partnership</span>
+                                            <span className="text-[13px] font-dm text-[#555555]">I&apos;m interested in OEM manufacturing partnership</span>
                                         </label>
 
                                         <button
                                             type="submit"
                                             disabled={formStatus === "loading"}
-                                            className="w-full h-14 bg-bg-dark text-white rounded-xl font-body text-sm tracking-[0.15em] uppercase hover:bg-gold transition-all duration-500 flex items-center justify-center gap-3 disabled:opacity-70"
+                                            className="w-full h-14 bg-[#003926] text-white rounded-xl font-dm text-sm tracking-[0.15em] uppercase hover:bg-[#002b1c] transition-all duration-300 flex items-center justify-center gap-3 disabled:opacity-70 font-medium shadow-md"
                                         >
                                             {formStatus === "loading" ? (
                                                 <Loader2 size={18} className="animate-spin" />
@@ -182,20 +182,33 @@ export default function ContactSection() {
                 </div>
             </div>
 
-            {/* OEM CTA Strip */}
-            <div className="bg-gold py-16 px-6 text-center relative z-10 shadow-lg">
-                <div className="max-w-7xl mx-auto flex flex-col items-center">
-                    <h2 className="font-heading text-4xl md:text-5xl text-primaryText mb-4">
+            {/* OEM CTA Strip - High Contrast White Text on Luxury Green Background */}
+            <div className="bg-[#003926] py-20 px-6 text-center relative z-10 shadow-xl overflow-hidden">
+                {/* Subtle brand dots pattern overlay */}
+                <div
+                    className="absolute inset-0 pointer-events-none opacity-[0.03]"
+                    style={{
+                        backgroundImage: "radial-gradient(circle at 1px 1px, #D4C5A0 0.5px, transparent 0)",
+                        backgroundSize: "24px 24px",
+                    }}
+                />
+                
+                <div className="max-w-4xl mx-auto flex flex-col items-center relative z-10">
+                    <span className="font-dm text-[11px] uppercase tracking-[0.3em] text-[#B8935A] font-bold mb-3 block">
+                        MANUFACTURING &amp; PRIVATE LABEL
+                    </span>
+                    <h2 className="font-cormorant text-4xl sm:text-5xl md:text-6xl text-white font-normal leading-[1.15] mb-4 tracking-[0.5px]">
                         Interested in OEM or Private Label?
                     </h2>
-                    <p className="font-body text-primaryText/70 text-lg mb-10 italic">
-                        We manufacture for 500+ brands worldwide.
+                    <p className="font-dm text-white/80 text-base md:text-lg mb-10 max-w-xl mx-auto font-light leading-relaxed">
+                        We manufacture for 500+ brands worldwide. Specialised horological engineering with uncompromising precision.
                     </p>
                     <Link
                         href="/pillar-4"
-                        className="px-10 py-4 bg-primaryText text-white font-body text-xs tracking-[0.2em] uppercase rounded-xl hover:bg-gold-light hover:text-primaryText transition-all transform hover:scale-105 shadow-xl"
+                        className="px-10 py-4 bg-[#B8935A] text-white font-dm text-[12px] tracking-[0.2em] uppercase rounded-sm hover:bg-[#A37F48] hover:shadow-[0_8px_25px_rgba(184,147,90,0.35)] transition-all duration-300 transform hover:-translate-y-0.5 font-medium inline-flex items-center gap-2"
                     >
-                        Start Your Project →
+                        <span>Start Your Project</span>
+                        <span>→</span>
                     </Link>
                 </div>
             </div>
@@ -206,25 +219,25 @@ export default function ContactSection() {
                 <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
                     <div>
                         <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mb-8 shadow-sm">
-                            <MapPin size={32} className="text-gold" />
+                            <MapPin size={32} className="text-[#B8935A]" />
                         </div>
-                        <h3 className="font-heading text-4xl text-primaryText mb-4">Visit Our Main Facility</h3>
-                        <p className="font-body text-secondaryText text-lg mb-8 leading-relaxed">
+                        <h3 className="font-cormorant text-4xl sm:text-5xl text-[#111110] font-normal leading-tight mb-4">Visit Our Main Facility</h3>
+                        <p className="font-dm text-[#555555] text-lg mb-8 leading-relaxed font-light">
                             Designer World, Nagpal Group HQ. Mumbai, India — The Heart of Indian Horology.
                         </p>
-                        <div className="flex gap-12 border-t border-border pt-8">
+                        <div className="flex gap-12 border-t border-[#003926]/10 pt-8">
                             <div>
-                                <span className="block text-[10px] uppercase tracking-widest text-lightText mb-1">Latitude</span>
-                                <span className="font-display text-xl text-gold">19.0760° N</span>
+                                <span className="block text-[10px] uppercase tracking-widest text-[#777777] mb-1 font-dm font-medium">Latitude</span>
+                                <span className="font-cormorant text-2xl text-[#B8935A] font-semibold">19.0760° N</span>
                             </div>
                             <div>
-                                <span className="block text-[10px] uppercase tracking-widest text-lightText mb-1">Longitude</span>
-                                <span className="font-display text-xl text-gold">72.8777° E</span>
+                                <span className="block text-[10px] uppercase tracking-widest text-[#777777] mb-1 font-dm font-medium">Longitude</span>
+                                <span className="font-cormorant text-2xl text-[#B8935A] font-semibold">72.8777° E</span>
                             </div>
                         </div>
                     </div>
 
-                    <div className="h-[450px] bg-white rounded-2xl border border-border shadow-2xl overflow-hidden relative group">
+                    <div className="h-[450px] bg-white rounded-2xl border border-[#003926]/10 shadow-2xl overflow-hidden relative group">
                         <iframe
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d120658.123456789!2d72.8!3d19.0!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c6306644edc1%3A0x5da4ed8f8d648c!2sMumbai%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1234567890123!5m2!1sen!2sin"
                             width="100%"
@@ -254,15 +267,15 @@ function ContactCard({ icon: Icon, title, content, subContent, delay }: {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ delay }}
-            className="group bg-white border border-border rounded-xl p-8 hover:border-gold transition-all duration-300 hover:-translate-y-1 shadow-sm"
+            className="group bg-white border border-[#003926]/10 rounded-xl p-8 hover:border-[#B8935A] transition-all duration-300 hover:-translate-y-1 shadow-sm font-dm"
         >
-            <div className="w-12 h-12 bg-[#FAF8F4] rounded-lg flex items-center justify-center mb-6 group-hover:bg-gold/10 transition-colors">
-                <Icon size={24} className="text-gold" />
+            <div className="w-12 h-12 bg-[#FAF8F4] rounded-lg flex items-center justify-center mb-6 group-hover:bg-[#B8935A]/10 transition-colors">
+                <Icon size={24} className="text-[#B8935A]" />
             </div>
-            <h3 className="font-body font-medium text-[15px] text-primaryText mb-2">{title}</h3>
-            <p className="font-body text-sm text-secondaryText leading-relaxed">{content}</p>
+            <h3 className="font-dm font-semibold text-[16px] text-[#111110] mb-2">{title}</h3>
+            <p className="font-dm text-sm text-[#555555] leading-relaxed font-light">{content}</p>
             {subContent && (
-                <p className="font-body text-[12px] text-lightText mt-2 italic">{subContent}</p>
+                <p className="font-dm text-[12px] text-[#888888] mt-2 italic">{subContent}</p>
             )}
         </motion.div>
     );
@@ -271,14 +284,13 @@ function ContactCard({ icon: Icon, title, content, subContent, delay }: {
 function InputField({ label, placeholder, name, ...props }: { label: string; placeholder?: string; name?: string } & React.InputHTMLAttributes<HTMLInputElement>) {
     return (
         <div>
-            <label className="block text-[11px] font-body tracking-widest uppercase text-lightText mb-3">{label}</label>
+            <label className="block text-[11px] font-dm tracking-widest uppercase text-[#777777] mb-3 font-medium">{label}</label>
             <input
                 name={name}
-                className="w-full bg-[#FAF8F4] border border-border rounded-xl px-5 py-4 font-body text-sm focus:border-gold focus:ring-1 focus:ring-gold/10 outline-none transition-all"
+                className="w-full bg-[#FAF8F4] border border-[#003926]/10 rounded-xl px-5 py-4 font-dm text-sm focus:border-[#B8935A] focus:ring-1 focus:ring-[#B8935A]/20 outline-none transition-all text-[#111110]"
                 placeholder={placeholder}
                 {...props}
             />
         </div>
     );
 }
-

@@ -700,28 +700,28 @@ export default function Pillar4Divisions() {
         {/* ── SECTION INTRO ── */}
         <div
           ref={introRef}
-          className="bg-[#003926] py-20 lg:py-28 text-center px-6 relative overflow-hidden"
+          className="bg-white py-20 lg:py-28 text-center px-6 relative overflow-hidden border-b border-[#003926]/5"
         >
           {/* Subtle brand dots pattern overlay matching home-2 */}
           <div
-            className="absolute inset-0 pointer-events-none opacity-[0.025]"
+            className="absolute inset-0 pointer-events-none opacity-[0.04]"
             style={{
               backgroundImage:
-                "radial-gradient(circle at 1px 1px, #D4C5A0 0.5px, transparent 0)",
+                "radial-gradient(circle at 1px 1px, rgba(0,57,38,0.12) 0.5px, transparent 0)",
               backgroundSize: "30px 30px",
             }}
           />
 
           {/* Gold ambient glow */}
           <div
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] pointer-events-none opacity-[0.1] blur-[100px]"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] pointer-events-none opacity-[0.08] blur-[100px]"
             style={{ background: "radial-gradient(circle, rgba(184,147,90,0.35), transparent)" }}
           />
           {/* Decorative background */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
             <span
               className="font-montserrat font-extrabold text-[160px] lg:text-[240px] leading-none"
-              style={{ color: "rgba(184,147,90,0.04)" }}
+              style={{ color: "rgba(0,57,38,0.03)" }}
             >
               V
             </span>
@@ -735,10 +735,9 @@ export default function Pillar4Divisions() {
           </p>
 
           <h2
-            className={`pillar-reveal ${introVisible ? "visible" : ""} font-montserrat font-bold text-[34px] sm:text-[44px] lg:text-[54px] uppercase tracking-[0.08em] text-[#FAFAF8] leading-[1.1] max-w-3xl mx-auto relative z-10`}
+            className={`pillar-reveal ${introVisible ? "visible" : ""} font-montserrat font-bold text-[34px] sm:text-[44px] lg:text-[54px] uppercase tracking-[0.08em] text-[#003926] leading-[1.1] max-w-3xl mx-auto relative z-10`}
             style={{
               animationDelay: "0.15s",
-              textShadow: "0 2px 16px rgba(0,0,0,0.35)",
             }}
           >
             Our Core{" "}
@@ -752,7 +751,7 @@ export default function Pillar4Divisions() {
           />
 
           <p
-            className={`pillar-reveal ${introVisible ? "visible" : ""} font-montserrat text-[13px] sm:text-[14px] text-white/70 mt-5 max-w-lg mx-auto leading-[1.85] font-normal relative z-10`}
+            className={`pillar-reveal ${introVisible ? "visible" : ""} font-montserrat text-[13px] sm:text-[14px] text-[#003926]/75 mt-5 max-w-lg mx-auto leading-[1.85] font-normal relative z-10`}
             style={{ animationDelay: "0.45s" }}
           >
             Specialised business verticals that operate across manufacturing, distribution,

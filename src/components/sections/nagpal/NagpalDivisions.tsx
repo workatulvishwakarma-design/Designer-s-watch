@@ -711,24 +711,35 @@ export default function NagpalDivisions() {
         {/* ── SECTION INTRO ── */}
         <div
           ref={introRef}
-          className="bg-[#FAF8F4] py-20 lg:py-28 text-center px-6 relative overflow-hidden"
+          className="bg-white py-20 lg:py-28 text-center px-6 relative overflow-hidden border-b border-[#003926]/5"
         >
-          {/* Green ambient glow */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] pointer-events-none opacity-[0.06] blur-[100px]"
-            style={{ background: "radial-gradient(circle, rgba(0,57,38,0.3), transparent)" }}
+          {/* Subtle brand dots pattern overlay matching home-2 */}
+          <div
+            className="absolute inset-0 pointer-events-none opacity-[0.04]"
+            style={{
+              backgroundImage:
+                "radial-gradient(circle at 1px 1px, rgba(0,57,38,0.12) 0.5px, transparent 0)",
+              backgroundSize: "30px 30px",
+            }}
+          />
+
+          {/* Gold ambient glow */}
+          <div
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] pointer-events-none opacity-[0.08] blur-[100px]"
+            style={{ background: "radial-gradient(circle, rgba(184,147,90,0.35), transparent)" }}
           />
           {/* Decorative background */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
             <span
-              className="font-cormorant italic text-[180px] lg:text-[260px] leading-none"
-              style={{ color: "rgba(184,147,90,0.035)" }}
+              className="font-montserrat font-extrabold text-[160px] lg:text-[240px] leading-none"
+              style={{ color: "rgba(0,57,38,0.03)" }}
             >
               V
             </span>
           </div>
 
           <p
-            className={`pillar-reveal ${introVisible ? "visible" : ""} font-dm text-[10px] tracking-[0.4em] uppercase text-[#B8935A] mb-4 relative z-10`}
+            className={`pillar-reveal ${introVisible ? "visible" : ""} font-montserrat font-bold text-[10px] tracking-[0.4em] uppercase text-[#B8935A] mb-4 relative z-10`}
             style={{ animationDelay: "0s" }}
           >
             VERTICALS
