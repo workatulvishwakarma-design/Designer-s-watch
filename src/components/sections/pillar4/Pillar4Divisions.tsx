@@ -21,6 +21,7 @@ type Division = {
   accentColor: string;
   imageContain?: boolean;
   maxWidth?: string;
+  aspectRatio?: string;
 };
 
 const NAGPAL_DIVISIONS: Division[] = [
@@ -156,6 +157,7 @@ const NAGPAL_DIVISIONS: Division[] = [
     accentColor: "#B8935A",
     imageContain: false,
     maxWidth: "max-w-[504px]",
+    aspectRatio: "504/560",
   }
 ];
 
@@ -319,7 +321,7 @@ function DivisionBlock({
             <div 
               className="pillar-img-inner relative w-full rounded-2xl overflow-hidden" 
               style={{ 
-                aspectRatio: "3/4", 
+                aspectRatio: division.aspectRatio || "3/4", 
                 background: "#092218"
               }}
             >
