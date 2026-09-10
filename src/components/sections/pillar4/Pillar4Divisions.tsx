@@ -20,6 +20,7 @@ type Division = {
   textColor: string;
   accentColor: string;
   imageContain?: boolean;
+  maxWidth?: string;
 };
 
 const NAGPAL_DIVISIONS: Division[] = [
@@ -154,6 +155,7 @@ const NAGPAL_DIVISIONS: Division[] = [
     textColor: "#FAFAF8",
     accentColor: "#B8935A",
     imageContain: false,
+    maxWidth: "max-w-[504px]",
   }
 ];
 
@@ -306,7 +308,7 @@ function DivisionBlock({
           } order-1`}
         >
           <div
-            className={`pillar-img-wrap ${vis} relative w-full max-w-[420px] overflow-hidden mx-auto rounded-2xl`}
+            className={`pillar-img-wrap ${vis} relative w-full ${division.maxWidth || "max-w-[420px]"} overflow-hidden mx-auto rounded-2xl`}
             style={{
               animationDelay: "0.1s",
               boxShadow: isDark
