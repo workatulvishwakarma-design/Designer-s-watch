@@ -47,9 +47,9 @@ const SECTIONS: LegalSection[] = [
           To initiate a return or exchange, please follow this step-by-step luxury process:
         </p>
         <ol>
-          <li>Send an email to <strong>concierge@designerworld.in</strong> with your Order Number and photos of the watch displaying its pristine condition.</li>
+          <li>Send an email to <strong>info@dsigner.com</strong> with your Order Number and photos of the watch displaying its pristine condition.</li>
           <li>Once approved, our concierge team will schedule a **secure pickup** via our premium courier partners. A courier agent will package the timepiece in a tamper-evident box.</li>
-          <li>Upon receipt at our Quality Assurance Lab in New Delhi, our certified watchmakers will audit the timepiece within 48 business hours to verify that it meets the eligibility criteria.</li>
+          <li>Upon receipt at our Quality Assurance Lab in Mumbai (First floor, Pinnacle Business Park, Mahakali Caves Rd, Andheri East, Mumbai 400093), our certified watchmakers will audit the timepiece within 48 business hours to verify that it meets the eligibility criteria.</li>
         </ol>
       </>
     ),
@@ -80,7 +80,7 @@ const SECTIONS: LegalSection[] = [
           We strive to ship our timepieces swiftly. You may cancel your order at any time before it leaves our fulfillment facility:
         </p>
         <ul>
-          <li>To request a cancellation, please call our support desk immediately or email <strong>concierge@designerworld.in</strong>.</li>
+          <li>To request a cancellation, please call our support desk immediately at <strong>099200 88666</strong> or email <strong>info@dsigner.com</strong>.</li>
           <li>If the order has already been dispatched from our facility, it cannot be canceled. In this event, you can refuse the shipment upon delivery or accept it and request a standard 7-day return.</li>
           <li>A full refund will be processed for all valid cancellations according to the refund timelines listed above.</li>
         </ul>

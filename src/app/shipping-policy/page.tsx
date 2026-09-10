@@ -90,7 +90,7 @@ const SECTIONS: LegalSection[] = [
         </p>
         <ul>
           <li>A signature and identity verification (OTP) may be required from the recipient upon delivery.</li>
-          <li>Courier partners will make a maximum of **three delivery attempts** before returning the package to our New Delhi center.</li>
+          <li>Courier partners will make a maximum of **three delivery attempts** before returning the package to our Mumbai facility (Pinnacle Business Park, Andheri East).</li>
           <li>If a package is returned to us due to non-availability or wrong delivery details, a reshipping fee of ₹250 will be charged to schedule a subsequent delivery.</li>
         </ul>
       </>

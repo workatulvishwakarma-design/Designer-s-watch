@@ -97,7 +97,7 @@ export default function FAQSection() {
             </p>
             
             <button
-              onClick={() => window.location.href = "mailto:support@nagpalgroup.com"}
+              onClick={() => window.location.href = "mailto:info@dsigner.com"}
               className="relative w-full overflow-hidden flex items-center justify-between px-8 py-4 bg-[#1A1918] text-white rounded-full group/btn transition-all duration-500 hover:shadow-[0_12px_30px_rgba(0,57,38,0.25)] hover:-translate-y-1"
               suppressHydrationWarning
             >

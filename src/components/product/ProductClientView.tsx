@@ -111,6 +111,28 @@ function ProductHero({ family }: { family: ModelFamilyGroup }) {
     setImgFailed(false);
   }, [mainImage]);
 
+  // Support deep-linking to a specific variant or dial color
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      const variantParam = params.get("variant");
+      const colorParam = params.get("color")?.toLowerCase();
+      if (variantParam && family.variants) {
+        const idx = family.variants.findIndex(v => v.sku.toLowerCase() === variantParam.toLowerCase());
+        if (idx !== -1) {
+          setSelectedVariantIndex(idx);
+          return;
+        }
+      }
+      if (colorParam && family.variants) {
+        const idx = family.variants.findIndex(v => v.dialColor?.name?.toLowerCase().includes(colorParam));
+        if (idx !== -1) {
+          setSelectedVariantIndex(idx);
+        }
+      }
+    }
+  }, [family.variants]);
+
   // Placeholder logic for stock
   const isInStock = true;
 

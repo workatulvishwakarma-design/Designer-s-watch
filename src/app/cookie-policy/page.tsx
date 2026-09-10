@@ -79,7 +79,7 @@ const SECTIONS: LegalSection[] = [
     content: (
       <>
         <p>
-          We may update this policy occasionally to adapt to tech or legal standards. Changes will be documented immediately via the &quot;Last updated&quot; tag at the top. For any questions regarding our cookie practices, please contact <strong>privacy@designerworld.in</strong>.
+          We may update this policy occasionally to adapt to tech or legal standards. Changes will be documented immediately via the &quot;Last updated&quot; tag at the top. For any questions regarding our cookie practices, please contact <strong>info@dsigner.com</strong>.
         </p>
       </>
     ),

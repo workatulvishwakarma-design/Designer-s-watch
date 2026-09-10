@@ -74,21 +74,25 @@ export default function ContactSection() {
                         <ContactCard
                             icon={MapPin}
                             title="Visit Us"
-                            content="Nagpal Group, Designer World Building, Mumbai, India"
+                            content="First floor, Pinnacle Business Park, F1-8, Mahakali Caves Rd, Shanti Nagar, Andheri East, Mumbai, Maharashtra 400093"
+                            href="https://maps.google.com/?q=Pinnacle+Business+Park,+Mahakali+Caves+Rd,+Shanti+Nagar,+Andheri+East,+Mumbai,+Maharashtra+400093"
+                            isExternal
                             delay={0.1}
                         />
                         <ContactCard
                             icon={Phone}
                             title="Call Us"
-                            content="+91 XXXXX XXXXX"
+                            content="099200 88666"
                             subContent="Mon–Sat, 10AM–6PM"
+                            href="tel:09920088666"
                             delay={0.2}
                         />
                         <ContactCard
                             icon={Mail}
                             title="Email Us"
-                            content="info@designerworld.in"
+                            content="info@dsigner.com"
                             subContent="Response within 24hrs"
+                            href="mailto:info@dsigner.com"
                             delay={0.3}
                         />
                     </div>
@@ -128,7 +132,7 @@ export default function ContactSection() {
                                             <InputField name="email" label="Email Address" type="email" placeholder="you@example.com" required />
                                         </div>
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                            <InputField name="phone" label="Phone Number" placeholder="+91 00000 00000" />
+                                            <InputField name="phone" label="Phone Number" placeholder="+91 99200 88666" />
                                             <InputField name="subject" label="Subject" placeholder="How can we help?" />
                                         </div>
                                         <div>
@@ -223,23 +227,23 @@ export default function ContactSection() {
                         </div>
                         <h3 className="font-cormorant text-4xl sm:text-5xl text-[#111110] font-normal leading-tight mb-4">Visit Our Main Facility</h3>
                         <p className="font-dm text-[#555555] text-lg mb-8 leading-relaxed font-light">
-                            Designer World, Nagpal Group HQ. Mumbai, India — The Heart of Indian Horology.
+                            First floor, Pinnacle Business Park, F1-8, Mahakali Caves Rd, Shanti Nagar, Andheri East, Mumbai, Maharashtra 400093
                         </p>
                         <div className="flex gap-12 border-t border-[#003926]/10 pt-8">
                             <div>
                                 <span className="block text-[10px] uppercase tracking-widest text-[#777777] mb-1 font-dm font-medium">Latitude</span>
-                                <span className="font-cormorant text-2xl text-[#B8935A] font-semibold">19.0760° N</span>
+                                <span className="font-cormorant text-2xl text-[#B8935A] font-semibold">19.1221° N</span>
                             </div>
                             <div>
                                 <span className="block text-[10px] uppercase tracking-widest text-[#777777] mb-1 font-dm font-medium">Longitude</span>
-                                <span className="font-cormorant text-2xl text-[#B8935A] font-semibold">72.8777° E</span>
+                                <span className="font-cormorant text-2xl text-[#B8935A] font-semibold">72.8687° E</span>
                             </div>
                         </div>
                     </div>
 
                     <div className="h-[450px] bg-white rounded-2xl border border-[#003926]/10 shadow-2xl overflow-hidden relative group">
                         <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d120658.123456789!2d72.8!3d19.0!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c6306644edc1%3A0x5da4ed8f8d648c!2sMumbai%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1234567890123!5m2!1sen!2sin"
+                            src="https://www.google.com/maps?q=Pinnacle+Business+Park,+Mahakali+Caves+Rd,+Shanti+Nagar,+Andheri+East,+Mumbai,+Maharashtra+400093&output=embed"
                             width="100%"
                             height="100%"
                             style={{ border: 0, filter: 'grayscale(0.5) contrast(0.9)' }}
@@ -254,28 +258,47 @@ export default function ContactSection() {
     );
 }
 
-function ContactCard({ icon: Icon, title, content, subContent, delay }: {
+function ContactCard({ icon: Icon, title, content, subContent, delay, href, isExternal }: {
     icon: React.ComponentType<{ size?: number; className?: string }>;
     title: string;
     content: string;
     subContent?: string;
     delay: number;
+    href?: string;
+    isExternal?: boolean;
 }) {
+    const cardContent = (
+        <div className="group bg-white border border-[#003926]/10 rounded-xl p-8 hover:border-[#B8935A] transition-all duration-300 hover:-translate-y-1 shadow-sm font-dm h-full flex flex-col justify-between">
+            <div>
+                <div className="w-12 h-12 bg-[#FAF8F4] rounded-lg flex items-center justify-center mb-6 group-hover:bg-[#B8935A]/10 transition-colors">
+                    <Icon size={24} className="text-[#B8935A]" />
+                </div>
+                <h3 className="font-dm font-semibold text-[16px] text-[#111110] mb-2">{title}</h3>
+                <p className="font-dm text-sm text-[#555555] leading-relaxed font-light break-words">{content}</p>
+            </div>
+            {subContent && (
+                <p className="font-dm text-[12px] text-[#888888] mt-3 italic">{subContent}</p>
+            )}
+        </div>
+    );
+
     return (
         <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ delay }}
-            className="group bg-white border border-[#003926]/10 rounded-xl p-8 hover:border-[#B8935A] transition-all duration-300 hover:-translate-y-1 shadow-sm font-dm"
         >
-            <div className="w-12 h-12 bg-[#FAF8F4] rounded-lg flex items-center justify-center mb-6 group-hover:bg-[#B8935A]/10 transition-colors">
-                <Icon size={24} className="text-[#B8935A]" />
-            </div>
-            <h3 className="font-dm font-semibold text-[16px] text-[#111110] mb-2">{title}</h3>
-            <p className="font-dm text-sm text-[#555555] leading-relaxed font-light">{content}</p>
-            {subContent && (
-                <p className="font-dm text-[12px] text-[#888888] mt-2 italic">{subContent}</p>
+            {href ? (
+                <a
+                    href={href}
+                    {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                    className="block h-full focus:outline-none"
+                >
+                    {cardContent}
+                </a>
+            ) : (
+                cardContent
             )}
         </motion.div>
     );

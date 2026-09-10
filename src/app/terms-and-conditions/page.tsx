@@ -128,7 +128,7 @@ const SECTIONS: LegalSection[] = [
     content: (
       <>
         <p>
-          These Terms of Service and any separate agreements whereby we provide you Services shall be governed by and construed in accordance with the laws of <strong>India</strong>, and any legal filings or disputes shall fall under the exclusive jurisdiction of the courts of <strong>New Delhi, India</strong>.
+          These Terms of Service and any separate agreements whereby we provide you Services shall be governed by and construed in accordance with the laws of <strong>India</strong>, and any legal filings or disputes shall fall under the exclusive jurisdiction of the courts of <strong>Mumbai, India</strong>.
         </p>
       </>
     ),
@@ -140,7 +140,7 @@ const SECTIONS: LegalSection[] = [
     content: (
       <>
         <p>
-          Questions about the Terms of Service should be sent to us at <strong>legal@designerworld.in</strong>.
+          Questions about the Terms of Service should be sent to us at <strong>info@dsigner.com</strong> or via phone at <strong>099200 88666</strong>. You may also write to our registered facility at <strong>First floor, Pinnacle Business Park, F1-8, Mahakali Caves Rd, Shanti Nagar, Andheri East, Mumbai, Maharashtra 400093</strong>.
         </p>
       </>
     ),

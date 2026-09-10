@@ -43,7 +43,7 @@ export default async function AdminSettingsPage() {
               <input 
                 name="contactEmail" 
                 type="email"
-                defaultValue={settings?.contactEmail || ""} 
+                defaultValue={settings?.contactEmail || "info@dsigner.com"} 
                 className="w-full rounded-xl border-gray-200 dark:border-zinc-800 bg-gray-50 dark:bg-zinc-950 px-4 py-3 text-sm focus:ring-2 focus:ring-black transition-all"
               />
             </div>
@@ -51,7 +51,7 @@ export default async function AdminSettingsPage() {
               <label className="block text-[10px] font-bold uppercase tracking-widest text-gray-400">Concierge Phone</label>
               <input 
                 name="contactPhone" 
-                defaultValue={settings?.contactPhone || ""} 
+                defaultValue={settings?.contactPhone || "099200 88666"} 
                 className="w-full rounded-xl border-gray-200 dark:border-zinc-800 bg-gray-50 dark:bg-zinc-950 px-4 py-3 text-sm focus:ring-2 focus:ring-black transition-all"
               />
             </div>
@@ -60,7 +60,7 @@ export default async function AdminSettingsPage() {
               <textarea 
                 name="businessAddress" 
                 rows={3}
-                defaultValue={settings?.businessAddress || ""} 
+                defaultValue={settings?.businessAddress || "First floor, Pinnacle Business Park, F1-8, Mahakali Caves Rd, Shanti Nagar, Andheri East, Mumbai, Maharashtra 400093"} 
                 className="w-full rounded-xl border-gray-200 dark:border-zinc-800 bg-gray-50 dark:bg-zinc-950 px-4 py-3 text-sm focus:ring-2 focus:ring-black transition-all"
               />
             </div>

@@ -298,7 +298,16 @@ export const allModelFamilies: ModelFamilyGroup[] = _parsed;
 export function getFamilyBySlug(slug: string): ModelFamilyGroup | undefined {
   if (!slug) return undefined;
   const target = slug.toLowerCase().trim();
-  return allModelFamilies.find((f) => f.slug.toLowerCase() === target || f.familyId.toLowerCase() === target);
+  const exact = allModelFamilies.find((f) => f.slug.toLowerCase() === target || f.familyId.toLowerCase() === target);
+  if (exact) return exact;
+
+  // Flexible match: handles escort-7931, e-7931, escort-e-7931
+  const cleanTarget = target.replace(/^(escort|dsigner|designer)[-_]/, "").replace(/^e[-_]/, "");
+  return allModelFamilies.find((f) => {
+    const cleanSlug = f.slug.toLowerCase().replace(/^(escort|dsigner|designer)[-_]/, "").replace(/^e[-_]/, "");
+    const cleanFamId = f.familyId.toLowerCase().replace(/^e[-_]/, "");
+    return cleanSlug === cleanTarget || cleanFamId === cleanTarget;
+  });
 }
 
 export function getFamiliesByCollection(collectionSlug: string): ModelFamilyGroup[] {

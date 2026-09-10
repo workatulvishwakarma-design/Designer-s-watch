@@ -142,7 +142,7 @@ export default function StoreLocator() {
       return encodeURIComponent(`${searchQuery.trim()}, India`);
     }
     return encodeURIComponent(
-      "Designer World, Mumbai, Maharashtra, India"
+      "Pinnacle Business Park, Mahakali Caves Rd, Shanti Nagar, Andheri East, Mumbai, Maharashtra 400093"
     );
   }, [selectedDealer, searchQuery]);
 

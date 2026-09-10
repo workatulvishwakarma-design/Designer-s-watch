@@ -120,7 +120,7 @@ const SECTIONS: LegalSection[] = [
     content: (
       <>
         <p>
-          We may update this policy periodically to align with legal or operating shifts. Any updates will be noted via the &quot;Last updated&quot; tag at the top. For all privacy inquiries, please contact our Compliance Desk at <strong>privacy@designerworld.in</strong>.
+          We may update this policy periodically to align with legal or operating shifts. Any updates will be noted via the &quot;Last updated&quot; tag at the top. For all privacy inquiries, please contact our Compliance Desk at <strong>info@dsigner.com</strong> or call <strong>099200 88666</strong>.
         </p>
       </>
     ),

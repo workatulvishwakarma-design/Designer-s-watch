@@ -39,6 +39,15 @@
   overflow: hidden;
 }
 
+.heroImgWrap {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+}
+
 .heroImg {
   width: 100%;
   height: 100%;
@@ -46,6 +55,14 @@
   object-position: center;
   display: block;
   filter: grayscale(100%) brightness(0.78);
+}
+
+.heroDarkOverlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(0, 0, 0, 0.12) 0%, rgba(0, 0, 0, 0.42) 100%);
+  pointer-events: none;
+  z-index: 1;
 }
 
 .heroCaption {
@@ -209,7 +226,7 @@
 .greenSpine {
   position: absolute;
   top: 0;
-  bottom: clamp(140px, 16vw, 220px);
+  bottom: clamp(390px, 34vw, 540px);
   left: 50%;
   transform: translateX(-50%);
   width: var(--green-strip-width);
@@ -219,6 +236,73 @@
   background-size: var(--green-strip-width) auto;
   z-index: 1;
   pointer-events: none;
+}
+
+/* ── Central Timeline Scroll Progress ── */
+.spineHighlightOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 57, 38, 0.22) 0%,
+    rgba(39, 82, 57, 0.42) 80%,
+    rgba(65, 138, 92, 0.55) 96%,
+    rgba(39, 82, 57, 0.2) 100%
+  );
+  mask-image: url('/about-us-coded/assets/green.png');
+  -webkit-mask-image: url('/about-us-coded/assets/green.png');
+  mask-repeat: repeat-y;
+  -webkit-mask-repeat: repeat-y;
+  mask-size: var(--green-strip-width) auto;
+  -webkit-mask-size: var(--green-strip-width) auto;
+  z-index: 1;
+  pointer-events: none;
+  transition: height 0.08s linear;
+}
+
+.spineProgressTrack {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.spineProgressBar {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 3px;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 57, 38, 0.65) 0%,
+    rgba(39, 82, 57, 0.9) 70%,
+    #4E9B6E 100%
+  );
+  box-shadow: 0 0 8px rgba(39, 82, 57, 0.7), 0 0 2px rgba(78, 155, 110, 0.85);
+  border-radius: 2px;
+  transition: height 0.08s linear;
+}
+
+.spineProgressHead {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #E8F5E9 25%, #347B52 70%, #003926 100%);
+  border: 1.5px solid #E8F5E9;
+  box-shadow: 0 0 10px rgba(52, 123, 82, 0.85), 0 0 3px rgba(232, 245, 233, 0.9);
+  z-index: 3;
+  pointer-events: none;
+  transition: top 0.08s linear;
 }
 
 /* ════════════════════════════════════════════════════════════════
@@ -514,10 +598,12 @@
 
 .teamPhotoWrap {
   position: relative;
+  top: -20vh;
+  left: -20%;
   z-index: 5;
   width: 100%;
-  max-width: 880px;
-  margin: clamp(-100px, -10vh, -40px) auto 0;
+  max-width: 704px;
+  margin: clamp(32px, 5vh, 60px) auto 0;
   text-align: center;
 }
 
@@ -540,6 +626,19 @@
   font-size: clamp(96px, 8.5vw, 134px);
   line-height: 0.82;
   letter-spacing: -0.04em;
+  color: var(--color-green);
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 12px;
+}
+
+.bigYearToday {
+  font-family: var(--font-main);
+  font-weight: 800;
+  font-size: clamp(72px, 6.5vw, 110px);
+  line-height: 0.84;
+  letter-spacing: -0.03em;
   color: var(--color-green);
   user-select: none;
   display: flex;
@@ -614,12 +713,14 @@
   background-image: url('/about-us-coded/assets/texture.jpg');
   background-repeat: repeat;
   background-position: center top;
+  margin-top: clamp(-260px, -32vh, -180px);
+  z-index: 10;
 }
 
 .chairmanContainer {
   max-width: 1240px;
   margin: 0 auto;
-  padding: clamp(3.5rem, 6vw, 5.5rem) clamp(1.5rem, 4vw, 3rem);
+  padding: clamp(0.75rem, 1.5vw, 1.25rem) clamp(1.5rem, 4vw, 3rem) clamp(3.5rem, 6vw, 5.5rem);
 }
 
 .chairmanImgWrap {
@@ -860,6 +961,11 @@
     z-index: 1;
   }
 
+  .spineHighlightOverlay {
+    mask-size: 14px auto;
+    -webkit-mask-size: 14px auto;
+  }
+
   /* ── 1. 1940s Section on Mobile ── */
   .section1940 {
     display: flex;
@@ -1018,7 +1124,9 @@
      2. Center Column with Artwork / Photograph
      3. Column with Supporting Details */
   .leftCol:has(.bigYear),
-  .rightCol:has(.bigYear) {
+  .rightCol:has(.bigYear),
+  .leftCol:has(.bigYearToday),
+  .rightCol:has(.bigYearToday) {
     order: 1;
     margin-bottom: 0;
   }
@@ -1032,20 +1140,20 @@
     z-index: 3;
   }
 
-  .leftCol:not(:has(.bigYear)),
-  .rightCol:not(:has(.bigYear)) {
+  .leftCol:not(:has(.bigYear)):not(:has(.bigYearToday)),
+  .rightCol:not(:has(.bigYear)):not(:has(.bigYearToday)) {
     order: 3;
     margin-top: 4px;
   }
 
   /* In mobile single-column flow, hide redundant second smallYearLabel if main bigYear is present */
-  .leftCol:not(:has(.bigYear)) .smallYearLabel,
-  .rightCol:not(:has(.bigYear)) .smallYearLabel {
+  .leftCol:not(:has(.bigYear)):not(:has(.bigYearToday)) .smallYearLabel,
+  .rightCol:not(:has(.bigYear)):not(:has(.bigYearToday)) .smallYearLabel {
     display: none;
   }
 
-  .leftCol:not(:has(.bigYear)) .greenDivider,
-  .rightCol:not(:has(.bigYear)) .greenDivider {
+  .leftCol:not(:has(.bigYear)):not(:has(.bigYearToday)) .greenDivider,
+  .rightCol:not(:has(.bigYear)):not(:has(.bigYearToday)) .greenDivider {
     display: none;
   }
 
@@ -1059,8 +1167,9 @@
   }
 
   /* Milestone Typography */
-  .bigYear {
-    font-size: clamp(52px, 14vw, 68px);
+  .bigYear,
+  .bigYearToday {
+    font-size: clamp(48px, 13vw, 64px);
     line-height: 0.85;
     margin-bottom: 6px;
   }
@@ -1114,8 +1223,12 @@
   }
 
   /* ── 4. Chairman Section on Mobile ── */
+  .chairmanSection {
+    margin-top: -1rem;
+  }
+
   .chairmanContainer {
-    padding: 2.5rem 1.25rem;
+    padding: 1.25rem 1.25rem 2.5rem;
   }
 
   .chairmanHeadingWrap {
@@ -1149,7 +1262,8 @@
   }
 
   .bigYear1940,
-  .bigYear {
+  .bigYear,
+  .bigYearToday {
     font-size: 46px;
   }
 

@@ -141,28 +141,48 @@ export default function SlideToSwitch() {
           </div>
 
           {/* Bottom Left Label: Ocean Blue Dial */}
-          <div className="absolute bottom-6 left-6 md:left-8 z-30 text-left bg-white/70 backdrop-blur-md px-4 py-2.5 rounded-sm border border-black/5 pointer-events-auto">
-            <span className="font-montserrat text-[14px] font-medium text-[#1A1918] block mb-1">
+          <div
+            className="absolute bottom-6 left-6 md:left-8 z-30 text-left bg-white/85 backdrop-blur-md px-5 py-3.5 rounded-lg border border-black/5 shadow-md pointer-events-auto cursor-default transition-all duration-300 hover:shadow-lg hover:bg-white"
+            onPointerDown={(e) => e.stopPropagation()}
+            onPointerMove={(e) => e.stopPropagation()}
+            onPointerUp={(e) => e.stopPropagation()}
+            onMouseDown={(e) => e.stopPropagation()}
+            onTouchStart={(e) => e.stopPropagation()}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <span className="font-montserrat text-[13px] md:text-[14px] font-semibold text-[#1A1918] block mb-1 select-none">
               Ocean Blue Dial
             </span>
             <Link
-              href="/product/escort-7931"
-              className="font-montserrat text-[11px] tracking-[0.15em] text-[#003926] uppercase font-medium hover:underline"
+              href="/product/escort-e-7931?variant=E-7931.RGM_Blue"
+              className="inline-flex items-center gap-1.5 font-montserrat text-[11px] tracking-[0.16em] text-[#003926] uppercase font-bold hover:text-[#B8935A] transition-colors cursor-pointer group/link py-0.5"
+              onClick={(e) => e.stopPropagation()}
             >
-              Shop Now
+              <span>Shop Now</span>
+              <span className="inline-block transition-transform duration-300 group-hover/link:translate-x-1">→</span>
             </Link>
           </div>
 
           {/* Bottom Right Label: Alabaster White Dial */}
-          <div className="absolute bottom-6 right-6 md:right-8 z-30 text-right bg-white/70 backdrop-blur-md px-4 py-2.5 rounded-sm border border-black/5 pointer-events-auto">
-            <span className="font-montserrat text-[14px] font-medium text-[#1A1918] block mb-1">
+          <div
+            className="absolute bottom-6 right-6 md:right-8 z-30 text-right bg-white/85 backdrop-blur-md px-5 py-3.5 rounded-lg border border-black/5 shadow-md pointer-events-auto cursor-default transition-all duration-300 hover:shadow-lg hover:bg-white"
+            onPointerDown={(e) => e.stopPropagation()}
+            onPointerMove={(e) => e.stopPropagation()}
+            onPointerUp={(e) => e.stopPropagation()}
+            onMouseDown={(e) => e.stopPropagation()}
+            onTouchStart={(e) => e.stopPropagation()}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <span className="font-montserrat text-[13px] md:text-[14px] font-semibold text-[#1A1918] block mb-1 select-none">
               Alabaster White Dial
             </span>
             <Link
-              href="/product/escort-7931"
-              className="font-montserrat text-[11px] tracking-[0.15em] text-[#003926] uppercase font-medium hover:underline"
+              href="/product/escort-e-7931?variant=E-7931.RGM_White"
+              className="inline-flex items-center gap-1.5 font-montserrat text-[11px] tracking-[0.16em] text-[#003926] uppercase font-bold hover:text-[#B8935A] transition-colors cursor-pointer group/link py-0.5"
+              onClick={(e) => e.stopPropagation()}
             >
-              Shop Now
+              <span>Shop Now</span>
+              <span className="inline-block transition-transform duration-300 group-hover/link:translate-x-1">→</span>
             </Link>
           </div>
 

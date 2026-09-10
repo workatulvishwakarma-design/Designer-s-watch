@@ -133,7 +133,7 @@ export default function CelebrationPopup() {
               >
                 Celebrating the journey of{" "}
                 <strong className="font-semibold" style={{ color: "#D4AF6A" }}>
-                  D&apos;Signer
+                  D’SIGNER
                 </strong>{" "}
                 — since 1990
               </p>
