@@ -95,7 +95,7 @@ const NAGPAL_DIVISIONS: Division[] = [
       "ESCORT serves the value-conscious consumer who refuses to compromise on reliability. With robust movements, durable construction, and timeless design, ESCORT watches are engineered for everyday excellence.",
       "Together, these house brands represent the full spectrum of our capability—from design studio creativity to manufacturing floor precision and lifelong after-sales commitment."
     ],
-    image: "/images/new-img/pillars/8.jpg",
+    image: "/images/new-img/des-esc.png",
     bg: "#FFFFFF",
     textColor: "#003926",
     accentColor: "#B8935A",
@@ -114,7 +114,7 @@ const NAGPAL_DIVISIONS: Division[] = [
       "Our export relationships span established markets in the Middle East, Southeast Asia, and Africa, with a growing presence in European and North American distribution networks.",
       "This division also serves as a window into global trends and competitive benchmarks, bringing back insights that inform product development across the group."
     ],
-    image: "/images/new-content/pillars/Exports/WhatsApp Image 2026-04-15 at 11.30.22 AM.jpeg",
+    image: "/images/new-img/global.jpeg",
     bg: "#003926",
     textColor: "#FAFAF8",
     accentColor: "#B8935A",
@@ -133,11 +133,13 @@ const NAGPAL_DIVISIONS: Division[] = [
       "The store showcases our prime models, new launches, top sellers, and special editions in an atmosphere crafted to inspire with an appealing display and aura.",
       "This boutique is a gesture to connect with watch enthusiasts and add enduring value to our happy watch buyers. First location: Agra."
     ],
-    image: "/images/new-content/pillars/Time Corridor/time corriddor/1A1A8499.JPG",
+    image: "/images/new-img/time-cor.jpeg",
     bg: "#FFFFFF",
     textColor: "#003926",
     accentColor: "#B8935A",
     imageContain: false,
+    maxWidth: "max-w-[460px]",
+    aspectRatio: "4/3",
   },
   {
     index: "07",
@@ -329,7 +331,7 @@ function DivisionBlock({
               <img
                 src={division.image}
                 alt={division.title}
-                className={`absolute inset-0 w-full h-full grayscale contrast-[1.1] ${division.imageContain ? "object-contain p-6 sm:p-8" : "object-cover"}`}
+                className={`absolute inset-0 w-full h-full transition-transform duration-700 ${division.imageContain ? "object-contain p-6 sm:p-8" : "object-cover"}`}
                 style={{ objectPosition: "center" }}
                 onError={(e) => {
                   (e.target as HTMLImageElement).src = "/images/main-img1.png";

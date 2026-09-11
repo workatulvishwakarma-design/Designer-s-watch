@@ -102,8 +102,15 @@ export default function WatchGridCollage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="relative overflow-hidden aspect-[3/5] bg-[#0A120E] group rounded-sm border border-black/10 shadow-lg"
+            className="relative overflow-hidden aspect-[3/5] bg-[#0A120E] group rounded-sm border border-black/10 shadow-lg cursor-pointer"
           >
+            {/* Clickable Card Link to Product Page */}
+            <Link
+              href={`/product/${IMAGES.col1.slug}`}
+              className="absolute inset-0 z-10 block"
+              aria-label={`View ${IMAGES.col1.name}`}
+            />
+
             <Image
               src={IMAGES.col1.src}
               alt={IMAGES.col1.alt}
@@ -116,7 +123,7 @@ export default function WatchGridCollage() {
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent pointer-events-none" />
 
             <div className="absolute bottom-4 left-4 z-20 pointer-events-none">
-              <span className="font-montserrat text-[12px] text-white font-medium tracking-wider block bg-black/60 backdrop-blur-md px-3.5 py-1.5 rounded-sm border border-white/20 shadow-md">
+              <span className="font-montserrat text-[12px] text-white font-medium tracking-wider block bg-black/60 backdrop-blur-md px-3.5 py-1.5 rounded-sm border border-white/20 shadow-md group-hover:border-white/40 transition-colors">
                 {IMAGES.col1.label}
               </span>
             </div>
@@ -142,7 +149,14 @@ export default function WatchGridCollage() {
             className="flex flex-col gap-3 md:gap-5"
           >
             {/* Top Card */}
-            <div className="relative overflow-hidden aspect-[4/3] bg-[#0A120E] group flex-grow rounded-sm border border-black/10 shadow-lg">
+            <div className="relative overflow-hidden aspect-[4/3] bg-[#0A120E] group flex-grow rounded-sm border border-black/10 shadow-lg cursor-pointer">
+              {/* Clickable Card Link to Product Page */}
+              <Link
+                href={`/product/${IMAGES.col2_top.slug}`}
+                className="absolute inset-0 z-10 block"
+                aria-label={`View ${IMAGES.col2_top.name}`}
+              />
+
               <Image
                 src={IMAGES.col2_top.src}
                 alt={IMAGES.col2_top.alt}
@@ -153,7 +167,7 @@ export default function WatchGridCollage() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent pointer-events-none" />
 
               <div className="absolute bottom-4 left-4 z-20 pointer-events-none">
-                <span className="font-montserrat text-[12px] text-white font-medium tracking-wider block bg-black/60 backdrop-blur-md px-3.5 py-1.5 rounded-sm border border-white/20 shadow-md">
+                <span className="font-montserrat text-[12px] text-white font-medium tracking-wider block bg-black/60 backdrop-blur-md px-3.5 py-1.5 rounded-sm border border-white/20 shadow-md group-hover:border-white/40 transition-colors">
                   {IMAGES.col2_top.label}
                 </span>
               </div>
@@ -170,7 +184,14 @@ export default function WatchGridCollage() {
             </div>
 
             {/* Bottom Card */}
-            <div className="relative overflow-hidden aspect-[4/3] bg-[#0A120E] group flex-grow rounded-sm border border-black/10 shadow-lg">
+            <div className="relative overflow-hidden aspect-[4/3] bg-[#0A120E] group flex-grow rounded-sm border border-black/10 shadow-lg cursor-pointer">
+              {/* Clickable Card Link to Product Page */}
+              <Link
+                href={`/product/${IMAGES.col2_bottom.slug}`}
+                className="absolute inset-0 z-10 block"
+                aria-label={`View ${IMAGES.col2_bottom.name}`}
+              />
+
               <Image
                 src={IMAGES.col2_bottom.src}
                 alt={IMAGES.col2_bottom.alt}
@@ -181,7 +202,7 @@ export default function WatchGridCollage() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent pointer-events-none" />
 
               <div className="absolute bottom-4 left-4 z-20 pointer-events-none">
-                <span className="font-montserrat text-[12px] text-white font-medium tracking-wider block bg-black/60 backdrop-blur-md px-3.5 py-1.5 rounded-sm border border-white/20 shadow-md">
+                <span className="font-montserrat text-[12px] text-white font-medium tracking-wider block bg-black/60 backdrop-blur-md px-3.5 py-1.5 rounded-sm border border-white/20 shadow-md group-hover:border-white/40 transition-colors">
                   {IMAGES.col2_bottom.label}
                 </span>
               </div>
@@ -207,7 +228,14 @@ export default function WatchGridCollage() {
             className="flex flex-col gap-3 md:gap-5"
           >
             {/* Top Card */}
-            <div className="relative overflow-hidden aspect-[4/3] bg-[#0A120E] group flex-grow rounded-sm border border-black/10 shadow-lg">
+            <div className="relative overflow-hidden aspect-[4/3] bg-[#0A120E] group flex-grow rounded-sm border border-black/10 shadow-lg cursor-pointer">
+              {/* Clickable Card Link to Product Page */}
+              <Link
+                href={`/product/${IMAGES.col3_top.slug}`}
+                className="absolute inset-0 z-10 block"
+                aria-label={`View ${IMAGES.col3_top.name}`}
+              />
+
               <Image
                 src={IMAGES.col3_top.src}
                 alt={IMAGES.col3_top.alt}
@@ -218,7 +246,7 @@ export default function WatchGridCollage() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent pointer-events-none" />
 
               <div className="absolute bottom-4 left-4 z-20 pointer-events-none">
-                <span className="font-montserrat text-[12px] text-white font-medium tracking-wider block bg-black/60 backdrop-blur-md px-3.5 py-1.5 rounded-sm border border-white/20 shadow-md">
+                <span className="font-montserrat text-[12px] text-white font-medium tracking-wider block bg-black/60 backdrop-blur-md px-3.5 py-1.5 rounded-sm border border-white/20 shadow-md group-hover:border-white/40 transition-colors">
                   {IMAGES.col3_top.label}
                 </span>
               </div>
@@ -235,7 +263,14 @@ export default function WatchGridCollage() {
             </div>
 
             {/* Bottom Card */}
-            <div className="relative overflow-hidden aspect-[4/3] bg-[#0A120E] group flex-grow rounded-sm border border-black/10 shadow-lg">
+            <div className="relative overflow-hidden aspect-[4/3] bg-[#0A120E] group flex-grow rounded-sm border border-black/10 shadow-lg cursor-pointer">
+              {/* Clickable Card Link to Product Page */}
+              <Link
+                href={`/product/${IMAGES.col3_bottom.slug}`}
+                className="absolute inset-0 z-10 block"
+                aria-label={`View ${IMAGES.col3_bottom.name}`}
+              />
+
               <Image
                 src={IMAGES.col3_bottom.src}
                 alt={IMAGES.col3_bottom.alt}
@@ -246,7 +281,7 @@ export default function WatchGridCollage() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent pointer-events-none" />
 
               <div className="absolute bottom-4 left-4 z-20 pointer-events-none">
-                <span className="font-montserrat text-[12px] text-white font-medium tracking-wider block bg-black/60 backdrop-blur-md px-3.5 py-1.5 rounded-sm border border-white/20 shadow-md">
+                <span className="font-montserrat text-[12px] text-white font-medium tracking-wider block bg-black/60 backdrop-blur-md px-3.5 py-1.5 rounded-sm border border-white/20 shadow-md group-hover:border-white/40 transition-colors">
                   {IMAGES.col3_bottom.label}
                 </span>
               </div>
@@ -269,10 +304,17 @@ export default function WatchGridCollage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="relative overflow-hidden aspect-[3/5] bg-[#0A120E] group rounded-sm border border-black/10 shadow-lg"
+            className="relative overflow-hidden aspect-[3/5] bg-[#0A120E] group rounded-sm border border-black/10 shadow-lg cursor-pointer"
           >
+            {/* Clickable Card Link to Product Page */}
+            <Link
+              href={`/product/${IMAGES.col4.slug}`}
+              className="absolute inset-0 z-10 block"
+              aria-label={`View ${IMAGES.col4.name}`}
+            />
+
             {/* Cutout PNG Watch product styling with dark background */}
-            <div className="relative w-full h-full p-6 flex items-center justify-center">
+            <div className="relative w-full h-full p-6 flex items-center justify-center pointer-events-none">
               <Image
                 src={IMAGES.col4.src}
                 alt={IMAGES.col4.alt}
@@ -285,7 +327,7 @@ export default function WatchGridCollage() {
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
 
             <div className="absolute bottom-4 left-4 z-20 pointer-events-none">
-              <span className="font-montserrat text-[12px] text-white font-medium tracking-wider block bg-black/60 backdrop-blur-md px-3.5 py-1.5 rounded-sm border border-white/20 shadow-md">
+              <span className="font-montserrat text-[12px] text-white font-medium tracking-wider block bg-black/60 backdrop-blur-md px-3.5 py-1.5 rounded-sm border border-white/20 shadow-md group-hover:border-white/40 transition-colors">
                 {IMAGES.col4.label}
               </span>
             </div>

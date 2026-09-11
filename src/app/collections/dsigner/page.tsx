@@ -1,5 +1,3 @@
-"use client";
-
 import DsignerHero from "@/components/sections/dsigner/DsignerHero";
 import DsignerGrid from "@/components/sections/dsigner/DsignerGrid";
 import DsignerFeatures from "@/components/sections/dsigner/DsignerFeatures";

@@ -1,12 +1,14 @@
 "use client";
 
-import { useState, useMemo, useRef } from "react";
+import { useState, useMemo, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, Heart } from "lucide-react";
 import type { ModelFamilyGroup } from "@/types/product";
 import { getAllPrimaryImageCandidates } from "@/lib/imageResolver";
 import LuxuryPlaceholder from "@/components/ui/LuxuryPlaceholder";
+import { useWishlistStore } from "@/lib/store/wishlist";
+import { toast } from "sonner";
 
 interface BestSellersProps {
   families: ModelFamilyGroup[];
@@ -114,6 +116,28 @@ function ProductCard({ family }: { family: ModelFamilyGroup }) {
   const mrp = primaryVariant?.mrp || 0;
   const discount = mrp && mrp > price ? Math.round(((mrp - price) / mrp) * 100) : 0;
 
+  const { toggleItem, isInWishlist } = useWishlistStore();
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => { setMounted(true); }, []);
+  const isSaved = mounted ? isInWishlist(family.familyId || family.slug) : false;
+
+  const handleToggleWishlist = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    toggleItem({
+      productId: family.familyId || family.slug,
+      name: family.name,
+      price: price,
+      image: primaryImage,
+      slug: family.slug
+    });
+    if (isSaved) {
+      toast.info("Removed from wishlist");
+    } else {
+      toast.success("Added to wishlist");
+    }
+  };
+
   const handleImageError = () => {
     if (imgIdx < primaryCandidates.length - 1) {
       setImgIdx((prev) => prev + 1);
@@ -191,15 +215,12 @@ function ProductCard({ family }: { family: ModelFamilyGroup }) {
 
           {/* Wishlist Heart */}
           <button
-            className="absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-white/80 backdrop-blur-sm flex items-center justify-center text-[#9C9690] hover:text-[#C8102E] transition-colors duration-300 shadow-sm"
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-            }}
+            type="button"
+            className="absolute top-3 right-3 z-20 w-9 h-9 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center transition-all duration-300 hover:bg-white shadow-sm cursor-pointer group/heart"
+            onClick={handleToggleWishlist}
+            aria-label={isSaved ? "Remove from wishlist" : "Add to wishlist"}
           >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-            </svg>
+            <Heart size={18} className={`transition-transform duration-200 group-hover/heart:scale-110 ${isSaved ? "fill-[#C8102E] text-[#C8102E]" : "text-[#1A1918] hover:text-[#C8102E]"}`} />
           </button>
         </div>
 

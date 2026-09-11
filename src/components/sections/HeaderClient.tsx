@@ -12,6 +12,7 @@ import dynamic from "next/dynamic";
 const SearchOverlay = dynamic(() => import("@/components/ui/SearchOverlay"), { ssr: false });
 import { collections, Collection } from "@/data/collections";
 import { allModelFamilies } from "@/data/productData";
+import { getAllSearchableProducts } from "@/lib/searchIndex";
 
 export type MegaMenuPayload = {
     collections: Collection[];
@@ -240,15 +241,8 @@ export default function HeaderClient({ hasAnnouncement = false, megaMenuPayload 
     useEffect(() => { setMounted(true); }, []);
     const cartCount = mounted ? items.reduce((a, i) => a + i.quantity, 0) : 0;
 
-    // Build search data
-    const searchProducts = useMemo(() => allModelFamilies.slice(0, 60).map(f => ({
-        name: f.name,
-        slug: f.slug,
-        brand: f.brand,
-        familyId: f.familyId,
-        image: f.variants[0]?.gallery?.primary || "",
-        price: `From ₹${f.priceRange.min.toLocaleString("en-IN")}`,
-    })), []);
+    // Build comprehensive search data (all Escort, D'Signer & heritage timepieces)
+    const searchProducts = useMemo(() => getAllSearchableProducts(), []);
 
     const searchCollections = useMemo(() => collections.map(c => ({
         name: c.title,

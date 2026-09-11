@@ -51,7 +51,7 @@ export default async function AdminSettingsPage() {
               <label className="block text-[10px] font-bold uppercase tracking-widest text-gray-400">Concierge Phone</label>
               <input 
                 name="contactPhone" 
-                defaultValue={settings?.contactPhone || "099200 88666"} 
+                defaultValue={settings?.contactPhone || "+91 84549 26088"} 
                 className="w-full rounded-xl border-gray-200 dark:border-zinc-800 bg-gray-50 dark:bg-zinc-950 px-4 py-3 text-sm focus:ring-2 focus:ring-black transition-all"
               />
             </div>

@@ -140,7 +140,7 @@ const SECTIONS: LegalSection[] = [
     content: (
       <>
         <p>
-          Questions about the Terms of Service should be sent to us at <strong>info@dsigner.com</strong> or via phone at <strong>099200 88666</strong>. You may also write to our registered facility at <strong>First floor, Pinnacle Business Park, F1-8, Mahakali Caves Rd, Shanti Nagar, Andheri East, Mumbai, Maharashtra 400093</strong>.
+          Questions about the Terms of Service should be sent to us at <strong>info@dsigner.com</strong> or via phone at <strong>+91 84549 26088</strong>. You may also write to our registered facility at <strong>First floor, Pinnacle Business Park, F1-8, Mahakali Caves Rd, Shanti Nagar, Andheri East, Mumbai, Maharashtra 400093</strong>.
         </p>
       </>
     ),

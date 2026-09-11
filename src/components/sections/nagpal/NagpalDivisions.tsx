@@ -93,7 +93,7 @@ const NAGPAL_DIVISIONS: Division[] = [
       "ESCORT serves the value-conscious consumer who refuses to compromise on reliability. With robust movements, durable construction, and timeless design, ESCORT watches are engineered for everyday excellence.",
       "Together, these house brands represent the full spectrum of our capability—from design studio creativity to manufacturing floor precision and lifelong after-sales commitment."
     ],
-    image: "/images/new-img/pillars/8.jpg",
+    image: "/images/new-img/des-esc.png",
     bg: "#F2EDE6",
     textColor: "#1A1918",
     accentColor: "#003926",
@@ -112,7 +112,7 @@ const NAGPAL_DIVISIONS: Division[] = [
       "Our export relationships span established markets in the Middle East, Southeast Asia, and Africa, with a growing presence in European and North American distribution networks.",
       "This division also serves as a window into global trends and competitive benchmarks, bringing back insights that inform product development across the group."
     ],
-    image: "/images/new-content/pillars/Exports/WhatsApp Image 2026-04-15 at 11.30.22 AM.jpeg",
+    image: "/images/new-img/global.jpeg",
     bg: "#0D0D0C",
     textColor: "#FAFAF8",
     accentColor: "#B8935A",
@@ -131,7 +131,7 @@ const NAGPAL_DIVISIONS: Division[] = [
       "The store showcases our prime models, new launches, top sellers, and special editions in an atmosphere crafted to inspire with an appealing display and aura.",
       "This boutique is a gesture to connect with watch enthusiasts and add enduring value to our happy watch buyers. First location: Agra."
     ],
-    image: "/images/new-content/pillars/Time Corridor/time corriddor/1A1A8499.JPG",
+    image: "/images/new-img/time-cor.jpeg",
     bg: "#FAF8F4",
     textColor: "#1A1918",
     accentColor: "#003926",

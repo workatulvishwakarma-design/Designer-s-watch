@@ -104,7 +104,7 @@ export default function SearchOverlay({ isOpen, onClose, products, collections }
                 type="text"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="Search products, collections, pages..."
+                placeholder="Search by model number (e.g. E1650-7359, 806GNFS) or watch name..."
                 className="w-full bg-transparent border-0 focus:outline-none focus:ring-0 text-[#001F14] placeholder-[#003926]/30 text-base md:text-lg font-dm"
               />
               {query && (
@@ -209,7 +209,14 @@ export default function SearchOverlay({ isOpen, onClose, products, collections }
                               )}
                             </div>
                             <div className="min-w-0 flex-1">
-                              <span className="text-[8px] font-bold uppercase tracking-wider text-[#B8935A]">{p.brand}</span>
+                              <div className="flex items-center gap-1.5 mb-0.5 flex-wrap">
+                                <span className="text-[8px] font-bold uppercase tracking-wider text-[#B8935A]">{p.brand}</span>
+                                {p.modelNumber && (
+                                  <span className="text-[9px] font-mono font-semibold text-[#003926]/75 bg-[#003926]/5 px-1.5 py-0.5 rounded border border-[#003926]/10">
+                                    {p.modelNumber}
+                                  </span>
+                                )}
+                              </div>
                               <h4 className="text-[13px] font-body font-semibold text-[#001F14] truncate group-hover:text-[#003926] transition-colors leading-snug">
                                 {p.name}
                               </h4>
@@ -289,7 +296,7 @@ export default function SearchOverlay({ isOpen, onClose, products, collections }
                   </p>
                   <div className="max-w-[400px] mx-auto p-[1px] bg-gradient-to-r from-transparent via-[#003926]/10 to-transparent my-4" />
                   <p className="text-[10px] uppercase tracking-wider text-[#9C9690]">
-                    Try searching for <span className="font-bold text-[#003926]">Grandeur</span>, <span className="font-bold text-[#003926]">Eternal</span>, <span className="font-bold text-[#003926]">Serene</span> or <span className="font-bold text-[#003926]">Bolt</span>
+                    Try searching by model number (e.g. <span className="font-bold text-[#003926]">E1650-7359</span>, <span className="font-bold text-[#003926]">806GNFS</span>) or collection (<span className="font-bold text-[#003926]">Grandeur</span>, <span className="font-bold text-[#003926]">Escort</span>)
                   </p>
                 </motion.div>
               )}

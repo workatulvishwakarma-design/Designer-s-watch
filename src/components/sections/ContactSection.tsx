@@ -14,15 +14,21 @@ export default function ContactSection() {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setFormStatus("loading");
-        const formData = new FormData(e.currentTarget);
-        const res = await submitContactQuery(formData);
-        
-        if (res.error) {
-            toast.error(res.error);
+        const form = e.currentTarget;
+        const formData = new FormData(form);
+        try {
+            const res = await submitContactQuery(formData);
+            if (res.error) {
+                toast.error(res.error);
+                setFormStatus("idle");
+            } else {
+                toast.success(res.success || "Message sent successfully!");
+                setFormStatus("success");
+                form.reset();
+            }
+        } catch (err: any) {
+            toast.error(err?.message || "Failed to send message. Please check your connection.");
             setFormStatus("idle");
-        } else {
-            setFormStatus("success");
-            e.currentTarget.reset();
         }
     };
 
@@ -82,9 +88,9 @@ export default function ContactSection() {
                         <ContactCard
                             icon={Phone}
                             title="Call Us"
-                            content="099200 88666"
+                            content="+91 84549 26088"
                             subContent="Mon–Sat, 10AM–6PM"
-                            href="tel:09920088666"
+                            href="tel:+918454926088"
                             delay={0.2}
                         />
                         <ContactCard
@@ -132,7 +138,7 @@ export default function ContactSection() {
                                             <InputField name="email" label="Email Address" type="email" placeholder="you@example.com" required />
                                         </div>
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                            <InputField name="phone" label="Phone Number" placeholder="+91 99200 88666" />
+                                            <InputField name="phone" label="Phone Number" placeholder="+91 84549 26088" />
                                             <InputField name="subject" label="Subject" placeholder="How can we help?" />
                                         </div>
                                         <div>

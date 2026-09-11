@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import SmoothScrolling from "@/components/SmoothScrolling";
 import { useCartStore } from "@/lib/store/cart";
+import { useWishlistStore } from "@/lib/store/wishlist";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { type ModelFamilyGroup, type Variant } from "@/types/product";
@@ -83,13 +84,45 @@ export default function ProductClientView({ family, relatedFamilies }: { family:
    PRODUCT HERO — Main product view
    ═══════════════════════════════════════════ */
 function ProductHero({ family }: { family: ModelFamilyGroup }) {
+  const isMounted = useRef(false);
   const [selectedVariantIndex, setSelectedVariantIndex] = useState(0);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const [openAccordion, setOpenAccordion] = useState<string | null>("desc");
   const { addItem } = useCartStore();
+  const { toggleItem, isInWishlist } = useWishlistStore();
+  const [wishlistMounted, setWishlistMounted] = useState(false);
+  useEffect(() => { setWishlistMounted(true); }, []);
   const router = useRouter();
+
+  useEffect(() => {
+    isMounted.current = true;
+    return () => {
+      isMounted.current = false;
+    };
+  }, []);
+
+  const isWishlisted = wishlistMounted ? isInWishlist(family.familyId || family.slug) : false;
+
+  const handleToggleWishlist = (e?: React.MouseEvent) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    toggleItem({
+      productId: family.familyId || family.slug,
+      name: family.name,
+      price: variant.price || 0,
+      image: variant.gallery?.primary || "",
+      slug: family.slug
+    });
+    if (isWishlisted) {
+      toast.info("Removed from wishlist");
+    } else {
+      toast.success("Added to wishlist");
+    }
+  };
 
   const variant = family.variants?.[selectedVariantIndex] || family.variants?.[0] || ({} as Variant);
   // Limit gallery to max 4 images: primary, hover, and up to 2 details
@@ -110,6 +143,13 @@ function ProductHero({ family }: { family: ModelFamilyGroup }) {
   useEffect(() => {
     setImgFailed(false);
   }, [mainImage]);
+
+  // Keep selectedImageIndex within valid bounds if gallery changes
+  useEffect(() => {
+    if (selectedImageIndex >= allGalleryImages.length) {
+      setSelectedImageIndex(0);
+    }
+  }, [allGalleryImages.length, selectedImageIndex]);
 
   // Support deep-linking to a specific variant or dial color
   useEffect(() => {
@@ -236,8 +276,11 @@ function ProductHero({ family }: { family: ModelFamilyGroup }) {
                       src={mainImage}
                       alt={family.name}
                       className="w-full h-full object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.12)]"
-                      onLoad={() => setImgFailed(false)}
-                      onError={() => setImgFailed(true)}
+                      onError={() => {
+                        if (isMounted.current) {
+                          setImgFailed(true);
+                        }
+                      }}
                     />
                   ) : (
                     <LuxuryPlaceholder text="Image Coming Soon" />
@@ -254,6 +297,16 @@ function ProductHero({ family }: { family: ModelFamilyGroup }) {
                   {discount}% OFF
                 </span>
               )}
+
+              {/* Wishlist Button on Product Image */}
+              <button
+                type="button"
+                onClick={handleToggleWishlist}
+                className="absolute top-4 right-4 z-20 w-11 h-11 rounded-full bg-white/90 backdrop-blur-md flex items-center justify-center transition-all duration-300 hover:bg-white shadow-md cursor-pointer group/heart"
+                aria-label={isWishlisted ? "Remove from wishlist" : "Add to wishlist"}
+              >
+                <Heart size={20} className={`transition-transform duration-200 group-hover/heart:scale-110 ${isWishlisted ? "fill-[#C8102E] text-[#C8102E]" : "text-[#1A1918] hover:text-[#C8102E]"}`} />
+              </button>
             </motion.div>
 
             {/* Lightbox Modal */}
@@ -382,6 +435,19 @@ function ProductHero({ family }: { family: ModelFamilyGroup }) {
                     className="flex-1 py-4 rounded-full font-dm text-[11px] font-medium tracking-[0.2em] uppercase flex items-center justify-center gap-2 cursor-pointer border-[1.5px] border-[#1A1918] text-[#1A1918] hover:bg-[#1A1918] hover:text-white transition-all duration-300"
                   >
                     Add to cart
+                  </motion.button>
+                  <motion.button
+                    whileTap={{ scale: 0.95 }}
+                    type="button"
+                    onClick={handleToggleWishlist}
+                    className={`w-14 h-14 rounded-full border-[1.5px] flex items-center justify-center cursor-pointer transition-all duration-300 shrink-0 ${
+                      isWishlisted 
+                        ? "border-[#C8102E] bg-[#C8102E]/10 text-[#C8102E]" 
+                        : "border-[#EDE8DF] hover:border-[#1A1918] text-[#1A1918] bg-white hover:bg-[#FAF8F4]"
+                    }`}
+                    aria-label={isWishlisted ? "Remove from wishlist" : "Add to wishlist"}
+                  >
+                    <Heart size={20} className={isWishlisted ? "fill-[#C8102E] text-[#C8102E]" : "text-[#1A1918]"} />
                   </motion.button>
                 </div>
               </div>

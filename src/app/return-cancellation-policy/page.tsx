@@ -80,7 +80,7 @@ const SECTIONS: LegalSection[] = [
           We strive to ship our timepieces swiftly. You may cancel your order at any time before it leaves our fulfillment facility:
         </p>
         <ul>
-          <li>To request a cancellation, please call our support desk immediately at <strong>099200 88666</strong> or email <strong>info@dsigner.com</strong>.</li>
+          <li>To request a cancellation, please call our support desk immediately at <strong>+91 84549 26088</strong> or email <strong>info@dsigner.com</strong>.</li>
           <li>If the order has already been dispatched from our facility, it cannot be canceled. In this event, you can refuse the shipment upon delivery or accept it and request a standard 7-day return.</li>
           <li>A full refund will be processed for all valid cancellations according to the refund timelines listed above.</li>
         </ul>

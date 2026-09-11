@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { Heart, ShoppingBag, Eye, Flame } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useCartStore } from "@/lib/store/cart";
 import { toast } from "sonner";
 import LuxuryPlaceholder from "@/components/ui/LuxuryPlaceholder";
@@ -70,9 +70,13 @@ const getBadgeStyle = (badge?: string | null) => {
     }
 };
 
+import { useWishlistStore } from "@/lib/store/wishlist";
+
 export default function ProductCard({ product, variant = "premium", index = 0 }: ProductCardProps) {
     const { addItem } = useCartStore();
-    const [isWishlisted, setIsWishlisted] = useState(false);
+    const { toggleItem, isInWishlist } = useWishlistStore();
+    const [mounted, setMounted] = useState(false);
+    useEffect(() => { setMounted(true); }, []);
     const [hoveredOverlay, setHoveredOverlay] = useState(false);
     const [isHovered, setIsHovered] = useState(false);
     const [imageError, setImageError] = useState(false);
@@ -86,6 +90,25 @@ export default function ProductCard({ product, variant = "premium", index = 0 }:
         .replace(/[']/g, "")
         .replace(/[^a-z0-9]+/g, "-")
         .replace(/(^-|-$)/g, "");
+
+    const isWishlisted = mounted ? isInWishlist(product.id || productSlug) : false;
+
+    const handleToggleWishlist = (e: React.MouseEvent) => {
+        e.preventDefault();
+        e.stopPropagation();
+        toggleItem({
+            productId: product.id || productSlug,
+            name: product.name,
+            price: product.price,
+            image: product.image,
+            slug: productSlug
+        });
+        if (isWishlisted) {
+            toast.info("Removed from wishlist");
+        } else {
+            toast.success("Added to wishlist");
+        }
+    };
 
     const isLowStock = product.stock !== undefined && product.stock > 0 && product.stock <= (product.lowStockThreshold || 5);
 
@@ -159,10 +182,12 @@ export default function ProductCard({ product, variant = "premium", index = 0 }:
 
                 {/* Wishlist Button */}
                 <button
-                    onClick={(e) => { e.preventDefault(); e.stopPropagation(); setIsWishlisted(!isWishlisted); }}
-                    className="absolute top-6 right-6 w-9 h-9 rounded-full bg-white/80 backdrop-blur-sm flex items-center justify-center transition-all duration-300 hover:bg-white shadow-sm z-10 cursor-pointer"
+                    type="button"
+                    onClick={handleToggleWishlist}
+                    className="absolute top-6 right-6 w-9 h-9 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center transition-all duration-300 hover:bg-white shadow-sm z-30 cursor-pointer pointer-events-auto group/heart"
+                    aria-label={isWishlisted ? "Remove from wishlist" : "Add to wishlist"}
                 >
-                    <Heart size={16} className={isWishlisted ? "fill-[#D4455A] text-[#D4455A]" : "text-[#1A1918]"} />
+                    <Heart size={16} className={`transition-transform duration-200 group-hover/heart:scale-110 ${isWishlisted ? "fill-[#D4455A] text-[#D4455A]" : "text-[#1A1918] hover:text-[#D4455A]"}`} />
                 </button>
 
                 {/* Image */}

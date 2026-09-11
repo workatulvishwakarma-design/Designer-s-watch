@@ -12,11 +12,11 @@ export default function DsignerHero() {
             titleSecond="Extraordinary."
             subtext="Premium timepieces where Swiss-inspired design meets four generations of Indian horological mastery."
             stats={[
-                { label: "Timepieces", value: "12" },
+                { label: "Timepieces", value: "300+" },
                 { label: "Since", value: "1991" },
-                { label: "Onwards", value: "₹1,299" }
+                { label: "Onwards", value: "₹4,595" }
             ]}
-            image="/images/img03.png"
+            image="/images/new-img/model-1/824/824-RGFS-3-nobg.png"
             pills={["All", "Chronograph", "Classic", "Sport", "Limited"]}
         />
     );
