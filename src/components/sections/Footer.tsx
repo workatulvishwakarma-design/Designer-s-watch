@@ -1,14 +1,45 @@
 "use client";
 
-import { Instagram, Linkedin, Facebook, ArrowRight } from "lucide-react";
+import { useState } from "react";
+import { Instagram, Linkedin, Facebook, ArrowRight, Loader2, Check } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
+import { toast } from "sonner";
 
 export default function Footer() {
     const pathname = usePathname();
     const isEscort = pathname.includes("/collections/escort");
+    const [footerEmail, setFooterEmail] = useState("");
+    const [footerSubmitting, setFooterSubmitting] = useState(false);
+    const [footerSubscribed, setFooterSubscribed] = useState(false);
+
+    const handleFooterSubscribe = async (e: React.FormEvent) => {
+        e.preventDefault();
+        const clean = footerEmail.trim();
+        if (!clean) return;
+        setFooterSubmitting(true);
+        try {
+            const res = await fetch("/api/newsletter", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email: clean, source: "Footer Inner Circle" }),
+            });
+            const data = await res.json();
+            if (res.ok) {
+                toast.success(data.message || "Thank you for subscribing!");
+                setFooterSubscribed(true);
+                setFooterEmail("");
+            } else {
+                toast.error(data.error || "Failed to subscribe");
+            }
+        } catch {
+            toast.error("Failed to connect to server. Please try again.");
+        } finally {
+            setFooterSubmitting(false);
+        }
+    };
 
     const containerVariants = {
         hidden: { opacity: 0 },
@@ -60,24 +91,39 @@ export default function Footer() {
                                     An exclusive invitation to discover new masterpieces, horological stories, and our relentless pursuit of perfection.
                                 </p>
                                 
-                                <form className="relative w-full max-w-2xl group mx-auto" onSubmit={(e) => e.preventDefault()}>
+                                <form className="relative w-full max-w-2xl group mx-auto" onSubmit={handleFooterSubscribe}>
                                     <div className="absolute -inset-2 bg-gradient-to-r from-transparent via-[#FAF8F4]/10 to-transparent rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
                                     
                                     <div className="relative flex items-center bg-white/5 border border-white/10 rounded-full p-2 focus-within:border-white/30 focus-within:bg-white/10 transition-all duration-700 backdrop-blur-md">
                                         <input 
                                             type="email" 
+                                            value={footerEmail}
+                                            onChange={(e) => setFooterEmail(e.target.value)}
                                             placeholder="ENTER YOUR EMAIL" 
                                             className="bg-transparent border-none text-[13px] text-white placeholder-white/30 px-10 py-5 w-full focus:outline-none focus:ring-0 font-body tracking-[0.2em] uppercase"
                                             required
+                                            disabled={footerSubmitting}
                                             suppressHydrationWarning
                                         />
                                         <button 
-                                            type="button" 
-                                            className="h-[52px] px-10 rounded-full bg-[#FAF8F4] text-[#001F14] font-semibold text-[11px] tracking-[0.2em] uppercase flex items-center gap-4 hover:bg-white transition-all duration-700 hover:shadow-[0_10px_30px_rgba(250,248,244,0.3)] group/btn shrink-0"
+                                            type="submit" 
+                                            disabled={footerSubmitting}
+                                            className="h-[52px] px-10 rounded-full bg-[#FAF8F4] text-[#001F14] font-semibold text-[11px] tracking-[0.2em] uppercase flex items-center gap-4 hover:bg-white transition-all duration-700 hover:shadow-[0_10px_30px_rgba(250,248,244,0.3)] group/btn shrink-0 disabled:opacity-60"
                                             suppressHydrationWarning
                                         >
-                                            <span className="relative z-10">Subscribe</span>
-                                            <ArrowRight size={16} className="relative z-10 group-hover/btn:translate-x-1 transition-transform duration-500" />
+                                            {footerSubmitting ? (
+                                                <Loader2 size={16} className="animate-spin relative z-10" />
+                                            ) : footerSubscribed ? (
+                                                <>
+                                                    <span className="relative z-10">Subscribed</span>
+                                                    <Check size={16} className="relative z-10 text-emerald-600" />
+                                                </>
+                                            ) : (
+                                                <>
+                                                    <span className="relative z-10">Subscribe</span>
+                                                    <ArrowRight size={16} className="relative z-10 group-hover/btn:translate-x-1 transition-transform duration-500" />
+                                                </>
+                                            )}
                                         </button>
                                     </div>
                                 </form>

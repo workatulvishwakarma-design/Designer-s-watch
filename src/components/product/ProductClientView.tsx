@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   ChevronRight, Shield, Droplets, Diamond, Watch, Star, ArrowLeft,
   MapPin, Truck, Package, ShieldCheck, CreditCard, Eye, Flame, Check,
-  Clock, RefreshCw, Award, Heart, ChevronDown, ChevronUp, Info, CheckCircle2, Settings2, Loader2
+  Clock, RefreshCw, Award, Heart, ChevronDown, ChevronUp, Info, CheckCircle2, Settings2, Loader2, AlertCircle
 } from "lucide-react";
 import SmoothScrolling from "@/components/SmoothScrolling";
 import { useCartStore } from "@/lib/store/cart";
@@ -723,24 +723,45 @@ function TrustBanner() {
    ═══════════════════════════════════════════ */
 function DeliverySection() {
   const [pincode, setPincode] = useState("");
-  const [deliveryResult, setDeliveryResult] = useState<{available: boolean; days: number; message: string} | null>(null);
+  const [deliveryResult, setDeliveryResult] = useState<{available: boolean; message: string; location?: string; days?: string} | null>(null);
   const [checking, setChecking] = useState(false);
 
-  const checkDelivery = () => {
-    if (pincode.length !== 6) {
-      toast.error("Please enter a valid 6-digit pincode");
+  const checkDelivery = async () => {
+    const cleanPin = pincode.trim();
+    if (!/^\d{6}$/.test(cleanPin)) {
+      toast.error("Please enter a valid 6-digit Indian pincode");
+      setDeliveryResult({
+        available: false,
+        message: "Please enter a valid 6-digit Indian pincode.",
+      });
       return;
     }
     setChecking(true);
-    setTimeout(() => {
-      const days = Math.floor(Math.random() * 4) + 3;
+    setDeliveryResult(null);
+    try {
+      const res = await fetch(`/api/delivery/check-pincode?pincode=${cleanPin}`);
+      const data = await res.json();
+      if (data && typeof data.available === "boolean") {
+        setDeliveryResult(data);
+        if (!data.available) {
+          toast.error(data.message || "Delivery not available for this pincode");
+        } else {
+          toast.success("Delivery is available!");
+        }
+      } else {
+        setDeliveryResult({
+          available: false,
+          message: "Unable to verify pincode at this time.",
+        });
+      }
+    } catch {
       setDeliveryResult({
-        available: true,
-        days,
-        message: `Delivery available! Estimated ${days}-${days + 2} business days.`,
+        available: false,
+        message: "Failed to connect to delivery service. Please try again.",
       });
+    } finally {
       setChecking(false);
-    }, 800);
+    }
   };
 
   return (
@@ -753,34 +774,54 @@ function DeliverySection() {
               <MapPin size={18} className="text-[#B8935A]" />
               <p className="font-dm text-[14px] font-medium text-[#1A1918]">Check Delivery Availability</p>
             </div>
-            <div className="flex gap-3">
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                checkDelivery();
+              }}
+              className="flex gap-3"
+            >
               <input
                 type="text"
                 value={pincode}
+                maxLength={6}
                 onChange={(e) => {
                   const val = e.target.value.replace(/\D/g, "").slice(0, 6);
                   setPincode(val);
                   setDeliveryResult(null);
                 }}
-                placeholder="Enter pincode"
+                placeholder="Enter 6-digit Indian pincode"
                 className="flex-1 px-4 py-3 border border-[#EDE8DF] rounded-xl font-dm text-sm text-[#1A1918] bg-[#FAF8F4] focus:outline-none focus:border-[#B8935A] transition-colors"
               />
               <button
-                onClick={checkDelivery}
-                disabled={checking}
-                className="px-6 py-3 bg-[#003926] text-white rounded-xl font-dm text-[12px] tracking-widest uppercase hover:bg-[#024D35] transition-colors disabled:opacity-50"
+                type="submit"
+                disabled={checking || pincode.length !== 6}
+                className="px-6 py-3 bg-[#003926] text-white rounded-xl font-dm text-[12px] tracking-widest uppercase hover:bg-[#024D35] transition-colors disabled:opacity-50 flex items-center justify-center min-w-[90px]"
               >
-                {checking ? "..." : "Check"}
+                {checking ? <Loader2 size={16} className="animate-spin" /> : "Check"}
               </button>
-            </div>
+            </form>
             {deliveryResult && (
               <motion.div
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
-                className={`mt-3 flex items-center gap-2 font-dm text-[13px] ${deliveryResult.available ? "text-[#003926]" : "text-[#D4455A]"}`}
+                className={`mt-4 p-3.5 rounded-xl border flex items-start gap-2.5 font-dm text-[13px] leading-relaxed ${
+                  deliveryResult.available
+                    ? "bg-[#F0FDF4] border-[#BBF7D0] text-[#166534]"
+                    : "bg-[#FEF2F2] border-[#FECACA] text-[#991B1B]"
+                }`}
               >
-                {deliveryResult.available ? <Check size={14} /> : null}
-                {deliveryResult.message}
+                {deliveryResult.available ? (
+                  <CheckCircle2 size={18} className="text-[#16A34A] shrink-0 mt-0.5" />
+                ) : (
+                  <AlertCircle size={18} className="text-[#DC2626] shrink-0 mt-0.5" />
+                )}
+                <div className="flex-1">
+                  <span className="font-medium block mb-0.5">
+                    {deliveryResult.available ? "Serviceable" : "Not Available"}
+                  </span>
+                  <span>{deliveryResult.message}</span>
+                </div>
               </motion.div>
             )}
           </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 export default function OemCta() {
     return (
@@ -77,12 +78,13 @@ export default function OemCta() {
                     viewport={{ once: true, amount: 0.3 }}
                     transition={{ duration: 0.6, delay: 0.5 }}
                 >
-                    <button
-                        className="px-12 py-5 font-body text-[12px] tracking-[0.2em] uppercase transition-all duration-500 hover:shadow-[0_20px_40px_rgba(184,147,90,0.2)] hover:-translate-y-1 rounded-full border border-[#B8935A]/40 bg-[#B8935A]/10 text-[#B8935A] hover:bg-[#B8935A] hover:text-white hover:border-[#B8935A] backdrop-blur-sm"
+                    <Link
+                        href="/contact"
+                        className="inline-block px-12 py-5 font-body text-[12px] tracking-[0.2em] uppercase transition-all duration-500 hover:shadow-[0_20px_40px_rgba(184,147,90,0.2)] hover:-translate-y-1 rounded-full border border-[#B8935A]/40 bg-[#B8935A]/10 text-[#B8935A] hover:bg-[#B8935A] hover:text-white hover:border-[#B8935A] backdrop-blur-sm"
                         suppressHydrationWarning
                     >
                         Enquire Now
-                    </button>
+                    </Link>
                     <p className="mt-6 text-[11px] tracking-widest text-[#B8935A]/40 uppercase font-body italic">
                         Response within 24 hours
                     </p>

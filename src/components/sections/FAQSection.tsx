@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Plus, Minus, ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 /* ───────────────────────── FAQ DATA ───────────────────────── */
 const faqs = [
@@ -96,8 +97,8 @@ export default function FAQSection() {
               If you need additional help, the dedicated concierge team is perfectly positioned to guide you with product details, direct orders, and detailed support queries.
             </p>
             
-            <button
-              onClick={() => window.location.href = "mailto:info@dsigner.com"}
+            <Link
+              href="/contact"
               className="relative w-full overflow-hidden flex items-center justify-between px-8 py-4 bg-[#1A1918] text-white rounded-full group/btn transition-all duration-500 hover:shadow-[0_12px_30px_rgba(0,57,38,0.25)] hover:-translate-y-1"
               suppressHydrationWarning
             >
@@ -108,7 +109,7 @@ export default function FAQSection() {
               <div className="relative z-10 w-8 h-8 rounded-full bg-white/10 flex items-center justify-center transition-transform duration-500 group-hover/btn:translate-x-1">
                 <ArrowRight className="w-4 h-4 text-white" />
               </div>
-            </button>
+            </Link>
           </motion.div>
         </div>
 

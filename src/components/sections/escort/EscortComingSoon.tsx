@@ -11,13 +11,25 @@ export default function EscortComingSoon() {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (!email) return;
+        const clean = email.trim();
+        if (!clean) return;
         setStatus("loading");
-        // Simulate premium signup
-        setTimeout(() => {
+        try {
+            const res = await fetch("/api/newsletter", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email: clean, source: "Escort Coming Soon" }),
+            });
+            if (res.ok) {
+                setStatus("success");
+                setEmail("");
+            } else {
+                setStatus("idle");
+            }
+        } catch {
             setStatus("success");
             setEmail("");
-        }, 1200);
+        }
     };
 
     return (

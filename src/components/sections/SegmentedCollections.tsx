@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 import LuxuryPlaceholder from "@/components/ui/LuxuryPlaceholder";
 
 interface Product {
@@ -11,6 +12,7 @@ interface Product {
   image: string;
   brand: string;
   tags: string[];
+  slug?: string;
 }
 
 interface SegmentedCollectionsProps {
@@ -103,8 +105,11 @@ export default function SegmentedCollections({
                     #{index + 1}
                   </div>
 
-                  {/* Card placeholder - would use actual ProductCard component */}
-                  <div className="relative z-10 bg-white border border-[#EDE8DF] rounded-3xl overflow-hidden cursor-pointer group transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_30px_80px_rgba(0,0,0,0.1)] hover:border-[rgba(184,147,90,0.45)]">
+                  {/* Card link */}
+                  <Link
+                    href={`/product/${product.slug || product.name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
+                    className="block relative z-10 bg-white border border-[#EDE8DF] rounded-3xl overflow-hidden cursor-pointer group transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_30px_80px_rgba(0,0,0,0.1)] hover:border-[rgba(184,147,90,0.45)]"
+                  >
                     {/* Image Area */}
                     <div className="h-[300px] bg-[#F7F4EF] flex items-center justify-center p-6 overflow-hidden relative">
                       <div className="relative w-full h-full">
@@ -120,13 +125,10 @@ export default function SegmentedCollections({
                         )}
 
                         {/* Blur Glass Overlay on Hover */}
-                        <div className="absolute inset-0 bg-[rgba(250,248,244,0.6)] backdrop-blur-[14px] opacity-0 group-hover:opacity-100 transition-opacity duration-400 flex flex-col items-center justify-center gap-3 pointer-events-none">
-                          <button className="bg-[#1A1918] text-white px-6 py-3 rounded-full text-xs font-dm tracking-widest uppercase transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 ease-out delay-50">
-                            Add to Cart
-                          </button>
-                          <button className="bg-white/80 text-[#1A1918] border border-[#E0D8CE] px-6 py-3 rounded-full text-xs font-dm tracking-widest uppercase transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 ease-out delay-100">
-                            Quick View
-                          </button>
+                        <div className="absolute inset-0 bg-[rgba(250,248,244,0.6)] backdrop-blur-[14px] opacity-0 group-hover:opacity-100 transition-opacity duration-400 flex flex-col items-center justify-center gap-3">
+                          <span className="bg-[#1A1918] text-white px-6 py-3 rounded-full text-xs font-dm tracking-widest uppercase transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 ease-out delay-50 shadow-md">
+                            View Timepiece
+                          </span>
                         </div>
 
                         {/* Shimmer Sweep */}
@@ -171,7 +173,7 @@ export default function SegmentedCollections({
                         </span>
                       </div>
                     </div>
-                  </div>
+                  </Link>
                 </motion.div>
               ))
             ) : (

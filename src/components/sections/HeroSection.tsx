@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 
 const marqueeItems = [
     "Stainless Steel Construction",
@@ -126,24 +127,26 @@ export default function HeroSection() {
                             transition={{ duration: 0.6, delay: 1 }}
                             className="flex flex-wrap items-center gap-4"
                         >
-                            <button
-                                className="px-8 py-3.5 font-body text-[12px] tracking-[0.1em] uppercase text-white transition-all duration-300 hover:bg-gold hover:border-gold border"
+                            <Link
+                                href="/collections/dsigner-men"
+                                className="px-8 py-3.5 font-body text-[12px] tracking-[0.1em] uppercase text-white transition-all duration-300 hover:bg-gold hover:border-gold border inline-block"
                                 style={{
                                     backgroundColor: "#1A1918",
                                     borderColor: "#1A1918",
                                 }}
                             >
                                 Explore Collection
-                            </button>
-                            <button
-                                className="px-8 py-3.5 font-body text-[12px] tracking-[0.1em] uppercase bg-transparent transition-all duration-300 border hover:bg-gold-muted"
+                            </Link>
+                            <Link
+                                href="/about-5"
+                                className="px-8 py-3.5 font-body text-[12px] tracking-[0.1em] uppercase bg-transparent transition-all duration-300 border hover:bg-gold-muted inline-block"
                                 style={{
                                     color: "#1A1918",
                                     borderColor: "#003926",
                                 }}
                             >
                                 Our Legacy
-                            </button>
+                            </Link>
                         </motion.div>
 
                         {/* Scroll Indicator */}

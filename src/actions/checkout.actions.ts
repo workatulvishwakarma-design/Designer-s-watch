@@ -4,6 +4,7 @@ import { auth } from "@/lib/auth"
 import { prisma } from "@/lib/db"
 import { z } from "zod"
 import { revalidatePath } from "next/cache"
+import { ensureProductVariant } from "@/lib/ensureProductVariant"
 
 const checkoutSchema = z.object({
   addressId: z.string().min(1, "Shipping Address is required"),
@@ -73,18 +74,7 @@ export async function processCheckout(formData: FormData) {
       const skuOrId = item.productId // Cart item uses sku or id
       const quantity = Number(item.quantity)
 
-      const dbVariant = await prisma.productVariant.findFirst({
-        where: {
-          OR: [
-            { id: skuOrId },
-            { sku: skuOrId },
-          ]
-        },
-        include: {
-          family: true,
-          inventory: true
-        }
-      })
+      const dbVariant = await ensureProductVariant(skuOrId)
 
       if (dbVariant) {
         if (dbVariant.inventory && dbVariant.inventory.stock < quantity) {

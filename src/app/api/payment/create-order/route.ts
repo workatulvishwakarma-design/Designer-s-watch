@@ -15,6 +15,7 @@ import {
   getCashfreeMode,
   COD_ADVANCE_AMOUNT,
 } from "@/lib/cashfree";
+import { ensureProductVariant } from "@/lib/ensureProductVariant";
 
 export async function POST(req: NextRequest) {
   try {
@@ -70,14 +71,8 @@ export async function POST(req: NextRequest) {
       const slug = item.productId || item.slug;
       const quantity = Number(item.quantity) || 1;
 
-      // Try DB
-      const dbVariant = await prisma.productVariant.findUnique({
-        where: { sku: slug },
-        include: {
-          family: true,
-          inventory: true
-        }
-      });
+      // Try DB or auto-resolve from catalog
+      const dbVariant = await ensureProductVariant(slug);
 
       if (!dbVariant || !dbVariant.family) {
         return NextResponse.json({

@@ -8,6 +8,7 @@ import type { ModelFamilyGroup } from "@/types/product";
 import { getAllPrimaryImageCandidates } from "@/lib/imageResolver";
 import LuxuryPlaceholder from "@/components/ui/LuxuryPlaceholder";
 import { useWishlistStore } from "@/lib/store/wishlist";
+import { useCartStore } from "@/lib/store/cart";
 import { toast } from "sonner";
 
 interface BestSellersProps {
@@ -117,6 +118,7 @@ function ProductCard({ family }: { family: ModelFamilyGroup }) {
   const discount = mrp && mrp > price ? Math.round(((mrp - price) / mrp) * 100) : 0;
 
   const { toggleItem, isInWishlist } = useWishlistStore();
+  const { addItem } = useCartStore();
   const [mounted, setMounted] = useState(false);
   useEffect(() => { setMounted(true); }, []);
   const isSaved = mounted ? isInWishlist(family.familyId || family.slug) : false;
@@ -248,9 +250,21 @@ function ProductCard({ family }: { family: ModelFamilyGroup }) {
           {/* Quick Add */}
           <button
             className="w-8 h-8 flex items-center justify-center text-[#003926] hover:bg-[#003926] hover:text-white rounded-full border border-[#003926]/20 transition-all duration-300 shrink-0"
+            title="Add to Cart"
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
+              const variant = primaryVariant || family.variants[0];
+              const skuOrSlug = variant?.sku || family.slug;
+              addItem({
+                productId: skuOrSlug,
+                name: family.name,
+                price: price,
+                quantity: 1,
+                image: primaryImage,
+                slug: family.slug,
+              });
+              toast.success(`${family.name} added to cart`);
             }}
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

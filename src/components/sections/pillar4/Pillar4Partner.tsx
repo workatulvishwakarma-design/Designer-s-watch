@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import { Check } from "lucide-react";
 
 export default function Pillar4Partner() {
@@ -90,17 +91,15 @@ export default function Pillar4Partner() {
               transition={{ duration: 0.6, delay: 0.4 }}
               className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto"
             >
-              <button
-                onClick={() => {
-                  window.location.href = "mailto:info@nagpalgroup.com";
-                }}
-                className="group relative px-8 py-4 bg-[#003926] text-white rounded-full overflow-hidden transition-all duration-500 hover:shadow-[0_12px_30px_rgba(0,57,38,0.25)] hover:-translate-y-1 cursor-pointer"
+              <Link
+                href="/contact"
+                className="group relative px-8 py-4 bg-[#003926] text-white rounded-full overflow-hidden transition-all duration-500 hover:shadow-[0_12px_30px_rgba(0,57,38,0.25)] hover:-translate-y-1 cursor-pointer inline-flex items-center justify-center"
               >
                 <span className="relative z-10 font-montserrat text-[11px] font-bold tracking-[0.18em] uppercase">
                   Contact Our Team
                 </span>
                 <div className="absolute inset-0 h-full w-full scale-0 rounded-full transition-all duration-300 group-hover:scale-100 group-hover:bg-[#1A1918]/20" />
-              </button>
+              </Link>
             </motion.div>
           </div>
 

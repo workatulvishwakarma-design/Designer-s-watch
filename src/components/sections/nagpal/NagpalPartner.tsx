@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import { Check, Plus, Minus, ArrowRight } from "lucide-react";
 
 /* ───────────────────────── FAQ DATA FOR NAGPAL ───────────────────────── */
@@ -130,28 +131,24 @@ export default function NagpalPartner() {
                 transition={{ duration: 0.6, delay: 0.4 }}
                 className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto"
               >
-                <button
-                  onClick={() => {
-                    document.getElementById("partner-faq-section")?.scrollIntoView({ behavior: "smooth" });
-                  }}
-                  className="group relative px-8 py-4 bg-[#003926] text-white rounded-full overflow-hidden transition-all duration-500 hover:shadow-[0_12px_30px_rgba(0,57,38,0.25)] hover:-translate-y-1"
+                <Link
+                  href="/contact"
+                  className="group relative px-8 py-4 bg-[#003926] text-white rounded-full overflow-hidden transition-all duration-500 hover:shadow-[0_12px_30px_rgba(0,57,38,0.25)] hover:-translate-y-1 inline-flex items-center justify-center"
                 >
                   <span className="relative z-10 font-dm text-[12px] font-medium tracking-[0.15em] uppercase">
                     Start a Partnership
                   </span>
                   <div className="absolute inset-0 h-full w-full scale-0 rounded-full transition-all duration-300 group-hover:scale-100 group-hover:bg-[#1A1918]/20" />
-                </button>
+                </Link>
                 
-                <button
-                  onClick={() => {
-                    window.location.href = "mailto:info@nagpalgroup.com";
-                  }}
-                  className="group relative px-8 py-4 bg-transparent border border-[#1A1918]/15 text-[#1A1918] rounded-full overflow-hidden transition-all duration-500 hover:border-[#1A1918]/30 hover:bg-[#FAF8F4]"
+                <Link
+                  href="/contact"
+                  className="group relative px-8 py-4 bg-transparent border border-[#1A1918]/15 text-[#1A1918] rounded-full overflow-hidden transition-all duration-500 hover:border-[#1A1918]/30 hover:bg-[#FAF8F4] inline-flex items-center justify-center"
                 >
                   <span className="relative z-10 font-dm text-[12px] font-medium tracking-[0.15em] uppercase transition-colors group-hover:text-[#003926]">
                     Contact Our Team
                   </span>
-                </button>
+                </Link>
               </motion.div>
             </div>
 
@@ -276,8 +273,8 @@ export default function NagpalPartner() {
                 If you need additional information about business partnerships, bulk orders, or OEM opportunities, our dedicated business team is here to guide you.
               </p>
               
-              <button
-                onClick={() => window.location.href = "mailto:info@nagpalgroup.com"}
+              <Link
+                href="/contact"
                 className="relative w-full overflow-hidden flex items-center justify-between px-8 py-4 bg-[#1A1918] text-white rounded-full group/btn transition-all duration-500 hover:shadow-[0_12px_30px_rgba(0,57,38,0.25)] hover:-translate-y-1"
               >
                 <div className="absolute inset-0 w-full h-full bg-[#003926] scale-x-0 origin-left transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/btn:scale-x-100" />
@@ -287,7 +284,7 @@ export default function NagpalPartner() {
                 <div className="relative z-10 w-8 h-8 rounded-full bg-white/10 flex items-center justify-center transition-transform duration-500 group-hover/btn:translate-x-1">
                   <ArrowRight className="w-4 h-4 text-white" />
                 </div>
-              </button>
+              </Link>
             </motion.div>
           </div>
 

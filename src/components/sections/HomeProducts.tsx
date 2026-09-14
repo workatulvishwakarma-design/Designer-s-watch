@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
+import Link from "next/link";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { getFamiliesByCollection } from "@/data/productData";
 import { familyToUnified } from "@/lib/products";
@@ -45,7 +46,7 @@ export default function HomeProducts() {
             <h3 className="font-bebas text-[40px] text-[#1A1918] mt-3">Best Sellers</h3>
           </div>
           <div className="mt-4 md:mt-0">
-            <a href="#" className="font-dm text-[12px] text-[#B8935A] tracking-widest underline-offset-2 hover:underline">View All →</a>
+            <Link href="/collections/dsigner-men" className="font-dm text-[12px] text-[#B8935A] tracking-widest underline-offset-2 hover:underline">View All →</Link>
           </div>
         </div>
         <div className="relative">
@@ -74,7 +75,7 @@ export default function HomeProducts() {
             <h3 className="font-bebas text-[40px] text-[#1A1918] mt-3">D&apos;Signer Collection</h3>
           </div>
           <div className="mt-4 md:mt-0">
-            <a href="#" className="font-dm text-[12px] text-[#B8935A] tracking-widest underline-offset-2 hover:underline">View All →</a>
+            <Link href="/collections/dsigner" className="font-dm text-[12px] text-[#B8935A] tracking-widest underline-offset-2 hover:underline">View All →</Link>
           </div>
         </div>
         <div className="relative">
@@ -103,7 +104,7 @@ export default function HomeProducts() {
             <h3 className="font-bebas text-[40px] text-[#1A1918] mt-3">Escort Collection</h3>
           </div>
           <div className="mt-4 md:mt-0">
-            <a href="#" className="font-dm text-[12px] text-[#003926] tracking-widest underline-offset-2 hover:underline">View All →</a>
+            <Link href="/collections/escort" className="font-dm text-[12px] text-[#003926] tracking-widest underline-offset-2 hover:underline">View All →</Link>
           </div>
         </div>
         <div className="relative">

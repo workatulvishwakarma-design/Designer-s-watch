@@ -43,6 +43,16 @@ const nextConfig: NextConfig = {
   },
   experimental: {
     turbopackFileSystemCacheForDev: false,
+    serverActions: {
+      allowedOrigins: [
+        '187.127.140.26:3000',
+        '187.127.140.26',
+        'localhost:3000',
+        '*.hostinger.com',
+        '*.designerswatch.com',
+        '*.nagpalgroup.com'
+      ],
+    },
   },
 };
 

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Plus, Minus, ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 /* ───────────────────────── FAQ DATA FOR NAGPAL ───────────────────────── */
 const faqs = [
@@ -93,8 +94,8 @@ export default function Pillar4FAQ() {
               If you need additional information about business partnerships, bulk orders, or OEM opportunities, our dedicated business team is here to guide you.
             </p>
             
-            <button
-              onClick={() => window.location.href = "mailto:info@nagpalgroup.com"}
+            <Link
+              href="/contact"
               className="relative w-full overflow-hidden flex items-center justify-between px-8 py-4 bg-[#1A1918] text-white rounded-full group/btn transition-all duration-500 hover:shadow-[0_12px_30px_rgba(0,57,38,0.25)] hover:-translate-y-1 cursor-pointer"
             >
               <div className="absolute inset-0 w-full h-full bg-[#003926] scale-x-0 origin-left transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/btn:scale-x-100" />
@@ -104,7 +105,7 @@ export default function Pillar4FAQ() {
               <div className="relative z-10 w-8 h-8 rounded-full bg-white/10 flex items-center justify-center transition-transform duration-500 group-hover/btn:translate-x-1">
                 <ArrowRight className="w-4 h-4 text-white" />
               </div>
-            </button>
+            </Link>
           </motion.div>
         </div>
 

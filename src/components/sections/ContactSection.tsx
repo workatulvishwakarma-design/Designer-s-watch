@@ -16,7 +16,29 @@ export default function ContactSection() {
         setFormStatus("loading");
         const form = e.currentTarget;
         const formData = new FormData(form);
+
         try {
+            const apiRes = await fetch("/api/contact", {
+                method: "POST",
+                body: formData,
+            });
+
+            if (apiRes.ok) {
+                const data = await apiRes.json();
+                toast.success(data.message || "Message sent successfully!");
+                setFormStatus("success");
+                form.reset();
+                return;
+            }
+
+            const errData = await apiRes.json().catch(() => null);
+            if (errData?.error) {
+                toast.error(errData.error);
+                setFormStatus("idle");
+                return;
+            }
+
+            // Fallback to server action
             const res = await submitContactQuery(formData);
             if (res.error) {
                 toast.error(res.error);
@@ -27,8 +49,21 @@ export default function ContactSection() {
                 form.reset();
             }
         } catch (err: any) {
-            toast.error(err?.message || "Failed to send message. Please check your connection.");
-            setFormStatus("idle");
+            // Fallback to server action if network/fetch failed
+            try {
+                const res = await submitContactQuery(formData);
+                if (res.error) {
+                    toast.error(res.error);
+                    setFormStatus("idle");
+                } else {
+                    toast.success(res.success || "Message sent successfully!");
+                    setFormStatus("success");
+                    form.reset();
+                }
+            } catch (fallbackErr: any) {
+                toast.error(fallbackErr?.message || "Failed to send message. Please check your connection.");
+                setFormStatus("idle");
+            }
         }
     };
 

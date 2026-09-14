@@ -13,11 +13,27 @@ export default function NewsletterStrip() {
 
     const handleSubscribe = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        if (!email.trim()) return;
+        const cleanEmail = email.trim();
+        if (!cleanEmail) return;
 
         setIsLoading(true);
         try {
-            const res = await subscribeNewsletter(email.trim());
+            const apiRes = await fetch("/api/newsletter", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email: cleanEmail, source: "Newsletter Strip" }),
+            });
+
+            if (apiRes.ok) {
+                const data = await apiRes.json();
+                toast.success(data.message || "Thank you for subscribing to Stay in Time!");
+                setIsSubscribed(true);
+                setEmail("");
+                return;
+            }
+
+            // Fallback
+            const res = await subscribeNewsletter(cleanEmail);
             if (res.error) {
                 toast.error(res.error);
             } else {
@@ -26,7 +42,18 @@ export default function NewsletterStrip() {
                 setEmail("");
             }
         } catch (err: any) {
-            toast.error(err?.message || "Failed to subscribe. Please try again.");
+            try {
+                const res = await subscribeNewsletter(cleanEmail);
+                if (res.error) {
+                    toast.error(res.error);
+                } else {
+                    toast.success(res.success || "Thank you for subscribing to Stay in Time!");
+                    setIsSubscribed(true);
+                    setEmail("");
+                }
+            } catch (fallbackErr: any) {
+                toast.error(fallbackErr?.message || "Failed to subscribe. Please try again.");
+            }
         } finally {
             setIsLoading(false);
         }
