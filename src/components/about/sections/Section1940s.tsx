@@ -14,8 +14,7 @@ export function Section1940s() {
           <h2 className={s.editorialTitle}>The Beginning</h2>
           <div className={s.greenRule} />
           <p className={s.bodyParagraph}>
-            Started a new division solely managing foreign brand distribution under the name{' '}
-            <strong>DESIGNER WORLD BRANDS</strong> &amp; added more labels like INGERSOLL, INVICTA, and SANTA BARBARA POLO CLUB.
+            A small watch parts shop in Amritsar marked the start of a journey rooted in craftsmanship and trust.
           </p>
         </div>
       </div>

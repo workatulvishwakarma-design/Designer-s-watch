@@ -493,9 +493,8 @@ function Section1940s() {
 
           {/* 4. Description → fade-up with small delay */}
           <SectionDescription className={styles.bodyParagraph}>
-            Started a new division solely managing foreign brand distribution
-            under the name <strong>DESIGNER WORLD BRANDS</strong> &amp; added
-            more labels like INGERSOLL, INVICTA, and SANTA BARBARA POLO CLUB.
+            A small watch parts shop in Amritsar marked the start of a journey
+            rooted in craftsmanship and trust.
           </SectionDescription>
         </div>
       </LeftCol>

@@ -14,8 +14,7 @@ export function Composition1940s() {
           <YearBlock main="19" sub="40s" />
           <EditorialHeading withRule>The Beginning</EditorialHeading>
           <TimelineCopy>
-            Started a new division solely managing foreign brand distribution under the name{' '}
-            <b>DESIGNER WORLD BRANDS</b> &amp; added more labels like INGERSOLL, INVICTA, and SANTA BARBARA POLO CLUB.
+            A small watch parts shop in Amritsar marked the start of a journey rooted in craftsmanship and trust.
           </TimelineCopy>
         </div>
       </div>

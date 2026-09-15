@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
 import { z } from "zod";
+import { sendContactFormEmail } from "@/lib/emailService";
 
 const contactSchema = z.object({
   name: z.string().min(1, "Name is required"),
@@ -59,6 +60,17 @@ export async function POST(req: NextRequest) {
         status: "PENDING",
         isRead: false,
       },
+    });
+
+    // Send email notification to info@dsigner.com
+    await sendContactFormEmail({
+      name: name.trim(),
+      email: email.trim().toLowerCase(),
+      phone: phone ? String(phone).trim() : null,
+      subject: finalSubject.trim(),
+      message: message.trim(),
+    }).catch((err) => {
+      console.warn("[Contact Email Dispatch Warning]:", err);
     });
 
     return NextResponse.json({

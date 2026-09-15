@@ -3,6 +3,7 @@
 import { prisma } from "@/lib/db"
 import { z } from "zod"
 import { revalidatePath } from "next/cache"
+import { sendContactFormEmail } from "@/lib/emailService"
 
 const contactSchema = z.object({
   name: z.string().min(1, "Name is required"),
@@ -44,6 +45,17 @@ export async function submitContactQuery(formData: FormData) {
         status: "PENDING",
       }
     })
+
+    // Send email notification to info@dsigner.com
+    await sendContactFormEmail({
+      name: name.trim(),
+      email: email.trim().toLowerCase(),
+      phone: phone ? String(phone).trim() : null,
+      subject: finalSubject.trim(),
+      message: message.trim(),
+    }).catch((err) => {
+      console.warn("[Contact Server Action Email Warning]:", err);
+    });
 
     try {
       revalidatePath("/admin/messages")
