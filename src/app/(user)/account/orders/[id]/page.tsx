@@ -41,28 +41,31 @@ export default async function UserOrderDetailPage({ params }: { params: Promise<
   const getStatusIcon = (status: string) => {
     if (status === "DELIVERED") return <CheckCircle2 className="h-5 w-5 text-white" />
     if (status === "SHIPPED") return <Truck className="h-5 w-5 text-white" />
-    return <Clock className="h-5 w-5 text-gray-400" />
+    return <Clock className="h-5 w-5 text-[#9A7640]" />
   }
 
   const getStatusBg = (status: string) => {
-    if (status === "DELIVERED") return "bg-green-500"
-    if (status === "SHIPPED") return "bg-blue-500"
-    return "bg-gray-100 dark:bg-zinc-800 ring-1 ring-gray-200 dark:ring-zinc-700"
+    if (status === "DELIVERED") return "bg-[#003926] ring-4 ring-[#EBF7F0]"
+    if (status === "SHIPPED") return "bg-[#2554C7] ring-4 ring-[#EEF4FF]"
+    return "bg-[#FAF3E8] ring-4 ring-[#F5EAD8]"
   }
 
   return (
     <div className="space-y-8 max-w-5xl">
        {/* Breadcrumb & Actions */}
-       <div>
-        <Link href="/account/orders" className="text-sm font-medium text-gray-500 hover:text-gray-900 dark:hover:text-gray-300 inline-flex items-center mb-6 transition-colors">
+       <div className="pb-6 border-b border-[#E8E0D5]">
+        <Link href="/account/orders" className="text-xs font-body tracking-wider uppercase text-[#7A756D] hover:text-[#B8935A] inline-flex items-center mb-4 transition-colors">
           <ChevronLeft className="h-4 w-4 mr-1" /> Back to Orders
         </Link>
-        <div className="sm:flex sm:items-center sm:justify-between gap-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
-            <h2 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-3xl">
-              Order #{order.id.slice(-8).toUpperCase()}
+            <span className="text-[11px] font-body uppercase tracking-[0.2em] text-[#B8935A] font-medium block">
+              Order Details
+            </span>
+            <h2 className="text-2xl sm:text-3xl font-display text-[#1A1918] tracking-tight">
+              #{order.id.slice(-8).toUpperCase()}
             </h2>
-            <p className="mt-1 text-sm text-gray-500">
+            <p className="mt-1 text-xs sm:text-sm text-[#7A756D] font-body">
               Placed on <time>{order.createdAt.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
             </p>
           </div>
@@ -95,8 +98,8 @@ export default async function UserOrderDetailPage({ params }: { params: Promise<
       </div>
 
       {/* Visual Tracking Timeline */}
-      <div className="bg-white dark:bg-zinc-900 shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl p-6 sm:p-10">
-        <h3 className="text-base font-semibold leading-6 text-gray-900 dark:text-white mb-8">Package Tracking</h3>
+      <div className="bg-white rounded-2xl border border-[#E8E0D5] p-6 sm:p-8 shadow-[0_4px_20px_rgba(0,0,0,0.03)]">
+        <h3 className="text-base font-display text-[#1A1918] font-medium mb-6">Package Tracking & Shipment</h3>
         
         <div className="flow-root">
           <ul role="list" className="-mb-8">
@@ -104,20 +107,20 @@ export default async function UserOrderDetailPage({ params }: { params: Promise<
               <li key={event.id}>
                 <div className="relative pb-8">
                   {eventIdx !== chronologicalEvents.length - 1 ? (
-                    <span className="absolute left-5 top-5 -ml-px h-full w-0.5 bg-gray-200 dark:bg-zinc-800" aria-hidden="true" />
+                    <span className="absolute left-5 top-5 -ml-px h-full w-0.5 bg-[#E8E0D5]" aria-hidden="true" />
                   ) : null}
                   <div className="relative flex items-start space-x-4">
                     <div className="relative">
-                      <span className={`h-10 w-10 rounded-full flex items-center justify-center ring-8 ring-white dark:ring-zinc-900 ${getStatusBg(event.status)}`}>
+                      <span className={`h-10 w-10 rounded-full flex items-center justify-center ${getStatusBg(event.status)}`}>
                         {getStatusIcon(event.status)}
                       </span>
                     </div>
-                    <div className="min-w-0 flex-1 py-1.5">
-                      <div className="text-sm text-gray-500 dark:text-gray-400">
-                        <span className="font-medium text-gray-900 dark:text-white">{event.status}</span>
-                        {event.description && <p className="text-sm mt-1 text-gray-600">{event.description}</p>}
+                    <div className="min-w-0 flex-1 py-1">
+                      <div className="text-sm">
+                        <span className="font-semibold text-[#1A1918]">{event.status}</span>
+                        {event.description && <p className="text-xs sm:text-sm mt-0.5 text-[#5C5752]">{event.description}</p>}
                       </div>
-                      <div className="mt-1 text-xs text-gray-400 font-mono">
+                      <div className="mt-1 text-xs text-[#9C9690] font-mono">
                         {event.createdAt.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', month: 'short', day: 'numeric'})}
                       </div>
                     </div>
@@ -126,7 +129,7 @@ export default async function UserOrderDetailPage({ params }: { params: Promise<
               </li>
             ))}
             {chronologicalEvents.length === 0 && (
-               <p className="text-sm text-gray-500 italic py-4">We're preparing your order details...</p>
+               <p className="text-sm text-[#7A756D] italic py-2">We&apos;re preparing your order details with our logistics partners...</p>
             )}
           </ul>
         </div>
@@ -135,13 +138,13 @@ export default async function UserOrderDetailPage({ params }: { params: Promise<
        <div className="grid grid-cols-1 gap-y-8 lg:grid-cols-3 lg:gap-x-8">
           {/* Order Details List */}
           <div className="lg:col-span-2">
-            <div className="bg-white dark:bg-zinc-900 shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl overflow-hidden">
-               <div className="px-4 py-5 border-b border-gray-100 dark:border-zinc-800 sm:px-6">
-                 <h3 className="flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                   <Package className="mr-2 h-4 w-4 text-gray-400" /> Items in order
+            <div className="bg-white rounded-2xl border border-[#E8E0D5] shadow-[0_4px_20px_rgba(0,0,0,0.03)] overflow-hidden">
+               <div className="px-6 py-4 bg-[#FAF8F4] border-b border-[#E8E0D5]">
+                 <h3 className="flex items-center text-sm font-body uppercase tracking-wider text-[#1A1918] font-semibold">
+                   <Package className="mr-2 h-4 w-4 text-[#B8935A]" /> Timepieces in Order
                  </h3>
                </div>
-               <ul className="divide-y divide-gray-100 dark:divide-zinc-800 px-4 sm:px-6">
+               <ul className="divide-y divide-[#F0EBE1] px-6">
                   {order.items.map((item) => {
                     const itemImage = resolveOrderItemImage({
                       sku: item.variant?.sku,
@@ -151,18 +154,19 @@ export default async function UserOrderDetailPage({ params }: { params: Promise<
                     })
                     return (
                       <li key={item.id} className="flex py-6 items-center">
-                        <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-xl border border-gray-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 p-2 flex items-center justify-center">
+                        <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-xl border border-[#E8E0D5] bg-[#FAF8F4] p-2 flex items-center justify-center">
                           {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img src={itemImage} alt={item.variant?.family?.name || "Timepiece"} className="h-full w-full object-contain" />
+                          <img src={itemImage} alt={item.variant?.family?.name || "Timepiece"} className="h-full w-full object-contain mix-blend-multiply" />
                         </div>
                         <div className="ml-6 flex flex-1 flex-col">
-                          <div className="flex justify-between text-base font-medium text-gray-900 dark:text-white">
-                             <h4>{item.variant?.family?.name || item.variant?.sku}</h4>
-                             <p className="ml-4 font-semibold text-[#B8935A]">₹{item.priceAtPurchase.toString()}</p>
+                          <div className="flex justify-between text-base font-medium text-[#1A1918]">
+                             <h4 className="font-display text-lg">{item.variant?.family?.name || item.variant?.sku}</h4>
+                             <p className="ml-4 font-semibold text-[#1A1918]">₹{item.priceAtPurchase.toString()}</p>
                           </div>
-                          <p className="mt-1 text-sm text-gray-500 line-clamp-2">{item.variant?.family?.description}</p>
-                          <div className="flex flex-1 items-end justify-between text-sm mt-2">
-                             <p className="text-xs text-gray-400">Qty: {item.quantity}</p>
+                          <p className="mt-1 text-xs text-[#7A756D] line-clamp-2">{item.variant?.family?.description}</p>
+                          <div className="flex flex-1 items-end justify-between text-xs mt-3">
+                             <span className="px-2 py-0.5 rounded bg-[#F0EBE1] text-[#6E685E] font-mono">{item.variant?.sku}</span>
+                             <p className="text-[#9C9690]">Qty: <strong className="text-[#1A1918]">{item.quantity}</strong></p>
                           </div>
                         </div>
                       </li>
@@ -173,37 +177,38 @@ export default async function UserOrderDetailPage({ params }: { params: Promise<
           </div>
 
           {/* Logistics Panel */}
-          <div className="space-y-8">
-            <div className="bg-white dark:bg-zinc-900 shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl p-6">
-                <h3 className="flex items-center text-sm font-semibold text-gray-900 dark:text-white mb-4">
-                  <MapPin className="mr-2 h-4 w-4" /> Shipping Address
+          <div className="space-y-6">
+            <div className="bg-white rounded-2xl border border-[#E8E0D5] p-6 shadow-[0_4px_20px_rgba(0,0,0,0.03)]">
+                <h3 className="flex items-center text-xs font-body uppercase tracking-wider font-semibold text-[#1A1918] mb-4">
+                  <MapPin className="mr-2 h-4 w-4 text-[#B8935A]" /> Shipping Address
                 </h3>
-                <address className="not-italic text-sm text-gray-600 dark:text-gray-400 space-y-1">
-                   <p className="font-medium text-gray-900 dark:text-white">{order.shippingAddress.firstName} {order.shippingAddress.lastName}</p>
+                <address className="not-italic text-xs sm:text-sm text-[#5C5752] space-y-1">
+                   <p className="font-semibold text-[#1A1918]">{order.shippingAddress.firstName} {order.shippingAddress.lastName}</p>
                    <p>{order.shippingAddress.addressLine1}</p>
                    {order.shippingAddress.addressLine2 && <p>{order.shippingAddress.addressLine2}</p>}
                    <p>{order.shippingAddress.city}, {order.shippingAddress.state} {order.shippingAddress.postalCode}</p>
                    <p>{order.shippingAddress.country}</p>
+                   {order.shippingAddress.phone && <p className="pt-2 text-[#9C9690]">{order.shippingAddress.phone}</p>}
                 </address>
             </div>
 
-             <div className="bg-gray-50 dark:bg-zinc-900 shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl p-6">
-                 <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-4">Summary</h3>
-                 <dl className="space-y-4 text-sm text-gray-600 dark:text-gray-400 border-b border-gray-200 dark:border-zinc-800 pb-4">
+             <div className="bg-[#FAF8F4] rounded-2xl border border-[#E8E0D5] p-6 shadow-[0_4px_20px_rgba(0,0,0,0.03)]">
+                 <h3 className="text-xs font-body uppercase tracking-wider font-semibold text-[#1A1918] mb-4">Payment & Summary</h3>
+                 <dl className="space-y-3 text-xs sm:text-sm text-[#5C5752] border-b border-[#E8E0D5] pb-4">
                     <div className="flex justify-between">
                        <dt>Subtotal</dt>
-                       <dd className="text-gray-900 dark:text-white font-medium">₹{order.totalAmount.toString()}</dd>
+                       <dd className="text-[#1A1918] font-medium">₹{order.totalAmount.toString()}</dd>
                     </div>
                     <div className="flex justify-between">
-                       <dt>Shipping</dt>
-                       <dd className="text-gray-900 dark:text-white font-medium">Calculated</dd>
+                       <dt>Doorstep Delivery</dt>
+                       <dd className="text-[#003926] font-medium">Complimentary</dd>
                     </div>
                  </dl>
-                 <div className="flex justify-between pt-4 font-semibold text-gray-900 dark:text-white text-base">
+                 <div className="flex justify-between pt-4 font-semibold text-[#1A1918] text-base">
                     <dt>Total</dt>
-                    <dd>₹{order.totalAmount.toString()}</dd>
+                    <dd className="text-[#1A1918]">₹{Number(order.totalAmount).toLocaleString("en-IN")}</dd>
                  </div>
-                 <p className="mt-4 text-xs text-gray-500">Payment Processed securely via Offline/Mock Method.</p>
+                 <p className="mt-3 text-[11px] text-[#9C9690]">Payment verified and processed securely.</p>
              </div>
           </div>
        </div>

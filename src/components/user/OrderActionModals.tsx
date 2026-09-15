@@ -50,10 +50,10 @@ export function OrderActionButtons({ order }: OrderModalProps) {
 
   return (
     <>
-      <div className="flex flex-wrap items-center gap-2.5 mt-3 sm:mt-0">
+      <div className="flex flex-wrap items-center gap-2">
         <button
           onClick={() => setReturnModalOpen(true)}
-          className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg border border-[#EDE8DF] bg-[#FAF8F4] text-[#1A1918] hover:border-[#B8935A] hover:bg-white text-xs font-dm font-medium transition-all duration-200"
+          className="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl border border-[#E8E0D5] bg-white text-[#1A1918] hover:border-[#B8935A] hover:bg-[#FAF8F4] text-xs font-body tracking-wider uppercase transition-all duration-200 shadow-sm"
         >
           <RotateCcw size={13} className="text-[#B8935A]" />
           <span>Return / Exchange</span>
@@ -61,7 +61,7 @@ export function OrderActionButtons({ order }: OrderModalProps) {
 
         <button
           onClick={() => setHelpModalOpen(true)}
-          className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg border border-[#EDE8DF] bg-[#FAF8F4] text-[#1A1918] hover:border-[#003926] hover:bg-white text-xs font-dm font-medium transition-all duration-200"
+          className="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl border border-[#E8E0D5] bg-white text-[#1A1918] hover:border-[#003926] hover:bg-[#FAF8F4] text-xs font-body tracking-wider uppercase transition-all duration-200 shadow-sm"
         >
           <HelpCircle size={13} className="text-[#003926]" />
           <span>Need Help?</span>
