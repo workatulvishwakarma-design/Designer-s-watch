@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { User, Package, Heart, MapPin, LogOut } from "lucide-react"
+import { User, Package, Heart, MapPin, LogOut, HelpCircle } from "lucide-react"
 
 export function AccountNav({ signOutAction }: { signOutAction: () => Promise<void> }) {
   const pathname = usePathname()
@@ -12,6 +12,7 @@ export function AccountNav({ signOutAction }: { signOutAction: () => Promise<voi
     { href: "/account/orders", label: "Your Orders", icon: Package },
     { href: "/account/wishlist", label: "Wishlist", icon: Heart },
     { href: "/account/addresses", label: "Addresses", icon: MapPin },
+    { href: "/contact", label: "Help & Concierge", icon: HelpCircle },
   ]
 
   return (

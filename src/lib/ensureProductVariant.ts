@@ -2,6 +2,7 @@ import { prisma } from "@/lib/db";
 import { getDsignerProductBySlug } from "@/lib/dsignerCatalog";
 import { getEscortProductBySlug } from "@/lib/escortCatalog";
 import { getFamilyBySku, getFamilyBySlug } from "@/data/productData";
+import { resolveOrderItemImage } from "@/lib/orderImageResolver";
 import { Prisma } from "@prisma/client";
 
 export type ResolvedVariantWithRelations = Prisma.ProductVariantGetPayload<{
@@ -140,6 +141,35 @@ export async function ensureProductVariant(skuOrSlug: string): Promise<ResolvedV
         availabilityStatus: "IN_STOCK",
       },
     });
+
+    // 6. Ensure real, dynamic image is saved to DB
+    const primaryImg =
+      matchedVariant.gallery?.primary ||
+      resolveOrderItemImage({ sku: variantSku, name: catalogGroup.name, familySlug });
+
+    if (primaryImg) {
+      await prisma.familyImage.upsert({
+        where: { id: `fam-img-${family.id}` },
+        update: { url: primaryImg },
+        create: {
+          id: `fam-img-${family.id}`,
+          familyId: family.id,
+          url: primaryImg,
+          type: "HERO",
+        },
+      }).catch(() => null);
+
+      await prisma.variantImage.upsert({
+        where: { id: `var-img-${variant.id}` },
+        update: { url: primaryImg },
+        create: {
+          id: `var-img-${variant.id}`,
+          variantId: variant.id,
+          url: primaryImg,
+          type: "SKU",
+        },
+      }).catch(() => null);
+    }
 
     return {
       ...variant,

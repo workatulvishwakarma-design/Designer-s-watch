@@ -3,6 +3,8 @@ import { prisma } from "@/lib/db"
 import { redirect, notFound } from "next/navigation"
 import Link from "next/link"
 import { ChevronLeft, MapPin, Package, CheckCircle2, Clock, Truck } from "lucide-react"
+import { resolveOrderItemImage } from "@/lib/orderImageResolver"
+import { OrderActionButtons } from "@/components/user/OrderActionModals"
 
 export default async function UserOrderDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
@@ -50,18 +52,45 @@ export default async function UserOrderDetailPage({ params }: { params: Promise<
 
   return (
     <div className="space-y-8 max-w-5xl">
-       {/* Breadcrumb */}
+       {/* Breadcrumb & Actions */}
        <div>
         <Link href="/account/orders" className="text-sm font-medium text-gray-500 hover:text-gray-900 dark:hover:text-gray-300 inline-flex items-center mb-6 transition-colors">
           <ChevronLeft className="h-4 w-4 mr-1" /> Back to Orders
         </Link>
-        <div className="sm:flex sm:items-baseline sm:justify-between">
-          <h2 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-3xl">
-            Order #{order.id.slice(-8).toUpperCase()}
-          </h2>
-          <p className="mt-2 text-sm text-gray-500 sm:mt-0">
-            Placed on <time>{order.createdAt.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
-          </p>
+        <div className="sm:flex sm:items-center sm:justify-between gap-4">
+          <div>
+            <h2 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-3xl">
+              Order #{order.id.slice(-8).toUpperCase()}
+            </h2>
+            <p className="mt-1 text-sm text-gray-500">
+              Placed on <time>{order.createdAt.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
+            </p>
+          </div>
+          <div>
+            <OrderActionButtons
+              order={{
+                id: order.id,
+                totalAmount: order.totalAmount.toString(),
+                createdAt: order.createdAt.toISOString(),
+                status: order.status,
+                shippingAddress: order.shippingAddress ? {
+                  firstName: order.shippingAddress.firstName ?? undefined,
+                  lastName: order.shippingAddress.lastName ?? undefined,
+                  city: order.shippingAddress.city ?? undefined,
+                  state: order.shippingAddress.state ?? undefined,
+                  postalCode: order.shippingAddress.postalCode ?? undefined,
+                  phone: order.shippingAddress.phone ?? undefined,
+                } : null,
+                items: order.items.map((item) => ({
+                  variant: {
+                    sku: item.variant?.sku ?? undefined,
+                    family: { name: item.variant?.family?.name ?? undefined }
+                  },
+                  quantity: item.quantity
+                }))
+              }}
+            />
+          </div>
         </div>
       </div>
 
@@ -113,24 +142,32 @@ export default async function UserOrderDetailPage({ params }: { params: Promise<
                  </h3>
                </div>
                <ul className="divide-y divide-gray-100 dark:divide-zinc-800 px-4 sm:px-6">
-                  {order.items.map((item) => (
-                    <li key={item.id} className="flex py-6">
-                      <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200 dark:border-zinc-800 bg-gray-50 dark:bg-zinc-950">
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src={item.variant?.family?.images?.[0]?.url || "https://picsum.photos/150"} alt={item.variant?.family?.name} className="h-full w-full object-cover" />
-                      </div>
-                      <div className="ml-4 flex flex-1 flex-col">
-                        <div className="flex justify-between text-base font-medium text-gray-900 dark:text-white">
-                           <h4>{item.variant?.family?.name}</h4>
-                           <p className="ml-4">₹{item.priceAtPurchase.toString()}</p>
+                  {order.items.map((item) => {
+                    const itemImage = resolveOrderItemImage({
+                      sku: item.variant?.sku,
+                      name: item.variant?.family?.name,
+                      familySlug: item.variant?.family?.slug,
+                      dbUrl: item.variant?.family?.images?.[0]?.url
+                    })
+                    return (
+                      <li key={item.id} className="flex py-6 items-center">
+                        <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-xl border border-gray-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 p-2 flex items-center justify-center">
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img src={itemImage} alt={item.variant?.family?.name || "Timepiece"} className="h-full w-full object-contain" />
                         </div>
-                        <p className="mt-1 text-sm text-gray-500 line-clamp-2">{item.variant?.family?.description}</p>
-                        <div className="flex flex-1 items-end justify-between text-sm">
-                           <p className="text-gray-500">Qty {item.quantity}</p>
+                        <div className="ml-6 flex flex-1 flex-col">
+                          <div className="flex justify-between text-base font-medium text-gray-900 dark:text-white">
+                             <h4>{item.variant?.family?.name || item.variant?.sku}</h4>
+                             <p className="ml-4 font-semibold text-[#B8935A]">₹{item.priceAtPurchase.toString()}</p>
+                          </div>
+                          <p className="mt-1 text-sm text-gray-500 line-clamp-2">{item.variant?.family?.description}</p>
+                          <div className="flex flex-1 items-end justify-between text-sm mt-2">
+                             <p className="text-xs text-gray-400">Qty: {item.quantity}</p>
+                          </div>
                         </div>
-                      </div>
-                    </li>
-                  ))}
+                      </li>
+                    )
+                  })}
                </ul>
             </div>
           </div>

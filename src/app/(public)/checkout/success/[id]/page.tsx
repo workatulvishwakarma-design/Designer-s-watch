@@ -2,7 +2,8 @@ import { auth } from "@/lib/auth"
 import { prisma } from "@/lib/db"
 import { notFound, redirect } from "next/navigation"
 import Link from "next/link"
-import { CheckCircle2, Package, MapPin, CreditCard, ChevronRight } from "lucide-react"
+import { CheckCircle2, Package, MapPin, CreditCard, ChevronRight, MessageCircle, Phone } from "lucide-react"
+import { resolveOrderItemImage } from "@/lib/orderImageResolver"
 
 export default async function OrderSuccessPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params
@@ -19,7 +20,7 @@ export default async function OrderSuccessPage({ params }: { params: Promise<{ i
           variant: {
             include: {
               family: {
-                select: { name: true, images: { take: 1 } }
+                select: { name: true, slug: true, images: { take: 1 } }
               }
             }
           }
@@ -58,24 +59,32 @@ export default async function OrderSuccessPage({ params }: { params: Promise<{ i
                 <Package className="text-[#B8935A]" size={20} /> Items Ordered
               </h2>
               <ul className="space-y-6">
-                {order.items.map((item: any) => (
-                  <li key={item.id} className="flex gap-4">
-                    <div className="w-20 h-20 bg-[#F5F2ED] rounded-xl flex items-center justify-center p-2 flex-shrink-0">
-                      <img 
-                        src={item.variant?.family?.images[0]?.url || "https://picsum.photos/200"} 
-                        alt={item.variant?.family?.name}
-                        className="w-full h-full object-contain mix-blend-multiply"
-                      />
-                    </div>
-                    <div className="flex-1 flex flex-col justify-center">
-                      <h3 className="font-body font-medium text-[#1A1918] text-sm line-clamp-2">{item.variant?.family?.name}</h3>
-                      <p className="text-[10px] text-[#9C9690] uppercase tracking-widest mt-1">Qty: {item.quantity}</p>
-                    </div>
-                    <div className="text-[#1A1918] font-medium font-body text-sm flex items-center">
-                      ₹{(Number(item.priceAtPurchase) * item.quantity).toLocaleString()}
-                    </div>
-                  </li>
-                ))}
+                {order.items.map((item: any) => {
+                  const itemImage = resolveOrderItemImage({
+                    sku: item.variant?.sku,
+                    name: item.variant?.family?.name,
+                    familySlug: item.variant?.family?.slug,
+                    dbUrl: item.variant?.family?.images?.[0]?.url
+                  })
+                  return (
+                    <li key={item.id} className="flex gap-4">
+                      <div className="w-20 h-20 bg-[#F5F2ED] rounded-xl flex items-center justify-center p-2 flex-shrink-0">
+                        <img 
+                          src={itemImage} 
+                          alt={item.variant?.family?.name || "Timepiece"}
+                          className="w-full h-full object-contain mix-blend-multiply"
+                        />
+                      </div>
+                      <div className="flex-1 flex flex-col justify-center">
+                        <h3 className="font-body font-medium text-[#1A1918] text-sm line-clamp-2">{item.variant?.family?.name || item.variant?.sku}</h3>
+                        <p className="text-[10px] text-[#9C9690] uppercase tracking-widest mt-1">Qty: {item.quantity}</p>
+                      </div>
+                      <div className="text-[#1A1918] font-medium font-body text-sm flex items-center">
+                        ₹{(Number(item.priceAtPurchase) * item.quantity).toLocaleString()}
+                      </div>
+                    </li>
+                  )
+                })}
               </ul>
             </div>
 
@@ -171,6 +180,30 @@ export default async function OrderSuccessPage({ params }: { params: Promise<{ i
                 >
                   Continue Shopping
                 </Link>
+              </div>
+
+              {/* Dedicated Concierge & Help Box */}
+              <div className="mt-8 pt-6 border-t border-[#E8E0D5]">
+                <h3 className="font-display text-sm text-[#1A1918] mb-2 font-medium">Need Assistance or Order Help?</h3>
+                <p className="text-xs text-[#9C9690] mb-4">Our timepiece concierge team is available 24/7 for order status, doorstep returns, or questions.</p>
+                <div className="flex flex-col sm:flex-row gap-2">
+                  <a
+                    href="https://wa.me/918454926088?text=Hello%20Designer%27s%20Watch,%20I%20need%20assistance%20with%20my%20order"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex-1 inline-flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl bg-[#25D366]/10 text-[#075E54] hover:bg-[#25D366]/20 text-xs font-medium transition-colors"
+                  >
+                    <MessageCircle size={14} />
+                    <span>WhatsApp Concierge</span>
+                  </a>
+                  <a
+                    href="tel:+918454926088"
+                    className="flex-1 inline-flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl border border-[#E8E0D5] bg-[#FAF8F4] text-[#1A1918] hover:bg-white text-xs font-medium transition-colors"
+                  >
+                    <Phone size={14} />
+                    <span>+91 84549 26088</span>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
