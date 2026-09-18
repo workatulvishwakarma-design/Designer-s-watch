@@ -8,8 +8,11 @@ export async function authenticate(
   formData: FormData,
 ) {
   try {
-    const callbackUrl = formData.get("callbackUrl") as string || "/account/profile"
-    await signIn("credentials", { ...Object.fromEntries(formData), redirectTo: callbackUrl })
+    const callbackUrl = (formData.get("callbackUrl") as string) || "/account/profile"
+    const email = ((formData.get("email") as string) || "").trim().toLowerCase()
+    const password = (formData.get("password") as string) || ""
+
+    await signIn("credentials", { email, password, redirectTo: callbackUrl })
   } catch (error) {
     if (error instanceof AuthError) {
       switch (error.type) {

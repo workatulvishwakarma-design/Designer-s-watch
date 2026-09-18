@@ -29,11 +29,17 @@ export const {
       },
       async authorize(credentials) {
         try {
-          if (!credentials?.email || !credentials?.password) {
+          const rawEmail = typeof credentials?.email === "string" ? credentials.email.trim().toLowerCase() : ""
+          const rawPassword = typeof credentials?.password === "string" ? credentials.password : ""
+
+          if (!rawEmail || !rawPassword) {
             return null;
           }
 
-          const parsedCredentials = credentialsSchema.safeParse(credentials)
+          const parsedCredentials = credentialsSchema.safeParse({
+            email: rawEmail,
+            password: rawPassword,
+          })
 
           if (!parsedCredentials.success) {
             return null;
@@ -43,23 +49,27 @@ export const {
           
           let user;
           try {
-            user = await prisma.user.findUnique({
-              where: { email },
+            user = await prisma.user.findFirst({
+              where: {
+                email: {
+                  equals: email,
+                  mode: "insensitive",
+                },
+              },
             })
           } catch (dbError) {
             console.error("Database connection error during authorize:", dbError);
             return null;
           }
 
-          if (!user) {
+          if (!user || !user.passwordHash) {
             return null;
           }
 
-          if (!user.passwordHash) {
-            return null;
+          let passwordsMatch = await bcrypt.compare(password, user.passwordHash)
+          if (!passwordsMatch && password.trim() !== password) {
+            passwordsMatch = await bcrypt.compare(password.trim(), user.passwordHash)
           }
-
-          const passwordsMatch = await bcrypt.compare(password, user.passwordHash)
 
           if (passwordsMatch) {
             return {
