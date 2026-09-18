@@ -1,7 +1,7 @@
 "use client"
 
 import { DataTable, Column } from "@/components/admin/DataTable"
-import Link from "next/link"
+import { Badge } from "@/components/admin/Badge"
 
 type ProductRow = {
   id: string
@@ -13,24 +13,39 @@ type ProductRow = {
 }
 
 const columns: Column<ProductRow>[] = [
-  { header: "Name", accessor: "name" },
+  { header: "Watch Family Name", accessor: "name" },
   { header: "Collection", accessor: "collection" },
-  { header: "Price", accessor: "price" },
+  { header: "Base Price", accessor: "price" },
   { 
     header: "Status", 
     accessor: (row) => (
-      <span className={`inline-flex items-center rounded-md px-2 py-1 text-xs font-medium ring-1 ring-inset ${
-        row.status === "ACTIVE" 
-          ? "bg-green-50 text-green-700 ring-green-600/20 dark:bg-green-500/10 dark:text-green-400 dark:ring-green-500/20"
-          : "bg-gray-50 text-gray-600 ring-gray-500/10 dark:bg-zinc-800 dark:text-gray-400 dark:ring-white/10"
-      }`}>
+      <Badge variant={row.status === "ACTIVE" ? "success" : "neutral"}>
         {row.status}
-      </span>
+      </Badge>
     )
   },
-  { header: "Stock", accessor: "inventory" },
+  { 
+    header: "Stock Units", 
+    accessor: (row) => (
+      <span className={`font-semibold ${row.inventory === 0 ? 'text-rose-600' : row.inventory < 10 ? 'text-amber-600' : 'text-slate-800'}`}>
+        {row.inventory}
+      </span>
+    ) 
+  },
 ]
 
 export function ProductsTable({ data }: { data: ProductRow[] }) {
-  return <DataTable data={data} columns={columns} keyField="id" getRowHref={(row) => `/admin/products/${row.id}`} />
+  return (
+    <DataTable 
+      data={data} 
+      columns={columns} 
+      keyField="id" 
+      searchable 
+      searchPlaceholder="Search products by name or collection..."
+      exportable
+      exportFilename="products-catalog"
+      pageSize={15}
+      getRowHref={(row) => `/admin/products/${row.id}`} 
+    />
+  )
 }

@@ -14,22 +14,26 @@ export function CategoryClientActions({ initialData }: { initialData: any[] }) {
   }
 
   const columns: Column<any>[] = [
-    { header: "Name", accessor: "name" },
-    { header: "Slug", accessor: "slug" },
-    { header: "Families Linked", accessor: "products" },
+    { header: "Collection Name", accessor: "name" },
+    { header: "URL Slug", accessor: "slug" },
+    { header: "Watch Families Linked", accessor: "products" },
     {
-      header: "Visibility",
+      header: "Status",
       accessor: (row) => (
         <Badge variant={row.visibility === "ACTIVE" ? "success" : "neutral"}>
-          {row.visibility === "ACTIVE" ? "Visible" : "Hidden"}
+          {row.visibility === "ACTIVE" ? "Active" : "Hidden"}
         </Badge>
       )
     },
     {
       header: "Actions",
       accessor: (row) => (
-        <div className="flex gap-4 items-center">
-          <Link href={`/admin/categories/${row.id}/edit`} className="text-gray-500 hover:text-black dark:text-gray-400 dark:hover:text-white transition-colors">
+        <div className="flex gap-3 items-center">
+          <Link 
+            href={`/admin/categories/${row.id}/edit`} 
+            className="p-1.5 text-slate-500 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-colors cursor-pointer"
+            title="Edit Collection"
+          >
             <Edit className="h-4 w-4" />
           </Link>
           <ConfirmModal
@@ -39,7 +43,10 @@ export function CategoryClientActions({ initialData }: { initialData: any[] }) {
             variant="danger"
             onConfirm={() => handleDelete(row.id)}
             triggerButton={
-              <button className="text-gray-500 hover:text-red-600 dark:text-gray-400 dark:hover:text-red-500 transition-colors">
+              <button 
+                className="p-1.5 text-rose-500 hover:text-rose-700 hover:bg-rose-50 rounded-lg transition-colors cursor-pointer"
+                title="Delete Collection"
+              >
                 <Trash2 className="h-4 w-4" />
               </button>
             }
@@ -50,6 +57,12 @@ export function CategoryClientActions({ initialData }: { initialData: any[] }) {
   ]
 
   return (
-    <DataTable data={initialData} columns={columns} keyField="id" />
+    <DataTable 
+      data={initialData} 
+      columns={columns} 
+      keyField="id" 
+      searchable
+      searchPlaceholder="Search collections..."
+    />
   )
 }

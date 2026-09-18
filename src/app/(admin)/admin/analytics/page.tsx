@@ -1,7 +1,9 @@
 import { prisma } from "@/lib/db"
-import { DollarSign, ShoppingBag, Users, TrendingUp, BarChart3, Package, AlertTriangle, Ticket, ShoppingCart, ArrowUpRight } from "lucide-react"
+import { DollarSign, ShoppingBag, Users, TrendingUp, BarChart3, Package, AlertTriangle, Ticket } from "lucide-react"
 import { Badge } from "@/components/admin/Badge"
 import Link from "next/link"
+
+export const dynamic = "force-dynamic"
 
 export default async function AdminAnalyticsPage() {
   const [
@@ -93,209 +95,162 @@ export default async function AdminAnalyticsPage() {
   return (
     <div className="space-y-8">
       <div>
-        <h2 className="text-xl font-medium tracking-tight text-gray-900 dark:text-white uppercase">Reports & Analytics</h2>
-        <p className="text-xs text-gray-500 mt-1">Real-time business intelligence from your boutique&apos;s data.</p>
+        <h1 className="text-2xl font-bold tracking-tight text-slate-900">Reports & Business Intelligence</h1>
+        <p className="text-xs text-slate-500 font-medium mt-1">Real-time revenue metrics, inventory health, and marketing performance.</p>
       </div>
 
-      {/* Primary Metrics — Clickable */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <ClickableMetric icon={DollarSign} label="Total Revenue" value={`₹${totalRevenue.toLocaleString()}`} accent="text-emerald-600" bg="bg-emerald-50 dark:bg-emerald-900/10" href="/admin/orders" />
-        <ClickableMetric icon={ShoppingBag} label="Total Orders" value={totalOrders.toString()} accent="text-blue-600" bg="bg-blue-50 dark:bg-blue-900/10" href="/admin/orders" />
-        <ClickableMetric icon={Users} label="Total Customers" value={totalCustomers.toString()} accent="text-purple-600" bg="bg-purple-50 dark:bg-purple-900/10" href="/admin/customers" />
-        <ClickableMetric icon={TrendingUp} label="Avg. Order Value" value={`₹${avgOrderValue.toLocaleString()}`} accent="text-amber-600" bg="bg-amber-50 dark:bg-amber-900/10" href="/admin/orders" />
+      {/* Primary Metrics */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <ClickableMetric icon={DollarSign} label="Total Revenue" value={`₹${totalRevenue.toLocaleString()}`} accent="text-emerald-700" bg="bg-emerald-50" href="/admin/orders" />
+        <ClickableMetric icon={ShoppingBag} label="Total Orders" value={totalOrders.toString()} accent="text-blue-700" bg="bg-blue-50" href="/admin/orders" />
+        <ClickableMetric icon={Users} label="Total Customers" value={totalCustomers.toString()} accent="text-purple-700" bg="bg-purple-50" href="/admin/customers" />
+        <ClickableMetric icon={TrendingUp} label="Avg. Order Value" value={`₹${avgOrderValue.toLocaleString()}`} accent="text-amber-700" bg="bg-amber-50" href="/admin/orders" />
       </div>
 
       {/* Secondary Metrics */}
-      <div className="grid grid-cols-2 sm:grid-cols-5 gap-4">
-        <Link href="/admin/orders" className="bg-white dark:bg-zinc-900 border border-gray-100 dark:border-zinc-800 rounded-xl p-4 shadow-sm text-center hover:shadow-md transition-all">
-          <p className="text-2xl font-semibold text-gray-900 dark:text-white">{completedOrders}</p>
-          <p className="text-[9px] font-bold uppercase tracking-widest text-gray-400 mt-1">Completed</p>
+      <div className="grid grid-cols-2 sm:grid-cols-5 gap-3.5">
+        <Link href="/admin/orders" className="bg-white border border-slate-200/80 rounded-xl p-3.5 shadow-2xs text-center hover:border-slate-300 transition-all">
+          <p className="text-2xl font-extrabold text-slate-900">{completedOrders}</p>
+          <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400 mt-1">Delivered</p>
         </Link>
-        <Link href="/admin/orders" className="bg-white dark:bg-zinc-900 border border-gray-100 dark:border-zinc-800 rounded-xl p-4 shadow-sm text-center hover:shadow-md transition-all">
-          <p className="text-2xl font-semibold text-red-600">{cancelledOrders}</p>
-          <p className="text-[9px] font-bold uppercase tracking-widest text-gray-400 mt-1">Cancelled</p>
+        <Link href="/admin/orders" className="bg-white border border-slate-200/80 rounded-xl p-3.5 shadow-2xs text-center hover:border-slate-300 transition-all">
+          <p className="text-2xl font-extrabold text-rose-600">{cancelledOrders}</p>
+          <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400 mt-1">Cancelled</p>
         </Link>
-        <Link href="/admin/customers" className="bg-white dark:bg-zinc-900 border border-gray-100 dark:border-zinc-800 rounded-xl p-4 shadow-sm text-center hover:shadow-md transition-all">
-          <p className="text-2xl font-semibold text-gray-900 dark:text-white">{newCustomersThisMonth}</p>
-          <p className="text-[9px] font-bold uppercase tracking-widest text-gray-400 mt-1">New This Month</p>
+        <Link href="/admin/customers" className="bg-white border border-slate-200/80 rounded-xl p-3.5 shadow-2xs text-center hover:border-slate-300 transition-all">
+          <p className="text-2xl font-extrabold text-slate-900">{newCustomersThisMonth}</p>
+          <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400 mt-1">New Customers</p>
         </Link>
-        <Link href="/admin/coupons" className="bg-white dark:bg-zinc-900 border border-gray-100 dark:border-zinc-800 rounded-xl p-4 shadow-sm text-center hover:shadow-md transition-all">
-          <p className="text-2xl font-semibold text-gray-900 dark:text-white">{couponUsageTotal}</p>
-          <p className="text-[9px] font-bold uppercase tracking-widest text-gray-400 mt-1">Coupons Used</p>
+        <Link href="/admin/coupons" className="bg-white border border-slate-200/80 rounded-xl p-3.5 shadow-2xs text-center hover:border-slate-300 transition-all">
+          <p className="text-2xl font-extrabold text-slate-900">{couponUsageTotal}</p>
+          <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400 mt-1">Coupons Redeemed</p>
         </Link>
-        <div className="bg-white dark:bg-zinc-900 border border-amber-200 dark:border-amber-800 rounded-xl p-4 shadow-sm text-center">
-          <p className="text-2xl font-semibold text-amber-600">{abandonedCheckouts}</p>
-          <p className="text-[9px] font-bold uppercase tracking-widest text-gray-400 mt-1">Abandoned Carts</p>
+        <div className="bg-white border border-amber-300/80 rounded-xl p-3.5 shadow-2xs text-center">
+          <p className="text-2xl font-extrabold text-amber-600">{abandonedCheckouts}</p>
+          <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400 mt-1">Abandoned Carts</p>
         </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Order Status Distribution */}
-        <div className="bg-white dark:bg-zinc-900 border border-gray-100 dark:border-zinc-800 rounded-2xl p-6 shadow-sm">
-          <h3 className="text-sm font-bold uppercase tracking-widest text-gray-900 dark:text-white mb-6 flex items-center gap-2">
-            <BarChart3 className="w-4 h-4 text-gray-400" /> Order Status Distribution
+        <div className="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-xs">
+          <h3 className="text-sm font-bold text-slate-900 mb-6 flex items-center gap-2">
+            <BarChart3 className="w-4 h-4 text-slate-400" /> Order Fulfillment Distribution
           </h3>
           <div className="space-y-4">
             {statusDistribution.map(s => {
               const pct = totalOrders > 0 ? Math.round((s.count / totalOrders) * 100) : 0
               return (
-                <Link key={s.label} href={s.href} className="flex items-center gap-4 group hover:bg-gray-50 dark:hover:bg-zinc-800/30 -mx-2 px-2 py-1 rounded-lg transition-colors">
-                  <div className="w-24 text-xs font-medium text-gray-600 dark:text-gray-400">{s.label}</div>
-                  <div className="flex-1 h-3 bg-gray-100 dark:bg-zinc-800 rounded-full overflow-hidden">
+                <Link key={s.label} href={s.href} className="flex items-center gap-4 hover:bg-slate-50 -mx-2 px-2.5 py-1.5 rounded-xl transition-colors">
+                  <div className="w-24 text-xs font-semibold text-slate-700">{s.label}</div>
+                  <div className="flex-1 h-2.5 bg-slate-100 rounded-full overflow-hidden">
                     <div 
                       className={`h-full rounded-full transition-all ${
-                        s.variant === 'success' ? 'bg-green-500' :
-                        s.variant === 'warning' ? 'bg-yellow-500' :
-                        s.variant === 'error' ? 'bg-red-500' : 'bg-blue-500'
+                        s.variant === 'success' ? 'bg-emerald-500' :
+                        s.variant === 'warning' ? 'bg-amber-500' :
+                        s.variant === 'error' ? 'bg-rose-500' : 'bg-blue-500'
                       }`}
                       style={{ width: `${pct}%` }}
                     />
                   </div>
                   <div className="w-16 text-right">
-                    <span className="text-sm font-semibold text-gray-900 dark:text-white">{s.count}</span>
-                    <span className="text-xs text-gray-400 ml-1">({pct}%)</span>
+                    <span className="text-xs font-bold text-slate-900">{s.count}</span>
+                    <span className="text-[10px] text-slate-400 ml-1">({pct}%)</span>
                   </div>
-                  <ArrowUpRight className="w-3 h-3 text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </Link>
               )
             })}
           </div>
         </div>
 
-        {/* Top Selling Products — Clickable */}
-        <div className="bg-white dark:bg-zinc-900 border border-gray-100 dark:border-zinc-800 rounded-2xl p-6 shadow-sm">
-          <h3 className="text-sm font-bold uppercase tracking-widest text-gray-900 dark:text-white mb-6 flex items-center gap-2">
-            <Package className="w-4 h-4 text-gray-400" /> Top Selling Products
+        {/* Top Selling Products */}
+        <div className="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-xs">
+          <h3 className="text-sm font-bold text-slate-900 mb-6 flex items-center gap-2">
+            <Package className="w-4 h-4 text-slate-400" /> Top Selling Models
           </h3>
           {topProducts.length === 0 ? (
-            <p className="text-sm text-gray-500 py-8 text-center">No sales data available yet.</p>
+            <p className="text-xs text-slate-400 py-8 text-center">No sales data recorded yet.</p>
           ) : (
-            <div className="space-y-4">
+            <div className="space-y-3">
               {topProducts.map((tp, idx) => {
                 const familyId = variantToFamilyIdMap[tp.variantId] || ""
                 return (
-                  <Link key={tp.variantId} href={`/admin/products/${familyId}`} className="flex items-center gap-4 group hover:bg-gray-50 dark:hover:bg-zinc-800/30 -mx-2 px-2 py-1 rounded-lg transition-colors">
-                    <div className="w-8 h-8 bg-gray-100 dark:bg-zinc-800 rounded-lg flex items-center justify-center text-xs font-bold text-gray-500">
+                  <Link key={tp.variantId} href={`/admin/products/${familyId}`} className="flex items-center gap-4 hover:bg-slate-50 -mx-2 px-2.5 py-1.5 rounded-xl transition-colors">
+                    <div className="w-7 h-7 bg-slate-100 rounded-lg flex items-center justify-center text-xs font-bold text-slate-600 shrink-0">
                       {idx + 1}
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="text-sm font-medium text-gray-900 dark:text-white truncate">
-                        {productNameMap[tp.variantId] || tp.variantId.slice(0, 8)}
-                      </p>
+                      <p className="text-xs font-bold text-slate-900 truncate">{productNameMap[tp.variantId] || "Product"}</p>
                     </div>
-                    <Badge variant="neutral">
-                      {tp._sum.quantity || 0} sold
-                    </Badge>
-                    <ArrowUpRight className="w-3 h-3 text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <div className="text-right shrink-0">
+                      <span className="text-xs font-bold text-slate-900">{tp._sum?.quantity || 0} units</span>
+                    </div>
                   </Link>
                 )
               })}
             </div>
           )}
         </div>
-      </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {/* Recent Sales — Clickable */}
-        <div className="bg-white dark:bg-zinc-900 border border-gray-100 dark:border-zinc-800 rounded-2xl p-6 shadow-sm">
-          <h3 className="text-sm font-bold uppercase tracking-widest text-gray-900 dark:text-white mb-6 flex items-center gap-2">
-            <DollarSign className="w-4 h-4 text-gray-400" /> Recent Sales
-          </h3>
-          {recentOrders.length === 0 ? (
-            <p className="text-sm text-gray-500 py-8 text-center">No orders yet.</p>
+        {/* Low Stock Alerts */}
+        <div className="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-xs">
+          <div className="flex items-center justify-between mb-6">
+            <h3 className="text-sm font-bold text-slate-900 flex items-center gap-2">
+              <AlertTriangle className="w-4 h-4 text-amber-500" /> Critical Low Stock Items
+            </h3>
+            <Link href="/admin/products" className="text-xs font-semibold text-slate-700 hover:text-black hover:underline">
+              Inventory →
+            </Link>
+          </div>
+          {lowStockProducts.length === 0 ? (
+            <p className="text-xs text-emerald-600 font-medium text-center py-6">All products have healthy inventory levels. ✓</p>
           ) : (
             <div className="space-y-3">
-              {recentOrders.map(order => (
-                <Link key={order.id} href={`/admin/orders/${order.id}`} className="flex items-center justify-between py-2.5 border-b border-gray-50 dark:border-zinc-800 last:border-0 hover:bg-gray-50 dark:hover:bg-zinc-800/30 -mx-2 px-2 rounded-lg transition-colors group">
-                  <div>
-                    <p className="text-sm font-medium text-gray-900 dark:text-white">{order.user.name || "Customer"}</p>
-                    <div className="flex items-center gap-2 mt-0.5">
-                      <p className="text-[10px] text-gray-400">{order.createdAt.toLocaleDateString()}</p>
-                      <span className="text-[9px] font-bold tracking-widest uppercase bg-gray-100 dark:bg-zinc-800 text-gray-500 px-1.5 py-0.5 rounded">
-                        {order.paymentMethod === 'CARD' ? 'Card' :
-                         order.paymentMethod === 'UPI' ? 'UPI' :
-                         order.paymentMethod === 'NET_BANKING' ? 'NetBanking' :
-                         order.paymentMethod === 'COD' ? 'COD' :
-                         order.paymentMethod || 'Gateway'}
-                      </span>
-                    </div>
-                  </div>
-                  <div className="text-right flex items-center gap-2">
-                    <div>
-                      <p className="text-sm font-semibold text-gray-900 dark:text-white">₹{Number(order.totalAmount).toLocaleString()}</p>
-                      <Badge variant={order.status === "DELIVERED" ? "success" : order.status === "CANCELLED" ? "error" : "neutral"}>
-                        {order.status}
+              {lowStockProducts.map(inv => {
+                const familyId = inv.variant?.family?.id || ""
+                const familyName = inv.variant?.family?.name || "Watch"
+                return (
+                  <Link key={inv.id} href={`/admin/products/${familyId}`} className="flex items-center justify-between hover:bg-slate-50 -mx-2 px-2.5 py-1.5 rounded-xl transition-colors">
+                    <p className="text-xs font-bold text-slate-900 truncate max-w-[220px]">{familyName} ({inv.variant?.sku})</p>
+                    <div className="flex items-center gap-2">
+                      <Badge variant={inv.stock === 0 ? "error" : "warning"}>
+                        {inv.stock === 0 ? "Out of Stock" : `${inv.stock} left`}
                       </Badge>
                     </div>
-                    <ArrowUpRight className="w-3 h-3 text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity" />
-                  </div>
-                </Link>
-              ))}
+                  </Link>
+                )
+              })}
             </div>
           )}
         </div>
 
-        {/* Low Stock + Coupon Stats */}
-        <div className="space-y-8">
-          {/* Low Stock Alert — Clickable */}
-          <div className="bg-white dark:bg-zinc-900 border border-gray-100 dark:border-zinc-800 rounded-2xl p-6 shadow-sm">
-            <h3 className="text-sm font-bold uppercase tracking-widest text-gray-900 dark:text-white mb-6 flex items-center gap-2">
-              <AlertTriangle className="w-4 h-4 text-amber-500" /> Low Stock Alert
+        {/* Coupon Performance */}
+        <div className="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-xs">
+          <div className="flex items-center justify-between mb-6">
+            <h3 className="text-sm font-bold text-slate-900 flex items-center gap-2">
+              <Ticket className="w-4 h-4 text-slate-400" /> Coupon Campaign Performance
             </h3>
-            {lowStockProducts.length === 0 ? (
-              <p className="text-sm text-gray-500 text-center py-4">All products are well stocked.</p>
-            ) : (
-              <div className="space-y-3">
-                {lowStockProducts.map(inv => {
-                  const familyId = inv.variant?.family?.id || ""
-                  const familyName = inv.variant?.family?.name || "Unknown Product"
-                  return (
-                    <Link key={inv.id} href={`/admin/products/${familyId}`} className="flex items-center justify-between hover:bg-gray-50 dark:hover:bg-zinc-800/30 -mx-2 px-2 py-1 rounded-lg transition-colors group">
-                      <p className="text-sm text-gray-900 dark:text-white truncate">{familyName} ({inv.variant?.sku || inv.sku})</p>
-                      <div className="flex items-center gap-2">
-                        <Badge variant={inv.stock === 0 ? "error" : "warning"}>
-                          {inv.stock === 0 ? "Out of Stock" : `${inv.stock} left`}
-                        </Badge>
-                        <ArrowUpRight className="w-3 h-3 text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity" />
-                      </div>
-                    </Link>
-                  )
-                })}
-              </div>
-            )}
+            <Link href="/admin/coupons" className="text-xs font-semibold text-slate-700 hover:text-black hover:underline">
+              Manage →
+            </Link>
           </div>
-
-          {/* Coupon Performance — Clickable */}
-          <div className="bg-white dark:bg-zinc-900 border border-gray-100 dark:border-zinc-800 rounded-2xl p-6 shadow-sm">
-            <div className="flex items-center justify-between mb-6">
-              <h3 className="text-sm font-bold uppercase tracking-widest text-gray-900 dark:text-white flex items-center gap-2">
-                <Ticket className="w-4 h-4 text-gray-400" /> Coupon Performance
-              </h3>
-              <Link href="/admin/coupons" className="text-xs font-medium text-black dark:text-white hover:underline flex items-center gap-1">
-                Manage <ArrowUpRight className="w-3 h-3" />
-              </Link>
+          {coupons.length === 0 ? (
+            <p className="text-xs text-slate-400 text-center py-6">No promotional coupons created yet.</p>
+          ) : (
+            <div className="space-y-3">
+              {coupons.map(coupon => (
+                <Link key={coupon.code} href={`/admin/coupons`} className="flex items-center justify-between hover:bg-slate-50 -mx-2 px-2.5 py-1.5 rounded-xl transition-colors">
+                  <div className="flex items-center gap-2">
+                    <span className="font-mono text-xs font-bold text-slate-900">{coupon.code}</span>
+                    <Badge variant={coupon.isActive ? "success" : "neutral"}>
+                      {coupon.isActive ? "Active" : "Inactive"}
+                    </Badge>
+                  </div>
+                  <span className="text-xs font-semibold text-slate-600">{coupon.usedCount} redemptions</span>
+                </Link>
+              ))}
             </div>
-            {coupons.length === 0 ? (
-              <p className="text-sm text-gray-500 text-center py-4">No coupons created yet.</p>
-            ) : (
-              <div className="space-y-3">
-                {coupons.map(coupon => (
-                  <Link key={coupon.code} href={`/admin/coupons/${coupon.id}/edit`} className="flex items-center justify-between hover:bg-gray-50 dark:hover:bg-zinc-800/30 -mx-2 px-2 py-1 rounded-lg transition-colors group">
-                    <div className="flex items-center gap-2">
-                      <span className="font-mono text-sm font-medium text-gray-900 dark:text-white">{coupon.code}</span>
-                      <Badge variant={coupon.isActive ? "success" : "neutral"}>
-                        {coupon.isActive ? "Active" : "Inactive"}
-                      </Badge>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <span className="text-sm text-gray-600 dark:text-gray-400">{coupon.usedCount} uses</span>
-                      <ArrowUpRight className="w-3 h-3 text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity" />
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            )}
-          </div>
+          )}
         </div>
       </div>
     </div>
@@ -304,16 +259,15 @@ export default async function AdminAnalyticsPage() {
 
 function ClickableMetric({ icon: Icon, label, value, accent, bg, href }: { icon: any, label: string, value: string, accent: string, bg: string, href: string }) {
   return (
-    <Link href={href} className="bg-white dark:bg-zinc-900 border border-gray-100 dark:border-zinc-800 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all group">
+    <Link href={href} className="bg-white border border-slate-200/80 rounded-2xl p-5 shadow-xs hover:border-slate-300 hover:shadow-md transition-all block">
       <div className="flex items-center gap-4">
-        <div className={`p-3 rounded-xl ${bg}`}>
+        <div className={`p-3 rounded-xl ${bg} shrink-0`}>
           <Icon className={`w-5 h-5 ${accent}`} />
         </div>
-        <div className="flex-1">
-          <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400">{label}</p>
-          <p className="text-xl font-semibold text-gray-900 dark:text-white mt-1">{value}</p>
+        <div className="flex-1 min-w-0">
+          <p className="text-[10.5px] font-bold uppercase tracking-wider text-slate-400 truncate">{label}</p>
+          <p className="text-xl font-extrabold text-slate-950 mt-1 tracking-tight">{value}</p>
         </div>
-        <ArrowUpRight className="w-4 h-4 text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity" />
       </div>
     </Link>
   )

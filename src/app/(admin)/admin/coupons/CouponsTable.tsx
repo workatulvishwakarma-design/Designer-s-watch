@@ -16,7 +16,7 @@ type CouponRow = {
 const columns: Column<CouponRow>[] = [
   { 
     header: "Code", 
-    accessor: (row) => <span className="font-mono font-medium tracking-wide text-gray-900 dark:text-white">{row.code}</span>,
+    accessor: (row) => <span className="font-mono font-semibold tracking-wider text-slate-900 bg-slate-100 border border-slate-200/80 px-2 py-1 rounded-md text-xs">{row.code}</span>,
     exportValue: (row) => row.code,
     sortKey: "code",
   },

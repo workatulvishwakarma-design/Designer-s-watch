@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&family=Bebas+Neue:wght@400&display=swap');
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --color-background: #FAF8F4;
   --color-bg-secondary: #F2EDE6;
@@ -36,6 +38,32 @@
   select,
   label {
     cursor: none !important;
+  }
+
+  /* Admin Panel overrides - ensure standard cursors and normal border radius */
+  .admin-shell,
+  .admin-shell * {
+    border-radius: revert !important;
+    cursor: auto !important;
+  }
+
+  .admin-shell a,
+  .admin-shell button,
+  .admin-shell select,
+  .admin-shell [role="button"],
+  .admin-shell input[type="checkbox"],
+  .admin-shell input[type="radio"],
+  .admin-shell [tabindex="0"] {
+    cursor: pointer !important;
+  }
+
+  .admin-shell input[type="text"],
+  .admin-shell input[type="email"],
+  .admin-shell input[type="password"],
+  .admin-shell input[type="number"],
+  .admin-shell input[type="search"],
+  .admin-shell textarea {
+    cursor: text !important;
   }
 
   @media (pointer: coarse) {

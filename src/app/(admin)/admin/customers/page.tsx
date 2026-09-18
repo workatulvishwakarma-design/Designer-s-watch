@@ -1,6 +1,8 @@
 import { prisma } from "@/lib/db"
 import { CustomersTable } from "./CustomersTable"
 
+export const dynamic = "force-dynamic"
+
 export default async function AdminCustomersPage() {
   const users = await prisma.user.findMany({
     where: { role: "CUSTOMER" },
@@ -23,59 +25,55 @@ export default async function AdminCustomersPage() {
     }
   })
 
-  // We only show this in development/demo environments.
   const isDemoEnv = process.env.NODE_ENV === "development" || process.env.VERCEL_ENV === "preview"
 
   return (
     <div className="space-y-6">
-      {isDemoEnv && (
-        <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-6 mb-8">
-          <h3 className="text-lg font-medium text-blue-900 dark:text-blue-100 mb-2">Demo Credentials Reference</h3>
-          <p className="text-sm text-blue-700 dark:text-blue-300 mb-4">
-            Warning: This table is only visible in development/demo environments. Do not expose real passwords in production. 
-            These are the seed accounts provided for testing the checkout and admin flows.
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <h1 className="text-2xl font-bold tracking-tight text-slate-900">Registered Customers</h1>
+          <p className="mt-1 text-xs text-slate-500 font-medium">
+            Directory of all registered shoppers, total order history, and accumulated customer lifetime value (LTV).
           </p>
-          <div className="overflow-x-auto bg-white dark:bg-zinc-900 rounded-lg shadow-sm border border-blue-100 dark:border-blue-900">
-            <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-800">
-              <thead className="bg-gray-50 dark:bg-zinc-800">
+        </div>
+      </div>
+
+      {isDemoEnv && (
+        <div className="bg-blue-50/70 border border-blue-200 rounded-2xl p-5 mb-4 shadow-2xs">
+          <h3 className="text-xs font-bold text-blue-900 uppercase tracking-wider mb-1">Demo Access Credentials</h3>
+          <p className="text-xs text-blue-700 mb-3">
+            Seed accounts provided for local development and review testing.
+          </p>
+          <div className="overflow-x-auto bg-white rounded-xl shadow-2xs border border-blue-100">
+            <table className="min-w-full text-xs">
+              <thead className="bg-slate-50 border-b border-slate-200 text-slate-500 text-[10.5px] font-bold uppercase tracking-wider">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Role</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Login / Email</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Seed Password</th>
+                  <th className="px-4 py-2.5 text-left">Role</th>
+                  <th className="px-4 py-2.5 text-left">Name</th>
+                  <th className="px-4 py-2.5 text-left">Login / Email</th>
+                  <th className="px-4 py-2.5 text-left">Password</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-200 dark:divide-gray-800 text-sm text-gray-900 dark:text-gray-100 font-mono">
-                <tr>
-                  <td className="px-6 py-4 whitespace-nowrap"><span className="bg-red-100 text-red-800 px-2 py-1 rounded text-xs font-sans tracking-wide">ADMIN</span></td>
-                  <td className="px-6 py-4 whitespace-nowrap">Admin User</td>
-                  <td className="px-6 py-4 whitespace-nowrap">admin@designerworld.com</td>
-                  <td className="px-6 py-4 whitespace-nowrap">password123</td>
+              <tbody className="divide-y divide-slate-100 text-xs text-slate-800 font-mono">
+                <tr className="hover:bg-slate-50">
+                  <td className="px-4 py-3"><span className="bg-rose-50 text-rose-700 border border-rose-200 px-2 py-0.5 rounded text-[10px] font-sans font-bold">ADMIN</span></td>
+                  <td className="px-4 py-3 font-sans font-medium text-slate-900">Admin User</td>
+                  <td className="px-4 py-3 text-slate-700">admin@designerworld.com</td>
+                  <td className="px-4 py-3 text-slate-500">password123</td>
                 </tr>
-                <tr>
-                  <td className="px-6 py-4 whitespace-nowrap"><span className="bg-green-100 text-green-800 px-2 py-1 rounded text-xs font-sans tracking-wide">CUSTOMER</span></td>
-                  <td className="px-6 py-4 whitespace-nowrap">Vip Customer</td>
-                  <td className="px-6 py-4 whitespace-nowrap">customer@designerworld.com</td>
-                  <td className="px-6 py-4 whitespace-nowrap">password123</td>
+                <tr className="hover:bg-slate-50">
+                  <td className="px-4 py-3"><span className="bg-emerald-50 text-emerald-700 border border-emerald-200 px-2 py-0.5 rounded text-[10px] font-sans font-bold">CUSTOMER</span></td>
+                  <td className="px-4 py-3 font-sans font-medium text-slate-900">Vip Customer</td>
+                  <td className="px-4 py-3 text-slate-700">customer@designerworld.com</td>
+                  <td className="px-4 py-3 text-slate-500">password123</td>
                 </tr>
               </tbody>
             </table>
           </div>
         </div>
       )}
-
-      <div className="sm:flex sm:items-center">
-        <div className="sm:flex-auto">
-          <h2 className="text-xl font-medium leading-6 text-gray-900 dark:text-gray-100">Customers</h2>
-          <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
-            A list of all registered customers with their order counts and lifetime value metrics.
-          </p>
-        </div>
-      </div>
       
-      <div className="bg-white dark:bg-zinc-900 shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl">
-        <CustomersTable data={mappedData} />
-      </div>
+      <CustomersTable data={mappedData} />
     </div>
   )
 }

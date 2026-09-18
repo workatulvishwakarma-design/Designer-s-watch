@@ -32,7 +32,7 @@ export function Drawer({ open, onClose, title, subtitle, children, width = "lg" 
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <div className="fixed inset-0 bg-zinc-900/60 backdrop-blur-sm transition-opacity" />
+          <div className="fixed inset-0 bg-slate-900/30 backdrop-blur-[2px] transition-opacity" />
         </Transition.Child>
 
         <div className="fixed inset-0 overflow-hidden">
@@ -48,22 +48,22 @@ export function Drawer({ open, onClose, title, subtitle, children, width = "lg" 
                 leaveTo="translate-x-full"
               >
                 <Dialog.Panel className={`pointer-events-auto w-screen ${widthClasses[width]}`}>
-                  <div className="flex h-full flex-col bg-white dark:bg-zinc-950 shadow-2xl">
+                  <div className="flex h-full flex-col bg-white border-l border-slate-200/90 shadow-2xl">
                     {/* Header */}
-                    <div className="flex items-start justify-between px-6 py-5 border-b border-gray-100 dark:border-zinc-800">
+                    <div className="flex items-start justify-between px-6 py-5 border-b border-slate-200/90">
                       <div>
                         {title && (
-                          <Dialog.Title className="text-base font-semibold text-gray-900 dark:text-white">
+                          <Dialog.Title className="text-base font-bold text-slate-900">
                             {title}
                           </Dialog.Title>
                         )}
                         {subtitle && (
-                          <p className="mt-1 text-xs text-gray-500">{subtitle}</p>
+                          <p className="mt-1 text-xs text-slate-500 font-medium">{subtitle}</p>
                         )}
                       </div>
                       <button
                         type="button"
-                        className="rounded-md text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors focus:outline-none focus:ring-2 focus:ring-black"
+                        className="rounded-lg p-1 text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors focus:outline-none"
                         onClick={onClose}
                       >
                         <span className="sr-only">Close panel</span>
