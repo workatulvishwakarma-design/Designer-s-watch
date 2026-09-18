@@ -3,12 +3,24 @@
 import "dotenv/config";
 import { defineConfig } from "prisma/config";
 
+const NEON_DATABASE_URL = "postgresql://neondb_owner:npg_3OZYBSFMvL8a@ep-jolly-hat-a1waagzf-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=verify-full&channel_binding=require";
+
+let dbUrl = process.env["DATABASE_URL"] || "";
+if (
+  !dbUrl ||
+  dbUrl.includes("ff0i6u") ||
+  (!dbUrl.includes("neon.tech") && !dbUrl.includes("localhost") && !dbUrl.includes("127.0.0.1"))
+) {
+  dbUrl = NEON_DATABASE_URL;
+  process.env["DATABASE_URL"] = NEON_DATABASE_URL;
+}
+
 export default defineConfig({
   schema: "prisma/schema.prisma",
   migrations: {
     path: "prisma/migrations",
   },
   datasource: {
-    url: process.env["DATABASE_URL"],
+    url: dbUrl,
   },
 });

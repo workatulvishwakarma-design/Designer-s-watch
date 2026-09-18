@@ -12,8 +12,9 @@ if ! grep -q "1.1.1.1" /etc/resolv.conf 2>/dev/null; then
     echo "nameserver 1.1.1.1" >> /etc/resolv.conf || true
 fi
 
-# 2. Write exact .env file
+# 2. Clear any overriding env files and write exact .env
 echo "2. Writing correct .env configuration..."
+rm -f .env.local .env.production .env.production.local .env.production.template
 cat << 'EOF' > .env
 DATABASE_URL="postgresql://neondb_owner:npg_3OZYBSFMvL8a@ep-jolly-hat-a1waagzf-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=verify-full&channel_binding=require"
 AUTH_SECRET="xtiHkXPgQcHc3zDaf5uwnuVEYNsU+4iobq2rxeUbmEg="

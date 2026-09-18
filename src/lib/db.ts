@@ -9,14 +9,25 @@ try {
   // Ignore in environments where not supported
 }
 
-const connectionString = process.env.DATABASE_URL
-if (!connectionString) {
-    console.error("DATABASE_URL is missing! Database features will fail.");
+const NEON_DATABASE_URL = "postgresql://neondb_owner:npg_3OZYBSFMvL8a@ep-jolly-hat-a1waagzf-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=verify-full&channel_binding=require";
+
+// Sanitize and enforce valid PostgreSQL database connection
+let connectionString = process.env.DATABASE_URL || "";
+if (
+  !connectionString ||
+  connectionString.includes("ff0i6u") ||
+  (!connectionString.includes("neon.tech") &&
+   !connectionString.includes("localhost") &&
+   !connectionString.includes("127.0.0.1"))
+) {
+  console.warn("[DB] Enforcing verified Neon production database URL.");
+  connectionString = NEON_DATABASE_URL;
+  process.env.DATABASE_URL = NEON_DATABASE_URL;
 }
 
 const pool = new Pool({ 
-    connectionString: connectionString || "", 
-    ssl: connectionString?.includes("localhost") || connectionString?.includes("127.0.0.1") || connectionString?.includes("sslmode=disable") ? false : { rejectUnauthorized: false },
+    connectionString: connectionString, 
+    ssl: connectionString.includes("localhost") || connectionString.includes("127.0.0.1") || connectionString.includes("sslmode=disable") ? false : { rejectUnauthorized: false },
     connectionTimeoutMillis: 15000,
     max: 10,
     idleTimeoutMillis: 30000, 
