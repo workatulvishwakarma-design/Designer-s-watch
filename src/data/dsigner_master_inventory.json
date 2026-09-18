@@ -44,7 +44,9 @@
         "/images/new-img/model-1/680/680BL.16G/680BL (2).jpg",
         "/images/new-img/model-1/680/680BL.16G/680BL (3).jpg",
         "/images/new-img/model-1/680/680BL.16G/680BL (4).jpg"
-      ]
+      ],
+      "collection": "Bolt",
+      "name": "Bolt 680BL.16G"
     },
     {
       "modelNo": "680BRNL.9G",
@@ -83,7 +85,9 @@
         "/images/new-img/model-1/680/680BRNL.9G/680BRNL (2).jpg",
         "/images/new-img/model-1/680/680BRNL.9G/680BRNL (3).jpg",
         "/images/new-img/model-1/680/680BRNL.9G/680BRNL (4).jpg"
-      ]
+      ],
+      "collection": "Bolt",
+      "name": "Bolt 680BRNL.9G"
     },
     {
       "modelNo": "680GL.2G",
@@ -121,7 +125,9 @@
         "/images/new-img/model-1/680/680GL.2G/680GL (2).jpg",
         "/images/new-img/model-1/680/680GL.2G/680GL (3).jpg",
         "/images/new-img/model-1/680/680GL.2G/680GL (4).jpg"
-      ]
+      ],
+      "collection": "Bolt",
+      "name": "Bolt 680GL.2G"
     },
     {
       "modelNo": "680GNL.16G",
@@ -160,7 +166,9 @@
         "/images/new-img/model-1/680/680GNL.16G/680GNL (2).jpg",
         "/images/new-img/model-1/680/680GNL.16G/680GNL (3).jpg",
         "/images/new-img/model-1/680/680GNL.16G/680GNL (4).jpg"
-      ]
+      ],
+      "collection": "Bolt",
+      "name": "Bolt 680GNL.16G"
     },
     {
       "modelNo": "680GNL.8G",
@@ -199,7 +207,9 @@
         "/images/new-img/model-1/680/680GNL.8G/680GNL (2).jpg",
         "/images/new-img/model-1/680/680GNL.8G/680GNL (3).jpg",
         "/images/new-img/model-1/680/680GNL.8G/680GNL (4).jpg"
-      ]
+      ],
+      "collection": "Bolt",
+      "name": "Bolt 680GNL.8G"
     },
     {
       "modelNo": "680RGL.16G",
@@ -238,7 +248,9 @@
         "/images/new-img/model-1/680/680RGL.16G/680RGL (2).jpg",
         "/images/new-img/model-1/680/680RGL.16G/680RGL (3).jpg",
         "/images/new-img/model-1/680/680RGL.16G/680RGL (4).jpg"
-      ]
+      ],
+      "collection": "Bolt",
+      "name": "Bolt 680RGL.16G"
     },
     {
       "modelNo": "680RGL.5G",
@@ -277,7 +289,9 @@
         "/images/new-img/model-1/680/680RGL.5G/680RGL (2).jpg",
         "/images/new-img/model-1/680/680RGL.5G/680RGL (3).jpg",
         "/images/new-img/model-1/680/680RGL.5G/680RGL (4).jpg"
-      ]
+      ],
+      "collection": "Bolt",
+      "name": "Bolt 680RGL.5G"
     },
     {
       "modelNo": "680RGL.9G",
@@ -316,7 +330,9 @@
         "/images/new-img/model-1/680/680RGL.9G/680RGL (2).jpg",
         "/images/new-img/model-1/680/680RGL.9G/680RGL (3).jpg",
         "/images/new-img/model-1/680/680RGL.9G/680RGL (4).jpg"
-      ]
+      ],
+      "collection": "Bolt",
+      "name": "Bolt 680RGL.9G"
     },
     {
       "modelNo": "680SL.2G",
@@ -355,7 +371,9 @@
         "/images/new-img/model-1/680/680SL.2G/680SL (2).jpg",
         "/images/new-img/model-1/680/680SL.2G/680SL (3).jpg",
         "/images/new-img/model-1/680/680SL.2G/680SL (4).jpg"
-      ]
+      ],
+      "collection": "Bolt",
+      "name": "Bolt 680SL.2G"
     },
     {
       "modelNo": "680SL.5G",
@@ -394,7 +412,9 @@
         "/images/new-img/model-1/680/680SL.5G/680SL (2).jpg",
         "/images/new-img/model-1/680/680SL.5G/680SL (3).jpg",
         "/images/new-img/model-1/680/680SL.5G/680SL (4).jpg"
-      ]
+      ],
+      "collection": "Bolt",
+      "name": "Bolt 680SL.5G"
     },
     {
       "modelNo": "748GM.16G",
@@ -433,7 +453,9 @@
         "/images/new-img/model-1/748/748/748GM.16G/748GM (5).jpg",
         "/images/new-img/model-1/748/748/748GM.16G/748GM (6).jpg",
         "/images/new-img/model-1/748/748/748GM.16G/748GM (7).jpg"
-      ]
+      ],
+      "collection": "Bolt",
+      "name": "Bolt 748GM.16G"
     },
     {
       "modelNo": "748RGM.16G",
@@ -472,7 +494,9 @@
         "/images/new-img/model-1/748/748/748RGM.16G/748RGM (5).jpg",
         "/images/new-img/model-1/748/748/748RGM.16G/748RGM (6).jpg",
         "/images/new-img/model-1/748/748/748RGM.16G/748RGM (7).jpg"
-      ]
+      ],
+      "collection": "Bolt",
+      "name": "Bolt 748RGM.16G"
     },
     {
       "modelNo": "748RTM.9G",
@@ -511,7 +535,9 @@
         "/images/new-img/model-1/748/748/748RTM.9G/748RTM (2).jpg",
         "/images/new-img/model-1/748/748/748RTM.9G/748RTM (3).jpg",
         "/images/new-img/model-1/748/748/748RTM.9G/748RTM (4).jpg"
-      ]
+      ],
+      "collection": "Bolt",
+      "name": "Bolt 748RTM.9G"
     },
     {
       "modelNo": "753RGM.9G",
@@ -554,7 +580,9 @@
         "/images/new-img/model-1/753/753 metal band/753/753RGM.9.G/753RGM.9 (2).jpg",
         "/images/new-img/model-1/753/753 metal band/753/753RGM.9.G/753RGM.9 (3).jpg",
         "/images/new-img/model-1/753/753 metal band/753/753RGM.9.G/753RGM.9 (4).jpg"
-      ]
+      ],
+      "collection": "Daymark",
+      "name": "Daymark 753RGM.9G"
     },
     {
       "modelNo": "753RTM.9G",
@@ -593,7 +621,9 @@
         "/images/new-img/model-1/753/753 metal band/753/753RTM.9.G/753RTM.9 (2).jpg",
         "/images/new-img/model-1/753/753 metal band/753/753RTM.9.G/753RTM.9 (3).jpg",
         "/images/new-img/model-1/753/753 metal band/753/753RTM.9.G/753RTM.9 (4).jpg"
-      ]
+      ],
+      "collection": "Daymark",
+      "name": "Daymark 753RTM.9G"
     },
     {
       "modelNo": "778BM.3G",
@@ -628,7 +658,9 @@
       "hoverImage": "/images/new-img/model-1/778/778/778BM.3.G.jpg",
       "gallery": [
         "/images/new-img/model-1/778/778/778BM.3.G.jpg"
-      ]
+      ],
+      "collection": "Pulse",
+      "name": "Pulse 778BM.3G"
     },
     {
       "modelNo": "778GM.2G",
@@ -663,7 +695,9 @@
       "hoverImage": "/images/new-img/model-1/778/778/778GM.2.G.jpg",
       "gallery": [
         "/images/new-img/model-1/778/778/778GM.2.G.jpg"
-      ]
+      ],
+      "collection": "Pulse",
+      "name": "Pulse 778GM.2G"
     },
     {
       "modelNo": "778GM.3G",
@@ -698,7 +732,9 @@
       "hoverImage": "/images/new-img/model-1/778/778/778GM.3.G.jpg",
       "gallery": [
         "/images/new-img/model-1/778/778/778GM.3.G.jpg"
-      ]
+      ],
+      "collection": "Pulse",
+      "name": "Pulse 778GM.3G"
     },
     {
       "modelNo": "778RGM.2G",
@@ -733,7 +769,9 @@
       "hoverImage": "/images/new-img/model-1/778/778/778RGM.2.G.jpg",
       "gallery": [
         "/images/new-img/model-1/778/778/778RGM.2.G.jpg"
-      ]
+      ],
+      "collection": "Pulse",
+      "name": "Pulse 778RGM.2G"
     },
     {
       "modelNo": "778RGM.3G",
@@ -768,7 +806,9 @@
       "hoverImage": "/images/new-img/model-1/778/778/778RGM.3.G.jpg",
       "gallery": [
         "/images/new-img/model-1/778/778/778RGM.3.G.jpg"
-      ]
+      ],
+      "collection": "Pulse",
+      "name": "Pulse 778RGM.3G"
     },
     {
       "modelNo": "778SM.16G",
@@ -803,7 +843,9 @@
       "hoverImage": "/images/new-img/model-1/778/778/778SM.16.G.jpg",
       "gallery": [
         "/images/new-img/model-1/778/778/778SM.16.G.jpg"
-      ]
+      ],
+      "collection": "Pulse",
+      "name": "Pulse 778SM.16G"
     },
     {
       "modelNo": "778SM.2G",
@@ -838,7 +880,9 @@
       "hoverImage": "/images/new-img/model-1/778/778/778SM.2.G.jpg",
       "gallery": [
         "/images/new-img/model-1/778/778/778SM.2.G.jpg"
-      ]
+      ],
+      "collection": "Pulse",
+      "name": "Pulse 778SM.2G"
     },
     {
       "modelNo": "778SM.3G",
@@ -873,7 +917,9 @@
       "hoverImage": "/images/new-img/model-1/778/778/778SM.3.G.jpg",
       "gallery": [
         "/images/new-img/model-1/778/778/778SM.3.G.jpg"
-      ]
+      ],
+      "collection": "Pulse",
+      "name": "Pulse 778SM.3G"
     },
     {
       "modelNo": "792RGL.11G",
@@ -911,7 +957,9 @@
         "/images/new-img/model-1/792/792RGL.11.G/792RGL.11 (2).jpg",
         "/images/new-img/model-1/792/792RGL.11.G/792RGL.11 (3).jpg",
         "/images/new-img/model-1/792/792RGL.11.G/792RGL.11 (4).jpg"
-      ]
+      ],
+      "collection": "Pulse",
+      "name": "Pulse 792RGL.11G"
     },
     {
       "modelNo": "795RGM.16G",
@@ -950,7 +998,9 @@
         "/images/new-img/model-1/795/795_2 lot 31-08-2023/795.RGM.16.G/795.RGM.16 (3).jpg",
         "/images/new-img/model-1/795/795_2 lot 31-08-2023/795.RGM.16.G/795.RGM.16 (4).jpg",
         "/images/new-img/model-1/795/795_2 lot 31-08-2023/795RGM.16.G.jpg"
-      ]
+      ],
+      "collection": "Tactix",
+      "name": "Tactix 795RGM.16G"
     },
     {
       "modelNo": "795RGM.2G",
@@ -985,7 +1035,9 @@
       "hoverImage": "/images/new-img/model-1/795/795_2 lot 31-08-2023/795RGM.2.G.jpg",
       "gallery": [
         "/images/new-img/model-1/795/795_2 lot 31-08-2023/795RGM.2.G.jpg"
-      ]
+      ],
+      "collection": "Tactix",
+      "name": "Tactix 795RGM.2G"
     },
     {
       "modelNo": "795RGM.5G",
@@ -1024,7 +1076,9 @@
         "/images/new-img/model-1/795/795_2 lot 31-08-2023/795.RGM.5.G/795.RGM.5 (3).jpg",
         "/images/new-img/model-1/795/795_2 lot 31-08-2023/795.RGM.5.G/795.RGM.5 (4).jpg",
         "/images/new-img/model-1/795/795_2 lot 31-08-2023/795RGM.5.G.jpg"
-      ]
+      ],
+      "collection": "Tactix",
+      "name": "Tactix 795RGM.5G"
     },
     {
       "modelNo": "795RGM.8G",
@@ -1063,7 +1117,9 @@
         "/images/new-img/model-1/795/795_2 lot 31-08-2023/795.RGM.8.G/795.RGM.8 (3).jpg",
         "/images/new-img/model-1/795/795_2 lot 31-08-2023/795.RGM.8.G/795.RGM.8 (4).jpg",
         "/images/new-img/model-1/795/795_2 lot 31-08-2023/795RGM.8.G.jpg"
-      ]
+      ],
+      "collection": "Tactix",
+      "name": "Tactix 795RGM.8G"
     },
     {
       "modelNo": "795RGM.9G",
@@ -1098,7 +1154,9 @@
       "hoverImage": "/images/new-img/model-1/795/795_2 lot 31-08-2023/795RGM.9.G_Brown.jpg",
       "gallery": [
         "/images/new-img/model-1/795/795_2 lot 31-08-2023/795RGM.9.G_Brown.jpg"
-      ]
+      ],
+      "collection": "Tactix",
+      "name": "Tactix 795RGM.9G"
     },
     {
       "modelNo": "795RTM.16G",
@@ -1136,7 +1194,9 @@
         "/images/new-img/model-1/795/795_2 lot 31-08-2023/795.RTM.16.G/795.RTM.16 (2).jpg",
         "/images/new-img/model-1/795/795_2 lot 31-08-2023/795.RTM.16.G/795.RTM.16 (3).jpg",
         "/images/new-img/model-1/795/795_2 lot 31-08-2023/795.RTM.16.G/795.RTM.16 (4).jpg"
-      ]
+      ],
+      "collection": "Tactix",
+      "name": "Tactix 795RTM.16G"
     },
     {
       "modelNo": "795RTM.5G",
@@ -1180,7 +1240,9 @@
         "/images/new-img/model-1/795/795RTM.5G/795RTM (2).jpg",
         "/images/new-img/model-1/795/795RTM.5G/795RTM (3).jpg",
         "/images/new-img/model-1/795/795RTM.5G/795RTM (4).jpg"
-      ]
+      ],
+      "collection": "Tactix",
+      "name": "Tactix 795RTM.5G"
     },
     {
       "modelNo": "795RTM.8G",
@@ -1218,7 +1280,9 @@
         "/images/new-img/model-1/795/795_2 lot 31-08-2023/795.RTM.8.G/795.RTM.8 (2).jpg",
         "/images/new-img/model-1/795/795_2 lot 31-08-2023/795.RTM.8.G/795.RTM.8 (3).jpg",
         "/images/new-img/model-1/795/795_2 lot 31-08-2023/795.RTM.8.G/795.RTM.8 (4).jpg"
-      ]
+      ],
+      "collection": "Tactix",
+      "name": "Tactix 795RTM.8G"
     },
     {
       "modelNo": "802GNM.8G",
@@ -1253,7 +1317,9 @@
       "hoverImage": "/images/new-img/model-1/802/802GNM.8.G.jpg",
       "gallery": [
         "/images/new-img/model-1/802/802GNM.8.G.jpg"
-      ]
+      ],
+      "collection": "Quest",
+      "name": "Quest 802GNM.8G"
     },
     {
       "modelNo": "804BM.3G",
@@ -1288,7 +1354,9 @@
       "hoverImage": "/images/new-img/model-1/804/804BM.3G.png",
       "gallery": [
         "/images/new-img/model-1/804/804BM.3G.png"
-      ]
+      ],
+      "collection": "Tactix",
+      "name": "Tactix 804BM.3G"
     },
     {
       "modelNo": "804RGM.3G",
@@ -1323,7 +1391,9 @@
       "hoverImage": "/images/new-img/model-1/804/804RGM.3G.png",
       "gallery": [
         "/images/new-img/model-1/804/804RGM.3G.png"
-      ]
+      ],
+      "collection": "Tactix",
+      "name": "Tactix 804RGM.3G"
     },
     {
       "modelNo": "804RTM.5G",
@@ -1358,7 +1428,9 @@
       "hoverImage": "/images/new-img/model-1/804/804RTM.5G.png",
       "gallery": [
         "/images/new-img/model-1/804/804RTM.5G.png"
-      ]
+      ],
+      "collection": "Tactix",
+      "name": "Tactix 804RTM.5G"
     },
     {
       "modelNo": "804TM.16G",
@@ -1393,7 +1465,9 @@
       "hoverImage": "/images/new-img/model-1/804/804TM.16G.png",
       "gallery": [
         "/images/new-img/model-1/804/804TM.16G.png"
-      ]
+      ],
+      "collection": "Tactix",
+      "name": "Tactix 804TM.16G"
     },
     {
       "modelNo": "806BFS.3G",
@@ -1432,7 +1506,9 @@
         "/images/new-img/model-1/806/806BFS.3G/806BFS (2).jpg",
         "/images/new-img/model-1/806/806BFS.3G/806BFS (3).jpg",
         "/images/new-img/model-1/806/806BFS.3G/806BFS (4).jpg"
-      ]
+      ],
+      "collection": "Quest",
+      "name": "Quest 806BFS.3G"
     },
     {
       "modelNo": "806GFS.16G",
@@ -1471,7 +1547,9 @@
         "/images/new-img/model-1/806/806GFS.16G/806GFS (2).jpg",
         "/images/new-img/model-1/806/806GFS.16G/806GFS (3).jpg",
         "/images/new-img/model-1/806/806GFS.16G/806GFS (4).jpg"
-      ]
+      ],
+      "collection": "Quest",
+      "name": "Quest 806GFS.16G"
     },
     {
       "modelNo": "806GFS.8G",
@@ -1510,7 +1588,9 @@
         "/images/new-img/model-1/806/806GFS.8G/806GFS (2).jpg",
         "/images/new-img/model-1/806/806GFS.8G/806GFS (3).jpg",
         "/images/new-img/model-1/806/806GFS.8G/806GFS (4).jpg"
-      ]
+      ],
+      "collection": "Quest",
+      "name": "Quest 806GFS.8G"
     },
     {
       "modelNo": "806GNFS.8G",
@@ -1549,7 +1629,9 @@
         "/images/new-img/model-1/806/806GNFS.8G/2.jpg",
         "/images/new-img/model-1/806/806GNFS.8G/3.jpg",
         "/images/new-img/model-1/806/806GNFS.8G/4.jpg"
-      ]
+      ],
+      "collection": "Quest",
+      "name": "Quest 806GNFS.8G"
     },
     {
       "modelNo": "806RGFS.3G",
@@ -1588,7 +1670,9 @@
         "/images/new-img/model-1/806/806RGFS.3G/2.jpg",
         "/images/new-img/model-1/806/806RGFS.3G/3.jpg",
         "/images/new-img/model-1/806/806RGFS.3G/4.jpg"
-      ]
+      ],
+      "collection": "Quest",
+      "name": "Quest 806RGFS.3G"
     },
     {
       "modelNo": "808GM.8G",
@@ -1627,7 +1711,9 @@
         "/images/new-img/model-1/808/808/808GM.8.G/808GM.8 (2).jpg",
         "/images/new-img/model-1/808/808/808GM.8.G/808GM.8 (3).jpg",
         "/images/new-img/model-1/808/808/808GM.8.G/808GM.8 (4).jpg"
-      ]
+      ],
+      "collection": "Tidemark",
+      "name": "Tidemark 808GM.8G"
     },
     {
       "modelNo": "808GNM.8G",
@@ -1666,7 +1752,9 @@
         "/images/new-img/model-1/808/808/808GNM.8G/808GNM (2).jpg",
         "/images/new-img/model-1/808/808/808GNM.8G/808GNM (3).jpg",
         "/images/new-img/model-1/808/808/808GNM.8G/808GNM (4).jpg"
-      ]
+      ],
+      "collection": "Tidemark",
+      "name": "Tidemark 808GNM.8G"
     },
     {
       "modelNo": "808RGM.16G",
@@ -1705,7 +1793,9 @@
         "/images/new-img/model-1/808/808/808RGM.16.G/808RGM.16 (2).jpg",
         "/images/new-img/model-1/808/808/808RGM.16.G/808RGM.16 (3).jpg",
         "/images/new-img/model-1/808/808/808RGM.16.G/808RGM.16 (4).jpg"
-      ]
+      ],
+      "collection": "Tidemark",
+      "name": "Tidemark 808RGM.16G"
     },
     {
       "modelNo": "808RTM.16G",
@@ -1743,7 +1833,9 @@
         "/images/new-img/model-1/808/808RTM.16.G/808RTM.16 (2).jpg",
         "/images/new-img/model-1/808/808RTM.16.G/808RTM.16 (3).jpg",
         "/images/new-img/model-1/808/808RTM.16.G/808RTM.16 (4).jpg"
-      ]
+      ],
+      "collection": "Tidemark",
+      "name": "Tidemark 808RTM.16G"
     },
     {
       "modelNo": "808RTM.9G",
@@ -1781,7 +1873,9 @@
         "/images/new-img/model-1/808/808RTM.9.G/808TM.9 (2).jpg",
         "/images/new-img/model-1/808/808RTM.9.G/808TM.9 (3).jpg",
         "/images/new-img/model-1/808/808RTM.9.G/808TM.9 (4).jpg"
-      ]
+      ],
+      "collection": "Tidemark",
+      "name": "Tidemark 808RTM.9G"
     },
     {
       "modelNo": "808SM.16G",
@@ -1820,7 +1914,9 @@
         "/images/new-img/model-1/808/808/808SM.16.G/808SM.16 (3).jpg",
         "/images/new-img/model-1/808/808/808SM.16.G/808SM.16 (4).jpg",
         "/images/new-img/model-1/808/PNG/808SM.16.G.jpg"
-      ]
+      ],
+      "collection": "Tidemark",
+      "name": "Tidemark 808SM.16G"
     },
     {
       "modelNo": "808SM.5G",
@@ -1858,7 +1954,9 @@
         "/images/new-img/model-1/808/808SM.5.G/808SM.5 (2).jpg",
         "/images/new-img/model-1/808/808SM.5.G/808SM.5 (3).jpg",
         "/images/new-img/model-1/808/808SM.5.G/808SM.5 (4).jpg"
-      ]
+      ],
+      "collection": "Tidemark",
+      "name": "Tidemark 808SM.5G"
     },
     {
       "modelNo": "809GM.2G",
@@ -1896,7 +1994,9 @@
         "/images/new-img/model-1/809/809.GM.2.G/809.GM.2 (2).jpg",
         "/images/new-img/model-1/809/809.GM.2.G/809.GM.2 (3).jpg",
         "/images/new-img/model-1/809/809.GM.2.G/809.GM.2 (4).jpg"
-      ]
+      ],
+      "collection": "Daymark",
+      "name": "Daymark 809GM.2G"
     },
     {
       "modelNo": "809GM.4G",
@@ -1935,7 +2035,9 @@
         "/images/new-img/model-1/809/809 new colors/809GM.4G/809GM (2).jpg",
         "/images/new-img/model-1/809/809 new colors/809GM.4G/809GM (3).jpg",
         "/images/new-img/model-1/809/809 new colors/809GM.4G/809GM (4).jpg"
-      ]
+      ],
+      "collection": "Daymark",
+      "name": "Daymark 809GM.4G"
     },
     {
       "modelNo": "809GNM.16G",
@@ -1973,7 +2075,9 @@
         "/images/new-img/model-1/809/809.GNM.16.G/809.GNM.16 (2).jpg",
         "/images/new-img/model-1/809/809.GNM.16.G/809.GNM.16 (3).jpg",
         "/images/new-img/model-1/809/809.GNM.16.G/809.GNM.16 (4).jpg"
-      ]
+      ],
+      "collection": "Daymark",
+      "name": "Daymark 809GNM.16G"
     },
     {
       "modelNo": "809GNM.3G",
@@ -2011,7 +2115,9 @@
         "/images/new-img/model-1/809/809.GNM.3.G/809.GNM.3 (2).jpg",
         "/images/new-img/model-1/809/809.GNM.3.G/809.GNM.3 (3).jpg",
         "/images/new-img/model-1/809/809.GNM.3.G/809.GNM.3 (4).jpg"
-      ]
+      ],
+      "collection": "Daymark",
+      "name": "Daymark 809GNM.3G"
     },
     {
       "modelNo": "809RGM.11G",
@@ -2049,7 +2155,9 @@
         "/images/new-img/model-1/809/809.RGM.11.G/809.RGM.11 (2).jpg",
         "/images/new-img/model-1/809/809.RGM.11.G/809.RGM.11 (3).jpg",
         "/images/new-img/model-1/809/809.RGM.11.G/809.RGM.11 (4).jpg"
-      ]
+      ],
+      "collection": "Daymark",
+      "name": "Daymark 809RGM.11G"
     },
     {
       "modelNo": "809RGM.16G",
@@ -2087,7 +2195,9 @@
         "/images/new-img/model-1/809/809.RGM.16.G/809.RGM.16 (2).jpg",
         "/images/new-img/model-1/809/809.RGM.16.G/809.RGM.16 (3).jpg",
         "/images/new-img/model-1/809/809.RGM.16.G/809.RGM.16 (4).jpg"
-      ]
+      ],
+      "collection": "Daymark",
+      "name": "Daymark 809RGM.16G"
     },
     {
       "modelNo": "809RGM.2G",
@@ -2126,7 +2236,9 @@
         "/images/new-img/model-1/809/809 new colors/809RGM.2G/809RGM (2).jpg",
         "/images/new-img/model-1/809/809 new colors/809RGM.2G/809RGM (3).jpg",
         "/images/new-img/model-1/809/809 new colors/809RGM.2G/809RGM (4).jpg"
-      ]
+      ],
+      "collection": "Daymark",
+      "name": "Daymark 809RGM.2G"
     },
     {
       "modelNo": "809RTM.16G",
@@ -2165,7 +2277,9 @@
         "/images/new-img/model-1/809/809 new colors/809RTM.16G/809RTM (2).jpg",
         "/images/new-img/model-1/809/809 new colors/809RTM.16G/809RTM (3).jpg",
         "/images/new-img/model-1/809/809 new colors/809RTM.16G/809RTM (4).jpg"
-      ]
+      ],
+      "collection": "Daymark",
+      "name": "Daymark 809RTM.16G"
     },
     {
       "modelNo": "809RTM.2G",
@@ -2204,7 +2318,9 @@
         "/images/new-img/model-1/809/809 new colors/809RTM.2G/809RTM (2).jpg",
         "/images/new-img/model-1/809/809 new colors/809RTM.2G/809RTM (3).jpg",
         "/images/new-img/model-1/809/809 new colors/809RTM.2G/809RTM (4).jpg"
-      ]
+      ],
+      "collection": "Daymark",
+      "name": "Daymark 809RTM.2G"
     },
     {
       "modelNo": "809TM.2G",
@@ -2243,7 +2359,9 @@
         "/images/new-img/model-1/809/809 new colors/809TM.2G/809TM (2).jpg",
         "/images/new-img/model-1/809/809 new colors/809TM.2G/809TM (3).jpg",
         "/images/new-img/model-1/809/809 new colors/809TM.2G/809TM (4).jpg"
-      ]
+      ],
+      "collection": "Daymark",
+      "name": "Daymark 809TM.2G"
     },
     {
       "modelNo": "809TM.4G",
@@ -2281,7 +2399,9 @@
         "/images/new-img/model-1/809/809.TM.4.G/809.TM.4 (2).jpg",
         "/images/new-img/model-1/809/809.TM.4.G/809.TM.4 (3).jpg",
         "/images/new-img/model-1/809/809.TM.4.G/809.TM.4 (4).jpg"
-      ]
+      ],
+      "collection": "Daymark",
+      "name": "Daymark 809TM.4G"
     },
     {
       "modelNo": "811GM.16G",
@@ -2320,7 +2440,9 @@
         "/images/new-img/model-1/811/811/811GM.16G/811GM (2).jpg",
         "/images/new-img/model-1/811/811/811GM.16G/811GM (3).jpg",
         "/images/new-img/model-1/811/811/811GM.16G/811GM (4).jpg"
-      ]
+      ],
+      "collection": "Pulse",
+      "name": "Pulse 811GM.16G"
     },
     {
       "modelNo": "811GNM.5G",
@@ -2359,7 +2481,9 @@
         "/images/new-img/model-1/811/811/811GNM.5G/811GNM (2).jpg",
         "/images/new-img/model-1/811/811/811GNM.5G/811GNM (3).jpg",
         "/images/new-img/model-1/811/811/811GNM.5G/811GNM (4).jpg"
-      ]
+      ],
+      "collection": "Pulse",
+      "name": "Pulse 811GNM.5G"
     },
     {
       "modelNo": "811RGM.2G",
@@ -2398,7 +2522,9 @@
         "/images/new-img/model-1/811/811/811RGM.2G/811RGM (2).jpg",
         "/images/new-img/model-1/811/811/811RGM.2G/811RGM (3).jpg",
         "/images/new-img/model-1/811/811/811RGM.2G/811RGM (4).jpg"
-      ]
+      ],
+      "collection": "Pulse",
+      "name": "Pulse 811RGM.2G"
     },
     {
       "modelNo": "811RTM.16G",
@@ -2437,7 +2563,9 @@
         "/images/new-img/model-1/811/811/811RTM.16G/811RTM (2).jpg",
         "/images/new-img/model-1/811/811/811RTM.16G/811RTM (3).jpg",
         "/images/new-img/model-1/811/811/811RTM.16G/811RTM (4).jpg"
-      ]
+      ],
+      "collection": "Pulse",
+      "name": "Pulse 811RTM.16G"
     },
     {
       "modelNo": "811RTM.5G",
@@ -2476,7 +2604,9 @@
         "/images/new-img/model-1/811/811/811RTM.5G/811RTM (2).jpg",
         "/images/new-img/model-1/811/811/811RTM.5G/811RTM (3).jpg",
         "/images/new-img/model-1/811/811/811RTM.5G/811RTM (4).jpg"
-      ]
+      ],
+      "collection": "Pulse",
+      "name": "Pulse 811RTM.5G"
     },
     {
       "modelNo": "811SM.5G",
@@ -2516,7 +2646,9 @@
         "/images/new-img/model-1/811/811/811SM.5G/811SM (2).jpg",
         "/images/new-img/model-1/811/811/811SM.5G/811SM (3).jpg",
         "/images/new-img/model-1/811/811/811SM.5G/811SM (4).jpg"
-      ]
+      ],
+      "collection": "Pulse",
+      "name": "Pulse 811SM.5G"
     },
     {
       "modelNo": "811TM.2G",
@@ -2555,7 +2687,9 @@
         "/images/new-img/model-1/811/811/811TM.2G/811TM (2).jpg",
         "/images/new-img/model-1/811/811/811TM.2G/811TM (3).jpg",
         "/images/new-img/model-1/811/811/811TM.2G/811TM (4).jpg"
-      ]
+      ],
+      "collection": "Pulse",
+      "name": "Pulse 811TM.2G"
     },
     {
       "modelNo": "814GM.2G",
@@ -2594,7 +2728,9 @@
         "/images/new-img/model-1/814/814GM.2G/814GM (2).jpg",
         "/images/new-img/model-1/814/814GM.2G/814GM (3).jpg",
         "/images/new-img/model-1/814/814GM.2G/814GM (4).jpg"
-      ]
+      ],
+      "collection": "Axion",
+      "name": "Axion 814GM.2G"
     },
     {
       "modelNo": "814RGM.2G",
@@ -2633,7 +2769,9 @@
         "/images/new-img/model-1/814/814RGM.2G/814RGM (2).jpg",
         "/images/new-img/model-1/814/814RGM.2G/814RGM (3).jpg",
         "/images/new-img/model-1/814/814RGM.2G/814RGM (4).jpg"
-      ]
+      ],
+      "collection": "Axion",
+      "name": "Axion 814RGM.2G"
     },
     {
       "modelNo": "814RTM.2G",
@@ -2672,7 +2810,9 @@
         "/images/new-img/model-1/814/814RTM.2G/814RTM (2).jpg",
         "/images/new-img/model-1/814/814RTM.2G/814RTM (3).jpg",
         "/images/new-img/model-1/814/814RTM.2G/814RTM (4).jpg"
-      ]
+      ],
+      "collection": "Axion",
+      "name": "Axion 814RTM.2G"
     },
     {
       "modelNo": "814SM.2G",
@@ -2711,7 +2851,9 @@
         "/images/new-img/model-1/814/814SM.2.G/814SM.2 (2).jpg",
         "/images/new-img/model-1/814/814SM.2.G/814SM.2 (3).jpg",
         "/images/new-img/model-1/814/814SM.2.G/814SM.2 (4).jpg"
-      ]
+      ],
+      "collection": "Axion",
+      "name": "Axion 814SM.2G"
     },
     {
       "modelNo": "814TM.2G",
@@ -2750,7 +2892,9 @@
         "/images/new-img/model-1/814/814TM.2.G/814TM.2 (2).jpg",
         "/images/new-img/model-1/814/814TM.2.G/814TM.2 (3).jpg",
         "/images/new-img/model-1/814/814TM.2.G/814TM.2 (4).jpg"
-      ]
+      ],
+      "collection": "Axion",
+      "name": "Axion 814TM.2G"
     },
     {
       "modelNo": "820GFS.16G",
@@ -2789,7 +2933,9 @@
         "/images/new-img/model-1/820/820GFS.16G/820GFS (2).jpg",
         "/images/new-img/model-1/820/820GFS.16G/820GFS (3).jpg",
         "/images/new-img/model-1/820/820GFS.16G/820GFS (4).jpg"
-      ]
+      ],
+      "collection": "Bondline",
+      "name": "Bondline 820GFS.16G"
     },
     {
       "modelNo": "820GNFS.16G",
@@ -2834,7 +2980,9 @@
         "/images/new-img/model-1/820/820GNFS.16G/820GNFS.8 (2).jpg",
         "/images/new-img/model-1/820/820GNFS.16G/820GNFS.8 (3).jpg",
         "/images/new-img/model-1/820/820GNFS.16G/820GNFS.8 (4).jpg"
-      ]
+      ],
+      "collection": "Bondline",
+      "name": "Bondline 820GNFS.16G"
     },
     {
       "modelNo": "820GNFS.5G",
@@ -2873,7 +3021,9 @@
         "/images/new-img/model-1/820/820GNFS.5G/820GNFS (2).jpg",
         "/images/new-img/model-1/820/820GNFS.5G/820GNFS (3).jpg",
         "/images/new-img/model-1/820/820GNFS.5G/820GNFS (4).jpg"
-      ]
+      ],
+      "collection": "Bondline",
+      "name": "Bondline 820GNFS.5G"
     },
     {
       "modelNo": "820GNFS.8G",
@@ -2912,7 +3062,9 @@
         "/images/new-img/model-1/820/820GNFS.8.G/820GNFS.8 (2).jpg",
         "/images/new-img/model-1/820/820GNFS.8.G/820GNFS.8 (3).jpg",
         "/images/new-img/model-1/820/820GNFS.8.G/820GNFS.8 (4).jpg"
-      ]
+      ],
+      "collection": "Bondline",
+      "name": "Bondline 820GNFS.8G"
     },
     {
       "modelNo": "820RGFS.2G",
@@ -2950,7 +3102,9 @@
         "/images/new-img/model-1/820/820RGFS.2G/820RGFS (2).jpg",
         "/images/new-img/model-1/820/820RGFS.2G/820RGFS (3).jpg",
         "/images/new-img/model-1/820/820RGFS.2G/820RGFS (4).jpg"
-      ]
+      ],
+      "collection": "Bondline",
+      "name": "Bondline 820RGFS.2G"
     },
     {
       "modelNo": "823BLL.5G",
@@ -2988,7 +3142,9 @@
         "/images/new-img/model-1/823/823 STRAP ALL ANGLE/823BLL.5G/823BLL.5G_2.jpg",
         "/images/new-img/model-1/823/823 STRAP ALL ANGLE/823BLL.5G/823BLL.5G_3.jpg",
         "/images/new-img/model-1/823/823 STRAP ALL ANGLE/823BLL.5G/823BLL.5G_4.jpg"
-      ]
+      ],
+      "collection": "Pulse",
+      "name": "Pulse 823BLL.5G"
     },
     {
       "modelNo": "823BM.4G",
@@ -3026,7 +3182,9 @@
         "/images/new-img/model-1/823/823BM.4G/823BM (2).jpg",
         "/images/new-img/model-1/823/823BM.4G/823BM (3).jpg",
         "/images/new-img/model-1/823/823BM.4G/823BM (4).jpg"
-      ]
+      ],
+      "collection": "Pulse",
+      "name": "Pulse 823BM.4G"
     },
     {
       "modelNo": "823BRNL.9G",
@@ -3064,7 +3222,9 @@
         "/images/new-img/model-1/823/823 STRAP ALL ANGLE/823BRNL.9G/823BRNL.9G_2.jpg",
         "/images/new-img/model-1/823/823 STRAP ALL ANGLE/823BRNL.9G/823BRNL.9G_3.jpg",
         "/images/new-img/model-1/823/823 STRAP ALL ANGLE/823BRNL.9G/823BRNL.9G_4.jpg"
-      ]
+      ],
+      "collection": "Pulse",
+      "name": "Pulse 823BRNL.9G"
     },
     {
       "modelNo": "824GFS.16G",
@@ -3102,7 +3262,9 @@
         "/images/new-img/model-1/824/824/824 GFS.16.G/824 RGFS.16 (2).jpg",
         "/images/new-img/model-1/824/824/824 GFS.16.G/824 RGFS.16 (3).jpg",
         "/images/new-img/model-1/824/824/824 GFS.16.G/824 RGFS.16 (4).jpg"
-      ]
+      ],
+      "collection": "Grandeur",
+      "name": "Grandeur 824GFS.16G"
     },
     {
       "modelNo": "824GFS.3G",
@@ -3140,7 +3302,9 @@
         "/images/new-img/model-1/824/824/824 GFS.3.G/824 RGFS.3 (2).jpg",
         "/images/new-img/model-1/824/824/824 GFS.3.G/824 RGFS.3 (3).jpg",
         "/images/new-img/model-1/824/824/824 GFS.3.G/824 RGFS.3 (4).jpg"
-      ]
+      ],
+      "collection": "Grandeur",
+      "name": "Grandeur 824GFS.3G"
     },
     {
       "modelNo": "824GFS.5G",
@@ -3178,7 +3342,9 @@
         "/images/new-img/model-1/824/824/824 GFS.5.G/824 RGFS.5 (2).jpg",
         "/images/new-img/model-1/824/824/824 GFS.5.G/824 RGFS.5 (3).jpg",
         "/images/new-img/model-1/824/824/824 GFS.5.G/824 RGFS.5 (4).jpg"
-      ]
+      ],
+      "collection": "Grandeur",
+      "name": "Grandeur 824GFS.5G"
     },
     {
       "modelNo": "824GNFS.16G",
@@ -3216,7 +3382,9 @@
         "/images/new-img/model-1/824/824/824 GNFS.16.G/824 GNFS.16 (2).jpg",
         "/images/new-img/model-1/824/824/824 GNFS.16.G/824 GNFS.16 (3).jpg",
         "/images/new-img/model-1/824/824/824 GNFS.16.G/824 GNFS.16 (4).jpg"
-      ]
+      ],
+      "collection": "Grandeur",
+      "name": "Grandeur 824GNFS.16G"
     },
     {
       "modelNo": "824GNFS.8G",
@@ -3255,7 +3423,9 @@
         "/images/new-img/model-1/824/824.GNFS.8.G/824.GNFS.8 (2).jpg",
         "/images/new-img/model-1/824/824.GNFS.8.G/824.GNFS.8 (3).jpg",
         "/images/new-img/model-1/824/824.GNFS.8.G/824.GNFS.8 (4).jpg"
-      ]
+      ],
+      "collection": "Grandeur",
+      "name": "Grandeur 824GNFS.8G"
     },
     {
       "modelNo": "824RGFS.16G",
@@ -3293,7 +3463,9 @@
         "/images/new-img/model-1/824/30-12-2024/824 RGFS.16.G/824 RGFS.16 (2).jpg",
         "/images/new-img/model-1/824/30-12-2024/824 RGFS.16.G/824 RGFS.16 (3).jpg",
         "/images/new-img/model-1/824/30-12-2024/824 RGFS.16.G/824 RGFS.16 (4).jpg"
-      ]
+      ],
+      "collection": "Grandeur",
+      "name": "Grandeur 824RGFS.16G"
     },
     {
       "modelNo": "824RGFS.3G",
@@ -3331,7 +3503,9 @@
         "/images/new-img/model-1/824/30-12-2024/824 RGFS.3.G/824 RGFS.3 (2).jpg",
         "/images/new-img/model-1/824/30-12-2024/824 RGFS.3.G/824 RGFS.3 (3).jpg",
         "/images/new-img/model-1/824/30-12-2024/824 RGFS.3.G/824 RGFS.3 (4).jpg"
-      ]
+      ],
+      "collection": "Grandeur",
+      "name": "Grandeur 824RGFS.3G"
     },
     {
       "modelNo": "824RGFS.5G",
@@ -3369,7 +3543,9 @@
         "/images/new-img/model-1/824/30-12-2024/824 RGFS.5.G/824 RGFS.5 (2).jpg",
         "/images/new-img/model-1/824/30-12-2024/824 RGFS.5.G/824 RGFS.5 (3).jpg",
         "/images/new-img/model-1/824/30-12-2024/824 RGFS.5.G/824 RGFS.5 (4).jpg"
-      ]
+      ],
+      "collection": "Grandeur",
+      "name": "Grandeur 824RGFS.5G"
     },
     {
       "modelNo": "826BM.3G",
@@ -3408,7 +3584,9 @@
         "/images/new-img/model-1/826/826.BM.3.G/826.BM.3 (2).jpg",
         "/images/new-img/model-1/826/826.BM.3.G/826.BM.3 (3).jpg",
         "/images/new-img/model-1/826/826.BM.3.G/826.BM.3 (4).jpg"
-      ]
+      ],
+      "collection": "Daymark",
+      "name": "Daymark 826BM.3G"
     },
     {
       "modelNo": "826BRNM.9G",
@@ -3447,7 +3625,9 @@
         "/images/new-img/model-1/826/826/826BRNM.9G/826BRNM (2).jpg",
         "/images/new-img/model-1/826/826/826BRNM.9G/826BRNM (3).jpg",
         "/images/new-img/model-1/826/826/826BRNM.9G/826BRNM (4).jpg"
-      ]
+      ],
+      "collection": "Daymark",
+      "name": "Daymark 826BRNM.9G"
     },
     {
       "modelNo": "826GM.2G",
@@ -3486,7 +3666,9 @@
         "/images/new-img/model-1/826/826.GM.2.G/826.GM.2 (2).jpg",
         "/images/new-img/model-1/826/826.GM.2.G/826.GM.2 (3).jpg",
         "/images/new-img/model-1/826/826.GM.2.G/826.GM.2 (4).jpg"
-      ]
+      ],
+      "collection": "Daymark",
+      "name": "Daymark 826GM.2G"
     },
     {
       "modelNo": "826RGBLM.5G",
@@ -3525,7 +3707,9 @@
         "/images/new-img/model-1/826/826.RGBLM.5.G/826.RGBLM.5 (2).jpg",
         "/images/new-img/model-1/826/826.RGBLM.5.G/826.RGBLM.5 (3).jpg",
         "/images/new-img/model-1/826/826.RGBLM.5.G/826.RGBLM.5 (4).jpg"
-      ]
+      ],
+      "collection": "Daymark",
+      "name": "Daymark 826RGBLM.5G"
     },
     {
       "modelNo": "826RGM.16G",
@@ -3564,7 +3748,9 @@
         "/images/new-img/model-1/826/826.RGM.16.G/826.RGM.16 (2).jpg",
         "/images/new-img/model-1/826/826.RGM.16.G/826.RGM.16 (3).jpg",
         "/images/new-img/model-1/826/826.RGM.16.G/826.RGM.16 (4).jpg"
-      ]
+      ],
+      "collection": "Daymark",
+      "name": "Daymark 826RGM.16G"
     },
     {
       "modelNo": "826RTM.16G",
@@ -3603,7 +3789,9 @@
         "/images/new-img/model-1/826/826/826RTM.16G/826RTM (2).jpg",
         "/images/new-img/model-1/826/826/826RTM.16G/826RTM (3).jpg",
         "/images/new-img/model-1/826/826/826RTM.16G/826RTM (4).jpg"
-      ]
+      ],
+      "collection": "Daymark",
+      "name": "Daymark 826RTM.16G"
     },
     {
       "modelNo": "826RTM.2G",
@@ -3642,7 +3830,9 @@
         "/images/new-img/model-1/826/826.RTM.2.G/826.RTM.2 (2).jpg",
         "/images/new-img/model-1/826/826.RTM.2.G/826.RTM.2 (3).jpg",
         "/images/new-img/model-1/826/826.RTM.2.G/826.RTM.2 (4).jpg"
-      ]
+      ],
+      "collection": "Daymark",
+      "name": "Daymark 826RTM.2G"
     },
     {
       "modelNo": "827BM.3G",
@@ -3681,7 +3871,9 @@
         "/images/new-img/model-1/827/827.BM.3.G/827.BM.3 (2).jpg",
         "/images/new-img/model-1/827/827.BM.3.G/827.BM.3 (3).jpg",
         "/images/new-img/model-1/827/827.BM.3.G/827.BM.3 (4).jpg"
-      ]
+      ],
+      "collection": "Quest",
+      "name": "Quest 827BM.3G"
     },
     {
       "modelNo": "827GM.16G",
@@ -3720,7 +3912,9 @@
         "/images/new-img/model-1/827/827.GM.16.G/827.GM.16 (2).jpg",
         "/images/new-img/model-1/827/827.GM.16.G/827.GM.16 (3).jpg",
         "/images/new-img/model-1/827/827.GM.16.G/827.GM.16 (4).jpg"
-      ]
+      ],
+      "collection": "Quest",
+      "name": "Quest 827GM.16G"
     },
     {
       "modelNo": "827RGBLM.5G",
@@ -3759,7 +3953,9 @@
         "/images/new-img/model-1/827/827.RGBLM.5.G/827.RGBLM.5 (2).jpg",
         "/images/new-img/model-1/827/827.RGBLM.5.G/827.RGBLM.5 (3).jpg",
         "/images/new-img/model-1/827/827.RGBLM.5.G/827.RGBLM.5 (4).jpg"
-      ]
+      ],
+      "collection": "Quest",
+      "name": "Quest 827RGBLM.5G"
     },
     {
       "modelNo": "827RGBTM.3G",
@@ -3798,7 +3994,9 @@
         "/images/new-img/model-1/827/827.RGBTM.3.G/827.RGBTM.3 (2).jpg",
         "/images/new-img/model-1/827/827.RGBTM.3.G/827.RGBTM.3 (3).jpg",
         "/images/new-img/model-1/827/827.RGBTM.3.G/827.RGBTM.3 (4).jpg"
-      ]
+      ],
+      "collection": "Quest",
+      "name": "Quest 827RGBTM.3G"
     },
     {
       "modelNo": "827RTM.2G",
@@ -3837,7 +4035,9 @@
         "/images/new-img/model-1/827/827.RTM.2.G/827.RTM.2 (2).jpg",
         "/images/new-img/model-1/827/827.RTM.2.G/827.RTM.2 (3).jpg",
         "/images/new-img/model-1/827/827.RTM.2.G/827.RTM.2 (4).jpg"
-      ]
+      ],
+      "collection": "Quest",
+      "name": "Quest 827RTM.2G"
     },
     {
       "modelNo": "829RGM.9G",
@@ -3875,7 +4075,9 @@
         "/images/new-img/model-1/829/829RGM.9G/829RGM (2).jpg",
         "/images/new-img/model-1/829/829RGM.9G/829RGM (3).jpg",
         "/images/new-img/model-1/829/829RGM.9G/829RGM (4).jpg"
-      ]
+      ],
+      "collection": "Daymark",
+      "name": "Daymark 829RGM.9G"
     },
     {
       "modelNo": "830GNFS.8G",
@@ -3916,7 +4118,9 @@
         "/images/new-img/model-2/830/830GNFS.8G/830GNFS (4).jpg",
         "/images/new-img/model-2/830/830GNFS.8G/830GNFS (5).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Grandeur",
+      "name": "Grandeur 830GNFS.8G"
     },
     {
       "modelNo": "830RBGFS.16G",
@@ -3957,7 +4161,9 @@
         "/images/new-img/model-2/830/830RBGFS.16G/830RBGFS (4).jpg",
         "/images/new-img/model-2/830/830RBGFS.16G/830RBGFS (5).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Grandeur",
+      "name": "Grandeur 830RBGFS.16G"
     },
     {
       "modelNo": "830RBGFS.5G",
@@ -3998,7 +4204,9 @@
         "/images/new-img/model-2/830/830RBGFS.5G/830RBGFS (4).jpg",
         "/images/new-img/model-2/830/830RBGFS.5G/830RBGFS (5).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Grandeur",
+      "name": "Grandeur 830RBGFS.5G"
     },
     {
       "modelNo": "836BM.9G",
@@ -4038,7 +4246,9 @@
         "/images/new-img/model-2/836/836BM.9.G/836BM.9 (3).jpg",
         "/images/new-img/model-2/836/836BM.9.G/836BM.9 (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Quest",
+      "name": "Quest 836BM.9G"
     },
     {
       "modelNo": "836GM.4G",
@@ -4078,7 +4288,9 @@
         "/images/new-img/model-2/836/836GM.4.G/836GM.4 (3).jpg",
         "/images/new-img/model-2/836/836GM.4.G/836GM.4 (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Quest",
+      "name": "Quest 836GM.4G"
     },
     {
       "modelNo": "836GNM.16G",
@@ -4118,7 +4330,9 @@
         "/images/new-img/model-2/836/836GNM.16.G/836GNM.16 (3).jpg",
         "/images/new-img/model-2/836/836GNM.16.G/836GNM.16 (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Quest",
+      "name": "Quest 836GNM.16G"
     },
     {
       "modelNo": "836RGM.11G",
@@ -4158,7 +4372,9 @@
         "/images/new-img/model-2/836/836RGM.11.G/836RGM.11 (3).jpg",
         "/images/new-img/model-2/836/836RGM.11.G/836RGM.11 (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Quest",
+      "name": "Quest 836RGM.11G"
     },
     {
       "modelNo": "836SM.2G",
@@ -4198,7 +4414,9 @@
         "/images/new-img/model-2/836/836SM.2.G/836SM.2 (3).jpg",
         "/images/new-img/model-2/836/836SM.2.G/836SM.2 (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Quest",
+      "name": "Quest 836SM.2G"
     },
     {
       "modelNo": "836SM.5G",
@@ -4238,7 +4456,9 @@
         "/images/new-img/model-2/836/836SM.5.G/836SM.5 (3).jpg",
         "/images/new-img/model-2/836/836SM.5.G/836SM.5 (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Quest",
+      "name": "Quest 836SM.5G"
     },
     {
       "modelNo": "837BM.3G",
@@ -4278,7 +4498,9 @@
         "/images/new-img/model-2/837/837.BM.3.G/837.BM.3 (4).jpg",
         "/images/new-img/model-2/837/837BM.3.G.jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Vortex",
+      "name": "Vortex 837BM.3G"
     },
     {
       "modelNo": "837BRNM.9G",
@@ -4317,7 +4539,9 @@
         "/images/new-img/model-2/837/837.BRNM.9.G/837.BRNM.9 (3).jpg",
         "/images/new-img/model-2/837/837.BRNM.9.G/837.BRNM.9 (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Vortex",
+      "name": "Vortex 837BRNM.9G"
     },
     {
       "modelNo": "837GM.16G",
@@ -4356,7 +4580,9 @@
         "/images/new-img/model-2/837/837.GM.16.G/837.GM.16 (3).jpg",
         "/images/new-img/model-2/837/837.GM.16.G/837.GM.16 (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Vortex",
+      "name": "Vortex 837GM.16G"
     },
     {
       "modelNo": "837GM.2G",
@@ -4395,7 +4621,9 @@
         "/images/new-img/model-2/837/837.GM.2.G/837.GM.2 (3).jpg",
         "/images/new-img/model-2/837/837.GM.2.G/837.GM.2 (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Vortex",
+      "name": "Vortex 837GM.2G"
     },
     {
       "modelNo": "837GNM.2G",
@@ -4434,7 +4662,9 @@
         "/images/new-img/model-2/837/837.GNM.2.G/837.GNM.2 (3).jpg",
         "/images/new-img/model-2/837/837.GNM.2.G/837.GNM.2 (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Vortex",
+      "name": "Vortex 837GNM.2G"
     },
     {
       "modelNo": "837GNM.8G",
@@ -4470,7 +4700,9 @@
       "gallery": [
         "/images/new-img/model-2/837/837GNM.8.G (2).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Vortex",
+      "name": "Vortex 837GNM.8G"
     },
     {
       "modelNo": "837RGM.16G",
@@ -4510,7 +4742,9 @@
         "/images/new-img/model-2/837/837.RGM.16.G/837.RGM.16 (4).jpg",
         "/images/new-img/model-2/837/837RGM.16.G.jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Vortex",
+      "name": "Vortex 837RGM.16G"
     },
     {
       "modelNo": "837RGM.2G",
@@ -4546,7 +4780,9 @@
       "gallery": [
         "/images/new-img/model-2/837/837RGM.2.G.jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Vortex",
+      "name": "Vortex 837RGM.2G"
     },
     {
       "modelNo": "837RTM.2G",
@@ -4585,7 +4821,9 @@
         "/images/new-img/model-2/837/837RTM.2.G/837RTM.2 (3).jpg",
         "/images/new-img/model-2/837/837RTM.2.G/837RTM.2 (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Vortex",
+      "name": "Vortex 837RTM.2G"
     },
     {
       "modelNo": "837RTM.5G",
@@ -4630,7 +4868,9 @@
         "/images/new-img/model-2/837/837RTM.5G/837RTM (3).jpg",
         "/images/new-img/model-2/837/837RTM.5G/837RTM (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Vortex",
+      "name": "Vortex 837RTM.5G"
     },
     {
       "modelNo": "837RTM.8G",
@@ -4675,7 +4915,9 @@
         "/images/new-img/model-2/837/837RTM.8G/837RTM (3).jpg",
         "/images/new-img/model-2/837/837RTM.8G/837RTM (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Vortex",
+      "name": "Vortex 837RTM.8G"
     },
     {
       "modelNo": "837RTM.9G",
@@ -4714,7 +4956,9 @@
         "/images/new-img/model-2/837/837RTM.9.G/837RTM.9 (3).jpg",
         "/images/new-img/model-2/837/837RTM.9.G/837RTM.9 (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Vortex",
+      "name": "Vortex 837RTM.9G"
     },
     {
       "modelNo": "837SM.2G",
@@ -4753,7 +4997,9 @@
         "/images/new-img/model-2/837/837SM.2G/837SM.2G_3.jpg",
         "/images/new-img/model-2/837/837SM.2G/837SM.2G_4.jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Vortex",
+      "name": "Vortex 837SM.2G"
     },
     {
       "modelNo": "837SM.4G",
@@ -4792,7 +5038,9 @@
         "/images/new-img/model-2/837/837.SM.4.G/837.SM.4 (3).jpg",
         "/images/new-img/model-2/837/837.SM.4.G/837.SM.4 (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Vortex",
+      "name": "Vortex 837SM.4G"
     },
     {
       "modelNo": "837SM.5G",
@@ -4831,7 +5079,9 @@
         "/images/new-img/model-2/837/837SM.5G/837SM.5G_3.jpg",
         "/images/new-img/model-2/837/837SM.5G/837SM.5G_4.jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Vortex",
+      "name": "Vortex 837SM.5G"
     },
     {
       "modelNo": "837SM.8G",
@@ -4870,7 +5120,9 @@
         "/images/new-img/model-2/837/837.SM.8.G/837.SM.8 (3).jpg",
         "/images/new-img/model-2/837/837.SM.8.G/837.SM.8 (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Vortex",
+      "name": "Vortex 837SM.8G"
     },
     {
       "modelNo": "837TM.16G",
@@ -4909,7 +5161,9 @@
         "/images/new-img/model-2/837/837.TM.16.G/837.TM.16 (3).jpg",
         "/images/new-img/model-2/837/837.TM.16.G/837.TM.16 (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Vortex",
+      "name": "Vortex 837TM.16G"
     },
     {
       "modelNo": "837TM.2G",
@@ -4948,7 +5202,9 @@
         "/images/new-img/model-2/837/837.TM.2.G/837.TM.2 (3).jpg",
         "/images/new-img/model-2/837/837.TM.2.G/837.TM.2 (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Vortex",
+      "name": "Vortex 837TM.2G"
     },
     {
       "modelNo": "840BFS.3G",
@@ -4990,7 +5246,9 @@
         "/images/new-img/model-2/840/840BFS.3G/840BFS (4).jpg",
         "/images/new-img/model-2/840/840BFS.3G/840BFS (9).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Grandeur",
+      "name": "Grandeur 840BFS.3G"
     },
     {
       "modelNo": "840RGFS.5G",
@@ -5030,7 +5288,9 @@
         "/images/new-img/model-2/840/840/840RGFS.5G/840RGFS (3).jpg",
         "/images/new-img/model-2/840/840/840RGFS.5G/840RGFS (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Grandeur",
+      "name": "Grandeur 840RGFS.5G"
     },
     {
       "modelNo": "840RGNFS.16G",
@@ -5079,7 +5339,9 @@
         "/images/new-img/model-2/840/840RGNFS.16G/840RGNFS (4).jpg",
         "/images/new-img/model-2/840/840RGNFS.16G/840RGNFS (9).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Grandeur",
+      "name": "Grandeur 840RGNFS.16G"
     },
     {
       "modelNo": "841GM.2G",
@@ -5118,7 +5380,9 @@
         "/images/new-img/model-2/841/841/841GM.2.G/841GM.2 (3).jpg",
         "/images/new-img/model-2/841/841/841GM.2.G/841GM.2 (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Ignite",
+      "name": "Ignite 841GM.2G"
     },
     {
       "modelNo": "841GNM.11G",
@@ -5157,7 +5421,9 @@
         "/images/new-img/model-2/841/841/841GNM.11.G/841GNM.11 (3).jpg",
         "/images/new-img/model-2/841/841/841GNM.11.G/841GNM.11 (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Ignite",
+      "name": "Ignite 841GNM.11G"
     },
     {
       "modelNo": "841GNM.16G",
@@ -5196,7 +5462,9 @@
         "/images/new-img/model-2/841/841/841GNM.16.G/841GNM.16 (3).jpg",
         "/images/new-img/model-2/841/841/841GNM.16.G/841GNM.16 (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Ignite",
+      "name": "Ignite 841GNM.16G"
     },
     {
       "modelNo": "841GNM.3G",
@@ -5235,7 +5503,9 @@
         "/images/new-img/model-2/841/841/841GNM.3.G/841GNM.3 (3).jpg",
         "/images/new-img/model-2/841/841/841GNM.3.G/841GNM.3 (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Ignite",
+      "name": "Ignite 841GNM.3G"
     },
     {
       "modelNo": "841RGM.11G",
@@ -5274,7 +5544,9 @@
         "/images/new-img/model-2/841/841/841RGM.11.G/841RGM.11 (3).jpg",
         "/images/new-img/model-2/841/841/841RGM.11.G/841RGM.11 (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Ignite",
+      "name": "Ignite 841RGM.11G"
     },
     {
       "modelNo": "841RGM.16G",
@@ -5313,7 +5585,9 @@
         "/images/new-img/model-2/841/841/841RGM.16.G/841RGM.16 (3).jpg",
         "/images/new-img/model-2/841/841/841RGM.16.G/841RGM.16 (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Ignite",
+      "name": "Ignite 841RGM.16G"
     },
     {
       "modelNo": "841RGM.2G",
@@ -5352,7 +5626,9 @@
         "/images/new-img/model-2/841/841/841RGM.2.G/841RGM.2 (3).jpg",
         "/images/new-img/model-2/841/841/841RGM.2.G/841RGM.2 (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Ignite",
+      "name": "Ignite 841RGM.2G"
     },
     {
       "modelNo": "841RTM.11G",
@@ -5391,7 +5667,9 @@
         "/images/new-img/model-2/841/841/841RTM.11.G/841RTM.11 (3).jpg",
         "/images/new-img/model-2/841/841/841RTM.11.G/841RTM.11 (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Ignite",
+      "name": "Ignite 841RTM.11G"
     },
     {
       "modelNo": "841RTM.16G",
@@ -5430,7 +5708,9 @@
         "/images/new-img/model-2/841/841/841RTM.16.G/841RTM.16 (3).jpg",
         "/images/new-img/model-2/841/841/841RTM.16.G/841RTM.16 (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Ignite",
+      "name": "Ignite 841RTM.16G"
     },
     {
       "modelNo": "841RTM.2G",
@@ -5469,7 +5749,9 @@
         "/images/new-img/model-2/841/841/841RTM.2.G/841RTM.2 (3).jpg",
         "/images/new-img/model-2/841/841/841RTM.2.G/841RTM.2 (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Ignite",
+      "name": "Ignite 841RTM.2G"
     },
     {
       "modelNo": "841RTM.3G",
@@ -5508,7 +5790,9 @@
         "/images/new-img/model-2/841/841/841RTM.3.G/841RTM.3 (3).jpg",
         "/images/new-img/model-2/841/841/841RTM.3.G/841RTM.3 (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Ignite",
+      "name": "Ignite 841RTM.3G"
     },
     {
       "modelNo": "841SM.11G",
@@ -5547,7 +5831,9 @@
         "/images/new-img/model-2/841/841/841SM.11.G/841SM.11 (3).jpg",
         "/images/new-img/model-2/841/841/841SM.11.G/841SM.11 (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Ignite",
+      "name": "Ignite 841SM.11G"
     },
     {
       "modelNo": "841SM.16G",
@@ -5586,7 +5872,9 @@
         "/images/new-img/model-2/841/841/841SM.16.G/841SM.16 (3).jpg",
         "/images/new-img/model-2/841/841/841SM.16.G/841SM.16 (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Ignite",
+      "name": "Ignite 841SM.16G"
     },
     {
       "modelNo": "841SM.2G",
@@ -5625,7 +5913,9 @@
         "/images/new-img/model-2/841/841/841SM.2.G/841SM.2 (3).jpg",
         "/images/new-img/model-2/841/841/841SM.2.G/841SM.2 (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Ignite",
+      "name": "Ignite 841SM.2G"
     },
     {
       "modelNo": "841SM.3G",
@@ -5664,7 +5954,9 @@
         "/images/new-img/model-2/841/841/841SM.3.G/841SM.3 (3).jpg",
         "/images/new-img/model-2/841/841/841SM.3.G/841SM.3 (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Ignite",
+      "name": "Ignite 841SM.3G"
     },
     {
       "modelNo": "841TM.16G",
@@ -5703,7 +5995,9 @@
         "/images/new-img/model-2/841/841/841/841TM.16.G/841TM.16 (2).jpg",
         "/images/new-img/model-2/841/841/841/841TM.16.G/841TM.16 (3).jpg",
         "/images/new-img/model-2/841/841/841/841TM.16.G/841TM.16 (4).jpg"
-      ]
+      ],
+      "collection": "Ignite",
+      "name": "Ignite 841TM.16G"
     },
     {
       "modelNo": "841TM.2G",
@@ -5742,7 +6036,9 @@
         "/images/new-img/model-2/841/841/841/841TM.2.G/841TM.2 (2).jpg",
         "/images/new-img/model-2/841/841/841/841TM.2.G/841TM.2 (3).jpg",
         "/images/new-img/model-2/841/841/841/841TM.2.G/841TM.2 (4).jpg"
-      ]
+      ],
+      "collection": "Ignite",
+      "name": "Ignite 841TM.2G"
     },
     {
       "modelNo": "845RGFS.16G",
@@ -5782,7 +6078,9 @@
         "/images/new-img/model-2/845/845RGFS.16.G/845RGFS.16 (3).jpg",
         "/images/new-img/model-2/845/845RGFS.16.G/845RGFS.16 (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Vortex",
+      "name": "Vortex 845RGFS.16G"
     },
     {
       "modelNo": "845RGFS.3G",
@@ -5822,7 +6120,9 @@
         "/images/new-img/model-2/845/845RGFS.3.G/845RGFS.3 (3).jpg",
         "/images/new-img/model-2/845/845RGFS.3.G/845RGFS.3 (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Vortex",
+      "name": "Vortex 845RGFS.3G"
     },
     {
       "modelNo": "851GNM.3G",
@@ -5861,7 +6161,9 @@
         "/images/new-img/model-2/851/851GNM.3G/851GNM (3).jpg",
         "/images/new-img/model-2/851/851GNM.3G/851GNM (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Vortex",
+      "name": "Vortex 851GNM.3G"
     },
     {
       "modelNo": "851RGM.16G",
@@ -5900,7 +6202,9 @@
         "/images/new-img/model-2/851/851RGM.16G/851RGM (3).jpg",
         "/images/new-img/model-2/851/851RGM.16G/851RGM (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Vortex",
+      "name": "Vortex 851RGM.16G"
     },
     {
       "modelNo": "851RGM.2G",
@@ -5939,7 +6243,9 @@
         "/images/new-img/model-2/851/851RGM.2G/851RGM (3).jpg",
         "/images/new-img/model-2/851/851RGM.2G/851RGM (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Vortex",
+      "name": "Vortex 851RGM.2G"
     },
     {
       "modelNo": "851SM.5G",
@@ -5978,7 +6284,9 @@
         "/images/new-img/model-2/851/851SM.5G/851SM (3).jpg",
         "/images/new-img/model-2/851/851SM.5G/851SM (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Vortex",
+      "name": "Vortex 851SM.5G"
     },
     {
       "modelNo": "854BM.3G",
@@ -6017,7 +6325,9 @@
         "/images/new-img/model-2/854/854BM.3.G/854BM.3 (3).jpg",
         "/images/new-img/model-2/854/854BM.3.G/854BM.3 (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Ignite",
+      "name": "Ignite 854BM.3G"
     },
     {
       "modelNo": "854GL.16G",
@@ -6054,7 +6364,9 @@
         "/images/new-img/model-2/854/854 leather/PNG/854/854GL.16G.png",
         "/images/new-img/model-2/854/854 leather/854GL.16G.jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Ignite",
+      "name": "Ignite 854GL.16G"
     },
     {
       "modelNo": "854GNM.16G",
@@ -6093,7 +6405,9 @@
         "/images/new-img/model-2/854/854GNM.16.G/854GNM.16 (3).jpg",
         "/images/new-img/model-2/854/854GNM.16.G/854GNM.16 (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Ignite",
+      "name": "Ignite 854GNM.16G"
     },
     {
       "modelNo": "854GNM.5G",
@@ -6132,7 +6446,9 @@
         "/images/new-img/model-2/854/854GNM.5.G/854GNM.5 (3).jpg",
         "/images/new-img/model-2/854/854GNM.5.G/854GNM.5 (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Ignite",
+      "name": "Ignite 854GNM.5G"
     },
     {
       "modelNo": "854GNM.9G",
@@ -6171,7 +6487,9 @@
         "/images/new-img/model-2/854/854GNM.9.G/854GNM.9 (3).jpg",
         "/images/new-img/model-2/854/854GNM.9.G/854GNM.9 (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Ignite",
+      "name": "Ignite 854GNM.9G"
     },
     {
       "modelNo": "854RGL.2G",
@@ -6208,7 +6526,9 @@
         "/images/new-img/model-2/854/854 leather/PNG/854/854RGL.2G.png",
         "/images/new-img/model-2/854/854 leather/854RGL.2G.jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Ignite",
+      "name": "Ignite 854RGL.2G"
     },
     {
       "modelNo": "854SL.2G",
@@ -6245,7 +6565,9 @@
         "/images/new-img/model-2/854/854 leather/PNG/854/854SL.2G.png",
         "/images/new-img/model-2/854/854 leather/854SL.2G.jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Ignite",
+      "name": "Ignite 854SL.2G"
     },
     {
       "modelNo": "856BM.3G",
@@ -6289,7 +6611,9 @@
         "/images/new-img/model-2/856/856BM.3G and 856BM.2L/856BM.3G and 856BM (7).jpg",
         "/images/new-img/model-2/856/856BM.3G and 856BM.2L/856BM.3G and 856BM (8).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Duetto",
+      "name": "Duetto 856BM.3G"
     },
     {
       "modelNo": "856RGBLM.5G",
@@ -6333,7 +6657,9 @@
         "/images/new-img/model-2/856/856RGBLM.5G and 856RGBLM.5L/856RGBLM.5G and 856RGBLM (7).jpg",
         "/images/new-img/model-2/856/856RGBLM.5G and 856RGBLM.5L/856RGBLM.5G and 856RGBLM (8).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Duetto",
+      "name": "Duetto 856RGBLM.5G"
     },
     {
       "modelNo": "856RGBTM.3G",
@@ -6377,7 +6703,9 @@
         "/images/new-img/model-2/856/856RGBTM.3G and 856RGBTM.2L/856RGBTM.3G and 856RGBTM (7).jpg",
         "/images/new-img/model-2/856/856RGBTM.3G and 856RGBTM.2L/856RGBTM.3G and 856RGBTM (8).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Duetto",
+      "name": "Duetto 856RGBTM.3G"
     },
     {
       "modelNo": "856RGM.11G",
@@ -6421,7 +6749,9 @@
         "/images/new-img/model-2/856/856RGM.11G and 856RGM.11L/856RGM.11G and 856RGM (7).jpg",
         "/images/new-img/model-2/856/856RGM.11G and 856RGM.11L/856RGM.11G and 856RGM (8).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Duetto",
+      "name": "Duetto 856RGM.11G"
     },
     {
       "modelNo": "856RGM.2G",
@@ -6465,7 +6795,9 @@
         "/images/new-img/model-2/856/856RGM.2G and 856RGM.2L/856RGM.2G and 856RGM (7).jpg",
         "/images/new-img/model-2/856/856RGM.2G and 856RGM.2L/856RGM.2G and 856RGM (8).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Duetto",
+      "name": "Duetto 856RGM.2G"
     },
     {
       "modelNo": "856SM.5G",
@@ -6509,7 +6841,9 @@
         "/images/new-img/model-2/856/856SM.5G and 856SM.5L/856SM.5G and 856SM (7).jpg",
         "/images/new-img/model-2/856/856SM.5G and 856SM.5L/856SM.5G and 856SM (8).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Duetto",
+      "name": "Duetto 856SM.5G"
     },
     {
       "modelNo": "867GM.16G",
@@ -6548,7 +6882,9 @@
         "/images/new-img/model-2/867/867GM.16.G/867GM.16 (3).jpg",
         "/images/new-img/model-2/867/867GM.16.G/867GM.16 (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Daymark",
+      "name": "Daymark 867GM.16G"
     },
     {
       "modelNo": "867GM.2G",
@@ -6587,7 +6923,9 @@
         "/images/new-img/model-2/867/867GM.2.G/867GM.2 (3).jpg",
         "/images/new-img/model-2/867/867GM.2.G/867GM.2 (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Daymark",
+      "name": "Daymark 867GM.2G"
     },
     {
       "modelNo": "867GM.5G",
@@ -6626,7 +6964,9 @@
         "/images/new-img/model-2/867/867GM.5.G/867GM.5 (3).jpg",
         "/images/new-img/model-2/867/867GM.5.G/867GM.5 (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Daymark",
+      "name": "Daymark 867GM.5G"
     },
     {
       "modelNo": "867GM.9G",
@@ -6665,7 +7005,9 @@
         "/images/new-img/model-2/867/867GM.9.G/867GM.9 (3).jpg",
         "/images/new-img/model-2/867/867GM.9.G/867GM.9 (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Daymark",
+      "name": "Daymark 867GM.9G"
     },
     {
       "modelNo": "867RGM.16G",
@@ -6704,7 +7046,9 @@
         "/images/new-img/model-2/867/867RGM.16.G/867RGM.16 (3).jpg",
         "/images/new-img/model-2/867/867RGM.16.G/867RGM.16 (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Daymark",
+      "name": "Daymark 867RGM.16G"
     },
     {
       "modelNo": "867RGM.2G",
@@ -6743,7 +7087,9 @@
         "/images/new-img/model-2/867/867RGM.2.G/867RGM.2 (3).jpg",
         "/images/new-img/model-2/867/867RGM.2.G/867RGM.2 (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Daymark",
+      "name": "Daymark 867RGM.2G"
     },
     {
       "modelNo": "867RGM.3G",
@@ -6782,7 +7128,9 @@
         "/images/new-img/model-2/867/867RGM.3.G/867RGM.3 (3).jpg",
         "/images/new-img/model-2/867/867RGM.3.G/867RGM.3 (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Daymark",
+      "name": "Daymark 867RGM.3G"
     },
     {
       "modelNo": "867SM.2G",
@@ -6821,7 +7169,9 @@
         "/images/new-img/model-2/867/867SM.2.G/867SM.2 (3).jpg",
         "/images/new-img/model-2/867/867SM.2.G/867SM.2 (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Daymark",
+      "name": "Daymark 867SM.2G"
     },
     {
       "modelNo": "867SM.4G",
@@ -6860,7 +7210,9 @@
         "/images/new-img/model-2/867/867SM.4.G/867SM.4 (3).jpg",
         "/images/new-img/model-2/867/867SM.4.G/867SM.4 (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Daymark",
+      "name": "Daymark 867SM.4G"
     },
     {
       "modelNo": "867SM.5G",
@@ -6899,7 +7251,9 @@
         "/images/new-img/model-2/867/867SM.5.G/867SM.5 (3).jpg",
         "/images/new-img/model-2/867/867SM.5.G/867SM.5 (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Daymark",
+      "name": "Daymark 867SM.5G"
     },
     {
       "modelNo": "867SM.8G",
@@ -6938,7 +7292,9 @@
         "/images/new-img/model-2/867/867SM.8.G/867SM.8 (3).jpg",
         "/images/new-img/model-2/867/867SM.8.G/867SM.8 (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Daymark",
+      "name": "Daymark 867SM.8G"
     },
     {
       "modelNo": "869BLM.5G",
@@ -6978,7 +7334,9 @@
         "/images/new-img/model-2/869/869/869BLM.5G/869BLM (3).jpg",
         "/images/new-img/model-2/869/869/869BLM.5G/869BLM (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Pulse",
+      "name": "Pulse 869BLM.5G"
     },
     {
       "modelNo": "869GM.2G",
@@ -7018,7 +7376,9 @@
         "/images/new-img/model-2/869/869/869GM.2G/869GM (3).jpg",
         "/images/new-img/model-2/869/869/869GM.2G/869GM (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Pulse",
+      "name": "Pulse 869GM.2G"
     },
     {
       "modelNo": "869GM.4G",
@@ -7058,7 +7418,9 @@
         "/images/new-img/model-2/869/869/869GM.4G/869GM (3).jpg",
         "/images/new-img/model-2/869/869/869GM.4G/869GM (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Pulse",
+      "name": "Pulse 869GM.4G"
     },
     {
       "modelNo": "869GNM.3G",
@@ -7098,7 +7460,9 @@
         "/images/new-img/model-2/869/869/869GNM.3G/869GNM (3).jpg",
         "/images/new-img/model-2/869/869/869GNM.3G/869GNM (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Pulse",
+      "name": "Pulse 869GNM.3G"
     },
     {
       "modelNo": "869GRNM.16G",
@@ -7138,7 +7502,9 @@
         "/images/new-img/model-2/869/869/869GRNM.16G/869GRNM (3).jpg",
         "/images/new-img/model-2/869/869/869GRNM.16G/869GRNM (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Pulse",
+      "name": "Pulse 869GRNM.16G"
     },
     {
       "modelNo": "869RGM.16G",
@@ -7178,7 +7544,9 @@
         "/images/new-img/model-2/869/869/869RGM.16G/869RGM (3).jpg",
         "/images/new-img/model-2/869/869/869RGM.16G/869RGM (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Pulse",
+      "name": "Pulse 869RGM.16G"
     },
     {
       "modelNo": "869RGM.2G",
@@ -7218,7 +7586,9 @@
         "/images/new-img/model-2/869/869/869RGM.2G/869RGM (3).jpg",
         "/images/new-img/model-2/869/869/869RGM.2G/869RGM (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Pulse",
+      "name": "Pulse 869RGM.2G"
     },
     {
       "modelNo": "869RTM.16G",
@@ -7258,7 +7628,9 @@
         "/images/new-img/model-2/869/869/869RTM.16G/869RTM (3).jpg",
         "/images/new-img/model-2/869/869/869RTM.16G/869RTM (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Pulse",
+      "name": "Pulse 869RTM.16G"
     },
     {
       "modelNo": "869RTM.2G",
@@ -7298,7 +7670,9 @@
         "/images/new-img/model-2/869/869/869RTM.2G/869RTM (3).jpg",
         "/images/new-img/model-2/869/869/869RTM.2G/869RTM (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Pulse",
+      "name": "Pulse 869RTM.2G"
     },
     {
       "modelNo": "876GM.3G",
@@ -7337,7 +7711,9 @@
         "/images/new-img/model-2/876/876GM.3G/876GM (3).jpg",
         "/images/new-img/model-2/876/876GM.3G/876GM (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Tidemark",
+      "name": "Tidemark 876GM.3G"
     },
     {
       "modelNo": "876GNM.8G",
@@ -7376,7 +7752,9 @@
         "/images/new-img/model-2/876/876GNM.8G/876GNM (3).jpg",
         "/images/new-img/model-2/876/876GNM.8G/876GNM (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Tidemark",
+      "name": "Tidemark 876GNM.8G"
     },
     {
       "modelNo": "876RTM.9G",
@@ -7415,7 +7793,9 @@
         "/images/new-img/model-2/876/876RTM.9G/876RTM (3).jpg",
         "/images/new-img/model-2/876/876RTM.9G/876RTM (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Tidemark",
+      "name": "Tidemark 876RTM.9G"
     },
     {
       "modelNo": "915GFS.3G",
@@ -7454,7 +7834,9 @@
         "/images/new-img/model-2/915/915GFS.3G/915GFS (3).jpg",
         "/images/new-img/model-2/915/915GFS.3G/915GFS (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Grandeur",
+      "name": "Grandeur 915GFS.3G"
     },
     {
       "modelNo": "915GNFS.3G",
@@ -7493,7 +7875,9 @@
         "/images/new-img/model-2/915/915GNFS.3G/915GNFS (3).jpg",
         "/images/new-img/model-2/915/915GNFS.3G/915GNFS (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Grandeur",
+      "name": "Grandeur 915GNFS.3G"
     },
     {
       "modelNo": "915SFS.2G",
@@ -7532,7 +7916,9 @@
         "/images/new-img/model-2/915/915SFS.2G/915SFS (3).jpg",
         "/images/new-img/model-2/915/915SFS.2G/915SFS (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Grandeur",
+      "name": "Grandeur 915SFS.2G"
     },
     {
       "modelNo": "916BM.3G",
@@ -7572,7 +7958,9 @@
         "/images/new-img/model-2/916/916BM.3G/916BM (3).jpg",
         "/images/new-img/model-2/916/916BM.3G/916BM (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Stratos",
+      "name": "Stratos 916BM.3G"
     },
     {
       "modelNo": "916GM.16G",
@@ -7612,7 +8000,9 @@
         "/images/new-img/model-2/916/916GM.16G/916GM (3).jpg",
         "/images/new-img/model-2/916/916GM.16G/916GM (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Stratos",
+      "name": "Stratos 916GM.16G"
     },
     {
       "modelNo": "916GNM.16G",
@@ -7652,7 +8042,9 @@
         "/images/new-img/model-2/916/916GNM.16G/916GNM (3).jpg",
         "/images/new-img/model-2/916/916GNM.16G/916GNM (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Stratos",
+      "name": "Stratos 916GNM.16G"
     },
     {
       "modelNo": "916RTM.2G",
@@ -7692,7 +8084,9 @@
         "/images/new-img/model-2/916/916RTM.2G/916RTM (3).jpg",
         "/images/new-img/model-2/916/916RTM.2G/916RTM (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Stratos",
+      "name": "Stratos 916RTM.2G"
     },
     {
       "modelNo": "916SBTM.2G",
@@ -7732,7 +8126,9 @@
         "/images/new-img/model-2/916/916SBTM.2G/916SBTM (3).jpg",
         "/images/new-img/model-2/916/916SBTM.2G/916SBTM (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Stratos",
+      "name": "Stratos 916SBTM.2G"
     },
     {
       "modelNo": "950GNFS.16G",
@@ -7768,7 +8164,9 @@
       "gallery": [
         "/images/new-img/model-2/950/950/950GNFS.16G.png"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Grandeur",
+      "name": "Grandeur 950GNFS.16G"
     },
     {
       "modelNo": "950GNFS.22G",
@@ -7808,7 +8206,9 @@
         "/images/new-img/model-2/950/950GNFS.22G/950GNFS (3).jpg",
         "/images/new-img/model-2/950/950GNFS.22G/950GNFS (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Grandeur",
+      "name": "Grandeur 950GNFS.22G"
     },
     {
       "modelNo": "950GNFS.23G",
@@ -7849,7 +8249,9 @@
         "/images/new-img/model-2/950/950GNFS.23G/950GNFS (4).jpg",
         "/images/new-img/model-2/950/950GNFS.23G/950GNFS (5).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Grandeur",
+      "name": "Grandeur 950GNFS.23G"
     },
     {
       "modelNo": "950GTFS.165G",
@@ -7889,7 +8291,9 @@
         "/images/new-img/model-2/950/950GTFS.165G/950GTFS (3).jpg",
         "/images/new-img/model-2/950/950GTFS.165G/950GTFS (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Grandeur",
+      "name": "Grandeur 950GTFS.165G"
     },
     {
       "modelNo": "950GTFS.3G",
@@ -7929,7 +8333,9 @@
         "/images/new-img/model-2/950/950GTFS.3G/950GTFS (3).jpg",
         "/images/new-img/model-2/950/950GTFS.3G/950GTFS (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Grandeur",
+      "name": "Grandeur 950GTFS.3G"
     },
     {
       "modelNo": "950RGBFS.16G",
@@ -7970,7 +8376,9 @@
         "/images/new-img/model-2/950/950RGBFS.16G/950RGBFS (4).jpg",
         "/images/new-img/model-2/950/950RGBFS.16G/950RGBFS (5).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Grandeur",
+      "name": "Grandeur 950RGBFS.16G"
     },
     {
       "modelNo": "950RGBFS.3G",
@@ -8011,7 +8419,9 @@
         "/images/new-img/model-2/950/950RGBFS.3G/950RGBFS (4).jpg",
         "/images/new-img/model-2/950/950RGBFS.3G/950RGBFS (5).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Grandeur",
+      "name": "Grandeur 950RGBFS.3G"
     },
     {
       "modelNo": "950RGBLFS.5G",
@@ -8051,7 +8461,9 @@
         "/images/new-img/model-2/950/950RGBLFS.5G/950RGBLFS (3).jpg",
         "/images/new-img/model-2/950/950RGBLFS.5G/950RGBLFS (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Grandeur",
+      "name": "Grandeur 950RGBLFS.5G"
     },
     {
       "modelNo": "960GFS.16G",
@@ -8091,7 +8503,9 @@
         "/images/new-img/model-2/960/960GFS.16G/960GFS (3).jpg",
         "/images/new-img/model-2/960/960GFS.16G/960GFS (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Vortex",
+      "name": "Vortex 960GFS.16G"
     },
     {
       "modelNo": "960SFS.16G",
@@ -8131,7 +8545,9 @@
         "/images/new-img/model-2/960/960SFS.16G/960SFS (3).jpg",
         "/images/new-img/model-2/960/960SFS.16G/960SFS (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Vortex",
+      "name": "Vortex 960SFS.16G"
     },
     {
       "modelNo": "960SFS.5G",
@@ -8171,7 +8587,9 @@
         "/images/new-img/model-2/960/960SFS.5G/960SFS (3).jpg",
         "/images/new-img/model-2/960/960SFS.5G/960SFS (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Vortex",
+      "name": "Vortex 960SFS.5G"
     },
     {
       "modelNo": "960SFS.8G",
@@ -8211,7 +8629,9 @@
         "/images/new-img/model-2/960/960SFS.8G/960SFS (4).jpg",
         "/images/new-img/model-2/960/960SFS.8G/Moodshots.jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Vortex",
+      "name": "Vortex 960SFS.8G"
     },
     {
       "modelNo": "200GM.16G",
@@ -8246,7 +8666,9 @@
       "hoverImage": "/images/new-img/model-1/200/200GM.16G/200GM (1).jpg",
       "gallery": [
         "/images/new-img/model-1/200/200GM.16G/200GM (1).jpg"
-      ]
+      ],
+      "collection": "Tactix",
+      "name": "Tactix 200GM.16G"
     },
     {
       "modelNo": "200RTM.2G",
@@ -8281,7 +8703,9 @@
       "hoverImage": "/images/new-img/model-1/200/200RTM.2G/200RTM (1).jpg",
       "gallery": [
         "/images/new-img/model-1/200/200RTM.2G/200RTM (1).jpg"
-      ]
+      ],
+      "collection": "Tactix",
+      "name": "Tactix 200RTM.2G"
     },
     {
       "modelNo": "200RTM.3G",
@@ -8316,7 +8740,9 @@
       "hoverImage": "/images/new-img/model-1/200/200RTM.3G/200RTM (1).jpg",
       "gallery": [
         "/images/new-img/model-1/200/200RTM.3G/200RTM (1).jpg"
-      ]
+      ],
+      "collection": "Tactix",
+      "name": "Tactix 200RTM.3G"
     },
     {
       "modelNo": "200SM.2G",
@@ -8351,7 +8777,9 @@
       "hoverImage": "/images/new-img/model-1/200/200SM.2G/200SM (1).jpg",
       "gallery": [
         "/images/new-img/model-1/200/200SM.2G/200SM (1).jpg"
-      ]
+      ],
+      "collection": "Tactix",
+      "name": "Tactix 200SM.2G"
     },
     {
       "modelNo": "200SM.3G",
@@ -8386,7 +8814,9 @@
       "hoverImage": "/images/new-img/model-1/200/200SM.3G/200SM (1).jpg",
       "gallery": [
         "/images/new-img/model-1/200/200SM.3G/200SM (1).jpg"
-      ]
+      ],
+      "collection": "Tactix",
+      "name": "Tactix 200SM.3G"
     },
     {
       "modelNo": "200SM.5G",
@@ -8421,7 +8851,9 @@
       "hoverImage": "/images/new-img/model-1/200/200SM.5G/200SM (1).jpg",
       "gallery": [
         "/images/new-img/model-1/200/200SM.5G/200SM (1).jpg"
-      ]
+      ],
+      "collection": "Tactix",
+      "name": "Tactix 200SM.5G"
     }
   ],
   "women": [
@@ -8461,7 +8893,9 @@
         "/images/new-img/model-1/670/670GM.16.L/670GM.16 (2).jpg",
         "/images/new-img/model-1/670/670GM.16.L/670GM.16 (3).jpg",
         "/images/new-img/model-1/670/670GM.16.L/670GM.16 (4).jpg"
-      ]
+      ],
+      "collection": "Serene",
+      "name": "Serene 670GM.16L"
     },
     {
       "modelNo": "670GM.2L",
@@ -8499,7 +8933,9 @@
         "/images/new-img/model-1/670/670GM.2.L/670GM.2 (2).jpg",
         "/images/new-img/model-1/670/670GM.2.L/670GM.2 (3).jpg",
         "/images/new-img/model-1/670/670GM.2.L/670GM.2 (4).jpg"
-      ]
+      ],
+      "collection": "Serene",
+      "name": "Serene 670GM.2L"
     },
     {
       "modelNo": "670GM.4L",
@@ -8537,7 +8973,9 @@
         "/images/new-img/model-1/670/670GM.4.L/670GM.4 (2).jpg",
         "/images/new-img/model-1/670/670GM.4.L/670GM.4 (3).jpg",
         "/images/new-img/model-1/670/670GM.4.L/670GM.4 (4).jpg"
-      ]
+      ],
+      "collection": "Serene",
+      "name": "Serene 670GM.4L"
     },
     {
       "modelNo": "670RGBRNM.9L",
@@ -8572,7 +9010,9 @@
       "hoverImage": "/images/new-img/model-1/670/670RGBRNM.9.L.jpg",
       "gallery": [
         "/images/new-img/model-1/670/670RGBRNM.9.L.jpg"
-      ]
+      ],
+      "collection": "Serene",
+      "name": "Serene 670RGBRNM.9L"
     },
     {
       "modelNo": "670SM.2L",
@@ -8611,7 +9051,9 @@
         "/images/new-img/model-1/670/670/670SM.2L/670SM (2).jpg",
         "/images/new-img/model-1/670/670/670SM.2L/670SM (3).jpg",
         "/images/new-img/model-1/670/670/670SM.2L/670SM (4).jpg"
-      ]
+      ],
+      "collection": "Serene",
+      "name": "Serene 670SM.2L"
     },
     {
       "modelNo": "670SM.5L",
@@ -8650,7 +9092,9 @@
         "/images/new-img/model-1/670/670/670SM.5L/670SM (2).jpg",
         "/images/new-img/model-1/670/670/670SM.5L/670SM (3).jpg",
         "/images/new-img/model-1/670/670/670SM.5L/670SM (4).jpg"
-      ]
+      ],
+      "collection": "Serene",
+      "name": "Serene 670SM.5L"
     },
     {
       "modelNo": "753RGM.2G",
@@ -8694,7 +9138,9 @@
         "/images/new-img/model-1/753/753 metal band/753/753RGM.2.G/753RGM.2 (2).jpg",
         "/images/new-img/model-1/753/753 metal band/753/753RGM.2.G/753RGM.2 (3).jpg",
         "/images/new-img/model-1/753/753 metal band/753/753RGM.2.G/753RGM.2 (4).jpg"
-      ]
+      ],
+      "collection": "Daymark",
+      "name": "Daymark 753RGM.2G"
     },
     {
       "modelNo": "788RGM.3L",
@@ -8732,7 +9178,9 @@
         "/images/new-img/model-1/788/788RGM.3L/788RGM (2).jpg",
         "/images/new-img/model-1/788/788RGM.3L/788RGM (3).jpg",
         "/images/new-img/model-1/788/788RGM.3L/788RGM (4).jpg"
-      ]
+      ],
+      "collection": "Breeze",
+      "name": "Breeze 788RGM.3L"
     },
     {
       "modelNo": "794RTM.16L",
@@ -8771,7 +9219,9 @@
         "/images/new-img/model-1/794/794RTM.16L/794RTM (2).jpg",
         "/images/new-img/model-1/794/794RTM.16L/794RTM (3).jpg",
         "/images/new-img/model-1/794/794RTM.16L/794RTM (4).jpg"
-      ]
+      ],
+      "collection": "Breeze",
+      "name": "Breeze 794RTM.16L"
     },
     {
       "modelNo": "794RTM.2L",
@@ -8810,7 +9260,9 @@
         "/images/new-img/model-1/794/794RTM.2L/794RTM (2).jpg",
         "/images/new-img/model-1/794/794RTM.2L/794RTM (3).jpg",
         "/images/new-img/model-1/794/794RTM.2L/794RTM (4).jpg"
-      ]
+      ],
+      "collection": "Breeze",
+      "name": "Breeze 794RTM.2L"
     },
     {
       "modelNo": "794RTM.5L",
@@ -8849,7 +9301,9 @@
         "/images/new-img/model-1/794/794RTM.5L/794RTM (2).jpg",
         "/images/new-img/model-1/794/794RTM.5L/794RTM (3).jpg",
         "/images/new-img/model-1/794/794RTM.5L/794RTM (4).jpg"
-      ]
+      ],
+      "collection": "Breeze",
+      "name": "Breeze 794RTM.5L"
     },
     {
       "modelNo": "794RTM.9L",
@@ -8888,7 +9342,9 @@
         "/images/new-img/model-1/794/794RTM.9L/794RTM (2).jpg",
         "/images/new-img/model-1/794/794RTM.9L/794RTM (3).jpg",
         "/images/new-img/model-1/794/794RTM.9L/794RTM (4).jpg"
-      ]
+      ],
+      "collection": "Breeze",
+      "name": "Breeze 794RTM.9L"
     },
     {
       "modelNo": "794SM.2L",
@@ -8927,7 +9383,9 @@
         "/images/new-img/model-1/794/794SM.2L/794SM (2).jpg",
         "/images/new-img/model-1/794/794SM.2L/794SM (3).jpg",
         "/images/new-img/model-1/794/794SM.2L/794SM (4).jpg"
-      ]
+      ],
+      "collection": "Breeze",
+      "name": "Breeze 794SM.2L"
     },
     {
       "modelNo": "794SM.5L",
@@ -8966,7 +9424,9 @@
         "/images/new-img/model-1/794/794SM.5L/794SM (2).jpg",
         "/images/new-img/model-1/794/794SM.5L/794SM (3).jpg",
         "/images/new-img/model-1/794/794SM.5L/794SM (4).jpg"
-      ]
+      ],
+      "collection": "Breeze",
+      "name": "Breeze 794SM.5L"
     },
     {
       "modelNo": "800RGM.16L",
@@ -9005,7 +9465,9 @@
         "/images/new-img/model-1/800/800RGM.16L/800RGM (2).jpg",
         "/images/new-img/model-1/800/800RGM.16L/800RGM (3).jpg",
         "/images/new-img/model-1/800/800RGM.16L/800RGM (4).jpg"
-      ]
+      ],
+      "collection": "Oasis",
+      "name": "Oasis 800RGM.16L"
     },
     {
       "modelNo": "810GM.2L",
@@ -9044,7 +9506,9 @@
         "/images/new-img/model-1/810/810GM.2L/810GM (2).jpg",
         "/images/new-img/model-1/810/810GM.2L/810GM (3).jpg",
         "/images/new-img/model-1/810/810GM.2L/810GM (4).jpg"
-      ]
+      ],
+      "collection": "Astral",
+      "name": "Astral 810GM.2L"
     },
     {
       "modelNo": "810RGBTM.3L",
@@ -9083,7 +9547,9 @@
         "/images/new-img/model-1/810/810RGBTM.3L/810RGBTM (2).jpg",
         "/images/new-img/model-1/810/810RGBTM.3L/810RGBTM (3).jpg",
         "/images/new-img/model-1/810/810RGBTM.3L/810RGBTM (4).jpg"
-      ]
+      ],
+      "collection": "Astral",
+      "name": "Astral 810RGBTM.3L"
     },
     {
       "modelNo": "810RGM.11L",
@@ -9122,7 +9588,9 @@
         "/images/new-img/model-1/810/810RGM.11L/810RGM (2).jpg",
         "/images/new-img/model-1/810/810RGM.11L/810RGM (3).jpg",
         "/images/new-img/model-1/810/810RGM.11L/810RGM (4).jpg"
-      ]
+      ],
+      "collection": "Astral",
+      "name": "Astral 810RGM.11L"
     },
     {
       "modelNo": "810RGM.16L",
@@ -9161,7 +9629,9 @@
         "/images/new-img/model-1/810/810RGM.16L/810RGM (2).jpg",
         "/images/new-img/model-1/810/810RGM.16L/810RGM (3).jpg",
         "/images/new-img/model-1/810/810RGM.16L/810RGM (4).jpg"
-      ]
+      ],
+      "collection": "Astral",
+      "name": "Astral 810RGM.16L"
     },
     {
       "modelNo": "810RGM.9L",
@@ -9200,7 +9670,9 @@
         "/images/new-img/model-1/810/810RGM.9L/810RGM (2).jpg",
         "/images/new-img/model-1/810/810RGM.9L/810RGM (3).jpg",
         "/images/new-img/model-1/810/810RGM.9L/810RGM (4).jpg"
-      ]
+      ],
+      "collection": "Astral",
+      "name": "Astral 810RGM.9L"
     },
     {
       "modelNo": "810RTM.11L",
@@ -9239,7 +9711,9 @@
         "/images/new-img/model-1/810/810RTM.11L/810RTM (2).jpg",
         "/images/new-img/model-1/810/810RTM.11L/810RTM (3).jpg",
         "/images/new-img/model-1/810/810RTM.11L/810RTM (4).jpg"
-      ]
+      ],
+      "collection": "Astral",
+      "name": "Astral 810RTM.11L"
     },
     {
       "modelNo": "810RTM.2L",
@@ -9278,7 +9752,9 @@
         "/images/new-img/model-1/810/810RTM.2L/2.jpg",
         "/images/new-img/model-1/810/810RTM.2L/3.jpg",
         "/images/new-img/model-1/810/810RTM.2L/4.jpg"
-      ]
+      ],
+      "collection": "Astral",
+      "name": "Astral 810RTM.2L"
     },
     {
       "modelNo": "810RTM.5L",
@@ -9317,7 +9793,9 @@
         "/images/new-img/model-1/810/810RTM.5L/810RTM (2).jpg",
         "/images/new-img/model-1/810/810RTM.5L/810RTM (3).jpg",
         "/images/new-img/model-1/810/810RTM.5L/810RTM (4).jpg"
-      ]
+      ],
+      "collection": "Astral",
+      "name": "Astral 810RTM.5L"
     },
     {
       "modelNo": "810RTM.9L",
@@ -9356,7 +9834,9 @@
         "/images/new-img/model-1/810/810RTM.9L/810RTM (2).jpg",
         "/images/new-img/model-1/810/810RTM.9L/810RTM (3).jpg",
         "/images/new-img/model-1/810/810RTM.9L/810RTM (4).jpg"
-      ]
+      ],
+      "collection": "Astral",
+      "name": "Astral 810RTM.9L"
     },
     {
       "modelNo": "810SM.2L",
@@ -9395,7 +9875,9 @@
         "/images/new-img/model-1/810/810SM.2L/810SM (2).jpg",
         "/images/new-img/model-1/810/810SM.2L/810SM (3).jpg",
         "/images/new-img/model-1/810/810SM.2L/810SM (4).jpg"
-      ]
+      ],
+      "collection": "Astral",
+      "name": "Astral 810SM.2L"
     },
     {
       "modelNo": "810TM.16L",
@@ -9434,7 +9916,9 @@
         "/images/new-img/model-1/810/810TM.16L/810TM (2).jpg",
         "/images/new-img/model-1/810/810TM.16L/810TM (3).jpg",
         "/images/new-img/model-1/810/810TM.16L/810TM (4).jpg"
-      ]
+      ],
+      "collection": "Astral",
+      "name": "Astral 810TM.16L"
     },
     {
       "modelNo": "810TM.2L",
@@ -9473,7 +9957,9 @@
         "/images/new-img/model-1/810/810TM.2L/810TM (2).jpg",
         "/images/new-img/model-1/810/810TM.2L/810TM (3).jpg",
         "/images/new-img/model-1/810/810TM.2L/810TM (4).jpg"
-      ]
+      ],
+      "collection": "Astral",
+      "name": "Astral 810TM.2L"
     },
     {
       "modelNo": "811SM.2G",
@@ -9508,7 +9994,9 @@
       "hoverImage": "/images/new-img/model-1/811/811.SM.2.G.jpg",
       "gallery": [
         "/images/new-img/model-1/811/811.SM.2.G.jpg"
-      ]
+      ],
+      "collection": "Pulse",
+      "name": "Pulse 811SM.2G"
     },
     {
       "modelNo": "812GM.2L",
@@ -9547,7 +10035,9 @@
         "/images/new-img/model-1/812/812/812GM.2L/812GM (2).jpg",
         "/images/new-img/model-1/812/812/812GM.2L/812GM (3).jpg",
         "/images/new-img/model-1/812/812/812GM.2L/812GM (4).jpg"
-      ]
+      ],
+      "collection": "Serene",
+      "name": "Serene 812GM.2L"
     },
     {
       "modelNo": "812GNM.8L",
@@ -9586,7 +10076,9 @@
         "/images/new-img/model-1/812/812/812GNM.8L/812GNM (2).jpg",
         "/images/new-img/model-1/812/812/812GNM.8L/812GNM (3).jpg",
         "/images/new-img/model-1/812/812/812GNM.8L/812GNM (4).jpg"
-      ]
+      ],
+      "collection": "Serene",
+      "name": "Serene 812GNM.8L"
     },
     {
       "modelNo": "812RGM.16L",
@@ -9625,7 +10117,9 @@
         "/images/new-img/model-1/812/812/812RGM.16L/812RGM (2).jpg",
         "/images/new-img/model-1/812/812/812RGM.16L/812RGM (3).jpg",
         "/images/new-img/model-1/812/812/812RGM.16L/812RGM (4).jpg"
-      ]
+      ],
+      "collection": "Serene",
+      "name": "Serene 812RGM.16L"
     },
     {
       "modelNo": "812RGM.2L",
@@ -9664,7 +10158,9 @@
         "/images/new-img/model-1/812/812/812RGM.2L/812RGM (2).jpg",
         "/images/new-img/model-1/812/812/812RGM.2L/812RGM (3).jpg",
         "/images/new-img/model-1/812/812/812RGM.2L/812RGM (4).jpg"
-      ]
+      ],
+      "collection": "Serene",
+      "name": "Serene 812RGM.2L"
     },
     {
       "modelNo": "812RTM.16L",
@@ -9703,7 +10199,9 @@
         "/images/new-img/model-1/812/812/812RTM.16L/812RTM (2).jpg",
         "/images/new-img/model-1/812/812/812RTM.16L/812RTM (3).jpg",
         "/images/new-img/model-1/812/812/812RTM.16L/812RTM (4).jpg"
-      ]
+      ],
+      "collection": "Serene",
+      "name": "Serene 812RTM.16L"
     },
     {
       "modelNo": "812SM.2L",
@@ -9742,7 +10240,9 @@
         "/images/new-img/model-1/812/812/812SM.2L/812SM (2).jpg",
         "/images/new-img/model-1/812/812/812SM.2L/812SM (3).jpg",
         "/images/new-img/model-1/812/812/812SM.2L/812SM (4).jpg"
-      ]
+      ],
+      "collection": "Serene",
+      "name": "Serene 812SM.2L"
     },
     {
       "modelNo": "812SM.5L",
@@ -9781,7 +10281,9 @@
         "/images/new-img/model-1/812/812/812SM.5L/812SM (2).jpg",
         "/images/new-img/model-1/812/812/812SM.5L/812SM (3).jpg",
         "/images/new-img/model-1/812/812/812SM.5L/812SM (4).jpg"
-      ]
+      ],
+      "collection": "Serene",
+      "name": "Serene 812SM.5L"
     },
     {
       "modelNo": "819BM.8L",
@@ -9818,7 +10320,9 @@
         "/images/new-img/model-1/819/819.BM.8.L/819.BM.8.L.jpg",
         "/images/new-img/model-1/819/819.BM.8.L/Box.jpg",
         "/images/new-img/model-1/819/819.BM.8.L/Bracelet.jpg"
-      ]
+      ],
+      "collection": "Glimmer",
+      "name": "Glimmer 819BM.8L"
     },
     {
       "modelNo": "819RGBM.8L",
@@ -9855,7 +10359,9 @@
         "/images/new-img/model-1/819/819.RGBM.8.L/819.RGBM.8.L.jpg",
         "/images/new-img/model-1/819/819.RGBM.8.L/Box.jpg",
         "/images/new-img/model-1/819/819.RGBM.8.L/Bracelet.jpg"
-      ]
+      ],
+      "collection": "Glimmer",
+      "name": "Glimmer 819RGBM.8L"
     },
     {
       "modelNo": "819RGBRNM.19L",
@@ -9892,7 +10398,9 @@
         "/images/new-img/model-1/819/819.RGBRNM.19.L/819.RGBRNM.19.L.jpg",
         "/images/new-img/model-1/819/819.RGBRNM.19.L/Box.jpg",
         "/images/new-img/model-1/819/819.RGBRNM.19.L/Bracelet.jpg"
-      ]
+      ],
+      "collection": "Glimmer",
+      "name": "Glimmer 819RGBRNM.19L"
     },
     {
       "modelNo": "819RGM.6L",
@@ -9929,7 +10437,9 @@
         "/images/new-img/model-1/819/819.RGM.6.L/819.RGM.6.L.jpg",
         "/images/new-img/model-1/819/819.RGM.6.L/Box.jpg",
         "/images/new-img/model-1/819/819.RGM.6.L/Bracelet.jpg"
-      ]
+      ],
+      "collection": "Glimmer",
+      "name": "Glimmer 819RGM.6L"
     },
     {
       "modelNo": "834BLM.5L",
@@ -9969,7 +10479,9 @@
         "/images/new-img/model-2/834/834BLM.5.L/834BLM.5 (3).jpg",
         "/images/new-img/model-2/834/834BLM.5.L/834BLM.5 (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Mist",
+      "name": "Mist 834BLM.5L"
     },
     {
       "modelNo": "834BM.3L",
@@ -10009,7 +10521,9 @@
         "/images/new-img/model-2/834/834BM.3.L/834BM.3 (3).jpg",
         "/images/new-img/model-2/834/834BM.3.L/834BM.3 (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Mist",
+      "name": "Mist 834BM.3L"
     },
     {
       "modelNo": "834GM.16L",
@@ -10049,7 +10563,9 @@
         "/images/new-img/model-2/834/834GM.16.L/834GM.16 (3).jpg",
         "/images/new-img/model-2/834/834GM.16.L/834GM.16 (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Mist",
+      "name": "Mist 834GM.16L"
     },
     {
       "modelNo": "834RGM.11L",
@@ -10089,7 +10605,9 @@
         "/images/new-img/model-2/834/834RGM.11.L/834RGM.11 (3).jpg",
         "/images/new-img/model-2/834/834RGM.11.L/834RGM.11 (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Mist",
+      "name": "Mist 834RGM.11L"
     },
     {
       "modelNo": "834RTM.2L",
@@ -10129,7 +10647,9 @@
         "/images/new-img/model-2/834/834RTM.2.L/834RTM.2 (3).jpg",
         "/images/new-img/model-2/834/834RTM.2.L/834RTM.2 (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Mist",
+      "name": "Mist 834RTM.2L"
     },
     {
       "modelNo": "834TM.2L",
@@ -10169,7 +10689,9 @@
         "/images/new-img/model-2/834/834TM.2.L/834TM.2 (3).jpg",
         "/images/new-img/model-2/834/834TM.2.L/834TM.2 (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Mist",
+      "name": "Mist 834TM.2L"
     },
     {
       "modelNo": "835BM.16L",
@@ -10209,7 +10731,9 @@
         "/images/new-img/model-2/835/835BM.16L/835BM (3).jpg",
         "/images/new-img/model-2/835/835BM.16L/835BM (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Mist",
+      "name": "Mist 835BM.16L"
     },
     {
       "modelNo": "835GM.6L",
@@ -10249,7 +10773,9 @@
         "/images/new-img/model-2/835/835GM.6L/835GM (3).jpg",
         "/images/new-img/model-2/835/835GM.6L/835GM (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Mist",
+      "name": "Mist 835GM.6L"
     },
     {
       "modelNo": "835RGM.6L",
@@ -10289,7 +10815,9 @@
         "/images/new-img/model-2/835/835RGM.6L/835RGM (3).jpg",
         "/images/new-img/model-2/835/835RGM.6L/835RGM (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Mist",
+      "name": "Mist 835RGM.6L"
     },
     {
       "modelNo": "835RTM.6L",
@@ -10329,7 +10857,9 @@
         "/images/new-img/model-2/835/835RTM.6L/835RTM (3).jpg",
         "/images/new-img/model-2/835/835RTM.6L/835RTM (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Mist",
+      "name": "Mist 835RTM.6L"
     },
     {
       "modelNo": "835SM.13L",
@@ -10369,7 +10899,9 @@
         "/images/new-img/model-2/835/835SM.13L/835SM (3).jpg",
         "/images/new-img/model-2/835/835SM.13L/835SM (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Mist",
+      "name": "Mist 835SM.13L"
     },
     {
       "modelNo": "835TM.6L",
@@ -10409,7 +10941,9 @@
         "/images/new-img/model-2/835/835TM.6L/835TM (3).jpg",
         "/images/new-img/model-2/835/835TM.6L/835TM (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Mist",
+      "name": "Mist 835TM.6L"
     },
     {
       "modelNo": "849RGBCRM.12L",
@@ -10449,7 +10983,9 @@
         "/images/new-img/model-2/849/849RGBCRM.12L/3.jpg",
         "/images/new-img/model-2/849/849RGBCRM.12L/4.jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Classic",
+      "name": "Classic 849RGBCRM.12L"
     },
     {
       "modelNo": "849RGWCRM.11L",
@@ -10489,7 +11025,9 @@
         "/images/new-img/model-2/849/849RGWCRM.11L/849_Pink (3).jpg",
         "/images/new-img/model-2/849/849RGWCRM.11L/849_Pink (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Classic",
+      "name": "Classic 849RGWCRM.11L"
     },
     {
       "modelNo": "849RGWCRM.6L",
@@ -10529,7 +11067,9 @@
         "/images/new-img/model-2/849/849RGWCRM.6L/849_White (3).jpg",
         "/images/new-img/model-2/849/849RGWCRM.6L/849_White (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Classic",
+      "name": "Classic 849RGWCRM.6L"
     },
     {
       "modelNo": "850GNFS.8L",
@@ -10569,7 +11109,9 @@
         "/images/new-img/model-2/850/850GNFS.8L/850GNFS (3).jpg",
         "/images/new-img/model-2/850/850GNFS.8L/850GNFS (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Bondline",
+      "name": "Bondline 850GNFS.8L"
     },
     {
       "modelNo": "850RGFS.12L",
@@ -10609,7 +11151,9 @@
         "/images/new-img/model-2/850/850/850/850RGFS.12L/850RGFS (3).jpg",
         "/images/new-img/model-2/850/850/850/850RGFS.12L/850RGFS (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Bondline",
+      "name": "Bondline 850RGFS.12L"
     },
     {
       "modelNo": "850RGFS.16L",
@@ -10649,7 +11193,9 @@
         "/images/new-img/model-2/850/850RGFS.16L/850RGFS (3).jpg",
         "/images/new-img/model-2/850/850RGFS.16L/850RGFS (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Bondline",
+      "name": "Bondline 850RGFS.16L"
     },
     {
       "modelNo": "850RGFS.2L",
@@ -10689,7 +11235,9 @@
         "/images/new-img/model-2/850/850RGFS.2L/850RGFS (3).jpg",
         "/images/new-img/model-2/850/850RGFS.2L/850RGFS (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Bondline",
+      "name": "Bondline 850RGFS.2L"
     },
     {
       "modelNo": "850RGFS.3L",
@@ -10729,7 +11277,9 @@
         "/images/new-img/model-2/850/850RGFS.3L/850RGFS (3).jpg",
         "/images/new-img/model-2/850/850RGFS.3L/850RGFS (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Bondline",
+      "name": "Bondline 850RGFS.3L"
     },
     {
       "modelNo": "850RGFS.5L",
@@ -10769,7 +11319,9 @@
         "/images/new-img/model-2/850/850RGFS.5L/850RGFS (3).jpg",
         "/images/new-img/model-2/850/850RGFS.5L/850RGFS (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Bondline",
+      "name": "Bondline 850RGFS.5L"
     },
     {
       "modelNo": "853GM.2L",
@@ -10809,7 +11361,9 @@
         "/images/new-img/model-2/853/853GM.2L/853GM (3).jpg",
         "/images/new-img/model-2/853/853GM.2L/853GM (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Echo",
+      "name": "Echo 853GM.2L"
     },
     {
       "modelNo": "853GNM.8L",
@@ -10849,7 +11403,9 @@
         "/images/new-img/model-2/853/853GNM.8L/853GNM (3).jpg",
         "/images/new-img/model-2/853/853GNM.8L/853GNM (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Echo",
+      "name": "Echo 853GNM.8L"
     },
     {
       "modelNo": "853RGM.5L",
@@ -10889,7 +11445,9 @@
         "/images/new-img/model-2/853/853RGM.5L/853RGM (3).jpg",
         "/images/new-img/model-2/853/853RGM.5L/853RGM (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Echo",
+      "name": "Echo 853RGM.5L"
     },
     {
       "modelNo": "853RGM.9L",
@@ -10929,7 +11487,9 @@
         "/images/new-img/model-2/853/853RGM.9L/853RGM (3).jpg",
         "/images/new-img/model-2/853/853RGM.9L/853RGM (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Echo",
+      "name": "Echo 853RGM.9L"
     },
     {
       "modelNo": "853RTM.16L",
@@ -10969,7 +11529,9 @@
         "/images/new-img/model-2/853/853RTM.16L/853RTM (3).jpg",
         "/images/new-img/model-2/853/853RTM.16L/853RTM (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Echo",
+      "name": "Echo 853RTM.16L"
     },
     {
       "modelNo": "853RTM.2L",
@@ -11009,7 +11571,9 @@
         "/images/new-img/model-2/853/853RTM.2L/853RTM (3).jpg",
         "/images/new-img/model-2/853/853RTM.2L/853RTM (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Echo",
+      "name": "Echo 853RTM.2L"
     },
     {
       "modelNo": "853RTM.5L",
@@ -11049,7 +11613,9 @@
         "/images/new-img/model-2/853/853RTM.5L/853RTM (3).jpg",
         "/images/new-img/model-2/853/853RTM.5L/853RTM (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Echo",
+      "name": "Echo 853RTM.5L"
     },
     {
       "modelNo": "853RTM.9L",
@@ -11092,7 +11658,9 @@
         "/images/new-img/model-2/853/853RTM.9L/853RTM (3).jpg",
         "/images/new-img/model-2/853/853RTM.9L/853RTM (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Echo",
+      "name": "Echo 853RTM.9L"
     },
     {
       "modelNo": "853SM.17L",
@@ -11133,7 +11701,9 @@
         "/images/new-img/model-2/853/853SM.17L/853SM (3).jpg",
         "/images/new-img/model-2/853/853SM.17L/853SM (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Echo",
+      "name": "Echo 853SM.17L"
     },
     {
       "modelNo": "853SM.2L",
@@ -11173,7 +11743,9 @@
         "/images/new-img/model-2/853/853SM.2L/853SM (3).jpg",
         "/images/new-img/model-2/853/853SM.2L/853SM (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Echo",
+      "name": "Echo 853SM.2L"
     },
     {
       "modelNo": "853SM.5L",
@@ -11213,7 +11785,9 @@
         "/images/new-img/model-2/853/853SM.5L/853SM (3).jpg",
         "/images/new-img/model-2/853/853SM.5L/853SM (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Echo",
+      "name": "Echo 853SM.5L"
     },
     {
       "modelNo": "853TM.2L",
@@ -11254,7 +11828,9 @@
         "/images/new-img/model-2/853/853TM.2L/853TM (3).jpg",
         "/images/new-img/model-2/853/853TM.2L/853TM (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Echo",
+      "name": "Echo 853TM.2L"
     },
     {
       "modelNo": "855RGBLM.5L",
@@ -11294,7 +11870,9 @@
         "/images/new-img/model-2/855/855RGBLM.5L/855RGBLM (3).jpg",
         "/images/new-img/model-2/855/855RGBLM.5L/855RGBLM (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Serene",
+      "name": "Serene 855RGBLM.5L"
     },
     {
       "modelNo": "855RGBM.8L",
@@ -11334,7 +11912,9 @@
         "/images/new-img/model-2/855/855RGBM.8L/855RGBM (3).jpg",
         "/images/new-img/model-2/855/855RGBM.8L/855RGBM (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Serene",
+      "name": "Serene 855RGBM.8L"
     },
     {
       "modelNo": "855RGM.1L",
@@ -11374,7 +11954,9 @@
         "/images/new-img/model-2/855/855RGM.1L/855RGM (3).jpg",
         "/images/new-img/model-2/855/855RGM.1L/855RGM (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Serene",
+      "name": "Serene 855RGM.1L"
     },
     {
       "modelNo": "855RGM.5L",
@@ -11414,7 +11996,9 @@
         "/images/new-img/model-2/855/855RGM.5L/855RGM (3).jpg",
         "/images/new-img/model-2/855/855RGM.5L/855RGM (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Serene",
+      "name": "Serene 855RGM.5L"
     },
     {
       "modelNo": "855RGM.9L",
@@ -11454,7 +12038,9 @@
         "/images/new-img/model-2/855/855RGM.9L/855RGM (3).jpg",
         "/images/new-img/model-2/855/855RGM.9L/855RGM (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Serene",
+      "name": "Serene 855RGM.9L"
     },
     {
       "modelNo": "856RGBLM.5L",
@@ -11498,7 +12084,9 @@
         "/images/new-img/model-2/856/856RGBLM.5G and 856RGBLM.5L/856RGBLM.5G and 856RGBLM (7).jpg",
         "/images/new-img/model-2/856/856RGBLM.5G and 856RGBLM.5L/856RGBLM.5G and 856RGBLM (8).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Duetto",
+      "name": "Duetto 856RGBLM.5L"
     },
     {
       "modelNo": "856RGM.11L",
@@ -11542,7 +12130,9 @@
         "/images/new-img/model-2/856/856RGM.11G and 856RGM.11L/856RGM.11G and 856RGM (7).jpg",
         "/images/new-img/model-2/856/856RGM.11G and 856RGM.11L/856RGM.11G and 856RGM (8).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Duetto",
+      "name": "Duetto 856RGM.11L"
     },
     {
       "modelNo": "856RGM.2L",
@@ -11586,7 +12176,9 @@
         "/images/new-img/model-2/856/856RGM.2G and 856RGM.2L/856RGM.2G and 856RGM (7).jpg",
         "/images/new-img/model-2/856/856RGM.2G and 856RGM.2L/856RGM.2G and 856RGM (8).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Duetto",
+      "name": "Duetto 856RGM.2L"
     },
     {
       "modelNo": "856SM.5L",
@@ -11630,7 +12222,9 @@
         "/images/new-img/model-2/856/856SM.5G and 856SM.5L/856SM.5G and 856SM (7).jpg",
         "/images/new-img/model-2/856/856SM.5G and 856SM.5L/856SM.5G and 856SM (8).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Duetto",
+      "name": "Duetto 856SM.5L"
     },
     {
       "modelNo": "860GM.12L",
@@ -11670,7 +12264,9 @@
         "/images/new-img/model-2/860/860GM.12.L/860GM.12 (3).jpg",
         "/images/new-img/model-2/860/860GM.12.L/860GM.12 (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Glimmer",
+      "name": "Glimmer 860GM.12L"
     },
     {
       "modelNo": "860RGBTM.12L",
@@ -11710,7 +12306,9 @@
         "/images/new-img/model-2/860/860RGBTM.12.L/860RGBTM.12 (3).jpg",
         "/images/new-img/model-2/860/860RGBTM.12.L/860RGBTM.12 (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Glimmer",
+      "name": "Glimmer 860RGBTM.12L"
     },
     {
       "modelNo": "860RGM.12L",
@@ -11750,7 +12348,9 @@
         "/images/new-img/model-2/860/860RGM.12.L/860RGM.12 (3).jpg",
         "/images/new-img/model-2/860/860RGM.12.L/860RGM.12 (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Glimmer",
+      "name": "Glimmer 860RGM.12L"
     },
     {
       "modelNo": "860RGM.16L",
@@ -11790,7 +12390,9 @@
         "/images/new-img/model-2/860/860RGM.16.L/860RGM.16 (3).jpg",
         "/images/new-img/model-2/860/860RGM.16.L/860RGM.16 (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Glimmer",
+      "name": "Glimmer 860RGM.16L"
     },
     {
       "modelNo": "860RGM.9L",
@@ -11830,7 +12432,9 @@
         "/images/new-img/model-2/860/860RGM.9.L/860RGM.9 (3).jpg",
         "/images/new-img/model-2/860/860RGM.9.L/860RGM.9 (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Glimmer",
+      "name": "Glimmer 860RGM.9L"
     },
     {
       "modelNo": "860RTM.12L",
@@ -11870,7 +12474,9 @@
         "/images/new-img/model-2/860/860RTM.12.L/860RTM.12 (3).jpg",
         "/images/new-img/model-2/860/860RTM.12.L/860RTM.12 (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Glimmer",
+      "name": "Glimmer 860RTM.12L"
     },
     {
       "modelNo": "860RTM.16L",
@@ -11910,7 +12516,9 @@
         "/images/new-img/model-2/860/860RTM.16.L/860RTM.16 (3).jpg",
         "/images/new-img/model-2/860/860RTM.16.L/860RTM.16 (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Glimmer",
+      "name": "Glimmer 860RTM.16L"
     },
     {
       "modelNo": "860RTM.9L",
@@ -11950,7 +12558,9 @@
         "/images/new-img/model-2/860/860RTM.9.L/860RTM.9 (3).jpg",
         "/images/new-img/model-2/860/860RTM.9.L/860RTM.9 (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Glimmer",
+      "name": "Glimmer 860RTM.9L"
     },
     {
       "modelNo": "860SM.12L",
@@ -11990,7 +12600,9 @@
         "/images/new-img/model-2/860/860SM.12.L/860SM.12 (3).jpg",
         "/images/new-img/model-2/860/860SM.12.L/860SM.12 (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Glimmer",
+      "name": "Glimmer 860SM.12L"
     },
     {
       "modelNo": "860SM.16L",
@@ -12030,7 +12642,9 @@
         "/images/new-img/model-2/860/860SM.16.L/860SM.16 (3).jpg",
         "/images/new-img/model-2/860/860SM.16.L/860SM.16 (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Glimmer",
+      "name": "Glimmer 860SM.16L"
     },
     {
       "modelNo": "860TM.12L",
@@ -12070,7 +12684,9 @@
         "/images/new-img/model-2/860/860TM.12.L/860TM.12 (3).jpg",
         "/images/new-img/model-2/860/860TM.12.L/860TM.12 (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Glimmer",
+      "name": "Glimmer 860TM.12L"
     },
     {
       "modelNo": "860TM.16L",
@@ -12110,7 +12726,9 @@
         "/images/new-img/model-2/860/860TM.16.L/860TM.16 (3).jpg",
         "/images/new-img/model-2/860/860TM.16.L/860TM.16 (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Glimmer",
+      "name": "Glimmer 860TM.16L"
     },
     {
       "modelNo": "905BLM.12L",
@@ -12150,7 +12768,9 @@
         "/images/new-img/model-2/905/905BLM.12L/905BLM (3).jpg",
         "/images/new-img/model-2/905/905BLM.12L/905BLM (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Echo",
+      "name": "Echo 905BLM.12L"
     },
     {
       "modelNo": "905GM.16L",
@@ -12190,7 +12810,9 @@
         "/images/new-img/model-2/905/905GM.16L/905GM (3).jpg",
         "/images/new-img/model-2/905/905GM.16L/905GM (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Echo",
+      "name": "Echo 905GM.16L"
     },
     {
       "modelNo": "905GM.6L",
@@ -12230,7 +12852,9 @@
         "/images/new-img/model-2/905/905GM.6L/905GM (3).jpg",
         "/images/new-img/model-2/905/905GM.6L/905GM (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Echo",
+      "name": "Echo 905GM.6L"
     },
     {
       "modelNo": "905GNM.13L",
@@ -12270,7 +12894,9 @@
         "/images/new-img/model-2/905/905GNM.13L/905GNM (3).jpg",
         "/images/new-img/model-2/905/905GNM.13L/905GNM (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Echo",
+      "name": "Echo 905GNM.13L"
     },
     {
       "modelNo": "905RTM.12L",
@@ -12310,7 +12936,9 @@
         "/images/new-img/model-2/905/905RTM.12L/905RTM (3).jpg",
         "/images/new-img/model-2/905/905RTM.12L/905RTM (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Echo",
+      "name": "Echo 905RTM.12L"
     },
     {
       "modelNo": "905RTM.16L",
@@ -12350,7 +12978,9 @@
         "/images/new-img/model-2/905/905RTM.16L/905RTM (3).jpg",
         "/images/new-img/model-2/905/905RTM.16L/905RTM (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Echo",
+      "name": "Echo 905RTM.16L"
     },
     {
       "modelNo": "905RTM.6L",
@@ -12390,7 +13020,9 @@
         "/images/new-img/model-2/905/905RTM.6L/905RTM (3).jpg",
         "/images/new-img/model-2/905/905RTM.6L/905RTM (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Echo",
+      "name": "Echo 905RTM.6L"
     },
     {
       "modelNo": "905SM.6L",
@@ -12430,7 +13062,9 @@
         "/images/new-img/model-2/905/905SM.6L/905SM (3).jpg",
         "/images/new-img/model-2/905/905SM.6L/905SM (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Echo",
+      "name": "Echo 905SM.6L"
     },
     {
       "modelNo": "912GM.6L",
@@ -12470,7 +13104,9 @@
         "/images/new-img/model-2/912/912GM.6L/912GM (3).jpg",
         "/images/new-img/model-2/912/912GM.6L/912GM (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Hallmark",
+      "name": "Hallmark 912GM.6L"
     },
     {
       "modelNo": "912RGM.6L",
@@ -12510,7 +13146,9 @@
         "/images/new-img/model-2/912/912RGM.6L/912RGM (3).jpg",
         "/images/new-img/model-2/912/912RGM.6L/912RGM (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Hallmark",
+      "name": "Hallmark 912RGM.6L"
     },
     {
       "modelNo": "912RTM.5L",
@@ -12550,7 +13188,9 @@
         "/images/new-img/model-2/912/912RTM.5L/912RTM (3).jpg",
         "/images/new-img/model-2/912/912RTM.5L/912RTM (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Hallmark",
+      "name": "Hallmark 912RTM.5L"
     },
     {
       "modelNo": "912TM.6L",
@@ -12590,7 +13230,9 @@
         "/images/new-img/model-2/912/912TM.6L/912TM (3).jpg",
         "/images/new-img/model-2/912/912TM.6L/912TM (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Hallmark",
+      "name": "Hallmark 912TM.6L"
     },
     {
       "modelNo": "962GM.16L",
@@ -12631,7 +13273,9 @@
         "/images/new-img/model-2/962/962GM.16L/962GM (4).jpg",
         "/images/new-img/model-2/962/Moodshoots/962GM.16L.jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Classic",
+      "name": "Classic 962GM.16L"
     },
     {
       "modelNo": "962GM.2L",
@@ -12672,7 +13316,9 @@
         "/images/new-img/model-2/962/962GM.2L/962GM (4).jpg",
         "/images/new-img/model-2/962/Moodshoots/962GM.2L.jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Classic",
+      "name": "Classic 962GM.2L"
     },
     {
       "modelNo": "962RGM.16L",
@@ -12713,7 +13359,9 @@
         "/images/new-img/model-2/962/962RGM.16L/962RGM (4).jpg",
         "/images/new-img/model-2/962/Moodshoots/962RGM.16L.jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Classic",
+      "name": "Classic 962RGM.16L"
     },
     {
       "modelNo": "962RGM.2L",
@@ -12754,7 +13402,9 @@
         "/images/new-img/model-2/962/962RGM.2L/962RGM (4).jpg",
         "/images/new-img/model-2/962/Moodshoots/962RGM.2L.jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Classic",
+      "name": "Classic 962RGM.2L"
     },
     {
       "modelNo": "962RGM.8L",
@@ -12795,7 +13445,9 @@
         "/images/new-img/model-2/962/962RGM.8L/962RGM (4).jpg",
         "/images/new-img/model-2/962/Moodshoots/962RGM.8L.jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Classic",
+      "name": "Classic 962RGM.8L"
     },
     {
       "modelNo": "962RGM.9L",
@@ -12836,7 +13488,9 @@
         "/images/new-img/model-2/962/962RGM.9L/962RGM (4).jpg",
         "/images/new-img/model-2/962/Moodshoots/962RGM.9L.jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Classic",
+      "name": "Classic 962RGM.9L"
     },
     {
       "modelNo": "962RTM.16L",
@@ -12877,7 +13531,9 @@
         "/images/new-img/model-2/962/962RTM.16L/962RTM (4).jpg",
         "/images/new-img/model-2/962/Moodshoots/962RTM.16L.jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Classic",
+      "name": "Classic 962RTM.16L"
     },
     {
       "modelNo": "962RTM.2L",
@@ -12918,7 +13574,9 @@
         "/images/new-img/model-2/962/962RTM.2L/962RTM (4).jpg",
         "/images/new-img/model-2/962/Moodshoots/962RTM.2L.jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Classic",
+      "name": "Classic 962RTM.2L"
     },
     {
       "modelNo": "962RTM.8L",
@@ -12959,7 +13617,9 @@
         "/images/new-img/model-2/962/962RTM.8L/962RTM (4).jpg",
         "/images/new-img/model-2/962/Moodshoots/962RTM.8L.jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Classic",
+      "name": "Classic 962RTM.8L"
     },
     {
       "modelNo": "962RTM.9L",
@@ -13000,7 +13660,9 @@
         "/images/new-img/model-2/962/962RTM.9L/962RTM (4).jpg",
         "/images/new-img/model-2/962/Moodshoots/962RTM.9L.jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Classic",
+      "name": "Classic 962RTM.9L"
     },
     {
       "modelNo": "962SM.2L",
@@ -13041,7 +13703,9 @@
         "/images/new-img/model-2/962/962SM.2L/962SM (4).jpg",
         "/images/new-img/model-2/962/Moodshoots/962SM.2L.jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Classic",
+      "name": "Classic 962SM.2L"
     },
     {
       "modelNo": "962SM.5L",
@@ -13082,7 +13746,9 @@
         "/images/new-img/model-2/962/962SM.5L/962SM (4).jpg",
         "/images/new-img/model-2/962/Moodshoots/962SM.5L.jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Classic",
+      "name": "Classic 962SM.5L"
     },
     {
       "modelNo": "962TM.16L",
@@ -13123,7 +13789,9 @@
         "/images/new-img/model-2/962/962TM.16L/962TM (4).jpg",
         "/images/new-img/model-2/962/Moodshoots/962TM.16L.jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Classic",
+      "name": "Classic 962TM.16L"
     },
     {
       "modelNo": "962TM.2L",
@@ -13164,7 +13832,9 @@
         "/images/new-img/model-2/962/962TM.2L/962TM (4).jpg",
         "/images/new-img/model-2/962/Moodshoots/962TM.2L.jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Classic",
+      "name": "Classic 962TM.2L"
     },
     {
       "modelNo": "962TM.5L",
@@ -13206,7 +13876,9 @@
         "/images/new-img/model-2/962/962TM.5L/962TM (4).jpg",
         "/images/new-img/model-2/962/Moodshoots/962TM.5L.jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Classic",
+      "name": "Classic 962TM.5L"
     },
     {
       "modelNo": "J905GM.16L",
@@ -13246,7 +13918,9 @@
         "/images/new-img/model-2/J905/J905GM.16L/J905GM (3).jpg",
         "/images/new-img/model-2/J905/J905GM.16L/J905GM (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Echo",
+      "name": "Echo J905GM.16L"
     },
     {
       "modelNo": "J905GM.6L",
@@ -13286,7 +13960,9 @@
         "/images/new-img/model-2/J905/J905GM.6L/J905GM (3).jpg",
         "/images/new-img/model-2/J905/J905GM.6L/J905GM (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Echo",
+      "name": "Echo J905GM.6L"
     },
     {
       "modelNo": "J905RTM.12L",
@@ -13326,7 +14002,9 @@
         "/images/new-img/model-2/J905/J905RTM.12L/J905RTM (3).jpg",
         "/images/new-img/model-2/J905/J905RTM.12L/J905RTM (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Echo",
+      "name": "Echo J905RTM.12L"
     },
     {
       "modelNo": "J905RTM.16L",
@@ -13366,7 +14044,9 @@
         "/images/new-img/model-2/J905/J905RTM.16L/J905RTM (3).jpg",
         "/images/new-img/model-2/J905/J905RTM.16L/J905RTM (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Echo",
+      "name": "Echo J905RTM.16L"
     },
     {
       "modelNo": "J905RTM.6L",
@@ -13406,7 +14086,9 @@
         "/images/new-img/model-2/J905/J905RTM.6L/J905RTM (3).jpg",
         "/images/new-img/model-2/J905/J905RTM.6L/J905RTM (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Echo",
+      "name": "Echo J905RTM.6L"
     },
     {
       "modelNo": "J905SM.6L",
@@ -13446,7 +14128,9 @@
         "/images/new-img/model-2/J905/J905SM.6L/J905SM (3).jpg",
         "/images/new-img/model-2/J905/J905SM.6L/J905SM (4).jpg"
       ],
-      "sourceModel": "model-2"
+      "sourceModel": "model-2",
+      "collection": "Echo",
+      "name": "Echo J905SM.6L"
     }
   ]
 }

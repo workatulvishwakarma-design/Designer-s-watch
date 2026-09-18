@@ -84,7 +84,7 @@ export function getAllSearchableProducts(): SearchableProduct[] {
     const primary = resolveTransparentImage(item.primaryImage);
     const priceNum = item.price > 0 ? item.price : (item.mrp > 0 ? item.mrp : 12995);
     return {
-      name: `D'Signer ${item.modelNo}${item.dialColor ? ` (${item.dialColor})` : ""}`,
+      name: item.name ? `${item.name}${item.dialColor ? ` (${item.dialColor})` : ""}` : `D'Signer ${item.modelNo}${item.dialColor ? ` (${item.dialColor})` : ""}`,
       slug: item.slug,
       brand: "D'SIGNER",
       modelNumber: item.modelNo,

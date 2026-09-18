@@ -95,8 +95,8 @@ export const COLLECTION_MAP: Record<string, string> = {
   // AXION — "Futuristic scientific energy" (Men's)
   "814": "axion",
 
-  // MATRIX — "Structured systems, precision" (Men's)
-  "916": "matrix",
+  // STRATOS — "Push beyond limits, high-altitude precision" (Men's)
+  "916": "stratos",
 
   // SPECTRE — "Mystery, shadow" (Men's)
   "825": "spectre",

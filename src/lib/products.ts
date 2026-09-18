@@ -62,7 +62,9 @@ export function familyToUnified(family: ModelFamilyGroup): UnifiedProduct[] {
   return family.variants.map((v, idx) => ({
     id: `${family.slug}-${idx}`,
     slug: family.slug,
-    name: `${family.name} - ${v.dialColor.name}`,
+    name: family.brand?.toUpperCase() === "D'SIGNER"
+      ? `${family.name.includes(" ") ? family.name.split(" ")[0] : family.name} ${v.sku}`
+      : `${family.name} - ${v.dialColor.name}`,
     modelNumber: v.sku,
     modelFamily: family.familyId,
     collection: family.collectionSlug || undefined,

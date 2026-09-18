@@ -4,6 +4,8 @@ import type { UnifiedProduct } from "@/lib/products";
 import { resolveTransparentImage } from "@/lib/transparentImageResolver";
 
 export interface MasterProductItem {
+  name?: string;
+  collection?: string;
   modelNo: string;
   slug: string;
   series: string;
@@ -39,6 +41,8 @@ export interface MasterProductItem {
 
 export const EDITORIAL_ITEMS: MasterProductItem[] = [
   {
+    name: "Tactix 875RGBLM.5G",
+    collection: "Tactix",
     modelNo: "875RGBLM.5G",
     slug: "dsigner-875-rgblm",
     series: "875",
@@ -72,6 +76,8 @@ export const EDITORIAL_ITEMS: MasterProductItem[] = [
     gallery: ["/img/models/875RGBLM.5G.jpg"]
   },
   {
+    name: "Tactix 875RGGNM.3G",
+    collection: "Tactix",
     modelNo: "875RGGNM.3G",
     slug: "dsigner-875-rggnm",
     series: "875",
@@ -100,11 +106,13 @@ export const EDITORIAL_ITEMS: MasterProductItem[] = [
     waterResistance: "50 m",
     strapClosure: "Tang Buckle",
     glassMaterial: "Sapphire Coated Mineral Glass",
-    primaryImage: "/images/new-img/homme-3.png",
-    hoverImage: "/images/new-img/homme-3.png",
-    gallery: ["/images/new-img/homme-3.png"]
+    primaryImage: "/images/models/875RGGNM.3G.jpg",
+    hoverImage: "/images/models/875RGGNM.3G.jpg",
+    gallery: ["/images/models/875RGGNM.3G.jpg"]
   },
   {
+    name: "Grandeur 980GFS.16",
+    collection: "Grandeur",
     modelNo: "980GFS.16",
     slug: "dsigner-980-gfs",
     series: "980",
@@ -133,9 +141,9 @@ export const EDITORIAL_ITEMS: MasterProductItem[] = [
     waterResistance: "50 m",
     strapClosure: "Deployment Buckle",
     glassMaterial: "Curved Sapphire Crystal",
-    primaryImage: "/img/models/980GFS.16.jpg",
-    hoverImage: "/img/models/980GFS.16.jpg",
-    gallery: ["/img/models/980GFS.16.jpg"]
+    primaryImage: "/images/models/980GFS.16.jpg",
+    hoverImage: "/images/models/980GFS.16.jpg",
+    gallery: ["/images/models/980GFS.16.jpg"]
   }
 ];
 
@@ -154,7 +162,7 @@ function itemToUnified(item: MasterProductItem, idx: number, collectionSlug: str
   return {
     id: `dsigner-${item.slug}-${idx}`,
     slug: item.slug,
-    name: item.modelNo,
+    name: item.name || (item.collection ? `${item.collection} ${item.modelNo}` : item.modelNo),
     modelNumber: item.modelNo,
     modelFamily: item.series,
     collection: collectionSlug,
@@ -269,7 +277,7 @@ export function getDsignerProductBySlug(slugOrSku: string): ModelFamilyGroup | u
     slug: matched.slug,
     familyId: matched.series,
     collectionSlug: matched.gender === "Women" ? "dsigner-womens" : "dsigner-men",
-    name: matched.modelNo,
+    name: matched.name || (matched.collection ? `${matched.collection} ${matched.modelNo}` : matched.modelNo),
     brand: "D'SIGNER",
     category: `${matched.series} Series`,
     gender: matched.gender,
