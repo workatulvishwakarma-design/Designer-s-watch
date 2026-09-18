@@ -20,7 +20,7 @@ const IMAGES = {
     name: "D'Signer Tactix 875",
     price: 12800,
     slug: "dsigner-875-rgblm",
-    src: "/img/models/875RGBLM.5G.jpg",
+    src: "/images/models/875RGBLM.5G.jpg",
     alt: "D'Signer Tactix 875 – Rose Gold Black Link Bracelet",
     label: "TACTIX",
   },
@@ -29,16 +29,16 @@ const IMAGES = {
     name: "D'Signer Tactix 875",
     price: 13200,
     slug: "dsigner-875-rggnm",
-    src: "/images/new-img/homme-3.png",
+    src: "/images/models/875RGGNM.3G.jpg",
     alt: "D'Signer Tactix 875 – Rose Gold Multi Sub-Dial",
-    label: "D'SIGNER",
+    label: "TACTIX",
   },
   col3_top: {
     id: "980GFS-16",
     name: "D'Signer Grandeur 980",
     price: 18900,
     slug: "dsigner-980-gfs",
-    src: "/img/models/980GFS.16.jpg",
+    src: "/images/models/980GFS.16.jpg",
     alt: "D'Signer Grandeur 980 – Green Gold Skeleton Tourbillon",
     label: "GRANDEUR",
   },
@@ -47,7 +47,7 @@ const IMAGES = {
     name: "D'Signer Stratos 916",
     price: 15500,
     slug: "dsigner-916-gnm",
-    src: "/img/models/916GNM.16G.jpg",
+    src: "/images/models/916GNM.16G.jpg",
     alt: "D'Signer Stratos 916 – Green Drum Chrono",
     label: "STRATOS",
   },
@@ -115,6 +115,7 @@ export default function WatchGridCollage() {
               src={IMAGES.col1.src}
               alt={IMAGES.col1.alt}
               fill
+              unoptimized
               className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
               sizes="(max-width: 768px) 100vw, 25vw"
               priority
@@ -161,6 +162,7 @@ export default function WatchGridCollage() {
                 src={IMAGES.col2_top.src}
                 alt={IMAGES.col2_top.alt}
                 fill
+                unoptimized
                 className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 sizes="(max-width: 768px) 100vw, 25vw"
               />
@@ -196,6 +198,7 @@ export default function WatchGridCollage() {
                 src={IMAGES.col2_bottom.src}
                 alt={IMAGES.col2_bottom.alt}
                 fill
+                unoptimized
                 className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 sizes="(max-width: 768px) 100vw, 25vw"
               />
@@ -240,6 +243,7 @@ export default function WatchGridCollage() {
                 src={IMAGES.col3_top.src}
                 alt={IMAGES.col3_top.alt}
                 fill
+                unoptimized
                 className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 sizes="(max-width: 768px) 100vw, 25vw"
               />
@@ -275,6 +279,7 @@ export default function WatchGridCollage() {
                 src={IMAGES.col3_bottom.src}
                 alt={IMAGES.col3_bottom.alt}
                 fill
+                unoptimized
                 className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 sizes="(max-width: 768px) 100vw, 25vw"
               />
@@ -319,6 +324,7 @@ export default function WatchGridCollage() {
                 src={IMAGES.col4.src}
                 alt={IMAGES.col4.alt}
                 fill
+                unoptimized
                 className="object-contain p-6 transition-transform duration-700 ease-out group-hover:scale-108 drop-shadow-[0_15px_30px_rgba(0,0,0,0.7)]"
                 sizes="(max-width: 768px) 100vw, 25vw"
                 priority
