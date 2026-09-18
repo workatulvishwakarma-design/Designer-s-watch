@@ -1,6 +1,13 @@
 import { PrismaClient } from "@prisma/client"
 import { PrismaPg } from "@prisma/adapter-pg"
 import { Pool } from "pg"
+import dns from "dns"
+
+try {
+  dns.setDefaultResultOrder("ipv4first")
+} catch {
+  // Ignore in environments where not supported
+}
 
 const connectionString = process.env.DATABASE_URL
 if (!connectionString) {
