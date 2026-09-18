@@ -26,7 +26,7 @@ export interface ProductSpecs {
 
 export interface Variant {
   sku: string;
-  ean: string | null;
+  ean?: string | null;
   price: number;
   mrp: number;
   gender: "Men" | "Women" | "Unisex";

@@ -44,11 +44,12 @@ export function MessagesClient({ inquiries }: { inquiries: Inquiry[] }) {
     archived: inquiries.filter(i => i.status === "ARCHIVED").length,
   }
 
-  const handleStatusChange = async (id: string, newStatus: string) => {
-    const formData = new FormData()
-    formData.set("id", id)
-    formData.set("status", newStatus)
-    await updateInquiryStatus(formData)
+  const handleStatusChange = async (id: string, newStatus: "PENDING" | "READ" | "RESPONDED" | "ARCHIVED") => {
+    const res = await updateInquiryStatus(id, newStatus)
+    if (res?.error) {
+      toast.error(res.error)
+      return
+    }
     toast.success(`Status updated to ${newStatus}`)
     // Optimistic: update in-memory
     if (selected?.id === id) {

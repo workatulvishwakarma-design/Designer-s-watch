@@ -1,8 +1,6 @@
-import fs from "fs";
-import path from "path";
 import { allModelFamilies } from "@/data/productData";
 import { collections } from "@/data/collections";
-import { getAllPrimaryImageCandidates } from "@/lib/imageResolver";
+import { getAllPrimaryImageCandidates, pathExistsOnDisk } from "@/lib/imageResolver";
 
 export interface AuditIssue {
   id: string;
@@ -25,9 +23,14 @@ export interface AuditSummary {
   totalMissingImages: number;
   completionPercentage: number;
   lastScanTimestamp: string;
+  totalPlaceholders?: number;
+  totalDuplicates?: number;
+  healthyWatches?: number;
+  criticalMissing?: number;
 }
 
 export interface AuditReport {
+  timestamp?: string;
   summary: AuditSummary;
   issues: AuditIssue[];
 }
@@ -50,13 +53,7 @@ function fileExistsInPublic(imagePath: string): boolean {
   if (!imagePath || imagePath === "/" || imagePath.startsWith("http")) {
     return false;
   }
-  
-  try {
-    const absolutePath = path.join(process.cwd(), "public", imagePath);
-    return fs.existsSync(absolutePath);
-  } catch (error) {
-    return false;
-  }
+  return pathExistsOnDisk(imagePath);
 }
 
 /**

@@ -68,6 +68,7 @@ export async function upsertProductFamily(formData: FormData): Promise<ActionRes
   const data = parsed.data
 
   try {
+    const adminId = session?.user?.id || "admin"
     if (data.id) {
       await prisma.productFamily.update({
         where: { id: data.id },
@@ -87,7 +88,7 @@ export async function upsertProductFamily(formData: FormData): Promise<ActionRes
           storyText: data.storyText,
         }
       })
-      await createAuditLog("PRODUCT_UPDATE", `Updated family: ${data.name}`, session.user.id)
+      await createAuditLog("PRODUCT_UPDATE", `Updated family: ${data.name}`, adminId)
     } else {
       await prisma.productFamily.create({
         data: {
@@ -106,7 +107,7 @@ export async function upsertProductFamily(formData: FormData): Promise<ActionRes
           storyText: data.storyText,
         }
       })
-      await createAuditLog("PRODUCT_CREATE", `Created family: ${data.name}`, session.user.id)
+      await createAuditLog("PRODUCT_CREATE", `Created family: ${data.name}`, adminId)
     }
 
     revalidatePath("/admin/products")
@@ -204,13 +205,16 @@ export async function upsertProductVariant(formData: FormData): Promise<ActionRe
         })
         
         // Update Inventory
-        await tx.inventory.upsert({
-          where: { variantId: data.id },
-          create: { variantId: data.id, stock: data.stock },
-          update: { stock: data.stock }
-        })
+        if (data.id) {
+          await tx.inventory.upsert({
+            where: { variantId: data.id },
+            create: { variantId: data.id, sku: data.sku, stock: data.stock },
+            update: { stock: data.stock, sku: data.sku }
+          })
+        }
       })
-      await createAuditLog("VARIANT_UPDATE", `Updated variant: ${data.sku}`, session.user.id)
+      const adminId = session?.user?.id || "admin"
+      await createAuditLog("VARIANT_UPDATE", `Updated variant: ${data.sku}`, adminId)
     } else {
       await prisma.$transaction(async (tx) => {
         const variant = await tx.productVariant.create({
@@ -232,10 +236,11 @@ export async function upsertProductVariant(formData: FormData): Promise<ActionRe
         })
         
         await tx.inventory.create({
-          data: { variantId: variant.id, stock: data.stock }
+          data: { variantId: variant.id, sku: variant.sku, stock: data.stock }
         })
       })
-      await createAuditLog("VARIANT_CREATE", `Created variant: ${data.sku}`, session.user.id)
+      const adminId = session?.user?.id || "admin"
+      await createAuditLog("VARIANT_CREATE", `Created variant: ${data.sku}`, adminId)
     }
 
     revalidatePath(`/admin/products/${data.familyId}`)

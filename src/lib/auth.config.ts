@@ -8,7 +8,6 @@ export const authConfig = {
   callbacks: {
     async jwt({ token, user, trigger, session }) {
       if (user) {
-        console.log("JWT callback - User detected:", { id: user.id, role: (user as any).role });
         token.role = (user as any).role || "USER"
         if (user.id) token.id = user.id
       }
@@ -16,7 +15,6 @@ export const authConfig = {
     },
     async session({ session, token }) {
       if (token && session.user) {
-        console.log("Session callback - Token found:", { id: token.id, role: token.role });
         (session.user as any).role = token.role || "USER"
         if (token.sub) {
           (session.user as any).id = token.sub

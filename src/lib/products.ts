@@ -99,7 +99,22 @@ export function familyToUnified(family: ModelFamilyGroup): UnifiedProduct[] {
 
 /* ═══════ Get ALL variants as flat UnifiedProduct[] (for grid pages) ═══════ */
 export function getAllUnifiedProducts(): UnifiedProduct[] {
-  return allModelFamilies.flatMap(familyToUnified);
+  const familyUnified = allModelFamilies.flatMap(familyToUnified);
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const { ESCORT_MEN_UNIFIED_PRODUCTS, ESCORT_WOMENS_UNIFIED_PRODUCTS } = require("@/lib/escortCatalog");
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const { DSIGNER_MEN_UNIFIED_PRODUCTS, DSIGNER_WOMENS_UNIFIED_PRODUCTS } = require("@/lib/dsignerCatalog");
+    return [
+      ...(DSIGNER_MEN_UNIFIED_PRODUCTS || []),
+      ...(DSIGNER_WOMENS_UNIFIED_PRODUCTS || []),
+      ...(ESCORT_MEN_UNIFIED_PRODUCTS || []),
+      ...(ESCORT_WOMENS_UNIFIED_PRODUCTS || []),
+      ...familyUnified
+    ];
+  } catch {
+    return familyUnified;
+  }
 }
 
 /* ═══════ Convert DB product row → UnifiedProduct ═══════ */

@@ -36,7 +36,7 @@ export interface QuickViewProduct {
   };
   dialColor?: string;
   strapColor?: string;
-  ean?: string;
+  ean?: string | null;
 }
 
 interface QuickViewModalProps {

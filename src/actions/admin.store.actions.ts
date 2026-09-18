@@ -116,7 +116,8 @@ export async function upsertStore(formData: FormData): Promise<StoreActionRespon
           sortOrder: data.sortOrder,
         }
       })
-      await createAuditLog("STORE_UPDATE", `Updated store: ${data.name} (${data.city})`, session.user.id)
+      const adminId = session?.user?.id || "admin"
+      await createAuditLog("STORE_UPDATE", `Updated store: ${data.name} (${data.city})`, adminId)
       revalidatePath("/admin/stores")
       revalidatePath("/")
       return { success: "Store updated successfully!", store: updated }
@@ -141,7 +142,8 @@ export async function upsertStore(formData: FormData): Promise<StoreActionRespon
           sortOrder: data.sortOrder,
         }
       })
-      await createAuditLog("STORE_CREATE", `Created store: ${data.name} (${data.city})`, session.user.id)
+      const adminId = session?.user?.id || "admin"
+      await createAuditLog("STORE_CREATE", `Created store: ${data.name} (${data.city})`, adminId)
       revalidatePath("/admin/stores")
       revalidatePath("/")
       return { success: "Store created successfully!", store: created }
@@ -171,7 +173,8 @@ export async function deleteStore(storeId: string): Promise<StoreActionResponse>
       where: { id: storeId }
     })
 
-    await createAuditLog("STORE_DELETE", `Deleted store: ${existing.name} (${existing.city})`, session.user.id)
+    const adminId = session?.user?.id || "admin"
+    await createAuditLog("STORE_DELETE", `Deleted store: ${existing.name} (${existing.city})`, adminId)
     revalidatePath("/admin/stores")
     revalidatePath("/")
     return { success: "Store deleted successfully" }
@@ -202,10 +205,11 @@ export async function toggleStoreStatus(storeId: string, isActive?: boolean): Pr
       data: { isActive: nextState }
     })
 
+    const adminId = session?.user?.id || "admin"
     await createAuditLog(
       "STORE_UPDATE",
       `Changed store status: ${existing.name} to ${nextState ? 'Active' : 'Inactive'}`,
-      session.user.id
+      adminId
     )
     revalidatePath("/admin/stores")
     revalidatePath("/")

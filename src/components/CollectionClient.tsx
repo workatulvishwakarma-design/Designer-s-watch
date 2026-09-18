@@ -10,6 +10,7 @@ import { collections } from "@/data/collections";
 import LuxuryPlaceholder from "@/components/ui/LuxuryPlaceholder";
 import { ProductGridSkeleton } from "@/components/ui/CollectionSkeleton";
 import { useWishlistStore } from "@/lib/store/wishlist";
+import { useCartStore } from "@/lib/store/cart";
 import { toast } from "sonner";
 
 /* ═══════════════════════════════════════════
@@ -17,7 +18,9 @@ import { toast } from "sonner";
    ═══════════════════════════════════════════ */
 function CollectionFamilyCard({ family }: { family: ModelFamilyGroup }) {
   const { toggleItem, isInWishlist } = useWishlistStore();
+  const { addItem } = useCartStore();
   const [mounted, setMounted] = useState(false);
+  const [addedAnimation, setAddedAnimation] = useState(false);
   useEffect(() => { setMounted(true); }, []);
   const [hovered, setHovered] = useState(false);
   const [imgFailed, setImgFailed] = useState(false);
@@ -46,6 +49,26 @@ function CollectionFamilyCard({ family }: { family: ModelFamilyGroup }) {
       toast.success("Added to wishlist");
     }
   };
+
+  const handleQuickAdd = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    addItem({
+      productId: family.slug,
+      name: family.name,
+      price: price,
+      quantity: 1,
+      image: primaryImage,
+      slug: family.slug,
+      variant: family.variants[0] ? {
+        color: family.variants[0].dialColor?.name || undefined,
+      } : undefined,
+    });
+    setAddedAnimation(true);
+    setTimeout(() => setAddedAnimation(false), 1200);
+    toast.success(`${family.name} added to cart`);
+  };
+
   const showImages = primaryImage && !imgFailed;
 
   return (
@@ -99,9 +122,11 @@ function CollectionFamilyCard({ family }: { family: ModelFamilyGroup }) {
             type="button"
             className="absolute top-3 right-3 z-20 w-9 h-9 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center transition-all duration-300 hover:bg-white shadow-sm cursor-pointer group/heart"
             onClick={handleToggleWishlist}
+            onMouseDown={(e) => e.stopPropagation()}
+            onPointerDown={(e) => e.stopPropagation()}
             aria-label={isSaved ? "Remove from wishlist" : "Add to wishlist"}
           >
-            <Heart size={18} className={`transition-transform duration-200 group-hover/heart:scale-110 ${isSaved ? "fill-[#C8102E] text-[#C8102E]" : "text-[#1A1918] hover:text-[#C8102E]"}`} />
+            <Heart size={18} className={`pointer-events-none transition-transform duration-200 group-hover/heart:scale-110 ${isSaved ? "fill-[#C8102E] text-[#C8102E]" : "text-[#1A1918] hover:text-[#C8102E]"}`} />
           </button>
         </div>
 
@@ -117,15 +142,30 @@ function CollectionFamilyCard({ family }: { family: ModelFamilyGroup }) {
             </div>
           </div>
 
-          {/* Quick Add + */}
+          {/* Quick Add + Button */}
           <button
-            className="w-8 h-8 flex items-center justify-center text-[#003926] hover:bg-[#003926] hover:text-white rounded-full border border-[#003926]/20 transition-all duration-300 shrink-0 ml-3"
-            onClick={(e) => { e.preventDefault(); e.stopPropagation(); }}
+            type="button"
+            className={`w-8 h-8 flex items-center justify-center rounded-full border transition-all duration-300 shrink-0 ml-3 cursor-pointer ${
+              addedAnimation
+                ? "bg-[#003926] text-white border-[#003926] scale-110"
+                : "text-[#003926] hover:bg-[#003926] hover:text-white border-[#003926]/20"
+            }`}
+            onClick={handleQuickAdd}
+            onMouseDown={(e) => e.stopPropagation()}
+            onPointerDown={(e) => e.stopPropagation()}
+            title={`Add ${family.name} to cart`}
+            aria-label={`Add ${family.name} to cart`}
           >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <line x1="12" y1="5" x2="12" y2="19" />
-              <line x1="5" y1="12" x2="19" y2="12" />
-            </svg>
+            {addedAnimation ? (
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="pointer-events-none">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+            ) : (
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="pointer-events-none">
+                <line x1="12" y1="5" x2="12" y2="19" />
+                <line x1="5" y1="12" x2="19" y2="12" />
+              </svg>
+            )}
           </button>
         </div>
       </div>
@@ -710,83 +750,17 @@ export default function CollectionClient({
 
   return (
     <main className="min-h-screen bg-[#FAF8F4]">
-      {/* ═══ 1. HERO SECTION ═══ */}
-      <section className="relative pt-32 pb-16 lg:pt-40 lg:pb-24 overflow-hidden" style={{ background: "#111110" }}>
-        <div className="absolute top-1/2 left-1/4 w-[500px] h-[500px] pointer-events-none opacity-10 blur-[120px] -translate-y-1/2"
-          style={{ background: "radial-gradient(circle, rgba(0,57,38,0.5), transparent)" }} />
-
-        <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
-          {/* Breadcrumb */}
-          <motion.div initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }}
-            className="flex items-center gap-2 mb-8">
-            <Link href="/" className="font-dm text-[11px] text-white/40 tracking-[0.1em] uppercase hover:text-[#B8935A] transition-colors">Home</Link>
-            <span className="text-white/20">/</span>
-            <Link href="/collections/dsigner" className="font-dm text-[11px] text-white/40 tracking-[0.1em] uppercase hover:text-[#B8935A] transition-colors">Collections</Link>
-            <span className="text-white/20">/</span>
-            <span className="font-dm text-[11px] text-[#B8935A] tracking-[0.1em] uppercase">{collection.title}</span>
-          </motion.div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-end">
-            <div>
-              <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}
-                className="flex items-center gap-3 mb-5">
-                <div className="w-8 h-px bg-[#B8935A]" />
-                <span className="font-dm text-[10px] tracking-[0.3em] uppercase text-[#B8935A]">
-                  {collection.gender === "Unisex" ? "HIS & HERS" : collection.gender === "Men" ? "FOR HIM" : "FOR HER"} COLLECTION
-                </span>
-              </motion.div>
-              <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.1 }}
-                className="font-cormorant text-[48px] sm:text-[64px] lg:text-[76px] text-white leading-[1.02]">
-                {collection.title}<span className="text-[#B8935A]">.</span>
-              </motion.h1>
-              <motion.p initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }}
-                className="font-cormorant italic text-[18px] text-white/50 mt-3">
-                &ldquo;{collection.tagline || "Elegance and Precision"}&rdquo;
-              </motion.p>
-            </div>
-            <div>
-              <motion.p initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.3 }}
-                className="font-dm text-[14px] text-white/40 leading-[1.85] max-w-lg lg:ml-auto">
-                {collection.description}
-              </motion.p>
-              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6, delay: 0.5 }}
-                className="flex items-center gap-6 mt-6 lg:justify-end">
-                <span className="font-dm text-[11px] text-white/30 tracking-[0.15em] uppercase">
-                  {families.length} {families.length === 1 ? "Family" : "Families"}
-                </span>
-                {collection.identity && (
-                  <span className="font-dm text-[11px] text-[#B8935A] tracking-[0.1em] uppercase">
-                    {collection.identity}
-                  </span>
-                )}
-              </motion.div>
-            </div>
-          </div>
-        </div>
-
-        {/* Scroll indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2, duration: 0.8 }}
-          className="absolute bottom-6 left-1/2 -translate-x-1/2"
-        >
-          <motion.div
-            animate={{ y: [0, 6, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-            className="w-5 h-8 rounded-full border border-white/15 flex items-start justify-center pt-1.5"
-          >
-            <div className="w-0.5 h-2 bg-[#B8935A]/50 rounded-full" />
-          </motion.div>
-        </motion.div>
-      </section>
-
-      {/* ═══ 2. COLLECTION STORY ═══ */}
-      <CollectionStory collection={collection} />
-
-      {/* ═══ 3. FEATURED PRODUCTS (WITH FALLBACK/TEASER/SKELETON) ═══ */}
-      <section ref={sectionRef} className="py-16 lg:py-24 bg-[#FAF8F4]">
+      {/* ═══ 1. PRODUCT COLLECTION / GRID ═══ */}
+      <section ref={sectionRef} className="pt-28 md:pt-32 pb-16 lg:pb-24 bg-[#FAF8F4]">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
+          {/* Breadcrumb Navigation */}
+          <div className="flex items-center gap-2 mb-8">
+            <Link href="/" className="font-dm text-[11px] text-[#9C9690] tracking-[0.1em] uppercase hover:text-[#003926] transition-colors">Home</Link>
+            <span className="text-[#9C9690]/40">/</span>
+            <Link href="/collections" className="font-dm text-[11px] text-[#9C9690] tracking-[0.1em] uppercase hover:text-[#003926] transition-colors">Collections</Link>
+            <span className="text-[#9C9690]/40">/</span>
+            <span className="font-dm text-[11px] text-[#003926] tracking-[0.1em] uppercase font-semibold">{collection.title}</span>
+          </div>
           {families.length > 0 ? (
             <>
               <div className="text-center mb-12">
@@ -830,10 +804,7 @@ export default function CollectionClient({
       {/* ═══ 6. CRAFTSMANSHIP SECTION ═══ */}
       <CraftsmanshipSection />
 
-      {/* ═══ 7. RELATED COLLECTIONS ═══ */}
-      <RelatedCollections currentSlug={slug} />
-
-      {/* ═══ 8. FAQ SECTION ═══ */}
+      {/* ═══ 7. FAQ SECTION ═══ */}
       <CollectionFAQ collection={collection} />
 
       {/* ═══ 9. FINAL CTA SECTION ═══ */}

@@ -60,18 +60,18 @@ export default function Footer() {
     const isHome = pathname === "/";
 
     return (
-        <footer className="relative bg-[#FAF8F4] text-[#001F14] overflow-hidden pt-12 pb-12">
+        <footer className={`relative bg-[#FAF8F4] text-[#001F14] overflow-hidden ${isHome ? 'pt-6 pb-12' : 'pt-12 pb-12'}`}>
             <motion.div 
                 variants={containerVariants}
-                initial="hidden"
+                initial="show"
                 whileInView="show"
-                viewport={{ once: true, margin: "-100px" }}
+                viewport={{ once: true }}
                 className="w-full max-w-[1800px] mx-auto px-4 xl:px-12"
             >
                 {/* TOP AREA: Massive Cinematic Newsletter Block (Only on Home Page) */}
                 {isHome && (
-                    <motion.div variants={itemVariants} className="w-full mb-20">
-                        <div className="relative w-full rounded-[2.5rem] overflow-hidden bg-gradient-to-br from-[#003926] via-[#001F14] to-[#000A06] px-8 py-24 md:py-36 flex flex-col items-center text-center shadow-[0_40px_80px_rgba(0,57,38,0.12)] group/newsletter">
+                    <motion.div variants={itemVariants} className="w-full mb-12 md:mb-16">
+                        <div className="relative w-full rounded-[2rem] overflow-hidden bg-gradient-to-br from-[#003926] via-[#001F14] to-[#000A06] px-8 py-14 md:py-20 flex flex-col items-center text-center shadow-[0_40px_80px_rgba(0,57,38,0.12)] group/newsletter">
                             {/* Immersive background lighting */}
                             <div className="absolute top-0 right-0 w-[80vw] h-[80vw] pointer-events-none opacity-[0.08] bg-[radial-gradient(circle_at_top_right,_#FAF8F4_0%,_transparent_60%)] rounded-full transition-transform duration-[3s] group-hover/newsletter:scale-110" />
                             <div className="absolute inset-0 pointer-events-none opacity-[0.03]" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }} />
@@ -168,20 +168,21 @@ export default function Footer() {
                         <motion.div variants={itemVariants} className="flex flex-col gap-8">
                             <h6 className="text-[#001F14] text-[15px] md:text-[16px] tracking-[0.1em] uppercase font-medium font-montserrat">The Maison</h6>
                             <nav className="flex flex-col gap-4 text-[13px] md:text-[14px] leading-[1.5] font-montserrat tracking-[0.04em] text-[#003926]/70 uppercase font-normal">
-                                <Link href="/about-5" className="hover:text-[#001F14] transition-colors duration-500 w-fit">Our Heritage</Link>
-                                <Link href="/pillar-4" className="hover:text-[#001F14] transition-colors duration-500 w-fit">Core Divisions</Link>
-                                <Link href="/about-5" className="hover:text-[#001F14] transition-colors duration-500 w-fit">Craftsmanship</Link>
+                                <Link href="/about-5" className="hover:text-[#001F14] transition-colors duration-500 w-fit relative group/link">About Us<span className="absolute -bottom-1 left-0 w-0 h-px bg-[#003926] group-hover/link:w-full transition-all duration-500" /></Link>
+                                <Link href="/pillar-4" className="hover:text-[#001F14] transition-colors duration-500 w-fit relative group/link">Pillars<span className="absolute -bottom-1 left-0 w-0 h-px bg-[#003926] group-hover/link:w-full transition-all duration-500" /></Link>
+                                <Link href="/contact" className="hover:text-[#001F14] transition-colors duration-500 w-fit relative group/link">Contact<span className="absolute -bottom-1 left-0 w-0 h-px bg-[#003926] group-hover/link:w-full transition-all duration-500" /></Link>
                             </nav>
                         </motion.div>
 
-                        {/* Client Services */}
+                        {/* D’SIGNER Collections */}
                         <motion.div variants={itemVariants} className="flex flex-col gap-8">
-                            <h6 className="text-[#001F14] text-[15px] md:text-[16px] tracking-[0.1em] uppercase font-medium font-montserrat">Client Services</h6>
+                            <h6 className="text-[#001F14] text-[15px] md:text-[16px] tracking-[0.1em] uppercase font-medium font-montserrat">D’SIGNER Collections</h6>
                             <nav className="flex flex-col gap-4 text-[13px] md:text-[14px] leading-[1.5] font-montserrat tracking-[0.04em] text-[#003926]/70 uppercase font-normal">
-                                <Link href="/contact" className="hover:text-[#001F14] transition-colors duration-500 w-fit">Contact Us</Link>
-                                <Link href="/contact" className="hover:text-[#001F14] transition-colors duration-500 w-fit">FAQ</Link>
-                                <Link href="/contact" className="hover:text-[#001F14] transition-colors duration-500 w-fit">Watch Service</Link>
-                                <a href="https://nagpalgroup.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#001F14] transition-colors duration-500 w-fit">Corporate Portal</a>
+                                <Link href="/collections/grandeur" className="hover:text-[#001F14] transition-colors duration-500 w-fit relative group/link">Grandeur<span className="absolute -bottom-1 left-0 w-0 h-px bg-[#003926] group-hover/link:w-full transition-all duration-500" /></Link>
+                                <Link href="/collections/eternal" className="hover:text-[#001F14] transition-colors duration-500 w-fit relative group/link">Eternal<span className="absolute -bottom-1 left-0 w-0 h-px bg-[#003926] group-hover/link:w-full transition-all duration-500" /></Link>
+                                <Link href="/collections/serene" className="hover:text-[#001F14] transition-colors duration-500 w-fit relative group/link">Serene<span className="absolute -bottom-1 left-0 w-0 h-px bg-[#003926] group-hover/link:w-full transition-all duration-500" /></Link>
+                                <Link href="/collections/glimmer" className="hover:text-[#001F14] transition-colors duration-500 w-fit relative group/link">Glimmer<span className="absolute -bottom-1 left-0 w-0 h-px bg-[#003926] group-hover/link:w-full transition-all duration-500" /></Link>
+                                <Link href="/collections/hallmark" className="hover:text-[#001F14] transition-colors duration-500 w-fit relative group/link">Hallmark<span className="absolute -bottom-1 left-0 w-0 h-px bg-[#003926] group-hover/link:w-full transition-all duration-500" /></Link>
                             </nav>
                         </motion.div>
 
@@ -214,13 +215,13 @@ export default function Footer() {
 
                     {/* Premium Social Glass Circles */}
                     <div className="flex gap-6">
-                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-white shadow-[0_6px_16px_rgba(0,31,20,0.03)] border border-[#003926]/5 flex items-center justify-center text-[#003926]/50 hover:text-white hover:bg-[#003926] hover:-translate-y-1.5 hover:shadow-[0_12px_28px_rgba(0,57,38,0.15)] transition-all duration-500">
+                        <a href="https://www.instagram.com/designerworld1948/?hl=en" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-white shadow-[0_6px_16px_rgba(0,31,20,0.03)] border border-[#003926]/5 flex items-center justify-center text-[#003926]/50 hover:text-white hover:bg-[#003926] hover:-translate-y-1.5 hover:shadow-[0_12px_28px_rgba(0,57,38,0.15)] transition-all duration-500" aria-label="Instagram">
                             <Instagram size={18} strokeWidth={1.5} />
                         </a>
-                        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-white shadow-[0_6px_16px_rgba(0,31,20,0.03)] border border-[#003926]/5 flex items-center justify-center text-[#003926]/50 hover:text-white hover:bg-[#003926] hover:-translate-y-1.5 hover:shadow-[0_12px_28px_rgba(0,57,38,0.15)] transition-all duration-500">
+                        <a href="https://in.linkedin.com/company/designerworld1948" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-white shadow-[0_6px_16px_rgba(0,31,20,0.03)] border border-[#003926]/5 flex items-center justify-center text-[#003926]/50 hover:text-white hover:bg-[#003926] hover:-translate-y-1.5 hover:shadow-[0_12px_28px_rgba(0,57,38,0.15)] transition-all duration-500" aria-label="LinkedIn">
                             <Linkedin size={18} strokeWidth={1.5} />
                         </a>
-                        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-white shadow-[0_6px_16px_rgba(0,31,20,0.03)] border border-[#003926]/5 flex items-center justify-center text-[#003926]/50 hover:text-white hover:bg-[#003926] hover:-translate-y-1.5 hover:shadow-[0_12px_28px_rgba(0,57,38,0.15)] transition-all duration-500">
+                        <a href="https://www.facebook.com/Designerworld1948/" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-white shadow-[0_6px_16px_rgba(0,31,20,0.03)] border border-[#003926]/5 flex items-center justify-center text-[#003926]/50 hover:text-white hover:bg-[#003926] hover:-translate-y-1.5 hover:shadow-[0_12px_28px_rgba(0,57,38,0.15)] transition-all duration-500" aria-label="Facebook">
                             <Facebook size={18} strokeWidth={1.5} />
                         </a>
                     </div>

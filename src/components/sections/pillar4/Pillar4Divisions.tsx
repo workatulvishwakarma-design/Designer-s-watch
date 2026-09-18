@@ -331,8 +331,8 @@ function DivisionBlock({
               <img
                 src={division.image}
                 alt={division.title}
-                className={`absolute inset-0 w-full h-full transition-transform duration-700 ${division.imageContain ? "object-contain p-6 sm:p-8" : "object-cover"}`}
-                style={{ objectPosition: "center" }}
+                className={`absolute inset-0 w-full h-full transition-transform duration-700 grayscale contrast-[1.05] ${division.imageContain ? "object-contain p-6 sm:p-8" : "object-cover"}`}
+                style={{ objectPosition: "center", filter: "grayscale(100%)" }}
                 onError={(e) => {
                   (e.target as HTMLImageElement).src = "/images/main-img1.png";
                 }}

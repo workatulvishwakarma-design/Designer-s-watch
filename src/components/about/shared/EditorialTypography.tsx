@@ -28,13 +28,14 @@ interface TimelineCopyProps {
   children: React.ReactNode;
   className?: string;
   maxWidth?: number | string;
+  style?: React.CSSProperties;
 }
 
-export function TimelineCopy({ children, className = '', maxWidth }: TimelineCopyProps) {
+export function TimelineCopy({ children, className = '', maxWidth, style }: TimelineCopyProps) {
   return (
     <p
       className={`${s.kicker} ${className}`}
-      style={maxWidth ? { maxWidth } : undefined}
+      style={{ ...(maxWidth ? { maxWidth } : {}), ...style }}
     >
       {children}
     </p>

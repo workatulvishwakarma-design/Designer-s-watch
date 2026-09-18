@@ -204,6 +204,7 @@ export default function HeaderClient({ hasAnnouncement = false, megaMenuPayload 
     const [searchOpen, setSearchOpen] = useState(false);
     const [isHeaderHovered, setIsHeaderHovered] = useState(false);
     const closeTimerRef = useRef<NodeJS.Timeout | null>(null);
+    const menuScrollRef = useRef<HTMLDivElement>(null);
     const pathname = usePathname();
     const { items, setIsOpen } = useCartStore();
     const [mounted, setMounted] = useState(false);
@@ -257,15 +258,33 @@ export default function HeaderClient({ hasAnnouncement = false, megaMenuPayload 
         return () => window.removeEventListener("scroll", fn);
     }, []);
 
+    // Prevent body scroll when menu is open & restore on close
+    useEffect(() => {
+        if (mobileOpen) {
+            const originalOverflow = document.body.style.overflow;
+            document.body.style.overflow = "hidden";
+            return () => {
+                document.body.style.overflow = originalOverflow;
+            };
+        }
+    }, [mobileOpen]);
+
     // Close mega menu on route change
     useEffect(() => {
         setShowMegaMenu(false);
         setMobileOpen(false);
     }, [pathname]);
 
+    // Forward wheel scrolling from header to menu panel when menu is open
+    const handleHeaderWheel = (e: React.WheelEvent) => {
+        if (mobileOpen && menuScrollRef.current) {
+            menuScrollRef.current.scrollTop += e.deltaY;
+        }
+    };
+
     const navLinks = [
         { label: "Home", href: "/home-2" },
-        { label: "Collections", href: "/collections/dsigner-men", isMega: true },
+        { label: "Collections", href: "/collections" },
         { label: "Pillars", href: "/pillar-4" },
         { label: "About", href: "/about-5" },
         { label: "Contact", href: "/contact" },
@@ -275,7 +294,7 @@ export default function HeaderClient({ hasAnnouncement = false, megaMenuPayload 
         if (h === "/home-2" || h === "/") return pathname === "/" || pathname === "/home-2";
         if (h === "/about-5") return pathname.startsWith("/about");
         if (h === "/pillar-4") return pathname.startsWith("/pillar") || pathname === "/nagpal-group";
-        if (h === "/collections/dsigner-men") return pathname.startsWith("/collections");
+        if (h === "/collections") return pathname.startsWith("/collections");
         return pathname === h;
     };
 
@@ -309,15 +328,17 @@ export default function HeaderClient({ hasAnnouncement = false, megaMenuPayload 
         pathname === "/about-test" ||
         pathname.startsWith("/about-test");
     const isTransparentLightPage = pathname === "/about-3" || pathname.startsWith("/about-3");
-    const transparent = (isDarkHeroPage || isTransparentLightPage) && !scrolled && !showMegaMenu;
+    const transparent = (isDarkHeroPage || isTransparentLightPage) && !scrolled && !showMegaMenu && !mobileOpen;
 
-    const headerBg = showMegaMenu
-        ? "rgba(255,255,255,0.98)"
-        : scrolled
-            ? "#FFFFFF"
-            : transparent
-                ? (isHeaderHovered ? (isTransparentLightPage ? "rgba(250,248,244,0.75)" : "rgba(0, 31, 20, 0.50)") : "transparent")
-                : "#FFFFFF";
+    const headerBg = mobileOpen
+        ? "#FFFFFF"
+        : showMegaMenu
+            ? "rgba(255,255,255,0.98)"
+            : scrolled
+                ? "#FFFFFF"
+                : transparent
+                    ? (isHeaderHovered ? (isTransparentLightPage ? "rgba(250,248,244,0.75)" : "rgba(0, 31, 20, 0.50)") : "transparent")
+                    : "#FFFFFF";
 
     const blur = showMegaMenu
         ? "blur(40px) saturate(180%)"
@@ -338,17 +359,18 @@ export default function HeaderClient({ hasAnnouncement = false, megaMenuPayload 
                 transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
                 onMouseEnter={() => setIsHeaderHovered(true)}
                 onMouseLeave={() => setIsHeaderHovered(false)}
+                onWheel={handleHeaderWheel}
                 className="fixed top-0 left-0 w-full z-[100] transition-all duration-500"
                 style={{
                     backgroundColor: headerBg,
                     backdropFilter: blur, WebkitBackdropFilter: blur,
-                    borderBottom: scrolled || showMegaMenu
-                        ? "1px solid rgba(0,57,38,0.06)"
+                    borderBottom: scrolled || showMegaMenu || mobileOpen
+                        ? "1px solid rgba(184,147,90,0.18)"
                         : (transparent && isHeaderHovered)
-                            ? "1px solid rgba(255,255,255,0.12)"
+                            ? "1px solid rgba(255,255,255,0.14)"
                             : "1px solid transparent",
-                    boxShadow: scrolled || showMegaMenu
-                        ? "0 8px 32px rgba(0,31,20,0.04)"
+                    boxShadow: scrolled || showMegaMenu || mobileOpen
+                        ? "0 10px 30px -10px rgba(0,57,38,0.06), 0 1px 3px rgba(184,147,90,0.04)"
                         : (transparent && isHeaderHovered)
                             ? "0 12px 32px rgba(0,0,0,0.25)"
                             : "none",
@@ -357,43 +379,24 @@ export default function HeaderClient({ hasAnnouncement = false, megaMenuPayload 
             >
                 <div className="max-w-[1800px] mx-auto px-6 md:px-12 flex items-center justify-between h-[72px] md:h-[80px] xl:h-[88px] relative">
                     
-                    {/* Left: Mobile Hamburger / Desktop Nav */}
+                    {/* Left: MENU Button Only */}
                     <div className="flex items-center gap-6">
                         <button
-                            className="flex items-center gap-2 px-3 py-1.5 rounded-full hover:bg-white/15 transition-all duration-300 z-50 text-white"
+                            className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-transparent hover:border-[#B8935A]/30 hover:bg-[#B8935A]/5 transition-all duration-300 z-50 group cursor-pointer"
                             style={{ color: txtCol, backgroundColor: isHeaderHovered && transparent ? "rgba(255, 255, 255, 0.1)" : "transparent" }}
                             onClick={() => setMobileOpen(!mobileOpen)}
                             aria-label="Toggle Menu"
                         >
-                            {mobileOpen ? <X size={24} strokeWidth={1.5} /> : <Menu size={24} strokeWidth={1.5} />}
-                            <span className="hidden sm:inline font-montserrat text-[13px] tracking-[0.08em] uppercase font-medium">MENU</span>
+                            <span className="transition-transform duration-300 group-hover:scale-95 text-[#B8935A]">
+                                {mobileOpen ? <X size={19} strokeWidth={1.5} /> : <Menu size={19} strokeWidth={1.5} />}
+                            </span>
+                            <span className="font-montserrat text-[12px] tracking-[0.12em] uppercase font-semibold">MENU</span>
                         </button>
-
-                        <nav className="hidden xl:flex items-center gap-2 h-full ml-4">
-                            {navLinks.slice(0, 2).map(item => {
-                                const act = isActive(item.href) || (item.isMega && showMegaMenu);
-                                return (
-                                    <div key={item.label} className="relative h-full flex items-center group/nav"
-                                        onMouseEnter={item.isMega ? openMega : undefined}
-                                        onMouseLeave={item.isMega ? scheduleMegaClose : undefined}>
-                                        <Link href={item.href}
-                                            onClick={item.isMega ? (e) => { e.preventDefault(); setShowMegaMenu(!showMegaMenu); } : undefined}
-                                            className="font-montserrat text-[14px] leading-[1.2] tracking-[0.04em] uppercase transition-all duration-300 px-4 py-2 rounded-full font-medium flex items-center gap-1.5 hover:text-[#B8935A] hover:bg-white/10"
-                                            style={{ color: act ? "#B8935A" : txtCol }}>
-                                            {item.label}
-                                            {item.isMega && (
-                                                <ChevronDown size={11} className={`transition-transform duration-400 text-[#B8935A] ${showMegaMenu ? "rotate-180" : ""}`} />
-                                            )}
-                                        </Link>
-                                    </div>
-                                );
-                            })}
-                        </nav>
                     </div>
 
                     {/* Center: Centered Logo */}
                     <div className="absolute left-1/2 -translate-x-1/2 z-50">
-                        <Link href="/home-2" className="relative h-[32px] w-[160px] md:h-[40px] md:w-[200px] xl:h-[48px] xl:w-[220px] block hover:opacity-80 transition-opacity duration-300">
+                        <Link href="/home-2" className="relative h-[32px] w-[160px] md:h-[40px] md:w-[200px] xl:h-[48px] xl:w-[220px] block hover:opacity-85 transition-opacity duration-300">
                             <Image
                                 src={pathname.includes("/collections/escort") ? "/images/escort_b.png" : "/images/designer world logo_B.png"}
                                 alt="Designer World" fill className="object-contain"
@@ -403,28 +406,15 @@ export default function HeaderClient({ hasAnnouncement = false, megaMenuPayload 
                         </Link>
                     </div>
 
-                    {/* Right: Right Links & Search / Cart */}
-                    <div className="flex items-center gap-4 z-50">
-                        <nav className="hidden xl:flex items-center gap-2 h-full mr-2">
-                            {navLinks.slice(2).map(item => {
-                                const act = isActive(item.href);
-                                return (
-                                    <Link key={item.label} href={item.href}
-                                        className="font-montserrat text-[14px] leading-[1.2] tracking-[0.04em] uppercase transition-all duration-300 px-4 py-2 rounded-full font-medium flex items-center gap-1.5 hover:text-[#B8935A] hover:bg-white/10"
-                                        style={{ color: act ? "#B8935A" : txtCol }}>
-                                        {item.label}
-                                    </Link>
-                                );
-                            })}
-                        </nav>
-
-                        <button onClick={() => setSearchOpen(true)} className="p-2.5 rounded-full hover:bg-white/15 transition-all duration-300" style={{ color: txtCol }} aria-label="Search">
-                            <Search size={20} strokeWidth={1.5} />
+                    {/* Right: Search / Cart */}
+                    <div className="flex items-center gap-3 z-50">
+                        <button onClick={() => setSearchOpen(true)} className="w-9 h-9 flex items-center justify-center rounded-full hover:bg-[#B8935A]/10 hover:text-[#B8935A] transition-all duration-300 group cursor-pointer" style={{ color: txtCol }} aria-label="Search">
+                            <Search size={18} strokeWidth={1.5} className="transition-transform duration-300 group-hover:scale-105" />
                         </button>
-                        <button onClick={() => setIsOpen(true)} className="relative p-2.5 rounded-full hover:bg-white/15 transition-all duration-300" style={{ color: txtCol }} aria-label="Cart">
-                            <ShoppingBag size={21} strokeWidth={1.5} />
+                        <button onClick={() => setIsOpen(true)} className="relative w-9 h-9 flex items-center justify-center rounded-full hover:bg-[#B8935A]/10 hover:text-[#B8935A] transition-all duration-300 group cursor-pointer" style={{ color: txtCol }} aria-label="Cart">
+                            <ShoppingBag size={18} strokeWidth={1.5} className="transition-transform duration-300 group-hover:scale-105" />
                             {mounted && cartCount > 0 && (
-                                <span className="absolute top-0 right-0 w-[17px] h-[17px] bg-[#003926] rounded-full text-[9px] flex items-center justify-center text-white font-medium shadow-md">
+                                <span className="absolute -top-0.5 -right-0.5 w-[16px] h-[16px] bg-[#003926] border border-[#B8935A]/40 rounded-full text-[9px] flex items-center justify-center text-[#B8935A] font-bold shadow-sm">
                                     {cartCount}
                                 </span>
                             )}
@@ -586,6 +576,19 @@ export default function HeaderClient({ hasAnnouncement = false, megaMenuPayload 
                                                 </Link>
                                             ))}
                                         </div>
+
+                                        {/* Explore All Collections Bar */}
+                                        <div className="w-full mt-5 pt-3.5 border-t border-[rgba(184,147,90,0.2)] flex items-center justify-between">
+                                            <span className="font-dm text-[11px] text-[#777777] uppercase tracking-[1.5px]">24 Horological Collections</span>
+                                            <Link
+                                                href="/collections"
+                                                onClick={() => setShowMegaMenu(false)}
+                                                className="font-montserrat text-[11px] uppercase tracking-[0.14em] font-semibold text-[#003926] hover:text-[#B8935A] flex items-center gap-1.5 transition-colors duration-300 group/all"
+                                            >
+                                                <span>Explore All 24 Collections</span>
+                                                <ArrowUpRight size={13} className="text-[#B8935A] transition-transform duration-300 group-hover/all:translate-x-0.5 group-hover/all:-translate-y-0.5" />
+                                            </Link>
+                                        </div>
                                     </motion.div>
 
                                     {/* ── RIGHT COLUMN: Featured Spotlight ── */}
@@ -678,20 +681,30 @@ export default function HeaderClient({ hasAnnouncement = false, megaMenuPayload 
                 )}
             </AnimatePresence>
 
-            {/* ═══ MOBILE NAV — REBUILT ACCORDION STYLE ═══ */}
+            {/* ═══ FULL NAVIGATION PANEL ═══ */}
             <AnimatePresence>
                 {mobileOpen && (
-                    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+                    <motion.div
+                        ref={menuScrollRef}
+                        data-lenis-prevent="true"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
                         transition={{ duration: 0.4 }}
-                        className="fixed inset-0 z-[90] bg-[#FAF8F4] overflow-y-auto pt-24 px-6 pb-20">
-
+                        className="fixed inset-0 z-[90] bg-[#FAF8F4] overflow-y-auto overscroll-contain pt-24 px-6 pb-20"
+                        style={{
+                            WebkitOverflowScrolling: "touch",
+                            overscrollBehavior: "contain",
+                            touchAction: "pan-y",
+                        }}
+                    >
                         {/* Quick links */}
                         <div className="flex flex-col gap-2 mb-6">
-                            {navLinks.filter(n => !n.isMega).map((item, i) => (
+                            {navLinks.map((item, i) => (
                                 <motion.div key={item.label} initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }}
                                     transition={{ duration: 0.4, delay: i * 0.04 }}>
                                     <Link href={item.href} onClick={() => setMobileOpen(false)}
-                                        className="flex items-center justify-between p-4 rounded-xl bg-white border border-[#003926]/5 shadow-[0_2px_8px_rgba(0,31,20,0.02)]">
+                                        className="flex items-center justify-between p-4 rounded-xl bg-white border border-[#003926]/5 shadow-[0_2px_8px_rgba(0,31,20,0.02)] hover:border-[#B8935A]/30 transition-all duration-300">
                                         <span className="text-[13px] font-body font-semibold text-[#001F14] uppercase tracking-wide">{item.label}</span>
                                         <ChevronRight size={14} className="text-[#003926]/20" />
                                     </Link>

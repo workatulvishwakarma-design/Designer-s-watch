@@ -76,6 +76,7 @@ export default function BrandClubs() {
                 alt="D'Signer Style Man"
                 fill
                 className="object-cover object-center grayscale contrast-[1.1] transition-transform duration-[1.5s] ease-out hover:scale-103"
+                style={{ filter: "grayscale(100%) contrast(110%)" }}
                 sizes="(max-width: 768px) 100vw, 55vw"
                 priority
               />
@@ -96,10 +97,11 @@ export default function BrandClubs() {
               className="relative w-full aspect-[4/3] overflow-hidden shadow-2xl bg-[#092218]"
             >
               <Image
-                src="/images/new-img/escort-f.PNG"
-                alt="Escort Style Hand"
+                src="/images/new-img/escort-home.jpeg"
+                alt="Escort Watches"
                 fill
-                className="object-cover object-center grayscale contrast-[1.1] transition-transform duration-[1.5s] ease-out hover:scale-103"
+                className="object-cover object-center grayscale contrast-[1.05] transition-transform duration-[1.5s] ease-out hover:scale-103"
+                style={{ filter: "grayscale(100%) contrast(105%)" }}
                 sizes="(max-width: 768px) 100vw, 55vw"
                 priority
               />

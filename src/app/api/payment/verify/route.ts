@@ -8,7 +8,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/db";
-import { getOrderPayments, isCashfreeConfigured } from "@/lib/cashfree";
+import { getOrderPayments, isCashfreeConfigured, COD_ADVANCE_AMOUNT } from "@/lib/cashfree";
 
 export async function GET(req: NextRequest) {
   try {
@@ -98,16 +98,43 @@ export async function GET(req: NextRequest) {
         if (cfStatus === "SUCCESS") {
           // Update order if webhook hasn't processed
           const newPaymentStatus = order.isCOD ? "ADVANCE_PAID" : "PAID";
+          const paidAmount = order.isCOD ? COD_ADVANCE_AMOUNT : Number(order.totalAmount);
           await prisma.order.update({
             where: { id: order.id },
             data: {
               paymentStatus: newPaymentStatus,
               status: "PROCESSING",
               paymentGatewayPaymentId: latestPayment.cf_payment_id?.toString(),
-              advancePaid: order.isCOD ? 299 : Number(order.totalAmount),
+              advancePaid: paidAmount,
             },
           });
-          return NextResponse.json(buildResponse(newPaymentStatus, { orderStatus: "PROCESSING", advancePaid: order.isCOD ? 299 : Number(order.totalAmount) }));
+
+          // Record tracking event
+          await prisma.orderTrackingEvent.create({
+            data: {
+              orderId: order.id,
+              status: "PROCESSING",
+              description: newPaymentStatus === "PAID"
+                ? `Payment of ₹${paidAmount} verified via Cashfree. Payment ID: ${latestPayment.cf_payment_id}`
+                : `COD advance ₹${COD_ADVANCE_AMOUNT} verified. Balance ₹${order.balanceDue} payable on delivery.`,
+            },
+          }).catch(() => null);
+
+          // Deduct inventory if not already deducted
+          try {
+            for (const item of order.items) {
+              if (item.variantId) {
+                await prisma.inventory.updateMany({
+                  where: { variantId: item.variantId },
+                  data: { stock: { decrement: item.quantity } },
+                });
+              }
+            }
+          } catch (stockErr) {
+            console.error("[Verify] Stock deduction error:", stockErr);
+          }
+
+          return NextResponse.json(buildResponse(newPaymentStatus, { orderStatus: "PROCESSING", advancePaid: paidAmount }));
         } else if (cfStatus === "FAILED") {
           await prisma.order.update({
             where: { id: order.id },

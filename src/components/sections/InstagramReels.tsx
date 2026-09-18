@@ -200,13 +200,13 @@ export default function InstagramReels() {
         className="text-center mt-12 relative z-10"
       >
         <a
-          href="https://instagram.com/designerworldofficial"
+          href="https://www.instagram.com/designerworld1948/?hl=en"
           target="_blank"
           rel="noopener noreferrer"
           className="group inline-flex items-center gap-3 font-dm text-[11px] tracking-[0.2em] uppercase text-[#B8935A] hover:text-white transition-colors duration-300"
         >
           <span className="relative">
-            Follow @designerworldofficial
+            Follow @designerworld1948
             <span className="absolute -bottom-1 left-0 h-px w-0 group-hover:w-full transition-all duration-500 ease-out bg-white" />
           </span>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">

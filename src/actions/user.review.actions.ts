@@ -32,40 +32,62 @@ export async function submitReview(formData: FormData) {
   const { productId, rating, title, content } = parsed.data
 
   try {
-    // Has user ordered this product? (Strict verification rules config)
+    let family = await prisma.productFamily.findFirst({
+      where: {
+        OR: [
+          { id: productId },
+          { slug: productId }
+        ]
+      }
+    })
+
+    if (!family) {
+      const variant = await prisma.productVariant.findUnique({
+        where: { id: productId },
+        include: { family: true }
+      })
+      if (variant) {
+        family = variant.family
+      }
+    }
+
+    if (!family) {
+      return { error: "Product not found." }
+    }
+
+    // Has user ordered this product family?
     const hasOrdered = await prisma.orderItem.findFirst({
       where: {
-        productId,
-        order: { userId: session.user.id, status: "DELIVERED" } 
+        variant: { familyId: family.id },
+        order: { userId: session.user.id } 
       }
     })
 
     if (!hasOrdered) {
-        // Normally prevent, but for project sake we might allow. Standard e-commerce requires purchase though.
-        // Let's enforce it.
-        return { error: "You can only review products you have successfully received via orders." }
+      return { error: "You can only review timepieces you have ordered." }
     }
 
     // Has user already reviewed?
     const existing = await prisma.review.findFirst({
-        where: { productId, userId: session.user.id }
+      where: { familyId: family.id, userId: session.user.id }
     })
 
     if (existing) {
-        return { error: "You have already reviewed this product." }
+      return { error: "You have already reviewed this timepiece." }
     }
 
     await prisma.review.create({
       data: {
-        productId,
+        familyId: family.id,
         userId: session.user.id,
         rating,
-        content: `[${title}] ${content}`, // Fold title playfully into content to bypass strict schema constraints without migration
-        status: "PENDING", // Requires Amin Approval
-      } as any // Bypass strict typescript checking for pragmatic local demonstration delivery
+        comment: `[${title}] ${content}`,
+        isApproved: false,
+      }
     })
 
-    revalidatePath(`/product/[slug]`, "page")
+    revalidatePath(`/products/${family.slug}`)
+    revalidatePath("/admin/reviews")
     return { success: "Review submitted successfully and is pending moderation." }
 
   } catch (error) {

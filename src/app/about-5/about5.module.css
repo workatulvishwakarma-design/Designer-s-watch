@@ -226,7 +226,7 @@
 .greenSpine {
   position: absolute;
   top: 0;
-  bottom: clamp(390px, 34vw, 540px);
+  bottom: clamp(260px, 22vw, 360px);
   left: 50%;
   transform: translateX(-50%);
   width: var(--green-strip-width);
@@ -598,8 +598,8 @@
 
 .teamPhotoWrap {
   position: relative;
-  top: -20vh;
-  left: -20%;
+  top: -16vh;
+  left: 0;
   z-index: 5;
   width: 100%;
   max-width: 704px;
@@ -1214,6 +1214,8 @@
     width: 100%;
     max-width: 100%;
     margin: 8px 0 0;
+    top: 0;
+    left: 0;
   }
 
   .teamPhotoImg {

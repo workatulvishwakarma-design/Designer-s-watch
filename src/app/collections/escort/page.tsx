@@ -10,10 +10,7 @@ import { motion } from "framer-motion";
 
 export default function EscortPage() {
     return (
-        <main className="min-h-screen bg-[#FAF8F4] relative">
-            <EscortHero />
-
-            <SectionDivider />
+        <main className="min-h-screen bg-[#FAF8F4] relative pt-24 md:pt-28">
             <EscortGrid />
 
             <SectionDivider />

@@ -51,9 +51,6 @@ export default function WatchDetails({
 
   return (
     <section className="bg-white relative py-16 lg:py-24 overflow-hidden">
-      {/* Background soft glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[radial-gradient(circle,rgba(184,147,90,0.04)_0%,transparent_70%)] pointer-events-none rounded-full" />
-
       <div className="max-w-[1400px] w-full mx-auto px-6 relative z-10 flex flex-col items-center">
         {/* Section Heading */}
         <div className="text-center pt-4 mb-8 lg:mb-12">
@@ -132,9 +129,10 @@ export default function WatchDetails({
                 playsInline
                 preload="auto"
                 className="w-full h-full object-contain pointer-events-none"
+                style={{ filter: "none", mixBlendMode: "normal", opacity: 1 }}
               >
-                <source src="/images/new-img/video-transfer-alpha.webm" type="video/webm" />
                 <source src={videoSrc} type="video/mp4" />
+                <source src="/images/new-img/video-transfer-alpha.webm" type="video/webm" />
               </video>
             </div>
           </div>

@@ -36,7 +36,9 @@ export async function generateMetadata(): Promise<Metadata> {
     settings = null;
   }
 
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://designerswatch.com";
     return {
+        metadataBase: new URL(siteUrl),
         title: settings?.defaultSeoTitle || "Designer World | Four Generations of Horological Expertise",
         description: settings?.defaultSeoDescription || "A four-generation integrated watch enterprise offering OEM manufacturing and premium D2C timepieces.",
         openGraph: {

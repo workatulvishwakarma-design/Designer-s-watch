@@ -110,6 +110,7 @@ export function getEscortProductBySlug(slugOrSku: string): ModelFamilyGroup | un
 
   const variant: Variant = {
     sku: matched.modelNo,
+    ean: (matched as any).ean || null,
     price: matched.price,
     mrp: matched.mrp,
     gender: matched.gender,

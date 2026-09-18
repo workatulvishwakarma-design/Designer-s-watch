@@ -3,13 +3,215 @@
 import React, { useState, useRef, useEffect, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+
+interface WatchVariant {
+  titleLine1: string;
+  titleLine2: string;
+  sku: string;
+  description: string;
+  image: string;
+  href: string;
+}
+
+interface WatchComparisonModel {
+  id: string;
+  collection: string;
+  modelNo: string;
+  displayName: string;
+  gender: "MEN" | "WOMEN";
+  priceFormatted: string;
+  thumbnail: string;
+  leftVariant: WatchVariant;
+  rightVariant: WatchVariant;
+}
+
+const WATCH_SHOWCASE_MODELS: WatchComparisonModel[] = [
+  {
+    id: "glimmer-860",
+    collection: "Glimmer",
+    modelNo: "860",
+    displayName: "GLIMMER 860",
+    gender: "WOMEN",
+    priceFormatted: "₹6,495",
+    thumbnail: "/images/transparent-img/model-2/860/860RGM.16.L/860RGM.16 (1).png",
+    leftVariant: {
+      titleLine1: "Emerald Green",
+      titleLine2: "Sunburst",
+      sku: "860RGM.16L",
+      description: "A radiant green dial with a sunburst finish that captures elegance in every angle.",
+      image: "/images/transparent-img/model-2/860/860RGM.16.L/860RGM.16 (1).png",
+      href: "/product/860rgm-16l",
+    },
+    rightVariant: {
+      titleLine1: "Ocean Blue",
+      titleLine2: "Mother of Pearl",
+      sku: "860RGM.12L",
+      description: "A serene blue mother of pearl dial that reflects timeless beauty.",
+      image: "/images/transparent-img/model-2/860/860RGM.12.L/860RGM.12 (1).png",
+      href: "/product/860rgm-12l",
+    },
+  },
+  {
+    id: "serene-812",
+    collection: "Serene",
+    modelNo: "812",
+    displayName: "SERENE 812",
+    gender: "WOMEN",
+    priceFormatted: "₹8,995",
+    thumbnail: "/images/new-img/model-1/812/812/812/812RGM.16L.png",
+    leftVariant: {
+      titleLine1: "Rose Gold &",
+      titleLine2: "Emerald Green",
+      sku: "812RGM.16L",
+      description: "Lustrous emerald sunray dial harmonized with a radiant rose gold finish.",
+      image: "/images/new-img/model-1/812/812/812/812RGM.16L.png",
+      href: "/product/812rgm-16l",
+    },
+    rightVariant: {
+      titleLine1: "Yellow Gold &",
+      titleLine2: "Champagne",
+      sku: "812GM.2L",
+      description: "Pure champagne sunray dial encased in timeless yellow gold refinement.",
+      image: "/images/new-img/model-1/812/812/812/812GM.2L.png",
+      href: "/product/812gm-2l",
+    },
+  },
+  {
+    id: "quest-806",
+    collection: "Quest",
+    modelNo: "806",
+    displayName: "QUEST 806",
+    gender: "MEN",
+    priceFormatted: "₹12,995",
+    thumbnail: "/images/new-img/model-1/806/806/806BFS.3G.png",
+    leftVariant: {
+      titleLine1: "Imperial Gold &",
+      titleLine2: "Emerald",
+      sku: "806GFS.16G",
+      description: "Skeletonized dial engineering accented with opulent gold and rich green tones.",
+      image: "/images/new-img/model-1/806/806/806GFS.16G.png",
+      href: "/product/806gfs-16g",
+    },
+    rightVariant: {
+      titleLine1: "Stealth Matte",
+      titleLine2: "Black PVD",
+      sku: "806BFS.3G",
+      description: "Bold black PVD casing framing an intricate openwork mechanical balance.",
+      image: "/images/new-img/model-1/806/806/806BFS.3G.png",
+      href: "/product/806bfs-3g",
+    },
+  },
+  {
+    id: "daymark-809",
+    collection: "Daymark",
+    modelNo: "809",
+    displayName: "DAYMARK 809",
+    gender: "MEN",
+    priceFormatted: "₹7,495",
+    thumbnail: "/images/new-img/model-1/809/809 new colors/809/809RTM.16G.png",
+    leftVariant: {
+      titleLine1: "Two-Tone",
+      titleLine2: "Emerald Green",
+      sku: "809RTM.16G",
+      description: "Executive multifunction display enriched with emerald green and rose gold links.",
+      image: "/images/new-img/model-1/809/809 new colors/809/809RTM.16G.png",
+      href: "/product/809rtm-16g",
+    },
+    rightVariant: {
+      titleLine1: "Champagne Gold &",
+      titleLine2: "Ivory",
+      sku: "809GM.4G",
+      description: "Classic sunburst ivory dial paired with a full champagne gold bracelet.",
+      image: "/images/new-img/model-1/809/809 new colors/809/809GM.4G.png",
+      href: "/product/809gm-4g",
+    },
+  },
+  {
+    id: "echo-853",
+    collection: "Echo",
+    modelNo: "853",
+    displayName: "ECHO 853",
+    gender: "WOMEN",
+    priceFormatted: "₹6,495",
+    thumbnail: "/images/new-img/model-2/853/853/853GM.2L.png",
+    leftVariant: {
+      titleLine1: "Classic Gold &",
+      titleLine2: "Opal White",
+      sku: "853GM.2L",
+      description: "Petite diamond-set bezel framing a pristine white dial for daily luxury.",
+      image: "/images/new-img/model-2/853/853/853GM.2L.png",
+      href: "/product/853gm-2l",
+    },
+    rightVariant: {
+      titleLine1: "Gunmetal &",
+      titleLine2: "Anthracite Grey",
+      sku: "853GNM.8L",
+      description: "Contemporary smoky grey profile accented with brilliant diamond markers.",
+      image: "/images/new-img/model-2/853/853/853GNM.8L.png",
+      href: "/product/853gnm-8l",
+    },
+  },
+  {
+    id: "grandeur-950",
+    collection: "Grandeur",
+    modelNo: "950",
+    displayName: "GRANDEUR 950",
+    gender: "MEN",
+    priceFormatted: "₹34,995",
+    thumbnail: "/images/new-img/model-2/950/950/950RGBFS.3G.png",
+    leftVariant: {
+      titleLine1: "Emerald Green &",
+      titleLine2: "Titanium",
+      sku: "950GNFS.16G",
+      description: "Avant-garde tonneau silhouette showcasing an openwork dual-balance calibre.",
+      image: "/images/new-img/model-2/950/950/950GNFS.16G.png",
+      href: "/product/950gnfs-16g",
+    },
+    rightVariant: {
+      titleLine1: "Obsidian Black &",
+      titleLine2: "Rose Gold",
+      sku: "950RGBFS.3G",
+      description: "Deep obsidian skeleton dial with rose gold hour markers and bridge accents.",
+      image: "/images/new-img/model-2/950/950/950RGBFS.3G.png",
+      href: "/product/950rgbfs-3g",
+    },
+  },
+  {
+    id: "escort-7931",
+    collection: "Escort",
+    modelNo: "E-7931",
+    displayName: "ESCORT 7931",
+    gender: "WOMEN",
+    priceFormatted: "₹2,450",
+    thumbnail: "/images/new-content/new-1/escort womens/E-7931/E-7931.RGM_Blue.png",
+    leftVariant: {
+      titleLine1: "Ocean Blue",
+      titleLine2: "Dial",
+      sku: "E-7931.RGM_Blue",
+      description: "Deep ocean blue multi-function dial framed by a gleaming rose gold bracelet.",
+      image: "/images/new-content/new-1/escort womens/E-7931/E-7931.RGM_Blue.png",
+      href: "/product/escort-e-7931?variant=E-7931.RGM_Blue",
+    },
+    rightVariant: {
+      titleLine1: "Alabaster White",
+      titleLine2: "Dial",
+      sku: "E-7931.RGM_White",
+      description: "Pristine alabaster white dial featuring precision sub-dials and crystal indices.",
+      image: "/images/new-content/new-1/escort womens/E-7931/E-7931.RGM_White.png",
+      href: "/product/escort-e-7931?variant=E-7931.RGM_White",
+    },
+  },
+];
 
 export default function SlideToSwitch() {
+  const [selectedIdx, setSelectedIdx] = useState<number>(0);
   const [position, setPosition] = useState(50); // percentage 0-100
   const [containerWidth, setContainerWidth] = useState<number>(0);
   const containerRef = useRef<HTMLDivElement>(null);
   const isDragging = useRef(false);
+
+  const activeModel = WATCH_SHOWCASE_MODELS[selectedIdx] || WATCH_SHOWCASE_MODELS[0];
 
   useEffect(() => {
     const updateWidth = () => {
@@ -42,7 +244,6 @@ export default function SlideToSwitch() {
   const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
     isDragging.current = true;
     updatePosition(e.clientX);
-    // Capture pointer so drag events continue smoothly even if cursor moves outside canvas
     e.currentTarget.setPointerCapture(e.pointerId);
   };
 
@@ -61,134 +262,298 @@ export default function SlideToSwitch() {
   };
 
   return (
-    <motion.section
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-      className="w-full bg-[#FAF8F4] py-12 md:py-20 overflow-hidden select-none border-b border-[#E5E0D8]"
-    >
-      <div className="w-full max-w-[1800px] mx-auto px-4 sm:px-8 md:px-12">
+    <section className="w-full bg-[#FAF7F2] py-14 md:py-20 lg:py-24 overflow-hidden select-none border-b border-[#E8E2D8]">
+      <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-8 md:px-12 lg:px-16">
         
-        {/* Section Title Header */}
-        <div className="mb-6 flex justify-between items-center px-2">
-          <span className="font-montserrat text-[12px] md:text-[13px] tracking-[0.2em] text-[#1A1918] font-medium uppercase">
-            SLIDE TO SWITCH
-          </span>
-          <span className="font-montserrat text-[11px] md:text-[12px] text-[#5C5750] tracking-[0.08em] uppercase font-normal">
-            DRAG DIVIDER TO VIEW DIAL COLORS
-          </span>
+        {/* Main 3-Column Showcase Section */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 items-center gap-8 lg:gap-4 relative">
+          
+          {/* Left Column: Left Variant Details */}
+          <div className="order-2 lg:order-1 lg:col-span-3 xl:col-span-3 text-left lg:pl-4 xl:pl-8">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={`left-details-${activeModel.id}`}
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+              >
+                {/* Header tag */}
+                <div className="flex items-center gap-3 mb-3">
+                  <span className="font-montserrat text-[11px] tracking-[0.2em] text-[#B8935A] uppercase font-semibold">
+                    LEFT VARIANT
+                  </span>
+                  <span className="inline-block w-8 sm:w-12 h-[1px] bg-[#B8935A]/50" />
+                </div>
+
+                {/* Big Serif Title */}
+                <h3
+                  className="text-3xl sm:text-4xl lg:text-[40px] xl:text-[44px] leading-[1.12] text-[#1A1918] font-normal my-2 tracking-tight"
+                  style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                >
+                  {activeModel.leftVariant.titleLine1}
+                  <br />
+                  {activeModel.leftVariant.titleLine2}
+                </h3>
+
+                {/* Subtitle with Model & Price */}
+                <p className="font-montserrat text-[12px] sm:text-[13px] tracking-[0.14em] uppercase text-[#1A1918] font-semibold mt-3 mb-3">
+                  {activeModel.displayName} · {activeModel.priceFormatted}
+                </p>
+
+                {/* Accent Divider */}
+                <div className="w-10 h-[1px] bg-[#B8935A]/40 mb-4" />
+
+                {/* Description */}
+                <p className="font-montserrat text-[12px] sm:text-[13px] text-[#6E685F] leading-relaxed max-w-sm mb-6 font-light">
+                  {activeModel.leftVariant.description}
+                </p>
+
+                {/* Shop Now Outlined Button */}
+                <Link
+                  href={activeModel.leftVariant.href}
+                  className="inline-flex items-center justify-center px-7 py-3 border border-[#003926] text-[#003926] font-montserrat text-[11px] tracking-[0.2em] font-semibold uppercase hover:bg-[#003926] hover:text-white transition-all duration-300 group cursor-pointer"
+                >
+                  <span>SHOP NOW</span>
+                  <span className="ml-2 inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
+                </Link>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* Center Column: Interactive Split Watch Canvas */}
+          <div className="order-1 lg:order-2 lg:col-span-6 xl:col-span-6 relative flex items-center justify-center">
+            
+            {/* Background Halo Circles */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+              {/* Soft radial aura glow */}
+              <div className="w-[340px] sm:w-[440px] lg:w-[500px] h-[340px] sm:h-[440px] lg:h-[500px] rounded-full bg-gradient-to-br from-[#F2ECE0]/70 via-[#F7F2E8]/40 to-transparent blur-md" />
+              {/* Concentric subtle rings */}
+              <div className="absolute w-[320px] sm:w-[420px] lg:w-[480px] h-[320px] sm:h-[420px] lg:h-[480px] rounded-full border border-[#E8E1D5]/70" />
+              <div className="absolute w-[240px] sm:w-[320px] lg:w-[360px] h-[240px] sm:h-[320px] lg:h-[360px] rounded-full border border-[#E8E1D5]/40" />
+            </div>
+
+            {/* Split Screen Slider Canvas Box */}
+            <div
+              ref={containerRef}
+              className="relative w-full h-[480px] sm:h-[540px] md:h-[600px] lg:h-[640px] overflow-hidden cursor-ew-resize touch-none select-none flex items-center justify-center"
+              onPointerDown={handlePointerDown}
+              onPointerMove={handlePointerMove}
+              onPointerUp={handlePointerUp}
+              onPointerCancel={handlePointerUp}
+            >
+              {/* Base Layer: Right Variant Watch (Fixed Center) */}
+              <div className="absolute inset-0 w-full h-full flex items-center justify-center py-4 px-2 pointer-events-none">
+                <div className="relative w-full h-full max-w-sm sm:max-w-md lg:max-w-lg mx-auto">
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={`right-img-${activeModel.id}`}
+                      initial={{ opacity: 0, scale: 0.98 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.98 }}
+                      transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                      className="relative w-full h-full"
+                    >
+                      <Image
+                        src={activeModel.rightVariant.image}
+                        alt={`${activeModel.displayName} - ${activeModel.rightVariant.titleLine1}`}
+                        fill
+                        draggable={false}
+                        className="object-contain select-none pointer-events-none scale-105 sm:scale-115 md:scale-120"
+                        sizes="(max-width: 1024px) 80vw, 500px"
+                        priority
+                      />
+                    </motion.div>
+                  </AnimatePresence>
+                </div>
+              </div>
+
+              {/* Overlay Layer: Left Variant Watch (Clipped via position percentage) */}
+              <div
+                className="absolute inset-y-0 left-0 overflow-hidden z-10 pointer-events-none"
+                style={{ width: `${position}%` }}
+              >
+                {/* Pinned inner width so left image overlays center watch dead-on */}
+                <div
+                  className="absolute inset-y-0 left-0 h-full flex items-center justify-center py-4 px-2 pointer-events-none"
+                  style={{ width: containerWidth ? `${containerWidth}px` : "100%" }}
+                >
+                  <div className="relative w-full h-full max-w-sm sm:max-w-md lg:max-w-lg mx-auto">
+                    <AnimatePresence mode="wait">
+                      <motion.div
+                        key={`left-img-${activeModel.id}`}
+                        initial={{ opacity: 0, scale: 0.98 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.98 }}
+                        transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                        className="relative w-full h-full"
+                      >
+                        <Image
+                          src={activeModel.leftVariant.image}
+                          alt={`${activeModel.displayName} - ${activeModel.leftVariant.titleLine1}`}
+                          fill
+                          draggable={false}
+                          className="object-contain select-none pointer-events-none scale-105 sm:scale-115 md:scale-120"
+                          sizes="(max-width: 1024px) 80vw, 500px"
+                          priority
+                        />
+                      </motion.div>
+                    </AnimatePresence>
+                  </div>
+                </div>
+              </div>
+
+              {/* Vertical Slider Divider Line & Drag Handle */}
+              <div
+                className="absolute inset-y-0 z-20 w-[2px] bg-white cursor-ew-resize flex items-center justify-center pointer-events-none"
+                style={{ left: `${position}%` }}
+              >
+                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white shadow-xl border border-neutral-300 flex items-center justify-center text-[#1A1918] pointer-events-none">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <path d="M8 19l-7-7 7-7M16 5l7 7-7 7" />
+                  </svg>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          {/* Right Column: Right Variant Details */}
+          <div className="order-3 lg:col-span-3 xl:col-span-3 text-left lg:pr-4 xl:pr-8">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={`right-details-${activeModel.id}`}
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+              >
+                {/* Header tag */}
+                <div className="flex items-center gap-3 mb-3">
+                  <span className="font-montserrat text-[11px] tracking-[0.2em] text-[#B8935A] uppercase font-semibold">
+                    RIGHT VARIANT
+                  </span>
+                  <span className="inline-block w-8 sm:w-12 h-[1px] bg-[#B8935A]/50" />
+                </div>
+
+                {/* Big Serif Title */}
+                <h3
+                  className="text-3xl sm:text-4xl lg:text-[40px] xl:text-[44px] leading-[1.12] text-[#1A1918] font-normal my-2 tracking-tight"
+                  style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                >
+                  {activeModel.rightVariant.titleLine1}
+                  <br />
+                  {activeModel.rightVariant.titleLine2}
+                </h3>
+
+                {/* Subtitle with Model & Price */}
+                <p className="font-montserrat text-[12px] sm:text-[13px] tracking-[0.14em] uppercase text-[#1A1918] font-semibold mt-3 mb-3">
+                  {activeModel.displayName} · {activeModel.priceFormatted}
+                </p>
+
+                {/* Accent Divider */}
+                <div className="w-10 h-[1px] bg-[#B8935A]/40 mb-4" />
+
+                {/* Description */}
+                <p className="font-montserrat text-[12px] sm:text-[13px] text-[#6E685F] leading-relaxed max-w-sm mb-6 font-light">
+                  {activeModel.rightVariant.description}
+                </p>
+
+                {/* Shop Now Outlined Button */}
+                <Link
+                  href={activeModel.rightVariant.href}
+                  className="inline-flex items-center justify-center px-7 py-3 border border-[#003926] text-[#003926] font-montserrat text-[11px] tracking-[0.2em] font-semibold uppercase hover:bg-[#003926] hover:text-white transition-all duration-300 group cursor-pointer"
+                >
+                  <span>SHOP NOW</span>
+                  <span className="ml-2 inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
+                </Link>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
         </div>
 
-        {/* Full-Width Slider Canvas Box (Height Increased with Padding for Breathing Room) */}
-        <div
-          ref={containerRef}
-          className="relative w-full h-[80vh] min-h-[580px] max-h-[900px] overflow-hidden bg-[#EAE8E4] border border-[#E0D8CE] shadow-sm cursor-ew-resize rounded-sm touch-none select-none"
-          onPointerDown={handlePointerDown}
-          onPointerMove={handlePointerMove}
-          onPointerUp={handlePointerUp}
-          onPointerCancel={handlePointerUp}
-        >
-          {/* Base Layer: White Dial Watch (Right Side, Fixed Center) */}
-          <div className="absolute inset-0 w-full h-full flex items-center justify-center py-10 md:py-14 px-4 pointer-events-none">
-            <div className="relative w-full h-full max-w-2xl lg:max-w-3xl mx-auto">
-              <Image
-                src="/images/new-content/new-1/escort womens/E-7931/E-7931.RGM_White.png"
-                alt="Alabaster White Dial Variant"
-                fill
-                draggable={false}
-                className="object-contain scale-110 md:scale-125 select-none pointer-events-none"
-                sizes="100vw"
-                priority
-              />
-            </div>
-          </div>
-
-          {/* Overlay Layer: Blue Dial Watch (Clipped via position percentage) */}
-          <div
-            className="absolute inset-y-0 left-0 overflow-hidden z-10 pointer-events-none"
-            style={{ width: `${position}%` }}
-          >
-            {/* The inner div matches containerWidth exactly so images overlay dead-center */}
-            <div
-              className="absolute inset-y-0 left-0 h-full flex items-center justify-center py-10 md:py-14 px-4 pointer-events-none"
-              style={{ width: containerWidth ? `${containerWidth}px` : "100vw" }}
-            >
-              <div className="relative w-full h-full max-w-2xl lg:max-w-3xl mx-auto">
-                <Image
-                  src="/images/new-content/new-1/escort womens/E-7931/E-7931.RGM_Blue.png"
-                  alt="Ocean Blue Dial Variant"
-                  fill
-                  draggable={false}
-                  className="object-contain scale-110 md:scale-125 select-none pointer-events-none"
-                  sizes="100vw"
-                  priority
-                />
-              </div>
-            </div>
-          </div>
-
-          {/* Vertical Slider Divider Line & Drag Handle */}
-          <div
-            className="absolute inset-y-0 z-20 w-[2px] bg-white cursor-ew-resize flex items-center justify-center pointer-events-none"
-            style={{ left: `${position}%` }}
-          >
-            <div className="w-10 h-10 rounded-full bg-white shadow-xl border border-neutral-300 flex items-center justify-center text-[#1A1918] pointer-events-none">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                <path d="M8 19l-7-7 7-7M16 5l7 7-7 7" />
-              </svg>
-            </div>
-          </div>
-
-          {/* Bottom Left Label: Ocean Blue Dial */}
-          <div
-            className="absolute bottom-6 left-6 md:left-8 z-30 text-left bg-white/85 backdrop-blur-md px-5 py-3.5 rounded-lg border border-black/5 shadow-md pointer-events-auto cursor-default transition-all duration-300 hover:shadow-lg hover:bg-white"
-            onPointerDown={(e) => e.stopPropagation()}
-            onPointerMove={(e) => e.stopPropagation()}
-            onPointerUp={(e) => e.stopPropagation()}
-            onMouseDown={(e) => e.stopPropagation()}
-            onTouchStart={(e) => e.stopPropagation()}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <span className="font-montserrat text-[13px] md:text-[14px] font-semibold text-[#1A1918] block mb-1 select-none">
-              Ocean Blue Dial
+        {/* Bottom Section: Side Labels & Clean Circular Watch Selectors */}
+        <div className="mt-12 pt-8 border-t border-[#EAE4D9]/60 flex flex-col lg:flex-row items-center justify-between gap-6">
+          
+          {/* Bottom Left Corner Text */}
+          <div className="hidden lg:block text-left shrink-0">
+            <span className="font-montserrat text-[10px] tracking-[0.25em] text-[#A09A8F] uppercase font-semibold block leading-tight">
+              TWO WORLDS
             </span>
-            <Link
-              href="/product/escort-e-7931?variant=E-7931.RGM_Blue"
-              className="inline-flex items-center gap-1.5 font-montserrat text-[11px] tracking-[0.16em] text-[#003926] uppercase font-bold hover:text-[#B8935A] transition-colors cursor-pointer group/link py-0.5"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <span>Shop Now</span>
-              <span className="inline-block transition-transform duration-300 group-hover/link:translate-x-1">→</span>
-            </Link>
+            <span className="font-montserrat text-[10px] tracking-[0.25em] text-[#A09A8F] uppercase font-semibold block leading-tight">
+              ONE EXPRESSION
+            </span>
+            <div className="w-8 h-[1px] bg-[#B8935A]/50 mt-2" />
           </div>
 
-          {/* Bottom Right Label: Alabaster White Dial */}
-          <div
-            className="absolute bottom-6 right-6 md:right-8 z-30 text-right bg-white/85 backdrop-blur-md px-5 py-3.5 rounded-lg border border-black/5 shadow-md pointer-events-auto cursor-default transition-all duration-300 hover:shadow-lg hover:bg-white"
-            onPointerDown={(e) => e.stopPropagation()}
-            onPointerMove={(e) => e.stopPropagation()}
-            onPointerUp={(e) => e.stopPropagation()}
-            onMouseDown={(e) => e.stopPropagation()}
-            onTouchStart={(e) => e.stopPropagation()}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <span className="font-montserrat text-[13px] md:text-[14px] font-semibold text-[#1A1918] block mb-1 select-none">
-              Alabaster White Dial
+          {/* Center: Circular Watch Selector Row */}
+          <div className="flex items-center justify-start lg:justify-center gap-5 sm:gap-6 md:gap-7 overflow-x-auto py-2 px-3 max-w-full no-scrollbar">
+            {WATCH_SHOWCASE_MODELS.map((model, idx) => {
+              const isCurrent = idx === selectedIdx;
+              return (
+                <button
+                  key={model.id}
+                  type="button"
+                  onClick={() => setSelectedIdx(idx)}
+                  className="flex flex-col items-center group cursor-pointer shrink-0 transition-transform duration-300 hover:scale-105 focus:outline-none"
+                  aria-label={`Select ${model.displayName}`}
+                >
+                  {/* Circular Watch Selector Avatar */}
+                  <div
+                    className={`w-14 h-14 sm:w-16 sm:h-16 rounded-full p-1 transition-all duration-300 flex items-center justify-center relative bg-white ${
+                      isCurrent
+                        ? "ring-2 ring-[#B8935A] ring-offset-2 ring-offset-[#FAF7F2] shadow-md scale-105"
+                        : "border border-[#DDD6CB] hover:border-[#B8935A] shadow-xs"
+                    }`}
+                  >
+                    <div className="relative w-full h-full">
+                      <Image
+                        src={model.thumbnail}
+                        alt={model.displayName}
+                        fill
+                        className="object-contain p-0.5"
+                        sizes="64px"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Model Name Label */}
+                  <span
+                    className={`font-montserrat text-[10px] sm:text-[11px] font-semibold tracking-[0.1em] uppercase mt-2.5 block text-center ${
+                      isCurrent ? "text-[#1A1918]" : "text-[#7A7368] group-hover:text-[#1A1918]"
+                    }`}
+                  >
+                    {model.displayName}
+                  </span>
+
+                  {/* Gender Pill Badge */}
+                  <span
+                    className={`inline-block font-montserrat text-[9px] font-bold tracking-widest uppercase px-2 py-0.2 rounded-xs mt-1 text-center ${
+                      isCurrent ? "bg-[#003926] text-white" : "bg-[#003926]/10 text-[#003926]"
+                    }`}
+                  >
+                    {model.gender}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Bottom Right Corner Text */}
+          <div className="hidden lg:block text-right shrink-0">
+            <span className="font-montserrat text-[10px] tracking-[0.25em] text-[#A09A8F] uppercase font-semibold block leading-tight">
+              D'SIGNER
             </span>
-            <Link
-              href="/product/escort-e-7931?variant=E-7931.RGM_White"
-              className="inline-flex items-center gap-1.5 font-montserrat text-[11px] tracking-[0.16em] text-[#003926] uppercase font-bold hover:text-[#B8935A] transition-colors cursor-pointer group/link py-0.5"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <span>Shop Now</span>
-              <span className="inline-block transition-transform duration-300 group-hover/link:translate-x-1">→</span>
-            </Link>
+            <span className="font-montserrat text-[10px] tracking-[0.25em] text-[#A09A8F] uppercase font-semibold block leading-tight">
+              COLLECTION
+            </span>
+            <div className="w-8 h-[1px] bg-[#B8935A]/50 mt-2 ml-auto" />
           </div>
 
         </div>
 
       </div>
-    </motion.section>
+    </section>
   );
 }

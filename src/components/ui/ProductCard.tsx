@@ -43,7 +43,7 @@ export interface ProductProps {
     };
     dialColor?: string;
     strapColor?: string;
-    ean?: string;
+    ean?: string | null;
 }
 
 interface ProductCardProps {
@@ -91,13 +91,14 @@ export default function ProductCard({ product, variant = "premium", index = 0 }:
         .replace(/[^a-z0-9]+/g, "-")
         .replace(/(^-|-$)/g, "");
 
-    const isWishlisted = mounted ? isInWishlist(product.id || productSlug) : false;
+    const productIdStr = String(product.id || productSlug);
+    const isWishlisted = mounted ? isInWishlist(productIdStr) : false;
 
     const handleToggleWishlist = (e: React.MouseEvent) => {
         e.preventDefault();
         e.stopPropagation();
         toggleItem({
-            productId: product.id || productSlug,
+            productId: productIdStr,
             name: product.name,
             price: product.price,
             image: product.image,
@@ -149,7 +150,7 @@ export default function ProductCard({ product, variant = "premium", index = 0 }:
         specs: product.specs,
         dialColor: product.dialColor,
         strapColor: product.strapColor,
-        ean: product.ean
+        ean: product.ean || undefined
     };
 
     return (

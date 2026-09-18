@@ -68,6 +68,7 @@ export const COLLECTION_MAP: Record<string, string> = {
 
   // ECHO — "Reflection, resonance" (Unisex)
   "905": "echo",
+  "J905": "echo",
   "807": "echo",
   "853": "echo",
 
@@ -91,6 +92,9 @@ export const COLLECTION_MAP: Record<string, string> = {
   "843": "daymark",
   "867": "daymark",
   "821": "daymark",
+  "753": "daymark",
+  "753G": "daymark",
+  "829": "daymark",
 
   // AXION — "Futuristic scientific energy" (Men's)
   "814": "axion",

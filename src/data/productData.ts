@@ -312,38 +312,15 @@ export function getFamilyBySlug(slug: string): ModelFamilyGroup | undefined {
 
 export function getFamiliesByCollection(collectionSlug: string): ModelFamilyGroup[] {
   if (!collectionSlug) return [];
-  const target = collectionSlug.toLowerCase().trim();
-  
-  let families: ModelFamilyGroup[] = [];
-  
-  if (target === "dsigner" || target === "designer") {
-    // All D'Signer products
-    families = allModelFamilies.filter(f => f.brand.toUpperCase() === "D'SIGNER");
-  } else if (target === "mens-designer") {
-    families = allModelFamilies.filter(f => f.brand.toUpperCase() === "D'SIGNER" && (f.gender === "Men" || f.gender === "Unisex"));
-  } else if (target === "womens-designer") {
-    families = allModelFamilies.filter(f => f.brand.toUpperCase() === "D'SIGNER" && (f.gender === "Women" || f.gender === "Unisex"));
-  } else if (target === "escort") {
-    // All Escort products
-    families = allModelFamilies.filter(f => f.brand.toUpperCase() === "ESCORT");
-  } else if (target === "mens-escort") {
-    families = allModelFamilies.filter(f => f.brand.toUpperCase() === "ESCORT" && (f.gender === "Men" || f.gender === "Unisex"));
-  } else if (target === "womens-escort") {
-    families = allModelFamilies.filter(f => f.brand.toUpperCase() === "ESCORT" && (f.gender === "Women" || f.gender === "Unisex"));
-  } else {
-    // Named collection (grandeur, eternal, tactix, etc.)
-    families = allModelFamilies.filter((f) => f.collectionSlug?.toLowerCase() === target);
-    // If empty, return honestly empty — do not inject random products
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const { getCollectionProducts } = require("@/lib/collectionProducts");
+    return getCollectionProducts(collectionSlug);
+  } catch (e) {
+    // Fallback if collectionProducts cannot be loaded
+    const target = collectionSlug.toLowerCase().trim();
+    return allModelFamilies.filter((f) => f.collectionSlug?.toLowerCase() === target);
   }
-
-  // Sort: families with images first, then by variant count
-  return families.sort((a, b) => {
-    const aHasImg = familyHasImages(a.familyId) ? 0 : 1;
-    const bHasImg = familyHasImages(b.familyId) ? 0 : 1;
-    if (aHasImg !== bHasImg) return aHasImg - bHasImg;
-    if (b.variants.length !== a.variants.length) return b.variants.length - a.variants.length;
-    return a.familyId.localeCompare(b.familyId, undefined, { numeric: true });
-  });
 }
 
 // ─── SKU → FAMILY LOOKUP (For PDP fallback routing) ───

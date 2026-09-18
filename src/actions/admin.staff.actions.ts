@@ -4,8 +4,12 @@ import { prisma } from "@/lib/db"
 import { createAuditLog } from "@/lib/audit"
 import { revalidatePath } from "next/cache"
 import bcrypt from "bcryptjs"
+import { auth } from "@/lib/auth"
 
 export async function createStaffUser(formData: FormData) {
+  const session = await auth()
+  if (!session || (session.user as any)?.role !== "ADMIN") return { error: "Unauthorized" }
+
   const name = formData.get("name") as string
   const email = formData.get("email") as string
   const password = formData.get("password") as string
@@ -36,6 +40,9 @@ export async function createStaffUser(formData: FormData) {
 }
 
 export async function toggleStaffRole(userId: string, newRole: "ADMIN" | "CUSTOMER") {
+  const session = await auth()
+  if (!session || (session.user as any)?.role !== "ADMIN") return { error: "Unauthorized" }
+
   await prisma.user.update({
     where: { id: userId },
     data: { role: newRole }

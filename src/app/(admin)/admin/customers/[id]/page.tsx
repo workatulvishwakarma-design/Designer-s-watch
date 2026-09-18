@@ -12,12 +12,20 @@ export default async function AdminCustomerDetailPage({ params }: { params: Prom
       orders: {
         orderBy: { createdAt: "desc" },
         include: {
-          items: { include: { product: { select: { name: true } } } },
+          items: {
+            include: {
+              variant: {
+                include: {
+                  family: { select: { name: true } }
+                }
+              }
+            }
+          },
         }
       },
       addresses: { orderBy: { isDefault: "desc" } },
       reviews: {
-        include: { product: { select: { name: true } } },
+        include: { family: { select: { name: true } } },
         orderBy: { createdAt: "desc" },
         take: 5
       },
@@ -164,7 +172,7 @@ export default async function AdminCustomerDetailPage({ params }: { params: Prom
                       ))}
                     </div>
                     <p className="text-xs text-gray-700 dark:text-gray-300 line-clamp-2">{review.comment}</p>
-                    <p className="text-[10px] text-gray-400 mt-1">on {review.product.name}</p>
+                    <p className="text-[10px] text-gray-400 mt-1">on {review.family?.name || "Product"}</p>
                   </div>
                 ))}
               </div>

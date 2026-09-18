@@ -180,7 +180,10 @@ export async function POST(req: NextRequest) {
 
     // ── 10. Create Cashfree order (if configured) ──
     if (isCashfreeConfigured()) {
-      const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+      const origin = req.headers.get("origin") || req.headers.get("referer");
+      const host = req.headers.get("host");
+      const proto = req.headers.get("x-forwarded-proto") || "https";
+      const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || (origin ? new URL(origin).origin : host ? `${proto}://${host}` : "https://designerswatch.com");
 
       const cfResult = await createCashfreeOrder({
         order_id: transactionRef,

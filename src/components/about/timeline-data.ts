@@ -20,6 +20,7 @@ export type TimelineItem = {
     src: string;
     alt: string;
     width?: number | string;
+    maxWidth?: number | string;
     style?: React.CSSProperties;
   };
 };

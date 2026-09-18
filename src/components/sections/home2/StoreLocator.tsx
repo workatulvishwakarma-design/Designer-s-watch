@@ -252,7 +252,7 @@ export default function StoreLocator({ initialStores }: StoreLocatorProps) {
   }, [modalOpen]);
 
   return (
-    <section className="bg-[#F5F3EF] py-16 md:py-24 border-t border-[#E8E3DA]">
+    <section className="bg-[#F5F3EF] pt-12 md:pt-16 pb-8 md:pb-10 border-t border-[#E8E3DA]">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}

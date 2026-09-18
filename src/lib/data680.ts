@@ -503,7 +503,8 @@ export function get680Family(slugOrSku: string): ModelFamilyGroup | undefined {
     gallery: {
       primary: matched.primaryImage,
       hover: matched.hoverImage,
-      detail: matched.gallery.slice(2)
+      detail: matched.gallery.slice(2),
+      lifestyle: []
     }
   };
 

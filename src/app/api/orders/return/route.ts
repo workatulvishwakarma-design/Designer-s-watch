@@ -82,7 +82,7 @@ export async function POST(req: NextRequest) {
     });
 
     // 2. Add an event to Order Tracking timeline so customer sees it immediately
-    await prisma.trackingEvent.create({
+    await prisma.orderTrackingEvent.create({
       data: {
         orderId: order.id,
         status: "PROCESSING",

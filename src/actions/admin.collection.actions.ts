@@ -44,6 +44,7 @@ export async function upsertCollection(formData: FormData): Promise<ActionRespon
   const data = parsed.data
 
   try {
+    const adminId = (session?.user as any)?.id || "admin"
     if (data.id) {
       await prisma.collection.update({
         where: { id: data.id },
@@ -51,22 +52,22 @@ export async function upsertCollection(formData: FormData): Promise<ActionRespon
           name: data.name,
           slug: data.slug,
           description: data.description,
-          meaning: data.meaning,
+          philosophy: data.meaning,
           gender: data.gender,
         }
       })
-      await createAuditLog("COLLECTION_UPDATE", `Updated collection: ${data.name}`, session.user.id)
+      await createAuditLog("COLLECTION_UPDATE", `Updated collection: ${data.name}`, adminId)
     } else {
       await prisma.collection.create({
         data: {
           name: data.name,
           slug: data.slug,
           description: data.description,
-          meaning: data.meaning,
+          philosophy: data.meaning,
           gender: data.gender,
         }
       })
-      await createAuditLog("COLLECTION_CREATE", `Created collection: ${data.name}`, session.user.id)
+      await createAuditLog("COLLECTION_CREATE", `Created collection: ${data.name}`, adminId)
     }
 
     revalidatePath("/admin/categories")
