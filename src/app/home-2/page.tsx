@@ -8,6 +8,7 @@ export const dynamic = "force-dynamic";
 export default async function HomePage2() {
   let menFamilies: any[] = [];
   let womenFamilies: any[] = [];
+  let stores: any[] = [];
 
   // Try DB first (will fail gracefully if tables don't exist)
   try {
@@ -30,6 +31,21 @@ export default async function HomePage2() {
     // DB tables don't exist — expected during development without migrations
   }
 
+  // Fetch active stores from DB
+  try {
+    if (prisma.store) {
+      stores = await prisma.store.findMany({
+        where: { isActive: true },
+        orderBy: [
+          { sortOrder: "asc" },
+          { name: "asc" }
+        ]
+      });
+    }
+  } catch (err) {
+    console.error("Failed to load active stores for home-2 page:", err);
+  }
+
   // Fallback to static JSON data
   if (menFamilies.length === 0) {
     menFamilies = getFamiliesByGender("Men").slice(0, 12);
@@ -38,5 +54,5 @@ export default async function HomePage2() {
     womenFamilies = getFamiliesByGender("Women").slice(0, 12);
   }
 
-  return <HomeClient2 menFamilies={menFamilies} womenFamilies={womenFamilies} />;
+  return <HomeClient2 menFamilies={menFamilies} womenFamilies={womenFamilies} stores={stores} />;
 }

@@ -14,9 +14,10 @@ import type { ModelFamilyGroup } from "@/types/product";
 interface HomeClient2Props {
   menFamilies: ModelFamilyGroup[];
   womenFamilies: ModelFamilyGroup[];
+  stores?: any[];
 }
 
-export default function HomeClient2({ menFamilies, womenFamilies }: HomeClient2Props) {
+export default function HomeClient2({ menFamilies, womenFamilies, stores }: HomeClient2Props) {
   return (
     <SmoothScrolling>
       <LoadingScreen />
@@ -40,7 +41,7 @@ export default function HomeClient2({ menFamilies, womenFamilies }: HomeClient2P
         <SlideToSwitch />
 
         {/* === 7. Find Your Nearest Store === */}
-        <StoreLocator />
+        <StoreLocator initialStores={stores} />
       </main>
     </SmoothScrolling>
   );

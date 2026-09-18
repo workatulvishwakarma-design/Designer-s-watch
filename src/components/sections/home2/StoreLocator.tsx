@@ -16,34 +16,91 @@ import {
   Navigation,
 } from "lucide-react";
 import {
-  dealers,
-  dealerCategories,
-  searchDealers,
-  allCities,
+  dealers as fallbackDealers,
+  dealerCategories as fallbackCategories,
   Dealer,
 } from "@/data/dealers";
 
-const POPULAR_CITIES = [
+const FALLBACK_POPULAR_CITIES = [
   "MUMBAI",
-  "LUCKNOW",
   "DELHI",
+  "LUCKNOW",
   "KANPUR",
   "VARANASI",
   "SURAT",
   "PUNE",
   "AHMEDABAD",
-  "BATHINDA",
   "AMRITSAR",
+  "BATHINDA",
   "COIMBATORE",
   "BAREILLY",
 ];
 
-export default function StoreLocator() {
+export interface StoreLocatorProps {
+  initialStores?: any[];
+}
+
+export default function StoreLocator({ initialStores }: StoreLocatorProps) {
+  // Store data from DB or fallback
+  const [stores, setStores] = useState<any[]>(
+    initialStores && initialStores.length > 0 ? initialStores : fallbackDealers
+  );
+
+  // If initialStores was not provided, fetch from live API
+  useEffect(() => {
+    if (!initialStores || initialStores.length === 0) {
+      fetch("/api/stores")
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.stores && Array.isArray(data.stores) && data.stores.length > 0) {
+            setStores(data.stores);
+          }
+        })
+        .catch((err) => console.error("Failed to fetch stores in StoreLocator:", err));
+    }
+  }, [initialStores]);
+
+  // Dynamic Categories from stores
+  const categories = useMemo(() => {
+    const brandSet = new Set<string>();
+    stores.forEach((s) => {
+      if (Array.isArray(s.brands)) {
+        s.brands.forEach((b: string) => brandSet.add(b));
+      }
+    });
+    if (brandSet.size > 0) {
+      return Array.from(brandSet);
+    }
+    return fallbackCategories;
+  }, [stores]);
+
+  // Dynamic Popular Cities (Top cities with most stores)
+  const popularCities = useMemo(() => {
+    const cityCounts: Record<string, number> = {};
+    stores.forEach((s) => {
+      const c = s.city?.trim().toUpperCase();
+      if (c) {
+        cityCounts[c] = (cityCounts[c] || 0) + 1;
+      }
+    });
+    const sorted = Object.keys(cityCounts).sort((a, b) => cityCounts[b] - cityCounts[a]);
+    return sorted.length >= 6 ? sorted.slice(0, 12) : FALLBACK_POPULAR_CITIES;
+  }, [stores]);
+
+  // Dynamic Unique Cities for Autocomplete
+  const allCities = useMemo(() => {
+    const set = new Set<string>();
+    stores.forEach((s) => {
+      if (s.city) set.add(s.city.trim().toUpperCase());
+    });
+    return Array.from(set).sort();
+  }, [stores]);
+
   const [category, setCategory] = useState<string>("");
   const [searchQuery, setSearchQuery] = useState("");
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
-  const [selectedDealer, setSelectedDealer] = useState<Dealer | null>(null);
+  const [selectedDealer, setSelectedDealer] = useState<any | null>(null);
   const [modalSearch, setModalSearch] = useState("");
   const [modalCategory, setModalCategory] = useState<string>("");
   const [autocompleteOpen, setAutocompleteOpen] = useState(false);
@@ -103,32 +160,69 @@ export default function StoreLocator() {
       .slice(0, 4)
       .map((c) => ({ type: "city" as const, label: c, sub: "City Search" }));
 
-    const matchedDealers = dealers
+    const matchedDealers = stores
       .filter(
         (d) =>
-          d.name.toLowerCase().includes(q) ||
-          d.area.toLowerCase().includes(q) ||
-          d.city.toLowerCase().includes(q)
+          d.name?.toLowerCase().includes(q) ||
+          d.area?.toLowerCase().includes(q) ||
+          d.city?.toLowerCase().includes(q) ||
+          d.address?.toLowerCase().includes(q)
       )
       .slice(0, 4)
       .map((d) => ({
         type: "store" as const,
         label: d.name,
-        sub: `${d.area ? d.area + ", " : ""}${d.city}`,
+        sub: `${d.area ? d.area + ", " : ""}${d.city || ""}`,
         dealer: d,
       }));
 
     return [...matchedCities, ...matchedDealers].slice(0, 6);
-  }, [searchQuery]);
+  }, [searchQuery, allCities, stores]);
 
   // Results inside modal
   const filteredModalDealers = useMemo(() => {
-    return searchDealers(modalSearch, modalCategory);
-  }, [modalSearch, modalCategory]);
+    const q = modalSearch.toLowerCase().trim();
+    return stores.filter((dealer) => {
+      // Category / Brand filter
+      if (modalCategory) {
+        const brandsList = Array.isArray(dealer.brands) ? dealer.brands : [];
+        const hasBrand = brandsList.some((b: string) =>
+          b.toLowerCase().includes(modalCategory.toLowerCase())
+        );
+        const hasCategory =
+          dealer.category &&
+          dealer.category.toLowerCase().includes(modalCategory.toLowerCase());
+        if (!hasBrand && !hasCategory) return false;
+      }
+
+      // Query filter
+      if (!q) return true;
+      const nameMatch = dealer.name?.toLowerCase().includes(q);
+      const cityMatch = dealer.city?.toLowerCase().includes(q);
+      const stateMatch = dealer.state?.toLowerCase().includes(q);
+      const areaMatch = dealer.area?.toLowerCase().includes(q);
+      const addressMatch = dealer.address?.toLowerCase().includes(q);
+      const contactMatch = dealer.contactPerson?.toLowerCase().includes(q);
+      const phoneMatch = dealer.phone?.toLowerCase().includes(q);
+      return (
+        nameMatch ||
+        cityMatch ||
+        stateMatch ||
+        areaMatch ||
+        addressMatch ||
+        contactMatch ||
+        phoneMatch
+      );
+    });
+  }, [stores, modalSearch, modalCategory]);
 
   // Active map embed query
   const mapQuery = useMemo(() => {
     if (selectedDealer) {
+      if (selectedDealer.googleMapsQuery && selectedDealer.googleMapsQuery.includes("query=")) {
+        const extracted = selectedDealer.googleMapsQuery.split("query=")[1];
+        if (extracted) return extracted;
+      }
       const parts = [
         selectedDealer.name,
         selectedDealer.area,
@@ -186,18 +280,18 @@ export default function StoreLocator() {
             </h2>
 
             <p className="font-montserrat text-[13px] text-[#6B6560] leading-[1.7] mb-7 max-w-lg">
-              Explore 200+ authorized retail partners, boutique showrooms, and
+              Explore {stores.length}+ authorized retail partners, boutique showrooms, and
               official stockists across India offering authentic D&apos;SIGNER &
               ESCORT timepieces with warranty support.
             </p>
 
             <div className="w-full max-w-md flex flex-col gap-3.5 mb-7">
-              {/* Category Dropdown (Only D'Signer Watches & Escort Watches) */}
+              {/* Category Dropdown */}
               <div className="relative" ref={dropdownRef}>
                 <button
                   type="button"
                   onClick={() => setDropdownOpen(!dropdownOpen)}
-                  className="w-full text-left px-5 py-3.5 bg-white border border-[#D8D3CB] text-[13.5px] font-montserrat text-[#1A1918] focus:outline-none focus:border-[#003926] transition-colors duration-200 flex items-center justify-between shadow-sm rounded-sm cursor-pointer"
+                  className="w-full text-left px-5 py-3.5 bg-white border border-[#D8D3CB] text-[13.5px] font-montserrat text-[#1A1918] focus:outline-none focus:border-[#003926] transition-colors duration-200 flex items-center justify-between shadow-xs rounded-xs cursor-pointer"
                 >
                   <span className={category ? "text-[#1A1918] font-medium" : "text-[#6B6560]"}>
                     {category || "Choose Category"}
@@ -220,13 +314,12 @@ export default function StoreLocator() {
                 </button>
 
                 {dropdownOpen && (
-                  <div className="absolute top-full left-0 w-full bg-white border border-[#D8D3CB] border-t-0 z-30 shadow-xl rounded-b-sm overflow-hidden animate-in fade-in slide-in-from-top-1 duration-150">
-                    {dealerCategories.map((cat) => (
+                  <div className="absolute top-full left-0 w-full bg-white border border-[#D8D3CB] border-t-0 z-30 shadow-xl rounded-b-xs overflow-hidden animate-in fade-in slide-in-from-top-1 duration-150">
+                    {categories.map((cat) => (
                       <button
                         key={cat}
                         type="button"
                         onClick={() => {
-                          // Toggle category selection
                           setCategory(category === cat ? "" : cat);
                           setDropdownOpen(false);
                         }}
@@ -243,7 +336,7 @@ export default function StoreLocator() {
                 )}
               </div>
 
-              {/* City / State / Pincode Search Input with Live Dropdown */}
+              {/* City / State / Search Input with Live Dropdown */}
               <div className="relative" ref={autocompleteRef}>
                 <input
                   ref={searchInputRef}
@@ -263,7 +356,7 @@ export default function StoreLocator() {
                     }
                   }}
                   placeholder="Enter City, State, Area or Store Name"
-                  className="w-full px-5 py-3.5 pr-11 bg-white border border-[#D8D3CB] text-[13.5px] font-montserrat text-[#1A1918] placeholder-[#9C9690] focus:outline-none focus:border-[#003926] transition-colors duration-200 shadow-sm rounded-sm"
+                  className="w-full px-5 py-3.5 pr-11 bg-white border border-[#D8D3CB] text-[13.5px] font-montserrat text-[#1A1918] placeholder-[#9C9690] focus:outline-none focus:border-[#003926] transition-colors duration-200 shadow-xs rounded-xs"
                 />
                 <button
                   type="button"
@@ -276,7 +369,7 @@ export default function StoreLocator() {
 
                 {/* Autocomplete Dropdown */}
                 {autocompleteOpen && suggestions.length > 0 && (
-                  <div className="absolute top-full left-0 w-full bg-white border border-[#D8D3CB] border-t-0 z-30 shadow-2xl rounded-b-sm overflow-hidden">
+                  <div className="absolute top-full left-0 w-full bg-white border border-[#D8D3CB] border-t-0 z-30 shadow-2xl rounded-b-xs overflow-hidden">
                     <div className="px-4 py-2 bg-[#F8F6F2] border-b border-[#EAE5DC] text-[10.5px] font-montserrat font-bold text-[#8C857B] tracking-wider uppercase">
                       Quick Suggestions
                     </div>
@@ -319,7 +412,7 @@ export default function StoreLocator() {
               <span className="text-[11px] font-montserrat text-[#8C857B] font-semibold uppercase tracking-wider mr-1">
                 Popular:
               </span>
-              {POPULAR_CITIES.slice(0, 6).map((city) => (
+              {popularCities.slice(0, 6).map((city) => (
                 <button
                   key={city}
                   type="button"
@@ -327,7 +420,7 @@ export default function StoreLocator() {
                     setSearchQuery(city);
                     handleOpenModal(city);
                   }}
-                  className="text-[11px] font-montserrat font-medium text-[#003926] bg-white border border-[#DCD6CC] hover:bg-[#003926] hover:text-white px-2.5 py-1 transition-all duration-200 rounded-sm shadow-2xs cursor-pointer"
+                  className="text-[11px] font-montserrat font-medium text-[#003926] bg-white border border-[#DCD6CC] hover:bg-[#003926] hover:text-white px-2.5 py-1 transition-all duration-200 rounded-xs shadow-2xs cursor-pointer"
                 >
                   {city}
                 </button>
@@ -344,9 +437,9 @@ export default function StoreLocator() {
                   boxShadow: "0 8px 24px rgba(0,57,38,0.22)",
                 }}
                 whileTap={{ scale: 0.98 }}
-                className="inline-flex items-center gap-3 bg-[#003926] text-white px-8 py-4 font-montserrat text-[12px] tracking-[0.14em] uppercase font-semibold hover:bg-[#024D35] transition-all duration-300 cursor-pointer shadow-md rounded-sm"
+                className="inline-flex items-center gap-3 bg-[#003926] text-white px-8 py-4 font-montserrat text-[12px] tracking-[0.14em] uppercase font-semibold hover:bg-[#024D35] transition-all duration-300 cursor-pointer shadow-md rounded-xs"
               >
-                <span>View Stores ({dealers.length})</span>
+                <span>View Stores ({stores.length})</span>
                 <ArrowRight size={15} />
               </motion.button>
 
@@ -367,10 +460,10 @@ export default function StoreLocator() {
           </div>
 
           {/* ── Right Column: Interactive Map Preview ── */}
-          <div className="lg:col-span-6 relative w-full overflow-hidden rounded-sm shadow-[0_12px_36px_rgba(0,0,0,0.12)] border border-[#E0DACE] bg-white">
+          <div className="lg:col-span-6 relative w-full overflow-hidden rounded-xs shadow-[0_12px_36px_rgba(0,0,0,0.12)] border border-[#E0DACE] bg-white">
             {/* Top Right Active Dealer Badge */}
             {selectedDealer && (
-              <div className="absolute top-3 right-3 z-10 bg-[#003926] text-white text-[11px] font-montserrat font-medium px-3 py-1.5 shadow-md rounded-sm truncate max-w-[220px]">
+              <div className="absolute top-3 right-3 z-10 bg-[#003926] text-white text-[11px] font-montserrat font-medium px-3 py-1.5 shadow-md rounded-xs truncate max-w-[220px]">
                 📍 {selectedDealer.name}
               </div>
             )}
@@ -396,7 +489,7 @@ export default function StoreLocator() {
                     ? `${selectedDealer.name} — ${selectedDealer.city}${
                         selectedDealer.state ? `, ${selectedDealer.state}` : ""
                       }`
-                    : "Over 200+ Verified Dealerships Across India"}
+                    : `Over ${stores.length}+ Verified Dealerships Across India`}
                 </span>
               </div>
               <div className="flex items-center gap-3 shrink-0 ml-3">
@@ -424,7 +517,7 @@ export default function StoreLocator() {
       </motion.div>
 
       {/* ═══════════════════════════════════════════════════════════════
-          MODAL: ULTRA-SMOOTH STORE LIST & SEARCH (225+ DEALERS)
+          MODAL: ULTRA-SMOOTH STORE LIST & SEARCH
           ═══════════════════════════════════════════════════════════════ */}
       <AnimatePresence>
         {modalOpen && (
@@ -445,7 +538,7 @@ export default function StoreLocator() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.98, y: 15 }}
               transition={{ duration: 0.2, ease: "easeOut" }}
-              className="relative w-full max-w-5xl bg-[#FAF8F4] h-[88vh] max-h-[88vh] flex flex-col shadow-2xl rounded-sm border border-[#D8D3CB] overflow-hidden z-10"
+              className="relative w-full max-w-5xl bg-[#FAF8F4] h-[88vh] max-h-[88vh] flex flex-col shadow-2xl rounded-xs border border-[#D8D3CB] overflow-hidden z-10"
               onClick={(e) => e.stopPropagation()}
               data-lenis-prevent="true"
             >
@@ -475,7 +568,7 @@ export default function StoreLocator() {
                 </h3>
 
                 <p className="text-[12px] font-montserrat text-white/70 max-w-xl">
-                  Showing {filteredModalDealers.length} authorized locations
+                  Showing {filteredModalDealers.length} of {stores.length} authorized locations
                   {modalSearch ? ` matching "${modalSearch}"` : ""}{" "}
                   {modalCategory ? ` in ${modalCategory}` : ""}.
                 </p>
@@ -494,7 +587,7 @@ export default function StoreLocator() {
                     value={modalSearch}
                     onChange={(e) => setModalSearch(e.target.value)}
                     placeholder="Search by city (e.g. Mumbai, Surat, Delhi, Kanpur), store name, state..."
-                    className="w-full pl-10 pr-10 py-2.5 bg-[#FAF8F4] border border-[#DCD6CC] text-[13.5px] font-montserrat text-[#1A1918] placeholder-[#9C9690] focus:outline-none focus:border-[#003926] rounded-sm transition-colors"
+                    className="w-full pl-10 pr-10 py-2.5 bg-[#FAF8F4] border border-[#DCD6CC] text-[13.5px] font-montserrat text-[#1A1918] placeholder-[#9C9690] focus:outline-none focus:border-[#003926] rounded-xs transition-colors"
                   />
                   {modalSearch && (
                     <button
@@ -507,14 +600,14 @@ export default function StoreLocator() {
                   )}
                 </div>
 
-                {/* Brand Category Filter Pills (Only D'Signer Watches and Escort Watches) */}
+                {/* Brand Category Filter Pills */}
                 <div className="flex items-center gap-1.5 overflow-x-auto pb-1 md:pb-0 scrollbar-none shrink-0">
-                  {dealerCategories.map((cat) => (
+                  {categories.map((cat) => (
                     <button
                       key={cat}
                       type="button"
                       onClick={() => setModalCategory(modalCategory === cat ? "" : cat)}
-                      className={`px-3 py-2 text-[11px] font-montserrat whitespace-nowrap rounded-sm font-semibold transition-all duration-150 uppercase tracking-wider cursor-pointer ${
+                      className={`px-3 py-2 text-[11px] font-montserrat whitespace-nowrap rounded-xs font-semibold transition-all duration-150 uppercase tracking-wider cursor-pointer ${
                         modalCategory === cat
                           ? "bg-[#003926] text-white shadow-xs"
                           : "bg-[#F0EDE8] text-[#6B6560] hover:bg-[#E4DFD6] hover:text-[#003926]"
@@ -540,12 +633,12 @@ export default function StoreLocator() {
                 <span className="font-semibold text-[#8C857B] uppercase tracking-wider shrink-0 mr-1">
                   City:
                 </span>
-                {POPULAR_CITIES.map((c) => (
+                {popularCities.map((c) => (
                   <button
                     key={c}
                     type="button"
                     onClick={() => setModalSearch(c)}
-                    className={`px-2.5 py-1 rounded-sm transition-colors whitespace-nowrap cursor-pointer ${
+                    className={`px-2.5 py-1 rounded-xs transition-colors whitespace-nowrap cursor-pointer ${
                       modalSearch.toUpperCase() === c
                         ? "bg-[#003926] text-white font-semibold"
                         : "bg-white border border-[#DCD6CC] text-[#003926] hover:bg-[#EAE5DC]"
@@ -572,126 +665,134 @@ export default function StoreLocator() {
                 }}
               >
                 {filteredModalDealers.length > 0 ? (
-                  filteredModalDealers.map((dealer) => (
-                    <div
-                      key={dealer.id}
-                      className="bg-white border border-[#E5E0D8] p-4 sm:p-5 rounded-sm hover:border-[#003926] transition-colors flex flex-col md:flex-row md:items-center justify-between gap-4"
-                    >
-                      {/* Left Store Info */}
-                      <div className="flex-1 space-y-1.5">
-                        {/* Title & Brand Badges */}
-                        <div className="flex flex-wrap items-center gap-2">
-                          <h4 className="font-montserrat font-bold text-[15px] text-[#1A1918] uppercase tracking-[0.02em]">
-                            {dealer.name}
-                          </h4>
-                          {dealer.brands.map((b) => (
-                            <span
-                              key={b}
-                              className={`text-[9.5px] font-montserrat font-bold uppercase tracking-widest px-2 py-0.5 rounded-2xs ${
-                                b.includes("D'Signer")
-                                  ? "bg-[#003926]/10 text-[#003926] border border-[#003926]/20"
-                                  : "bg-[#7A2E39]/10 text-[#7A2E39] border border-[#7A2E39]/20"
-                              }`}
-                            >
-                              {b.replace(" Watches", "")}
-                            </span>
-                          ))}
-                          {dealer.tabs.includes("Sheet1") && (
-                            <span className="text-[9.5px] font-montserrat font-bold uppercase tracking-widest px-2 py-0.5 rounded-2xs bg-[#B8935A]/15 text-[#85642E] border border-[#B8935A]/30">
-                              Premium Partner
-                            </span>
-                          )}
-                        </div>
-
-                        {/* Location / Area / City / State */}
-                        <div className="flex flex-wrap items-center gap-y-1 gap-x-3 text-[12px] font-montserrat text-[#6B6560]">
-                          <div className="flex items-center gap-1 text-[#1A1918] font-medium">
-                            <MapPin size={13} className="text-[#003926] shrink-0" />
-                            <span>
-                              {dealer.city || "India"}
-                              {dealer.state && dealer.state !== dealer.city
-                                ? `, ${dealer.state}`
-                                : ""}
-                            </span>
+                  filteredModalDealers.map((dealer) => {
+                    const brandsList = Array.isArray(dealer.brands) ? dealer.brands : [];
+                    return (
+                      <div
+                        key={dealer.id}
+                        className="bg-white border border-[#E5E0D8] p-4 sm:p-5 rounded-xs hover:border-[#003926] transition-colors flex flex-col md:flex-row md:items-center justify-between gap-4"
+                      >
+                        {/* Left Store Info */}
+                        <div className="flex-1 space-y-1.5">
+                          {/* Title & Brand Badges */}
+                          <div className="flex flex-wrap items-center gap-2">
+                            <h4 className="font-montserrat font-bold text-[15px] text-[#1A1918] uppercase tracking-[0.02em]">
+                              {dealer.name}
+                            </h4>
+                            {brandsList.map((b: string) => (
+                              <span
+                                key={b}
+                                className={`text-[9.5px] font-montserrat font-bold uppercase tracking-widest px-2 py-0.5 rounded-2xs ${
+                                  b.includes("D'Signer")
+                                    ? "bg-[#003926]/10 text-[#003926] border border-[#003926]/20"
+                                    : "bg-[#7A2E39]/10 text-[#7A2E39] border border-[#7A2E39]/20"
+                                }`}
+                              >
+                                {b.replace(" Watches", "")}
+                              </span>
+                            ))}
+                            {dealer.category && !brandsList.includes(dealer.category) && (
+                              <span className="text-[9.5px] font-montserrat font-bold uppercase tracking-widest px-2 py-0.5 rounded-2xs bg-[#B8935A]/15 text-[#85642E] border border-[#B8935A]/30">
+                                {dealer.category}
+                              </span>
+                            )}
                           </div>
-                          {dealer.area && (
-                            <span className="text-[#8C857B]">
-                              Area: <strong>{dealer.area}</strong>
-                            </span>
-                          )}
-                          {dealer.location && (
-                            <span className="text-[#9C9690] text-[10.5px] uppercase tracking-wider bg-[#F2EFE9] px-2 py-0.5 rounded-2xs">
-                              {dealer.location}
-                            </span>
-                          )}
-                        </div>
 
-                        {/* Full Store Address if verified */}
-                        {dealer.address &&
-                          !dealer.address.toLowerCase().includes("not confidently") &&
-                          !dealer.address.toLowerCase().includes("verify manually") && (
-                            <p className="text-[11.5px] font-montserrat text-[#78726A] line-clamp-2 leading-relaxed pt-0.5">
-                              {dealer.address}
-                            </p>
-                          )}
-
-                        {/* Contact Person & Phone */}
-                        <div className="flex flex-wrap items-center gap-x-5 gap-y-1 pt-0.5 text-[11.5px] font-montserrat text-[#5C5750]">
-                          {dealer.contactPerson && (
-                            <div className="flex items-center gap-1.5">
-                              <User size={12} className="text-[#003926]/60 shrink-0" />
-                              <span>{dealer.contactPerson}</span>
+                          {/* Location / Area / City / State */}
+                          <div className="flex flex-wrap items-center gap-y-1 gap-x-3 text-[12px] font-montserrat text-[#6B6560]">
+                            <div className="flex items-center gap-1 text-[#1A1918] font-medium">
+                              <MapPin size={13} className="text-[#003926] shrink-0" />
+                              <span>
+                                {dealer.city || "India"}
+                                {dealer.state && dealer.state !== dealer.city
+                                  ? `, ${dealer.state}`
+                                  : ""}
+                              </span>
                             </div>
-                          )}
-                          {dealer.phone && (
-                            <a
-                              href={`tel:${dealer.phone}`}
-                              className="flex items-center gap-1.5 font-semibold text-[#003926] hover:underline"
-                            >
-                              <Phone size={12} className="shrink-0" />
-                              <span>{dealer.phone}</span>
-                            </a>
-                          )}
-                          {dealer.email && (
-                            <a
-                              href={`mailto:${dealer.email}`}
-                              className="flex items-center gap-1.5 text-[#003926] hover:underline"
-                            >
-                              <Mail size={12} className="shrink-0" />
-                              <span>{dealer.email}</span>
-                            </a>
-                          )}
+                            {dealer.area && (
+                              <span className="text-[#8C857B]">
+                                Area: <strong>{dealer.area}</strong>
+                              </span>
+                            )}
+                            {dealer.location && (
+                              <span className="text-[#9C9690] text-[10.5px] uppercase tracking-wider bg-[#F2EFE9] px-2 py-0.5 rounded-2xs">
+                                {dealer.location}
+                              </span>
+                            )}
+                          </div>
+
+                          {/* Full Store Address */}
+                          {dealer.address &&
+                            !dealer.address.toLowerCase().includes("not confidently") &&
+                            !dealer.address.toLowerCase().includes("verify manually") && (
+                              <p className="text-[11.5px] font-montserrat text-[#78726A] line-clamp-2 leading-relaxed pt-0.5">
+                                {dealer.address}
+                              </p>
+                            )}
+
+                          {/* Contact Person & Phone */}
+                          <div className="flex flex-wrap items-center gap-x-5 gap-y-1 pt-0.5 text-[11.5px] font-montserrat text-[#5C5750]">
+                            {dealer.contactPerson && (
+                              <div className="flex items-center gap-1.5">
+                                <User size={12} className="text-[#003926]/60 shrink-0" />
+                                <span>{dealer.contactPerson}</span>
+                              </div>
+                            )}
+                            {dealer.phone && (
+                              <a
+                                href={`tel:${dealer.phone}`}
+                                className="flex items-center gap-1.5 font-semibold text-[#003926] hover:underline"
+                              >
+                                <Phone size={12} className="shrink-0" />
+                                <span>{dealer.phone}</span>
+                              </a>
+                            )}
+                            {dealer.email && (
+                              <a
+                                href={`mailto:${dealer.email}`}
+                                className="flex items-center gap-1.5 text-[#003926] hover:underline"
+                              >
+                                <Mail size={12} className="shrink-0" />
+                                <span>{dealer.email}</span>
+                              </a>
+                            )}
+                          </div>
+                        </div>
+
+                        {/* Right Action Buttons */}
+                        <div className="flex items-center gap-2 shrink-0 pt-2 md:pt-0 border-t md:border-t-0 border-[#F0ECE4]">
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setSelectedDealer(dealer);
+                              setModalOpen(false);
+                            }}
+                            className="px-3.5 py-2.5 text-[11px] font-montserrat font-semibold uppercase tracking-wider text-[#003926] bg-[#FAF8F4] border border-[#D4CFC6] hover:bg-[#003926] hover:text-white transition-colors rounded-xs flex items-center gap-1.5 cursor-pointer"
+                          >
+                            <Navigation size={12} />
+                            <span>View on Map</span>
+                          </button>
+
+                          <a
+                            href={
+                              dealer.googleMapsQuery ||
+                              `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+                                `${dealer.name}, ${dealer.address || ""}, ${dealer.city}`
+                              )}`
+                            }
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="px-4 py-2.5 text-[11px] font-montserrat font-bold uppercase tracking-wider text-white bg-[#003926] hover:bg-[#024D35] transition-colors rounded-xs flex items-center gap-1.5 shadow-2xs cursor-pointer"
+                          >
+                            <span>Open in Maps</span>
+                            <ExternalLink size={12} />
+                          </a>
                         </div>
                       </div>
-
-                      {/* Right Action Buttons */}
-                      <div className="flex items-center gap-2 shrink-0 pt-2 md:pt-0 border-t md:border-t-0 border-[#F0ECE4]">
-                        <button
-                          type="button"
-                          onClick={() => {
-                            setSelectedDealer(dealer);
-                            setModalOpen(false);
-                          }}
-                          className="px-3.5 py-2.5 text-[11px] font-montserrat font-semibold uppercase tracking-wider text-[#003926] bg-[#FAF8F4] border border-[#D4CFC6] hover:bg-[#003926] hover:text-white transition-colors rounded-sm flex items-center gap-1.5 cursor-pointer"
-                        >
-                          <Navigation size={12} />
-                          <span>View on Map</span>
-                        </button>
-
-                        <a
-                          href={dealer.googleMapsQuery}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="px-4 py-2.5 text-[11px] font-montserrat font-bold uppercase tracking-wider text-white bg-[#003926] hover:bg-[#024D35] transition-colors rounded-sm flex items-center gap-1.5 shadow-xs cursor-pointer"
-                        >
-                          <span>Open in Maps</span>
-                          <ExternalLink size={12} />
-                        </a>
-                      </div>
-                    </div>
-                  ))
+                    );
+                  })
                 ) : (
-                  <div className="text-center py-16 bg-white border border-[#E5E0D8] rounded-sm p-8">
+                  <div className="text-center py-16 bg-white border border-[#E5E0D8] rounded-xs p-8">
                     <MapPin size={36} className="mx-auto text-[#C2BCB2] mb-3" />
                     <h4 className="font-montserrat font-bold text-[15px] text-[#1A1918] mb-1">
                       No matching stores found
@@ -706,9 +807,9 @@ export default function StoreLocator() {
                         setModalSearch("");
                         setModalCategory("");
                       }}
-                      className="px-5 py-2.5 bg-[#003926] text-white text-[11.5px] font-montserrat font-semibold uppercase tracking-wider rounded-sm hover:bg-[#024D35] transition-colors cursor-pointer"
+                      className="px-5 py-2.5 bg-[#003926] text-white text-[11.5px] font-montserrat font-semibold uppercase tracking-wider rounded-xs hover:bg-[#024D35] transition-colors cursor-pointer"
                     >
-                      Show All Stores ({dealers.length})
+                      Show All Stores ({stores.length})
                     </button>
                   </div>
                 )}
@@ -717,13 +818,13 @@ export default function StoreLocator() {
               {/* Modal Footer */}
               <div className="px-6 py-4 bg-white border-t border-[#E8E3DA] flex items-center justify-between text-[11.5px] font-montserrat text-[#6B6560] shrink-0">
                 <span>
-                  Showing {filteredModalDealers.length} of {dealers.length} total
-                  locations across 5 regional networks
+                  Showing {filteredModalDealers.length} of {stores.length} total
+                  locations across India
                 </span>
                 <button
                   type="button"
                   onClick={() => setModalOpen(false)}
-                  className="px-4 py-2 bg-[#F0EDE8] hover:bg-[#E4DFD6] text-[#003926] font-semibold text-[11px] uppercase tracking-wider rounded-sm transition-colors cursor-pointer"
+                  className="px-4 py-2 bg-[#F0EDE8] hover:bg-[#E4DFD6] text-[#003926] font-semibold text-[11px] uppercase tracking-wider rounded-xs transition-colors cursor-pointer"
                 >
                   Close
                 </button>

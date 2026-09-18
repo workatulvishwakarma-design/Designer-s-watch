@@ -561,3 +561,30 @@ model AbandonedCheckout {
   @@index([recovered])
 }
 
+model Store {
+  id              String   @id @default(cuid())
+  name            String
+  contactPerson   String?
+  phone           String?
+  email           String?
+  brands          String[] @default(["D'Signer Watches", "Escort Watches"])
+  category        String?  @default("All Categories")
+  address         String   @db.Text
+  area            String?
+  city            String
+  state           String
+  location        String?
+  latitude        Float?
+  longitude       Float?
+  googleMapsQuery String?  @db.Text
+  isActive        Boolean  @default(true)
+  sortOrder       Int      @default(0)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([city])
+  @@index([state])
+  @@index([isActive])
+}
+
+

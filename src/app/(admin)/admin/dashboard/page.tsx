@@ -268,7 +268,6 @@ function StatCard({ title, value, icon: Icon, highlight = false, href }: any) {
       </dt>
       <dd className="ml-16 flex items-baseline pb-6 sm:pb-7">
         <p className={`text-2xl font-semibold text-gray-900 ${highlight ? 'text-white dark:text-black' : 'dark:text-white'}`}>{value}</p>
-        {href && <ArrowUpRight className={`ml-2 h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity ${highlight ? 'text-white/60 dark:text-black/60' : 'text-gray-400'}`} />}
       </dd>
     </div>
   )

@@ -3,7 +3,7 @@ export const dynamic = "force-dynamic"
 import { 
   LayoutDashboard, ShoppingBag, Users, Settings, LogOut, Tags, 
   MessageSquare, Star, Ticket, Percent, Truck, Image as ImageIcon, 
-  Files, Search, Bell, History, ShieldCheck, Mail, Briefcase
+  Files, Search, Bell, History, ShieldCheck, Mail, Briefcase, MapPin
 } from "lucide-react"
 import { auth, signOut } from "@/lib/auth"
 import { redirect } from "next/navigation"
@@ -20,15 +20,15 @@ export default async function AdminLayout({
   }
 
   return (
-    <div className="flex h-screen bg-gray-50 dark:bg-zinc-950 font-sans overflow-hidden">
+    <div className="light flex h-screen bg-gray-50 text-gray-900 font-sans overflow-hidden">
       {/* Sidebar */}
-      <aside className="w-72 flex-shrink-0 bg-white dark:bg-zinc-900 border-r border-gray-200 dark:border-zinc-800 flex flex-col">
-        <div className="h-20 flex items-center px-6 border-b border-gray-200 dark:border-zinc-800">
+      <aside className="w-72 flex-shrink-0 bg-white border-r border-gray-200 flex flex-col">
+        <div className="h-20 flex items-center px-6 border-b border-gray-200">
           <Link href="/admin/dashboard" className="flex items-center gap-3">
-             <div className="w-8 h-8 bg-black dark:bg-white flex items-center justify-center rounded-lg">
-                <ShieldCheck className="w-5 h-5 text-white dark:text-black" />
+             <div className="w-8 h-8 bg-black flex items-center justify-center rounded-lg shadow-sm">
+                <ShieldCheck className="w-5 h-5 text-white" />
              </div>
-             <span className="text-sm font-semibold tracking-[0.2em] text-black dark:text-white uppercase leading-none">
+             <span className="text-sm font-semibold tracking-[0.2em] text-black uppercase leading-none">
                 Admin Panel
              </span>
           </Link>
@@ -50,6 +50,7 @@ export default async function AdminLayout({
             <div className="space-y-1">
               <NavLink href="/admin/products" icon={Tags} label="Products" />
               <NavLink href="/admin/categories" icon={ShoppingBag} label="Collections" />
+              <NavLink href="/admin/stores" icon={MapPin} label="Stores & Dealers" />
               <NavLink href="/admin/media" icon={ImageIcon} label="Media Library" />
               <NavLink href="/admin/image-audit" icon={ImageIcon} label="Image Audit" />
             </div>
