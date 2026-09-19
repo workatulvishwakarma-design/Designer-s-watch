@@ -973,7 +973,7 @@
   "/images/new-img/model-1/826/826.RGBLM.5.G/826.RGBLM.5 (1).jpg": "/images/transparent-img/model-1/826/826.RGBLM.5.G/826.RGBLM.5 (1).png",
   "/images/new-img/model-2/867/867GM.9.G/867GM.9 (2).jpg": "/images/transparent-img/model-2/867/867GM.9.G/867GM.9 (2).png",
   "/images/new-img/model-1/680/680BRNL.9G/680BRNL (2).jpg": "/images/transparent-img/model-1/680/680BRNL.9G/680BRNL (2).png",
-  "/images/new-img/model-2/869/869/869RTM.16G/869RTM (1).jpg": "/images/transparent-img/model-2/869/869RTM.16G.png",
+  "/images/new-img/model-2/869/869/869RTM.16G/869RTM (1).jpg": "/images/transparent-img/model-2/869/869/869RTM.16G/869RTM (1).png",
   "/images/new-img/model-2/950/950/950RGBLFS.5G.png": "/images/transparent-img/model-2/950/950/950RGBLFS.5G.png",
   "/images/new-img/model-1/812/812/812/812RTM.16L.png": "/images/transparent-img/model-1/812/812/812/812RTM.16L.png",
   "/images/new-img/model-2/853/853/853RGM.5L.png": "/images/transparent-img/model-2/853/853/853RGM.5L.png",
@@ -1489,5 +1489,8 @@
   "/images/new-img/model-1/821/821GNM.16.G/821GNM.16 (1).jpg": "/images/transparent-img/model-1/821/821GM.1.G/821GM.1.png",
   "/images/new-img/model-1/794/794SM.5L/794SM (1).jpg": "/images/transparent-img/model-1/794/794SM.5L/794SM (1).png",
   "/images/new-img/model-2/862/862GM.16L/862GM (1).jpg": "/images/new-img/model-2/862/862/862GM.16L.png",
-  "/images/new-img/model-1/521/521GM.16G & 521GM.16L.jpg": "/images/new-img/model-1/521/521GM.16G & 521GM.16L.png"
+  "/images/new-img/model-1/521/521GM.16G & 521GM.16L.jpg": "/images/new-img/model-1/521/521GM.16G & 521GM.16L.png",
+  "/images/new-img/model-2/869/869/869RTM.16G/869RTM (2).jpg": "/images/transparent-img/model-2/869/869/869RTM.16G/869RTM (2).png",
+  "/images/new-img/model-2/869/869/869RTM.16G/869RTM (3).jpg": "/images/transparent-img/model-2/869/869/869RTM.16G/869RTM (3).png",
+  "/images/new-img/model-2/869/869/869RTM.16G/869RTM (4).jpg": "/images/transparent-img/model-2/869/869/869RTM.16G/869RTM (4).png"
 }
