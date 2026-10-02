@@ -125,25 +125,160 @@ export function CheckoutForm({ addresses }: { addresses: any[] }) {
       // Generate idempotency key to prevent duplicate orders
       const idempotencyKey = `DW-${Date.now().toString(36)}-${Math.random().toString(36).substring(2, 6)}`.toUpperCase()
 
-      // Call payment create-order API
+      const activeAddr = addresses.find((a) => a.id === selectedAddress)
+      const customerPhone = activeAddr?.phone || ""
+      const customerName = activeAddr ? `${activeAddr.firstName || ""} ${activeAddr.lastName || ""}`.trim() : ""
+
+      const cartPayload = {
+        addressId: selectedAddress,
+        cartItems: items.map(item => ({
+          productId: item.productId,
+          slug: item.slug,
+          name: item.name,
+          price: item.price,
+          quantity: item.quantity,
+        })),
+        paymentMethod: selectedPayment === "COD" ? "COD" : "PREPAID",
+        couponId: appliedCoupon?.couponId || null,
+        customerPhone,
+        customerEmail: "",
+        idempotencyKey,
+      }
+
+      // ──────────────────────────────────────────────
+      // STRATEGY: Try Razorpay first, fallback to Cashfree
+      // ──────────────────────────────────────────────
+
+      // ── Attempt 1: Razorpay Standard Checkout ──
+      try {
+        const rzpRes = await fetch("/api/payment/razorpay/create-order", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(cartPayload),
+        })
+
+        const rzpData = await rzpRes.json()
+
+        // If Razorpay is configured and order created successfully
+        if (rzpRes.ok && rzpData.success && rzpData.razorpayOrderId) {
+          // Load Razorpay checkout script dynamically
+          const scriptLoaded = await new Promise<boolean>((resolve) => {
+            if ((window as any).Razorpay) {
+              resolve(true)
+              return
+            }
+            const script = document.createElement("script")
+            script.src = "https://checkout.razorpay.com/v1/checkout.js"
+            script.onload = () => resolve(true)
+            script.onerror = () => resolve(false)
+            document.head.appendChild(script)
+          })
+
+          if (!scriptLoaded) {
+            throw new Error("Failed to load Razorpay checkout script")
+          }
+
+          // Open Razorpay modal
+          const razorpayPromise = new Promise<{ success: boolean; response?: any; error?: any }>((resolve) => {
+            const options = {
+              key: rzpData.razorpayKeyId,
+              amount: rzpData.amountInPaise,
+              currency: rzpData.currency || "INR",
+              name: "Designer's Watch",
+              description: rzpData.isCOD
+                ? `COD Advance ₹${rzpData.paymentAmount}`
+                : `Payment for Order`,
+              order_id: rzpData.razorpayOrderId,
+              handler: function (response: any) {
+                resolve({ success: true, response })
+              },
+              prefill: {
+                name: customerName,
+                contact: customerPhone,
+              },
+              theme: {
+                color: "#B8935A",
+              },
+              modal: {
+                ondismiss: function () {
+                  resolve({ success: false, error: "cancelled" })
+                },
+              },
+            }
+
+            const rzp = new (window as any).Razorpay(options)
+            rzp.on("payment.failed", function (response: any) {
+              resolve({ success: false, error: response.error })
+            })
+            rzp.open()
+          })
+
+          const rzpResult = await razorpayPromise
+
+          if (!rzpResult.success) {
+            // User cancelled or payment failed
+            if (rzpResult.error === "cancelled") {
+              toast.info("Payment cancelled. You can try again anytime.")
+            } else {
+              const errMsg = rzpResult.error?.description || rzpResult.error?.reason || "Payment failed"
+              toast.error(`Payment failed: ${errMsg}`)
+            }
+            setIsPending(false)
+            setPaymentStep("checkout")
+            return
+          }
+
+          // Verify signature on server
+          const verifyRes = await fetch("/api/payment/razorpay/verify", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              razorpay_order_id: rzpResult.response.razorpay_order_id,
+              razorpay_payment_id: rzpResult.response.razorpay_payment_id,
+              razorpay_signature: rzpResult.response.razorpay_signature,
+              orderId: rzpData.orderId,
+            }),
+          })
+
+          const verifyData = await verifyRes.json()
+
+          if (verifyRes.ok && verifyData.success) {
+            clearCart()
+            setPaymentStep("success")
+            router.push(`/checkout/status?order_id=${rzpData.orderId}&txn=${rzpData.transactionRef}`)
+            return
+          } else {
+            toast.error(verifyData.error || "Payment verification failed. Please contact support.")
+            setIsPending(false)
+            setPaymentStep("checkout")
+            return
+          }
+        }
+
+        // If Razorpay returned 503 (not configured), fall through to Cashfree
+        // Auth errors (401) and other errors should be shown to the user
+        if (rzpRes.status === 503) {
+          // Razorpay not configured → fall through to Cashfree
+        } else {
+          // It's a real error — show it clearly
+          const errDetail = rzpData.isAuthError
+            ? "Razorpay API key authentication failed. Please check your Razorpay credentials in the .env file."
+            : rzpData.error || "Failed to create payment order"
+          toast.error(errDetail)
+          setIsPending(false)
+          setPaymentStep("checkout")
+          return
+        }
+      } catch (rzpErr) {
+        console.warn("[Checkout] Razorpay attempt failed, trying Cashfree:", rzpErr)
+        // Fall through to Cashfree
+      }
+
+      // ── Attempt 2: Cashfree (existing flow) ──
       const res = await fetch("/api/payment/create-order", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          addressId: selectedAddress,
-          cartItems: items.map(item => ({
-            productId: item.productId,
-            slug: item.slug,
-            name: item.name,
-            price: item.price,
-            quantity: item.quantity,
-          })),
-          paymentMethod: selectedPayment === "COD" ? "COD" : "PREPAID",
-          couponId: appliedCoupon?.couponId || null,
-          customerPhone: "", // From address
-          customerEmail: "", // From session
-          idempotencyKey,
-        }),
+        body: JSON.stringify(cartPayload),
       })
 
       const data = await res.json()
@@ -172,7 +307,7 @@ export function CheckoutForm({ addresses }: { addresses: any[] }) {
         }
       }
 
-      // Test mode / Cashfree not configured → go directly to status page
+      // Test mode / Neither gateway configured → go directly to status page
       setPaymentStep("success")
       router.push(`/checkout/status?order_id=${data.orderId}&txn=${data.transactionRef}`)
 

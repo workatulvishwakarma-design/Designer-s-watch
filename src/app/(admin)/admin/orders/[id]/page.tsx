@@ -1,7 +1,7 @@
 import { prisma } from "@/lib/db"
 import { notFound } from "next/navigation"
 import Link from "next/link"
-import { ChevronLeft, MapPin, Package, User } from "lucide-react"
+import { ChevronLeft, MapPin, Package, User, CreditCard } from "lucide-react"
 import { Badge } from "@/components/admin/Badge"
 import { OrderTimelineManager } from "@/components/admin/OrderTimelineManager"
 import { AdminOrderInvoiceButton } from "@/components/admin/AdminOrderInvoiceButton"
@@ -173,6 +173,73 @@ export default async function AdminOrderDetailPage({ params }: { params: Promise
         <div className="space-y-8">
           {/* Admin Controls */}
           <OrderTimelineManager orderId={order.id} currentStatus={order.status} />
+
+          {/* Payment Details */}
+          <div className="bg-white dark:bg-zinc-900 shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl p-6">
+            <h3 className="text-sm font-medium leading-6 text-gray-900 dark:text-white flex items-center mb-4">
+              <CreditCard className="h-4 w-4 mr-2" /> Payment Details
+            </h3>
+            <dl className="space-y-3 text-sm">
+              <div className="flex justify-between">
+                <dt className="text-gray-500">Payment Status</dt>
+                <dd>
+                  <Badge variant={
+                    order.paymentStatus === "PAID" ? "success" :
+                    order.paymentStatus === "ADVANCE_PAID" ? "warning" :
+                    order.paymentStatus === "FAILED" ? "error" : "neutral"
+                  }>{order.paymentStatus}</Badge>
+                </dd>
+              </div>
+              <div className="flex justify-between">
+                <dt className="text-gray-500">Method</dt>
+                <dd className="font-medium text-gray-900 dark:text-white">
+                  {order.isCOD ? "COD (Advance)" : order.paymentMethod || "Prepaid"}
+                </dd>
+              </div>
+              {order.paymentGatewayOrderId && (
+                <div className="flex justify-between">
+                  <dt className="text-gray-500">Razorpay Order</dt>
+                  <dd className="font-mono text-xs text-gray-900 dark:text-gray-300 break-all">
+                    {order.paymentGatewayOrderId}
+                  </dd>
+                </div>
+              )}
+              {order.paymentGatewayPaymentId && (
+                <div className="flex justify-between">
+                  <dt className="text-gray-500">Payment ID</dt>
+                  <dd className="font-mono text-xs text-gray-900 dark:text-gray-300 break-all">
+                    {order.paymentGatewayPaymentId}
+                  </dd>
+                </div>
+              )}
+              {order.isCOD && (
+                <>
+                  <div className="flex justify-between">
+                    <dt className="text-gray-500">Advance Paid</dt>
+                    <dd className="font-medium text-emerald-700">₹{Number(order.advancePaid).toLocaleString("en-IN")}</dd>
+                  </div>
+                  <div className="flex justify-between">
+                    <dt className="text-gray-500">Balance Due</dt>
+                    <dd className="font-medium text-amber-700">₹{Number(order.balanceDue).toLocaleString("en-IN")}</dd>
+                  </div>
+                </>
+              )}
+              {order.transactionRef && (
+                <div className="flex justify-between">
+                  <dt className="text-gray-500">Transaction Ref</dt>
+                  <dd className="font-mono text-xs text-gray-600 dark:text-gray-400">{order.transactionRef}</dd>
+                </div>
+              )}
+              <div className="flex justify-between border-t border-gray-100 dark:border-zinc-800 pt-3">
+                <dt className="text-gray-500">Paid At</dt>
+                <dd className="text-gray-900 dark:text-gray-300 text-xs">
+                  {order.paymentStatus === "PAID" || order.paymentStatus === "ADVANCE_PAID"
+                    ? order.updatedAt.toLocaleString()
+                    : "—"}
+                </dd>
+              </div>
+            </dl>
+          </div>
 
           {/* Customer Invoice Download */}
           <div className="bg-white dark:bg-zinc-900 shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl p-6">
