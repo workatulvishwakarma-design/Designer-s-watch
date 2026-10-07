@@ -14,8 +14,17 @@ export function TodaySection() {
           </p>
         </div>
 
-        {/* Center Blank for green spine continuity */}
-        <div className={s.todayColCenter} />
+        {/* Center Artwork within green spine */}
+        <div className={s.todayColCenter}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/images/new-img/PNG/today.png"
+            alt="Designer World - Today & Beyond"
+            className={s.centerArtworkImg}
+            style={{ width: "100%", height: "auto" }}
+            loading="lazy"
+          />
+        </div>
 
         {/* Right Column */}
         <div className={s.todayColRight}>
@@ -24,17 +33,6 @@ export function TodaySection() {
             Where heritage meets modern design, Designer World creates watches that combine timeless style, reliable quality, and everyday accessibility.
           </p>
         </div>
-      </div>
-
-      {/* Full-width Team Photo Spanning across bottom */}
-      <div className={s.teamPhotoWrap}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/about-us-coded/assets/x8.png"
-          alt="Designer World Team"
-          className={s.teamPhoto}
-          loading="lazy"
-        />
       </div>
     </section>
   );

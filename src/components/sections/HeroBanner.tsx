@@ -2,10 +2,12 @@
 
 import React, { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import { Volume2, VolumeX } from "lucide-react";
 
 export default function HeroBanner() {
     const containerRef = useRef<HTMLDivElement>(null);
-    const [loaded, setLoaded] = useState(false);
+    const videoRef = useRef<HTMLVideoElement>(null);
+    const [isMuted, setIsMuted] = useState(true);
 
     const { scrollYProgress } = useScroll({
         target: containerRef,
@@ -13,13 +15,41 @@ export default function HeroBanner() {
     });
 
     const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
-    const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
     const scale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
 
     useEffect(() => {
-        const timer = setTimeout(() => setLoaded(true), 300);
-        return () => clearTimeout(timer);
+        const vid = videoRef.current;
+        if (!vid) return;
+
+        // Ensure video is muted for immediate browser autoplay compatibility
+        vid.muted = true;
+
+        // Eagerly trigger video playback as fast as possible
+        const playPromise = vid.play();
+        if (playPromise !== undefined) {
+            playPromise.catch(() => {
+                if (vid) {
+                    vid.muted = true;
+                    vid.play().catch(() => {});
+                }
+            });
+        }
     }, []);
+
+    const toggleMute = (e: React.MouseEvent) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const vid = videoRef.current;
+        if (!vid) return;
+
+        const nextMuted = !isMuted;
+        vid.muted = nextMuted;
+        setIsMuted(nextMuted);
+
+        if (!nextMuted && vid.paused) {
+            vid.play().catch(() => {});
+        }
+    };
 
     return (
         <section
@@ -27,22 +57,21 @@ export default function HeroBanner() {
             className="relative w-full h-[100svh] flex flex-col items-center justify-center overflow-hidden"
             style={{ background: "#0A0A09" }}
         >
-            {/* FULL WIDTH VIDEO BACKGROUND */}
+            {/* FULL WIDTH VIDEO BACKGROUND (No static images or poster) */}
             <motion.div 
-                className="absolute inset-0 z-0 w-full h-full bg-cover bg-center"
+                className="absolute inset-0 z-0 w-full h-full"
                 style={{ 
                     y, 
                     scale,
-                    backgroundImage: "url('/images/new-img/home-2-dark.jpg')" 
                 }}
             >
                 <video
+                    ref={videoRef}
                     autoPlay
                     muted
                     loop
                     playsInline
-                    preload="auto"
-                    poster="/images/new-img/home-2-dark.jpg"
+                    preload="metadata"
                     className="absolute inset-0 w-full h-full object-cover cinematic-zoom"
                     style={{ willChange: "transform" }}
                 >
@@ -109,6 +138,34 @@ export default function HeroBanner() {
                     className="w-[1px] h-12 bg-gradient-to-b from-white/40 to-transparent"
                 />
             </motion.div>
+
+            {/* Premium Audio Control Toggle - Bottom Right */}
+            <div className="absolute bottom-6 right-6 sm:bottom-10 sm:right-10 z-30">
+                <button
+                    type="button"
+                    onClick={toggleMute}
+                    aria-label={isMuted ? "Unmute audio" : "Mute audio"}
+                    title={isMuted ? "Unmute audio" : "Mute audio"}
+                    className="group relative flex items-center gap-2.5 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-full backdrop-blur-md bg-black/45 hover:bg-black/70 border border-white/20 hover:border-[#B8935A]/70 shadow-[0_4px_24px_rgba(0,0,0,0.45)] hover:shadow-[0_0_24px_rgba(184,147,90,0.35)] transition-all duration-300 cursor-pointer select-none"
+                >
+                    <span className="relative flex items-center justify-center text-white/80 group-hover:text-[#D4AA72] transition-colors duration-300">
+                        {isMuted ? (
+                            <VolumeX size={17} strokeWidth={1.8} className="transition-transform duration-200 group-hover:scale-110" />
+                        ) : (
+                            <Volume2 size={17} strokeWidth={1.8} className="transition-transform duration-200 group-hover:scale-110 text-[#D4AA72]" />
+                        )}
+                    </span>
+                    <span className="font-sans text-[10px] sm:text-[11px] uppercase tracking-[0.2em] font-medium text-white/75 group-hover:text-white transition-colors duration-300">
+                        {isMuted ? "Unmute" : "Sound On"}
+                    </span>
+                    {!isMuted && (
+                        <span className="relative flex h-2 w-2 ml-0.5">
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#B8935A] opacity-75" />
+                            <span className="relative inline-flex rounded-full h-2 w-2 bg-[#D4AA72]" />
+                        </span>
+                    )}
+                </button>
+            </div>
         </section>
     );
 }

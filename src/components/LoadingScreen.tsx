@@ -19,7 +19,7 @@ export default function LoadingScreen() {
       if (!seen) {
         setVisible(true);
         sessionStorage.setItem("dw-splash-seen", "1");
-        const timer = setTimeout(() => setVisible(false), 2400);
+        const timer = setTimeout(() => setVisible(false), 1200);
         return () => clearTimeout(timer);
       }
     }

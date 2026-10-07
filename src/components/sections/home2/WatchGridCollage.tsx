@@ -4,7 +4,6 @@ import React, { useState, useEffect, useMemo, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { getCollectionProducts } from "@/lib/collectionProducts";
 import type { ModelFamilyGroup } from "@/types/product";
 
 interface GridCollectionItem {
@@ -157,7 +156,6 @@ export default function WatchGridCollage() {
               unoptimized
               className="object-cover transition-transform duration-700 ease-out group-hover:scale-105 pointer-events-none"
               sizes="(max-width: 768px) 100vw, 25vw"
-              priority
             />
             {/* Dark Gradient Overlay for text contrast */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent pointer-events-none" />

@@ -38,11 +38,12 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
+  compress: true,
   turbopack: {
     root: path.resolve(__dirname),
   },
   experimental: {
-    turbopackFileSystemCacheForDev: false,
+    turbopackFileSystemCacheForDev: true,
     serverActions: {
       allowedOrigins: [
         '187.127.140.26:3000',

@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Suspense } from "react";
+import { cache, Suspense } from "react";
 import { Loader2 } from "lucide-react";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
@@ -21,20 +21,23 @@ const montserrat = Montserrat({
   display: "swap",
 });
 
+const getStoreSettings = cache(async () => {
+  try {
+    return await prisma.storeSettings.findUnique({
+      where: { id: "singleton" }
+    }).catch(() => null);
+  } catch {
+    return null;
+  }
+});
+
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
 };
 
 export async function generateMetadata(): Promise<Metadata> {
-  let settings: any = null;
-  try {
-    settings = await prisma.storeSettings.findUnique({
-      where: { id: "singleton" }
-    }).catch(() => null);
-  } catch {
-    settings = null;
-  }
+  const settings: any = await getStoreSettings();
 
     const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://designerswatch.com";
     return {
@@ -62,14 +65,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  let settings: any = null;
-  try {
-    settings = await prisma.storeSettings.findUnique({
-      where: { id: "singleton" }
-    }).catch(() => null);
-  } catch {
-    settings = null;
-  }
+  const settings: any = await getStoreSettings();
 
   const showAnnouncement = !!(settings?.announcementActive && settings.announcementText);
 

@@ -1482,72 +1482,76 @@ function SectionToday() {
   return (
     <MilestoneSectionWrapper
       id="section-today"
-      className={styles.todaySection}
-      style={{ marginBottom: "clamp(40px, 6vh, 80px)" }}
+      className={styles.milestoneSection}
+      style={{
+        alignItems: "center",
+        marginBottom: "clamp(30px, 5vh, 60px)",
+      }}
     >
-      <div className={styles.todayGrid}>
-        {/* ── Left Column: Small TODAY label, green divider, first narrative ── */}
-        <LeftCol className={styles.leftCol}>
-          <div className={styles.leftCard}>
-            <SmallYear className={styles.smallYearLabel}>TODAY</SmallYear>
-            <DecorationLine className={styles.smallYearDivider} />
-            <SectionDescription className={styles.bodyParagraph}>
-              Blending decades of legacy with modern design, Designer World
-              continues to create watches that balance style, quality, and
-              accessibility.
-            </SectionDescription>
-          </div>
-        </LeftCol>
+      {/* ── Left Column: Small TODAY label, green divider, first narrative ── */}
+      <LeftCol className={styles.leftCol}>
+        <div className={styles.leftCard}>
+          <SmallYear className={styles.smallYearLabel}>TODAY</SmallYear>
+          <DecorationLine className={styles.smallYearDivider} />
+          <SectionDescription className={styles.bodyParagraph}>
+            Blending decades of legacy with modern design, Designer World
+            continues to create watches that balance style, quality, and
+            accessibility.
+          </SectionDescription>
+        </div>
+      </LeftCol>
 
-        {/* ── Center Column: Center Spine ── */}
-        <div className={styles.centerCol} />
-
-        {/* ── Right Column: Stacked TO / DAY, Today & Beyond, divider, second narrative ── */}
-        <RightCol className={styles.rightCol}>
-          <div className={styles.rightCard}>
-            {/* 1. Large hero year → strongest reveal */}
-            <HeroYear className={styles.bigYearToday}>
-              <span className={styles.yearNumber}>TO</span>
-              <span className={styles.yearNumber}>DAY</span>
-            </HeroYear>
-
-            {/* 3. Section heading → fade-up */}
-            <SectionHeading className={styles.editorialTitle}>
-              Today &amp; Beyond
-            </SectionHeading>
-
-            {/* 5. Background decorations → almost static */}
-            <DecorationLine className={styles.greenDivider} />
-
-            {/* 4. Description → fade-up with small delay */}
-            <SectionDescription className={styles.bodyParagraph}>
-              Where heritage meets modern design, Designer World creates watches
-              that combine timeless style, reliable quality, and everyday
-              accessibility.
-            </SectionDescription>
-          </div>
-        </RightCol>
-      </div>
-
-      {/* 2. Full team photo centered below the grid */}
-      <div className={styles.teamPhotoWrap}>
-        <HistoricalImageWrap style={{ width: "100%" }}>
+      {/* ── Center Column: Artwork kept neatly inside the green spine patch ── */}
+      <div className={styles.centerCol} style={{ padding: "6px 0" }}>
+        <HistoricalImageWrap
+          style={{
+            width: "clamp(204px, 19vw, 258px)",
+            maxWidth: "258px",
+            borderRadius: "6px",
+            boxShadow: "0 10px 28px rgba(0, 0, 0, 0.32)",
+          }}
+        >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/about-us-coded/assets/x8.png"
-            alt="Designer World Full Team Photo"
-            className={styles.teamPhotoImg}
-            loading="lazy"
-            onError={(e) => {
-              const t = e.target as HTMLImageElement;
-              if (!t.dataset.fallback) {
-                t.dataset.fallback = "1";
-                t.src = "/images/aboutImg3.png";
-              }
+            src="/images/new-img/PNG/today.png"
+            alt="Designer World - Today & Beyond"
+            className={styles.centerArtworkImg}
+            style={{
+              width: "100%",
+              height: "auto",
+              display: "block",
+              borderRadius: "6px",
             }}
+            loading="lazy"
           />
         </HistoricalImageWrap>
       </div>
+
+      {/* ── Right Column: Stacked TO / DAY, Today & Beyond, divider, second narrative ── */}
+      <RightCol className={styles.rightCol}>
+        <div className={styles.rightCard}>
+          {/* 1. Large hero year → strongest reveal */}
+          <HeroYear className={styles.bigYearToday}>
+            <span className={styles.yearNumber}>TO</span>
+            <span className={styles.yearNumber}>DAY</span>
+          </HeroYear>
+
+          {/* 3. Section heading → fade-up */}
+          <SectionHeading className={styles.editorialTitle}>
+            Today &amp; Beyond
+          </SectionHeading>
+
+          {/* 5. Background decorations → almost static */}
+          <DecorationLine className={styles.greenDivider} />
+
+          {/* 4. Description → fade-up with small delay */}
+          <SectionDescription className={styles.bodyParagraph}>
+            Where heritage meets modern design, Designer World creates watches
+            that combine timeless style, reliable quality, and everyday
+            accessibility.
+          </SectionDescription>
+        </div>
+      </RightCol>
     </MilestoneSectionWrapper>
   );
 }
