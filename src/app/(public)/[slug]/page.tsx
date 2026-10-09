@@ -1,9 +1,12 @@
 import { prisma } from "@/lib/db"
-import { notFound } from "next/navigation"
+import { notFound, redirect } from "next/navigation"
 
 export default async function DynamicPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
   if (!slug) return notFound()
+  if (slug === "index" || slug === "home" || slug === "home-2") {
+    redirect("/")
+  }
 
   try {
     const page = await prisma.page.findUnique({

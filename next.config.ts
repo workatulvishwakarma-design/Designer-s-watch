@@ -16,6 +16,14 @@ const nextConfig: NextConfig = {
       }
     ],
   },
+  async rewrites() {
+    return [
+      {
+        source: '/index',
+        destination: '/',
+      },
+    ];
+  },
   async redirects() {
     return [
       {

@@ -137,7 +137,7 @@ export default function Footer() {
                     
                     {/* Brand Anchor (Left) */}
                     <motion.div variants={itemVariants} className="lg:w-[35%] flex flex-col justify-start">
-                        <Link href="/home-2" className="block transition-opacity duration-700 hover:opacity-60 w-fit mb-12">
+                        <Link href="/" className="block transition-opacity duration-700 hover:opacity-60 w-fit mb-12">
                             <Image
                                 src={isEscort ? "/images/escort_b.png" : "/images/designer world logo_B.png"}
                                 alt="Designer World Logo"

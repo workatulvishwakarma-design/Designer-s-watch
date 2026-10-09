@@ -283,7 +283,7 @@ export default function HeaderClient({ hasAnnouncement = false, megaMenuPayload 
     };
 
     const navLinks = [
-        { label: "Home", href: "/home-2" },
+        { label: "Home", href: "/" },
         { label: "Collections", href: "/collections" },
         { label: "Pillars", href: "/pillar-4" },
         { label: "About", href: "/about-5" },
@@ -396,7 +396,7 @@ export default function HeaderClient({ hasAnnouncement = false, megaMenuPayload 
 
                     {/* Center: Centered Logo */}
                     <div className="absolute left-1/2 -translate-x-1/2 z-50">
-                        <Link href="/home-2" className="relative h-[32px] w-[160px] md:h-[40px] md:w-[200px] xl:h-[48px] xl:w-[220px] block hover:opacity-85 transition-opacity duration-300">
+                        <Link href="/" className="relative h-[32px] w-[160px] md:h-[40px] md:w-[200px] xl:h-[48px] xl:w-[220px] block hover:opacity-85 transition-opacity duration-300">
                             <Image
                                 src={pathname.includes("/collections/escort") ? "/images/escort_b.png" : "/images/designer world logo_B.png"}
                                 alt="Designer World" fill className="object-contain"
