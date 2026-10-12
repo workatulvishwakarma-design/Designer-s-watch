@@ -107,14 +107,15 @@ export default function UnderConstruction() {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="text-center max-w-3xl mx-auto mb-10 md:mb-14"
         >
-          {/* Status Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#B8935A]/40 bg-[#B8935A]/10 text-[#B8935A] text-[11px] md:text-[12px] font-montserrat font-semibold uppercase tracking-[0.25em] mb-6 shadow-[0_0_20px_rgba(184,147,90,0.15)]">
+          <div className="inline-flex items-center gap-2 mb-4">
             <span className="w-2 h-2 rounded-full bg-[#B8935A] animate-ping" />
-            UNDER CONSTRUCTION
+            <span className="text-[11px] md:text-[12px] font-montserrat uppercase tracking-[0.3em] text-[#B8935A] font-semibold">
+              Official Notice
+            </span>
           </div>
 
-          <h1 className="font-cormorant text-4xl sm:text-5xl md:text-6xl text-[#FAF8F4] font-light leading-[1.15] mb-5 tracking-tight">
-            Crafting Something <span className="italic font-normal text-[#D4AF37]">Timeless</span>
+          <h1 className="font-cormorant text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-[#FAF8F4] font-light leading-[1.1] mb-5 tracking-wide uppercase">
+            UNDER <span className="italic font-normal text-[#D4AF37]">CONSTRUCTION</span>
           </h1>
 
           <p className="text-[14px] md:text-[16px] text-[#FAF8F4]/75 font-montserrat font-light leading-relaxed max-w-2xl mx-auto">
