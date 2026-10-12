@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { cache, Suspense } from "react";
 import { Loader2 } from "lucide-react";
-import { Montserrat } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/sections/Header";
 import Footer from "@/components/sections/Footer";
@@ -13,13 +12,6 @@ import { prisma } from "@/lib/db";
 import { Toaster } from "sonner";
 import CookieConsent from "@/components/ui/CookieConsent";
 import CelebrationPopup from "@/components/ui/CelebrationPopup";
-
-const montserrat = Montserrat({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800"],
-  variable: "--font-montserrat",
-  display: "swap",
-});
 
 const getStoreSettings = cache(async () => {
   try {
@@ -70,7 +62,7 @@ export default async function RootLayout({
   const showAnnouncement = !!(settings?.announcementActive && settings.announcementText);
 
   return (
-    <html lang="en" className={`${montserrat.variable} font-sans`}>
+    <html lang="en" className="font-sans">
        <body suppressHydrationWarning className="antialiased bg-background text-primaryText overflow-x-hidden">
           <PublicShell
             customCursor={<CustomCursor />}
