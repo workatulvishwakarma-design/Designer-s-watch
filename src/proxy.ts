@@ -4,6 +4,9 @@ import { authConfig } from "@/lib/auth.config" // NextAuth edge configuration
 
 const { auth } = NextAuth(authConfig)
 
+// Set to true to lock down the whole website to only the Under Construction page
+const IS_UNDER_CONSTRUCTION = true;
+
 // Define paths that require different access levels
 const ADMIN_PATHS = ["/admin"]
 const USER_PATHS = ["/account", "/checkout"]
@@ -11,6 +14,23 @@ const AUTH_PATHS = ["/login", "/signup", "/forgot-password"]
 
 export async function proxy(req: any) {
   const { nextUrl } = req
+  const pathname = nextUrl.pathname
+
+  // 1. UNDER CONSTRUCTION LOCKDOWN
+  // If active, every page (collections, products, checkout, etc.) redirects to /
+  if (IS_UNDER_CONSTRUCTION) {
+    if (pathname === "/") return NextResponse.next()
+
+    const isSystemOrAdmin =
+      pathname.startsWith("/admin") ||
+      pathname.startsWith("/login") ||
+      pathname.startsWith("/api") ||
+      pathname.startsWith("/_next")
+
+    if (!isSystemOrAdmin) {
+      return NextResponse.redirect(new URL("/", nextUrl))
+    }
+  }
   
   const isApiAuthRoute = nextUrl.pathname.startsWith("/api/auth")
   const isAdminRoute = ADMIN_PATHS.some((path) => nextUrl.pathname.startsWith(path))
