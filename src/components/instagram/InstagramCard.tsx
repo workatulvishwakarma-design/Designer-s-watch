@@ -62,7 +62,7 @@ export default function InstagramCard({ post, index }: InstagramCardProps) {
       rel="noopener noreferrer"
       aria-label="View on Instagram"
       className="group relative block w-full h-full overflow-hidden select-none cursor-pointer bg-neutral-100 rounded-none border-none shadow-none"
-      style={{ aspectRatio: "3 / 4.2" }}
+      style={{ aspectRatio: "3 / 5.04" }}
     >
       {/* 1. High-Res Image / Poster */}
       {!imageError && (

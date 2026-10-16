@@ -174,7 +174,7 @@ export default function InstagramCarousel({ posts }: InstagramCarouselProps) {
         {extendedPosts.map((post, idx) => (
           <div
             key={`${post.id}-${idx}`}
-            style={{ aspectRatio: "3 / 4.2" }}
+            style={{ aspectRatio: "3 / 5.04" }}
             className="flex-shrink-0 w-[calc((100%-2.5px*0.4)/1.4)] min-[375px]:w-[calc((100%-2.5px)/2)] sm:w-[calc((100%-5px)/3)] lg:w-[calc((100%-10px)/5)] 2xl:w-[calc((100%-15px)/7)]"
           >
             <InstagramCard post={post} index={idx} />
