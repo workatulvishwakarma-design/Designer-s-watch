@@ -290,9 +290,22 @@ export default function HeaderClient({ hasAnnouncement = false, megaMenuPayload 
         }
     };
 
-    const navLinks = [
-        { label: "Home", href: "/" },
-        { label: "Collections", href: "/collections" },
+    const allCategoryGroups = useMemo(() => {
+        const order = [
+            "Signature Collections",
+            "Performance Collections",
+            "Minimal Collections",
+            "Women's Collections",
+            "Couple Collections",
+            "Escort Collections"
+        ];
+        return order.map(cat => ({
+            category: cat,
+            items: collections.filter(c => c.category === cat)
+        })).filter(g => g.items.length > 0);
+    }, []);
+
+    const otherNavLinks = [
         { label: "Pillars", href: "/pillar-4" },
         { label: "About", href: "/about-5" },
         { label: "Contact", href: "/contact" },
@@ -707,64 +720,35 @@ export default function HeaderClient({ hasAnnouncement = false, megaMenuPayload 
                             touchAction: "pan-y",
                         }}
                     >
-                        {/* Quick links */}
-                        <div className="flex flex-col gap-2 mb-6">
-                            {navLinks.map((item, i) => (
-                                <motion.div key={item.label} initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 0.4, delay: i * 0.04 }}>
-                                    <Link href={item.href} onClick={() => setMobileOpen(false)}
-                                        className="flex items-center justify-between p-4 rounded-xl bg-white border border-[#003926]/5 shadow-[0_2px_8px_rgba(0,31,20,0.02)] hover:border-[#B8935A]/30 transition-all duration-300">
-                                        <span className="text-[13px] font-body font-semibold text-[#001F14] uppercase tracking-wide">{item.label}</span>
-                                        <ChevronRight size={14} className="text-[#003926]/20" />
-                                    </Link>
-                                </motion.div>
-                            ))}
-                        </div>
-
-                        {/* Divider */}
-                        <div className="h-px w-full mb-6" style={{ background: "linear-gradient(90deg, transparent, rgba(0,57,38,0.1), transparent)" }} />
-
-                        <p className="text-[9px] uppercase tracking-[0.4em] text-[#003926]/30 font-bold font-body mb-4 text-center">Shop Collections & Brands</p>
-
-                        {/* Accordion Groups */}
-                        <div className="flex flex-col gap-3">
-                            
-                            {/* Shop By Brand */}
-                            <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.15 }}>
-                                <MobileAccordionGroup title="Shop By Brand" icon={<Compass size={16} />} defaultOpen>
-                                    <div className="space-y-4 mt-2">
-                                        <div>
-                                            <h5 className="text-[10px] font-body font-bold text-[#B8935A] uppercase tracking-[0.1em] mb-1">D'Signer</h5>
-                                            <div className="grid grid-cols-2 gap-2 pl-2">
-                                                <Link href="/collections/dsigner-men" onClick={() => setMobileOpen(false)} className="text-[11px] font-body text-[#003926]/75 uppercase py-1">Men's</Link>
-                                                <Link href="/collections/dsigner-womens" onClick={() => setMobileOpen(false)} className="text-[11px] font-body text-[#003926]/75 uppercase py-1">Women's</Link>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <h5 className="text-[10px] font-body font-bold text-[#B8935A] uppercase tracking-[0.1em] mb-1">Escort</h5>
-                                            <div className="grid grid-cols-3 gap-2 pl-2">
-                                                <Link href="/collections/escort" onClick={() => setMobileOpen(false)} className="text-[11px] font-body text-[#003926]/75 uppercase py-1">All</Link>
-                                                <Link href="/collections/Escort-men" onClick={() => setMobileOpen(false)} className="text-[11px] font-body text-[#003926]/75 uppercase py-1">Men's</Link>
-                                                <Link href="/collections/Escort-womens" onClick={() => setMobileOpen(false)} className="text-[11px] font-body text-[#003926]/75 uppercase py-1">Women's</Link>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </MobileAccordionGroup>
+                        {/* Navigation Links with Collections By Category right below Home */}
+                        <div className="flex flex-col gap-2.5 mb-6">
+                            {/* 1. HOME BUTTON */}
+                            <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.4, delay: 0 }}>
+                                <Link href="/" onClick={() => setMobileOpen(false)}
+                                    className="flex items-center justify-between p-4 rounded-xl bg-white border border-[#003926]/5 shadow-[0_2px_8px_rgba(0,31,20,0.02)] hover:border-[#B8935A]/30 transition-all duration-300">
+                                    <span className="text-[13px] font-body font-semibold text-[#001F14] uppercase tracking-wide">Home</span>
+                                    <ChevronRight size={14} className="text-[#003926]/20" />
+                                </Link>
                             </motion.div>
 
-                            {/* Collections by Category */}
-                            <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.2 }}>
+                            {/* 2. COLLECTIONS BY CATEGORY (Moved directly below Home with all collections!) */}
+                            <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.4, delay: 0.05 }}>
                                 <MobileAccordionGroup title="Collections By Category" icon={<Diamond size={16} />}>
                                     <div className="space-y-4 mt-2">
-                                        {megaMenuCategories.map(cat => (
-                                            <div key={cat.name}>
-                                                <h5 className="text-[10px] font-body font-bold text-[#B8935A] uppercase tracking-[0.1em] mb-1">{cat.name}</h5>
+                                        {allCategoryGroups.map(group => (
+                                            <div key={group.category} className="border-b border-[#003926]/5 pb-3 last:border-b-0 last:pb-0">
+                                                <h5 className="text-[10px] font-body font-bold text-[#B8935A] uppercase tracking-[0.14em] mb-2 flex items-center justify-between">
+                                                    <span>{group.category}</span>
+                                                    <span className="text-[9px] text-[#003926]/40 font-normal">({group.items.length})</span>
+                                                </h5>
                                                 <div className="grid grid-cols-2 gap-1.5 pl-2">
-                                                    {cat.items.map(col => (
+                                                    {group.items.map(col => (
                                                         <Link key={col.slug} href={`/collections/${col.slug}`} onClick={() => setMobileOpen(false)}
-                                                            className="flex items-center gap-1.5 py-1 text-[11px] font-body text-[#003926]/60 uppercase tracking-wide truncate">
-                                                            <Diamond size={6} className="text-[#003926]/20 shrink-0" />
-                                                            {col.title}
+                                                            className="flex items-center gap-1.5 py-1 text-[11px] font-body text-[#003926]/75 hover:text-[#B8935A] uppercase tracking-wide truncate transition-colors">
+                                                            <Diamond size={6} className="text-[#B8935A]/50 shrink-0" />
+                                                            <span>{col.title}</span>
                                                         </Link>
                                                     ))}
                                                 </div>
@@ -774,14 +758,17 @@ export default function HeaderClient({ hasAnnouncement = false, megaMenuPayload 
                                 </MobileAccordionGroup>
                             </motion.div>
 
-                            {/* Browse All CTA */}
-                            <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.25 }}
-                                className="mt-4 text-center">
-                                <Link href="/collections/dsigner-men" onClick={() => setMobileOpen(false)}
-                                    className="luxury-cta-primary w-full justify-center">
-                                    Browse All Collections
-                                </Link>
-                            </motion.div>
+                            {/* 3. OTHER PAGES: Pillars, About, Contact */}
+                            {otherNavLinks.map((item, i) => (
+                                <motion.div key={item.label} initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.4, delay: 0.1 + i * 0.04 }}>
+                                    <Link href={item.href} onClick={() => setMobileOpen(false)}
+                                        className="flex items-center justify-between p-4 rounded-xl bg-white border border-[#003926]/5 shadow-[0_2px_8px_rgba(0,31,20,0.02)] hover:border-[#B8935A]/30 transition-all duration-300">
+                                        <span className="text-[13px] font-body font-semibold text-[#001F14] uppercase tracking-wide">{item.label}</span>
+                                        <ChevronRight size={14} className="text-[#003926]/20" />
+                                    </Link>
+                                </motion.div>
+                            ))}
                         </div>
                     </motion.div>
                 )}

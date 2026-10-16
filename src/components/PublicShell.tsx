@@ -40,7 +40,7 @@ export function PublicShell({
       <SmoothScrolling>
         {children}
       </SmoothScrolling>
-      {instagram}
+      {pathname === "/" && instagram}
       {footer}
     </>
   )
