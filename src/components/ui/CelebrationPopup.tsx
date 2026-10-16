@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 
 export default function CelebrationPopup() {
   const [visible, setVisible] = useState(false);
@@ -38,124 +39,43 @@ export default function CelebrationPopup() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.35 }}
             onClick={handleDismiss}
-            className="absolute inset-0 bg-black/75 backdrop-blur-md"
+            className="absolute inset-0 bg-black/75 backdrop-blur-md cursor-pointer"
           />
 
           {/* Centered Modal Card */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.88, y: 24 }}
+            initial={{ opacity: 0, scale: 0.88, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.9, y: 20 }}
+            exit={{ opacity: 0, scale: 0.9, y: 16 }}
             transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-            className="relative w-full max-w-[480px] rounded-2xl overflow-hidden shadow-2xl p-[1.5px] z-10"
+            className="relative w-full max-w-[420px] sm:max-w-[480px] rounded-2xl overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.6)] p-[2px] z-10"
             style={{
-              background: "linear-gradient(135deg, rgba(212,175,106,0.6), rgba(0,57,38,0.8), rgba(184,142,78,0.4))",
+              background: "linear-gradient(135deg, #D4AF6A 0%, #FFE08A 45%, #B88E4E 100%)",
             }}
           >
-            <div
-              className="relative rounded-2xl overflow-hidden px-6 sm:px-10 py-10 sm:py-12 text-center"
-              style={{
-                background: "linear-gradient(160deg, #091911 0%, #05100B 60%, #0A1C13 100%)",
-                boxShadow: "inset 0 0 60px rgba(0,57,38,0.4)",
-              }}
-            >
-              {/* Close button */}
+            <div className="relative w-full aspect-square rounded-[14px] overflow-hidden bg-[#FAF9F6]">
+              {/* Close Button */}
               <button
                 onClick={handleDismiss}
-                className="absolute top-4 right-4 z-20 w-8 h-8 rounded-full flex items-center justify-center text-white/50 hover:text-white hover:bg-white/10 transition-all duration-200 cursor-pointer"
+                className="absolute top-3 right-3 sm:top-4 sm:right-4 z-30 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/95 hover:bg-white text-neutral-800 hover:text-black shadow-[0_2px_12px_rgba(0,0,0,0.22)] hover:scale-105 active:scale-95 transition-all duration-200 flex items-center justify-center cursor-pointer border border-black/10"
                 aria-label="Close"
               >
                 <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
-                  <path d="M1 1l12 12M13 1L1 13" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+                  <path d="M1 1l12 12M13 1L1 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                 </svg>
               </button>
 
-              {/* Decorative sparkle star */}
-              <div className="flex justify-center mb-4">
-                <svg width="36" height="36" viewBox="0 0 28 28" fill="none" className="animate-pulse">
-                  <path
-                    d="M14 2L16.9 10.1H25.5L18.8 15.1L21.7 23.2L14 18.2L6.3 23.2L9.2 15.1L2.5 10.1H11.1L14 2Z"
-                    fill="url(#starModalGrad)"
-                    stroke="#D4AF6A"
-                    strokeWidth="0.5"
-                  />
-                  <defs>
-                    <linearGradient id="starModalGrad" x1="2.5" y1="2" x2="25.5" y2="23.2" gradientUnits="userSpaceOnUse">
-                      <stop stopColor="#FFE08A" />
-                      <stop offset="0.5" stopColor="#D4AF6A" />
-                      <stop offset="1" stopColor="#B88E4E" />
-                    </linearGradient>
-                  </defs>
-                </svg>
+              {/* 35 Years of Crafting Time Gold Artwork */}
+              <div className="relative w-full h-full">
+                <Image
+                  src="/images/new-img/35-years-celebration-popup.png"
+                  alt="35 Years of Crafting Time"
+                  fill
+                  sizes="(max-width: 640px) 90vw, 480px"
+                  priority
+                  className="object-cover object-center w-full h-full select-none pointer-events-none"
+                />
               </div>
-
-              {/* Big 35+ typography */}
-              <div className="flex items-baseline justify-center gap-1 mb-2">
-                <span
-                  className="font-montserrat font-bold text-[68px] sm:text-[84px] leading-none tracking-tight"
-                  style={{
-                    background: "linear-gradient(135deg, #FFFFFF 0%, #FFE08A 35%, #D4AF6A 75%, #B88E4E 100%)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                  }}
-                >
-                  35
-                </span>
-                <span
-                  className="font-montserrat font-bold text-[36px] sm:text-[44px] leading-none"
-                  style={{
-                    background: "linear-gradient(135deg, #FFE08A, #D4AF6A)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                  }}
-                >
-                  +
-                </span>
-              </div>
-
-              {/* Label */}
-              <p
-                className="font-montserrat font-semibold text-[11px] sm:text-[13px] tracking-[0.32em] uppercase mb-4"
-                style={{ color: "#D4AF6A" }}
-              >
-                YEARS OF EXCELLENCE
-              </p>
-
-              {/* Divider */}
-              <div
-                className="mx-auto my-5 h-[1px] w-20"
-                style={{ background: "linear-gradient(90deg, transparent, #D4AF6A99, transparent)" }}
-              />
-
-              {/* Description */}
-              <p
-                className="font-montserrat text-[13px] sm:text-[14px] leading-[1.7] text-white/80 max-w-xs mx-auto mb-8 font-light"
-              >
-                Celebrating the journey of{" "}
-                <strong className="font-semibold" style={{ color: "#D4AF6A" }}>
-                  D’SIGNER
-                </strong>{" "}
-                — since 1990
-              </p>
-
-              {/* Bottom badge */}
-              <div className="flex justify-center">
-                <div
-                  className="px-5 py-2 rounded-sm border"
-                  style={{
-                    borderColor: "rgba(212,175,106,0.35)",
-                    background: "rgba(212,175,106,0.06)",
-                  }}
-                >
-                  <span
-                    className="font-montserrat text-[10px] sm:text-[11px] tracking-[0.25em] uppercase font-medium"
-                    style={{ color: "#D4AF6A" }}
-                  >
-                    NAGPAL GROUP • EST. 1990
-                  </span>
-                </div>
-              </div>
-
             </div>
           </motion.div>
         </div>
