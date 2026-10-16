@@ -4,6 +4,7 @@ import { Loader2 } from "lucide-react";
 import "./globals.css";
 import Header from "@/components/sections/Header";
 import Footer from "@/components/sections/Footer";
+import InstagramSection from "@/components/sections/InstagramSection";
 import CustomCursor from "@/components/ui/CustomCursor";
 import { AnnouncementBar } from "@/components/AnnouncementBar";
 import CartDrawer from "@/components/ui/CartDrawer";
@@ -69,6 +70,7 @@ export default async function RootLayout({
             announcement={showAnnouncement ? <AnnouncementBar text={settings!.announcementText!} /> : null}
             header={<Header hasAnnouncement={showAnnouncement} />}
             cartDrawer={<CartDrawer />}
+            instagram={<InstagramSection />}
             footer={<Footer />}
           >
             <Suspense fallback={<div className="h-screen w-full flex items-center justify-center bg-[#FAF8F4]"><Loader2 className="w-8 h-8 text-[#003926] animate-spin" /></div>}>

@@ -8,6 +8,7 @@ export function PublicShell({
   children,
   header,
   footer,
+  instagram,
   announcement,
   cartDrawer,
   customCursor,
@@ -15,6 +16,7 @@ export function PublicShell({
   children: React.ReactNode
   header: React.ReactNode
   footer: React.ReactNode
+  instagram?: React.ReactNode
   announcement: React.ReactNode | null
   cartDrawer: React.ReactNode
   customCursor: React.ReactNode
@@ -38,6 +40,7 @@ export function PublicShell({
       <SmoothScrolling>
         {children}
       </SmoothScrolling>
+      {instagram}
       {footer}
     </>
   )
