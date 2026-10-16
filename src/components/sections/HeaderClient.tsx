@@ -291,6 +291,16 @@ export default function HeaderClient({ hasAnnouncement = false, megaMenuPayload 
     };
 
     const allCategoryGroups = useMemo(() => {
+        const brandGenderGroup = {
+            category: "Brand & Gender",
+            items: [
+                { slug: "dsigner-men", title: "D'Signer Men's" },
+                { slug: "dsigner-womens", title: "D'Signer Women's" },
+                { slug: "Escort-men", title: "Escort Men's" },
+                { slug: "Escort-womens", title: "Escort Women's" }
+            ]
+        };
+
         const order = [
             "Signature Collections",
             "Performance Collections",
@@ -299,10 +309,12 @@ export default function HeaderClient({ hasAnnouncement = false, megaMenuPayload 
             "Couple Collections",
             "Escort Collections"
         ];
-        return order.map(cat => ({
+        const groups = order.map(cat => ({
             category: cat,
-            items: collections.filter(c => c.category === cat)
+            items: collections.filter(c => c.category === cat).map(c => ({ slug: c.slug, title: c.title }))
         })).filter(g => g.items.length > 0);
+
+        return [brandGenderGroup, ...groups];
     }, []);
 
     const otherNavLinks = [
@@ -732,9 +744,55 @@ export default function HeaderClient({ hasAnnouncement = false, megaMenuPayload 
                                 </Link>
                             </motion.div>
 
-                            {/* 2. COLLECTIONS BY CATEGORY (Moved directly below Home with all collections!) */}
+                            {/* 2. BRAND & GENDER (D'SIGNER & ESCORT) */}
                             <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.4, delay: 0.05 }}>
+                                transition={{ duration: 0.4, delay: 0.04 }}>
+                                <MobileAccordionGroup title="Brand & Gender" icon={<Compass size={16} />}>
+                                    <div className="space-y-4 mt-2">
+                                        <div>
+                                            <h5 className="text-[10px] font-body font-bold text-[#B8935A] uppercase tracking-[0.14em] mb-2 flex items-center justify-between">
+                                                <span>D'Signer</span>
+                                                <span className="text-[9px] text-[#003926]/40 font-normal">Luxury</span>
+                                            </h5>
+                                            <div className="grid grid-cols-2 gap-2 pl-1">
+                                                <Link href="/collections/dsigner-men" onClick={() => setMobileOpen(false)}
+                                                    className="flex items-center gap-2 p-2.5 rounded-lg bg-[#FAF8F4] border border-[#003926]/5 hover:border-[#B8935A]/40 hover:bg-white text-[11px] font-body font-semibold text-[#001F14] hover:text-[#B8935A] uppercase tracking-wide transition-all shadow-[0_1px_4px_rgba(0,31,20,0.02)]">
+                                                    <Diamond size={12} className="text-[#B8935A] shrink-0" />
+                                                    <span className="truncate">Men's</span>
+                                                </Link>
+                                                <Link href="/collections/dsigner-womens" onClick={() => setMobileOpen(false)}
+                                                    className="flex items-center gap-2 p-2.5 rounded-lg bg-[#FAF8F4] border border-[#003926]/5 hover:border-[#B8935A]/40 hover:bg-white text-[11px] font-body font-semibold text-[#001F14] hover:text-[#B8935A] uppercase tracking-wide transition-all shadow-[0_1px_4px_rgba(0,31,20,0.02)]">
+                                                    <Feather size={12} className="text-[#B8935A] shrink-0" />
+                                                    <span className="truncate">Women's</span>
+                                                </Link>
+                                            </div>
+                                        </div>
+
+                                        <div className="border-t border-[#003926]/5 pt-3">
+                                            <h5 className="text-[10px] font-body font-bold text-[#B8935A] uppercase tracking-[0.14em] mb-2 flex items-center justify-between">
+                                                <span>Escort</span>
+                                                <span className="text-[9px] text-[#003926]/40 font-normal">Everyday</span>
+                                            </h5>
+                                            <div className="grid grid-cols-2 gap-2 pl-1">
+                                                <Link href="/collections/Escort-men" onClick={() => setMobileOpen(false)}
+                                                    className="flex items-center gap-2 p-2.5 rounded-lg bg-[#FAF8F4] border border-[#003926]/5 hover:border-[#B8935A]/40 hover:bg-white text-[11px] font-body font-semibold text-[#001F14] hover:text-[#B8935A] uppercase tracking-wide transition-all shadow-[0_1px_4px_rgba(0,31,20,0.02)]">
+                                                    <Zap size={12} className="text-[#B8935A] shrink-0" />
+                                                    <span className="truncate">Men's</span>
+                                                </Link>
+                                                <Link href="/collections/Escort-womens" onClick={() => setMobileOpen(false)}
+                                                    className="flex items-center gap-2 p-2.5 rounded-lg bg-[#FAF8F4] border border-[#003926]/5 hover:border-[#B8935A]/40 hover:bg-white text-[11px] font-body font-semibold text-[#001F14] hover:text-[#B8935A] uppercase tracking-wide transition-all shadow-[0_1px_4px_rgba(0,31,20,0.02)]">
+                                                    <Sparkles size={12} className="text-[#B8935A] shrink-0" />
+                                                    <span className="truncate">Women's</span>
+                                                </Link>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </MobileAccordionGroup>
+                            </motion.div>
+
+                            {/* 3. COLLECTIONS BY CATEGORY (Moved directly below Home with all collections!) */}
+                            <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.4, delay: 0.08 }}>
                                 <MobileAccordionGroup title="Collections By Category" icon={<Diamond size={16} />}>
                                     <div className="space-y-4 mt-2">
                                         {allCategoryGroups.map(group => (
