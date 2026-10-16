@@ -16,6 +16,7 @@ export interface InstagramMediaItem {
   mediaType: "IMAGE" | "VIDEO" | "CAROUSEL_ALBUM";
   mediaUrl: string;
   thumbnailUrl: string;
+  videoUrl?: string;
   permalink: string;
   timestamp?: string;
   isReel: boolean;
@@ -176,8 +177,12 @@ export async function fetchInstagramFeed(): Promise<InstagramFeedResult> {
       const isReel = isVideo || (typeof item.permalink === "string" && item.permalink.includes("/reel/"));
       const isCarousel = item.media_type === "CAROUSEL_ALBUM";
 
-      // For videos/reels, thumbnail_url is required as the cover image
-      const primaryUrl = isVideo && item.thumbnail_url ? item.thumbnail_url : item.media_url;
+      // Validate playable video stream URL: Must be VIDEO and media_url must exist and be an http(s) URL
+      const hasPlayableVideo = isVideo && typeof item.media_url === "string" && item.media_url.startsWith("http");
+      const videoUrl = hasPlayableVideo ? item.media_url : undefined;
+
+      // For poster/thumbnail: prefer thumbnail_url for videos, fallback to media_url
+      const posterUrl = (isVideo && item.thumbnail_url) ? item.thumbnail_url : (item.media_url || item.thumbnail_url || "");
 
       // ROTORIS-inspired editorial layout rhythm:
       // First card: tall portrait (4:5)
@@ -195,8 +200,9 @@ export async function fetchInstagramFeed(): Promise<InstagramFeedResult> {
         id: String(item.id || index),
         caption: item.caption || "",
         mediaType: item.media_type || "IMAGE",
-        mediaUrl: item.media_url || primaryUrl,
-        thumbnailUrl: primaryUrl || item.media_url,
+        mediaUrl: item.media_url || posterUrl,
+        thumbnailUrl: posterUrl,
+        videoUrl,
         permalink: item.permalink || profileUrl,
         timestamp: item.timestamp,
         isReel,
