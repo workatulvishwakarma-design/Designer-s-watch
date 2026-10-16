@@ -23,10 +23,16 @@ export function PublicShell({
 }) {
   const pathname = usePathname()
   const isAdmin = pathname.startsWith("/admin")
+  const isHomePage = pathname === "/"
 
-  // Admin custom layout routes render ONLY children — no default public header/footer
-  if (isAdmin) {
-    return <>{children}</>
+  // Admin and Under-Construction root page render cleanly without store header/footer/cart
+  if (isAdmin || isHomePage) {
+    return (
+      <>
+        {customCursor}
+        {children}
+      </>
+    )
   }
 
   // Public routes render full website shell

@@ -1,3 +1,4 @@
+import UnderConstruction from "@/components/UnderConstruction";
 import { prisma } from "@/lib/db";
 import { mapPrismaFamilyToGroup } from "@/lib/prismaMappers";
 import { getFamiliesByGender } from "@/data/productData";
@@ -5,7 +6,13 @@ import HomeClient2 from "@/components/HomeClient2";
 
 export const revalidate = 60;
 
+// Set to true to display Under Construction page
+const IS_UNDER_CONSTRUCTION = true;
+
 export default async function HomePage() {
+  if (IS_UNDER_CONSTRUCTION) {
+    return <UnderConstruction />;
+  }
   let menFamilies: any[] = [];
   let womenFamilies: any[] = [];
   let stores: any[] = [];
