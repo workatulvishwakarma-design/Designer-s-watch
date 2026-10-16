@@ -11,102 +11,93 @@ export default async function InstagramSection() {
     <section
       id="instagram-feed"
       aria-label="DSIGNER In Motion - Instagram Gallery"
-      className="relative w-full bg-[#080908] text-[#FAF8F4] border-t border-[#B8935A]/20 pt-20 pb-20 md:pt-28 md:pb-28 overflow-hidden select-none"
+      className="relative w-full bg-[#FAF9F6] text-[#242424] border-t border-[#242424]/[0.06] pt-16 pb-16 md:pt-24 md:pb-24 overflow-hidden select-none"
     >
-      {/* Background Ambience: Subtle Radial Gold/Emerald Aura */}
-      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] md:w-[1200px] h-[400px] bg-[radial-gradient(ellipse_at_top,_rgba(184,147,90,0.12)_0%,_rgba(0,57,38,0.15)_45%,_transparent_75%)] blur-3xl opacity-70" />
-        <div className="absolute bottom-0 right-0 w-[500px] h-[300px] bg-[radial-gradient(circle,_rgba(184,147,90,0.06)_0%,_transparent_70%)] blur-2xl" />
-      </div>
-
-      <div className="relative z-10 w-full max-w-[1800px] mx-auto px-4 sm:px-6 xl:px-12">
-        {/* ROTORIS-Inspired Luxury Editorial Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
-          {/* Eyebrow Label with Ornamental Accents */}
-          <div className="inline-flex items-center gap-3 mb-4">
-            <span className="w-6 sm:w-10 h-px bg-gradient-to-r from-transparent to-[#B8935A]/70" />
+      <div className="relative z-10 w-full max-w-[1700px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+        {/* Minimal Luxury Editorial Header */}
+        <div className="text-center max-w-2xl mx-auto mb-10 md:mb-14">
+          {/* Subtle Eyebrow */}
+          <div className="inline-flex items-center gap-2.5 mb-3">
+            <span className="w-5 sm:w-7 h-px bg-[#C4A46A]/50" />
             <a
               href={feed.profileUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-[10px] sm:text-[11px] font-montserrat uppercase tracking-[0.35em] text-[#B8935A] hover:text-[#D4AF37] font-semibold transition-colors"
+              className="inline-flex items-center gap-1.5 text-[10px] sm:text-[11px] font-montserrat uppercase tracking-[0.28em] text-[#C4A46A] hover:text-[#242424] font-medium transition-colors"
             >
-              <Instagram size={13} className="text-[#B8935A]" />
+              <Instagram size={12} className="text-[#C4A46A]" />
               <span>@{feed.handle}</span>
             </a>
-            <span className="w-6 sm:w-10 h-px bg-gradient-to-l from-transparent to-[#B8935A]/70" />
+            <span className="w-5 sm:w-7 h-px bg-[#C4A46A]/50" />
           </div>
 
           {/* Primary Editorial Heading */}
-          <h2 className="font-cormorant text-4xl sm:text-5xl md:text-6xl text-[#FAF8F4] font-light tracking-wide uppercase mb-4 leading-[1.1]">
-            DSIGNER <span className="italic font-normal text-[#D4AF37]">IN MOTION</span>
+          <h2 className="font-cormorant text-3xl sm:text-4xl md:text-5xl text-[#242424] font-light tracking-wide uppercase mb-3 leading-[1.15]">
+            DSIGNER <span className="italic font-normal text-[#C4A46A]">IN MOTION</span>
           </h2>
 
           {/* Editorial Subtitle */}
-          <p className="font-montserrat text-xs sm:text-sm text-[#FAF8F4]/70 tracking-[0.18em] uppercase max-w-xl mx-auto leading-relaxed">
+          <p className="font-montserrat text-xs sm:text-[13px] text-[#242424]/60 tracking-[0.18em] uppercase max-w-md mx-auto leading-relaxed font-light">
             The Art of Time, Captured in Moments.
           </p>
 
-          {/* Subtle Ornamental Hairline Divider */}
-          <div className="flex items-center justify-center gap-3 mt-6">
-            <div className="w-12 h-px bg-[#B8935A]/30" />
-            <span className="text-[#B8935A]/60 text-[10px]">❖</span>
-            <div className="w-12 h-px bg-[#B8935A]/30" />
+          {/* Refined Minimal Divider */}
+          <div className="flex items-center justify-center gap-2 mt-4">
+            <div className="w-6 h-px bg-[#C4A46A]/30" />
+            <span className="text-[#C4A46A]/60 text-[8px]">❖</span>
+            <div className="w-6 h-px bg-[#C4A46A]/30" />
           </div>
         </div>
 
         {/* Content Area: Real Feed Gallery OR Refined Luxury Setup State */}
         {hasLivePosts ? (
           <>
-            {/* ROTORIS 5-Column Editorial Gallery (Desktop 5 col, Tablet 3 col, Mobile 2 col) */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 md:gap-5 w-full items-stretch">
+            {/* Responsive Light-Theme Editorial Grid */}
+            {/* Large desktop: 5 cols, Laptop: 4 cols, Tablet: 3 cols, Mobile: 2 cols, Narrow: 1 col */}
+            <div className="grid grid-cols-2 max-[380px]:grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4 lg:gap-5 w-full items-stretch">
               {feed.posts.map((post, index) => (
                 <InstagramCard key={post.id} post={post} index={index} />
               ))}
             </div>
 
-            {/* Bottom Luxury CTA Strip */}
-            <div className="mt-14 md:mt-20 flex flex-col items-center justify-center text-center">
+            {/* Bottom Luxury Light-Theme CTA */}
+            <div className="mt-10 md:mt-14 flex flex-col items-center justify-center text-center">
               <a
                 href={feed.profileUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative inline-flex items-center gap-3 px-8 sm:px-10 py-4 rounded-full border border-[#B8935A]/60 bg-[#B8935A]/10 hover:bg-[#B8935A] text-[#FAF8F4] hover:text-[#080908] font-montserrat text-[11px] sm:text-xs uppercase tracking-[0.25em] font-semibold transition-all duration-500 shadow-[0_4px_24px_rgba(0,0,0,0.5)] hover:shadow-[0_8px_32px_rgba(184,147,90,0.35)] cursor-pointer"
+                className="group inline-flex items-center gap-2.5 px-6 sm:px-8 py-3 rounded-full border border-[#C4A46A]/45 bg-white hover:bg-[#242424] text-[#242424] hover:text-white font-montserrat text-[11px] uppercase tracking-[0.22em] font-medium transition-all duration-300 shadow-[0_2px_10px_rgba(0,0,0,0.03)] hover:shadow-[0_6px_20px_rgba(36,36,36,0.12)] cursor-pointer"
               >
-                <Instagram size={15} className="text-[#B8935A] group-hover:text-[#080908] transition-colors" />
+                <Instagram size={13} className="text-[#C4A46A] group-hover:text-white transition-colors" />
                 <span>Follow Our Journey</span>
-                <ArrowUpRight size={14} className="text-[#B8935A] group-hover:text-[#080908] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                <ArrowUpRight size={13} className="text-[#C4A46A] group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </a>
-
-              <p className="text-[11px] font-montserrat text-[#FAF8F4]/40 uppercase tracking-[0.2em] mt-4">
-                Explore daily horological stories & atelier craftsmanship
-              </p>
             </div>
           </>
         ) : (
-          /* Graceful Luxury Editorial Placeholder State (before credentials or if empty) */
-          <div className="max-w-2xl mx-auto rounded-2xl border border-white/10 bg-[#121412]/80 backdrop-blur-md p-10 sm:p-14 text-center shadow-[0_12px_40px_rgba(0,0,0,0.5)]">
-            <div className="w-14 h-14 mx-auto mb-6 rounded-full border border-[#B8935A]/40 bg-[#B8935A]/10 flex items-center justify-center text-[#D4AF37]">
-              <Instagram size={26} />
+          /* Graceful Minimal Light-Theme Placeholder State */
+          <div className="max-w-xl mx-auto rounded-2xl border border-[#242424]/[0.08] bg-white p-8 sm:p-12 text-center shadow-[0_4px_24px_rgba(0,0,0,0.04)]">
+            <div className="w-12 h-12 mx-auto mb-4 rounded-full border border-[#C4A46A]/40 bg-[#FAF9F6] flex items-center justify-center text-[#C4A46A]">
+              <Instagram size={22} />
             </div>
 
-            <h3 className="font-cormorant text-2xl sm:text-3xl text-[#FAF8F4] font-normal tracking-wide uppercase mb-3">
+            <h3 className="font-cormorant text-2xl text-[#242424] font-normal tracking-wide uppercase mb-2">
               Official Instagram Feed Ready
             </h3>
 
-            <p className="font-montserrat text-xs sm:text-sm text-[#FAF8F4]/65 leading-relaxed max-w-md mx-auto mb-8 tracking-wide">
-              The live editorial showcase is configured to automatically synchronize fresh timepieces and atelier stories from @{feed.handle}.
+            <p className="font-montserrat text-xs text-[#242424]/60 leading-relaxed max-w-sm mx-auto mb-6 tracking-wide font-light">
+              Synchronizing fresh timepieces and atelier stories from @{feed.handle}.
             </p>
 
             <a
               href={feed.profileUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-full bg-gradient-to-r from-[#B8935A] to-[#D4AF37] text-[#080908] font-montserrat text-xs uppercase tracking-[0.2em] font-bold shadow-[0_4px_20px_rgba(184,147,90,0.3)] hover:brightness-110 transition-all cursor-pointer"
+              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#242424] text-white hover:bg-[#C4A46A] font-montserrat text-[11px] uppercase tracking-[0.18em] font-medium transition-colors cursor-pointer"
             >
-              <Instagram size={15} />
+              <Instagram size={13} />
               <span>Follow Our Journey</span>
-              <ArrowUpRight size={14} />
+              <ArrowUpRight size={13} />
             </a>
           </div>
         )}
