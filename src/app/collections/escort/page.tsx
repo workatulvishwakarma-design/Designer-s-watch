@@ -1,79 +1,58 @@
-"use client";
+import { Metadata } from "next";
+import { collections as staticCollections } from "@/data/collections";
+import CollectionsDirectoryClient, { CollectionCardData } from "@/components/CollectionsDirectoryClient";
+import { ALL_ESCORT_ITEMS } from "@/lib/escortCatalog";
 
-import EscortHero from "@/components/sections/escort/EscortHero";
-import EscortGrid from "@/components/sections/escort/EscortGrid";
-import NewsletterStrip from "@/components/ui/NewsletterStrip";
-import SectionDivider from "@/components/ui/SectionDivider";
-import GrainOverlay from "@/components/ui/GrainOverlay";
-import Link from "next/link";
-import { motion } from "framer-motion";
+export const metadata: Metadata = {
+  title: "ESCORT Collections | Designer World Everyday Luxury",
+  description:
+    "Discover all signature collections by ESCORT — Classico, Bliss, Bling, and Hustler. Accessible elegance, enduring craftsmanship, and dependable precision for everyday life.",
+};
 
-export default function EscortPage() {
-    return (
-        <main className="min-h-screen bg-[#FAF8F4] relative pt-24 md:pt-28">
-            <EscortGrid />
+export default async function EscortCollectionsPage() {
+  // 1. Filter Escort collections from static registry
+  const escortStatic = staticCollections.filter(
+    (c) => c.category === "Escort Collections" && c.slug !== "escort"
+  );
 
-            <SectionDivider />
+  // 2. Count active timepieces per collection directly from enriched catalog
+  const counts: Record<string, number> = {};
+  for (const item of ALL_ESCORT_ITEMS) {
+    const slug = (item.collectionSlug || "bliss").toLowerCase();
+    counts[slug] = (counts[slug] || 0) + 1;
+  }
 
-            {/* Comparison Callout */}
-            <section className="bg-[#F7F3EE] py-24 px-6 relative overflow-hidden">
-                <GrainOverlay />
-                <div className="max-w-7xl mx-auto text-center relative z-10">
-                    <motion.h2
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="font-heading text-4xl md:text-5xl text-[#003926] mb-6"
-                    >
-                        D&apos;SIGNER vs ESCORT
-                    </motion.h2>
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.1 }}
-                        className="font-body text-[#1A1918]/70 text-lg mb-16 max-w-2xl mx-auto"
-                    >
-                        Two distinct philosophies, one unyielding standard of excellence. Find the collection that speaks to your rhythm.
-                    </motion.p>
+  // 3. Build CollectionCardData for each Escort collection
+  const cards: CollectionCardData[] = escortStatic.map((staticCol) => {
+    const totalTimepieces = counts[staticCol.slug] || 0;
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16 max-w-4xl mx-auto">
-                        {/* D'SIGNER side */}
-                        <div className="bg-white border border-[#003926]/20 rounded-2xl p-10 flex flex-col items-center shadow-sm">
-                            <span className="text-gold font-body text-[10px] tracking-[0.3em] uppercase mb-4">D&apos;SIGNER</span>
-                            <ul className="text-[#1A1918] font-body text-sm space-y-4 mb-10 text-center">
-                                <li className="opacity-80">Surgical-Grade Stainless Steel &amp; Sapphire Glass</li>
-                                <li className="opacity-80">Accessible Luxury • ₹1,299 – ₹4,999</li>
-                                <li className="opacity-80">Crafted for Impact and Refinement</li>
-                            </ul>
-                            <Link
-                                href="/collections/dsigner"
-                                className="px-8 py-3 bg-gold text-white font-body text-[11px] tracking-widest uppercase rounded-xl hover:bg-bg-dark transition-all duration-300"
-                            >
-                                Shop D&apos;Signer
-                            </Link>
-                        </div>
+    return {
+      slug: staticCol.slug,
+      name: staticCol.name,
+      meaning: staticCol.meaning,
+      description: staticCol.description,
+      identity: staticCol.identity,
+      category:
+        staticCol.gender === "Men"
+          ? "Men's Collections"
+          : staticCol.gender === "Women"
+          ? "Women's Collections"
+          : "Unisex Collections",
+      gender: staticCol.gender || "Unisex",
+      heroImage: staticCol.heroImage || staticCol.featuredImage,
+      modelFamilies: staticCol.modelFamilies || [],
+      totalTimepieces,
+    };
+  });
 
-                        {/* ESCORT side */}
-                        <div className="bg-white border border-[#003926]/20 rounded-2xl p-10 flex flex-col items-center shadow-sm">
-                            <span className="text-[#003926] font-body text-[10px] tracking-[0.3em] uppercase mb-4">ESCORT</span>
-                            <ul className="text-[#1A1918] font-body text-sm space-y-4 mb-10 text-center">
-                                <li className="opacity-80">Engineered Alloy &amp; Hardened Mineral Glass</li>
-                                <li className="opacity-80">Everyday Value • ₹799 – ₹2,499</li>
-                                <li className="opacity-80">Built for Endurance and Daily Wear</li>
-                            </ul>
-                            <Link
-                                href="/collections/escort"
-                                className="px-8 py-3 bg-[#003926] text-white font-body text-[11px] tracking-widest uppercase rounded-xl hover:bg-gold transition-all duration-300"
-                            >
-                                Shop Escort
-                            </Link>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <NewsletterStrip />
-        </main>
-    );
+  return (
+    <CollectionsDirectoryClient
+      collections={cards}
+      badgeText="Everyday Luxury Directory"
+      brandTitle="ESCORT COLLECTIONS"
+      subtitle="Explore the signature collections from ESCORT. From the classic distinction of Classico to the serene grace of Bliss, radiant elegance of Bling, and dynamic ambition of Hustler, select any collection to discover its complete range of timepieces."
+      categories={["All", "Men's Collections", "Women's Collections", "Unisex Collections"]}
+      searchPlaceholder="Search Escort collections (e.g. Bliss, Classico, 1890)..."
+    />
+  );
 }

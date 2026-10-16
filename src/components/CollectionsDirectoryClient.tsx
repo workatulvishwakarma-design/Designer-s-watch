@@ -21,9 +21,14 @@ export interface CollectionCardData {
 
 interface CollectionsDirectoryClientProps {
   collections: CollectionCardData[];
+  badgeText?: string;
+  brandTitle?: string;
+  subtitle?: string;
+  categories?: string[];
+  searchPlaceholder?: string;
 }
 
-const CATEGORIES = [
+const DEFAULT_CATEGORIES = [
   "All",
   "Signature Collections",
   "Performance Collections",
@@ -32,7 +37,14 @@ const CATEGORIES = [
   "Couple Collections",
 ];
 
-export default function CollectionsDirectoryClient({ collections }: CollectionsDirectoryClientProps) {
+export default function CollectionsDirectoryClient({
+  collections,
+  badgeText = "Haute Horlogerie Directory",
+  brandTitle = "D'SIGNER COLLECTIONS",
+  subtitle = "Explore all 24 signature collections from D'SIGNER. From the commanding presence of Grandeur to the timeless serenity of Eternal and precision of Hallmark, select any collection to discover its complete range of timepieces.",
+  categories = DEFAULT_CATEGORIES,
+  searchPlaceholder = "Search collections, models (e.g. Grandeur, 950)...",
+}: CollectionsDirectoryClientProps) {
   const [activeCategory, setActiveCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -41,7 +53,9 @@ export default function CollectionsDirectoryClient({ collections }: CollectionsD
       const matchesCategory =
         activeCategory === "All" ||
         c.category.toLowerCase() === activeCategory.toLowerCase() ||
-        (activeCategory === "Women's Collections" && (c.gender === "Women" || c.category.includes("Women"))) ||
+        (activeCategory === "Men's Collections" && (c.gender === "Men" || c.gender === "Unisex")) ||
+        (activeCategory === "Women's Collections" && (c.gender === "Women" || c.gender === "Unisex" || c.category.includes("Women"))) ||
+        (activeCategory === "Unisex Collections" && c.gender === "Unisex") ||
         (activeCategory === "Couple Collections" && (c.category.includes("Couple") || c.slug === "duetto" || c.slug === "bondline"));
 
       const q = searchQuery.toLowerCase().trim();
@@ -78,7 +92,7 @@ export default function CollectionsDirectoryClient({ collections }: CollectionsD
           >
             <Sparkles size={13} className="text-[#B8935A]" />
             <span className="font-montserrat text-[11px] tracking-[0.2em] uppercase font-bold text-[#003926]">
-              Haute Horlogerie Directory
+              {badgeText}
             </span>
           </motion.div>
 
@@ -88,7 +102,7 @@ export default function CollectionsDirectoryClient({ collections }: CollectionsD
             transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             className="font-cormorant text-4xl sm:text-5xl md:text-6xl font-normal tracking-[0.04em] text-[#003926] uppercase leading-[1.08] mb-6"
           >
-            D&apos;SIGNER COLLECTIONS
+            {brandTitle}
           </motion.h1>
 
           <motion.p
@@ -97,7 +111,7 @@ export default function CollectionsDirectoryClient({ collections }: CollectionsD
             transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             className="font-montserrat text-sm sm:text-[15px] text-[#555555] leading-[1.8] font-normal"
           >
-            Explore all 24 signature collections from D&apos;SIGNER. From the commanding presence of Grandeur to the timeless serenity of Eternal and precision of Hallmark, select any collection to discover its complete range of timepieces.
+            {subtitle}
           </motion.p>
         </div>
 
@@ -105,7 +119,7 @@ export default function CollectionsDirectoryClient({ collections }: CollectionsD
         <div className="flex flex-col lg:flex-row items-center justify-between gap-6 mb-12 pb-8 border-b border-[#EDE8DF]">
           {/* Category Tabs */}
           <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2 w-full lg:w-auto">
-            {CATEGORIES.map((cat) => {
+            {categories.map((cat) => {
               const isSelected = activeCategory === cat;
               return (
                 <button
@@ -128,7 +142,7 @@ export default function CollectionsDirectoryClient({ collections }: CollectionsD
             <Search size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#999999]" />
             <input
               type="text"
-              placeholder="Search collections or models..."
+              placeholder={searchPlaceholder}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full pl-10 pr-4 py-2.5 rounded-full bg-white border border-[#EDE8DF] font-montserrat text-[13px] text-[#111110] placeholder:text-[#999999] focus:outline-none focus:border-[#B8935A] transition-colors duration-300 shadow-sm"

@@ -97,6 +97,14 @@ const brandPreviews = {
         heroImage: "/images/threeimg2-nobg.png",
         ctaLabel: "Browse Women's Escort"
     },
+    "escort-collections": {
+        slug: "escort",
+        title: "Escort Collections",
+        tagline: "Everyday Luxury Directory",
+        description: "Explore all signature collections from Escort — Classico, Bliss, Bling, and Hustler.",
+        heroImage: "/images/new-img/escort/gents/E-1890/E1650-1890.SM_White(1).jpg",
+        ctaLabel: "Explore Escort Collections"
+    },
     "escort-everyday": {
         slug: "Escort-men",
         title: "Escort Everyday Series",
@@ -490,6 +498,7 @@ export default function HeaderClient({ hasAnnouncement = false, megaMenuPayload 
                                                 <span className="font-cormorant text-[24px] text-[#111110] font-normal tracking-[1px] leading-[1.1] block mb-[16px] mt-[28px] pl-1">ESCORT</span>
                                                 <div className="flex flex-col gap-0">
                                                     {[
+                                                        { id: "all-escort", title: "All Collections", href: "/collections/escort", key: "escort-collections" },
                                                         { id: "mens-classic", title: "Men's Classic", href: "/collections/Escort-men", key: "mens-escort" },
                                                         { id: "womens-classic", title: "Women's Classic", href: "/collections/Escort-womens", key: "womens-escort" }
                                                     ].map((item) => {
@@ -733,7 +742,8 @@ export default function HeaderClient({ hasAnnouncement = false, megaMenuPayload 
                                         </div>
                                         <div>
                                             <h5 className="text-[10px] font-body font-bold text-[#B8935A] uppercase tracking-[0.1em] mb-1">Escort</h5>
-                                            <div className="grid grid-cols-2 gap-2 pl-2">
+                                            <div className="grid grid-cols-3 gap-2 pl-2">
+                                                <Link href="/collections/escort" onClick={() => setMobileOpen(false)} className="text-[11px] font-body text-[#003926]/75 uppercase py-1">All</Link>
                                                 <Link href="/collections/Escort-men" onClick={() => setMobileOpen(false)} className="text-[11px] font-body text-[#003926]/75 uppercase py-1">Men's</Link>
                                                 <Link href="/collections/Escort-womens" onClick={() => setMobileOpen(false)} className="text-[11px] font-body text-[#003926]/75 uppercase py-1">Women's</Link>
                                             </div>

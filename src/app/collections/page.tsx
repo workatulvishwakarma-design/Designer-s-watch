@@ -33,8 +33,10 @@ export default async function CollectionsPage() {
     console.warn("CollectionsPage: DB query for collections failed:", (error as Error).message);
   }
 
-  // 2. Build collection card data by merging DB collections with static metadata
-  const dsignerStatic = staticCollections.filter((c) => c.slug !== "escort");
+  // 2. Build collection card data by merging DB collections with static metadata (excluding Escort)
+  const dsignerStatic = staticCollections.filter(
+    (c) => c.category !== "Escort Collections" && c.slug !== "escort"
+  );
 
   const cards: CollectionCardData[] = dsignerStatic.map((staticCol) => {
     const matchedDb = dbCollections.find((c) => c.slug === staticCol.slug);

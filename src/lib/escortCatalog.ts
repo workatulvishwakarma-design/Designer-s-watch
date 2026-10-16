@@ -9,6 +9,8 @@ export interface EscortProductItem {
   series: string;
   baseModel: string;
   brand: string;
+  collection?: string;
+  collectionSlug?: string;
   mrp: number;
   price: number;
   dialColor: string;
@@ -43,11 +45,11 @@ function itemToUnified(item: EscortProductItem, collectionSlug: string): Unified
     name: item.modelNo,
     modelNumber: item.modelNo,
     modelFamily: item.series,
-    collection: collectionSlug,
+    collection: item.collectionSlug || collectionSlug,
     price: item.price,
     comparePrice: null,
     brand: "ESCORT",
-    category: `${item.series} Series`,
+    category: item.collection ? `${item.collection} Collection` : `${item.series} Series`,
     badge: item.gender.toUpperCase(),
     tags: ["ESCORT", item.series, item.dialColor, item.strapColor, item.gender],
     description: item.description,
@@ -144,10 +146,10 @@ export function getEscortProductBySlug(slugOrSku: string): ModelFamilyGroup | un
   return {
     slug: matched.slug,
     familyId: matched.series,
-    collectionSlug: matched.gender === "Women" ? "Escort-womens" : "Escort-men",
+    collectionSlug: matched.collectionSlug || (matched.gender === "Women" ? "Escort-womens" : "Escort-men"),
     name: matched.modelNo,
     brand: "ESCORT",
-    category: `${matched.series} Series`,
+    category: matched.collection ? `${matched.collection} Collection` : `${matched.series} Series`,
     gender: matched.gender,
     priceRange: { min: matched.price, max: matched.price },
     variants: [variant],

@@ -32,7 +32,9 @@
       "gallery": [
         "/images/new-img/escort/gents/E-1890/E1650-1890.SM_White(1).jpg",
         "/images/new-img/escort/gents/E-1890/E1650-1890.SM_White.jpg"
-      ]
+      ],
+      "collection": "Classico",
+      "collectionSlug": "classico"
     },
     {
       "modelNo": "E1650-1890.SM.5",
@@ -58,7 +60,9 @@
       "hoverImage": "/images/new-img/escort/gents/E-1890/E1650-1890.SM_Blue.jpg",
       "gallery": [
         "/images/new-img/escort/gents/E-1890/E1650-1890.SM_Blue.jpg"
-      ]
+      ],
+      "collection": "Classico",
+      "collectionSlug": "classico"
     },
     {
       "modelNo": "E2150-1890.BRNM.1",
@@ -89,7 +93,9 @@
         "/images/new-img/escort/gents/E-1890/E2150-1890.BRNM_White(4).jpg",
         "/images/new-img/escort/gents/E-1890/E2150-1890.BRNM_White(5).jpg",
         "/images/new-img/escort/gents/E-1890/E2150-1890.BRNM_White.jpg"
-      ]
+      ],
+      "collection": "Classico",
+      "collectionSlug": "classico"
     },
     {
       "modelNo": "E2150-1890.RGM.1",
@@ -125,7 +131,9 @@
         "/images/new-img/escort/gents/E-1890/E2150-1890.RGM_White(8).jpg",
         "/images/new-img/escort/gents/E-1890/E2150-1890.RGM_White(9).jpg",
         "/images/new-img/escort/gents/E-1890/E2150-1890.RGM_White.jpg"
-      ]
+      ],
+      "collection": "Classico",
+      "collectionSlug": "classico"
     },
     {
       "modelNo": "E2150-1890.RGM.9",
@@ -157,7 +165,9 @@
         "/images/new-img/escort/gents/E-1890/E2150-1890.RGM_Brown(5).jpg",
         "/images/new-img/escort/gents/E-1890/E2150-1890.RGM_Brown(6).jpg",
         "/images/new-img/escort/gents/E-1890/E2150-1890.RGM_Brown.jpg"
-      ]
+      ],
+      "collection": "Classico",
+      "collectionSlug": "classico"
     },
     {
       "modelNo": "E-2300-7226.SM.3",
@@ -183,7 +193,9 @@
       "hoverImage": "/images/new-img/escort/gents/E 7226/E2250-7226.SM_Green.jpg",
       "gallery": [
         "/images/new-img/escort/gents/E 7226/E2250-7226.SM_Green.jpg"
-      ]
+      ],
+      "collection": "Hustler",
+      "collectionSlug": "hustler"
     },
     {
       "modelNo": "E-2500-7226.GNM.8",
@@ -210,7 +222,9 @@
       "gallery": [
         "/images/new-img/escort/gents/E 7226/7226/7226/E-2600-7226.GNM.Grey.png",
         "/images/new-img/escort/gents/E 7226/7226/E-2600-7226.GNM.Grey.jpg"
-      ]
+      ],
+      "collection": "Hustler",
+      "collectionSlug": "hustler"
     },
     {
       "modelNo": "E-2500-7226.RGM.9",
@@ -237,7 +251,9 @@
       "gallery": [
         "/images/new-img/escort/gents/E 7226/7226/7226/E-2500-7226.RGM_Brown.png",
         "/images/new-img/escort/gents/E 7226/7226/E-2500-7226.RGM_Brown.jpg"
-      ]
+      ],
+      "collection": "Hustler",
+      "collectionSlug": "hustler"
     },
     {
       "modelNo": "E-2500-7226.RTM.16",
@@ -264,7 +280,9 @@
       "gallery": [
         "/images/new-img/escort/gents/E 7226/7226/7226/E-2450-7226.RTM_Green.png",
         "/images/new-img/escort/gents/E 7226/7226/E-2450-7226.RTM_Green.jpg"
-      ]
+      ],
+      "collection": "Hustler",
+      "collectionSlug": "hustler"
     },
     {
       "modelNo": "E2250-7226.SM.16",
@@ -290,7 +308,9 @@
       "hoverImage": "/images/new-img/escort/gents/E 7226/E2250-7226.SM_Green.jpg",
       "gallery": [
         "/images/new-img/escort/gents/E 7226/E2250-7226.SM_Green.jpg"
-      ]
+      ],
+      "collection": "Hustler",
+      "collectionSlug": "hustler"
     },
     {
       "modelNo": "E2400-7226.BM.3",
@@ -319,7 +339,9 @@
         "/images/new-img/escort/gents/E 7226/E2400-7226.BM_Black(2).jpg",
         "/images/new-img/escort/gents/E 7226/E2400-7226.BM_Black(3).jpg",
         "/images/new-img/escort/gents/E 7226/E2400-7226.BM_Black.jpg"
-      ]
+      ],
+      "collection": "Hustler",
+      "collectionSlug": "hustler"
     },
     {
       "modelNo": "E2400-7226.BRNM.1",
@@ -345,7 +367,9 @@
       "hoverImage": "/images/new-img/escort/gents/E 7226/E2400-7226.BRNM_White.jpg",
       "gallery": [
         "/images/new-img/escort/gents/E 7226/E2400-7226.BRNM_White.jpg"
-      ]
+      ],
+      "collection": "Hustler",
+      "collectionSlug": "hustler"
     },
     {
       "modelNo": "E1700-7308.GM.2",
@@ -379,7 +403,9 @@
         "/images/new-img/escort/gents/7308/E-1900-7308.GM_White(6).jpg",
         "/images/new-img/escort/gents/7308/E-1900-7308.GM_White(7).jpg",
         "/images/new-img/escort/gents/7308/E-1900-7308.GM_White.jpg"
-      ]
+      ],
+      "collection": "Classico",
+      "collectionSlug": "classico"
     },
     {
       "modelNo": "E1700-7308.GM.4",
@@ -406,7 +432,9 @@
       "gallery": [
         "/images/new-img/escort/gents/7308/7308/E-1900-7308.GM_Gree.png",
         "/images/new-img/escort/gents/7308/E-1900-7308.GM_Gree.jpg"
-      ]
+      ],
+      "collection": "Classico",
+      "collectionSlug": "classico"
     },
     {
       "modelNo": "E1700-7308.SM.5",
@@ -433,7 +461,9 @@
       "gallery": [
         "/images/new-img/escort/gents/7308/7308/E-1900-7308.GM_Gree.png",
         "/images/new-img/escort/gents/7308/E-1900-7308.GM_Gree.jpg"
-      ]
+      ],
+      "collection": "Classico",
+      "collectionSlug": "classico"
     },
     {
       "modelNo": "E1700-7308.SM.8",
@@ -460,7 +490,9 @@
       "gallery": [
         "/images/new-img/escort/gents/7308/7308/E-1900-7308.GM_Gree.png",
         "/images/new-img/escort/gents/7308/E-1900-7308.GM_Gree.jpg"
-      ]
+      ],
+      "collection": "Classico",
+      "collectionSlug": "classico"
     },
     {
       "modelNo": "E1650-7359.GM.9",
@@ -494,7 +526,9 @@
         "/images/new-img/escort/gents/E-7359/E1650-7359.GM_Brown(7).jpg",
         "/images/new-img/escort/gents/E-7359/E1650-7359.GM_Brown(8).jpg",
         "/images/new-img/escort/gents/E-7359/E1650-7359.GM_Brown.jpg"
-      ]
+      ],
+      "collection": "Classico",
+      "collectionSlug": "classico"
     },
     {
       "modelNo": "E1650-7359.SM.2",
@@ -523,7 +557,9 @@
         "/images/new-img/escort/gents/E-7359/E1650-7359.SM_Off white(2).jpg",
         "/images/new-img/escort/gents/E-7359/E1650-7359.SM_Off white(3).jpg",
         "/images/new-img/escort/gents/E-7359/E1650-7359.SM_Off white.jpg"
-      ]
+      ],
+      "collection": "Classico",
+      "collectionSlug": "classico"
     },
     {
       "modelNo": "E1650-7359.TM.2",
@@ -550,7 +586,9 @@
       "gallery": [
         "/images/new-img/escort/gents/E-7359/E1650-7359.TM_Off white(1).jpg",
         "/images/new-img/escort/gents/E-7359/E1650-7359.TM_Off white.jpg"
-      ]
+      ],
+      "collection": "Classico",
+      "collectionSlug": "classico"
     },
     {
       "modelNo": "E1650-7359.TM.5",
@@ -577,7 +615,9 @@
       "gallery": [
         "/images/new-img/escort/gents/E-7359/E1650-7359.TM_Blue(1).jpg",
         "/images/new-img/escort/gents/E-7359/E1650-7359.TM_Blue.jpg"
-      ]
+      ],
+      "collection": "Classico",
+      "collectionSlug": "classico"
     },
     {
       "modelNo": "E-1750-7443.GL.1",
@@ -603,7 +643,9 @@
       "hoverImage": "/images/new-img/escort/gents/E-1750-7443/E-1750-7443.GL_White.jpg",
       "gallery": [
         "/images/new-img/escort/gents/E-1750-7443/E-1750-7443.GL_White.jpg"
-      ]
+      ],
+      "collection": "Classico",
+      "collectionSlug": "classico"
     },
     {
       "modelNo": "E-1750-7443.GL.2",
@@ -629,7 +671,9 @@
       "hoverImage": "/images/new-img/escort/gents/E-1750-7443/E-1750-7443.GL_White.jpg",
       "gallery": [
         "/images/new-img/escort/gents/E-1750-7443/E-1750-7443.GL_White.jpg"
-      ]
+      ],
+      "collection": "Classico",
+      "collectionSlug": "classico"
     },
     {
       "modelNo": "E-1750-7443.GL.5",
@@ -656,7 +700,9 @@
       "gallery": [
         "/images/new-img/escort/gents/E-1750-7443/E-1750-7443.GL_Blue(1).jpg",
         "/images/new-img/escort/gents/E-1750-7443/E-1750-7443.GL_Blue.jpg"
-      ]
+      ],
+      "collection": "Classico",
+      "collectionSlug": "classico"
     },
     {
       "modelNo": "E-1750-7443.GNL.1",
@@ -682,7 +728,9 @@
       "hoverImage": "/images/new-img/escort/gents/E-1750-7443/E-1750-7443.GL_White.jpg",
       "gallery": [
         "/images/new-img/escort/gents/E-1750-7443/E-1750-7443.GL_White.jpg"
-      ]
+      ],
+      "collection": "Classico",
+      "collectionSlug": "classico"
     },
     {
       "modelNo": "E-1750-7443.SL.2",
@@ -708,7 +756,9 @@
       "hoverImage": "/images/new-img/escort/gents/E-1750-7443/E-1750-7443.GL_White.jpg",
       "gallery": [
         "/images/new-img/escort/gents/E-1750-7443/E-1750-7443.GL_White.jpg"
-      ]
+      ],
+      "collection": "Classico",
+      "collectionSlug": "classico"
     },
     {
       "modelNo": "E-2100-7443.GM.1",
@@ -734,7 +784,9 @@
       "hoverImage": "/images/new-img/escort/gents/E-1750-7443/E-1750-7443.GL_White.jpg",
       "gallery": [
         "/images/new-img/escort/gents/E-1750-7443/E-1750-7443.GL_White.jpg"
-      ]
+      ],
+      "collection": "Classico",
+      "collectionSlug": "classico"
     },
     {
       "modelNo": "E-2100-7443.GNM.16",
@@ -763,7 +815,9 @@
         "/images/new-img/escort/gents/E-1750-7443/E-2100-7443.GNM_Green(2).jpg",
         "/images/new-img/escort/gents/E-1750-7443/E-2100-7443.GNM_Green(3).jpg",
         "/images/new-img/escort/gents/E-1750-7443/E-2100-7443.GNM_Green.jpg"
-      ]
+      ],
+      "collection": "Classico",
+      "collectionSlug": "classico"
     },
     {
       "modelNo": "E-2100-7443.GNM.5",
@@ -790,7 +844,9 @@
       "gallery": [
         "/images/new-img/escort/gents/E-1750-7443/E-1750-7443.GL_Blue(1).jpg",
         "/images/new-img/escort/gents/E-1750-7443/E-1750-7443.GL_Blue.jpg"
-      ]
+      ],
+      "collection": "Classico",
+      "collectionSlug": "classico"
     },
     {
       "modelNo": "E-2100-7443.SM.2",
@@ -816,7 +872,9 @@
       "hoverImage": "/images/new-img/escort/gents/E-1750-7443/E-1750-7443.GL_White.jpg",
       "gallery": [
         "/images/new-img/escort/gents/E-1750-7443/E-1750-7443.GL_White.jpg"
-      ]
+      ],
+      "collection": "Classico",
+      "collectionSlug": "classico"
     },
     {
       "modelNo": "E-7444.BLM.2",
@@ -844,7 +902,9 @@
         "/images/new-img/escort/gents/E 7444/7444/7444/E-2400-7444.TM_White.png",
         "/images/new-img/escort/gents/E 7444/7444/E-2400-7444.TM_White(1).jpg",
         "/images/new-img/escort/gents/E 7444/7444/E-2400-7444.TM_White.jpg"
-      ]
+      ],
+      "collection": "Hustler",
+      "collectionSlug": "hustler"
     },
     {
       "modelNo": "E-7444.BLM.5",
@@ -873,7 +933,9 @@
         "/images/new-img/escort/gents/E 7444/7444/E-2450-7444.RTM_Blue(1).jpg",
         "/images/new-img/escort/gents/E 7444/7444/E-2450-7444.RTM_Blue(2).jpg",
         "/images/new-img/escort/gents/E 7444/7444/E-2450-7444.RTM_Blue.jpg"
-      ]
+      ],
+      "collection": "Hustler",
+      "collectionSlug": "hustler"
     },
     {
       "modelNo": "E2450-7444.GM.16",
@@ -902,7 +964,9 @@
         "/images/new-img/escort/gents/E 7444/E2450-7444.GM_Green(2).jpg",
         "/images/new-img/escort/gents/E 7444/E2450-7444.GM_Green(3).jpg",
         "/images/new-img/escort/gents/E 7444/E2450-7444.GM_Green.jpg"
-      ]
+      ],
+      "collection": "Hustler",
+      "collectionSlug": "hustler"
     },
     {
       "modelNo": "E2450-7444.GNM.3",
@@ -930,7 +994,9 @@
         "/images/new-img/escort/gents/E 7444/E2450-7444.GNM_Black(1).jpg",
         "/images/new-img/escort/gents/E 7444/E2450-7444.GNM_Black(2).jpg",
         "/images/new-img/escort/gents/E 7444/E2450-7444.GNM_Black.jpg"
-      ]
+      ],
+      "collection": "Hustler",
+      "collectionSlug": "hustler"
     },
     {
       "modelNo": "E2450-7444.RGM.11",
@@ -956,7 +1022,9 @@
       "hoverImage": "/images/new-img/escort/gents/E 7444/E2450-7444.RGM_Rose Gold.jpg",
       "gallery": [
         "/images/new-img/escort/gents/E 7444/E2450-7444.RGM_Rose Gold.jpg"
-      ]
+      ],
+      "collection": "Hustler",
+      "collectionSlug": "hustler"
     },
     {
       "modelNo": "E2450-7444.SM.5",
@@ -982,7 +1050,9 @@
       "hoverImage": "/images/new-img/escort/gents/E 7444/E2450-7444.SM_Blue.jpg",
       "gallery": [
         "/images/new-img/escort/gents/E 7444/E2450-7444.SM_Blue.jpg"
-      ]
+      ],
+      "collection": "Hustler",
+      "collectionSlug": "hustler"
     },
     {
       "modelNo": "E-1850-7449.RGBM.8",
@@ -1008,7 +1078,9 @@
       "hoverImage": "/images/new-img/escort/gents/E-1850-7449/E-1850-7449.RGBM_Grey.jpg",
       "gallery": [
         "/images/new-img/escort/gents/E-1850-7449/E-1850-7449.RGBM_Grey.jpg"
-      ]
+      ],
+      "collection": "Classico",
+      "collectionSlug": "classico"
     },
     {
       "modelNo": "E-1850-7449.RTM.11",
@@ -1034,7 +1106,9 @@
       "hoverImage": "/images/new-img/escort/gents/E-1850-7449/E-1850-7449.RTM_Rose Gold.jpg",
       "gallery": [
         "/images/new-img/escort/gents/E-1850-7449/E-1850-7449.RTM_Rose Gold.jpg"
-      ]
+      ],
+      "collection": "Classico",
+      "collectionSlug": "classico"
     },
     {
       "modelNo": "E-1850-7449.SM.1",
@@ -1060,7 +1134,9 @@
       "hoverImage": "/images/new-img/escort/gents/E-1850-7449/E-1850-7449.SM_White.jpg",
       "gallery": [
         "/images/new-img/escort/gents/E-1850-7449/E-1850-7449.SM_White.jpg"
-      ]
+      ],
+      "collection": "Classico",
+      "collectionSlug": "classico"
     },
     {
       "modelNo": "E-1650-7450.GNL.1",
@@ -1090,7 +1166,9 @@
         "/images/new-img/escort/gents/E-1650-7450/E-1650-7450.GNL_White(3).jpg",
         "/images/new-img/escort/gents/E-1650-7450/E-1650-7450.GNL_White(4).jpg",
         "/images/new-img/escort/gents/E-1650-7450/E-1650-7450.GNL_White.jpg"
-      ]
+      ],
+      "collection": "Classico",
+      "collectionSlug": "classico"
     },
     {
       "modelNo": "E-1650-7450.RGL.1",
@@ -1116,7 +1194,9 @@
       "hoverImage": "/images/new-img/escort/gents/E-1650-7450/E-1650-7450.GNL_Grey.jpg",
       "gallery": [
         "/images/new-img/escort/gents/E-1650-7450/E-1650-7450.GNL_Grey.jpg"
-      ]
+      ],
+      "collection": "Classico",
+      "collectionSlug": "classico"
     },
     {
       "modelNo": "E-1650-7450.RGL.11",
@@ -1142,7 +1222,9 @@
       "hoverImage": "/images/new-img/escort/gents/E-1650-7450/E-1650-7450.GNL_Grey.jpg",
       "gallery": [
         "/images/new-img/escort/gents/E-1650-7450/E-1650-7450.GNL_Grey.jpg"
-      ]
+      ],
+      "collection": "Classico",
+      "collectionSlug": "classico"
     },
     {
       "modelNo": "E-1650-7450.RGL.3",
@@ -1170,7 +1252,9 @@
         "/images/new-img/escort/gents/E-1650-7450/E-1650-7450.RGL_Black(1).jpg",
         "/images/new-img/escort/gents/E-1650-7450/E-1650-7450.RGL_Black(2).jpg",
         "/images/new-img/escort/gents/E-1650-7450/E-1650-7450.RGL_Black.jpg"
-      ]
+      ],
+      "collection": "Classico",
+      "collectionSlug": "classico"
     },
     {
       "modelNo": "E-1650-7450.RTL.2",
@@ -1200,7 +1284,9 @@
         "/images/new-img/escort/gents/E-1650-7450/E-1650-7450.GNL_White(3).jpg",
         "/images/new-img/escort/gents/E-1650-7450/E-1650-7450.GNL_White(4).jpg",
         "/images/new-img/escort/gents/E-1650-7450/E-1650-7450.GNL_White.jpg"
-      ]
+      ],
+      "collection": "Classico",
+      "collectionSlug": "classico"
     },
     {
       "modelNo": "E-1750-7455.BL.5",
@@ -1226,7 +1312,9 @@
       "hoverImage": "/images/new-img/escort/gents/1750-7455/E-1750-7455.BL_Blue.jpg",
       "gallery": [
         "/images/new-img/escort/gents/1750-7455/E-1750-7455.BL_Blue.jpg"
-      ]
+      ],
+      "collection": "Classico",
+      "collectionSlug": "classico"
     },
     {
       "modelNo": "E-1750-7455.BRNL.9",
@@ -1253,7 +1341,9 @@
       "gallery": [
         "/images/new-img/escort/gents/1750-7455/E-1750-7455.BRNL.jpg",
         "/images/new-img/escort/gents/1750-7455/E-1750-7455.BRNL_Maroon.jpg"
-      ]
+      ],
+      "collection": "Classico",
+      "collectionSlug": "classico"
     },
     {
       "modelNo": "E-1750-7455.GNL.16",
@@ -1279,7 +1369,9 @@
       "hoverImage": "/images/new-img/escort/gents/1750-7455/E-1750-7455.GNL_Green.jpg",
       "gallery": [
         "/images/new-img/escort/gents/1750-7455/E-1750-7455.GNL_Green.jpg"
-      ]
+      ],
+      "collection": "Classico",
+      "collectionSlug": "classico"
     },
     {
       "modelNo": "E-1750-7455.GNL.2",
@@ -1305,7 +1397,9 @@
       "hoverImage": "/images/new-img/escort/gents/1750-7455/E-1750-7455.BL_White.jpg",
       "gallery": [
         "/images/new-img/escort/gents/1750-7455/E-1750-7455.BL_White.jpg"
-      ]
+      ],
+      "collection": "Classico",
+      "collectionSlug": "classico"
     },
     {
       "modelNo": "E-2200-7548RTM.2",
@@ -1331,7 +1425,9 @@
       "hoverImage": "/images/new-img/escort/gents/E-7548/E-7548-RTM_White.jpg",
       "gallery": [
         "/images/new-img/escort/gents/E-7548/E-7548-RTM_White.jpg"
-      ]
+      ],
+      "collection": "Classico",
+      "collectionSlug": "classico"
     },
     {
       "modelNo": "E1900-7548SM.2",
@@ -1357,7 +1453,9 @@
       "hoverImage": "/images/new-img/escort/gents/E-7548/E-7548-SM_White.jpg",
       "gallery": [
         "/images/new-img/escort/gents/E-7548/E-7548-SM_White.jpg"
-      ]
+      ],
+      "collection": "Classico",
+      "collectionSlug": "classico"
     },
     {
       "modelNo": "E2100-7548.GM.4",
@@ -1383,7 +1481,9 @@
       "hoverImage": "/images/new-img/escort/gents/E-7548/E-7548-GM_Gold.jpg",
       "gallery": [
         "/images/new-img/escort/gents/E-7548/E-7548-GM_Gold.jpg"
-      ]
+      ],
+      "collection": "Classico",
+      "collectionSlug": "classico"
     },
     {
       "modelNo": "E2100-7548.TM.4",
@@ -1409,7 +1509,9 @@
       "hoverImage": "/images/new-img/escort/gents/E-7548/E-7548-TM_Gold.jpg",
       "gallery": [
         "/images/new-img/escort/gents/E-7548/E-7548-TM_Gold.jpg"
-      ]
+      ],
+      "collection": "Classico",
+      "collectionSlug": "classico"
     },
     {
       "modelNo": "E2100-7548GM.1",
@@ -1436,7 +1538,9 @@
       "gallery": [
         "/images/new-img/escort/gents/E-7548/E-7548-GM_White(1).jpg",
         "/images/new-img/escort/gents/E-7548/E-7548-GM_White.jpg"
-      ]
+      ],
+      "collection": "Classico",
+      "collectionSlug": "classico"
     },
     {
       "modelNo": "E2200-7548.BM.2",
@@ -1469,7 +1573,9 @@
         "/images/new-img/escort/gents/E-7548/E-7548-BM(6).jpg",
         "/images/new-img/escort/gents/E-7548/E-7548-BM(7).jpg",
         "/images/new-img/escort/gents/E-7548/E-7548-BM.jpg"
-      ]
+      ],
+      "collection": "Classico",
+      "collectionSlug": "classico"
     },
     {
       "modelNo": "E2200-7548BRTM.9",
@@ -1495,7 +1601,9 @@
       "hoverImage": "/images/new-img/escort/gents/E-7548/E-7548-RTM_Rose Gold.jpg",
       "gallery": [
         "/images/new-img/escort/gents/E-7548/E-7548-RTM_Rose Gold.jpg"
-      ]
+      ],
+      "collection": "Classico",
+      "collectionSlug": "classico"
     },
     {
       "modelNo": "E2200-7548GNM.8",
@@ -1528,7 +1636,9 @@
         "/images/new-img/escort/gents/E-7548/E-7548-BM(6).jpg",
         "/images/new-img/escort/gents/E-7548/E-7548-BM(7).jpg",
         "/images/new-img/escort/gents/E-7548/E-7548-BM.jpg"
-      ]
+      ],
+      "collection": "Classico",
+      "collectionSlug": "classico"
     },
     {
       "modelNo": "E2200-7548RTM.11",
@@ -1554,7 +1664,9 @@
       "hoverImage": "/images/new-img/escort/gents/E-7548/E-7548-RTM_Rose Gold.jpg",
       "gallery": [
         "/images/new-img/escort/gents/E-7548/E-7548-RTM_Rose Gold.jpg"
-      ]
+      ],
+      "collection": "Classico",
+      "collectionSlug": "classico"
     },
     {
       "modelNo": "E1950-7594SM.1",
@@ -1582,7 +1694,9 @@
         "/images/new-img/escort/gents/E-7594 24-01-2024/E-7594.SM_White(1).jpg",
         "/images/new-img/escort/gents/E-7594 24-01-2024/E-7594.SM_White(2).jpg",
         "/images/new-img/escort/gents/E-7594 24-01-2024/E-7594.SM_White.jpg"
-      ]
+      ],
+      "collection": "Classico",
+      "collectionSlug": "classico"
     },
     {
       "modelNo": "E1950-7594SM.16",
@@ -1608,7 +1722,9 @@
       "hoverImage": "/images/new-img/escort/gents/E-7594 24-01-2024/E-7594.SM_Green.jpg",
       "gallery": [
         "/images/new-img/escort/gents/E-7594 24-01-2024/E-7594.SM_Green.jpg"
-      ]
+      ],
+      "collection": "Classico",
+      "collectionSlug": "classico"
     },
     {
       "modelNo": "E1950-7594SM.3",
@@ -1635,7 +1751,9 @@
       "gallery": [
         "/images/new-img/escort/gents/E-7594/E-7594/E-1950-7594.SM.3G.jpg",
         "/images/new-img/escort/gents/E-7594/E-7594/E-1950-7594.SM.3G.png"
-      ]
+      ],
+      "collection": "Classico",
+      "collectionSlug": "classico"
     },
     {
       "modelNo": "E1950-7594SM.5",
@@ -1661,7 +1779,9 @@
       "hoverImage": "/images/new-img/escort/gents/E-7594 24-01-2024/E-7594.SM_Blue.jpg",
       "gallery": [
         "/images/new-img/escort/gents/E-7594 24-01-2024/E-7594.SM_Blue.jpg"
-      ]
+      ],
+      "collection": "Classico",
+      "collectionSlug": "classico"
     },
     {
       "modelNo": "E1850-7689.GM.1",
@@ -1688,7 +1808,9 @@
       "gallery": [
         "/images/new-img/escort/gents/E-7689/E-7689.GM_White.jpg",
         "/images/new-img/escort/gents/E-7689/PNG/E-7689.GM_White.png"
-      ]
+      ],
+      "collection": "Classico",
+      "collectionSlug": "classico"
     },
     {
       "modelNo": "E1850-7689.GM.16",
@@ -1715,7 +1837,9 @@
       "gallery": [
         "/images/new-img/escort/gents/E-7689/E-7689.GM_Green.jpg",
         "/images/new-img/escort/gents/E-7689/PNG/E-7689.GM_Green.png"
-      ]
+      ],
+      "collection": "Classico",
+      "collectionSlug": "classico"
     },
     {
       "modelNo": "E1950-7689.RGM.1",
@@ -1742,7 +1866,9 @@
       "gallery": [
         "/images/new-img/escort/gents/E-7689/E-7689.RGM_White.jpg",
         "/images/new-img/escort/gents/E-7689/PNG/E-7689.RGM_White.png"
-      ]
+      ],
+      "collection": "Classico",
+      "collectionSlug": "classico"
     },
     {
       "modelNo": "E1950-7689.RGM.11",
@@ -1769,7 +1895,9 @@
       "gallery": [
         "/images/new-img/escort/gents/E-7689/E-7689.RGM_Rose Gold.jpg",
         "/images/new-img/escort/gents/E-7689/PNG/E-7689.RGM_Rose Gold.png"
-      ]
+      ],
+      "collection": "Classico",
+      "collectionSlug": "classico"
     },
     {
       "modelNo": "E1950-7689.RGM.16",
@@ -1796,7 +1924,9 @@
       "gallery": [
         "/images/new-img/escort/gents/E-7689/E-7689.RGM_Green.jpg",
         "/images/new-img/escort/gents/E-7689/PNG/E-7689.RGM_Green.png"
-      ]
+      ],
+      "collection": "Classico",
+      "collectionSlug": "classico"
     },
     {
       "modelNo": "E1950-7689.RGM.9",
@@ -1823,7 +1953,9 @@
       "gallery": [
         "/images/new-img/escort/gents/E-7689/E-7689.RGM_Brown.jpg",
         "/images/new-img/escort/gents/E-7689/PNG/E-7689.RGM_Brown.png"
-      ]
+      ],
+      "collection": "Classico",
+      "collectionSlug": "classico"
     },
     {
       "modelNo": "E2100-7690.SM.1",
@@ -1851,7 +1983,9 @@
         "/images/new-img/escort/gents/E-7690/E-7690.SM_White(1).jpg",
         "/images/new-img/escort/gents/E-7690/E-7690.SM_White.jpg",
         "/images/new-img/escort/gents/E-7690/PNG/E-7690.SM_White.png"
-      ]
+      ],
+      "collection": "Classico",
+      "collectionSlug": "classico"
     },
     {
       "modelNo": "E2100-7690.SM.3",
@@ -1880,7 +2014,9 @@
         "/images/new-img/escort/gents/E-7690/E-7690.SM_Green(2).jpg",
         "/images/new-img/escort/gents/E-7690/E-7690.SM_Green.jpg",
         "/images/new-img/escort/gents/E-7690/PNG/E-7690.SM_Green.png"
-      ]
+      ],
+      "collection": "Classico",
+      "collectionSlug": "classico"
     },
     {
       "modelNo": "E2200-7690.GM.1",
@@ -1907,7 +2043,9 @@
       "gallery": [
         "/images/new-img/escort/gents/E-7690/E-7690.GM_White.jpg",
         "/images/new-img/escort/gents/E-7690/PNG/E-7690.GM_White.png"
-      ]
+      ],
+      "collection": "Classico",
+      "collectionSlug": "classico"
     },
     {
       "modelNo": "E2200-7690.GM.3",
@@ -1934,7 +2072,9 @@
       "gallery": [
         "/images/new-img/escort/gents/E-7690/E-7690.GM_Black.jpg",
         "/images/new-img/escort/gents/E-7690/PNG/E-7690.GM_Black.png"
-      ]
+      ],
+      "collection": "Classico",
+      "collectionSlug": "classico"
     },
     {
       "modelNo": "E2200-7690.TM.1",
@@ -1961,7 +2101,9 @@
       "gallery": [
         "/images/new-img/escort/gents/E-7690/E-7690.TM_White.jpg",
         "/images/new-img/escort/gents/E-7690/PNG/E-7690.TM_White.png"
-      ]
+      ],
+      "collection": "Classico",
+      "collectionSlug": "classico"
     },
     {
       "modelNo": "E2200-7690.TM.4",
@@ -1988,7 +2130,9 @@
       "gallery": [
         "/images/new-img/escort/gents/E-7690/7690/7690/E-2250-7690.RTM_Rose Gold.png",
         "/images/new-img/escort/gents/E-7690/7690/E-2250-7690.RTM_Rose Gold.jpg"
-      ]
+      ],
+      "collection": "Classico",
+      "collectionSlug": "classico"
     },
     {
       "modelNo": "E2250-7690.BRNM.9",
@@ -2015,7 +2159,9 @@
       "gallery": [
         "/images/new-img/escort/gents/E-7690/7690/7690/E-2250-7690.BRNM_Brown.png",
         "/images/new-img/escort/gents/E-7690/7690/E-2250-7690.BRNM_Brown.jpg"
-      ]
+      ],
+      "collection": "Classico",
+      "collectionSlug": "classico"
     },
     {
       "modelNo": "E2250-7690.RGM.1",
@@ -2042,7 +2188,9 @@
       "gallery": [
         "/images/new-img/escort/gents/E-7690/E-7690.RGM_White.jpg",
         "/images/new-img/escort/gents/E-7690/PNG/E-7690.RGM_White.png"
-      ]
+      ],
+      "collection": "Classico",
+      "collectionSlug": "classico"
     },
     {
       "modelNo": "E2250-7690.RGM.16",
@@ -2069,7 +2217,9 @@
       "gallery": [
         "/images/new-img/escort/gents/E-7690/E-7690.RGM_Green.jpg",
         "/images/new-img/escort/gents/E-7690/PNG/E-7690.RGM_Green.png"
-      ]
+      ],
+      "collection": "Classico",
+      "collectionSlug": "classico"
     }
   ],
   "women": [
@@ -2097,7 +2247,9 @@
       "hoverImage": "/images/new-img/escort/Ladies/E-1850-7447/E-1850-7447.BM.jpg",
       "gallery": [
         "/images/new-img/escort/Ladies/E-1850-7447/E-1850-7447.BM.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-1850-7447.RGM.11",
@@ -2123,7 +2275,9 @@
       "hoverImage": "/images/new-img/escort/Ladies/E-1850-7447/E-1850-7447.RGM_Rose GOld.jpg",
       "gallery": [
         "/images/new-img/escort/Ladies/E-1850-7447/E-1850-7447.RGM_Rose GOld.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-1850-7447.RGM.16",
@@ -2149,7 +2303,9 @@
       "hoverImage": "/images/new-img/escort/Ladies/E-1850-7447/E-1850-7447.RGM_Green.jpg",
       "gallery": [
         "/images/new-img/escort/Ladies/E-1850-7447/E-1850-7447.RGM_Green.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-2100-7459.RGM-2",
@@ -2175,7 +2331,9 @@
       "hoverImage": "/images/new-img/escort/Ladies/E-2100-7459/E-2100-7459.RGM_White.jpg",
       "gallery": [
         "/images/new-img/escort/Ladies/E-2100-7459/E-2100-7459.RGM_White.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-2100-7459.RGM-5",
@@ -2201,7 +2359,9 @@
       "hoverImage": "/images/new-img/escort/Ladies/E-2100-7459/E-2100-7459.RGM_Blue.jpg",
       "gallery": [
         "/images/new-img/escort/Ladies/E-2100-7459/E-2100-7459.RGM_Blue.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-2100-7459.RGM.17",
@@ -2227,7 +2387,9 @@
       "hoverImage": "/images/new-img/escort/Ladies/E-2100-7459/E-2100-7459.RGM_Pink.jpg",
       "gallery": [
         "/images/new-img/escort/Ladies/E-2100-7459/E-2100-7459.RGM_Pink.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-1900-7461.GM.11L",
@@ -2254,7 +2416,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7461/7461/E-2100-7461.GM.Brown.png",
         "/images/new-img/escort/Ladies/7461/E-2100-7461.GM.Brown.jpg"
-      ]
+      ],
+      "collection": "Bling",
+      "collectionSlug": "bling"
     },
     {
       "modelNo": "E-1900-7461.GM.16L",
@@ -2281,7 +2445,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7461/7461/E-2100-7461.GM.Green.png",
         "/images/new-img/escort/Ladies/7461/E-2100-7461.GM.Green.jpg"
-      ]
+      ],
+      "collection": "Bling",
+      "collectionSlug": "bling"
     },
     {
       "modelNo": "E-1900-7461.GM.1L",
@@ -2308,7 +2474,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7461/7461/E-2100-7461.GM.White.png",
         "/images/new-img/escort/Ladies/7461/E-2100-7461.GM.White.jpg"
-      ]
+      ],
+      "collection": "Bling",
+      "collectionSlug": "bling"
     },
     {
       "modelNo": "E-2100-7461.GNM.8L",
@@ -2335,7 +2503,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7461/7461/E-2100-7461.GM.Grey.png",
         "/images/new-img/escort/Ladies/7461/E-2100-7461.GM.Grey.jpg"
-      ]
+      ],
+      "collection": "Bling",
+      "collectionSlug": "bling"
     },
     {
       "modelNo": "E-2100-7461.RGM.11",
@@ -2362,7 +2532,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7461/7461/E-2100-7461.RGM.Blue.png",
         "/images/new-img/escort/Ladies/7461/E-2100-7461.RGM.Blue.jpg"
-      ]
+      ],
+      "collection": "Bling",
+      "collectionSlug": "bling"
     },
     {
       "modelNo": "E-2100-7461.RGM.1L",
@@ -2389,7 +2561,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7461/7461/E-2100-7461.RGM.White.png",
         "/images/new-img/escort/Ladies/7461/E-2100-7461.RGM.White.jpg"
-      ]
+      ],
+      "collection": "Bling",
+      "collectionSlug": "bling"
     },
     {
       "modelNo": "E-2100-7461.RGM.8L",
@@ -2416,7 +2590,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7461/7461/E-2100-7461.RGM.Grey.png",
         "/images/new-img/escort/Ladies/7461/E-2100-7461.RGM.Grey.jpg"
-      ]
+      ],
+      "collection": "Bling",
+      "collectionSlug": "bling"
     },
     {
       "modelNo": "E-2100-7461.RGM.9 L",
@@ -2443,7 +2619,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7461/7461/E-2100-7461.RGM.Brown.png",
         "/images/new-img/escort/Ladies/7461/E-2100-7461.RGM.Brown.jpg"
-      ]
+      ],
+      "collection": "Bling",
+      "collectionSlug": "bling"
     },
     {
       "modelNo": "E-2100-7461.RTM.1",
@@ -2470,7 +2648,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7461/7461/E-2100-7461.TM.White.png",
         "/images/new-img/escort/Ladies/7461/E-2100-7461.TM.White.jpg"
-      ]
+      ],
+      "collection": "Bling",
+      "collectionSlug": "bling"
     },
     {
       "modelNo": "E-2100-7461.RTM.11L",
@@ -2497,7 +2677,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7461/7461/E-2100-7461.RTM.Rose Gold.png",
         "/images/new-img/escort/Ladies/7461/E-2100-7461.RTM.Rose Gold.jpg"
-      ]
+      ],
+      "collection": "Bling",
+      "collectionSlug": "bling"
     },
     {
       "modelNo": "E-2100-7461.RTM.16L",
@@ -2524,7 +2706,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7461/7461/E-2100-7461.RTM.Green.png",
         "/images/new-img/escort/Ladies/7461/E-2100-7461.RTM.Green.jpg"
-      ]
+      ],
+      "collection": "Bling",
+      "collectionSlug": "bling"
     },
     {
       "modelNo": "E-2100-7461.RTM.5L",
@@ -2551,7 +2735,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7461/7461/E-2100-7461.RTM.Blue.png",
         "/images/new-img/escort/Ladies/7461/E-2100-7461.RTM.Blue.jpg"
-      ]
+      ],
+      "collection": "Bling",
+      "collectionSlug": "bling"
     },
     {
       "modelNo": "E-2100-7461.RTM.8L",
@@ -2578,7 +2764,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7461/7461/E-2100-7461.RTM.Grey.png",
         "/images/new-img/escort/Ladies/7461/E-2100-7461.RTM.Grey.jpg"
-      ]
+      ],
+      "collection": "Bling",
+      "collectionSlug": "bling"
     },
     {
       "modelNo": "E-2100-7461.RTM.9L",
@@ -2605,7 +2793,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7461/7461/E-2100-7461.RTM.Brown.png",
         "/images/new-img/escort/Ladies/7461/E-2100-7461.RTM.Brown.jpg"
-      ]
+      ],
+      "collection": "Bling",
+      "collectionSlug": "bling"
     },
     {
       "modelNo": "E-1850-7533 RGM. 2",
@@ -2631,7 +2821,9 @@
       "hoverImage": "/images/new-img/escort/Ladies/E-7533/E-7533_White.jpg",
       "gallery": [
         "/images/new-img/escort/Ladies/E-7533/E-7533_White.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-1850-7533 RGM.11",
@@ -2657,7 +2849,9 @@
       "hoverImage": "/images/new-img/escort/Ladies/E-7533/E-7533_Rose Gold.jpg",
       "gallery": [
         "/images/new-img/escort/Ladies/E-7533/E-7533_Rose Gold.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-1850-7533 RGM.16",
@@ -2683,7 +2877,9 @@
       "hoverImage": "/images/new-img/escort/Ladies/E-7533/E-7533_Green.jpg",
       "gallery": [
         "/images/new-img/escort/Ladies/E-7533/E-7533_Green.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-1850-7533 RGM.8",
@@ -2709,7 +2905,9 @@
       "hoverImage": "/images/new-img/escort/Ladies/E-7533/E-7533_Grey.jpg",
       "gallery": [
         "/images/new-img/escort/Ladies/E-7533/E-7533_Grey.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-1850-7533 RGM.9",
@@ -2735,7 +2933,9 @@
       "hoverImage": "/images/new-img/escort/Ladies/E-7533/E-7533_Brown.jpg",
       "gallery": [
         "/images/new-img/escort/Ladies/E-7533/E-7533_Brown.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E 1950-7566BLRTM.2",
@@ -2761,7 +2961,9 @@
       "hoverImage": "/images/new-img/escort/Ladies/E-7566/E-7566.BLRTM_White.jpg",
       "gallery": [
         "/images/new-img/escort/Ladies/E-7566/E-7566.BLRTM_White.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E1950 -7566RTM.5",
@@ -2787,7 +2989,9 @@
       "hoverImage": "/images/new-img/escort/Ladies/E-7566/E-7566.BLRTM_Blue.jpg",
       "gallery": [
         "/images/new-img/escort/Ladies/E-7566/E-7566.BLRTM_Blue.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E1950-7566 RGM.9",
@@ -2813,7 +3017,9 @@
       "hoverImage": "/images/new-img/escort/Ladies/E-7566/E-7566.RGM_Brown.jpg",
       "gallery": [
         "/images/new-img/escort/Ladies/E-7566/E-7566.RGM_Brown.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E1950-7566BM.8",
@@ -2839,7 +3045,9 @@
       "hoverImage": "/images/new-img/escort/Ladies/E-7566/E-7566.BM.jpg",
       "gallery": [
         "/images/new-img/escort/Ladies/E-7566/E-7566.BM.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E2100-7567.RGM2",
@@ -2865,7 +3073,9 @@
       "hoverImage": "/images/new-img/escort/Ladies/E-7567/E-7567-RGM_White.jpg",
       "gallery": [
         "/images/new-img/escort/Ladies/E-7567/E-7567-RGM_White.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E2100-7567.RTM.1",
@@ -2891,7 +3101,9 @@
       "hoverImage": "/images/new-img/escort/Ladies/E-7567/E-7567-RTM_Rose Gold.jpg",
       "gallery": [
         "/images/new-img/escort/Ladies/E-7567/E-7567-RTM_Rose Gold.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E2100-7567RGBRNM.3",
@@ -2917,7 +3129,9 @@
       "hoverImage": "/images/new-img/escort/Ladies/E-7567/E-7567-RGBRNM_Brown.jpg",
       "gallery": [
         "/images/new-img/escort/Ladies/E-7567/E-7567-RGBRNM_Brown.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E2100-7567RGM.16",
@@ -2943,7 +3157,9 @@
       "hoverImage": "/images/new-img/escort/Ladies/E-7567/E-7567-RGM_Green.jpg",
       "gallery": [
         "/images/new-img/escort/Ladies/E-7567/E-7567-RGM_Green.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-1800-7597 GM .14",
@@ -2969,7 +3185,9 @@
       "hoverImage": "/images/new-img/escort/Ladies/E-7597/E-7597.GM.Brown.jpg",
       "gallery": [
         "/images/new-img/escort/Ladies/E-7597/E-7597.GM.Brown.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-1800-7597 GM .5",
@@ -2995,7 +3213,9 @@
       "hoverImage": "/images/new-img/escort/Ladies/E-7597/E-7597.GM.Blue.jpg",
       "gallery": [
         "/images/new-img/escort/Ladies/E-7597/E-7597.GM.Blue.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-1800-7597 RGM.6",
@@ -3021,7 +3241,9 @@
       "hoverImage": "/images/new-img/escort/Ladies/E-7597/E-7597.RGM.White.jpg",
       "gallery": [
         "/images/new-img/escort/Ladies/E-7597/E-7597.RGM.White.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-1900-7597 RGM .12",
@@ -3047,7 +3269,9 @@
       "hoverImage": "/images/new-img/escort/Ladies/E-7597/E-7597.RGM.Blue.jpg",
       "gallery": [
         "/images/new-img/escort/Ladies/E-7597/E-7597.RGM.Blue.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-1900-7597 RGM.9",
@@ -3073,7 +3297,9 @@
       "hoverImage": "/images/new-img/escort/Ladies/E-7597/E-7597.RGM.Brown.jpg",
       "gallery": [
         "/images/new-img/escort/Ladies/E-7597/E-7597.RGM.Brown.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-1900-7597 RTM.2",
@@ -3099,7 +3325,9 @@
       "hoverImage": "/images/new-img/escort/Ladies/E-7597/E-7597.RTM.White.jpg",
       "gallery": [
         "/images/new-img/escort/Ladies/E-7597/E-7597.RTM.White.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E1800-7598.GM.3",
@@ -3125,7 +3353,9 @@
       "hoverImage": "/images/new-img/escort/Ladies/E-7598/E-7598.GM_Black.jpg",
       "gallery": [
         "/images/new-img/escort/Ladies/E-7598/E-7598.GM_Black.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E1800-7598.GM.4",
@@ -3151,7 +3381,9 @@
       "hoverImage": "/images/new-img/escort/Ladies/E-7598/E-7598.GM_Gold.jpg",
       "gallery": [
         "/images/new-img/escort/Ladies/E-7598/E-7598.GM_Gold.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E1800-7598GM.4",
@@ -3177,7 +3409,9 @@
       "hoverImage": "/images/new-img/escort/Ladies/E-7598/E-7598.GM_White.jpg",
       "gallery": [
         "/images/new-img/escort/Ladies/E-7598/E-7598.GM_White.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E1900-7598BM.3",
@@ -3203,7 +3437,9 @@
       "hoverImage": "/images/new-img/escort/Ladies/E-7598/E-7598.BM_Black.jpg",
       "gallery": [
         "/images/new-img/escort/Ladies/E-7598/E-7598.BM_Black.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E1900-7598BRNM.9",
@@ -3229,7 +3465,9 @@
       "hoverImage": "/images/new-img/escort/Ladies/E-7598/E-7598.BRNM_Brown.jpg",
       "gallery": [
         "/images/new-img/escort/Ladies/E-7598/E-7598.BRNM_Brown.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E1900-7598RGBTM.3",
@@ -3255,7 +3493,9 @@
       "hoverImage": "/images/new-img/escort/Ladies/E-7598/E-7598.RGBTM_Black.jpg",
       "gallery": [
         "/images/new-img/escort/Ladies/E-7598/E-7598.RGBTM_Black.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E1900-7598RGM.11",
@@ -3281,7 +3521,9 @@
       "hoverImage": "/images/new-img/escort/Ladies/E-7598/E-7598.RGM_Rose Gold.jpg",
       "gallery": [
         "/images/new-img/escort/Ladies/E-7598/E-7598.RGM_Rose Gold.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E1900-7598RGM.16",
@@ -3307,7 +3549,9 @@
       "hoverImage": "/images/new-img/escort/Ladies/E-7598/E-7598.RGM_Green.jpg",
       "gallery": [
         "/images/new-img/escort/Ladies/E-7598/E-7598.RGM_Green.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E1900-7598RGM.3",
@@ -3333,7 +3577,9 @@
       "hoverImage": "/images/new-img/escort/Ladies/E-7598/E-7598.RGM_Black.jpg",
       "gallery": [
         "/images/new-img/escort/Ladies/E-7598/E-7598.RGM_Black.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E1900-7598RGM.9",
@@ -3359,7 +3605,9 @@
       "hoverImage": "/images/new-img/escort/Ladies/E-7598/E-7598.RGM_Brown.jpg",
       "gallery": [
         "/images/new-img/escort/Ladies/E-7598/E-7598.RGM_Brown.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E1950-7598RGBLM.5",
@@ -3385,7 +3633,9 @@
       "hoverImage": "/images/new-img/escort/Ladies/E-7598/E-7598.RGBLM_Blue.jpg",
       "gallery": [
         "/images/new-img/escort/Ladies/E-7598/E-7598.RGBLM_Blue.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-1650-7620SL.16",
@@ -3412,7 +3662,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/E-7620/7620/7620/E-1650-7620.SL_Green.png",
         "/images/new-img/escort/Ladies/E-7620/7620/E-1650-7620.SL_Green.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-1650-7620SL.2",
@@ -3439,7 +3691,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/E-7620/7620/7620/E-1650-7620.SL_White.png",
         "/images/new-img/escort/Ladies/E-7620/7620/E-1650-7620.SL_White.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-1650-7620SL.21",
@@ -3466,7 +3720,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/E-7620/7620/7620/E-1650-7620.SL_Pink.png",
         "/images/new-img/escort/Ladies/E-7620/7620/E-1650-7620.SL_Pink.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-1650-7620SL.5",
@@ -3493,7 +3749,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/E-7620/7620/7620/E-1650-7620.SL_Blue.png",
         "/images/new-img/escort/Ladies/E-7620/7620/E-1650-7620.SL_Blue.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E2100-7620 SM.2",
@@ -3519,7 +3777,9 @@
       "hoverImage": "/images/new-img/escort/Ladies/E-7620/E-7620.SM_White.jpg",
       "gallery": [
         "/images/new-img/escort/Ladies/E-7620/E-7620.SM_White.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E2200-7620 GM.4",
@@ -3545,7 +3805,9 @@
       "hoverImage": "/images/new-img/escort/Ladies/E-7620/E-7620.GM_White.jpg",
       "gallery": [
         "/images/new-img/escort/Ladies/E-7620/E-7620.GM_White.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E2250-7620RGM",
@@ -3571,7 +3833,9 @@
       "hoverImage": "/images/new-img/escort/Ladies/E-7620/E-7620.RGM_White.jpg",
       "gallery": [
         "/images/new-img/escort/Ladies/E-7620/E-7620.RGM_White.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E1850-7627GM.16",
@@ -3597,7 +3861,9 @@
       "hoverImage": "/images/new-img/escort/Ladies/E-7627/E-7627.GM_Green.jpg",
       "gallery": [
         "/images/new-img/escort/Ladies/E-7627/E-7627.GM_Green.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E1850-7627GM.2",
@@ -3623,7 +3889,9 @@
       "hoverImage": "/images/new-img/escort/Ladies/E-7627/E-7627.GM_White.jpg",
       "gallery": [
         "/images/new-img/escort/Ladies/E-7627/E-7627.GM_White.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E1850-7627RTM.2",
@@ -3649,7 +3917,9 @@
       "hoverImage": "/images/new-img/escort/Ladies/E-7627/E-7627.RTM_White.jpg",
       "gallery": [
         "/images/new-img/escort/Ladies/E-7627/E-7627.RTM_White.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E1850-7627RTM.5",
@@ -3675,7 +3945,9 @@
       "hoverImage": "/images/new-img/escort/Ladies/E-7627/E-7627.TM_Blue.jpg",
       "gallery": [
         "/images/new-img/escort/Ladies/E-7627/E-7627.TM_Blue.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E1950-7627BRNM.9",
@@ -3701,7 +3973,9 @@
       "hoverImage": "/images/new-img/escort/Ladies/E-7627/E-7627.BRNM.jpg",
       "gallery": [
         "/images/new-img/escort/Ladies/E-7627/E-7627.BRNM.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-2100-7691.RTM.2",
@@ -3728,7 +4002,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/E-7691/E-2100-7691.RTM_White.jpg",
         "/images/new-img/escort/Ladies/E-7691/PNG/E-2100-7691.RTM_White.png"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-2100-7691.RTM.5",
@@ -3755,7 +4031,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/E-7691/E-2100-7691.RTM_Blue.jpg",
         "/images/new-img/escort/Ladies/E-7691/PNG/E-2100-7691.RTM_Blue.png"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-2100-7691.RTM.9",
@@ -3782,7 +4060,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/E-7691/E-2100-7691.RTM_Brown.jpg",
         "/images/new-img/escort/Ladies/E-7691/PNG/E-2100-7691.RTM_Brown.png"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E2100-7691.RGBRNM.9",
@@ -3809,7 +4089,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/E-7691/E-7691.RGBRNM.jpg",
         "/images/new-img/escort/Ladies/E-7691/PNG/E-7691.RGBRNM.png"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-2100-7706 RGM.1L",
@@ -3836,7 +4118,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/E-7706/E-2100-7706.RGM.1L.png",
         "/images/new-img/escort/Ladies/E-7706/E-7706/E-2100-7706.RGM.1L.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-2100-7706. GM.1L",
@@ -3863,7 +4147,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/E-7706/E-2100-7706.GM.16L.png",
         "/images/new-img/escort/Ladies/E-7706/E-7706/E-2100-7706.GM.16L.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-2100-7706. RTM.16L",
@@ -3890,7 +4176,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/E-7706/E-2100-7706.RTM.16L.png",
         "/images/new-img/escort/Ladies/E-7706/E-7706/E-2100-7706.RTM.16L.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-2100-7706.RGM.16L",
@@ -3917,7 +4205,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/E-7706/E-2100-7706.RGM.16L.png",
         "/images/new-img/escort/Ladies/E-7706/E-7706/E-2100-7706.RGM.16L.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-2100-7706.RGM.5L",
@@ -3944,7 +4234,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/E-7706/E-2100-7706.RGM.5L.png",
         "/images/new-img/escort/Ladies/E-7706/E-7706/E-2100-7706.RGM.5L.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-1600-7724 GM .2",
@@ -3971,7 +4263,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7724/7724/E-1600-7724.GM_White.png",
         "/images/new-img/escort/Ladies/7724/E-1600-7724.GM_White.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-1600-7724 GM .4",
@@ -3998,7 +4292,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7724/7724/E-1600-7724.GM_Gold.png",
         "/images/new-img/escort/Ladies/7724/E-1600-7724.GM_Gold.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-1600-7724 GM .5",
@@ -4025,7 +4321,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7724/7724/E-1600-7724.GM_Black.png",
         "/images/new-img/escort/Ladies/7724/E-1600-7724.GM_Black.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-1950-7731.RGM.16",
@@ -4052,7 +4350,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7731/7731/E-1950-7731.RGM_Green.png",
         "/images/new-img/escort/Ladies/7731/E-1950-7731.RGM_Green.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-1950-7731.RGM.2",
@@ -4079,7 +4379,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7731/7731/E-1950-7731.RGM_White.png",
         "/images/new-img/escort/Ladies/7731/E-1950-7731.RGM_White.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-1950-7731.RGM.8",
@@ -4106,7 +4408,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7731/7731/E-1950-7731.RGM_Grey.png",
         "/images/new-img/escort/Ladies/7731/E-1950-7731.RGM_Grey.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-1950-7731.RGM.9",
@@ -4133,7 +4437,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7731/7731/E-1950-7731.RGM_Brown.png",
         "/images/new-img/escort/Ladies/7731/E-1950-7731.RGM_Brown.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-1950-7731.RTM.1",
@@ -4160,7 +4466,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7731/7731/E-1950-7731.RTM_White.png",
         "/images/new-img/escort/Ladies/7731/E-1950-7731.RTM_White.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-1950-7731.RTM.16",
@@ -4186,7 +4494,9 @@
       "hoverImage": "/images/new-img/escort/Ladies/7731/7731/E-1950-7731.RtM_Green.png",
       "gallery": [
         "/images/new-img/escort/Ladies/7731/7731/E-1950-7731.RtM_Green.png"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-1950-7731.RTM.17",
@@ -4213,7 +4523,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7731/7731/E-1950-7731.RTM_Blue.png",
         "/images/new-img/escort/Ladies/7731/E-1950-7731.RTM_Blue.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-1950-7731.RTM.8",
@@ -4240,7 +4552,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7731/7731/E-1950-7731.RTM_Grey.png",
         "/images/new-img/escort/Ladies/7731/E-1950-7731.RTM_Grey.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-1950-7731.RTM.9",
@@ -4267,7 +4581,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7731/7731/E-1950-7731.RTM_Brown.png",
         "/images/new-img/escort/Ladies/7731/E-1950-7731.RTM_Brown.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-1850-7732.TM.16",
@@ -4294,7 +4610,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7732/7732/E-11850-7732.TM_Green.png",
         "/images/new-img/escort/Ladies/7732/E-11850-7732.TM_Green.jpg"
-      ]
+      ],
+      "collection": "Bling",
+      "collectionSlug": "bling"
     },
     {
       "modelNo": "E-1850-7732.TM.2",
@@ -4321,7 +4639,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7732/7732/E-11850-7732.TM_White.png",
         "/images/new-img/escort/Ladies/7732/E-11850-7732.TM_White.jpg"
-      ]
+      ],
+      "collection": "Bling",
+      "collectionSlug": "bling"
     },
     {
       "modelNo": "E-1850-7732.TM.8",
@@ -4348,7 +4668,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7732/7732/E-11850-7732.TM_Grey.png",
         "/images/new-img/escort/Ladies/7732/E-11850-7732.TM_Grey.jpg"
-      ]
+      ],
+      "collection": "Bling",
+      "collectionSlug": "bling"
     },
     {
       "modelNo": "E-1900-7732.RGM.11",
@@ -4375,7 +4697,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7732/7732/E-1900-7732.RGM_Rose Gold.png",
         "/images/new-img/escort/Ladies/7732/E-1900-7732.RGM_Rose Gold.jpg"
-      ]
+      ],
+      "collection": "Bling",
+      "collectionSlug": "bling"
     },
     {
       "modelNo": "E-1900-7732.RGM.16",
@@ -4402,7 +4726,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7732/7732/E-1900-7732.RGM_Green.png",
         "/images/new-img/escort/Ladies/7732/E-1900-7732.RGM_Green.jpg"
-      ]
+      ],
+      "collection": "Bling",
+      "collectionSlug": "bling"
     },
     {
       "modelNo": "E-1900-7732.RGM.2",
@@ -4429,7 +4755,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7732/7732/E-1900-7732.RGM_White.png",
         "/images/new-img/escort/Ladies/7732/E-1900-7732.RGM_White.jpg"
-      ]
+      ],
+      "collection": "Bling",
+      "collectionSlug": "bling"
     },
     {
       "modelNo": "E-1900-7732.RGM.8",
@@ -4456,7 +4784,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7732/7732/E-1900-7732.RGM_Grey.png",
         "/images/new-img/escort/Ladies/7732/E-1900-7732.RGM_Grey.jpg"
-      ]
+      ],
+      "collection": "Bling",
+      "collectionSlug": "bling"
     },
     {
       "modelNo": "E-1950-7733.RGM.1",
@@ -4483,7 +4813,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7733/7733/E-1950-7733.RGM_White.png",
         "/images/new-img/escort/Ladies/7733/E-1950-7733.RGM_White.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-1950-7733.RGM.11",
@@ -4510,7 +4842,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7733/7733/E-1950-7733.RGM_Rose Gold.png",
         "/images/new-img/escort/Ladies/7733/E-1950-7733.RGM_Rose Gold.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-1950-7733.RGM.16",
@@ -4537,7 +4871,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7733/7733/E-1950-7733.RGM_Green.png",
         "/images/new-img/escort/Ladies/7733/E-1950-7733.RGM_Green.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-1950-7733.RGM.8",
@@ -4564,7 +4900,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7733/7733/E-1950-7733.RGM_Grey.png",
         "/images/new-img/escort/Ladies/7733/E-1950-7733.RGM_Grey.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-1950-7733.RTM.11",
@@ -4591,7 +4929,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7733/7733/E-1950-7733.RTM_Rose Gold.png",
         "/images/new-img/escort/Ladies/7733/E-1950-7733.RTM_Rose Gold.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-1950-7733.RTM.16",
@@ -4618,7 +4958,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7733/7733/E-1950-7733.RTM_Green.png",
         "/images/new-img/escort/Ladies/7733/E-1950-7733.RTM_Green.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-1950-7733.RTM.2",
@@ -4645,7 +4987,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7733/7733/E-1950-7733.RTM_White.png",
         "/images/new-img/escort/Ladies/7733/E-1950-7733.RTM_White.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-1950-7733.RTM.8",
@@ -4672,7 +5016,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7733/7733/E-1950-7733.RTM_Grey.png",
         "/images/new-img/escort/Ladies/7733/E-1950-7733.RTM_Grey.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-1950-7734.RGM.11",
@@ -4699,7 +5045,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7734/7734/E-1950-7734.RGM_Rose Gold.png",
         "/images/new-img/escort/Ladies/7734/E-1950-7734.RGM_Rose Gold.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-1950-7734.RGM.16",
@@ -4726,7 +5074,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7734/7734/E-1950-7734.RGM_Green.png",
         "/images/new-img/escort/Ladies/7734/E-1950-7734.RGM_Green.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-1950-7734.RGM.2",
@@ -4753,7 +5103,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7734/7734/E-1950-7734.RGM_White.png",
         "/images/new-img/escort/Ladies/7734/E-1950-7734.RGM_White.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-1950-7734.RGM.5",
@@ -4780,7 +5132,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7734/7734/E-1950-7734.RGM_Blue.png",
         "/images/new-img/escort/Ladies/7734/E-1950-7734.RGM_Blue.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-1950-7734.RGM.8",
@@ -4807,7 +5161,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7734/7734/E-1950-7734.RGM_Grey.png",
         "/images/new-img/escort/Ladies/7734/E-1950-7734.RGM_Grey.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-1950-7734.RGM.9",
@@ -4834,7 +5190,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7734/7734/E-1950-7734.RGM_Brown.png",
         "/images/new-img/escort/Ladies/7734/E-1950-7734.RGM_Brown.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-1950-7734.RTM.11",
@@ -4861,7 +5219,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7734/7734/E-1950-7734.RTM_Rose Gold.png",
         "/images/new-img/escort/Ladies/7734/E-1950-7734.RTM_Rose Gold.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-1950-7734.RTM.16",
@@ -4888,7 +5248,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7734/7734/E-1950-7734.RTM_Green.png",
         "/images/new-img/escort/Ladies/7734/E-1950-7734.RTM_Green.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-1950-7734.RTM.2",
@@ -4915,7 +5277,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7734/7734/E-1950-7734.RTM_White.png",
         "/images/new-img/escort/Ladies/7734/E-1950-7734.RTM_White.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-1950-7734.RTM.8",
@@ -4942,7 +5306,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7734/7734/E-1950-7734.RTM_Grey.png",
         "/images/new-img/escort/Ladies/7734/E-1950-7734.RTM_Grey.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-1950-7734.RTM.9",
@@ -4969,7 +5335,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7734/7734/E-1950-7734.RTM_Brown.png",
         "/images/new-img/escort/Ladies/7734/E-1950-7734.RTM_Brown.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E 1450 -7768SM.18",
@@ -4996,7 +5364,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7768/7768/E-1450-7768.SM_Black.png",
         "/images/new-img/escort/Ladies/7768/E-1450-7768.SM_Black.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-1750-7776 GM.16",
@@ -5022,7 +5392,9 @@
       "hoverImage": "/images/new-img/escort/Ladies/7776/7776/E-1750-7776.GM_Green.png",
       "gallery": [
         "/images/new-img/escort/Ladies/7776/7776/E-1750-7776.GM_Green.png"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-1850-7777GM.16",
@@ -5049,7 +5421,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7777/7777/E-1850-7777.GM_Green.png",
         "/images/new-img/escort/Ladies/7777/E-1850-7777.GM_Green.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-1850-7777GM.2",
@@ -5076,7 +5450,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7777/7777/E-1850-7777.GM_White.png",
         "/images/new-img/escort/Ladies/7777/E-1850-7777.GM_White.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-1850-7777SM.16",
@@ -5103,7 +5479,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7777/7777/E-1750-7777.SM_Blue.png",
         "/images/new-img/escort/Ladies/7777/E-1750-7777.SM_Blue.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-1850-7777SM.16",
@@ -5130,7 +5508,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7777/7777/E-1750-7777.SM_Green.png",
         "/images/new-img/escort/Ladies/7777/E-1750-7777.SM_Green.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-1850-7777SM.2",
@@ -5157,7 +5537,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7777/7777/E-1750-7777.SM_White.png",
         "/images/new-img/escort/Ladies/7777/E-1750-7777.SM_White.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-1850-7777TM.1",
@@ -5184,7 +5566,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7777/7777/E-1850-7777.TM_White.png",
         "/images/new-img/escort/Ladies/7777/E-1850-7777.TM_White.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-1900-7777BM.16",
@@ -5211,7 +5595,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7777/7777/E-1900-7777.BM_Green.png",
         "/images/new-img/escort/Ladies/7777/E-1900-7777.BM_Green.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-1900-7777RGM.16",
@@ -5238,7 +5624,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7777/7777/E-1900-7777.RGM_Green.png",
         "/images/new-img/escort/Ladies/7777/E-1900-7777.RGM_Green.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-1900-7777RGM.16",
@@ -5265,7 +5653,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7777/7777/E-1900-7777.RGM_White.png",
         "/images/new-img/escort/Ladies/7777/E-1900-7777.RGM_White.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-1900-7777RGM.16",
@@ -5292,7 +5682,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7777/7777/E-1900-7777.RGM_Grey.png",
         "/images/new-img/escort/Ladies/7777/E-1900-7777.RGM_Grey.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-1900-7777RTM.16",
@@ -5319,7 +5711,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7777/7777/E-1900-7777.RTM_Green.png",
         "/images/new-img/escort/Ladies/7777/E-1900-7777.RTM_Green.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-2250-7779.GM.16L",
@@ -5346,7 +5740,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7779/E-2250-7779.GM.16L.jpg",
         "/images/new-img/escort/Ladies/7779/E-7779/E-2250-7779.GM.16L.png"
-      ]
+      ],
+      "collection": "Hustler",
+      "collectionSlug": "hustler"
     },
     {
       "modelNo": "E-2250-7779.GM.2L",
@@ -5373,7 +5769,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7779/E-2250-7779.GM.2L.jpg",
         "/images/new-img/escort/Ladies/7779/E-7779/E-2250-7779.GM.2L.png"
-      ]
+      ],
+      "collection": "Hustler",
+      "collectionSlug": "hustler"
     },
     {
       "modelNo": "E-2250-7779.GM.3L",
@@ -5400,7 +5798,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7779/E-2250-7779.GM.3L.jpg",
         "/images/new-img/escort/Ladies/7779/E-7779/E-2250-7779.GM.3L.png"
-      ]
+      ],
+      "collection": "Hustler",
+      "collectionSlug": "hustler"
     },
     {
       "modelNo": "E-2250-7779.GM.5L",
@@ -5427,7 +5827,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7779/E-2250-7779.GM.5L.jpg",
         "/images/new-img/escort/Ladies/7779/E-7779/E-2250-7779.GM.5L.png"
-      ]
+      ],
+      "collection": "Hustler",
+      "collectionSlug": "hustler"
     },
     {
       "modelNo": "E-2250-7779.TM.16L",
@@ -5453,7 +5855,9 @@
       "hoverImage": "/images/new-img/escort/Ladies/7779/E-7779/E-2250-7779.7M.16L.png",
       "gallery": [
         "/images/new-img/escort/Ladies/7779/E-7779/E-2250-7779.7M.16L.png"
-      ]
+      ],
+      "collection": "Hustler",
+      "collectionSlug": "hustler"
     },
     {
       "modelNo": "E-2250-7779.TM.2L",
@@ -5479,7 +5883,9 @@
       "hoverImage": "/images/new-img/escort/Ladies/7779/E-7779/E-2250-7779.7M.2L.png",
       "gallery": [
         "/images/new-img/escort/Ladies/7779/E-7779/E-2250-7779.7M.2L.png"
-      ]
+      ],
+      "collection": "Hustler",
+      "collectionSlug": "hustler"
     },
     {
       "modelNo": "E-2250-7779.TM.3L",
@@ -5505,7 +5911,9 @@
       "hoverImage": "/images/new-img/escort/Ladies/7779/E-7779/E-2250-7779.7M.3L.png",
       "gallery": [
         "/images/new-img/escort/Ladies/7779/E-7779/E-2250-7779.7M.3L.png"
-      ]
+      ],
+      "collection": "Hustler",
+      "collectionSlug": "hustler"
     },
     {
       "modelNo": "E-2250-7779.TM.5L",
@@ -5531,7 +5939,9 @@
       "hoverImage": "/images/new-img/escort/Ladies/7779/E-7779/E-2250-7779.7M.5L.png",
       "gallery": [
         "/images/new-img/escort/Ladies/7779/E-7779/E-2250-7779.7M.5L.png"
-      ]
+      ],
+      "collection": "Hustler",
+      "collectionSlug": "hustler"
     },
     {
       "modelNo": "E-2300-7779.RGM.16L",
@@ -5558,7 +5968,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7779/E-2300-7779.RGM.16L.jpg",
         "/images/new-img/escort/Ladies/7779/E-7779/E-2300-7779.RGM.16L.png"
-      ]
+      ],
+      "collection": "Hustler",
+      "collectionSlug": "hustler"
     },
     {
       "modelNo": "E-2300-7779.RGM.2L",
@@ -5585,7 +5997,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7779/E-2300-7779.RGM.2L.jpg",
         "/images/new-img/escort/Ladies/7779/E-7779/E-2300-7779.RGM.2L.png"
-      ]
+      ],
+      "collection": "Hustler",
+      "collectionSlug": "hustler"
     },
     {
       "modelNo": "E-2300-7779.RGM.3L",
@@ -5612,7 +6026,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7779/E-2300-7779.RGM.3L.jpg",
         "/images/new-img/escort/Ladies/7779/E-7779/E-2300-7779.RGM.3L.png"
-      ]
+      ],
+      "collection": "Hustler",
+      "collectionSlug": "hustler"
     },
     {
       "modelNo": "E-2300-7779.RGM.5L",
@@ -5639,7 +6055,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7779/E-2300-7779.RGM.5L.jpg",
         "/images/new-img/escort/Ladies/7779/E-7779/E-2300-7779.RGM.5L.png"
-      ]
+      ],
+      "collection": "Hustler",
+      "collectionSlug": "hustler"
     },
     {
       "modelNo": "E-2300-7779.RTM.16L",
@@ -5666,7 +6084,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7779/E-2300-7779.RTM.16L.jpg",
         "/images/new-img/escort/Ladies/7779/E-7779/E-2300-7779.RTM.16L.png"
-      ]
+      ],
+      "collection": "Hustler",
+      "collectionSlug": "hustler"
     },
     {
       "modelNo": "E-2300-7779.RTM.2L",
@@ -5693,7 +6113,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7779/E-2300-7779.RTM.2L.jpg",
         "/images/new-img/escort/Ladies/7779/E-7779/E-2300-7779.RTM.2L.png"
-      ]
+      ],
+      "collection": "Hustler",
+      "collectionSlug": "hustler"
     },
     {
       "modelNo": "E-2300-7779.RTM.3L",
@@ -5720,7 +6142,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7779/E-2300-7779.RTM.3L.jpg",
         "/images/new-img/escort/Ladies/7779/E-7779/E-2300-7779.RTM.3L.png"
-      ]
+      ],
+      "collection": "Hustler",
+      "collectionSlug": "hustler"
     },
     {
       "modelNo": "E-2300-7779.RTM.5L",
@@ -5747,7 +6171,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7779/E-2300-7779.RTM.5L.jpg",
         "/images/new-img/escort/Ladies/7779/E-7779/E-2300-7779.RTM.5L.png"
-      ]
+      ],
+      "collection": "Hustler",
+      "collectionSlug": "hustler"
     },
     {
       "modelNo": "E-1700-7781SM.17",
@@ -5774,7 +6200,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7781/7781/E-1750-7781.SM_Pink.png",
         "/images/new-img/escort/Ladies/7781/E-1750-7781.SM_Pink.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-1700-7781SM.2",
@@ -5801,7 +6229,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7781/7781/E-1750-7781.SM_White.png",
         "/images/new-img/escort/Ladies/7781/E-1750-7781.SM_White.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-1700-7781SM.5",
@@ -5828,7 +6258,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7781/7781/E-1750-7781.SM_Blue.png",
         "/images/new-img/escort/Ladies/7781/E-1750-7781.SM_Blue.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-1750-7781GM.16",
@@ -5855,7 +6287,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7781/7781/E-1750-7781.GM_Green.png",
         "/images/new-img/escort/Ladies/7781/E-1750-7781.GM_Green.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-1750-7781GM.2",
@@ -5882,7 +6316,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7781/7781/E-1750-7781.GM_White.png",
         "/images/new-img/escort/Ladies/7781/E-1750-7781.GM_White.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-1850-7781RGM.2",
@@ -5909,7 +6345,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7781/7781/E-1850-7781.RGM_White.png",
         "/images/new-img/escort/Ladies/7781/E-1850-7781.RGM_White.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-1850-7781RGM.9",
@@ -5936,7 +6374,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7781/7781/E-1850-7781.RGM_Brown.png",
         "/images/new-img/escort/Ladies/7781/E-1850-7781.RGM_Brown.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-1850-7791 SM.16",
@@ -5963,7 +6403,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7791/7791/E-2150-7791.SM_Green.png",
         "/images/new-img/escort/Ladies/7791/E-2150-7791.SM_Green.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-1850-7791 SM.2",
@@ -5990,7 +6432,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7791/7791/E-2150-7791.SM_White.png",
         "/images/new-img/escort/Ladies/7791/E-2150-7791.SM_White.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-1850-7791 SM.3",
@@ -6017,7 +6461,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7791/7791/E-2150-7791.SM_Black.png",
         "/images/new-img/escort/Ladies/7791/E-2150-7791.SM_Black.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-2150-7791 GM.2",
@@ -6044,7 +6490,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7791/7791/E-2150-7791.GM_White.png",
         "/images/new-img/escort/Ladies/7791/E-2150-7791.GM_White.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-2150-7791 GM.3",
@@ -6071,7 +6519,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7791/7791/E-2150-7791.GM_Black.png",
         "/images/new-img/escort/Ladies/7791/E-2150-7791.GM_Black.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-2150-7791 GM.4",
@@ -6098,7 +6548,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7791/7791/E-2150-7791.GM_Gold.png",
         "/images/new-img/escort/Ladies/7791/E-2150-7791.GM_Gold.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-2150-7791 RGBRNM.9",
@@ -6125,7 +6577,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7791/7791/E-2150-7791.BRNM.png",
         "/images/new-img/escort/Ladies/7791/E-2150-7791.BRNM.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-2150-7791 RGM.11",
@@ -6152,7 +6606,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7791/7791/E-2150-7791.RGM_Rose Gold.png",
         "/images/new-img/escort/Ladies/7791/E-2150-7791.RGM_Rose Gold.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-2150-7791 RGM.16",
@@ -6179,7 +6635,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7791/7791/E-2150-7791.RGM_Green.png",
         "/images/new-img/escort/Ladies/7791/E-2150-7791.RGM_Green.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-2150-7791 RGM.2",
@@ -6206,7 +6664,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7791/7791/E-2150-7791.RGM_White.png",
         "/images/new-img/escort/Ladies/7791/E-2150-7791.RGM_White.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-2150-7791 RGM.5",
@@ -6233,7 +6693,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7791/7791/E-2150-7791.RGM_Blue.png",
         "/images/new-img/escort/Ladies/7791/E-2150-7791.RGM_Blue.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-2150-7791 RTM.11",
@@ -6260,7 +6722,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7791/7791/E-2150-7791.RTM_Rose Gold.png",
         "/images/new-img/escort/Ladies/7791/E-2150-7791.RTM_Rose Gold.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-2150-7791 RTM.2",
@@ -6287,7 +6751,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7791/7791/E-2150-7791.RTM_White.png",
         "/images/new-img/escort/Ladies/7791/E-2150-7791.RTM_White.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-2150-7791 RTM.3",
@@ -6314,7 +6780,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7791/7791/E-2150-7791.RTM_Black.png",
         "/images/new-img/escort/Ladies/7791/E-2150-7791.RTM_Black.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-2150-7791 TM.16",
@@ -6341,7 +6809,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7791/7791/E-2150-7791.TM_Green.png",
         "/images/new-img/escort/Ladies/7791/E-2150-7791.TM_Green.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-2150-7791 TM.2",
@@ -6368,7 +6838,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7791/7791/E-2150-7791.TM_White.png",
         "/images/new-img/escort/Ladies/7791/E-2150-7791.TM_White.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-2150-7791 TM.4",
@@ -6395,7 +6867,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7791/7791/E-2150-7791.TM_Gold.png",
         "/images/new-img/escort/Ladies/7791/E-2150-7791.TM_Gold.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     },
     {
       "modelNo": "E-2200-7791 RGGRNM.16",
@@ -6422,7 +6896,9 @@
       "gallery": [
         "/images/new-img/escort/Ladies/7791/7791/E-2150-7791.RGGRNM.png",
         "/images/new-img/escort/Ladies/7791/E-2150-7791.RGGRNM.jpg"
-      ]
+      ],
+      "collection": "Bliss",
+      "collectionSlug": "bliss"
     }
   ]
 }

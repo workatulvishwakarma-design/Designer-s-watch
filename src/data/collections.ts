@@ -297,8 +297,56 @@ const rawCollections: Omit<Collection, "title" | "tagline" | "category" | "featu
   },
 
   // ═══════════════════════════════════════════════════
-  //  ESCORT BRAND — Everyday Excellence
+  //  ESCORT BRAND — Signature Everyday Collections
   // ═══════════════════════════════════════════════════
+  {
+    slug: "classico",
+    name: "Classico",
+    meaning: "Classic masculine refinement, dependable precision and timeless stainless steel",
+    description: "Engineered for the modern gentleman who values enduring style and reliable performance. Robust stainless steel cases, mineral glass, and classic dials crafted for effortless everyday distinction.",
+    identity: "Timeless · Dependable · Refined",
+    luxuryIdentity: "Classic masculine dress watches with dependable quartz precision",
+    modelFamilies: ["1890", "7308", "7359", "7443", "7449", "7450", "7455", "7548", "7594", "7689", "7690"],
+    gender: "Men",
+    featured: true,
+    heroImage: "/images/new-img/escort/gents/E-1890/E1650-1890.SM_White(1).jpg",
+  },
+  {
+    slug: "bliss",
+    name: "Bliss",
+    meaning: "Pure everyday grace, soft tones, and versatile feminine elegance",
+    description: "Whisper-quiet feminine grace designed for everyday wear. Featuring soft pastel dials, delicate proportions, and dependable quartz movements that elevate everyday moments.",
+    identity: "Graceful · Serene · Feminine",
+    luxuryIdentity: "Delicate feminine everyday luxury timepieces",
+    modelFamilies: ["7447", "7459", "7533", "7566", "7567", "7597", "7598", "7620", "7627", "7691", "7706", "7724"],
+    gender: "Women",
+    featured: true,
+    heroImage: "/images/new-img/escort/Ladies/E-1850-7447/E-1850-7447.BM.jpg",
+  },
+  {
+    slug: "bling",
+    name: "Bling",
+    meaning: "Radiant crystal brilliance, sparkling dials and rose-gold allure",
+    description: "A celebration of light, glamor, and jewelry craftsmanship. Embellished with sparkling crystal indices, gleaming two-tone bracelets, and radiant dials that capture every glance.",
+    identity: "Radiant · Luminous · Glamorous",
+    luxuryIdentity: "Jeweled crystal elegance and sparkling wrist presence",
+    modelFamilies: ["7461", "7732"],
+    gender: "Women",
+    featured: true,
+    heroImage: "/images/new-img/escort/Ladies/7461/7461/E-2100-7461.GM.Brown.png",
+  },
+  {
+    slug: "hustler",
+    name: "Hustler",
+    meaning: "Dynamic energy, bold attitude and unstoppable everyday drive",
+    description: "Built for those who set their own tempo. Strong angular geometry, vibrant dial accents, and robust build make the Hustler collection a confident statement for both men and women.",
+    identity: "Dynamic · Bold · Ambitious",
+    luxuryIdentity: "Bold contemporary watches for active ambition",
+    modelFamilies: ["7226", "7444", "7779"],
+    gender: "Unisex",
+    featured: true,
+    heroImage: "/images/new-img/escort/gents/E 7226/E2250-7226.SM_Green.jpg",
+  },
   {
     slug: "escort",
     name: "Escort",
@@ -306,10 +354,10 @@ const rawCollections: Omit<Collection, "title" | "tagline" | "category" | "featu
     description: "Built for endurance and daily wear, the Escort collection brings refined design to everyday life. Combining robust construction, daily dependability, and clean aesthetics — proving that quality craftsmanship need not compromise accessibility.",
     identity: "Accessible · Reliable · Everyday Luxury",
     luxuryIdentity: "Affordable everyday excellence with refined styling",
-    modelFamilies: ["E-7914", "E-7751", "A-1589", "E-7908", "E-7931", "7779", "7806"],
+    modelFamilies: ["1890", "7447", "7461", "7226", "7444", "7779"],
     gender: "Unisex",
     featured: true,
-    heroImage: "/images/watches/Escort/E-7914/E-7914.GM_Blue.png",
+    heroImage: "/images/new-img/escort/gents/E-1890/E1650-1890.SM_White(1).jpg",
   },
 ];
 
@@ -343,6 +391,10 @@ const COLLECTION_CATEGORIES: Record<string, string> = {
   bondline: "Couple Collections",
 
   escort: "Escort Collections",
+  classico: "Escort Collections",
+  bliss: "Escort Collections",
+  bling: "Escort Collections",
+  hustler: "Escort Collections",
 };
 
 export const collections: Collection[] = rawCollections.map(c => {
@@ -367,7 +419,15 @@ for (const c of collections) {
 export const familyToCollection = _familyToCollection;
 
 export function getCollectionBySlug(slug: string): Collection | undefined {
-  return collections.find((c) => c.slug === slug);
+  if (!slug) return undefined;
+  const s = slug.toLowerCase().trim();
+  const direct = collections.find((c) => c.slug.toLowerCase() === s);
+  if (direct) return direct;
+  if (s.startsWith("escort-")) {
+    const unaliased = s.replace("escort-", "");
+    return collections.find((c) => c.slug.toLowerCase() === unaliased);
+  }
+  return undefined;
 }
 
 export function getFeaturedCollections(): Collection[] {

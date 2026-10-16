@@ -35,13 +35,24 @@ export function getCollectionProducts(collectionSlug: string): ModelFamilyGroup[
   const seenSlugs = new Set<string>();
 
   // 1. D'SIGNER MASTER INVENTORY ITEMS
-  if (
-    target !== "escort" &&
-    target !== "escort-men" &&
-    target !== "escort-womens" &&
-    target !== "mens-escort" &&
-    target !== "womens-escort"
-  ) {
+  const isEscortSlug =
+    target === "escort" ||
+    target === "escort-men" ||
+    target === "mens-escort" ||
+    target === "escort-womens" ||
+    target === "womens-escort" ||
+    target === "bliss" ||
+    target === "escort-bliss" ||
+    target === "classico" ||
+    target === "escort-classico" ||
+    target === "bling" ||
+    target === "escort-bling" ||
+    target === "hustler" ||
+    target === "escort-hustler" ||
+    target === "hustler-g" ||
+    target === "hustler-l";
+
+  if (!isEscortSlug) {
     for (const item of ALL_DSIGNER_ITEMS) {
       const colRaw = (item.collection || "").toLowerCase().trim();
       const series = (item.series || "").trim();
@@ -87,21 +98,28 @@ export function getCollectionProducts(collectionSlug: string): ModelFamilyGroup[
   }
 
   // 2. ESCORT MASTER INVENTORY ITEMS
-  if (
-    target === "escort" ||
-    target === "escort-men" ||
-    target === "mens-escort" ||
-    target === "escort-womens" ||
-    target === "womens-escort"
-  ) {
+  if (isEscortSlug) {
     for (const item of ALL_ESCORT_ITEMS) {
       let matches = false;
+      const itemCol = (item.collectionSlug || "").toLowerCase();
       if (target === "escort") {
         matches = true;
       } else if (target === "escort-men" || target === "mens-escort") {
         matches = item.gender === "Men";
       } else if (target === "escort-womens" || target === "womens-escort") {
         matches = item.gender === "Women";
+      } else if (target === "bliss" || target === "escort-bliss") {
+        matches = itemCol === "bliss";
+      } else if (target === "classico" || target === "escort-classico") {
+        matches = itemCol === "classico";
+      } else if (target === "bling" || target === "escort-bling") {
+        matches = itemCol === "bling";
+      } else if (target === "hustler" || target === "escort-hustler") {
+        matches = itemCol === "hustler";
+      } else if (target === "hustler-g") {
+        matches = itemCol === "hustler" && item.gender === "Men";
+      } else if (target === "hustler-l") {
+        matches = itemCol === "hustler" && item.gender === "Women";
       }
 
       if (matches) {
